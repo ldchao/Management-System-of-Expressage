@@ -1,3 +1,4 @@
+package Client.PO;
 import java.io.Serializable;
 
 public class AccountPO implements Serializable {

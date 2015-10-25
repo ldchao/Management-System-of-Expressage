@@ -1,3 +1,4 @@
+package Client.PO;
 import java.io.Serializable;
 
 //ArriverorderPO（到达单）类包含到达日期、中转单编号、出发地、货物到达状态、审批状态。

@@ -1,3 +1,4 @@
+package Client.PO;
 import java.io.Serializable;
 
 //StorePO（仓库信息）类包含库存警戒值、提醒值、各位置库存信息。

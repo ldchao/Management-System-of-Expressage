@@ -1,3 +1,4 @@
+package Client.PO;
 import java.util.ArrayList;
 
 //火车装运单

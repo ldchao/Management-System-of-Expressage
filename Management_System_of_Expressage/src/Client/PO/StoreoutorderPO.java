@@ -1,3 +1,4 @@
+package Client.PO;
 import java.io.Serializable;
 
 //StoreoutorderPO（出库单）类包含快递编号、出库日期、目的地、装运形式、中转单编号/汽运编号、审核状态。

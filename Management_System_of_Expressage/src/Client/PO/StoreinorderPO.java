@@ -1,3 +1,4 @@
+package Client.PO;
 import java.io.Serializable;
 //StoreinorderPO（入库单）类包含快递编号、入库日期、目的地、区号、排号、架号、位号、审批状态。
 public class StoreinorderPO implements Serializable {
