@@ -1,14 +1,14 @@
 import java.io.Serializable;
 
 public class StartinfoPO implements Serializable {
-	String startInsti; // institution
-	String startStaff;
-	String startVehicle;
-	String startStore;
-	String startAccount;
-	String startDate;
-	String startCreator;
-	int startState;
+	String startInsti; // 机构
+	String startStaff; // 员工
+	String startVehicle; // 车辆
+	String startStore; // 库存
+	String startAccount; // 账户
+	String startDate; // 创建日期
+	String startCreator; // 创建者
+	int startState; // 审批状态
 
 	public StartinfoPO(String insti, String staff, String vehicle,
 			String store, String account, String date, String creator, int state) {

@@ -1,13 +1,13 @@
 import java.io.Serializable;
 
 public class PayorderPO implements Serializable {
-	double payMoney;
-	String payDate;
-	String payName;
-	String payAccount;
-	String payList;
-	String payComment;
-	int payState;
+	double payMoney; // 付款金额
+	String payDate; // 付款日期
+	String payName; // 付款人姓名
+	String payAccount; // 付款账户
+	String payList; // 条目
+	String payComment; // 备注
+	int payState; // 审批状态
 
 	public PayorderPO(double money, String date, String name, String account,
 			String list, String comment, int state) {
