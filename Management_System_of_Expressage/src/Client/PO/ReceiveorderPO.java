@@ -1,3 +1,6 @@
+import java.io.Serializable;
+import java.util.ArrayList;
+
 public class ReceiveorderPO implements Serializable{
 	String date;
 	String changeOrderNum;

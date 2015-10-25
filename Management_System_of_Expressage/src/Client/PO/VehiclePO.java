@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 public class VehiclePO implements Serializable{
 	String carNum;
 	String engineNum;
@@ -7,7 +9,7 @@ public class VehiclePO implements Serializable{
 	String useDate; 
 	String carState;
 
-	public VehiclePO(SString carNum,String engineNum,String car,String baseNum,
+	public VehiclePO(String carNum,String engineNum,String car,String baseNum,
 		String buyDate,String useDate, String carState){
 		carNum = this.carNum;
 		engineNum = this.engineNum;

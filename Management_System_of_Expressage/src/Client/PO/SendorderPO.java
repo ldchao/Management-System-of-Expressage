@@ -1,6 +1,9 @@
+import java.io.Serializable;
+import java.util.ArrayList;
+
 public class SendorderPO implements Serializable{
 	String date;
-	String sender；
+	String sender;
 	ArrayList<String> order;
 
 	public SendorderPO(String date,String sender,

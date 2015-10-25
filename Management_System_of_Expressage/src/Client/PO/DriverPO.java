@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 public class DriverPO implements Serializable{
 	String driverNum;
 	String name;

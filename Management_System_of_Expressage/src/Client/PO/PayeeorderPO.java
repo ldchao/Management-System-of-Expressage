@@ -1,6 +1,9 @@
+import java.io.Serializable;
+import java.util.ArrayList;
+
 public class PayeeorderPO implements Serializable{
 	String date;
-	String carrierName；
+	String carrierName;
 	String recorder;
 	ArrayList<String> order;
 	ArrayList<Integer> price;
