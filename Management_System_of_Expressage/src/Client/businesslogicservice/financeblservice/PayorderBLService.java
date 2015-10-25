@@ -3,7 +3,7 @@ package Client.businesslogicservice.financeblservice;
 import java.util.ArrayList;
 
 import Client.PO.PayorderPO;
-import Client.VO.vo.PayorderVO;
+import Client.VO.PayorderVO;
 
 public interface PayorderBLService {
 

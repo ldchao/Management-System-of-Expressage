@@ -3,7 +3,7 @@ package Client.businesslogicservice.staffblservice;
 import java.util.ArrayList;
 
 import Client.PO.UserPO;
-import Client.VO.vo.UserVO;
+import Client.VO.UserVO;
 
 public interface UserBLService {
 

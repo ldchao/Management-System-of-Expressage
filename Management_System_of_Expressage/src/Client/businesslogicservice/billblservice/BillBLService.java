@@ -2,7 +2,7 @@ package Client.businesslogicservice.billblservice;
 
 import java.util.ArrayList;
 
-import Client.VO.vo.StartinfoVO;
+import Client.VO.StartinfoVO;
 
 public interface BillBLService {
 

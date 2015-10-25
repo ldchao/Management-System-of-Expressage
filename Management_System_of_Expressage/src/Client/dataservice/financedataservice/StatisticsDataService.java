@@ -2,8 +2,8 @@ package Client.dataservice.financedataservice;
 
 import java.util.ArrayList;
 
-import Client.VO.vo.PayeeorderVO;
-import Client.VO.vo.PayorderVO;
+import Client.VO.PayeeorderVO;
+import Client.VO.PayorderVO;
 
 public interface StatisticsDataService {
 

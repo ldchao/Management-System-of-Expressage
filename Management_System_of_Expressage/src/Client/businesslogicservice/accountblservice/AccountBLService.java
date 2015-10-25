@@ -3,7 +3,7 @@ package Client.businesslogicservice.accountblservice;
 import java.util.ArrayList;
 
 import Client.PO.AccountPO;
-import Client.VO.vo.AccountVO;
+import Client.VO.AccountVO;
 
 public interface AccountBLService {
 

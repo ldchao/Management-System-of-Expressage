@@ -1,4 +1,4 @@
-package PO;
+package Client.PO;
 import java.io.Serializable;
 
 

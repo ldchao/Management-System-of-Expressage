@@ -3,7 +3,7 @@ package Client.dataservice.financedataservice;
 import java.util.ArrayList;
 
 import Client.PO.PayorderPO;
-import Client.VO.vo.PayorderVO;
+import Client.VO.PayorderVO;
 
 public interface PayorderDataService {
 

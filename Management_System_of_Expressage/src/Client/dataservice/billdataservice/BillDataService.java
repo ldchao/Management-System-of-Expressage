@@ -3,7 +3,7 @@ package Client.dataservice.billdataservice;
 import java.util.ArrayList;
 
 import Client.PO.StartinfoPO;
-import Client.VO.vo.StartinfoVO;
+import Client.VO.StartinfoVO;
 
 public interface BillDataService {
 

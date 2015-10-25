@@ -3,7 +3,7 @@ package Client.dataservice.accountdataservice;
 import java.util.ArrayList;
 
 import Client.PO.AccountPO;
-import Client.VO.vo.AccountVO;
+import Client.VO.AccountVO;
 
 public interface AccountDataService {
 
