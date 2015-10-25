@@ -1,5 +1,7 @@
 package Client.VO.vo;
 
-public class PayeeorderVO {
+import java.io.Serializable;
+
+public class PayeeorderVO implements Serializable {
 
 }

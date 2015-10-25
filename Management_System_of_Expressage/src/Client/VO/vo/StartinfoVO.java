@@ -1,5 +1,7 @@
 package Client.VO.vo;
 
-public class StartinfoVO {
+import java.io.Serializable;
+
+public class StartinfoVO implements Serializable {
 
 }

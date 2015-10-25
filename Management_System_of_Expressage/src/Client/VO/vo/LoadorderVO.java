@@ -1,5 +1,7 @@
 package Client.VO.vo;
 
-public class LoadorderVO {
+import java.io.Serializable;
+
+public class LoadorderVO implements Serializable {
 
 }

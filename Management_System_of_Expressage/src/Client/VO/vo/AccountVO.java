@@ -1,5 +1,7 @@
 package Client.VO.vo;
 
-public class AccountVO {
+import java.io.Serializable;
+
+public class AccountVO implements Serializable {
 
 }
