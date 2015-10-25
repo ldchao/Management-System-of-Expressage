@@ -1,7 +1,3 @@
-import java.io.Serializable;
-import java.util.ArrayList;
-
-
 public class LoadorderPO implements Serializable{
 	String date;
 	String offNum;
@@ -70,4 +66,3 @@ public class LoadorderPO implements Serializable{
 
 
 }
-
