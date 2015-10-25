@@ -14,15 +14,16 @@ public class DriverPO implements Serializable{
 
 	public DriverPO(String driverNum,String name,String shopNum,String birthDate,
 	String idNum,String phoneNum,String sex,String licenseDue,String driverState){
-		driverNum = this.driverNum;
-		name = this.name;
-		shopNum = this.shopNum;
-		birthDate = this.birthDate;
-		idNum = this.idNum;
-		phoneNum = this.phoneNum;
-		sex = this.sex;
-		licenseDue = this.licenseDue;
-		driverState = this.driverState;
+		super();
+		this.driverNum = driverNum;
+		this.name = name;
+		this.shopNum = shopNum;
+		this.birthDate = birthDate;
+		this.idNum = idNum;
+		this.phoneNum = phoneNum;
+		this.sex = sex;
+		this.licenseDue = licenseDue;
+		this.driverState = driverState;
 	}
 
     /*  getDriverNum
@@ -74,7 +75,7 @@ public class DriverPO implements Serializable{
 	}
 
 	/*  getSex
-        返回车辆状态
+        返回性别
 	    return String
     */
 	public String getSex(){
@@ -95,6 +96,15 @@ public class DriverPO implements Serializable{
     */
 	public String getDriverState(){
 		return driverState;
+	}
+	
+	/*  setDriverState
+        设置司机状态
+        void
+    */
+	
+	public void setDriverState() {
+		this.driverState = driverState;
 	}
 
 

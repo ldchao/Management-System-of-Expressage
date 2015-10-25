@@ -15,16 +15,17 @@ public class LoadorderPO implements Serializable{
 	int checkState;
 
 	public LoadorderPO(String date,String offNum,String transferNum,String arriveNum,String monitorName,String transferName,String transportNum,ArrayList<String> order,double fee,int checkState){
-		date = this.date;
-		offNum = this.offNum;
-		transferNum = this.transferNum;
-		arriveNum = this.arriveNum;
-		monitorName = this.monitorName;
-		transferName = this.transferName;
-		transportNum = this.transportNum;
-		order = this.order;
-		fee = this.fee;
-		checkState = this.checkState;
+		super();
+		this.date = date;
+		this.offNum = offNum;
+		this.transferNum = transferNum;
+		this.arriveNum = arriveNum;
+		this.monitorName = monitorName;
+		this.transferName = transferName;
+		this.transportNum = transportNum;
+		this.order = order;
+		this.fee = fee;
+		this.checkState = checkState;
 	}
 
 	public String getDate(){

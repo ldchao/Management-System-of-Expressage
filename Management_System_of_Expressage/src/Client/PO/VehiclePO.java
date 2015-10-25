@@ -77,6 +77,14 @@ public class VehiclePO implements Serializable{
 	public String getCarState(){
 		return carState;
 	}
+	/*  getCarState
+        设置车辆状态
+        void
+*/
+	
+    public void setCarState(String carState){
+    	this.carState = carState;
+    }
 
 
 
