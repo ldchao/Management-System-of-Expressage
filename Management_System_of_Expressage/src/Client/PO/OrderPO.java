@@ -172,6 +172,10 @@ public class OrderPO implements Serializable{
 	public String getTransformState() {
 		return transformState;
 	}
+
+	public void setTransformState(String transformState) {
+		this.transformState = transformState;
+	}
 	
 	
 	
