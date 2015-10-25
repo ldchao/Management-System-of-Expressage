@@ -1,7 +1,7 @@
 package Client.businesslogicservice.transferblservice;
 
 import Client.PO.ArriverorderPO;
-import Client.VO.LoadorderVO;
+import Client.VO.vo.LoadorderVO;
 
 public interface Receiveblservice {
 
