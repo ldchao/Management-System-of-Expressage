@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="Client/|Server/|Client/|Server/|Client/businesslogic/staffbl/|Client/businesslogic/|Client/businesslogicservice/|Client/dataservice/|Client/PO/|Client/presentation/|Client/VO/|Server/data/|Server/dataservice/|Server/PO/" kind="src" path="src"/>
+	<classpathentry excluding="businesslogic/staffbl/|businesslogic/|businesslogicservice/|dataservice/|PO/|presentation/|VO/" kind="src" path="src/Client"/>
+	<classpathentry excluding="data/|dataservice/|PO/" kind="src" path="src/Server"/>
+	<classpathentry kind="src" path="src/Client/businesslogic"/>
+	<classpathentry kind="src" path="src/Client/businesslogicservice"/>
+	<classpathentry kind="src" path="src/Client/dataservice"/>
+	<classpathentry kind="src" path="src/Client/PO"/>
+	<classpathentry kind="src" path="src/Client/presentation"/>
+	<classpathentry kind="src" path="src/Client/VO"/>
+	<classpathentry kind="src" path="src/Server/data"/>
+	<classpathentry kind="src" path="src/Server/dataservice"/>
+	<classpathentry kind="src" path="src/Server/PO"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
