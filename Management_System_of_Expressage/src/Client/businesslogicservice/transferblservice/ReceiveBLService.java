@@ -1,5 +1,7 @@
 package Client.businesslogicservice.transferblservice;
 
+import java.util.ArrayList;
+
 import Client.PO.ArriverorderPO;
 import Client.VO.LoadorderVO;
 
@@ -12,7 +14,7 @@ public interface ReceiveBLService {
 	public void setRemind(LoadorderVO lv);
 	
 	//查看消息提醒
-	public LoadorderVO checkRemind();
+	public ArrayList<LoadorderVO> checkRemind();
 	
 	//存储到达单
 	public void save(ArriverorderPO PO);

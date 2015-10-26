@@ -1,5 +1,7 @@
 package Client.businesslogicservice.storeblservice;
 
+import java.util.ArrayList;
+
 import Client.PO.StoreinorderPO;
 import Client.VO.ArriverorderVO;
 
@@ -12,7 +14,7 @@ public interface Warehouse_inBLService {
 	public void setRemind(ArriverorderVO av);
 	
 	//产看提醒
-	public String checkRemind();
+	public ArrayList<ArriverorderVO> checkRemind();
 	
 	//存储新建立的入库单
 	public void save(StoreinorderPO sp);

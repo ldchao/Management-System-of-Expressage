@@ -1,5 +1,7 @@
 package Client.businesslogicservice.loadblservice;
 
+import java.util.ArrayList;
+
 import Client.PO.LoadorderPO;
 import Client.VO.ChangeorderVO;
 
@@ -12,7 +14,7 @@ public interface ShippingBLService {
 	public void setRemind(ChangeorderVO cv);
 	
 	//查看提醒值
-	public String checkRemind();
+	public ArrayList<ChangeorderVO> checkRemind();
 	
 	//存储新建的装车单
 	public void save(LoadorderPO lp);
