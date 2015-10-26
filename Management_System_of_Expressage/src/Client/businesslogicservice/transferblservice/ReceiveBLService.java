@@ -3,7 +3,7 @@ package Client.businesslogicservice.transferblservice;
 import Client.PO.ArriverorderPO;
 import Client.VO.LoadorderVO;
 
-public interface Receiveblservice {
+public interface ReceiveBLService {
 
 	//创建中转中心到达单
 	public void build(LoadorderVO lv,String as);
