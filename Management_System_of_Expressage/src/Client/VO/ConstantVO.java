@@ -1,6 +1,8 @@
 package Client.VO;
 
-public class ConstantVO {
+import java.io.Serializable;
+
+public class ConstantVO implements Serializable{
 	String address1;
 	String address2;
 	double distance;

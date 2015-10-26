@@ -1,6 +1,8 @@
 package Client.VO;
 
-public class SalaryVO {
+import java.io.Serializable;
+
+public class SalaryVO implements Serializable{
 	String typeOfStaff;
 	double salary;
 	int typeOfStrategy;
