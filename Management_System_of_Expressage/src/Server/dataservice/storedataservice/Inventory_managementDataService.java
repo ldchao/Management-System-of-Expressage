@@ -1,6 +1,7 @@
 package Server.dataservice.storedataservice;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import Client.PO.OrderPO;
 import Client.PO.StorePO;
@@ -14,7 +15,7 @@ public interface Inventory_managementDataService {
 	public void updata(StorePO sp, int store_number) throws RemoteException;
 
 	// 查看指定仓库指定时间段内出入库数量和金额
-	public void checknumber(int store_number, String startdata, String overdata)
+	public String checknumber(int store_number, String startdata, String overdata)
 			throws RemoteException;
 
 	// 在文件中插入指定天的出入库数量和金额
@@ -23,7 +24,7 @@ public interface Inventory_managementDataService {
 			throws RemoteException;
 
 	// 查看指定仓库指定区域在指定时间段内所有订单信息
-	public void checkorder(int store_number, int store_qu, String startdata,
+	public ArrayList<String> checkorder(int store_number, int store_qu, String startdata,
 			String overdata) throws RemoteException;
 
 	// 在文件中插入一行快递信息及入库信息
