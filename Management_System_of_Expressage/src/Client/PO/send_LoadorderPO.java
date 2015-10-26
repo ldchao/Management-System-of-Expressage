@@ -1,8 +1,9 @@
 package Client.PO;
+import java.util.ArrayList;
 
-//装车单
+//汽车装运单
 public class send_LoadorderPO extends LoadorderPO{
-	
+
 	public send_LoadorderPO(String date, String offNum, String transferNum,
 			String arriveNum, String monitorName, String transferName,
 			String transportNum, ArrayList<String> order, double fee,
