@@ -11,16 +11,16 @@ public interface AccountBLService {
 	public ArrayList<AccountVO> check();
 
 	// 增加
-	public void insert(String name, double money, String creator, String date,
+	public void addAccount(String name, double money, String creator, String date,
 			int state);
 
 	// 修改账户
-	public void update(AccountPO po, String name, double money, String creator,
+	public void updateAccount(AccountPO po, String name, double money, String creator,
 			String date, int state);
 
 	// 根据账户名查找并删除账户
-	public void delete(String name);
+	public void deleteAccount(String name);
 
 	// 根据关键字查找所有可能的账户
-	public ArrayList<AccountVO> find(String key);
+	public ArrayList<AccountVO> findAccount(String key);
 }
