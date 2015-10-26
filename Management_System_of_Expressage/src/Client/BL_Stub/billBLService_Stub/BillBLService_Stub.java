@@ -39,7 +39,7 @@ public class BillBLService_Stub implements BillBLService {
 	@Override
 	public ArrayList<StartinfoVO> checkBill() {
 		// TODO Auto-generated method stub
-		ArrayList<StartinfoVO> infoList = new ArrayList<>();
+		ArrayList<StartinfoVO> infoList = new ArrayList<StartinfoVO>();
 		infoList.add(new StartinfoVO());
 		return infoList;
 	}
