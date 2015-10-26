@@ -3,7 +3,6 @@ package Server.Date_Stub.financeDateservice_Stub;
 import java.util.ArrayList;
 
 import Client.PO.PayorderPO;
-import Client.VO.PayorderVO;
 import Server.dataservice.financedataservice.PayorderDataService;
 
 public class PayorderDataService_Stub implements PayorderDataService{
