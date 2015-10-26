@@ -13,6 +13,11 @@ public class UserPO implements Serializable {
 		userLimit = limit;
 	}
 
+	// 显示所有用户 信息时用
+	public UserPO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getName() {
 		return userName;
 	}

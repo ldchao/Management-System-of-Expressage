@@ -1,4 +1,5 @@
 package Client.PO;
+
 import java.io.Serializable;
 
 public class PayorderPO implements Serializable {
@@ -19,6 +20,11 @@ public class PayorderPO implements Serializable {
 		payList = list;
 		payComment = comment;
 		payState = state;
+	}
+
+	// 显示所有付款单时用
+	public PayorderPO() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public double getPayMoney() {

@@ -3,7 +3,6 @@ package Server.dataservice.billdataservice;
 import java.util.ArrayList;
 
 import Client.PO.StartinfoPO;
-import Client.VO.StartinfoVO;
 
 public interface BillDataService {
 
@@ -11,5 +10,5 @@ public interface BillDataService {
 	public void insert(StartinfoPO po);
 
 	// ≤È’“À˘”–’ 
-	public ArrayList<StartinfoVO> find();
+	public ArrayList<StartinfoPO> find();
 }

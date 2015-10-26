@@ -3,7 +3,6 @@ package Client.dataservice.financedataservice;
 import java.util.ArrayList;
 
 import Client.PO.PayorderPO;
-import Client.VO.PayorderVO;
 
 public interface PayorderDataService {
 
@@ -11,7 +10,7 @@ public interface PayorderDataService {
 	public void insert(PayorderPO po);
 
 	// 查看付款单时查找所有付款单信息
-	public ArrayList<PayorderVO> find();
+	public ArrayList<PayorderPO> find();
 
 	// 查看成本收益（计算总支出、收入、利润）
 	public double profit(double[] pay, double[] payee);

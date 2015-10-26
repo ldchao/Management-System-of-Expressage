@@ -1,4 +1,5 @@
 package Client.PO;
+
 import java.io.Serializable;
 
 public class StartinfoPO implements Serializable {
@@ -21,6 +22,11 @@ public class StartinfoPO implements Serializable {
 		startDate = date;
 		startCreator = creator;
 		startState = state;
+	}
+
+	// 显示所有账时用
+	public StartinfoPO() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getStartInsti() {

@@ -3,7 +3,6 @@ package Server.dataservice.staffdataservice;
 import java.util.ArrayList;
 
 import Client.PO.UserPO;
-import Client.VO.UserVO;
 
 public interface UserDataService {
 
@@ -17,9 +16,9 @@ public interface UserDataService {
 	public void delete(String name);
 
 	// 查找一个用户
-	public UserVO find(String name);
+	public UserPO find(String name);
 
 	// 查找所有用户
-	public ArrayList<UserVO> finds();
+	public ArrayList<UserPO> finds();
 
 }

@@ -17,6 +17,11 @@ public class AccountPO implements Serializable {
 		acState = state;
 	}
 
+    // 根据关键字模糊查找时用
+	public AccountPO(String key) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getAcName() {
 		return acName;
 	}

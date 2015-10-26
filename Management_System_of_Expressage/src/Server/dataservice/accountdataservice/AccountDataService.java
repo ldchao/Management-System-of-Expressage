@@ -3,7 +3,6 @@ package Server.dataservice.accountdataservice;
 import java.util.ArrayList;
 
 import Client.PO.AccountPO;
-import Client.VO.AccountVO;
 
 public interface AccountDataService {
 
@@ -17,5 +16,5 @@ public interface AccountDataService {
 	public void delete(String name);
 
 	// 根据关键字查找所有可能的账户
-	public ArrayList<AccountVO> find(String key);
+	public ArrayList<AccountPO> find(String key);
 }
