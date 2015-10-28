@@ -72,4 +72,12 @@ public class StaffBLService_Stub implements StaffBLService{
 		System.out.println("end the staff");
 	}
 
+	@Override
+	public void editStaff(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }

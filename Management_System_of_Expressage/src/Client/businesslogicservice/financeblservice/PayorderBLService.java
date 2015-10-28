@@ -8,7 +8,7 @@ import Client.VO.PayorderVO;
 public interface PayorderBLService {
 
 	// 新建付款单
-	public void addPayorder(double paymoney, String data, String payname,
+	public void addPayorder(double paymoney, String date, String payname,
 			String payaccount, String list, String comment);
 
 	// 查看付款单时显示所有付款单信息

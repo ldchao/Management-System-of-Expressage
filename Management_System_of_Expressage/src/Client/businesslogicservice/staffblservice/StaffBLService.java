@@ -18,8 +18,7 @@ public interface StaffBLService {
 	//查询是否存在这个人员信息，如果有，就返回
 	public StaffVO searchStaff(String name);
 	
-	public void editStaff(String name,String address,String position,
-	String phone,String cellphone);
+	public void editStaff(String name);
 	
 	public void deleteStaff(String name);
 	

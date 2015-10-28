@@ -8,6 +8,6 @@ public interface ListinDataService {
 	
 	public void insertReceiver(ReceiverPO po);
 	
-	public double getPrice(String address1,String address2);
+	public void getPrice(String address1,String address2);
 	
 }
