@@ -1,10 +1,15 @@
 package Client.presentation.financial_staffui;
 
+import javafx.scene.Scene;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -26,6 +31,12 @@ public class financial_staffui extends JPanel {
 		add(lblHello);
 		
 		JButton btnNewButton = new JButton("New button");
+	//	btnNewButton.setIcon(new ImageIcon("src/scene.jpg"));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Payframe paymain = new Payframe();
+			}
+		});
 		btnNewButton.setBounds(96, 111, 124, 108);
 		add(btnNewButton);
 		
@@ -66,6 +77,10 @@ public class financial_staffui extends JPanel {
 		add(label_5);
 		
 		JButton button_4 = new JButton("\u9000\u51FA");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		button_4.setBounds(10, 6, 67, 23);
 		add(button_4);
 

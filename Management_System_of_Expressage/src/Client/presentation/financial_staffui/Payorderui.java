@@ -23,10 +23,20 @@ public class Payorderui extends JPanel {
 		add(lblHello);
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fsframe fs = new fsframe();
+			}
+		});
 		button_4.setBounds(10, 1, 67, 23);
 		add(button_4);
 		
 		JButton button = new JButton("New button");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Newpayframe npf = new Newpayframe();
+			}
+		});
 		button.setBounds(163, 160, 186, 172);
 		add(button);
 		

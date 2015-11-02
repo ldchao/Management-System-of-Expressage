@@ -34,7 +34,7 @@ public class Accountui extends JPanel {
 		label_4.setBounds(501, 117, 81, 15);
 		add(label_4);
 
-		JButton button_4 = new JButton("\u9000\u51FA");
+		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.setBounds(10, 6, 67, 23);
 		add(button_4);
 
