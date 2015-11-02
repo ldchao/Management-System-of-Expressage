@@ -1,29 +1,19 @@
 package Client.presentation.financial_staffui;
 
-import java.awt.TextArea;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JList;
-import javax.swing.JFormattedTextField;
-import javax.swing.JSlider;
-import javax.swing.JTable;
-import javax.swing.JTree;
 
-public class Calculateui extends JPanel {
+public class Statisticsui extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public Calculateui() {
+	public Statisticsui() {
 
 		setLayout(null);
 
-		JLabel label = new JLabel("财务人员>>结算管理");
+		JLabel label = new JLabel("\u8D22\u52A1\u4EBA\u5458>>\u7EDF\u8BA1\u62A5\u8868");
 		label.setBounds(88, 5, 518, 15);
 		add(label);
 
@@ -35,4 +25,5 @@ public class Calculateui extends JPanel {
 		button_4.setBounds(10, 1, 68, 23);
 		add(button_4);
 	}
+
 }
