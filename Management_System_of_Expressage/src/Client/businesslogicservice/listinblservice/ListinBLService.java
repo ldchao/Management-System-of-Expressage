@@ -16,11 +16,5 @@ public interface ListinBLService {
 	public String getTotalTime(String address1,String address2,int express);
 	
 	public void endAddOrder();
-	
-	
-	//新建收件人信息单
-	public void addReceiver(String courier, String phoneOfcourier, String id,
-			String receiver, String address, String time, String cellphone);
-	
-	public void endAddReceiver();
+
 }
