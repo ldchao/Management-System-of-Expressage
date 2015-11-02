@@ -11,11 +11,6 @@ public class ListinDataService_Stub implements ListinDataService{
 		System.out.println("insert succeed");
 	}
 
-	public void insertReceiver(ReceiverPO po) {
-		// TODO Auto-generated method stub
-		System.out.println("insert succeed");
-	}
-
 	public double getPrice(String address1, String address2) {
 		// TODO Auto-generated method stub
 		if(address1.equals("南京")&&address2.equals("北京")){

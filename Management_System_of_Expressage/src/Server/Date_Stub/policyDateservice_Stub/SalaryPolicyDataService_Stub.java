@@ -45,18 +45,4 @@ public class SalaryPolicyDataService_Stub implements SalaryPolicyDataService{
 		System.out.println("update succeed");
 	}
 
-	public ConstantPO find(String address1, String address2) {
-		// TODO Auto-generated method stub
-		if(address1.equals("南京")&&address2.equals("北京")){
-			return new ConstantPO(address1,address2,distance,price);
-		}else{
-			return null;
-		}
-	}
-
-	public void updateConstant(ConstantPO po) {
-		// TODO Auto-generated method stub
-		System.out.println("update succeed");
-	}
-
 }
