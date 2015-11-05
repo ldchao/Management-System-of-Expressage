@@ -55,6 +55,8 @@ public class Statisticsframe extends JFrame {
 		JButton button = new JButton("\u786E\u8BA4");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				stf.dispose();
+				CheckStatisticsframe cstf = new CheckStatisticsframe();
 			}
 		});
 		button.setBounds(302, 329, 93, 23);

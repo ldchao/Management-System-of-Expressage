@@ -15,17 +15,17 @@ public class Billframe extends JFrame {
 	 */
 	public Billframe() {
 
-		setLayout(null);
+		getContentPane().setLayout(null);
 		
 		Billframe bf = this;
 
 		JLabel label = new JLabel("财务人员>>期初建账");
 		label.setBounds(88, 5, 518, 15);
-		add(label);
+		getContentPane().add(label);
 
 		JLabel lblHello = new JLabel("Hello!");
 		lblHello.setBounds(677, 5, 36, 15);
-		add(lblHello);
+		getContentPane().add(lblHello);
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
@@ -35,7 +35,7 @@ public class Billframe extends JFrame {
 			}
 		});
 		button_4.setBounds(10, 1, 68, 23);
-		add(button_4);
+		getContentPane().add(button_4);
 		
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -45,19 +45,25 @@ public class Billframe extends JFrame {
 			}
 		});
 		btnNewButton.setBounds(119, 142, 211, 198);
-		add(btnNewButton);
+		getContentPane().add(btnNewButton);
 
 		JLabel label_1 = new JLabel("\u65B0\u5EFA\u5E10");
 		label_1.setBounds(199, 117, 81, 15);
-		add(label_1);
+		getContentPane().add(label_1);
 
 		JLabel label_4 = new JLabel("\u67E5\u770B\u671F\u521D\u4FE1\u606F");
 		label_4.setBounds(501, 117, 81, 15);
-		add(label_4);
+		getContentPane().add(label_4);
 		
 		JButton button = new JButton("New button");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				bf.dispose();
+				CheckBillframe cbf = new CheckBillframe();
+			}
+		});
 		button.setBounds(433, 142, 211, 198);
-		add(button);
+		getContentPane().add(button);
 		
 		
 		//frame

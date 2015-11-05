@@ -3,6 +3,7 @@ package Client.presentation.system_administratorui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,9 +11,13 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import Client.presentation.financial_staffui.Payframe;
+
 import javax.swing.JTextField;
-import javax.swing.JCheckBox;
+import javax.swing.JRadioButton;
+
 import java.awt.Font;
+
+import javax.swing.JRadioButton;
 
 public class NewUserframe extends JFrame {
 	private JTextField textField;
@@ -86,33 +91,42 @@ public class NewUserframe extends JFrame {
 		button_1.setBounds(391, 362, 93, 23);
 		getContentPane().add(button_1);
 		
-		JCheckBox checkBox = new JCheckBox("\u5FEB\u9012\u5458");
-		checkBox.setBounds(286, 231, 84, 23);
-		getContentPane().add(checkBox);
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("\u5FEB\u9012\u5458");
+		rdbtnNewRadioButton.setBounds(286, 231, 84, 23);
+		getContentPane().add(rdbtnNewRadioButton);
 		
-		JCheckBox checkBox_1 = new JCheckBox("\u8425\u4E1A\u5385\u4E1A\u52A1\u5458");
-		checkBox_1.setBounds(391, 231, 98, 23);
-		getContentPane().add(checkBox_1);
+		JRadioButton radioButton_1 = new JRadioButton("\u8425\u4E1A\u5385\u4E1A\u52A1\u5458");
+		radioButton_1.setBounds(391, 231, 111, 23);
+		getContentPane().add(radioButton_1);
 		
-		JCheckBox checkBox_2 = new JCheckBox("\u603B\u7ECF\u7406");
-		checkBox_2.setBounds(286, 271, 84, 23);
-		getContentPane().add(checkBox_2);
+		JRadioButton radioButton_2 = new JRadioButton("\u603B\u7ECF\u7406");
+		radioButton_2.setBounds(286, 271, 84, 23);
+		getContentPane().add(radioButton_2);
 		
-		JCheckBox checkBox_3 = new JCheckBox("\u8D22\u52A1\u4EBA\u5458");
-		checkBox_3.setBounds(391, 271, 84, 23);
-		getContentPane().add(checkBox_3);
+		JRadioButton radioButton_3 = new JRadioButton("\u8D22\u52A1\u4EBA\u5458");
+		radioButton_3.setBounds(391, 271, 84, 23);
+		getContentPane().add(radioButton_3);
 		
-		JCheckBox checkBox_4 = new JCheckBox("\u4E2D\u8F6C\u4E2D\u5FC3\u4E1A\u52A1\u5458");
-		checkBox_4.setBounds(504, 231, 128, 23);
-		getContentPane().add(checkBox_4);
+		JRadioButton radioButton_4 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4E1A\u52A1\u5458");
+		radioButton_4.setBounds(504, 231, 128, 23);
+		getContentPane().add(radioButton_4);
 		
-		JCheckBox checkBox_5 = new JCheckBox("\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u5458");
-		checkBox_5.setBounds(504, 271, 147, 23);
-		getContentPane().add(checkBox_5);
+		JRadioButton radioButton_5 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u5458");
+		radioButton_5.setBounds(504, 271, 147, 23);
+		getContentPane().add(radioButton_5);
 		
-		JCheckBox checkBox_6 = new JCheckBox("\u7CFB\u7EDF\u7BA1\u7406\u5458");
-		checkBox_6.setBounds(286, 307, 103, 23);
-		getContentPane().add(checkBox_6);
+		JRadioButton radioButton_6 = new JRadioButton("\u7CFB\u7EDF\u7BA1\u7406\u5458");
+		radioButton_6.setBounds(286, 307, 103, 23);
+		getContentPane().add(radioButton_6);
+		
+		ButtonGroup bg=new ButtonGroup();
+		bg.add(rdbtnNewRadioButton);
+		bg.add(radioButton_1);
+		bg.add(radioButton_2);
+		bg.add(radioButton_3);
+		bg.add(radioButton_4);
+		bg.add(radioButton_5);
+		bg.add(radioButton_6);
 		
 		JLabel label_4 = new JLabel("\u7528\u6237\u4FE1\u606F");
 		label_4.setFont(new Font("ºÚÌå", Font.BOLD, 15));

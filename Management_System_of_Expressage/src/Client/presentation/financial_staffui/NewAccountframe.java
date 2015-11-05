@@ -23,18 +23,18 @@ public class NewAccountframe extends JFrame {
 	 */
 	public NewAccountframe() {
 
-		setLayout(null);
+		getContentPane().setLayout(null);
 		
 		NewAccountframe naf = this;
 
 		JLabel label = new JLabel(
 				"\u8D22\u52A1\u4EBA\u5458>>\u8D26\u6237\u7BA1\u7406>>\u65B0\u5EFA\u8D26\u6237");
 		label.setBounds(87, 10, 470, 15);
-		add(label);
+		getContentPane().add(label);
 
 		JLabel lblHello = new JLabel("Hello!");
 		lblHello.setBounds(630, 10, 54, 15);
-		add(lblHello);
+		getContentPane().add(lblHello);
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
@@ -44,51 +44,51 @@ public class NewAccountframe extends JFrame {
 			}
 		});
 		button_4.setBounds(10, 6, 67, 23);
-		add(button_4);
+		getContentPane().add(button_4);
 		
 		JLabel label_1 = new JLabel("\u8D26\u6237\u4FE1\u606F");
 		label_1.setFont(new Font("黑体", Font.BOLD, 15));
 		label_1.setBounds(342, 88, 84, 15);
-		add(label_1);
+		getContentPane().add(label_1);
 		
 		JLabel label_2 = new JLabel("\u8D26\u6237\u540D\u79F0");
 		label_2.setBounds(239, 140, 54, 15);
-		add(label_2);
+		getContentPane().add(label_2);
 		
 		JLabel label_3 = new JLabel("\u8D26\u6237\u4F59\u989D");
 		label_3.setBounds(239, 194, 54, 15);
-		add(label_3);
+		getContentPane().add(label_3);
 		
 		JLabel label_4 = new JLabel("\u5EFA\u8D26\u65E5\u671F");
 		label_4.setBounds(239, 252, 54, 15);
-		add(label_4);
+		getContentPane().add(label_4);
 		
 		JLabel label_5 = new JLabel("\u5EFA\u8D26\u4EBA");
 		label_5.setBounds(239, 306, 54, 15);
-		add(label_5);
+		getContentPane().add(label_5);
 		
 		textField = new JTextField();
 		textField.setBounds(359, 137, 181, 21);
-		add(textField);
+		getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(359, 249, 181, 21);
-		add(textField_1);
+		getContentPane().add(textField_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(359, 303, 181, 21);
-		add(textField_2);
+		getContentPane().add(textField_2);
 		
-		JLabel label_6 = new JLabel("0");
+		JLabel label_6 = new JLabel("- - - - - - -");
 		label_6.setBounds(359, 194, 181, 15);
-		add(label_6);
+		getContentPane().add(label_6);
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 423, 783, 32);
-		add(toolBar);
+		getContentPane().add(toolBar);
 		
 		JLabel lblNewLabel = new JLabel("状态栏");
 		toolBar.add(lblNewLabel);
@@ -100,11 +100,11 @@ public class NewAccountframe extends JFrame {
 			}
 		});
 		button.setBounds(271, 368, 93, 23);
-		add(button);
+		getContentPane().add(button);
 
 		JButton button_1 = new JButton("\u64A4\u9500");
 		button_1.setBounds(418, 368, 93, 23);
-		add(button_1);
+		getContentPane().add(button_1);
 		
 		//frame
 		this.setTitle("快递管理系统MSE客户端");

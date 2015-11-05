@@ -58,19 +58,25 @@ public class Calculateframe extends JFrame {
 	
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 		JLabel showDate2 = new JLabel("请单击选择日期");
-		springLayout.putConstraint(SpringLayout.NORTH, showDate2, 94, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, showDate2, 306, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, showDate2, 362, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, showDate2, 653, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, showDate2, 45, SpringLayout.SOUTH, label);
+		springLayout.putConstraint(SpringLayout.EAST, showDate2, -67, SpringLayout.EAST, getContentPane());
 		dateChooser2.register(showDate2);
 		
 		//frame
 		getContentPane().add(showDate2);
 		
 		JButton button = new JButton("\u786E\u8BA4");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cf.dispose();
+				CheckPayeeframe cpef =  new CheckPayeeframe();
+			}
+		});
+		springLayout.putConstraint(SpringLayout.WEST, showDate2, 0, SpringLayout.WEST, button);
+		springLayout.putConstraint(SpringLayout.SOUTH, showDate2, -6, SpringLayout.NORTH, button);
 		springLayout.putConstraint(SpringLayout.NORTH, button, 339, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, button, 306, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, button, 399, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, button, 320, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, button, 413, SpringLayout.WEST, getContentPane());
 		getContentPane().add(button);
 		this.setTitle("快递管理系统MSE客户端");
 		this.setSize(750, 490);

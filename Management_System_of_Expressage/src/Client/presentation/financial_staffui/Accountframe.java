@@ -3,7 +3,6 @@ package Client.presentation.financial_staffui;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -15,7 +14,7 @@ public class Accountframe extends JFrame {
 	 */
 	public Accountframe() {
 
-		setLayout(null);
+		getContentPane().setLayout(null);
 		
 		Accountframe af = this;
 		
@@ -23,19 +22,19 @@ public class Accountframe extends JFrame {
 		JLabel label = new JLabel(
 				"\u8D22\u52A1\u4EBA\u5458>>\u8D26\u6237\u7BA1\u7406");
 		label.setBounds(87, 10, 470, 15);
-		add(label);
+		getContentPane().add(label);
 
 		JLabel lblHello = new JLabel("Hello!");
 		lblHello.setBounds(630, 10, 54, 15);
-		add(lblHello);
+		getContentPane().add(lblHello);
 
 		JLabel label_1 = new JLabel("\u65B0\u5EFA\u8D26\u6237");
 		label_1.setBounds(196, 117, 81, 15);
-		add(label_1);
+		getContentPane().add(label_1);
 
 		JLabel label_4 = new JLabel("\u5DF2\u6709\u8D26\u6237\u7BA1\u7406");
 		label_4.setBounds(501, 117, 81, 15);
-		add(label_4);
+		getContentPane().add(label_4);
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
@@ -45,7 +44,7 @@ public class Accountframe extends JFrame {
 			}
 		});
 		button_4.setBounds(10, 6, 67, 23);
-		add(button_4);
+		getContentPane().add(button_4);
 
 		JButton button_1 = new JButton("New button");
 		button_1.addActionListener(new ActionListener() {
@@ -55,11 +54,17 @@ public class Accountframe extends JFrame {
 			}
 		});
 		button_1.setBounds(131, 154, 186, 172);
-		add(button_1);
+		getContentPane().add(button_1);
 
 		JButton button = new JButton("New button");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				af.dispose();
+				CheckAccountframe caf = new CheckAccountframe();
+			}
+		});
 		button.setBounds(445, 154, 186, 172);
-		add(button);
+		getContentPane().add(button);
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");

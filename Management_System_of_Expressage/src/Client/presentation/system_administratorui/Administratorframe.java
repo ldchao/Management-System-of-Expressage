@@ -3,10 +3,7 @@ package Client.presentation.system_administratorui;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-import Client.presentation.financial_staffui.NewPayorderframe;
-import Client.presentation.financial_staffui.fsframe;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -57,6 +54,12 @@ public class Administratorframe extends JFrame {
 		getContentPane().add(button_4);
 
 		JButton button = new JButton("New button");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				adf.dispose();
+				CheckUserframe cuf = new CheckUserframe();
+			}
+		});
 		button.setBounds(433, 142, 211, 198);
 		getContentPane().add(button);
 
