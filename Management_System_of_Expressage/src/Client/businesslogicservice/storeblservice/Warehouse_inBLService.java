@@ -13,7 +13,7 @@ public interface Warehouse_inBLService {
 	//货物建立到达单后设置提醒值
 	public void setRemind(ArriverorderVO av);
 	
-	//产看提醒
+	//查看提醒
 	public ArrayList<ArriverorderVO> checkRemind();
 	
 	//存储新建立的入库单
