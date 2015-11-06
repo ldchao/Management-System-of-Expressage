@@ -13,9 +13,6 @@ import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Client.presentation.financial_staffui.Accountframe;
-import Client.presentation.financial_staffui.CheckAccountframe;
-
 public class CheckUserframe extends JFrame {
 	private JTable table;
 
