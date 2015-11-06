@@ -43,16 +43,16 @@ public class Demo extends JFrame {
 		
 //		Shipping_Plane sp=new Shipping_Plane();
 //		contentPane.add(sp);
-//		Arriverorder a=new Arriverorder();
-//		contentPane.add(a);
+		Arriverorder a=new Arriverorder();
+		contentPane.add(a);
 //		Changeorder_Input c=new Changeorder_Input();
 //		contentPane.add(c);
 //		Changeorder_choose_TC ct=new Changeorder_choose_TC();
 //		contentPane.add(ct);
 //		Changeorder_choose_BH cb=new Changeorder_choose_BH();
 //    	contentPane.add(cb);
-		Storeinorder s=new Storeinorder();
-		contentPane.add(s);
+//		Storeinorder s=new Storeinorder();
+//		contentPane.add(s);
 	} 
 
 }

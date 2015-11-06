@@ -1,6 +1,7 @@
 package Client.BL_Stub.listinBLService_Stub;
 
 import Client.businesslogicservice.listinblservice.ListinBLService;
+import State.ResultMessage;
 
 public class ListinBLService_Stub  implements ListinBLService{
 	String courier;
@@ -90,7 +91,7 @@ public class ListinBLService_Stub  implements ListinBLService{
 
 
 
-	public void addOrder(String courier, String id, int state, String sender,
+	public ResultMessage addOrder(String courier, String id, int state, String sender,
 			String address1, String position1, String phone1,
 			String cellphone1, String receiver, String address2,
 			String position2, String phone2, String cellphone2, String count,
@@ -99,6 +100,7 @@ public class ListinBLService_Stub  implements ListinBLService{
 			String transformState) {
 		// TODO Auto-generated method stub		
 			System.out.println("add succeed!");
+			return null;
 	}
 
 	public double getTotalMoney(String address1, String address2, int length,

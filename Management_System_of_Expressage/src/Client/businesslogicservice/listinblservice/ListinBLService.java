@@ -1,8 +1,12 @@
 package Client.businesslogicservice.listinblservice;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
+import State.ResultMessage;
+
 public interface ListinBLService {
 	//ÐÂ½¨¶©µ¥
-	public void addOrder(String courier, String id, int state, String sender,
+	public ResultMessage addOrder(String courier, String id, int state, String sender,
 			String address1, String position1, String phone1,
 			String cellphone1, String receiver, String address2,
 			String position2, String phone2, String cellphone2, String count,

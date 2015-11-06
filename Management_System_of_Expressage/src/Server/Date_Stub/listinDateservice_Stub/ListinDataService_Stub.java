@@ -3,6 +3,7 @@ package Server.Date_Stub.listinDateservice_Stub;
 import Client.PO.OrderPO;
 import Client.PO.ReceiverPO;
 import Server.dataservice.listindataservice.ListinDataService;
+import State.ResultMessage;
 
 public class ListinDataService_Stub implements ListinDataService{
 
@@ -18,6 +19,12 @@ public class ListinDataService_Stub implements ListinDataService{
 		}else{
 			return 0;
 		}
+	}
+
+	@Override
+	public ResultMessage find(String number) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
