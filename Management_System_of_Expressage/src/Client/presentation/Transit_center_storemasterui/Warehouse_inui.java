@@ -30,7 +30,7 @@ public class Warehouse_inui extends JPanel {
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("新建入库单");
-		lblNewLabel_3.setBounds(412, 117, 54, 15);
+		lblNewLabel_3.setBounds(412, 117, 94, 15);
 		add(lblNewLabel_3);
 		
 		JButton btnNewButton_1 = new JButton("New button");
