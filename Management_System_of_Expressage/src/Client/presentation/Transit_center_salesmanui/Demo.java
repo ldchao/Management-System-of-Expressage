@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Client.PO.StoreinorderPO;
+import Client.presentation.Transit_center_storemasterui.CheckInventory;
 import Client.presentation.Transit_center_storemasterui.Storeinorder;
 
 public class Demo extends JFrame {
@@ -51,8 +52,10 @@ public class Demo extends JFrame {
 //		contentPane.add(ct);
 //		Changeorder_choose_BH cb=new Changeorder_choose_BH();
 //    	contentPane.add(cb);
-		Storeinorder s=new Storeinorder();
-		contentPane.add(s);
+//		Storeinorder s=new Storeinorder();
+//		contentPane.add(s);
+		CheckInventory c=new CheckInventory();
+		contentPane.add(c);
 	} 
 
 }
