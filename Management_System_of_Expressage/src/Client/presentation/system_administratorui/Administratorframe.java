@@ -33,15 +33,15 @@ public class Administratorframe extends JFrame {
 				NewUserframe nuf = new NewUserframe();
 			}
 		});
-		btnNewButton.setBounds(119, 142, 211, 198);
+		btnNewButton.setBounds(140, 213, 160, 128);
 		getContentPane().add(btnNewButton);
 
 		JLabel label_1 = new JLabel("\u65B0\u5EFA\u7528\u6237");
-		label_1.setBounds(190, 117, 81, 15);
+		label_1.setBounds(192, 177, 54, 15);
 		getContentPane().add(label_1);
 
 		JLabel label_4 = new JLabel("\u5DF2\u6709\u7528\u6237\u7BA1\u7406");
-		label_4.setBounds(501, 117, 81, 15);
+		label_4.setBounds(477, 177, 81, 15);
 		getContentPane().add(label_4);
 
 		JButton button_4 = new JButton("\u9000\u51FA");
@@ -60,12 +60,12 @@ public class Administratorframe extends JFrame {
 				CheckUserframe cuf = new CheckUserframe();
 			}
 		});
-		button.setBounds(433, 142, 211, 198);
+		button.setBounds(434, 213, 160, 128);
 		getContentPane().add(button);
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");
-		this.setSize(750, 490);
+		this.setSize(750, 600);
 		this.setLocation(400, 100);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

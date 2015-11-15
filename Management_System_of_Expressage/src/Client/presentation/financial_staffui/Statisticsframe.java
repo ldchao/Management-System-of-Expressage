@@ -39,12 +39,12 @@ public class Statisticsframe extends JFrame {
 		
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
 		JLabel showDate1 = new JLabel("请单击选择起始日期");
-		showDate1.setBounds(147, 112, 275, 163);
+		showDate1.setBounds(182, 238, 122, 23);
 		dateChooser1.register(showDate1);
 		
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 		JLabel showDate2 = new JLabel("请单击选择结束日期");
-		showDate2.setBounds(491, 112, 243, 163);
+		showDate2.setBounds(500, 231, 122, 30);
 		dateChooser2.register(showDate2);
 		
 		//frame
@@ -59,17 +59,17 @@ public class Statisticsframe extends JFrame {
 				CheckStatisticsframe cstf = new CheckStatisticsframe();
 			}
 		});
-		button.setBounds(302, 329, 93, 23);
+		button.setBounds(309, 405, 93, 23);
 		getContentPane().add(button);
 		
 		JLabel label_1 = new JLabel("\u8D77\u59CB\u65E5\u671F\uFF1A");
-		label_1.setBounds(55, 186, 65, 15);
+		label_1.setBounds(88, 242, 65, 15);
 		getContentPane().add(label_1);
 		
 		JLabel label_2 = new JLabel("\u8D77\u59CB\u65E5\u671F\uFF1A");
-		label_2.setBounds(416, 186, 65, 15);
+		label_2.setBounds(413, 239, 65, 15);
 		getContentPane().add(label_2);
-    	this.setSize(750, 490);
+    	this.setSize(750, 600);
     	this.setLocation(400, 100);
     	this.setLocationRelativeTo(null);
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

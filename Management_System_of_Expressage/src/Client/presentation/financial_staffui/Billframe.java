@@ -44,15 +44,15 @@ public class Billframe extends JFrame {
 				Newbillframe nbframe = new Newbillframe();
 			}
 		});
-		btnNewButton.setBounds(119, 142, 211, 198);
+		btnNewButton.setBounds(159, 221, 160, 128);
 		getContentPane().add(btnNewButton);
 
 		JLabel label_1 = new JLabel("\u65B0\u5EFA\u5E10");
-		label_1.setBounds(199, 117, 81, 15);
+		label_1.setBounds(216, 197, 81, 15);
 		getContentPane().add(label_1);
 
 		JLabel label_4 = new JLabel("\u67E5\u770B\u671F\u521D\u4FE1\u606F");
-		label_4.setBounds(501, 117, 81, 15);
+		label_4.setBounds(461, 197, 81, 15);
 		getContentPane().add(label_4);
 		
 		JButton button = new JButton("New button");
@@ -62,13 +62,13 @@ public class Billframe extends JFrame {
 				CheckBillframe cbf = new CheckBillframe();
 			}
 		});
-		button.setBounds(433, 142, 211, 198);
+		button.setBounds(417, 221, 160, 128);
 		getContentPane().add(button);
 		
 		
 		//frame
 		this.setTitle("快递管理系统MSE客户端");
-    	this.setSize(750, 490);
+    	this.setSize(750, 600);
     	this.setLocation(400, 100);
     	this.setLocationRelativeTo(null);
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

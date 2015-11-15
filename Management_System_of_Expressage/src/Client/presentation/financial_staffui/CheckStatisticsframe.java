@@ -70,12 +70,12 @@ public class CheckStatisticsframe extends JFrame {
 		table.getColumnModel().getColumn(3).setMinWidth(20);
 		table.getColumnModel().getColumn(4).setPreferredWidth(125);
 		table.getColumnModel().getColumn(5).setPreferredWidth(80);
-		table.setBounds(92, 82, 549, 144);
+		table.setBounds(92, 114, 549, 144);
 		getContentPane().add(table);
 
 		JLabel label_1 = new JLabel("收款信息");
 		label_1.setFont(new Font("黑体", Font.BOLD, 15));
-		label_1.setBounds(320, 57, 93, 15);
+		label_1.setBounds(320, 78, 93, 15);
 		getContentPane().add(label_1);
 		
 		//付款单
@@ -106,17 +106,17 @@ public class CheckStatisticsframe extends JFrame {
 		table2.getColumnModel().getColumn(3).setMinWidth(20);
 		table2.getColumnModel().getColumn(4).setPreferredWidth(125);
 		table2.getColumnModel().getColumn(5).setPreferredWidth(80);
-		table2.setBounds(92, 272, 549, 144);
+		table2.setBounds(92, 329, 549, 144);
 		getContentPane().add(table2);
 		
 		JLabel label_2 = new JLabel("\u4ED8\u6B3E\u5355\u8BB0\u5F55");
 		label_2.setFont(new Font("黑体", Font.BOLD, 15));
-		label_2.setBounds(320, 248, 93, 15);
+		label_2.setBounds(320, 294, 93, 15);
 		getContentPane().add(label_2);
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");
-		this.setSize(750, 490);
+		this.setSize(750, 600);
 		this.setLocation(400, 100);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);

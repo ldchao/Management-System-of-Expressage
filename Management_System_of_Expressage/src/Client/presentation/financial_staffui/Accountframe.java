@@ -29,11 +29,11 @@ public class Accountframe extends JFrame {
 		getContentPane().add(lblHello);
 
 		JLabel label_1 = new JLabel("\u65B0\u5EFA\u8D26\u6237");
-		label_1.setBounds(196, 117, 81, 15);
+		label_1.setBounds(217, 192, 54, 15);
 		getContentPane().add(label_1);
 
 		JLabel label_4 = new JLabel("\u5DF2\u6709\u8D26\u6237\u7BA1\u7406");
-		label_4.setBounds(501, 117, 81, 15);
+		label_4.setBounds(462, 192, 81, 15);
 		getContentPane().add(label_4);
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
@@ -53,7 +53,7 @@ public class Accountframe extends JFrame {
 				NewAccountframe nacframe = new NewAccountframe();
 			}
 		});
-		button_1.setBounds(131, 154, 186, 172);
+		button_1.setBounds(159, 222, 160, 128);
 		getContentPane().add(button_1);
 
 		JButton button = new JButton("New button");
@@ -63,12 +63,12 @@ public class Accountframe extends JFrame {
 				CheckAccountframe caf = new CheckAccountframe();
 			}
 		});
-		button.setBounds(445, 154, 186, 172);
+		button.setBounds(417, 222, 160, 128);
 		getContentPane().add(button);
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");
-		this.setSize(750, 490);
+		this.setSize(750, 600);
 		this.setLocation(400, 100);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

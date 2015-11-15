@@ -40,8 +40,8 @@ public class Calculateframe extends JFrame {
 		getContentPane().add(label);
 
 		JLabel lblHello = new JLabel("Hello!");
-		springLayout.putConstraint(SpringLayout.NORTH, lblHello, 5, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, lblHello, 677, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, lblHello, 0, SpringLayout.NORTH, label);
+		springLayout.putConstraint(SpringLayout.EAST, lblHello, -37, SpringLayout.EAST, getContentPane());
 		getContentPane().add(lblHello);
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
@@ -58,28 +58,28 @@ public class Calculateframe extends JFrame {
 	
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 		JLabel showDate2 = new JLabel("请单击选择日期");
-		springLayout.putConstraint(SpringLayout.NORTH, showDate2, 45, SpringLayout.SOUTH, label);
-		springLayout.putConstraint(SpringLayout.EAST, showDate2, -67, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, showDate2, 215, SpringLayout.SOUTH, label);
+		springLayout.putConstraint(SpringLayout.WEST, showDate2, 320, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, showDate2, -292, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, showDate2, -321, SpringLayout.EAST, getContentPane());
 		dateChooser2.register(showDate2);
 		
 		//frame
 		getContentPane().add(showDate2);
 		
 		JButton button = new JButton("\u786E\u8BA4");
+		springLayout.putConstraint(SpringLayout.NORTH, button, 134, SpringLayout.SOUTH, showDate2);
+		springLayout.putConstraint(SpringLayout.WEST, button, 0, SpringLayout.WEST, showDate2);
+		springLayout.putConstraint(SpringLayout.EAST, button, -321, SpringLayout.EAST, getContentPane());
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cf.dispose();
 				CheckPayeeframe cpef =  new CheckPayeeframe();
 			}
 		});
-		springLayout.putConstraint(SpringLayout.WEST, showDate2, 0, SpringLayout.WEST, button);
-		springLayout.putConstraint(SpringLayout.SOUTH, showDate2, -6, SpringLayout.NORTH, button);
-		springLayout.putConstraint(SpringLayout.NORTH, button, 339, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, button, 320, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, button, 413, SpringLayout.WEST, getContentPane());
 		getContentPane().add(button);
 		this.setTitle("快递管理系统MSE客户端");
-		this.setSize(750, 490);
+		this.setSize(750, 600);
 		this.setLocation(400, 100);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);

@@ -43,7 +43,7 @@ public class Payframe extends JFrame {
 				NewPayorderframe npf = new NewPayorderframe();
 			}
 		});
-		button.setBounds(163, 160, 186, 172);
+		button.setBounds(155, 221, 160, 128);
 		getContentPane().add(button);
 		
 		JButton button_1 = new JButton("New button");
@@ -53,21 +53,21 @@ public class Payframe extends JFrame {
 				CheckPayorderframe cpf = new CheckPayorderframe();
 			}
 		});
-		button_1.setBounds(441, 160, 175, 172);
+		button_1.setBounds(414, 221, 160, 128);
 		getContentPane().add(button_1);
 		
 		JLabel label_1 = new JLabel("\u65B0\u5EFA\u4ED8\u6B3E\u5355");
-		label_1.setBounds(221, 124, 67, 15);
+		label_1.setBounds(201, 190, 67, 15);
 		getContentPane().add(label_1);
 		
 		JLabel label_2 = new JLabel("\u67E5\u770B\u4ED8\u6B3E\u5355\u8BB0\u5F55");
-		label_2.setBounds(488, 124, 101, 15);
+		label_2.setBounds(454, 190, 101, 15);
 		getContentPane().add(label_2);
 		
 		
 		//frame
 		this.setTitle("快递管理系统MSE客户端");
-    	this.setSize(750, 490);
+    	this.setSize(750, 600);
     	this.setLocation(400, 100);
     	this.setLocationRelativeTo(null);
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

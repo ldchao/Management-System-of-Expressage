@@ -75,17 +75,17 @@ public class CheckPayorderframe extends JFrame {
 		table.getColumnModel().getColumn(3).setMinWidth(20);
 		table.getColumnModel().getColumn(4).setPreferredWidth(125);
 		table.getColumnModel().getColumn(5).setPreferredWidth(80);
-		table.setBounds(92, 132, 549, 208);
+		table.setBounds(92, 176, 549, 208);
 		getContentPane().add(table);
 		
 		JLabel label_1 = new JLabel("\u4ED8\u6B3E\u5355\u8BB0\u5F55");
 		label_1.setFont(new Font("黑体", Font.BOLD, 15));
-		label_1.setBounds(320, 90, 93, 15);
+		label_1.setBounds(320, 129, 93, 15);
 		getContentPane().add(label_1);
 		
 		//frame
 		this.setTitle("快递管理系统MSE客户端");
-		this.setSize(750, 490);
+		this.setSize(750, 600);
 		this.setLocation(400, 100);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);

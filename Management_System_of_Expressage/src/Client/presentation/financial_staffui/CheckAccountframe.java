@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JRadioButton;
 
 public class CheckAccountframe extends JFrame {
 	private JTable table;
@@ -45,40 +46,53 @@ public class CheckAccountframe extends JFrame {
 		table = new JTable();
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		table.setEnabled(false);
-		table.setModel(new DefaultTableModel(new Object[][] {
-				{ "\u8D26\u540D\u79F0", "\u8D26\u6237\u4F59\u989D" },
-				{ null, null }, { null, null }, { null, null }, { null, null },
-				{ null, null }, { null, null }, { null, null }, { null, null },
-				{ null, null }, { null, null }, }, new String[] {
-				"\u8D26\u6237\u540D\u79F0", "\u8D26\u6237\u4F59\u989D" }));
-		table.getColumnModel().getColumn(0).setPreferredWidth(80);
-		table.getColumnModel().getColumn(1).setPreferredWidth(80);
-		table.setBounds(160, 132, 243, 176);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"\u8D26\u540D\u79F0", "\u8D26\u6237\u4F59\u989D"},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+			},
+			new String[] {
+				"\u8D26\u6237\u540D\u79F0", "\u8D26\u6237\u4F59\u989D"
+			}
+		));
+		table.getColumnModel().getColumn(0).setPreferredWidth(130);
+		table.getColumnModel().getColumn(1).setPreferredWidth(130);
+		table.setBounds(150, 159, 434, 176);
 		getContentPane().add(table);
 
 		JLabel label_1 = new JLabel("\u94F6\u884C\u8D26\u6237");
 		label_1.setFont(new Font("黑体", Font.BOLD, 15));
-		label_1.setBounds(320, 88, 93, 15);
+		label_1.setBounds(332, 115, 70, 15);
 		getContentPane().add(label_1);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 412, 734, 32);
+		toolBar.setBounds(0, 533, 734, 28);
 		getContentPane().add(toolBar);
 
 		JLabel lblNewLabel = new JLabel("状态栏");
 		toolBar.add(lblNewLabel);
 
 		JButton button = new JButton("\u4FEE\u6539");
-		button.setBounds(413, 145, 70, 23);
+		button.setBounds(229, 402, 70, 23);
 		getContentPane().add(button);
 
 		JButton button_1 = new JButton("\u5220\u9664");
-		button_1.setBounds(493, 145, 70, 23);
+		button_1.setBounds(452, 402, 70, 23);
 		getContentPane().add(button_1);
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");
-		this.setSize(750, 490);
+		this.setSize(750, 600);
 		this.setLocation(400, 100);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
