@@ -4,8 +4,11 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
+import java.awt.Font;
+import javax.swing.JTextField;
 
 public class Receiveui extends JPanel {
+	private JTextField textField;
 
 	/**
 	 * Create the panel.
@@ -25,21 +28,9 @@ public class Receiveui extends JPanel {
 		label_1.setBounds(525, 14, 72, 15);
 		add(label_1);
 		
-		JLabel label_2 = new JLabel("查看消息提醒");
-		label_2.setBounds(190, 171, 90, 15);
+		JLabel label_2 = new JLabel("输入装运单编号");
+		label_2.setBounds(179, 255, 90, 23);
 		add(label_2);
-		
-		JLabel label_3 = new JLabel("新建到达单");
-		label_3.setBounds(469, 171, 78, 15);
-		add(label_3);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(143, 208, 160, 128);
-		add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(430, 208, 160, 128);
-		add(btnNewButton_1);
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0,  533, 734, 28);
@@ -47,6 +38,20 @@ public class Receiveui extends JPanel {
 		
 		JLabel label_4 = new JLabel("状态栏");
 		toolBar.add(label_4);
+		
+		JLabel label_3 = new JLabel("选择到达的装运单");
+		label_3.setFont(new Font("微软雅黑", Font.BOLD, 20));
+		label_3.setBounds(289, 134, 255, 23);
+		add(label_3);
+		
+		textField = new JTextField();
+		textField.setBounds(342, 254, 196, 23);
+		add(textField);
+		textField.setColumns(10);
+		
+		JButton button_1 = new JButton("\u521B\u5EFA\u5230\u8FBE\u5355");
+		button_1.setBounds(307, 368, 134, 23);
+		add(button_1);
 
 	}
 }
