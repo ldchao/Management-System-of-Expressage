@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JLayeredPane;
+import java.awt.Font;
 
 public class Arriverorder extends JPanel {
 	private JTextField textField;
@@ -36,63 +37,63 @@ setLayout(null);
 		add(label_1);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 400, 650, 25);
+		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
 		
 		JLabel label_4 = new JLabel("状态栏");
 		toolBar.add(label_4);
 
 		JLabel label_2 = new JLabel("到达日期");
-		label_2.setBounds(180, 69, 54, 15);
+		label_2.setBounds(180, 159, 54, 15);
 		add(label_2);
 		
 		
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
 		JLabel lblNewLabel_8 = new JLabel("单击选择日期");
 		dateChooser1.register(lblNewLabel_8);
-		lblNewLabel_8.setBounds(317, 69, 96, 15);
+		lblNewLabel_8.setBounds(390, 159, 96, 15);
 		add(lblNewLabel_8);
 		
 		JLabel label_3 = new JLabel("中转单编号");
-		label_3.setBounds(180, 117, 96, 15);
+		label_3.setBounds(180, 211, 96, 15);
 		add(label_3);
 		
 		textField = new JTextField();
-		textField.setBounds(317, 114, 134, 21);
+		textField.setBounds(333, 208, 192, 21);
 		add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("出发地");
-		lblNewLabel.setBounds(180, 163, 54, 15);
+		lblNewLabel.setBounds(180, 263, 54, 15);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("货物到达状态");
-		lblNewLabel_1.setBounds(180, 216, 96, 15);
+		lblNewLabel_1.setBounds(180, 317, 96, 15);
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("审批状态");
-		lblNewLabel_2.setBounds(180, 266, 69, 15);
+		lblNewLabel_2.setBounds(180, 372, 69, 15);
 		add(lblNewLabel_2);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(317, 160, 134, 21);
+		textField_1.setBounds(333, 260, 192, 21);
 		add(textField_1);
 		textField_1.setColumns(10);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(317, 263, 134, 21);
+		comboBox.setBounds(344, 369, 181, 21);
 		add(comboBox);
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("损坏");
-		rdbtnNewRadioButton.setBounds(317, 212, 64, 23);
+		rdbtnNewRadioButton.setBounds(333, 313, 64, 23);
 		add(rdbtnNewRadioButton);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("完整");
-		rdbtnNewRadioButton_1.setBounds(383, 212, 69, 23);
+		rdbtnNewRadioButton_1.setBounds(408, 313, 69, 23);
 		add(rdbtnNewRadioButton_1);
 		
 		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("丢失");
-		rdbtnNewRadioButton_2.setBounds(454, 212, 57, 23);
+		rdbtnNewRadioButton_2.setBounds(479, 313, 57, 23);
 		add(rdbtnNewRadioButton_2);
 		
 		ButtonGroup bg=new ButtonGroup();
@@ -101,11 +102,16 @@ setLayout(null);
 		bg.add(rdbtnNewRadioButton_2);
 		
 		JButton btnNewButton = new JButton("确定");
-		btnNewButton.setBounds(206, 339, 80, 23);
+		btnNewButton.setBounds(220, 457, 80, 23);
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("取消");
-		btnNewButton_1.setBounds(351, 339, 80, 23);
+		btnNewButton_1.setBounds(390, 457, 80, 23);
 		add(btnNewButton_1);
+		
+		JLabel label_5 = new JLabel("\u4E2D\u8F6C\u4E2D\u5FC3\u5230\u8FBE\u5355");
+		label_5.setFont(new Font("微软雅黑", Font.BOLD, 24));
+		label_5.setBounds(260, 71, 226, 44);
+		add(label_5);
 	}
 }
