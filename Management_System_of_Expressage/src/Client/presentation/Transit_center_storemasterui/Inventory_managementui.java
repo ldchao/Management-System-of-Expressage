@@ -28,27 +28,27 @@ public class Inventory_managementui extends JPanel {
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("查看库存");
-		lblNewLabel_2.setBounds(134, 80, 54, 15);
+		lblNewLabel_2.setBounds(194, 99, 54, 15);
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("盘点库存");
-		lblNewLabel_3.setBounds(416, 80, 54, 15);
+		lblNewLabel_3.setBounds(489, 99, 54, 15);
 		add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("警戒值管理");
-		lblNewLabel_4.setBounds(134, 226, 69, 15);
+		lblNewLabel_4.setBounds(190, 297, 69, 15);
 		add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("提醒值管理");
-		lblNewLabel_5.setBounds(416, 226, 69, 15);
+		lblNewLabel_5.setBounds(474, 297, 69, 15);
 		add(lblNewLabel_5);
 		
 		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(119, 105, 130, 92);
+		btnNewButton_1.setBounds(160, 143, 125, 100);
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setBounds(382, 105, 123, 92);
+		btnNewButton_2.setBounds(446, 143, 125, 100);
 		add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("New button");
@@ -56,15 +56,15 @@ public class Inventory_managementui extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_3.setBounds(119, 251, 130, 97);
+		btnNewButton_3.setBounds(160, 339, 125, 100);
 		add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("New button");
-		btnNewButton_4.setBounds(382, 251, 123, 97);
+		btnNewButton_4.setBounds(446, 339, 125, 100);
 		add(btnNewButton_4);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 408, 650, 17);
+		toolBar.setBounds(0,  533, 734, 28);
 		add(toolBar);
 		
 		JLabel lblNewLabel_6 = new JLabel("状态栏");

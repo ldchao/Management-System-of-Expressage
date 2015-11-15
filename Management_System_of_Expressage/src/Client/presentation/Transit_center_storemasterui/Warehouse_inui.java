@@ -26,23 +26,23 @@ public class Warehouse_inui extends JPanel {
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("消息提醒");
-		lblNewLabel_2.setBounds(143, 117, 54, 15);
+		lblNewLabel_2.setBounds(186, 168, 54, 15);
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("新建入库单");
-		lblNewLabel_3.setBounds(412, 117, 94, 15);
+		lblNewLabel_3.setBounds(450, 168, 94, 15);
 		add(lblNewLabel_3);
 		
 		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(119, 142, 152, 118);
+		btnNewButton_1.setBounds(139, 206, 160, 128);
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setBounds(388, 142, 137, 118);
+		btnNewButton_2.setBounds(420, 206, 160, 128);
 		add(btnNewButton_2);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 413, 652, 17);
+		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
 		
 		JLabel lblNewLabel_4 = new JLabel("状态栏");

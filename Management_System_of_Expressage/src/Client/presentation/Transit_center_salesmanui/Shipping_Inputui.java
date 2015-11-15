@@ -7,8 +7,13 @@ import javax.swing.JToolBar;
 import javax.swing.JList;
 import javax.swing.JScrollBar;
 import javax.swing.JSpinner;
+import java.awt.Font;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class Shipping_Inputui extends JPanel {
+	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -29,10 +34,61 @@ setLayout(null);
 		add(label_1);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 401, 659, 23);
+		toolBar.setBounds(0,  533, 734, 28);
 		add(toolBar);
 		
 		JLabel label_4 = new JLabel("状态栏");
 		toolBar.add(label_4);
+		
+		JLabel label_2 = new JLabel("\u9009\u62E9\u8981\u88C5\u8FD0\u7684\u4E2D\u8F6C\u5355");
+		label_2.setFont(new Font("微软雅黑", Font.BOLD, 20));
+		label_2.setBounds(262, 78, 234, 28);
+		add(label_2);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(96, 125, 557, 328);
+		add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+			},
+			new String[] {
+				"\u4E2D\u8F6C\u5355\u7F16\u53F7", "\u5230\u8FBE\u5730", "\u88C5\u8FD0\u65B9\u5F0F"
+			}
+		));
+		scrollPane.setViewportView(table);
+		
+		JButton btnNewButton = new JButton("创建装运单");
+		btnNewButton.setBounds(193, 486, 93, 23);
+		add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("放弃创建");
+		btnNewButton_1.setBounds(436, 486, 93, 23);
+		add(btnNewButton_1);
 	}
 }

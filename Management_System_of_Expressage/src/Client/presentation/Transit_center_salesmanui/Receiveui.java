@@ -26,23 +26,23 @@ public class Receiveui extends JPanel {
 		add(label_1);
 		
 		JLabel label_2 = new JLabel("查看消息提醒");
-		label_2.setBounds(139, 111, 90, 15);
+		label_2.setBounds(190, 171, 90, 15);
 		add(label_2);
 		
 		JLabel label_3 = new JLabel("新建到达单");
-		label_3.setBounds(392, 111, 78, 15);
+		label_3.setBounds(469, 171, 78, 15);
 		add(label_3);
 		
 		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(117, 136, 138, 134);
+		btnNewButton.setBounds(143, 208, 160, 128);
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(374, 136, 138, 134);
+		btnNewButton_1.setBounds(430, 208, 160, 128);
 		add(btnNewButton_1);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 399, 642, 23);
+		toolBar.setBounds(0,  533, 734, 28);
 		add(toolBar);
 		
 		JLabel label_4 = new JLabel("状态栏");

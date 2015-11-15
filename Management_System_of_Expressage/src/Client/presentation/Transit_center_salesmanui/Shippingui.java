@@ -26,23 +26,23 @@ public class Shippingui extends JPanel {
 		add(label_1);
 		
 		JLabel label_2 = new JLabel("消息提醒");
-		label_2.setBounds(136, 117, 54, 15);
+		label_2.setBounds(196, 180, 54, 15);
 		add(label_2);
 		
 		JLabel label_3 = new JLabel("新建装运单");
-		label_3.setBounds(405, 117, 83, 15);
+		label_3.setBounds(463, 180, 83, 15);
 		add(label_3);
 		
 		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(114, 142, 126, 120);
+		btnNewButton.setBounds(146, 219, 160, 128);
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(389, 142, 118, 120);
+		btnNewButton_1.setBounds(428, 219, 160, 128);
 		add(btnNewButton_1);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 401, 659, 23);
+		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
 		
 		JLabel label_4 = new JLabel("状态栏");

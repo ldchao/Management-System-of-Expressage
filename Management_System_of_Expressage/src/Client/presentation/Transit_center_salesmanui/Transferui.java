@@ -26,31 +26,31 @@ public class Transferui extends JPanel {
 		add(label_1);
 		
 		JLabel lblNewLabel = new JLabel("查看消息提醒");
-		lblNewLabel.setBounds(101, 98, 72, 15);
+		lblNewLabel.setBounds(89, 176, 72, 15);
 		add(lblNewLabel);
 		
 		JLabel label_2 = new JLabel("查看库存");
-		label_2.setBounds(287, 98, 91, 15);
+		label_2.setBounds(327, 176, 91, 15);
 		add(label_2);
 		
 		JLabel label_3 = new JLabel("新建中转单");
-		label_3.setBounds(456, 98, 72, 15);
+		label_3.setBounds(552, 176, 72, 15);
 		add(label_3);
 		
 		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(64, 138, 141, 120);
+		btnNewButton.setBounds(55, 222, 160, 128);
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(259, 138, 132, 120);
+		btnNewButton_1.setBounds(287, 222, 160, 128);
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setBounds(441, 138, 122, 120);
+		btnNewButton_2.setBounds(508, 222, 160, 128);
 		add(btnNewButton_2);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 392, 623, 23);
+		toolBar.setBounds(0,  533, 734, 28);
 		add(toolBar);
 		
 		JLabel label_4 = new JLabel("状态栏");
