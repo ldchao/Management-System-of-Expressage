@@ -1,4 +1,4 @@
-package Client.mockObject.transferMockObject;
+package Client.mockObject.storeMockObject;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ public class MockWarehouse_inBL extends Warehouse_inBL{
 	String[][][][] id;
 	ArrayList<String> Idlist;
 	
-	public MockWarehouse_inBL(){	
+	MockWarehouse_inBL(){	
 		id=new String[3][4][3][5];
 		for(int i=0;i<3;i++){
 			for (int j = 0; j < 4; j++) {
