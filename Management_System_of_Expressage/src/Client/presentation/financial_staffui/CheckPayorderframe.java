@@ -62,7 +62,6 @@ public class CheckPayorderframe extends JFrame {
 		getContentPane().add(scrollPane);
 
 		table = new JTable();
-
 		// Ñ¡È¡ÐÐ
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -72,7 +71,6 @@ public class CheckPayorderframe extends JFrame {
 				table.setRowSelectionInterval(rowpos, rowpos);
 			}
 		});
-
 		scrollPane.setViewportView(table);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);

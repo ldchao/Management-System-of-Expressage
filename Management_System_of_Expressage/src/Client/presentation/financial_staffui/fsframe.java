@@ -84,7 +84,7 @@ public class fsframe extends JFrame {
 		getContentPane().add(button_3);
 		
 		JLabel label_1 = new JLabel("成本管理");
-		label_1.setBounds(150, 129, 81, 15);
+		label_1.setBounds(146, 129, 57, 15);
 		getContentPane().add(label_1);
 		
 		JLabel label_2 = new JLabel("结算管理");

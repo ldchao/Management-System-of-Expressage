@@ -53,7 +53,7 @@ public class AccountBLService_Stub implements AccountBLService{
 	public ArrayList<AccountVO> findAccount(String key) {
 		// TODO Auto-generated method stub
 		ArrayList<AccountVO> accountList = new ArrayList<AccountVO>();
-		accountList.add(new AccountVO());
+		accountList.add(new AccountVO(key, key, key, key));//
 		return accountList;
 	}
 

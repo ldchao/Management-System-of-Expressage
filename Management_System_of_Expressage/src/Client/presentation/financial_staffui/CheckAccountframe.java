@@ -13,11 +13,7 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class CheckAccountframe extends JFrame {
 	private JTable table;
@@ -84,14 +80,6 @@ public class CheckAccountframe extends JFrame {
 				table.setRowSelectionInterval(rowpos, rowpos);
 			}
 		});
-		// 删除行
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (rowpos != -1) {
-
-				}
-			}
-		});
 
 		scrollPane.setViewportView(table);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
@@ -106,6 +94,17 @@ public class CheckAccountframe extends JFrame {
 				"\u8D26\u6237\u540D\u79F0", "\u8D26\u6237\u4F59\u989D" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(130);
 		table.getColumnModel().getColumn(1).setPreferredWidth(130);
+
+		// 删除行
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (rowpos != -1) {
+					table.getModel().setValueAt("", rowpos, 0); // data,row,column
+					table.getModel().setValueAt("", rowpos, 1);
+					table.validate();
+				}
+			}
+		});
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");

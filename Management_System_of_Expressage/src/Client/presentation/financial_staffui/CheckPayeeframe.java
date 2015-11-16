@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
 public class CheckPayeeframe extends JFrame {
 	private JTable table;
@@ -54,7 +55,6 @@ public class CheckPayeeframe extends JFrame {
 		getContentPane().add(scrollPane);
 
 		table = new JTable();
-
 		// Ñ¡È¡ÐÐ
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -66,8 +66,8 @@ public class CheckPayeeframe extends JFrame {
 		});
 
 		scrollPane.setViewportView(table);
-		table.setColumnSelectionAllowed(true);
-		table.setCellSelectionEnabled(true);
+		table.setRowSelectionAllowed(true);
+		table.setEnabled(false);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setModel(new DefaultTableModel(new Object[][] {
 				{ null, null, null, null, null, null },

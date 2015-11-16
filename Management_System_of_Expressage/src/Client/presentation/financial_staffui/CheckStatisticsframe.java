@@ -116,8 +116,8 @@ public class CheckStatisticsframe extends JFrame {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				Point mousepoint;
 				mousepoint = e.getPoint();
-				rowpos2 = table.rowAtPoint(mousepoint);
-				table.setRowSelectionInterval(rowpos2, rowpos2);
+				rowpos2 = table2.rowAtPoint(mousepoint);
+				table2.setRowSelectionInterval(rowpos2, rowpos2);
 			}
 		});
 

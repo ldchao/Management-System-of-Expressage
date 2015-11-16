@@ -83,11 +83,11 @@ public class CheckUserframe extends JFrame {
 
 		scrollPane.setViewportView(table);
 		table.setEnabled(false);
-		table.setColumnSelectionAllowed(true);
-		table.setCellSelectionEnabled(true);
+		table.setRowSelectionAllowed(true);
+		//table.setCellSelectionEnabled(true);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setModel(new DefaultTableModel(new Object[][] { { "", "", "" },
-				{ null, null, null }, { null, null, null },
+				{ "1231", null, null }, { null, null, null },
 				{ null, null, null }, { null, null, null },
 				{ null, null, null }, { null, null, null },
 				{ null, null, null }, { null, null, null },
@@ -100,6 +100,18 @@ public class CheckUserframe extends JFrame {
 				"\u7528\u6237\u5BC6\u7801", "\u7528\u6237\u6743\u9650" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(80);
 		table.getColumnModel().getColumn(1).setPreferredWidth(80);
+
+		// 删除行
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (rowpos != -1) {
+					table.getModel().setValueAt("", rowpos, 0); // data,row,column
+					table.getModel().setValueAt("", rowpos, 1);
+					table.getModel().setValueAt("", rowpos, 2);
+					table.validate();
+				}
+			}
+		});
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");
