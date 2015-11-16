@@ -10,7 +10,6 @@ public class MockListinbl extends Listinbl{
 			String position1, String phone1, String cellphone1, String receiver, String address2, String position2,
 			String phone2, String cellphone2, String count, int weight, int length, int width, int height, String items,
 			int express, int pack, double bill, String time, String transformState) {
-		MockReceiverinbl
 		// TODO Auto-generated method stub
 	}
 	
