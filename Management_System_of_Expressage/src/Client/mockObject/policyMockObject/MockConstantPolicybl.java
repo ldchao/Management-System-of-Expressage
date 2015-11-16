@@ -8,9 +8,10 @@ import Client.businesslogicservice.policyblservice.ConstantPolicyBLService;
 public class MockConstantPolicybl extends ConstantPolicybl{
 
 	@Override
-	public ConstantVO searchConstant(String address1, String address2) {
+	public ConstantVO checkConstant(String address1, String address2) {
 		// TODO Auto-generated method stub
-		return null;
+		ConstantVO constantVO=new ConstantVO("南京", "北京", 100, 0);
+		return constantVO;
 	}
 
 	@Override
