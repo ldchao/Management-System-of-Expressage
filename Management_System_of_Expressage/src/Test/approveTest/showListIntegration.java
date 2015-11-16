@@ -8,14 +8,15 @@ import org.junit.Test;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
+import Client.PO.ReceiverPO;
 import Client.mockObject.approveMockObject.MockApprovebl;
 
 public class showListIntegration {
 
 	@Test
-	public <T> void test() {
+	public  void test() {
 		MockApprovebl mockApprovebl=new MockApprovebl();
-		ArrayList<T> arrayList=	mockApprovebl.showList(1, " ");
+		ArrayList<String> arrayList=mockApprovebl.showList(1, " ");
 	}
 
 }
