@@ -12,6 +12,7 @@ public class ReceiverinIntegration {
 	public void test() {
 		MockReceiverinbl mockReceiverinbl=new MockReceiverinbl();
 		mockReceiverinbl.addReceiver("Frebin", "110110110", "1111111111", "shaque", "до╬╘", "", "110110110");
+		
 	}
 
 }

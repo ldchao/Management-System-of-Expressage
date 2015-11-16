@@ -1,6 +1,6 @@
 package Client.mockObject.listinMockObject;
 
-import Client.VO.OrderVO;
+import Client.PO.OrderPO;
 import Client.businesslogic.listinbl.Listinbl;
 import Client.mockObject.policyMockObject.MockConstantPolicybl;
 
@@ -12,7 +12,7 @@ public class MockListinbl extends Listinbl{
 			String phone2, String cellphone2, String count, int weight, int length, int width, int height, String items,
 			int express, int pack, double bill, String time, String transformState) {
 		// TODO Auto-generated method stub
-		OrderVO neworder=new OrderVO(courier, id, state, sender, address1, position1, phone1, cellphone1, 
+		OrderPO neworder=new OrderPO(courier, id, state, sender, address1, position1, phone1, cellphone1, 
 				receiver, address2, position2, phone2, cellphone2, 
 				count, weight, length, width, height, items, express, pack, bill, time, transformState);
 		System.out.println("succeed");

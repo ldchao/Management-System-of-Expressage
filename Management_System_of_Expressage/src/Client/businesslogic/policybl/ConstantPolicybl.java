@@ -7,7 +7,7 @@ import Client.businesslogicservice.policyblservice.ConstantPolicyBLService;
 public class ConstantPolicybl implements ConstantPolicyBLService,ConstantInfo{
 
 	@Override
-	public ConstantVO searchConstant(String address1, String address2) {
+	public ConstantVO checkConstant(String address1, String address2) {
 		// TODO Auto-generated method stub
 		return null;
 	}
