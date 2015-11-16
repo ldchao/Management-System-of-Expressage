@@ -13,5 +13,4 @@ public class EditConstantPolicyIntegration {
 		MockConstantPolicybl mockConstantPolicybl=new MockConstantPolicybl();
 		mockConstantPolicybl.editConstant("南京", "北京", 100, 0);
 	}
-
 }
