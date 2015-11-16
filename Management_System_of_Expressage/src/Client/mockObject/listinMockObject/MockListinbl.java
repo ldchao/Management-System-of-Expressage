@@ -31,4 +31,11 @@ public class MockListinbl extends Listinbl{
 		result=part1+part2+part3+part4;
 		return result;
 	}
+	public double getWeight(String id){
+		double weight=0;
+		if(id.equals("0000000000")){
+			weight=10;
+		}
+		return weight;
+	}
 }
