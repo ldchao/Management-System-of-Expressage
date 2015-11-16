@@ -2,6 +2,7 @@ package Client.presentation.system_administratorui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,9 +13,11 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 
 public class CheckUserframe extends JFrame {
 	private JTable table;
+	private int rowpos = -1;
 
 	/**
 	 * Create the panel.
@@ -42,24 +45,6 @@ public class CheckUserframe extends JFrame {
 		button_4.setBounds(15, 6, 70, 23);
 		getContentPane().add(button_4);
 
-		table = new JTable();
-		table.setEnabled(false);
-		table.setColumnSelectionAllowed(true);
-		table.setCellSelectionEnabled(true);
-		table.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		table.setModel(new DefaultTableModel(new Object[][] {
-				{ "用户名", "用户密码", "用户权限" }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, }, new String[] { "\u7528\u6237\u540D",
-				"\u7528\u6237\u5BC6\u7801", "\u7528\u6237\u6743\u9650" }));
-		table.getColumnModel().getColumn(0).setPreferredWidth(80);
-		table.getColumnModel().getColumn(1).setPreferredWidth(80);
-		table.setBounds(149, 186, 436, 176);
-		getContentPane().add(table);
-
 		JLabel label_1 = new JLabel("用户属性");
 		label_1.setFont(new Font("黑体", Font.BOLD, 15));
 		label_1.setBounds(332, 127, 70, 15);
@@ -71,14 +56,62 @@ public class CheckUserframe extends JFrame {
 
 		JLabel lblNewLabel = new JLabel("状态栏");
 		toolBar.add(lblNewLabel);
-		
+
 		JButton button = new JButton("\u4FEE\u6539");
-		button.setBounds(262, 410, 70, 23);
+		button.setBounds(262, 434, 70, 23);
 		getContentPane().add(button);
 
 		JButton button_1 = new JButton("\u5220\u9664");
-		button_1.setBounds(413, 410, 70, 23);
+		button_1.setBounds(413, 434, 70, 23);
 		getContentPane().add(button_1);
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(149, 183, 436, 217);
+		getContentPane().add(scrollPane);
+
+		table = new JTable();
+
+		// 选取行
+		table.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				Point mousepoint;
+				mousepoint = e.getPoint();
+				rowpos = table.rowAtPoint(mousepoint);
+				table.setRowSelectionInterval(rowpos, rowpos);
+			}
+		});
+
+		scrollPane.setViewportView(table);
+		table.setEnabled(false);
+		table.setRowSelectionAllowed(true);
+		//table.setCellSelectionEnabled(true);
+		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
+		table.setModel(new DefaultTableModel(new Object[][] { { "", "", "" },
+				{ "1231", null, null }, { null, null, null },
+				{ null, null, null }, { null, null, null },
+				{ null, null, null }, { null, null, null },
+				{ null, null, null }, { null, null, null },
+				{ null, null, null }, { null, null, null },
+				{ null, null, null }, { null, null, null },
+				{ null, null, null }, { null, null, null },
+				{ null, null, null }, { null, null, null },
+				{ null, null, null }, { null, null, null },
+				{ null, null, null }, }, new String[] { "\u7528\u6237\u540D",
+				"\u7528\u6237\u5BC6\u7801", "\u7528\u6237\u6743\u9650" }));
+		table.getColumnModel().getColumn(0).setPreferredWidth(80);
+		table.getColumnModel().getColumn(1).setPreferredWidth(80);
+
+		// 删除行
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (rowpos != -1) {
+					table.getModel().setValueAt("", rowpos, 0); // data,row,column
+					table.getModel().setValueAt("", rowpos, 1);
+					table.getModel().setValueAt("", rowpos, 2);
+					table.validate();
+				}
+			}
+		});
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");

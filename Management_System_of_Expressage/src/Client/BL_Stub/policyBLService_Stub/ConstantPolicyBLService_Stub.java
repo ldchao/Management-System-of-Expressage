@@ -19,7 +19,7 @@ public class ConstantPolicyBLService_Stub implements ConstantPolicyBLService{
 		this.price = price;
 	}
 	
-	public ConstantVO searchConstant(String address1, String address2) {
+	public ConstantVO checkConstant(String address1, String address2) {
 		// TODO Auto-generated method stub
 		if(address1.equals("南京")&&address2.equals("北京")){
 			return new ConstantVO(address1,address2,

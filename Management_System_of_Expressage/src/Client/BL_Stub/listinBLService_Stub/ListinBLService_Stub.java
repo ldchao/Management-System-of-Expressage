@@ -91,7 +91,7 @@ public class ListinBLService_Stub  implements ListinBLService{
 
 
 
-	public ResultMessage addOrder(String courier, String id, int state, String sender,
+	public void addOrder(String courier, String id, int state, String sender,
 			String address1, String position1, String phone1,
 			String cellphone1, String receiver, String address2,
 			String position2, String phone2, String cellphone2, String count,
@@ -100,7 +100,6 @@ public class ListinBLService_Stub  implements ListinBLService{
 			String transformState) {
 		// TODO Auto-generated method stub		
 			System.out.println("add succeed!");
-			return null;
 	}
 
 	public double getTotalMoney(String address1, String address2, int length,
