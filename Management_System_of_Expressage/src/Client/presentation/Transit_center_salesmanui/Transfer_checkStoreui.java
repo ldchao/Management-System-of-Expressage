@@ -44,6 +44,7 @@ setLayout(null);
 		add(scrollPane);
 		
 		table = new JTable();
+		table.setEnabled(false);
 		table.setFont(new Font("ËÎÌו", Font.PLAIN, 12));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -87,6 +88,12 @@ setLayout(null);
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
+			}
+			boolean[] columnEditables = new boolean[] {
+				false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
 			}
 		});
 		table.getColumnModel().getColumn(0).setPreferredWidth(157);
