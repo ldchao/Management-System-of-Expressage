@@ -4,11 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import Client.presentation.financial_staffui.DateChooser;
+
 import java.awt.Font;
 
 public class CheckInventory extends JPanel {
@@ -16,19 +18,31 @@ public class CheckInventory extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CheckInventory() {
+	public CheckInventory(JFrame m,JPanel jp) {
+		JFrame main=m;
+		JPanel lastui=jp;
+		CheckInventory nowPanel=this;
         setLayout(null);
-		
-		JButton btnNewButton = new JButton("返回");
-		btnNewButton.setBounds(10, 10, 57, 23);
-		add(btnNewButton);
+        
+        JButton button = new JButton("返回");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				main.remove(nowPanel);				
+				main.getContentPane().add(lastui);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
+		button.setBounds(10, 10, 65, 23);
+		add(button);
 		
 		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理>>查看库存");
-		lblNewLabel.setBounds(92, 14, 263, 15);
+		lblNewLabel.setBounds(100, 14, 263, 15);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("张三，你好！");
-		lblNewLabel_1.setBounds(505, 14, 79, 15);
+		lblNewLabel_1.setBounds(600, 14, 100, 15);
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("开始日期");
@@ -54,10 +68,30 @@ public class CheckInventory extends JPanel {
 		add(lblNewLabel_9);
 		
 		JButton btnNewButton_1 = new JButton("确定");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CheckInventory_show cis=new CheckInventory_show(main,nowPanel);
+				main.remove(nowPanel);				
+				main.getContentPane().add(cis);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
 		btnNewButton_1.setBounds(196, 405, 130, 25);
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("取消");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CheckInventory ci=new CheckInventory(main,lastui);
+				main.remove(nowPanel);				
+				main.getContentPane().add(ci);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
 		btnNewButton_2.setBounds(413, 405, 123, 25);
 		add(btnNewButton_2);
 		

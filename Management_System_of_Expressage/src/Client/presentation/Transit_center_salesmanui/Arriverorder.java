@@ -2,6 +2,7 @@ package Client.presentation.Transit_center_salesmanui;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
@@ -12,28 +13,43 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JLayeredPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Arriverorder extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
-
+	JFrame main;
 	/**
 	 * Create the panel.
 	 */
-	public Arriverorder() {
-setLayout(null);
+	public Arriverorder(JFrame m,JPanel jp) {
+		main=m;
+		JPanel lastui=jp;
+		Arriverorder nowPanel=this;
+        setLayout(null);
 		
 		JButton button = new JButton("返回");
-		button.setBounds(10, 10, 62, 23);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				main.remove(nowPanel);				
+				main.getContentPane().add(lastui);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
+		button.setBounds(10, 10, 65, 23);
 		add(button);
 		
-		JLabel label = new JLabel("中转中心业务员>>中转接收>>新建到达单>>到达单");
-		label.setBounds(82, 14, 404, 15);
+		JLabel label = new JLabel("中转中心业务员>>中转接收>>新建到达单");
+		label.setBounds(100, 14, 360, 15);
 		add(label);
 		
 		JLabel label_1 = new JLabel("张三，你好！");
-		label_1.setBounds(525, 14, 96, 15);
+		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 		
 		JToolBar toolBar = new JToolBar();
@@ -102,10 +118,25 @@ setLayout(null);
 		bg.add(rdbtnNewRadioButton_2);
 		
 		JButton btnNewButton = new JButton("确定");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				label_4.setText("创建成功");
+			}
+		});
 		btnNewButton.setBounds(220, 457, 80, 23);
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("取消");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Arriverorder a=new Arriverorder(main, lastui);
+				main.remove(nowPanel);				
+				main.getContentPane().add(a);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
 		btnNewButton_1.setBounds(390, 457, 80, 23);
 		add(btnNewButton_1);
 		

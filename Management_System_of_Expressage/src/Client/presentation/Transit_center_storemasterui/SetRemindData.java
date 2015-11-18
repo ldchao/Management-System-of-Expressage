@@ -1,12 +1,18 @@
 package Client.presentation.Transit_center_storemasterui;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.JComboBox;
+
+import Client.presentation.Transit_center_salesmanui.Transferui;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SetRemindData extends JPanel {
 	private JTextField textField;
@@ -15,19 +21,31 @@ public class SetRemindData extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SetRemindData() {
+	public SetRemindData(JFrame m,JPanel jp) {
+		JFrame main=m;
+		JPanel lastui=jp;
+		SetRemindData nowPanel=this;
         setLayout(null);
 		
-		JButton btnNewButton = new JButton("返回");
-		btnNewButton.setBounds(10, 10, 57, 23);
-		add(btnNewButton);
+        JButton button = new JButton("返回");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				main.remove(nowPanel);				
+				main.getContentPane().add(lastui);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
+		button.setBounds(10, 10, 65, 23);
+		add(button);
 		
 		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理>>设置提醒值");
-		lblNewLabel.setBounds(92, 14, 263, 15);
+		lblNewLabel.setBounds(100, 14, 263, 15);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("张三，你好！");
-		lblNewLabel_1.setBounds(505, 14, 79, 15);
+		lblNewLabel_1.setBounds(600, 14, 100, 15);
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("当前提醒值比例");
@@ -38,20 +56,37 @@ public class SetRemindData extends JPanel {
 		lblNewLabel_2.setBounds(182, 327, 105, 15);
 		add(lblNewLabel_2);
 		
-		JButton btnNewButton_1 = new JButton("确定");
-		btnNewButton_1.setBounds(206, 409, 93, 25);
-		add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("取消");
-		btnNewButton_2.setBounds(398, 409, 93, 25);
-		add(btnNewButton_2);
-		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 533,734,28);
 		add(toolBar);
 		
 		JLabel lblNewLabel_6 = new JLabel("状态栏");
-		toolBar.add(lblNewLabel_6);
+		toolBar.add(lblNewLabel_6);	
+		
+		JButton btnNewButton_1 = new JButton("确定");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lblNewLabel_6.setText("设置成功");
+			}
+		});
+		btnNewButton_1.setBounds(206, 409, 93, 25);
+		add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("取消");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SetRemindData sr=new SetRemindData(main,lastui);
+				main.remove(nowPanel);				
+				main.getContentPane().add(sr);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
+		btnNewButton_2.setBounds(398, 409, 93, 25);
+		add(btnNewButton_2);
+		
+
 		
 		JLabel lblNewLabel_4 = new JLabel("选择库区");
 		lblNewLabel_4.setBounds(178, 201, 79, 15);

@@ -2,6 +2,7 @@ package Client.presentation.Transit_center_salesmanui;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -10,8 +11,12 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
 import Client.presentation.financial_staffui.DateChooser;
+
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Shipping_Car extends JPanel {
 
@@ -24,20 +29,33 @@ public class Shipping_Car extends JPanel {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	JFrame main;
 	
-	
-	public Shipping_Car() {
+	public Shipping_Car(JFrame m,JPanel jp) {
+		main=m;
+		JPanel lastui=jp;
+		Shipping_Car nowPanel=this;
 		setLayout(null);
+		
 		JButton button = new JButton("返回");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				main.remove(nowPanel);				
+				main.getContentPane().add(lastui);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
 		button.setBounds(10, 10, 65, 23);
 		add(button);
 		
 		JLabel label = new JLabel("中转中心业务员>>装运管理>>新建装运单>>汽车装运单");
-		label.setBounds(77, 14, 376, 15);
+		label.setBounds(100, 14, 376, 15);
 		add(label);
 		
 		JLabel label_1 = new JLabel("张三，你好！");
-		label_1.setBounds(523, 14, 121, 15);
+		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 		
 		JToolBar toolBar = new JToolBar();
@@ -141,10 +159,25 @@ public class Shipping_Car extends JPanel {
 		scrollPane.setColumnHeaderView(lblNewLabel_9);
 		
 		JButton btnNewButton = new JButton("确定");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				label_4.setText("创建成功");
+			}
+		});
 		btnNewButton.setBounds(219, 485, 85, 23);
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("取消");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Shipping_Car sc=new Shipping_Car(main, lastui);
+				main.remove(nowPanel);				
+				main.getContentPane().add(sc);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
 		btnNewButton_1.setBounds(426, 485, 93, 23);
 		add(btnNewButton_1);
 		

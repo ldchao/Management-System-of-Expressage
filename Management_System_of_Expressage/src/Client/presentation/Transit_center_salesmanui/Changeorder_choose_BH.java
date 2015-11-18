@@ -4,29 +4,33 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.JComboBox;
 
 public class Changeorder_choose_BH extends JPanel {
-
+	JFrame main;
 	/**
 	 * Create the panel.
 	 */
-	public Changeorder_choose_BH() {
-setLayout(null);
+	public Changeorder_choose_BH(JFrame m,JPanel jp) {
+		main=m;
+		JPanel lastui=jp;
+		Changeorder_choose_BH nowPanel=this;
+		setLayout(null);
 		
 		JButton button = new JButton("返回");
-		button.setBounds(10, 10, 63, 23);
+		button.setBounds(10, 10, 65, 23);
 		add(button);
 		
 		JLabel label = new JLabel("中转中心业务员>>录入中转单>>新建中转单");
-		label.setBounds(89, 14, 270, 15);
+		label.setBounds(100, 14, 270, 15);
 		add(label);
 		
 		JLabel label_1 = new JLabel("张三，你好！");
-		label_1.setBounds(488, 14, 99, 15);
+		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 		
 		JLabel lblNewLabel = new JLabel("选择架号");

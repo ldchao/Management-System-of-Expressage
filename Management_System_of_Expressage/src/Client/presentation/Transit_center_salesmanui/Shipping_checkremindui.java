@@ -1,32 +1,50 @@
 package Client.presentation.Transit_center_salesmanui;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 public class Shipping_checkremindui extends JPanel {
-
+	JFrame main;
 	/**
 	 * Create the panel.
 	 */
-	public Shipping_checkremindui() {
-setLayout(null);
+	public Shipping_checkremindui(JFrame m,JPanel jp) {
+		main=m;
+		JPanel lastui=jp;
+		Shipping_checkremindui nowPanel=this;
+
+		setLayout(null);
 		
 		JButton button = new JButton("返回");
-		button.setBounds(10, 10, 57, 23);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				main.remove(nowPanel);				
+				main.getContentPane().add(lastui);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
+		button.setBounds(10, 10, 65, 23);
 		add(button);
 		
 		JLabel label = new JLabel("中转中心业务员>>装运管理>>产看消息提醒");
-		label.setBounds(77, 14, 260, 15);
+		label.setBounds(100, 14, 260, 15);
 		add(label);
 		
 		JLabel label_1 = new JLabel("张三，你好！");
-		label_1.setBounds(533, 14, 72, 15);
+		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 		
 		JToolBar toolBar = new JToolBar();

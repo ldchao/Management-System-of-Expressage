@@ -2,33 +2,48 @@ package Client.presentation.Transit_center_salesmanui;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
 
 public class Changeorder_Input extends JPanel {
-
+	JFrame main;
 	/**
 	 * Create the panel.
 	 */
-	public Changeorder_Input() {
+	public Changeorder_Input(JFrame m,JPanel jp) {
+		main=m;
+		JPanel lastui=jp;
+		Changeorder_Input nowPanel=this;
         setLayout(null);
 		
 		JButton button = new JButton("返回");
-		button.setBounds(10, 10, 63, 23);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				main.remove(nowPanel);				
+				main.getContentPane().add(lastui);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
+		button.setBounds(10, 10, 65, 23);
 		add(button);
 		
 		JLabel label = new JLabel("中转中心业务员>>录入中转单>>新建中转单");
-		label.setBounds(89, 14, 270, 15);
+		label.setBounds(100, 14, 270, 15);
 		add(label);
 		
 		JLabel label_1 = new JLabel("张三，你好！");
-		label_1.setBounds(488, 14, 99, 15);
+		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 		
 		JLabel lblNewLabel = new JLabel("航运区");
@@ -103,10 +118,30 @@ public class Changeorder_Input extends JPanel {
 		bg.add(jb6);bg.add(jb7);bg.add(jb8);bg.add(jb9);bg.add(jb10);
 		
 		JButton btnNewButton = new JButton("确定");
+		btnNewButton .addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Changeorder_choose_TC ctc=new Changeorder_choose_TC(main, nowPanel);
+				main.remove(nowPanel);				
+				main.getContentPane().add(ctc);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
 		btnNewButton.setBounds(203, 448, 93, 23);
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("取消");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Changeorder_Input ti=new Changeorder_Input(main, lastui);
+				main.remove(nowPanel);				
+				main.getContentPane().add(ti);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
 		btnNewButton_1.setBounds(379, 448, 93, 23);
 		add(btnNewButton_1);
 		

@@ -1,36 +1,54 @@
 package Client.presentation.Transit_center_salesmanui;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.JList;
 import javax.swing.JScrollBar;
 import javax.swing.JSpinner;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Shipping_Inputui extends JPanel {
 	private JTable table;
-
+	JFrame main;
 	/**
 	 * Create the panel.
 	 */
-	public Shipping_Inputui() {
-setLayout(null);
+	public Shipping_Inputui(JFrame m,JPanel jp) {
+		main=m;
+		JPanel lastui=jp;
+		Shipping_Inputui nowPanel=this;
+
+		setLayout(null);
 		
 		JButton button = new JButton("返回");
-		button.setBounds(10, 10, 57, 23);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				main.remove(nowPanel);				
+				main.getContentPane().add(lastui);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
+		button.setBounds(10, 10, 65, 23);
 		add(button);
 		
 		JLabel label = new JLabel("中转中心业务员>>装运管理");
-		label.setBounds(77, 14, 163, 15);
+		label.setBounds(100, 14, 163, 15);
 		add(label);
 		
 		JLabel label_1 = new JLabel("张三，你好！");
-		label_1.setBounds(533, 14, 72, 15);
+		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 		
 		JToolBar toolBar = new JToolBar();
@@ -83,11 +101,31 @@ setLayout(null);
 		));
 		scrollPane.setViewportView(table);
 		
+		//创建装运单
 		JButton btnNewButton = new JButton("创建装运单");
-		btnNewButton.setBounds(193, 486, 93, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Shipping_Plane sp=new Shipping_Plane(main, nowPanel);
+				main.remove(nowPanel);				
+				main.getContentPane().add(sp);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(193, 486, 100, 23);
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("放弃创建");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				main.remove(nowPanel);				
+				main.getContentPane().add(lastui);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
 		btnNewButton_1.setBounds(436, 486, 93, 23);
 		add(btnNewButton_1);
 	}
