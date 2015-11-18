@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,9 +16,16 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+import Client.VO.AccountVO;
+import Client.VO.UserVO;
+import Client.businesslogic.staffbl.UserBL;
+
 public class CheckUserframe extends JFrame {
-	private JTable table;
+	private static JTable table;
 	private int rowpos = -1;
+	private static DefaultTableModel tableModel;
+	private static int rows = 20;
+	UserBL usb = new UserBL();
 
 	/**
 	 * Create the panel.
@@ -84,9 +92,8 @@ public class CheckUserframe extends JFrame {
 		scrollPane.setViewportView(table);
 		table.setEnabled(false);
 		table.setRowSelectionAllowed(true);
-		//table.setCellSelectionEnabled(true);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
-		table.setModel(new DefaultTableModel(new Object[][] { { "", "", "" },
+		tableModel = new DefaultTableModel(new Object[][] { { "", "", "" },
 				{ "1231", null, null }, { null, null, null },
 				{ null, null, null }, { null, null, null },
 				{ null, null, null }, { null, null, null },
@@ -97,18 +104,19 @@ public class CheckUserframe extends JFrame {
 				{ null, null, null }, { null, null, null },
 				{ null, null, null }, { null, null, null },
 				{ null, null, null }, }, new String[] { "\u7528\u6237\u540D",
-				"\u7528\u6237\u5BC6\u7801", "\u7528\u6237\u6743\u9650" }));
+				"\u7528\u6237\u5BC6\u7801", "\u7528\u6237\u6743\u9650" });
+		table.setModel(tableModel);
 		table.getColumnModel().getColumn(0).setPreferredWidth(80);
 		table.getColumnModel().getColumn(1).setPreferredWidth(80);
+		
+		showTable(usb.checkUsers());
 
 		// É¾³ýÐÐ
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (rowpos != -1) {
-					table.getModel().setValueAt("", rowpos, 0); // data,row,column
-					table.getModel().setValueAt("", rowpos, 1);
-					table.getModel().setValueAt("", rowpos, 2);
-					table.validate();
+					String name = tableModel.getValueAt(rowpos, 0).toString();
+					UserConfirmframe userConfirmframe = new UserConfirmframe(name);
 				}
 			}
 		});
@@ -120,5 +128,28 @@ public class CheckUserframe extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public static void showTable(ArrayList<UserVO> uvo) {
+		int i = 0;
+		for (UserVO uc : uvo) {
+			tableModel.setValueAt(uc.getName(), i, 0);
+			tableModel.setValueAt(uc.getKey(), i, 1);
+			tableModel.setValueAt(uc.getLimit(), i, 2);
+			i++;
+			
+			if (i >= rows) {
+				String[] rowstr = { "", "" ,""};
+				tableModel.addRow(rowstr);
+				rows++;
+			}
+
+		}
+		while (i < rows) {
+			tableModel.setValueAt("", i, 0);
+			tableModel.setValueAt("", i, 1);
+			tableModel.setValueAt("", i, 2);
+			i++;
+		}
 	}
 }

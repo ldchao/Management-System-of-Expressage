@@ -5,6 +5,11 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,11 +18,19 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.text.TabExpander;
 import javax.swing.JScrollPane;
 
+import Client.VO.AccountVO;
+import Client.businesslogic.accountbl.AccountBL;
+
 public class CheckAccountframe extends JFrame {
-	private JTable table;
+	private static JTable table;
 	private int rowpos = -1;
+	private static int rows = 20;
+	private static DefaultTableModel tableModel;
+	AccountBL accountBL = new AccountBL();
 
 	/**
 	 * Create the panel.
@@ -58,6 +71,15 @@ public class CheckAccountframe extends JFrame {
 		toolBar.add(lblNewLabel);
 
 		JButton button = new JButton("\u4FEE\u6539");
+		// 修改行内容
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (rowpos != -1) {
+					// accountBL.updateAccount(po, name, money, creator, date,
+					// state);
+				}
+			}
+		});
 		button.setBounds(225, 416, 70, 23);
 		getContentPane().add(button);
 
@@ -84,24 +106,27 @@ public class CheckAccountframe extends JFrame {
 		scrollPane.setViewportView(table);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
-		table.setModel(new DefaultTableModel(new Object[][] { { null, null },
-				{ "123123", "123132" }, { "345345", null }, { null, null },
+		tableModel = new DefaultTableModel(new Object[][] { { null, null },
 				{ null, null }, { null, null }, { null, null }, { null, null },
 				{ null, null }, { null, null }, { null, null }, { null, null },
 				{ null, null }, { null, null }, { null, null }, { null, null },
 				{ null, null }, { null, null }, { null, null }, { null, null },
-				{ null, null }, { null, null }, }, new String[] {
-				"\u8D26\u6237\u540D\u79F0", "\u8D26\u6237\u4F59\u989D" }));
+				{ null, null }, { null, null }, { null, null }, },
+				new String[] { "\u8D26\u6237\u540D\u79F0",
+						"\u8D26\u6237\u4F59\u989D" });
+		table.setModel(tableModel);
 		table.getColumnModel().getColumn(0).setPreferredWidth(130);
 		table.getColumnModel().getColumn(1).setPreferredWidth(130);
+
+		// 显示表格
+		showTable(accountBL.check());
 
 		// 删除行
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (rowpos != -1) {
-					table.getModel().setValueAt("", rowpos, 0); // data,row,column
-					table.getModel().setValueAt("", rowpos, 1);
-					table.validate();
+					String name = tableModel.getValueAt(rowpos, 0).toString();
+					ConfirmFrame conFrame = new ConfirmFrame(name);
 				}
 			}
 		});
@@ -113,5 +138,33 @@ public class CheckAccountframe extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public static int getRows() {
+		return rows;
+	}
+
+	public static JTable getTable() {
+		return table;
+	}
+
+	public static void showTable(ArrayList<AccountVO> acvo) {
+		int i = 0;
+		for (AccountVO ac : acvo) {
+			tableModel.setValueAt(ac.getAcName(), i, 0);
+			tableModel.setValueAt(ac.getMoney(), i, 1);
+			i++;
+			if (i >= rows) {
+				String[] rowstr = { "", "" };
+				tableModel.addRow(rowstr);
+				rows++;
+			}
+
+		}
+		while (i < rows) {
+			tableModel.setValueAt("", i, 0);
+			tableModel.setValueAt("", i, 1);
+			i++;
+		}
 	}
 }

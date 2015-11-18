@@ -40,7 +40,7 @@ public class BillBLService_Stub implements BillBLService {
 	public ArrayList<StartinfoVO> checkBill() {
 		// TODO Auto-generated method stub
 		ArrayList<StartinfoVO> infoList = new ArrayList<StartinfoVO>();
-		infoList.add(new StartinfoVO());
+//		infoList.add(new StartinfoVO());
 		return infoList;
 	}
 

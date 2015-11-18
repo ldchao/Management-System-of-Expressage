@@ -44,7 +44,7 @@ public class StatisticsBLService_Stub implements StatisticsBLService{
 	public ArrayList<PayorderVO> checkPay(String start, String end) {
 		// TODO Auto-generated method stub
 		ArrayList<PayorderVO> payList = new ArrayList<PayorderVO>();
-		payList.add(new PayorderVO());
+//		payList.add(new PayorderVO());
 		return payList;
 	}
 

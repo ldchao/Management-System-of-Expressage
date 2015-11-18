@@ -39,7 +39,7 @@ public class PayorderBLService_Stub implements PayorderBLService{
 	public ArrayList<PayorderVO> checkPayorder() {
 		// TODO Auto-generated method stub
 		ArrayList<PayorderVO> payList = new ArrayList<PayorderVO>();
-		payList.add(new PayorderVO());
+//		payList.add(new PayorderVO());
 		return payList;
 	}
 

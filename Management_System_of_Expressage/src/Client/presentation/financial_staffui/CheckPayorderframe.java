@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JTable;
@@ -21,9 +22,16 @@ import java.awt.Color;
 
 import javax.swing.JScrollPane;
 
+import Client.VO.AccountVO;
+import Client.VO.PayorderVO;
+import Client.businesslogic.financebl.PayorderBL;
+
 public class CheckPayorderframe extends JFrame {
-	private JTable table;
+	private static JTable table;
 	private int rowpos = -1;
+	private static DefaultTableModel tableModel;
+	private static int rows = 20;
+	PayorderBL payorderBL = new PayorderBL();
 
 	/**
 	 * Create the panel.
@@ -74,7 +82,7 @@ public class CheckPayorderframe extends JFrame {
 		scrollPane.setViewportView(table);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
-		table.setModel(new DefaultTableModel(new Object[][] {
+		tableModel = new DefaultTableModel(new Object[][] {
 				{ "", "", "", "", "", "" },
 				{ null, null, null, null, null, null },
 				{ null, null, null, null, null, null },
@@ -97,7 +105,8 @@ public class CheckPayorderframe extends JFrame {
 				{ null, null, null, null, null, null }, }, new String[] {
 				"\u4ED8\u6B3E\u65E5\u671F", "\u4ED8\u6B3E\u91D1\u989D",
 				"\u4ED8\u6B3E\u8D26\u53F7", "\u4ED8\u6B3E\u6761\u76EE",
-				"\u5907\u6CE8", "\u4ED8\u6B3E\u4EBA" }));
+				"\u5907\u6CE8", "\u4ED8\u6B3E\u4EBA" });
+		table.setModel(tableModel);
 		table.getColumnModel().getColumn(0).setPreferredWidth(85);
 		table.getColumnModel().getColumn(1).setPreferredWidth(85);
 		table.getColumnModel().getColumn(2).setPreferredWidth(90);
@@ -106,6 +115,8 @@ public class CheckPayorderframe extends JFrame {
 		table.getColumnModel().getColumn(3).setMinWidth(20);
 		table.getColumnModel().getColumn(4).setPreferredWidth(125);
 		table.getColumnModel().getColumn(5).setPreferredWidth(80);
+		
+		showTable(payorderBL.checkPayorder());
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");
@@ -114,5 +125,35 @@ public class CheckPayorderframe extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	// 显示
+	public static void showTable(ArrayList<PayorderVO> pavo) {
+		int i = 0;
+		for (PayorderVO pa : pavo) {
+			table.getModel().setValueAt(pa.getDate(), i, 0);
+			table.getModel().setValueAt(pa.getMoney(), i, 1);
+			table.getModel().setValueAt(pa.getAccount(), i, 2);
+			table.getModel().setValueAt(pa.getList(), i, 3);
+			table.getModel().setValueAt(pa.getComment(), i, 4);
+			table.getModel().setValueAt(pa.getPayor(), i, 5);
+			i++;
+
+			if (i >= rows) {
+				String[] rowstr = { "", "","","","","" };
+				tableModel.addRow(rowstr);
+				rows++;
+			}
+		}
+		
+		while (i < rows) {
+			tableModel.setValueAt("", i, 0);
+			tableModel.setValueAt("", i, 1);
+			tableModel.setValueAt("", i, 2);
+			tableModel.setValueAt("", i, 3);
+			tableModel.setValueAt("", i, 4);
+			tableModel.setValueAt("", i, 5);
+			i++;
+		}
 	}
 }

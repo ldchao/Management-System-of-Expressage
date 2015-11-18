@@ -34,14 +34,14 @@ public class UserBLService_Stub implements UserBLService{
 	}
 	@Override
 	public UserVO checkUser(String name) {
-		// TODO Auto-generated method stub
-		return new UserVO();
+	//	 TODO Auto-generated method stub
+		return null;
 	}
 	@Override
 	public ArrayList<UserVO> checkUsers() {
 		// TODO Auto-generated method stub
 		ArrayList<UserVO> userList = new ArrayList<UserVO>();
-		userList.add(new UserVO());
+	//	userList.add(new UserVO());
 		return userList;
 	}
 	
