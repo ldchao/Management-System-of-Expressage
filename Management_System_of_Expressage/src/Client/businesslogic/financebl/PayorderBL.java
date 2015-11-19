@@ -3,6 +3,7 @@ package Client.businesslogic.financebl;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 import Client.VO.AccountVO;
@@ -14,7 +15,29 @@ public class PayorderBL implements PayorderBLService {
 	@Override
 	public void addPayorder(double paymoney, String date, String payname,
 			String payaccount, String list, String comment) {
-		// TODO Auto-generated method stub
+
+		ArrayList<String> arrayList = new ArrayList<String>();
+		File payfile = new File("DataBase/Payorder.txt");
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(payfile));
+			String line;
+			while ((line = reader.readLine()) != null)
+				arrayList.add(line);
+
+			reader.close();
+
+			arrayList.add(paymoney + ";" + date + ";" + payname + ";"
+					+ payaccount + ";" + list + ";" + comment);
+
+			FileWriter writer = new FileWriter(payfile);
+			for (String str : arrayList) {
+				writer.write(str + "\n");
+			}
+			writer.close();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 
 	}
 

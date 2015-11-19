@@ -1,6 +1,7 @@
 package Client.presentation.financial_staffui;
 
 import java.awt.Font;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,19 +14,22 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
+import Client.businesslogic.financebl.PayorderBL;
+
 public class NewPayorderframe extends JFrame {
 
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	PayorderBL payorderBL = new PayorderBL();
 
 	/**
 	 * Create the panel.
 	 */
 	public NewPayorderframe() {
 		getContentPane().setLayout(null);
-		
+
 		NewPayorderframe npf = this;
 
 		JLabel label = new JLabel("财务人员>>成本管理>>新建付款单");
@@ -102,30 +106,63 @@ public class NewPayorderframe extends JFrame {
 		label_7.setBounds(338, 81, 78, 15);
 		getContentPane().add(label_7);
 
+		JScrollPane jsp = new JScrollPane();
+		jsp.setBounds(179, 261, 443, 69);
+		getContentPane().add(jsp);
+
+		JTextArea textArea = new JTextArea();
+		jsp.setViewportView(textArea);
+		JScrollPane jsp2 = new JScrollPane();
+		jsp2.setBounds(179, 362, 443, 69);
+		getContentPane().add(jsp2);
+
+		JTextArea textArea_1 = new JTextArea();
+		jsp2.setViewportView(textArea_1);
+
 		JButton button = new JButton("\u786E\u8BA4");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				double money = Double.parseDouble(textField.getText());
+				String payname = textField_1.getText();
+				String payaccount = textField_2.getText();
+				String date = textField_3.getText();
+				String list = textArea.getText();
+				String comment = textArea_1.getText();
+				payorderBL.addPayorder(money, date, payname, payaccount, list,
+						comment);
 				lblNewLabel.setText("创建成功！");
+
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				textField.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
+				textField_3.setText("");
+				textArea.setText("");
+				textArea_1.setText("");
 			}
 		});
 		button.setBounds(238, 468, 93, 23);
 		getContentPane().add(button);
 
 		JButton button_1 = new JButton("\u64A4\u9500");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textField.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
+				textField_3.setText("");
+				textArea.setText("");
+				textArea_1.setText("");
+				lblNewLabel.setText("状态栏");
+			}
+		});
 		button_1.setBounds(413, 468, 93, 23);
 		getContentPane().add(button_1);
-		JScrollPane jsp = new JScrollPane();
-		jsp.setBounds(179, 261, 443, 69);
-		getContentPane().add(jsp);
-		
-				JTextArea textArea = new JTextArea();
-				jsp.setViewportView(textArea);
-		JScrollPane jsp2 = new JScrollPane();
-		jsp2.setBounds(179, 362, 443, 69);
-		getContentPane().add(jsp2);
-		
-				JTextArea textArea_1 = new JTextArea();
-				jsp2.setViewportView(textArea_1);
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");

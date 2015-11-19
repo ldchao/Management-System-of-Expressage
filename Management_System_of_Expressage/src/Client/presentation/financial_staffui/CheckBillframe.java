@@ -54,11 +54,11 @@ public class CheckBillframe extends JFrame {
 
 		JLabel label_1 = new JLabel("期初信息");
 		label_1.setFont(new Font("黑体", Font.BOLD, 15));
-		label_1.setBounds(320, 124, 93, 15);
+		label_1.setBounds(332, 124, 70, 15);
 		getContentPane().add(label_1);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(92, 180, 549, 244);
+		scrollPane.setBounds(12, 180, 709, 251);
 		getContentPane().add(scrollPane);
 
 		table = new JTable();
@@ -96,14 +96,14 @@ public class CheckBillframe extends JFrame {
 						"\u94F6\u884C\u8D26\u6237", "\u673A\u6784",
 						"\u4EBA\u5458", "\u8F66\u8F86", "\u5E93\u5B58" });
 		table.setModel(tableModel);
-		table.getColumnModel().getColumn(0).setPreferredWidth(85);
-		table.getColumnModel().getColumn(1).setPreferredWidth(85);
-		table.getColumnModel().getColumn(2).setPreferredWidth(110);
+		table.getColumnModel().getColumn(0).setPreferredWidth(70);
+		table.getColumnModel().getColumn(1).setPreferredWidth(70);
+		table.getColumnModel().getColumn(2).setPreferredWidth(120);
 		table.getColumnModel().getColumn(2).setMinWidth(20);
-		table.getColumnModel().getColumn(3).setPreferredWidth(110);
+		table.getColumnModel().getColumn(3).setPreferredWidth(120);
 		table.getColumnModel().getColumn(3).setMinWidth(20);
-		table.getColumnModel().getColumn(4).setPreferredWidth(110);
-		table.getColumnModel().getColumn(5).setPreferredWidth(110);
+		table.getColumnModel().getColumn(4).setPreferredWidth(120);
+		table.getColumnModel().getColumn(5).setPreferredWidth(120);
 
 		showTable(bbl.checkBill());
 

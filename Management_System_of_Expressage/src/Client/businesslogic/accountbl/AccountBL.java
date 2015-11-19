@@ -11,6 +11,7 @@ import Client.PO.AccountPO;
 import Client.VO.AccountVO;
 import Client.businesslogicservice.accountblservice.AccountBLService;
 import Client.presentation.financial_staffui.CheckAccountframe;
+import Client.presentation.financial_staffui.NewAccountframe;
 import Client.presentation.general_managerui.checkAccount;
 
 public class AccountBL implements AccountBLService {
@@ -43,7 +44,28 @@ public class AccountBL implements AccountBLService {
 	@Override
 	public void addAccount(String name, double money, String creator,
 			String date, int state) {
-		// TODO Auto-generated method stub
+		
+		ArrayList<String> list = new ArrayList<String>();
+		File acfile = new File("DataBase/Account.txt");
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(acfile));
+			String line;
+			while ((line = reader.readLine()) != null)
+				list.add(line);
+
+			reader.close();
+			
+			list.add(name+";"+money+";"+creator+";"+date);
+
+			FileWriter writer = new FileWriter(acfile);
+			for (String str : list) {
+				writer.write(str + "\n");
+			}
+			writer.close();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 
 	}
 

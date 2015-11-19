@@ -30,8 +30,8 @@ public class BillBLService_Stub implements BillBLService {
 	}
 
 	@Override
-	public void addBill(String institution, String staff, String vehicle,
-			String store, String account, String data, String creator) {
+	public void addBill(String name, String account, String organization,
+			String staff, String vehicle, String store) {
 		// TODO Auto-generated method stub
 		System.out.println("Add Succeed!");
 	}

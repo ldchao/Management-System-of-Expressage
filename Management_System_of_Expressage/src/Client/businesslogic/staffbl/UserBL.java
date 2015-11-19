@@ -15,8 +15,28 @@ public class UserBL implements UserBLService {
 
 	@Override
 	public void addUser(String name, String key, String limit) {
-		// TODO Auto-generated method stub
 
+		ArrayList<String> arrayList = new ArrayList<String>();
+		File userfile = new File("DataBase/User.txt");
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(userfile));
+			String line;
+			while ((line = reader.readLine()) != null)
+				arrayList.add(line);
+
+			reader.close();
+
+			arrayList.add(name + ";" + key + ";" + limit);
+
+			FileWriter writer = new FileWriter(userfile);
+			for (String str : arrayList) {
+				writer.write(str + "\n");
+			}
+			writer.close();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package Client.businesslogic.billbl;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 import Client.VO.AccountVO;
@@ -12,9 +13,30 @@ import Client.businesslogicservice.billblservice.BillBLService;
 public class BillBL implements BillBLService {
 
 	@Override
-	public void addBill(String institution, String staff, String vehicle,
-			String store, String account, String date, String creator) {
-		// TODO Auto-generated method stub
+	public void addBill(String name, String account, String organization,
+			String staff, String vehicle, String store) {
+		
+		ArrayList<String> list = new ArrayList<String>();
+		File billfile = new File("DataBase/Startinfo.txt");
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(billfile));
+			String line;
+			while ((line = reader.readLine()) != null)
+				list.add(line);
+
+			reader.close();
+			
+			list.add(name+";"+account+";"+organization+";"+staff+";"+vehicle+";"+store);
+
+			FileWriter writer = new FileWriter(billfile);
+			for (String str : list) {
+				writer.write(str + "\n");
+			}
+			writer.close();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 
 	}
 
