@@ -125,21 +125,34 @@ public class Newbillframe extends JFrame {
 				String staff = textArea_1.getText();
 				String vehicle = textArea_2.getText();
 				String store = textArea_3.getText();
-				billBL.addBill(name, account, organization, staff, vehicle, store);
-				lblNewLabel.setText("创建成功！"); // 目标在线程前执行
-				
+				boolean success = false;
+
+				if (name.equals("") || account.equals("")
+						|| organization.equals("") || staff.equals("")
+						|| vehicle.equals("") || store.equals("")) {
+					lblNewLabel.setText("信息录入不完整，无法完成新建");
+					success = false;
+				} else {
+					billBL.addBill(name, account, organization, staff, vehicle,
+							store);
+					lblNewLabel.setText("创建成功！"); // 目标在线程前执行
+					success = true;
+				}
+
 				try {
 					Thread.sleep(1000);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
-				textField.setText("");
-				textField_1.setText("");
-				textArea.setText("");
-				textArea_1.setText("");
-				textArea_2.setText("");
-				textArea.setText("");
+				if (success) {
+					textField.setText("");
+					textField_1.setText("");
+					textArea.setText("");
+					textArea_1.setText("");
+					textArea_2.setText("");
+					textArea_3.setText("");
+				}
 			}
 		});
 		button.setBounds(231, 453, 93, 23);

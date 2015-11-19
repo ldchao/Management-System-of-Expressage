@@ -132,6 +132,7 @@ public class NewUserframe extends JFrame {
 				String name = textField.getText();
 				String key = textField_1.getText();
 				String limit = "";
+				boolean success = false;
 
 				// 获取单选的内容
 				Enumeration<AbstractButton> radioBtns = bg.getElements();
@@ -144,8 +145,14 @@ public class NewUserframe extends JFrame {
 					}
 				}
 
-				userBL.addUser(name, key, limit);
-				lblNewLabel.setText("创建成功!");
+				if (name.equals("") || key.equals("") || limit.equals("")) {
+					lblNewLabel.setText("信息录入不完整，无法完成新建");
+					success = false;
+				} else {
+					userBL.addUser(name, key, limit);
+					lblNewLabel.setText("创建成功!");
+					success = true;
+				}
 
 				try {
 					Thread.sleep(1000);
@@ -153,10 +160,12 @@ public class NewUserframe extends JFrame {
 					ex.printStackTrace();
 				}
 
-				textField.setText("");
-				textField_1.setText("");
-				btn.setSelected(false);
-				// 怎么取消单选框的选择！
+				if (success) {
+					textField.setText("");
+					textField_1.setText("");
+					btn.setSelected(false);
+					// 怎么取消单选框的选择！
+				}
 			}
 		});
 		button.setBounds(216, 448, 93, 23);

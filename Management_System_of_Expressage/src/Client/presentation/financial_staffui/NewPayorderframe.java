@@ -122,15 +122,27 @@ public class NewPayorderframe extends JFrame {
 		JButton button = new JButton("\u786E\u8BA4");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				double money = Double.parseDouble(textField.getText());
+				double money = 0;
+				if (!textField.getText().equals(""))
+					money = Double.parseDouble(textField.getText());
 				String payname = textField_1.getText();
 				String payaccount = textField_2.getText();
 				String date = textField_3.getText();
 				String list = textArea.getText();
 				String comment = textArea_1.getText();
-				payorderBL.addPayorder(money, date, payname, payaccount, list,
-						comment);
-				lblNewLabel.setText("创建成功！");
+				boolean success = false;
+
+				if (payname.equals("") || payaccount.equals("")
+						|| date.equals("") || list.equals("")
+						|| comment.equals("")) {
+					lblNewLabel.setText("信息录入不完整，无法完成新建");
+					success = false;
+				} else {
+					payorderBL.addPayorder(money, date, payname, payaccount,
+							list, comment);
+					lblNewLabel.setText("创建成功！");
+					success = true;
+				}
 
 				try {
 					Thread.sleep(1000);
@@ -138,12 +150,14 @@ public class NewPayorderframe extends JFrame {
 					e.printStackTrace();
 				}
 
-				textField.setText("");
-				textField_1.setText("");
-				textField_2.setText("");
-				textField_3.setText("");
-				textArea.setText("");
-				textArea_1.setText("");
+				if (success) {
+					textField.setText("");
+					textField_1.setText("");
+					textField_2.setText("");
+					textField_3.setText("");
+					textArea.setText("");
+					textArea_1.setText("");
+				}
 			}
 		});
 		button.setBounds(238, 468, 93, 23);

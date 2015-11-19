@@ -105,19 +105,29 @@ public class NewAccountframe extends JFrame {
 				String name = textField.getText();
 				String creator = textField_1.getText();
 				String date = textField_2.getText();
-				accountBL.addAccount(name, 0, creator, date, 0);
-				lblNewLabel.setText("创建成功！");  //怎么实现在线程前执行！
-				
+				boolean success = false;
+
+				if (name.equals("") || creator.equals("") || date.equals("")) {
+					lblNewLabel.setText("信息录入不完整，无法完成新建");
+					success = false;
+				} else {
+					lblNewLabel.setText("创建成功！");// 怎么实现在线程前执行！
+					accountBL.addAccount(name, 0, creator, date, 0);
+					success = true;
+				}
+
 				try {
 					Thread.sleep(1000);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
-				textField.setText("");
-				textField_1.setText("");
-				textField_2.setText("");
-				// lblNewLabel.setText("状态栏");
+				if (success) {
+					textField.setText("");
+					textField_1.setText("");
+					textField_2.setText("");
+					// lblNewLabel.setText("状态栏");
+				}
 			}
 		});
 		button.setBounds(258, 444, 93, 23);
