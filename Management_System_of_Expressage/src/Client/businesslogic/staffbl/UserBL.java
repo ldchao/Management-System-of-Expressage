@@ -40,9 +40,39 @@ public class UserBL implements UserBLService {
 	}
 
 	@Override
-	public void updateUser(UserPO po, String name, String key, String limit) {
-		// TODO Auto-generated method stub
+	public ArrayList<UserVO> updateUser(int pos, String name, String limit) {
 
+		ArrayList<UserVO> list = new ArrayList<UserVO>();
+		ArrayList<String> strlist = new ArrayList<>();
+		File userfile = new File("DataBase/User.txt");
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(userfile));
+			int count = 0;
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String str[] = line.split(";");
+				count++;
+				if (count != pos) {
+					strlist.add(line);
+					list.add(new UserVO(str[0], str[1], str[2]));
+				} else {
+					list.add(new UserVO(name, str[1], limit));
+					strlist.add(name + ";" + str[1] + ";" + limit);
+				}
+			}
+			reader.close();
+
+			FileWriter writer = new FileWriter(userfile);
+			for (String str : strlist) {
+				writer.write(str + "\n");
+			}
+			writer.close();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		return list;
 	}
 
 	@Override

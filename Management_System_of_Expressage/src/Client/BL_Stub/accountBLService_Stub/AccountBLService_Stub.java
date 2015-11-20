@@ -6,7 +6,7 @@ import Client.PO.AccountPO;
 import Client.VO.AccountVO;
 import Client.businesslogicservice.accountblservice.AccountBLService;
 
-public class AccountBLService_Stub implements AccountBLService{
+public class AccountBLService_Stub implements AccountBLService {
 	String acName; // 账户名
 	double acMoney; // 账户余额
 	String acCreator; // 建账人
@@ -37,10 +37,11 @@ public class AccountBLService_Stub implements AccountBLService{
 	}
 
 	@Override
-	public void updateAccount(AccountPO po, String name, double money,
-			String creator, String date, int state) {
+	public ArrayList<AccountVO> updateAccount(int pos,String name, String creator, String date,
+			int state) {
 		// TODO Auto-generated method stub
 		System.out.println("Update Succeed!");
+		return null;
 	}
 
 	@Override
@@ -56,7 +57,5 @@ public class AccountBLService_Stub implements AccountBLService{
 		accountList.add(new AccountVO(key, key, key, key));//
 		return accountList;
 	}
-
-	
 
 }

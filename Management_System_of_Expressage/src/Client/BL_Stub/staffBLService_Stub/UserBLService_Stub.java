@@ -23,9 +23,10 @@ public class UserBLService_Stub implements UserBLService{
 		System.out.println("Add Succeed!");
 	}
 	@Override
-	public void updateUser(UserPO po, String name, String key, String limit) {
+	public ArrayList<UserVO> updateUser(int pos, String name, String limit) {
 		// TODO Auto-generated method stub
 		System.out.println("Update Succeed!");
+		return null;
 	}
 	@Override
 	public void deleteUser(String name) {

@@ -11,7 +11,7 @@ public interface UserBLService {
 	public void addUser(String name, String key, String limit);
 
 	// 修改用户
-	public void updateUser(UserPO po, String name, String key, String limit);
+	public ArrayList<UserVO> updateUser(int pos, String name, String limit);
 
 	// 删除用户
 	public void deleteUser(String name);

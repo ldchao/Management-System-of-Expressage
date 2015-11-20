@@ -44,7 +44,7 @@ public class AccountBL implements AccountBLService {
 	@Override
 	public void addAccount(String name, double money, String creator,
 			String date, int state) {
-		
+
 		ArrayList<String> list = new ArrayList<String>();
 		File acfile = new File("DataBase/Account.txt");
 		try {
@@ -54,8 +54,8 @@ public class AccountBL implements AccountBLService {
 				list.add(line);
 
 			reader.close();
-			
-			list.add(name+";"+money+";"+creator+";"+date);
+
+			list.add(name + ";" + money + ";" + creator + ";" + date);
 
 			FileWriter writer = new FileWriter(acfile);
 			for (String str : list) {
@@ -70,10 +70,41 @@ public class AccountBL implements AccountBLService {
 	}
 
 	@Override
-	public void updateAccount(AccountPO po, String name, double money,
-			String creator, String date, int state) {
-		// TODO Auto-generated method stub
+	public ArrayList<AccountVO> updateAccount(int pos, String name, String creator,
+			String date, int state) {
 
+		ArrayList<AccountVO> list = new ArrayList<AccountVO>();
+		ArrayList<String> strlist = new ArrayList<>();
+		File acfile = new File("DataBase/Account.txt");
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(acfile));
+			int count = 0;
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String str[] = line.split(";");
+				count++;
+				if (count != pos) {
+					strlist.add(line);
+					list.add(new AccountVO(str[0], str[1], str[2], str[3]));
+				} else {
+					list.add(new AccountVO(name, str[1], date, creator));
+					strlist.add(name + ";" + str[1] + ";" + date + ";"
+							+ creator);
+				}
+			}
+			reader.close();
+
+			FileWriter writer = new FileWriter(acfile);
+			for (String str : strlist) {
+				writer.write(str + "\n");
+			}
+			writer.close();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		return list;
 	}
 
 	@Override

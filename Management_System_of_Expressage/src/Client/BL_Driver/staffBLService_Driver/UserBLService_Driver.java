@@ -15,7 +15,6 @@ public class UserBLService_Driver {
 		 * 判断账是否存在 待完成
 		 */
 		userBLService.deleteUser(name);
-		UserPO po = new UserPO();// ???
-		userBLService.updateUser(po, name, key, limit);
+		userBLService.updateUser(0, name, limit);
 	}
 }

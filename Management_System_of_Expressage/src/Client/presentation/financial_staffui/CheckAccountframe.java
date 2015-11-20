@@ -70,19 +70,6 @@ public class CheckAccountframe extends JFrame {
 		JLabel lblNewLabel = new JLabel("状态栏");
 		toolBar.add(lblNewLabel);
 
-		JButton button = new JButton("\u4FEE\u6539");
-		// 修改行内容
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if (rowpos != -1) {
-					// accountBL.updateAccount(po, name, money, creator, date,
-					// state);
-				}
-			}
-		});
-		button.setBounds(225, 416, 70, 23);
-		getContentPane().add(button);
-
 		JButton button_1 = new JButton("\u5220\u9664");
 		button_1.setBounds(448, 416, 70, 23);
 		getContentPane().add(button_1);
@@ -130,6 +117,19 @@ public class CheckAccountframe extends JFrame {
 				}
 			}
 		});
+
+		JButton button = new JButton("\u4FEE\u6539");
+		// 修改行内容
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (rowpos != -1) {
+					String name = tableModel.getValueAt(rowpos, 0).toString();
+					UpdateAccountframe up = new UpdateAccountframe(name,rowpos);
+				}
+			}
+		});
+		button.setBounds(225, 416, 70, 23);
+		getContentPane().add(button);
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");

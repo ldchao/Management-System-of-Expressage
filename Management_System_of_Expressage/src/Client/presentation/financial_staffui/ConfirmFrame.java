@@ -29,7 +29,6 @@ public class ConfirmFrame extends JFrame {
 				conframe.dispose();
 				accountBL.deleteAccount(name);
 				CheckAccountframe.showTable(accountBL.check());
-				
 			}
 		});
 		btnNewButton.setBounds(53, 87, 71, 23);

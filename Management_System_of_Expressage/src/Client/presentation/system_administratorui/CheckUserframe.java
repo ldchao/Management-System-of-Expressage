@@ -65,10 +65,6 @@ public class CheckUserframe extends JFrame {
 		JLabel lblNewLabel = new JLabel("状态栏");
 		toolBar.add(lblNewLabel);
 
-		JButton button = new JButton("\u4FEE\u6539");
-		button.setBounds(262, 434, 70, 23);
-		getContentPane().add(button);
-
 		JButton button_1 = new JButton("\u5220\u9664");
 		button_1.setBounds(413, 434, 70, 23);
 		getContentPane().add(button_1);
@@ -94,7 +90,7 @@ public class CheckUserframe extends JFrame {
 		table.setRowSelectionAllowed(true);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		tableModel = new DefaultTableModel(new Object[][] { { "", "", "" },
-				{ "1231", null, null }, { null, null, null },
+				{ null, null, null }, { null, null, null },
 				{ null, null, null }, { null, null, null },
 				{ null, null, null }, { null, null, null },
 				{ null, null, null }, { null, null, null },
@@ -108,7 +104,7 @@ public class CheckUserframe extends JFrame {
 		table.setModel(tableModel);
 		table.getColumnModel().getColumn(0).setPreferredWidth(80);
 		table.getColumnModel().getColumn(1).setPreferredWidth(80);
-		
+
 		showTable(usb.checkUsers());
 
 		// 删除行
@@ -116,10 +112,25 @@ public class CheckUserframe extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (rowpos != -1) {
 					String name = tableModel.getValueAt(rowpos, 0).toString();
-					UserConfirmframe userConfirmframe = new UserConfirmframe(name);
+					UserConfirmframe userConfirmframe = new UserConfirmframe(
+							name);
 				}
 			}
 		});
+
+		JButton button = new JButton("\u4FEE\u6539");
+		// 修改用户信息
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String name = tableModel.getValueAt(rowpos, 0).toString();
+				String limit = tableModel.getValueAt(rowpos, 2).toString();
+				if (rowpos != -1){
+					UpdateUserFrame up = new UpdateUserFrame(name, limit,rowpos);
+				}
+			}
+		});
+		button.setBounds(262, 434, 70, 23);
+		getContentPane().add(button);
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");
@@ -129,7 +140,7 @@ public class CheckUserframe extends JFrame {
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
+
 	public static void showTable(ArrayList<UserVO> uvo) {
 		int i = 0;
 		for (UserVO uc : uvo) {
@@ -137,9 +148,9 @@ public class CheckUserframe extends JFrame {
 			tableModel.setValueAt(uc.getKey(), i, 1);
 			tableModel.setValueAt(uc.getLimit(), i, 2);
 			i++;
-			
+
 			if (i >= rows) {
-				String[] rowstr = { "", "" ,""};
+				String[] rowstr = { "", "", "" };
 				tableModel.addRow(rowstr);
 				rows++;
 			}
