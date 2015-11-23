@@ -69,5 +69,4 @@ public class PayorderVO implements Serializable {
 		this.payor = payor;
 	}
 	
-	
 }

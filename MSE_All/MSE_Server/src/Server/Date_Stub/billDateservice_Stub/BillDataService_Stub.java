@@ -17,7 +17,7 @@ public class BillDataService_Stub implements BillDataService{
 	public ArrayList<StartinfoPO> find() {
 		// TODO Auto-generated method stub
 		ArrayList<StartinfoPO> infoList = new ArrayList<StartinfoPO>();
-		infoList.add(new StartinfoPO()); //าษฮสฃก
+//		infoList.add(new StartinfoPO()); //าษฮสฃก
 		return infoList;
 	}
 	

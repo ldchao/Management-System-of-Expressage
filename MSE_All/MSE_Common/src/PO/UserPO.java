@@ -3,31 +3,40 @@ package PO;
 import java.io.Serializable;
 
 public class UserPO implements Serializable {
-	String userName; // 用户名
-	String userKey; // 密码
-	String userLimit; // 用户权限
+	private String name;
+	private String key;
+	private String limit;
 
 	public UserPO(String name, String key, String limit) {
-		userName = name;
-		userKey = key;
-		userLimit = limit;
-	}
-
-	// 显示所有用户 信息时用
-	public UserPO() {
-		// TODO Auto-generated constructor stub
+		super();
+		this.name = name;
+		this.key = key;
+		this.limit = limit;
 	}
 
 	public String getName() {
-		return userName;
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getKey() {
-		return userKey;
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
 	}
 
 	public String getLimit() {
-		return userLimit;
+		return limit;
 	}
+
+	public void setLimit(String limit) {
+		this.limit = limit;
+	}
+
 
 }

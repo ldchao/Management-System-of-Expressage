@@ -3,56 +3,69 @@ package PO;
 import java.io.Serializable;
 
 public class PayorderPO implements Serializable {
-	double payMoney; // 付款金额
-	String payDate; // 付款日期
-	String payName; // 付款人姓名
-	String payAccount; // 付款账户
-	String payList; // 条目
-	String payComment; // 备注
-	int payState; // 审批状态
-
-	public PayorderPO(double money, String date, String name, String account,
-			String list, String comment, int state) {
-		payMoney = money;
-		payDate = date;
-		payName = name;
-		payAccount = account;
-		payList = list;
-		payComment = comment;
-		payState = state;
+	private String date;
+	private double money;
+	private String account;
+	private String list;
+	private String comment;
+	private String payor;
+	
+	public PayorderPO(String date, double money, String account, String list,
+			String comment, String payor) {
+		super();
+		this.date = date;
+		this.money = money;
+		this.account = account;
+		this.list = list;
+		this.comment = comment;
+		this.payor = payor;
 	}
 
-	// 显示所有付款单时用
-	public PayorderPO() {
-		// TODO Auto-generated constructor stub
+	public String getDate() {
+		return date;
 	}
 
-	public double getPayMoney() {
-		return payMoney;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
-	public String getPayDate() {
-		return payDate;
+	public double getMoney() {
+		return money;
 	}
 
-	public String getPayName() {
-		return payName;
+	public void setMoney(double money) {
+		this.money = money;
 	}
 
-	public String getPayAccount() {
-		return payAccount;
+	public String getAccount() {
+		return account;
 	}
 
-	public String getPayList() {
-		return payList;
+	public void setAccount(String account) {
+		this.account = account;
 	}
 
-	public String getPayComment() {
-		return payComment;
+	public String getList() {
+		return list;
 	}
 
-	public int getPayState() {
-		return payState;
+	public void setList(String list) {
+		this.list = list;
 	}
 
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public String getPayor() {
+		return payor;
+	}
+
+	public void setPayor(String payor) {
+		this.payor = payor;
+	}
 }

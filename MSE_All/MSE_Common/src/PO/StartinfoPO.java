@@ -3,62 +3,70 @@ package PO;
 import java.io.Serializable;
 
 public class StartinfoPO implements Serializable {
-	String startInsti; // 机构
-	String startStaff; // 员工
-	String startVehicle; // 车辆
-	String startStore; // 库存
-	String startAccount; // 账户
-	String startDate; // 创建日期
-	String startCreator; // 创建者
-	int startState; // 审批状态
-
-	public StartinfoPO(String insti, String staff, String vehicle,
-			String store, String account, String date, String creator, int state) {
-		startInsti = insti;
-		startStaff = staff;
-		startVehicle = vehicle;
-		startStore = store;
-		startAccount = account;
-		startDate = date;
-		startCreator = creator;
-		startState = state;
+	private String name;
+	private String account;
+	private String organization;
+	private String staff;
+	private String vehicle;
+	private String store;
+	
+	public StartinfoPO(String name, String account, String organization,
+			String staff, String vehicle, String store) {
+		super();
+		this.name = name;
+		this.account = account;
+		this.organization = organization;
+		this.staff = staff;
+		this.vehicle = vehicle;
+		this.store = store;
 	}
 
-	// 显示所有账时用
-	public StartinfoPO() {
-		// TODO Auto-generated constructor stub
+	public String getName() {
+		return name;
 	}
 
-	public String getStartInsti() {
-		return startInsti;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getStartStaff() {
-		return startStaff;
+	public String getAccount() {
+		return account;
 	}
 
-	public String getStartVehicle() {
-		return startVehicle;
+	public void setAccount(String account) {
+		this.account = account;
 	}
 
-	public String getStartStore() {
-		return startStore;
+	public String getOrganization() {
+		return organization;
 	}
 
-	public String getStartAccount() {
-		return startAccount;
+	public void setOrganization(String organization) {
+		this.organization = organization;
 	}
 
-	public String getStartData() {
-		return startDate;
+	public String getStaff() {
+		return staff;
 	}
 
-	public String getStartCreator() {
-		return startCreator;
+	public void setStaff(String staff) {
+		this.staff = staff;
 	}
 
-	public int getStartState() {
-		return startState;
+	public String getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(String vehicle) {
+		this.vehicle = vehicle;
+	}
+
+	public String getStore() {
+		return store;
+	}
+
+	public void setStore(String store) {
+		this.store = store;
 	}
 
 }

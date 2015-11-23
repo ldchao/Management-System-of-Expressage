@@ -14,9 +14,10 @@ public class UserDataService_Stub implements UserDataService{
 	}
 
 	@Override
-	public void update(UserPO po) {
+	public ArrayList<UserPO> update(UserPO po) {
 		// TODO Auto-generated method stub
 		System.out.println("Update Succeed!");
+		return null;
 	}
 
 	@Override
@@ -29,15 +30,15 @@ public class UserDataService_Stub implements UserDataService{
 	public UserPO find(String name) {
 		// TODO Auto-generated method stub
 		System.out.println("Find Succeed!");
-		UserPO po = new UserPO();   // “…Œ £°
-		return po;
+//		UserPO po = new UserPO();   // “…Œ £°
+		return null;
 	}
 
 	@Override
 	public ArrayList<UserPO> finds() {
 		// TODO Auto-generated method stub
 		ArrayList<UserPO> userList = new ArrayList<UserPO>();
-		userList.add(new UserPO());
+//		userList.add(new UserPO());
 		return userList;
 	}
 

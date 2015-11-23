@@ -14,9 +14,10 @@ public class AccountDataService_Stub implements AccountDataService {
 	}
 
 	@Override
-	public void update(AccountPO po) {
+	public ArrayList<AccountPO> update(AccountPO po) {
 		// TODO Auto-generated method stub
 		System.out.println("Insert Succeed!");
+		return null;
 	}
 
 	@Override
@@ -30,8 +31,14 @@ public class AccountDataService_Stub implements AccountDataService {
 		// TODO Auto-generated method stub
 		System.out.println("Find Succeed!");
 		ArrayList<AccountPO> accountList = new ArrayList<AccountPO>();
-		accountList.add(new AccountPO(key));   // “…Œ £°
+	//	accountList.add(new AccountPO(key));   // “…Œ £°
 		return accountList;
+	}
+
+	@Override
+	public ArrayList<AccountPO> check() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

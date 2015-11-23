@@ -12,7 +12,7 @@ public class StatisticsDataService_Stub implements StatisticsDataService{
 	public ArrayList<PayorderPO> findPay(String start, String end) {
 		// TODO Auto-generated method stub
 		ArrayList<PayorderPO> payList = new ArrayList<PayorderPO>();
-		payList.add(new PayorderPO());
+//		payList.add(new PayorderPO());
 		return payList;
 	}
 
