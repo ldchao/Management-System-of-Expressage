@@ -1,9 +1,0 @@
-package Server.dataservice.policydataservice;
-
-import Client.PO.ConstantPO;
-
-public interface ConstantPolicyDataService {
-	public ConstantPO find(String address1,String address2);
-	
-	public void updateConstant(ConstantPO po);
-}

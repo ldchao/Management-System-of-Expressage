@@ -1,0 +1,46 @@
+package Client.BL_Stub.loadBLService_Stub;
+
+import java.util.ArrayList;
+
+import Client.VO.ChangeorderVO;
+import Client.businesslogicservice.loadblservice.ShippingBLService;
+import PO.LoadorderPO;
+
+public class ShippingBLService_Stub implements ShippingBLService{
+
+	
+	ArrayList<ChangeorderVO> needship=new ArrayList<ChangeorderVO>();
+	
+	
+	
+	//新建一张装运单
+	@Override
+	public void build(ChangeorderVO cv, String car_number, String monitor,
+			String transfer) {
+		// TODO Auto-generated method stub
+		System.out.println("新建一张装运单");
+		
+	}
+
+	//当货物出库完毕后设置提醒值
+	@Override
+	public void setRemind(ChangeorderVO cv) {
+		// TODO Auto-generated method stub
+		needship.add(cv);
+	}
+
+	//查看提醒值
+	@Override
+	public ArrayList<ChangeorderVO> checkRemind() {
+		// TODO Auto-generated method stub
+		return needship;
+	}
+
+	//存储新建的装车单
+	@Override
+	public void save(LoadorderPO lp) {
+		// TODO Auto-generated method stub
+		System.out.println("存储新建的装车单");
+	}
+
+}

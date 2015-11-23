@@ -1,0 +1,24 @@
+package Server.dataservice.staffdataservice;
+
+import java.util.ArrayList;
+
+import PO.UserPO;
+
+public interface UserDataService {
+
+	// 新建用户
+	public void insert(UserPO po);
+
+	// 修改用户
+	public void update(UserPO po);
+
+	// 删除用户
+	public void delete(String name);
+
+	// 查找一个用户
+	public UserPO find(String name);
+
+	// 查找所有用户
+	public ArrayList<UserPO> finds();
+
+}
