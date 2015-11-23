@@ -1,6 +1,10 @@
 package Client.BL_Stub.listinBLService_Stub;
 
+import Client.VO.OrderVO;
 import Client.businesslogicservice.listinblservice.ListinBLService;
+import State.ApproveState;
+import State.ExpressType;
+import State.PackageType;
 import State.ResultMessage;
 
 public class ListinBLService_Stub  implements ListinBLService{
@@ -131,5 +135,40 @@ public class ListinBLService_Stub  implements ListinBLService{
 		// TODO Auto-generated method stub
 		System.out.println("end the adding of receiver");
 	}
+
+
+
+
+	@Override
+	public void addOrder(OrderVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	@Override
+	public double getTotalMoney(String address1, String address2, String text, String text2, String text3,
+			ExpressType express, PackageType pack) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+
+	@Override
+	public String getTotalTime(String address1, String address2, ExpressType express) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+
+
+
 	
 }

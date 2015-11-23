@@ -14,23 +14,14 @@ import javax.swing.JToolBar;
 
 public class Courier extends JFrame {
 
+	public static void main(String []args){
+		Courier aCourier=new Courier();
+	}
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Courier frame = new Courier();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -63,6 +54,8 @@ public class Courier extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				courierframe.dispose();
 				Order neworder=new Order();
+				Thread thread=new Thread(neworder);
+				thread.start();
 			}
 		});
 		btnNewButton_1.setBounds(150, 190, 160, 128);

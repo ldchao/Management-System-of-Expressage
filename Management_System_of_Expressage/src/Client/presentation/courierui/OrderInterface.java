@@ -153,13 +153,13 @@ public class OrderInterface extends JFrame implements ActionListener{
 		}
 		
 		ListinBLService_Driver driver=new ListinBLService_Driver();
-		driver.drive(s[0],s[1],1,
-				s[2],s[3],s[4],s[5],
-				s[6],s[7],s[8],
-				s[9],s[10],s[11],s[12],
-				Integer.parseInt(s[13]),
-				Integer.parseInt(s[14]),Integer.parseInt(s[15]),Integer.parseInt(s[16]),"ipone100",
-				Integer.parseInt(s[17]),1,2.0,s[18],s[19]);
+//		driver.drive(s[0],s[1],1,
+//				s[2],s[3],s[4],s[5],
+//				s[6],s[7],s[8],
+//				s[9],s[10],s[11],s[12],
+//				Integer.parseInt(s[13]),
+//				Integer.parseInt(s[14]),Integer.parseInt(s[15]),Integer.parseInt(s[16]),"ipone100",
+//				Integer.parseInt(s[17]),1,2.0,s[18],s[19]);
 	}
 	
 	
