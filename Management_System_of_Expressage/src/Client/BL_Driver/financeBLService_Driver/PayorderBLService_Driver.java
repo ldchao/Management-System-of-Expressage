@@ -14,7 +14,7 @@ public class PayorderBLService_Driver {
 		
 		payorderBLService.addPayorder(paymoney, date, payname, payaccount, list, comment);
 		payorderBLService.checkPayorder();
-		payorderBLService.profit(pay, payee);
+//		payorderBLService.profit(pay, payee);
 		payorderBLService.excel(date, income, outcome, benefit);
 	}
 }

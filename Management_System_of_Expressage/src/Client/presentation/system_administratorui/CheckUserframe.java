@@ -24,7 +24,6 @@ public class CheckUserframe extends JFrame {
 	private static JTable table;
 	private int rowpos = -1;
 	private static DefaultTableModel tableModel;
-	private static int rows = 20;
 	UserBL usb = new UserBL();
 
 	/**
@@ -149,14 +148,13 @@ public class CheckUserframe extends JFrame {
 			tableModel.setValueAt(uc.getLimit(), i, 2);
 			i++;
 
-			if (i >= rows) {
+			if (i >= table.getRowCount()) {
 				String[] rowstr = { "", "", "" };
 				tableModel.addRow(rowstr);
-				rows++;
 			}
 
 		}
-		while (i < rows) {
+		while (i < table.getRowCount()) {
 			tableModel.setValueAt("", i, 0);
 			tableModel.setValueAt("", i, 1);
 			tableModel.setValueAt("", i, 2);

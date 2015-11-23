@@ -30,7 +30,6 @@ public class CheckPayorderframe extends JFrame {
 	private static JTable table;
 	private int rowpos = -1;
 	private static DefaultTableModel tableModel;
-	private static int rows = 20;
 	PayorderBL payorderBL = new PayorderBL();
 
 	/**
@@ -131,22 +130,21 @@ public class CheckPayorderframe extends JFrame {
 	public static void showTable(ArrayList<PayorderVO> pavo) {
 		int i = 0;
 		for (PayorderVO pa : pavo) {
-			table.getModel().setValueAt(pa.getDate(), i, 0);
-			table.getModel().setValueAt(pa.getMoney(), i, 1);
-			table.getModel().setValueAt(pa.getAccount(), i, 2);
-			table.getModel().setValueAt(pa.getList(), i, 3);
-			table.getModel().setValueAt(pa.getComment(), i, 4);
-			table.getModel().setValueAt(pa.getPayor(), i, 5);
+			tableModel.setValueAt(pa.getDate(), i, 0);
+			tableModel.setValueAt(pa.getMoney(), i, 1);
+			tableModel.setValueAt(pa.getAccount(), i, 2);
+			tableModel.setValueAt(pa.getList(), i, 3);
+			tableModel.setValueAt(pa.getComment(), i, 4);
+			tableModel.setValueAt(pa.getPayor(), i, 5);
 			i++;
 
-			if (i >= rows) {
+			if (i >= table.getRowCount()) {
 				String[] rowstr = { "", "","","","","" };
 				tableModel.addRow(rowstr);
-				rows++;
 			}
 		}
 		
-		while (i < rows) {
+		while (i < table.getRowCount()) {
 			tableModel.setValueAt("", i, 0);
 			tableModel.setValueAt("", i, 1);
 			tableModel.setValueAt("", i, 2);

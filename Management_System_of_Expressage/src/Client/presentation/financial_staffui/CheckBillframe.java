@@ -23,7 +23,6 @@ public class CheckBillframe extends JFrame {
 	private static JTable table;
 	private int rowpos;
 	private static DefaultTableModel tableModel;
-	private static int rows = 15;
 	BillBL bbl = new BillBL();
 
 	/**
@@ -126,14 +125,14 @@ public class CheckBillframe extends JFrame {
 			tableModel.setValueAt(sinvo.getVehicle(), i, 4);
 			tableModel.setValueAt(sinvo.getStore(), i, 5);
 			i++;
-			if (i >= rows) {
+			
+			if (i >= table.getRowCount()) {
 				String[] rowstr = { "", "", "", "", "", "" };
 				tableModel.addRow(rowstr);
-				rows++;
 			}
 
 		}
-		while (i < rows) {
+		while (i < table.getRowCount()) {
 			tableModel.setValueAt("", i, 0);
 			tableModel.setValueAt("", i, 1);
 			tableModel.setValueAt("", i, 2);

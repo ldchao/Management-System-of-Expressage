@@ -117,7 +117,6 @@ public class UserBL implements UserBLService {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(userfile));
 			String line;
-			int i = 0;
 			while ((line = reader.readLine()) != null) {
 				String[] str = line.split(";");
 				UserVO userVO = new UserVO(str[0], str[1], str[2]);

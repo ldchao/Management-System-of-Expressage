@@ -3,6 +3,7 @@ package Client.businesslogicservice.financeblservice;
 import java.util.ArrayList;
 
 import Client.PO.PayorderPO;
+import Client.VO.PayeeorderVO;
 import Client.VO.PayorderVO;
 
 public interface PayorderBLService {
@@ -15,7 +16,8 @@ public interface PayorderBLService {
 	public ArrayList<PayorderVO> checkPayorder();
 
 	// 查看成本收益（计算总支出、收入、利润）
-	public double profit(double[] pay, double[] payee);
+	public double[] profit(ArrayList<PayorderVO> pay,
+			ArrayList<PayeeorderVO> payee);
 
 	// 导出截至当前日期的成本收益表
 	public void excel(String date, double income, double outcome, double benefit);

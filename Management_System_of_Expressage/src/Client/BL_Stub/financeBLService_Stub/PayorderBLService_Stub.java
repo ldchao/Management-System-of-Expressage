@@ -2,6 +2,7 @@ package Client.BL_Stub.financeBLService_Stub;
 
 import java.util.ArrayList;
 
+import Client.VO.PayeeorderVO;
 import Client.VO.PayorderVO;
 import Client.businesslogicservice.financeblservice.PayorderBLService;
 
@@ -13,7 +14,7 @@ public class PayorderBLService_Stub implements PayorderBLService{
 	String payList; // 条目
 	String payComment; // 备注
 	int payState; // 审批状态
-	double total;
+	double[] total;
 	
 	public PayorderBLService_Stub(double payMoney, String payDate,
 			String payName, String payAccount, String payList,
@@ -44,7 +45,8 @@ public class PayorderBLService_Stub implements PayorderBLService{
 	}
 
 	@Override
-	public double profit(double[] pay, double[] payee) {
+	public double[] profit(ArrayList<PayorderVO> pay,
+			ArrayList<PayeeorderVO> payee) {
 		// TODO Auto-generated method stub
 		return total;
 	}

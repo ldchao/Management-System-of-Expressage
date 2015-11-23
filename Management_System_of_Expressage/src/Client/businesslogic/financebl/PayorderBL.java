@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import Client.PO.PayeeorderPO;
 import Client.VO.AccountVO;
+import Client.VO.PayeeorderVO;
 import Client.VO.PayorderVO;
 import Client.businesslogicservice.financeblservice.PayorderBLService;
 
@@ -50,7 +52,6 @@ public class PayorderBL implements PayorderBLService {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(acfile));
 			String line;
-			int i = 0;
 			while ((line = reader.readLine()) != null) {
 				String[] str = line.split(";");
 				PayorderVO payorderVO = new PayorderVO(str[0],
@@ -68,17 +69,25 @@ public class PayorderBL implements PayorderBLService {
 	}
 
 	@Override
-	public double profit(double[] pay, double[] payee) {
-		// TODO Auto-generated method stub
+	public double[] profit(ArrayList<PayorderVO> pay,
+			ArrayList<PayeeorderVO> payee) {
+		double res[] = new double[3];
+
 		double totalPay = 0;
-		for (int i = 0; i < pay.length; i++) {
-			totalPay += pay[i];
+		for (PayorderVO pv : pay) {
+			totalPay += pv.getMoney();
 		}
+
 		double totalPayee = 0;
-		for (int j = 0; j < payee.length; j++) {
-			totalPayee += payee[j];
+		for (PayeeorderVO pe : payee) {
+			totalPayee += 0;
 		}
-		return totalPay + totalPayee;
+
+		res[0] = totalPay;
+		res[1] = totalPayee;
+		res[2] = totalPay + totalPayee;
+
+		return res;
 	}
 
 	@Override

@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -85,6 +87,9 @@ public class NewPayorderframe extends JFrame {
 		textField_3.setBounds(465, 202, 157, 21);
 		textField_3.setColumns(10);
 		getContentPane().add(textField_3);
+		Date dt = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		textField_3.setText(date.format(dt));
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 543, 744, 28);

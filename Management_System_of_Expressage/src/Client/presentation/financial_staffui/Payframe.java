@@ -43,7 +43,7 @@ public class Payframe extends JFrame {
 				NewPayorderframe npf = new NewPayorderframe();
 			}
 		});
-		button.setBounds(155, 221, 160, 128);
+		button.setBounds(51, 221, 160, 128);
 		getContentPane().add(button);
 		
 		JButton button_1 = new JButton("New button");
@@ -53,16 +53,30 @@ public class Payframe extends JFrame {
 				CheckPayorderframe cpf = new CheckPayorderframe();
 			}
 		});
-		button_1.setBounds(414, 221, 160, 128);
+		button_1.setBounds(298, 221, 160, 128);
 		getContentPane().add(button_1);
 		
 		JLabel label_1 = new JLabel("\u65B0\u5EFA\u4ED8\u6B3E\u5355");
-		label_1.setBounds(201, 190, 67, 15);
+		label_1.setBounds(97, 190, 67, 15);
 		getContentPane().add(label_1);
 		
 		JLabel label_2 = new JLabel("\u67E5\u770B\u4ED8\u6B3E\u5355\u8BB0\u5F55");
-		label_2.setBounds(454, 190, 101, 15);
+		label_2.setBounds(338, 190, 101, 15);
 		getContentPane().add(label_2);
+		
+		JButton button_2 = new JButton("New button");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				pf.dispose();
+				Profitframe pro = new Profitframe();
+			}
+		});
+		button_2.setBounds(539, 221, 160, 128);
+		getContentPane().add(button_2);
+		
+		JLabel label_3 = new JLabel("\u67E5\u770B\u6210\u672C\u6536\u76CA\u8868");
+		label_3.setBounds(572, 190, 101, 15);
+		getContentPane().add(label_3);
 		
 		
 		//frame

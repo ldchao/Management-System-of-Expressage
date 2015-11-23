@@ -49,7 +49,6 @@ public class BillBL implements BillBLService {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(billfile));
 			String line;
-			int i = 0;
 			while ((line = reader.readLine()) != null) {
 				String[] str = line.split(";");
 				StartinfoVO startinfoVO = new StartinfoVO(str[0], str[1],

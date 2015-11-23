@@ -28,7 +28,6 @@ import Client.businesslogic.accountbl.AccountBL;
 public class CheckAccountframe extends JFrame {
 	private static JTable table;
 	private int rowpos = -1;
-	private static int rows = 20;
 	private static DefaultTableModel tableModel;
 	AccountBL accountBL = new AccountBL();
 
@@ -124,7 +123,7 @@ public class CheckAccountframe extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (rowpos != -1) {
 					String name = tableModel.getValueAt(rowpos, 0).toString();
-					UpdateAccountframe up = new UpdateAccountframe(name,rowpos);
+					UpdateAccountframe up = new UpdateAccountframe(name, rowpos);
 				}
 			}
 		});
@@ -140,28 +139,19 @@ public class CheckAccountframe extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	public static int getRows() {
-		return rows;
-	}
-
-	public static JTable getTable() {
-		return table;
-	}
-
 	public static void showTable(ArrayList<AccountVO> acvo) {
 		int i = 0;
 		for (AccountVO ac : acvo) {
 			tableModel.setValueAt(ac.getAcName(), i, 0);
 			tableModel.setValueAt(ac.getMoney(), i, 1);
 			i++;
-			if (i >= rows) {
+			if (i >= table.getRowCount()) {
 				String[] rowstr = { "", "" };
 				tableModel.addRow(rowstr);
-				rows++;
 			}
 
 		}
-		while (i < rows) {
+		while (i < table.getRowCount()) {
 			tableModel.setValueAt("", i, 0);
 			tableModel.setValueAt("", i, 1);
 			i++;

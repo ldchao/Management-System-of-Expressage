@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import java.awt.Font;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JTextField;
 
@@ -20,7 +22,6 @@ public class NewAccountframe extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JLabel lblNewLabel;
-	private static boolean over = false;
 	AccountBL accountBL = new AccountBL();
 
 	/**
@@ -81,13 +82,16 @@ public class NewAccountframe extends JFrame {
 		textField_1.setColumns(10);
 		textField_1.setBounds(359, 287, 181, 21);
 		getContentPane().add(textField_1);
+		Date dt = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		textField_1.setText(date.format(dt));
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(359, 345, 181, 21);
 		getContentPane().add(textField_2);
 
-		JLabel label_6 = new JLabel("- - - - - - -");
+		JLabel label_6 = new JLabel("0.0");
 		label_6.setBounds(359, 233, 181, 15);
 		getContentPane().add(label_6);
 
