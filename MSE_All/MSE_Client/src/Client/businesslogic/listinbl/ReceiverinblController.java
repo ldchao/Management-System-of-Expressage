@@ -16,5 +16,12 @@ public class ReceiverinblController implements ReceiverinBLService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean searchOrder(String id) {
+		return false;
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

@@ -176,7 +176,7 @@ public class Receiver extends JFrame {
 						complete=false;
 					}
 				}
-//				valid=receiverinblController.searchOrder(textField_2.getText());
+				valid=receiverinblController.searchOrder(textField_2.getText());
 				if(complete==true){
 					if(valid==false){
 						label_12.setText("此订单不存在");
