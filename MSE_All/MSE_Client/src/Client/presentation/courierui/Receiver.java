@@ -7,7 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Client.VO.ReceiverVO;
+import Client.businesslogic.listinbl.ReceiverinblController;
 import Client.presentation.financial_staffui.DateChooser;
+import sun.misc.Cleaner;
 
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -30,27 +33,17 @@ public class Receiver extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
-
+	private JTextArea textArea;
+	private ReceiverinblController receiverinblController;
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Receiver frame = new Receiver();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the frame.
 	 */
 	public Receiver() {
+		receiverinblController=new ReceiverinblController();
 		Receiver receiverframe=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 100, 750, 600);
@@ -59,6 +52,7 @@ public class Receiver extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		
 		JLabel label = new JLabel("\u6536\u4EF6\u4EBA\u4FE1\u606F\u5355");
 		label.setFont(new Font("微软雅黑", Font.PLAIN, 24));
@@ -141,7 +135,7 @@ public class Receiver extends JFrame {
 		scrollPane.setBounds(77, 345, 618, 111);
 		contentPane.add(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		scrollPane.setViewportView(textArea);
 		
@@ -151,7 +145,6 @@ public class Receiver extends JFrame {
 		
 		JLabel label_11 = new JLabel("点击选择日期");
 		label_11.setBounds(545, 165, 179, 15);
-	
 		
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
 		dateChooser1.register(label_11);
@@ -165,6 +158,39 @@ public class Receiver extends JFrame {
 		toolBar.add(label_12);
 		
 		JButton button = new JButton("\u786E\u5B9A");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String[] strings=new String[8];
+				strings[0]=textField.getText();
+				strings[1]=textField_1.getText();
+				strings[2]=textField_2.getText();
+				strings[3]=textField_3.getText();
+				strings[4]=textField_4.getText();
+				strings[5]=textField_5.getText();
+				strings[6]=textField_6.getText();
+				strings[7]=textArea.getText();
+				boolean valid=true;
+				boolean complete=true;
+				for(int i=0;i<8;i++){
+					if(strings[i].equals("")){
+						complete=false;
+					}
+				}
+//				valid=receiverinblController.searchOrder(textField_2.getText());
+				if(complete==true){
+					if(valid==false){
+						label_12.setText("此订单不存在");
+					}else{
+						ReceiverVO receiverVO=new ReceiverVO(strings[0], strings[1], strings[2], label_11.getText(), strings[3], strings[4], strings[5], strings[6], strings[7]);
+						receiverinblController.addReceiver(receiverVO);
+						label_12.setText("新建成功");
+						clean();
+					}
+				}else{
+					label_12.setText("信息填写不完整，请补全信息");
+				}
+			}
+		});
 		button.setBounds(234, 489, 93, 23);
 		contentPane.add(button);
 		
@@ -183,5 +209,16 @@ public class Receiver extends JFrame {
 		label_13.setBounds(311, 76, 85, 15);
 		contentPane.add(label_13);
 		
+	}
+	
+	public void clean(){
+		textField.setText("");
+		textField.setText("");
+		textField.setText("");
+		textField.setText("");
+		textField.setText("");
+		textField.setText("");
+		textField.setText("");
+		textArea.setText("");
 	}
 }

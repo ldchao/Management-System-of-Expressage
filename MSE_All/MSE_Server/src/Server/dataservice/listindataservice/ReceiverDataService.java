@@ -1,6 +1,6 @@
 package Server.dataservice.listindataservice;
 
-import PO.ReceiverPO;
+import Client.PO.ReceiverPO;
 import State.ResultMessage;
 
 public interface ReceiverDataService {

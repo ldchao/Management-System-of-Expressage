@@ -2,13 +2,13 @@ package Client.businesslogic.listinbl;
 
 import Client.VO.ReceiverVO;
 import Client.businesslogicservice.listinblservice.ReceiverinBLService;
-import State.ResultMessage;
 
-public class Receiverinbl implements ReceiverinBLService{
+public class ReceiverinblController implements ReceiverinBLService{
 
 	@Override
 	public void addReceiver(ReceiverVO vo) {
 		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -16,5 +16,5 @@ public class Receiverinbl implements ReceiverinBLService{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 }

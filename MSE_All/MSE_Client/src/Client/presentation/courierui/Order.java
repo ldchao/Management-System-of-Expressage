@@ -111,6 +111,7 @@ public class Order extends JFrame implements Runnable{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(300, 0, 712, 683);
 		this.setVisible(true);
+		listinblController=new ListinblController();
 		
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.WHITE);
@@ -319,6 +320,7 @@ public class Order extends JFrame implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				express=ExpressType.Economy;
+				System.out.println("1");
 			}
 		});
 		radioButton.setBounds(86, 435, 78, 23);
@@ -331,6 +333,7 @@ public class Order extends JFrame implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				express=ExpressType.Standard;
+				System.out.println("2");
 			}
 		});
 		radioButton_1.setBounds(166, 435, 78, 23);
@@ -343,6 +346,7 @@ public class Order extends JFrame implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				express=ExpressType.Professional;
+				System.out.println("3");
 			}
 		});
 		radioButton_2.setBounds(246, 435, 90, 23);
@@ -454,7 +458,6 @@ public class Order extends JFrame implements Runnable{
 		JButton btnNewButton = new JButton("\u786E\u5B9A");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				listinblController=new ListinblController();
 				//获取数据
 				String[] text=new String[18];
 				text[0]=textField.getText();
@@ -552,7 +555,9 @@ public class Order extends JFrame implements Runnable{
 		textArea_2.setText("");
 	}
 	
-	//update the expected time and bill
+	/*function:
+	 *update the expected time and bill
+	*/
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -566,10 +571,9 @@ public class Order extends JFrame implements Runnable{
 			if(!((textArea.getText().equals("")||textArea_1.getText().equals("")||
 				textField_13.getText().equals("")||textField_14.equals("")||
 				textField_15.equals("")||express==null||pack==null))){
-//					textField_16.setText(""+listinblController.getTotalTime(textArea.getText(), textArea_1.getText(), express));
-//					textField_17.setText(""+listinblController.getTotalMoney(
-//							textArea.getText(), textArea_1.getText(), textField_13.getText(), textField_14.getText(), textField_15.getText(), express, pack));
-				listinblController.endAddOrder();
+					textField_16.setText(""+listinblController.getTotalTime(textArea.getText(), textArea_1.getText(), express));
+					textField_17.setText(""+listinblController.getTotalMoney(
+							textArea.getText(), textArea_1.getText(), textField_13.getText(), textField_14.getText(), textField_15.getText(), express, pack));
 			}
 		}
 	}

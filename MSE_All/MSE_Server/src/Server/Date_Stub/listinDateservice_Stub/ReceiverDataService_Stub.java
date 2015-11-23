@@ -1,6 +1,6 @@
 package Server.Date_Stub.listinDateservice_Stub;
 
-import PO.ReceiverPO;
+import Client.PO.ReceiverPO;
 
 public class ReceiverDataService_Stub {
 	public void insertReceiver(ReceiverPO po) {
