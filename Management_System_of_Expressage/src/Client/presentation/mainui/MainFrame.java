@@ -5,10 +5,12 @@ import javax.swing.JFrame;
 public class MainFrame extends JFrame{
      LoginPanle lp=null;
 	
-//	public static void main(String[] args) {
-//		MainFrame mf = new MainFrame();
-//	}
-    public MainFrame(){
+	public static void main(String[] args) {
+		MainFrame mf = new MainFrame();
+	}
+    
+	
+	public MainFrame(){
     	
     	lp=new LoginPanle();
     	
