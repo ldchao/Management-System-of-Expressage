@@ -1,12 +1,13 @@
 package Server.dataservice.storedataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.OrderPO;
 import PO.StorePO;
 
-public interface Inventory_managementDataService {
+public interface Inventory_managementDataService extends Remote{
 
 	// 查看指定仓库所有位置库存状态
 	public StorePO check(int store_number) throws RemoteException;
