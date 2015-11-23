@@ -12,7 +12,7 @@ public interface AccountDataService extends Remote {
 	public void insert(AccountPO po) throws RemoteException;
 
 	// 修改账户
-	public ArrayList<AccountPO> update(AccountPO po) throws RemoteException;
+	public ArrayList<AccountPO> update(AccountPO po,int pos) throws RemoteException;
 
 	// 根据账户名查找并删除账户
 	public void delete(String name) throws RemoteException;

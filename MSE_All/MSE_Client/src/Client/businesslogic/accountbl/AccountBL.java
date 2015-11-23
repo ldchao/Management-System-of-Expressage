@@ -1,130 +1,76 @@
 package Client.businesslogic.accountbl;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import Client.RMI_init.RMIHelper;
 import Client.VO.AccountVO;
 import Client.businesslogicservice.accountblservice.AccountBLService;
+import Client.dataservice.accountdataservice.AccountDataService;
+import PO.AccountPO;
 
 public class AccountBL implements AccountBLService {
+	AccountDataService accountData = RMIHelper.getAccountData();
 
 	@Override
 	public ArrayList<AccountVO> check() {
-		ArrayList<AccountVO> aclist = new ArrayList<>();
 
-		// 读取Account.txt，并显示到表格中
-		File acfile = new File("DataBase/Account.txt");
+		ArrayList<AccountVO> acvlist = new ArrayList<>();
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(acfile));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String[] str = line.split(";");
-				AccountVO accountVO = new AccountVO(str[0], str[1], str[2],
-						str[3]);
-				aclist.add(accountVO);
+			ArrayList<AccountPO> acplist = accountData.check();
+			for (AccountPO acp : acplist) {
+				AccountVO acv = new AccountVO(acp.getName(), acp.getMoney(),
+						acp.getDate(), acp.getCreator());
+				acvlist.add(acv);
 			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return acvlist;
+	}
 
-			reader.close();
+	@Override
+	public void addAccount(String name, String money, String creator,
+			String date) {
+
+		AccountPO acpo = new AccountPO(name, money, date, creator);
+		try {
+			accountData.insert(acpo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return aclist;
 	}
 
 	@Override
-	public void addAccount(String name, double money, String creator,
-			String date, int state) {
+	public ArrayList<AccountVO> updateAccount(int pos, String name,
+			String creator, String date) {
+		ArrayList<AccountVO> list = new ArrayList<>();
+		ArrayList<AccountPO> acplist = new ArrayList<>();
 
-		ArrayList<String> list = new ArrayList<String>();
-		File acfile = new File("DataBase/Account.txt");
+		AccountPO acp = new AccountPO(name, "0", date, creator);
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(acfile));
-			String line;
-			while ((line = reader.readLine()) != null)
-				list.add(line);
-
-			reader.close();
-
-			list.add(name + ";" + money + ";" + creator + ";" + date);
-
-			FileWriter writer = new FileWriter(acfile);
-			for (String str : list) {
-				writer.write(str + "\n");
+			acplist = accountData.update(acp, pos);
+			for (AccountPO acpo : acplist) {
+				AccountVO acv = new AccountVO(acpo.getName(), acpo.getMoney(),
+						acpo.getDate(), acpo.getCreator());
+				list.add(acv);
 			}
-			writer.close();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
-	}
-
-	@Override
-	public ArrayList<AccountVO> updateAccount(int pos, String name, String creator,
-			String date, int state) {
-
-		ArrayList<AccountVO> list = new ArrayList<AccountVO>();
-		ArrayList<String> strlist = new ArrayList<>();
-		File acfile = new File("DataBase/Account.txt");
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(acfile));
-			int count = 0;
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String str[] = line.split(";");
-				count++;
-				if (count != pos) {
-					strlist.add(line);
-					list.add(new AccountVO(str[0], str[1], str[2], str[3]));
-				} else {
-					list.add(new AccountVO(name, str[1], date, creator));
-					strlist.add(name + ";" + str[1] + ";" + date + ";"
-							+ creator);
-				}
-			}
-			reader.close();
-
-			FileWriter writer = new FileWriter(acfile);
-			for (String str : strlist) {
-				writer.write(str + "\n");
-			}
-			writer.close();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
+		
+		
 		return list;
 	}
 
 	@Override
 	public void deleteAccount(String name) {
 
-		File acfile = new File("DataBase/Account.txt");
-		ArrayList<String> list = new ArrayList<String>();
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(acfile));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String[] str = line.split(";");
-				if (!(str[0].equals(name)))
-					list.add(line);
-
-			}
-			reader.close();
-
-			FileWriter writer = new FileWriter(acfile);
-			for (String str : list) {
-				writer.write(str + "\n");
-			}
-			writer.close();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			accountData.delete(name);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}

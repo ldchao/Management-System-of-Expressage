@@ -116,7 +116,7 @@ public class NewAccountframe extends JFrame {
 					success = false;
 				} else {
 					lblNewLabel.setText("创建成功！");// 怎么实现在线程前执行！
-					accountBL.addAccount(name, 0, creator, date, 0);
+					accountBL.addAccount(name, "0.0", creator, date);
 					success = true;
 				}
 

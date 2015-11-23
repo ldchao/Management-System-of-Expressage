@@ -10,12 +10,11 @@ public interface AccountBLService {
 	public ArrayList<AccountVO> check();
 
 	// 增加
-	public void addAccount(String name, double money, String creator,
-			String date, int state);
+	public void addAccount(String name, String money, String creator,
+			String date);
 
 	// 修改账户
-	public ArrayList<AccountVO> updateAccount(int pos,String name, String creator, String date,
-			int state);
+	public ArrayList<AccountVO> updateAccount(int pos,String name, String creator, String date);
 
 	// 根据账户名查找并删除账户
 	public void deleteAccount(String name);

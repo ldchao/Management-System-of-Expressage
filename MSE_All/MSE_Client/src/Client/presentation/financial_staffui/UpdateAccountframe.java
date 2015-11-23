@@ -78,7 +78,7 @@ public class UpdateAccountframe extends JFrame {
 					label_5.setText("信息录入不完整，无法完成修改");
 				} else {
 					CheckAccountframe.showTable(accountBL.updateAccount(
-							rowpos + 1, name, date, creator, 0)); // rowpos为修改的位置
+							rowpos + 1, name, date, creator)); // rowpos为修改的位置
 					up.dispose();
 				}
 
