@@ -9,9 +9,8 @@ import PO.PayeeorderPO;
 
 public class CalculateData extends UnicastRemoteObject implements CalculateDataService {
 
-	protected CalculateData() throws RemoteException {
+	public CalculateData() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

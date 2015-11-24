@@ -62,6 +62,7 @@ public class CheckStatisticsframe extends JFrame {
 
 		// 收款单
 		table = new JTable();
+		table.setRowHeight(25);
 
 		// 选取行
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,6 +111,7 @@ public class CheckStatisticsframe extends JFrame {
 
 		// 付款单
 		table2 = new JTable();
+		table2.setRowHeight(25);
 
 		// 选取行
 		table2.addMouseListener(new java.awt.event.MouseAdapter() {

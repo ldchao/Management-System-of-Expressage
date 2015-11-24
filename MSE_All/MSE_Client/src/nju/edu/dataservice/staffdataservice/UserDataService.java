@@ -12,7 +12,7 @@ public interface UserDataService extends Remote{
 	public void insert(UserPO po)throws RemoteException;
 
 	// 修改用户
-	public ArrayList<UserPO> update(UserPO po)throws RemoteException;
+	public ArrayList<UserPO> update(int pos,UserPO po)throws RemoteException;
 
 	// 删除用户
 	public void delete(String name)throws RemoteException;

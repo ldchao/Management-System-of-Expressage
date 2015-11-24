@@ -69,6 +69,7 @@ public class CheckPayorderframe extends JFrame {
 		getContentPane().add(scrollPane);
 
 		table = new JTable();
+		table.setRowHeight(25);
 		// Ñ¡È¡ÐÐ
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {

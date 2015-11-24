@@ -1,62 +1,41 @@
 package nju.edu.businesslogic.billbl;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.ArrayList;
 
-import nju.edu.VO.AccountVO;
+import PO.StartinfoPO;
+import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.StartinfoVO;
 import nju.edu.businesslogicservice.billblservice.BillBLService;
+import nju.edu.dataservice.billdataservice.BillDataService;
 
 public class BillBL implements BillBLService {
+	BillDataService billData = RMIHelper.getBillData();
 
 	@Override
 	public void addBill(String name, String account, String organization,
 			String staff, String vehicle, String store) {
-		
-		ArrayList<String> list = new ArrayList<String>();
-		File billfile = new File("DataBase/Startinfo.txt");
+
+		StartinfoPO spo = new StartinfoPO(name, account, organization, staff,
+				vehicle, store);
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(billfile));
-			String line;
-			while ((line = reader.readLine()) != null)
-				list.add(line);
-
-			reader.close();
-			
-			list.add(name+";"+account+";"+organization+";"+staff+";"+vehicle+";"+store);
-
-			FileWriter writer = new FileWriter(billfile);
-			for (String str : list) {
-				writer.write(str + "\n");
-			}
-			writer.close();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			billData.insert(spo);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
 	}
 
 	@Override
 	public ArrayList<StartinfoVO> checkBill() {
 		ArrayList<StartinfoVO> billist = new ArrayList<>();
 
-		// 读取Account.txt，并显示到表格中
-		File billfile = new File("DataBase/Startinfo.txt");
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(billfile));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String[] str = line.split(";");
-				StartinfoVO startinfoVO = new StartinfoVO(str[0], str[1],
-						str[2], str[3], str[4], str[5]);
-				billist.add(startinfoVO);
+			ArrayList<StartinfoPO> stp = billData.find();
+			for (StartinfoPO sp : stp) {
+				StartinfoVO sv = new StartinfoVO(sp.getName(), sp.getAccount(),
+						sp.getOrganization(), sp.getStaff(), sp.getVehicle(),
+						sp.getStore());
+				billist.add(sv);
 			}
-
-			reader.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

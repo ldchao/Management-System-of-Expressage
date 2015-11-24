@@ -1,42 +1,28 @@
 package nju.edu.businesslogic.financebl;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import PO.PayorderPO;
+import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.PayeeorderVO;
 import nju.edu.VO.PayorderVO;
 import nju.edu.businesslogicservice.financeblservice.PayorderBLService;
+import nju.edu.dataservice.financedataservice.PayorderDataService;
 
 public class PayorderBL implements PayorderBLService {
+	PayorderDataService payorderData = RMIHelper.getPayorderData();
 
 	@Override
 	public void addPayorder(double paymoney, String date, String payname,
 			String payaccount, String list, String comment) {
 
-		ArrayList<String> arrayList = new ArrayList<String>();
-		File payfile = new File("DataBase/Payorder.txt");
+		PayorderPO ppo = new PayorderPO(date, paymoney, payaccount, list,
+				comment, payname);
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(payfile));
-			String line;
-			while ((line = reader.readLine()) != null)
-				arrayList.add(line);
-
-			reader.close();
-
-			arrayList.add(paymoney + ";" + date + ";" + payname + ";"
-					+ payaccount + ";" + list + ";" + comment);
-
-			FileWriter writer = new FileWriter(payfile);
-			for (String str : arrayList) {
-				writer.write(str + "\n");
-			}
-			writer.close();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			payorderData.insert(ppo);
+		} catch (RemoteException e) {
+			e.printStackTrace();
 		}
 
 	}
@@ -45,21 +31,15 @@ public class PayorderBL implements PayorderBLService {
 	public ArrayList<PayorderVO> checkPayorder() {
 		ArrayList<PayorderVO> payorderlist = new ArrayList<>();
 
-		// 读取Account.txt，并显示到表格中
-		File acfile = new File("DataBase/Payorder.txt");
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(acfile));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String[] str = line.split(";");
-				PayorderVO payorderVO = new PayorderVO(str[0],
-						Double.parseDouble(str[1]), str[2], str[3], str[4],
-						str[5]);
-				payorderlist.add(payorderVO);
+			ArrayList<PayorderPO> paypo = payorderData.find();
+			for (PayorderPO po : paypo) {
+				PayorderVO vo = new PayorderVO(po.getDate(), po.getMoney(),
+						po.getAccount(), po.getList(), po.getComment(),
+						po.getPayor());
+				payorderlist.add(vo);
 			}
-
-			reader.close();
-		} catch (Exception e) {
+		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 

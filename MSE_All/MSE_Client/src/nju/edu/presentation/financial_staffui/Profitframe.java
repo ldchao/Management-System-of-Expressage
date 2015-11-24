@@ -43,13 +43,14 @@ public class Profitframe extends JFrame {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pf.dispose();
-				fsframe fs = new fsframe();
+				Payframe payframe = new Payframe();
 			}
 		});
 		button_4.setBounds(10, 1, 67, 23);
 		getContentPane().add(button_4);
 
 		table = new JTable();
+		table.setRowHeight(40);
 		table.setBackground(new Color(255, 255, 255));
 		table.setEnabled(false);
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -59,7 +60,7 @@ public class Profitframe extends JFrame {
 				{ "\u603B\u6536\u5165", null }, { "\u603B\u652F\u51FA", null },
 				{ "\u603B\u5229\u6DA6", null }, }, new String[] { "", "" });
 		table.setModel(tableModel);
-		table.setBounds(193, 252, 356, 64);
+		table.setBounds(194, 208, 356, 160);
 		getContentPane().add(table);
 
 		// double[] pro = payorderBL.profit(payorderBL.checkPayorder(), null);
@@ -75,11 +76,11 @@ public class Profitframe extends JFrame {
 		JLabel label_1 = new JLabel(
 				"\u622A\u81F3\u5F53\u524D\u65E5\u671F\u7684\u6210\u672C\u6536\u76CA\u8868");
 		label_1.setFont(new Font("ºÚÌå", Font.BOLD, 20));
-		label_1.setBounds(242, 150, 260, 31);
+		label_1.setBounds(242, 115, 260, 31);
 		getContentPane().add(label_1);
 
 		JButton button = new JButton("\u5BFC\u51FA");
-		button.setBounds(325, 389, 93, 23);
+		button.setBounds(325, 449, 93, 23);
 		getContentPane().add(button);
 
 		JToolBar toolBar = new JToolBar();

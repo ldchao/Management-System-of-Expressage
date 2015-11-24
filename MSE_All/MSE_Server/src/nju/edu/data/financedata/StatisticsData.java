@@ -10,9 +10,8 @@ import PO.PayorderPO;
 
 public class StatisticsData extends UnicastRemoteObject implements StatisticsDataService{
 
-	protected StatisticsData() throws RemoteException {
+	public StatisticsData() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
