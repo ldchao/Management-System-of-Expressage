@@ -79,105 +79,105 @@ public class RMIHelper {
     private static void initObjects() throws MalformedURLException, RemoteException, NotBoundException {
         String urlPrefix = "rmi://" + IP + "/";
         AccountData=(AccountDataService)Naming.lookup(urlPrefix + "AccountData");
-        ApproveData=(ApproveDataService)Naming.lookup(urlPrefix + "ApproveData");
-        BillData=(BillDataService)Naming.lookup(urlPrefix + "BillData");
-//        ListinData=(ListinDataService)Naming.lookup(urlPrefix + "ListinData");
-        CalculateData=(CalculateDataService)Naming.lookup(urlPrefix + "CalculateData");
-        PayorderData=(PayorderDataService)Naming.lookup(urlPrefix + "PayorderData");
-//        ReceiFormData=(ReceiFormDataService)Naming.lookup(urlPrefix + "ReceiFormData");
-        StatisticsData=(StatisticsDataService)Naming.lookup(urlPrefix + "StatisticsData");
-//        ListinData=(ListinDataService)Naming.lookup(urlPrefix + "ListinData");
-        ReceiverData=(ReceiverDataService)Naming.lookup(urlPrefix + "ReceiverData");
-        LoadData=(LoadDataService)Naming.lookup(urlPrefix + "LoadData");
-        ShippingData=(ShippingDataService)Naming.lookup(urlPrefix + "ShippingData");
-        ConstantData=(ConstantDataSerivce)Naming.lookup(urlPrefix + "ConstantData");
-        SalaryPolicyData=(SalaryPolicyDataService)Naming.lookup(urlPrefix + "SalaryPolicyData");
-        StaffData=(StaffDataService)Naming.lookup(urlPrefix + "StaffData");
-        UserData=(UserDataService)Naming.lookup(urlPrefix + "UserData");
-        Warehouse_inData=(Warehouse_inDataService)Naming.lookup(urlPrefix + "Warehouse_inData");
-        Warehouse_outData=(Warehouse_outDataService)Naming.lookup(urlPrefix + "Warehouse_outData");
-        Inventory_managementData=(Inventory_managementDataService)Naming.lookup(urlPrefix + "Inventory_managementData");
-//      ReceiFormData=(ReceiFormDataService)Naming.lookup(urlPrefix + "ReceiFormData");
-        ReceiveData=(ReceiveDataService)Naming.lookup(urlPrefix + "ReceiveData");
-        SendFormData=(SendFormDataService)Naming.lookup(urlPrefix + "SendFormData");
-        TransferData=(TransferDataService)Naming.lookup(urlPrefix + "TransferData");
-        DriverData=(DriverDataService)Naming.lookup(urlPrefix + "DriverDataData");
-        VehicleData=(VehicleDataService)Naming.lookup(urlPrefix + "VehicleData");
+//        ApproveData=(ApproveDataService)Naming.lookup(urlPrefix + "ApproveData");
+//        BillData=(BillDataService)Naming.lookup(urlPrefix + "BillData");
+////        ListinData=(ListinDataService)Naming.lookup(urlPrefix + "ListinData");
+//        CalculateData=(CalculateDataService)Naming.lookup(urlPrefix + "CalculateData");
+//        PayorderData=(PayorderDataService)Naming.lookup(urlPrefix + "PayorderData");
+////        ReceiFormData=(ReceiFormDataService)Naming.lookup(urlPrefix + "ReceiFormData");
+//        StatisticsData=(StatisticsDataService)Naming.lookup(urlPrefix + "StatisticsData");
+////        ListinData=(ListinDataService)Naming.lookup(urlPrefix + "ListinData");
+//        ReceiverData=(ReceiverDataService)Naming.lookup(urlPrefix + "ReceiverData");
+//        LoadData=(LoadDataService)Naming.lookup(urlPrefix + "LoadData");
+//        ShippingData=(ShippingDataService)Naming.lookup(urlPrefix + "ShippingData");
+//        ConstantData=(ConstantDataSerivce)Naming.lookup(urlPrefix + "ConstantData");
+//        SalaryPolicyData=(SalaryPolicyDataService)Naming.lookup(urlPrefix + "SalaryPolicyData");
+//        StaffData=(StaffDataService)Naming.lookup(urlPrefix + "StaffData");
+//        UserData=(UserDataService)Naming.lookup(urlPrefix + "UserData");
+//        Warehouse_inData=(Warehouse_inDataService)Naming.lookup(urlPrefix + "Warehouse_inData");
+//        Warehouse_outData=(Warehouse_outDataService)Naming.lookup(urlPrefix + "Warehouse_outData");
+//        Inventory_managementData=(Inventory_managementDataService)Naming.lookup(urlPrefix + "Inventory_managementData");
+////      ReceiFormData=(ReceiFormDataService)Naming.lookup(urlPrefix + "ReceiFormData");
+//        ReceiveData=(ReceiveDataService)Naming.lookup(urlPrefix + "ReceiveData");
+//        SendFormData=(SendFormDataService)Naming.lookup(urlPrefix + "SendFormData");
+//        TransferData=(TransferDataService)Naming.lookup(urlPrefix + "TransferData");
+//        DriverData=(DriverDataService)Naming.lookup(urlPrefix + "DriverDataData");
+//        VehicleData=(VehicleDataService)Naming.lookup(urlPrefix + "VehicleData");
     }
 
     public static AccountDataService getAccountData() {
         return AccountData;
     }
-    public static ApproveDataService getApproveData() {
-        return ApproveData;
-    }
-    public static BillDataService getBillData() {
-        return BillData;
-    }
-//    public static ListinDataService getListinData() {
-//        return ListinData;
+//    public static ApproveDataService getApproveData() {
+//        return ApproveData;
 //    }
-    public static CalculateDataService getCalculateData() {
-        return CalculateData;
-    }
-    public static PayorderDataService getPayorderData() {
-        return PayorderData;
-    }
-//    public static ReceiFormDataService getReceiFormData() {
-//        return ReceiFormData;
+//    public static BillDataService getBillData() {
+//        return BillData;
 //    }
-    public static StatisticsDataService getStatisticsData() {
-        return StatisticsData;
-    }
-//  public static ListinDataService getListinData() {
-//  return ListinData;
-//}       
-    public static ReceiverDataService getReceiverData() {
-        return ReceiverData;
-    }
-    public static LoadDataService getLoadData() {
-        return LoadData;
-    }
-    public static ShippingDataService getShippingData() {
-        return ShippingData;
-    }
-    public static ConstantDataSerivce getConstantData() {
-        return ConstantData;
-    } 
-    public static SalaryPolicyDataService getSalaryPolicyData() {
-        return SalaryPolicyData;
-    }
-    public static StaffDataService getStaffData() {
-        return StaffData;
-    }
-    public static UserDataService getUserData() {
-        return UserData;
-    }
-    public static Warehouse_inDataService getWarehouse_inData() {
-        return Warehouse_inData;
-    }
-    public static Warehouse_outDataService getWarehouse_outData() {
-        return Warehouse_outData;
-    }
-    public static Inventory_managementDataService getInventory_managementData() {
-        return Inventory_managementData;
-    }
-//  public static ReceiFormDataService getReceiFormData() {
-//  return ReceiFormData;
-//  }    
-    public static ReceiveDataService getReceiveData() {
-        return ReceiveData;
-    }
-    public static SendFormDataService getSendFormData() {
-        return SendFormData;
-    }
-    public static TransferDataService getTransferData() {
-        return TransferData;
-    }
-    public static DriverDataService getDriverData() {
-        return DriverData;
-    }
-    public static VehicleDataService getVehicleData() {
-        return VehicleData;
-    }
+////    public static ListinDataService getListinData() {
+////        return ListinData;
+////    }
+//    public static CalculateDataService getCalculateData() {
+//        return CalculateData;
+//    }
+//    public static PayorderDataService getPayorderData() {
+//        return PayorderData;
+//    }
+////    public static ReceiFormDataService getReceiFormData() {
+////        return ReceiFormData;
+////    }
+//    public static StatisticsDataService getStatisticsData() {
+//        return StatisticsData;
+//    }
+////  public static ListinDataService getListinData() {
+////  return ListinData;
+////}       
+//    public static ReceiverDataService getReceiverData() {
+//        return ReceiverData;
+//    }
+//    public static LoadDataService getLoadData() {
+//        return LoadData;
+//    }
+//    public static ShippingDataService getShippingData() {
+//        return ShippingData;
+//    }
+//    public static ConstantDataSerivce getConstantData() {
+//        return ConstantData;
+//    } 
+//    public static SalaryPolicyDataService getSalaryPolicyData() {
+//        return SalaryPolicyData;
+//    }
+//    public static StaffDataService getStaffData() {
+//        return StaffData;
+//    }
+//    public static UserDataService getUserData() {
+//        return UserData;
+//    }
+//    public static Warehouse_inDataService getWarehouse_inData() {
+//        return Warehouse_inData;
+//    }
+//    public static Warehouse_outDataService getWarehouse_outData() {
+//        return Warehouse_outData;
+//    }
+//    public static Inventory_managementDataService getInventory_managementData() {
+//        return Inventory_managementData;
+//    }
+////  public static ReceiFormDataService getReceiFormData() {
+////  return ReceiFormData;
+////  }    
+//    public static ReceiveDataService getReceiveData() {
+//        return ReceiveData;
+//    }
+//    public static SendFormDataService getSendFormData() {
+//        return SendFormData;
+//    }
+//    public static TransferDataService getTransferData() {
+//        return TransferData;
+//    }
+//    public static DriverDataService getDriverData() {
+//        return DriverData;
+//    }
+//    public static VehicleDataService getVehicleData() {
+//        return VehicleData;
+//    }
 }

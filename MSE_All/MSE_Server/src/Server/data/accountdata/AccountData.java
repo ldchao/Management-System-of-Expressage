@@ -14,9 +14,8 @@ import Server.dataservice.accountdataservice.AccountDataService;
 public class AccountData extends UnicastRemoteObject implements
 		AccountDataService {
 
-	protected AccountData() throws RemoteException {
+	public AccountData() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
