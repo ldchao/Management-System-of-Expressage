@@ -12,6 +12,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
+import nju.edu.VO.LoadorderVO;
+import nju.edu.businesslogic.transferbl.ReceiveBL;
+import nju.edu.businesslogicservice.transferblservice.ReceiveBLService;
+
 public class Receiveui extends JPanel {
 	private JTextField textField;
 	JFrame main;
@@ -71,12 +75,20 @@ public class Receiveui extends JPanel {
 		JButton button_1 = new JButton("创建到达单");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Arriverorder a=new Arriverorder(main, nowPanel);
+				if(textField.getText().equals(null)){
+					label_4.setText("未输入装运单号");
+				}else{
+				ReceiveBLService rbs=new ReceiveBL();
+				LoadorderVO lv=rbs.checkUnreceive_loadorderPO(textField.getText());
+				if(lv.equals(null)){
+					label_4.setText("未检测到该装运单");
+				}else{
+				Arriverorder a=new Arriverorder(main, nowPanel,lv);
 				main.remove(nowPanel);				
 				main.getContentPane().add(a);
 				main.invalidate();
 				main.repaint();
-				main.setVisible(true);
+				main.setVisible(true);}}
 			}
 		});
 		button_1.setBounds(307, 368, 134, 23);

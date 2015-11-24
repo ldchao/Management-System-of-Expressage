@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JLayeredPane;
 
+import nju.edu.VO.LoadorderVO;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
 import java.awt.Font;
@@ -21,11 +22,13 @@ public class Arriverorder extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	JFrame main;
+	LoadorderVO lv;
 	/**
 	 * Create the panel.
 	 */
-	public Arriverorder(JFrame m,JPanel jp) {
+	public Arriverorder(JFrame m,JPanel jp,LoadorderVO lv) {
 		main=m;
+		this.lv=lv;
 		JPanel lastui=jp;
 		Arriverorder nowPanel=this;
         setLayout(null);
@@ -128,7 +131,7 @@ public class Arriverorder extends JPanel {
 		JButton btnNewButton_1 = new JButton("È¡Ïû");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Arriverorder a=new Arriverorder(main, lastui);
+				Arriverorder a=new Arriverorder(main, lastui,lv);
 				main.remove(nowPanel);				
 				main.getContentPane().add(a);
 				main.invalidate();
