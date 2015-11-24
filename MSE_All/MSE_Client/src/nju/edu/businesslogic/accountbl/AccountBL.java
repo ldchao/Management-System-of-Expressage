@@ -30,11 +30,11 @@ public class AccountBL implements AccountBLService {
 	}
 
 	@Override
-	public void addAccount(String name, String money, String creator,
-			String date) {
+	public void addAccount(String name, String money, String date,
+			String creator) {
 
-		AccountPO acpo = new AccountPO(name, money, date, creator);
 		try {
+			AccountPO acpo = new AccountPO(name, money, date, creator);
 			accountData.insert(acpo);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,8 +59,7 @@ public class AccountBL implements AccountBLService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		return list;
 	}
 

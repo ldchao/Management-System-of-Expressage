@@ -7,7 +7,7 @@ public class Server {
         try {
             Logger.info("Try start server...");
             RMIHelper.init();
-            Logger.info("Server is now running!");
+            Logger.info("Server is running now!");
         } catch (ServerInitException e) {
             Logger.error("Server starts fail!");
             Logger.error(e);
