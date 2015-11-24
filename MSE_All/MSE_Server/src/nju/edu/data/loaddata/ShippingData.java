@@ -8,7 +8,7 @@ import PO.LoadorderPO;
 
 public class ShippingData extends UnicastRemoteObject implements ShippingDataService{
 
-	protected ShippingData() throws RemoteException {
+	public ShippingData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -8,7 +8,7 @@ import PO.ArriverorderPO;
 
 public class ReceiveData extends UnicastRemoteObject implements ReceiveDataService{
 
-	protected ReceiveData() throws RemoteException {
+	public ReceiveData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -13,7 +13,13 @@ import nju.edu.data.billdata.BillData;
 import nju.edu.data.financedata.CalculateData;
 import nju.edu.data.financedata.PayorderData;
 import nju.edu.data.financedata.StatisticsData;
+import nju.edu.data.loaddata.ShippingData;
 import nju.edu.data.staffdata.UserData;
+import nju.edu.data.storedata.Inventory_managementData;
+import nju.edu.data.storedata.Warehouse_inData;
+import nju.edu.data.storedata.Warehouse_outData;
+import nju.edu.data.transferdata.ReceiveData;
+import nju.edu.data.transferdata.TransferData;
 
 public class RMIHelper {
 
@@ -33,19 +39,19 @@ public class RMIHelper {
 		// // NAMING_MAP.put("ListinData", ListinData.class);
 		// NAMING_MAP.put("ReceiverData", ReceiverData.class);
 		// NAMING_MAP.put("LoadData", LoadData.class);
-		// NAMING_MAP.put("ShippingData", ShippingData.class);
+		 NAMING_MAP.put("ShippingData", ShippingData.class);
 		// NAMING_MAP.put("ConstantData", ConstantData.class);
 		// NAMING_MAP.put("SalaryPolicyData", SalaryPolicyData.class);
 		// NAMING_MAP.put("StaffData", StaffData.class);
 		NAMING_MAP.put("UserData", UserData.class);
-		// NAMING_MAP.put("Warehouse_inData", Warehouse_inData.class);
-		// NAMING_MAP.put("Warehouse_outData", Warehouse_outData.class);
-		// NAMING_MAP.put("Inventory_managementData",
-		// Inventory_managementData.class);
+		 NAMING_MAP.put("Warehouse_inData", Warehouse_inData.class);
+		 NAMING_MAP.put("Warehouse_outData", Warehouse_outData.class);
+		 NAMING_MAP.put("Inventory_managementData",
+		 Inventory_managementData.class);
 		// // NAMING_MAP.put("ReceiFormData", ReceiFormData.class);
-		// NAMING_MAP.put("ReceiveData", ReceiveData.class);
+		 NAMING_MAP.put("ReceiveData", ReceiveData.class);
 		// NAMING_MAP.put("SendFormData", SendFormData.class);
-		// NAMING_MAP.put("TransferData", TransferData.class);
+		NAMING_MAP.put("TransferData", TransferData.class);
 		// NAMING_MAP.put("DriverData", DriverData.class);
 		// NAMING_MAP.put("VehicleData", VehicleData.class);
 	}

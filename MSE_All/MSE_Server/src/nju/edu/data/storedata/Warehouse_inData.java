@@ -8,7 +8,7 @@ import PO.StoreinorderPO;
 
 public class Warehouse_inData extends UnicastRemoteObject implements Warehouse_inDataService{
 
-	protected Warehouse_inData() throws RemoteException {
+	public Warehouse_inData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

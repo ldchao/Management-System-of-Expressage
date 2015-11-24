@@ -8,7 +8,7 @@ import PO.ChangeorderPO;
 
 public class TransferData extends UnicastRemoteObject implements TransferDataService{
 
-	protected TransferData() throws RemoteException {
+	public TransferData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

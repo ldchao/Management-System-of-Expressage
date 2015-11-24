@@ -10,7 +10,7 @@ import PO.StorePO;
 
 public class Inventory_managementData extends UnicastRemoteObject implements Inventory_managementDataService{
 
-	protected Inventory_managementData() throws RemoteException {
+	public Inventory_managementData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
