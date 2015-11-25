@@ -6,9 +6,9 @@ import java.rmi.server.UnicastRemoteObject;
 import PO.LoadorderPO;
 import nju.edu.dataservice.loaddataservice.LoadDataService;
 
-public class Loaddata extends UnicastRemoteObject implements LoadDataService{
+public class LoadData extends UnicastRemoteObject implements LoadDataService{
 
-	protected Loaddata() throws RemoteException {
+	protected LoadData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

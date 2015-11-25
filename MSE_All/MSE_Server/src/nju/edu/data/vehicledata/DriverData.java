@@ -6,9 +6,9 @@ import java.rmi.server.UnicastRemoteObject;
 import PO.DriverPO;
 import nju.edu.dataservice.vehicledataservice.DriverDataService;
 
-public class Driverdata extends UnicastRemoteObject implements DriverDataService{
+public class DriverData extends UnicastRemoteObject implements DriverDataService{
 
-	protected Driverdata() throws RemoteException {
+	protected DriverData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

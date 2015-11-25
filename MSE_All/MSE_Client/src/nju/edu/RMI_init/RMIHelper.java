@@ -23,6 +23,7 @@ import nju.edu.dataservice.staffdataservice.UserDataService;
 import nju.edu.dataservice.storedataservice.Inventory_managementDataService;
 import nju.edu.dataservice.storedataservice.Warehouse_inDataService;
 import nju.edu.dataservice.storedataservice.Warehouse_outDataService;
+import nju.edu.dataservice.transferdataservice.ReceiFormDataService;
 import nju.edu.dataservice.transferdataservice.ReceiveDataService;
 import nju.edu.dataservice.transferdataservice.SendFormDataService;
 import nju.edu.dataservice.transferdataservice.TransferDataService;
@@ -39,14 +40,14 @@ public class RMIHelper {
 	private static AccountDataService AccountData;
 	// private static ApproveDataService ApproveData;
 	private static BillDataService BillData;
-//	 private static ChecklistDataService ChecklistData;
+	private static ChecklistDataService ChecklistData;
 	private static CalculateDataService CalculateData;
 	private static PayorderDataService PayorderData;
-	//  private static PayeeorderDataService PayeeorderData;
+	private static PayeeorderDataService PayeeorderData;
 	private static StatisticsDataService StatisticsData;
 	//  private static ListinDataService ListinData;
     //private static ReceiverDataService ReceiverData;
-	// private static LoadDataService LoadData;
+	 private static LoadDataService LoadData;
 	 private static ShippingDataService ShippingData;
 	// private static ConstantDataSerivce ConstantData;
 	// private static SalaryPolicyDataService SalaryPolicyData;
@@ -55,12 +56,12 @@ public class RMIHelper {
 	 private static Warehouse_inDataService Warehouse_inData;
 	 private static Warehouse_outDataService Warehouse_outData;
 	 private static Inventory_managementDataService Inventory_managementData;
-	// private static ReceiFormDataService ReceiFormData;
+	 private static ReceiFormDataService ReceiFormData;
 	 private static ReceiveDataService ReceiveData;
-	// private static SendFormDataService SendFormData;
+	 private static SendFormDataService SendFormData;
 	 private static TransferDataService TransferData;
-	// private static DriverDataService DriverData;
-	// private static VehicleDataService VehicleData;
+	 private static DriverDataService DriverData;
+	 private static VehicleDataService VehicleData;
 
 	public synchronized static void init() throws ClientInitException {
 		if (inited) {
@@ -83,21 +84,21 @@ public class RMIHelper {
 		// ApproveData=(ApproveDataService)Naming.lookup(urlPrefix +
 		// "ApproveData");
 		BillData = (BillDataService) Naming.lookup(urlPrefix + "BillData");
-		// // ChecklistData=(ChecklistDataService)Naming.lookup(urlPrefix +
-		// "ChecklistData");
+		 ChecklistData=(ChecklistDataService)Naming.lookup(urlPrefix +
+		 "ChecklistData");
 		 CalculateData=(CalculateDataService)Naming.lookup(urlPrefix +
 		 "CalculateData");
 		 PayorderData=(PayorderDataService)Naming.lookup(urlPrefix +
 		 "PayorderData");
-		// // PayeeorderData=(PayeeorderDataService)Naming.lookup(urlPrefix +
-		// "PayeeorderData");
+		  PayeeorderData=(PayeeorderDataService)Naming.lookup(urlPrefix +
+		 "PayeeorderData");
 		 StatisticsData=(StatisticsDataService)Naming.lookup(urlPrefix +
 		 "StatisticsData");
 		// // ListinData=(ListinDataService)Naming.lookup(urlPrefix +
 		// "ListinData");
 		// ReceiverData=(ReceiverDataService)Naming.lookup(urlPrefix +
 		// "ReceiverData");
-		// LoadData=(LoadDataService)Naming.lookup(urlPrefix + "LoadData");
+		 LoadData=(LoadDataService)Naming.lookup(urlPrefix + "LoadData");
 		 ShippingData=(ShippingDataService)Naming.lookup(urlPrefix +
 		 "ShippingData");
 		// ConstantData=(ConstantDataSerivce)Naming.lookup(urlPrefix +
@@ -112,18 +113,18 @@ public class RMIHelper {
 		 "Warehouse_outData");
 		 Inventory_managementData=(Inventory_managementDataService)Naming.lookup(urlPrefix
 		 + "Inventory_managementData");
-		// // ReceiFormData=(ReceiFormDataService)Naming.lookup(urlPrefix +
-		// "ReceiFormData");
+		  ReceiFormData=(ReceiFormDataService)Naming.lookup(urlPrefix +
+		 "ReceiFormData");
 		 ReceiveData=(ReceiveDataService)Naming.lookup(urlPrefix +
 		 "ReceiveData");
-		// SendFormData=(SendFormDataService)Naming.lookup(urlPrefix +
-		// "SendFormData");
+		 SendFormData=(SendFormDataService)Naming.lookup(urlPrefix +
+		 "SendFormData");
 		 TransferData=(TransferDataService)Naming.lookup(urlPrefix +
 		 "TransferData");
-		// DriverData=(DriverDataService)Naming.lookup(urlPrefix +
-		// "DriverDataData");
-		// VehicleData=(VehicleDataService)Naming.lookup(urlPrefix +
-		// "VehicleData");
+		 DriverData=(DriverDataService)Naming.lookup(urlPrefix +
+		 "DriverDataData");
+		 VehicleData=(VehicleDataService)Naming.lookup(urlPrefix +
+		 "VehicleData");
 	}
 
 	public static AccountDataService getAccountData() {
@@ -136,18 +137,18 @@ public class RMIHelper {
 	public static BillDataService getBillData() {
 		return BillData;
 	}
-	// // public static ChecklistDataService getChecklistData() {
-	// // return ChecklistData;
-	// // }
+	  public static ChecklistDataService getChecklistData() {
+	  return ChecklistData;
+	  }
 	 public static CalculateDataService getCalculateData() {
 	 return CalculateData;
 	 }
 	 public static PayorderDataService getPayorderData() {
 	 return PayorderData;
 	 }
-	// // public static PayeeorderDataService getPayeeorderData() {
-	// // return PayeeorderData;
-	// // }
+	  public static PayeeorderDataService getPayeeorderData() {
+	  return PayeeorderData;
+	  }
 	 public static StatisticsDataService getStatisticsData() {
 	 return StatisticsData;
 	 }
@@ -157,9 +158,9 @@ public class RMIHelper {
 	// public static ReceiverDataService getReceiverData() {
 	// return ReceiverData;
 	// }
-	// public static LoadDataService getLoadData() {
-	// return LoadData;
-	// }
+	 public static LoadDataService getLoadData() {
+	 return LoadData;
+	 }
 	 public static ShippingDataService getShippingData() {
 	 return ShippingData;
 	 }
@@ -185,22 +186,22 @@ public class RMIHelper {
 	 getInventory_managementData() {
 	 return Inventory_managementData;
 	 }
-	// // public static ReceiFormDataService getReceiFormData() {
-	// // return ReceiFormData;
-	// // }
+	  public static ReceiFormDataService getReceiFormData() {
+	  return ReceiFormData;
+	  }
 	 public static ReceiveDataService getReceiveData() {
 	 return ReceiveData;
 	 }
-	// public static SendFormDataService getSendFormData() {
-	// return SendFormData;
-	// }
+	 public static SendFormDataService getSendFormData() {
+	 return SendFormData;
+	 }
 	 public static TransferDataService getTransferData() {
 	 return TransferData;
 	 }
-	// public static DriverDataService getDriverData() {
-	// return DriverData;
-	// }
-	// public static VehicleDataService getVehicleData() {
-	// return VehicleData;
-	// }
+	 public static DriverDataService getDriverData() {
+	 return DriverData;
+	 }
+	 public static VehicleDataService getVehicleData() {
+	 return VehicleData;
+	 }
 }
