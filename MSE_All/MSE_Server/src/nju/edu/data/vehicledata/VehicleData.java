@@ -8,7 +8,7 @@ import nju.edu.dataservice.vehicledataservice.VehicleDataService;
 
 public class VehicleData extends UnicastRemoteObject implements VehicleDataService{
 
-	protected VehicleData() throws RemoteException {
+	public VehicleData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -8,7 +8,7 @@ import nju.edu.dataservice.vehicledataservice.DriverDataService;
 
 public class DriverData extends UnicastRemoteObject implements DriverDataService{
 
-	protected DriverData() throws RemoteException {
+	public DriverData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

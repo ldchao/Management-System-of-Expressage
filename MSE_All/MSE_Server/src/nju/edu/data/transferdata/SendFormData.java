@@ -8,7 +8,7 @@ import nju.edu.dataservice.transferdataservice.SendFormDataService;
 
 public class SendFormData extends UnicastRemoteObject implements SendFormDataService{
 
-	protected SendFormData() throws RemoteException {
+	public SendFormData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

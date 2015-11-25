@@ -8,7 +8,7 @@ import nju.edu.dataservice.loaddataservice.LoadDataService;
 
 public class LoadData extends UnicastRemoteObject implements LoadDataService{
 
-	protected LoadData() throws RemoteException {
+	public LoadData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

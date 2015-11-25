@@ -122,7 +122,7 @@ public class RMIHelper {
 		 TransferData=(TransferDataService)Naming.lookup(urlPrefix +
 		 "TransferData");
 		 DriverData=(DriverDataService)Naming.lookup(urlPrefix +
-		 "DriverDataData");
+		 "DriverData");
 		 VehicleData=(VehicleDataService)Naming.lookup(urlPrefix +
 		 "VehicleData");
 	}

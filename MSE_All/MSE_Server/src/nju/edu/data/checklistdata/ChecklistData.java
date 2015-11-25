@@ -8,7 +8,7 @@ import nju.edu.dataservice.checklistdataservice.ChecklistDataService;
 
 public class ChecklistData extends UnicastRemoteObject implements ChecklistDataService{
 
-	protected ChecklistData() throws RemoteException {
+	public ChecklistData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

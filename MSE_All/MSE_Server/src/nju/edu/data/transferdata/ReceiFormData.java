@@ -8,7 +8,7 @@ import nju.edu.dataservice.transferdataservice.ReceiFormDataService;
 
 public class ReceiFormData extends UnicastRemoteObject implements ReceiFormDataService{
 
-	protected ReceiFormData() throws RemoteException {
+	public ReceiFormData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -8,7 +8,7 @@ import nju.edu.dataservice.financedataservice.PayeeorderDataService;
 
 public class PayeeorderData extends UnicastRemoteObject implements PayeeorderDataService{
 
-	protected PayeeorderData() throws RemoteException {
+	public PayeeorderData() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
