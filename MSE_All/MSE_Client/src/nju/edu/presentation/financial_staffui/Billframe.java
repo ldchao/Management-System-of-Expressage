@@ -42,6 +42,8 @@ public class Billframe extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				bf.dispose();
 				Newbillframe nbframe = new Newbillframe();
+				Thread t = new Thread(nbframe);
+				t.start();
 			}
 		});
 		btnNewButton.setBounds(159, 221, 160, 128);

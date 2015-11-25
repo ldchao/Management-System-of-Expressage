@@ -75,6 +75,8 @@ public class Calculateframe extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				cf.dispose();
 				CheckPayeeframe cpef =  new CheckPayeeframe();
+				String date = showDate2.getText();
+				System.out.println(date);
 			}
 		});
 		getContentPane().add(button);

@@ -25,16 +25,19 @@ import javax.swing.JScrollPane;
 import nju.edu.VO.AccountVO;
 import nju.edu.businesslogic.accountbl.AccountBL;
 
-public class CheckAccountframe extends JFrame {
+public class CheckAccountframe extends JFrame implements Runnable {
 	private static JTable table;
 	private int rowpos = -1;
 	private static DefaultTableModel tableModel;
+	private static JLabel lblNewLabel;
 	AccountBL accountBL = new AccountBL();
+	private static boolean signal;
 
 	/**
 	 * Create the panel.
 	 */
 	public CheckAccountframe() {
+		signal = false;
 		getContentPane().setLayout(null);
 
 		CheckAccountframe caf = this;
@@ -66,7 +69,7 @@ public class CheckAccountframe extends JFrame {
 		toolBar.setBounds(0, 533, 734, 28);
 		getContentPane().add(toolBar);
 
-		JLabel lblNewLabel = new JLabel("×´Ì¬À¸");
+		lblNewLabel = new JLabel("×´Ì¬À¸");
 		toolBar.add(lblNewLabel);
 
 		JButton button_1 = new JButton("\u5220\u9664");
@@ -114,6 +117,7 @@ public class CheckAccountframe extends JFrame {
 				if (rowpos != -1) {
 					String name = tableModel.getValueAt(rowpos, 0).toString();
 					ConfirmFrame conFrame = new ConfirmFrame(name);
+					signal = true;
 				}
 			}
 		});
@@ -125,6 +129,9 @@ public class CheckAccountframe extends JFrame {
 				if (rowpos != -1) {
 					String name = tableModel.getValueAt(rowpos, 0).toString();
 					UpdateAccountframe up = new UpdateAccountframe(name, rowpos);
+					Thread t=new Thread(up);
+					t.start();
+					signal = true;
 				}
 			}
 		});
@@ -156,6 +163,26 @@ public class CheckAccountframe extends JFrame {
 			tableModel.setValueAt("", i, 0);
 			tableModel.setValueAt("", i, 1);
 			i++;
+		}
+	}
+
+	public static void setLblNewLabel(String str) {
+		lblNewLabel.setText(str);
+		signal = true;
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			if (signal) {
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				lblNewLabel.setText("×´Ì¬À¸");
+				signal = false;
+			}
 		}
 	}
 }

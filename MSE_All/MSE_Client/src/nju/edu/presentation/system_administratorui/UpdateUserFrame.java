@@ -9,18 +9,17 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
-import nju.edu.businesslogic.accountbl.AccountBL;
 import nju.edu.businesslogic.staffbl.UserBL;
-import nju.edu.presentation.financial_staffui.CheckAccountframe;
-import nju.edu.presentation.financial_staffui.UpdateAccountframe;
 
-public class UpdateUserFrame extends JFrame {
+@SuppressWarnings("serial")
+public class UpdateUserFrame extends JFrame implements Runnable {
 	private JTextField textField;
+	private boolean signal;
+	private JLabel label_5;
 	UserBL userBL = new UserBL();
 
 	/**
@@ -31,6 +30,7 @@ public class UpdateUserFrame extends JFrame {
 		/**
 		 * Create the panel.
 		 */
+		signal = false;
 		getContentPane().setLayout(null);
 		UpdateUserFrame up = this;
 
@@ -57,7 +57,7 @@ public class UpdateUserFrame extends JFrame {
 		toolBar.setBounds(0, 256, 374, 28);
 		getContentPane().add(toolBar);
 
-		JLabel label_5 = new JLabel("\u72B6\u6001\u680F");
+		label_5 = new JLabel("\u72B6\u6001\u680F");
 		toolBar.add(label_5);
 
 		JRadioButton rdbtnNewRadioButton = new JRadioButton(
@@ -122,6 +122,7 @@ public class UpdateUserFrame extends JFrame {
 
 				if (name.equals("")) {
 					label_5.setText("信息录入不完整，无法完成修改");
+					signal = true;
 				} else {
 					Enumeration<AbstractButton> radioBtns2 = bg.getElements();
 					AbstractButton btn2 = null;
@@ -133,9 +134,10 @@ public class UpdateUserFrame extends JFrame {
 						}
 					}
 					up.dispose();
-					CheckUserframe.showTable(userBL.updateUser(pos + 1, name,newlimit));
+					CheckUserframe.setlblNewLabel("修改成功！");
+					CheckUserframe.showTable(userBL.updateUser(pos + 1, name,
+							newlimit));
 				}
-
 			}
 		});
 		button.setBounds(102, 227, 65, 23);
@@ -156,5 +158,20 @@ public class UpdateUserFrame extends JFrame {
 		this.setLocation(400, 100);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			if (signal) {
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				label_5.setText("状态栏");
+				signal = false;
+			}
+		}
 	}
 }

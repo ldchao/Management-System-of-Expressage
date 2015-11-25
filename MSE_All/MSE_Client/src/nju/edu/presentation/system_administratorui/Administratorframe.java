@@ -31,6 +31,8 @@ public class Administratorframe extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				adf.dispose();
 				NewUserframe nuf = new NewUserframe();
+				Thread t = new Thread(nuf);
+				t.start();
 			}
 		});
 		btnNewButton.setBounds(140, 213, 160, 128);
@@ -58,6 +60,8 @@ public class Administratorframe extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				adf.dispose();
 				CheckUserframe cuf = new CheckUserframe();
+				Thread t = new Thread(cuf);
+				t.start();
 			}
 		});
 		button.setBounds(434, 213, 160, 128);

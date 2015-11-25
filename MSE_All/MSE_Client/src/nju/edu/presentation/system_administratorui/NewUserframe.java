@@ -5,11 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -17,20 +15,24 @@ import javax.swing.JRadioButton;
 import java.awt.Font;
 import java.util.Enumeration;
 
-import javax.swing.JRadioButton;
-
 import nju.edu.businesslogic.staffbl.UserBL;
-import nju.edu.presentation.financial_staffui.Payframe;
 
-public class NewUserframe extends JFrame {
+@SuppressWarnings("serial")
+public class NewUserframe extends JFrame implements Runnable {
 	private JTextField textField;
 	private JTextField textField_1;
+	private boolean success;
+	private boolean signal;
+	private JLabel lblNewLabel;
+	private AbstractButton btn;
 	UserBL userBL = new UserBL();
 
 	/**
 	 * Create the panel.
 	 */
 	public NewUserframe() {
+		success = false;
+		signal = false;
 		getContentPane().setLayout(null);
 
 		NewUserframe nuf = this;
@@ -57,7 +59,7 @@ public class NewUserframe extends JFrame {
 		toolBar.setBounds(0, 543, 744, 28);
 		getContentPane().add(toolBar);
 
-		JLabel lblNewLabel = new JLabel("状态栏");
+		lblNewLabel = new JLabel("状态栏");
 		toolBar.add(lblNewLabel);
 
 		JLabel label_1 = new JLabel("\u7528\u6237\u540D");
@@ -131,11 +133,10 @@ public class NewUserframe extends JFrame {
 				String name = textField.getText();
 				String key = textField_1.getText();
 				String limit = "";
-				boolean success = false;
 
 				// 获取单选的内容
 				Enumeration<AbstractButton> radioBtns = bg.getElements();
-				AbstractButton btn = null;
+				btn = null;
 				while (radioBtns.hasMoreElements()) {
 					btn = radioBtns.nextElement();
 					if (btn.isSelected()) {
@@ -153,18 +154,7 @@ public class NewUserframe extends JFrame {
 					success = true;
 				}
 
-				try {
-					Thread.sleep(1000);
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
-
-				if (success) {
-					textField.setText("");
-					textField_1.setText("");
-					btn.setSelected(false);
-					// 怎么取消单选框的选择！
-				}
+				signal = true;
 			}
 		});
 		button.setBounds(216, 448, 93, 23);
@@ -194,5 +184,28 @@ public class NewUserframe extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setResizable(false);
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			if (signal) {
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				if (success) {
+					textField.setText("");
+					textField_1.setText("");
+					btn.setSelected(false);
+					// 怎么取消单选框的选择！
+				}
+
+				lblNewLabel.setText("状态栏");
+				signal = false;
+			}
+		}
 	}
 }

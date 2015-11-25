@@ -16,20 +16,23 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
-import nju.edu.VO.AccountVO;
 import nju.edu.VO.UserVO;
 import nju.edu.businesslogic.staffbl.UserBL;
 
-public class CheckUserframe extends JFrame {
+@SuppressWarnings("serial")
+public class CheckUserframe extends JFrame implements Runnable {
 	private static JTable table;
 	private int rowpos = -1;
 	private static DefaultTableModel tableModel;
+	private static JLabel lblNewLabel;
+	private static boolean signal;
 	UserBL usb = new UserBL();
 
 	/**
 	 * Create the panel.
 	 */
 	public CheckUserframe() {
+		signal = false;
 		getContentPane().setLayout(null);
 
 		CheckUserframe cuf = this;
@@ -61,7 +64,7 @@ public class CheckUserframe extends JFrame {
 		toolBar.setBounds(0, 533, 734, 28);
 		getContentPane().add(toolBar);
 
-		JLabel lblNewLabel = new JLabel("×´Ì¬À¸");
+		lblNewLabel = new JLabel("×´Ì¬À¸");
 		toolBar.add(lblNewLabel);
 
 		JButton button_1 = new JButton("\u5220\u9664");
@@ -114,6 +117,7 @@ public class CheckUserframe extends JFrame {
 					String name = tableModel.getValueAt(rowpos, 0).toString();
 					UserConfirmframe userConfirmframe = new UserConfirmframe(
 							name);
+					signal = true;
 				}
 			}
 		});
@@ -124,8 +128,11 @@ public class CheckUserframe extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String name = tableModel.getValueAt(rowpos, 0).toString();
 				String limit = tableModel.getValueAt(rowpos, 2).toString();
-				if (rowpos != -1){
-					UpdateUserFrame up = new UpdateUserFrame(name, limit,rowpos);
+				if (rowpos != -1) {
+					UpdateUserFrame up = new UpdateUserFrame(name, limit,
+							rowpos);
+					Thread t = new Thread(up);
+					t.start();
 				}
 			}
 		});
@@ -160,6 +167,26 @@ public class CheckUserframe extends JFrame {
 			tableModel.setValueAt("", i, 1);
 			tableModel.setValueAt("", i, 2);
 			i++;
+		}
+	}
+
+	public static void setlblNewLabel(String str) {
+		lblNewLabel.setText(str);
+		signal = true;
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			if (signal) {
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				lblNewLabel.setText("×´Ì¬À¸");
+				signal = false;
+			}
 		}
 	}
 }
