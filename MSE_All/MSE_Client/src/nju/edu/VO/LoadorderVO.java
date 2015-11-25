@@ -2,21 +2,18 @@ package nju.edu.VO;
 
 import java.io.Serializable;
 
+import PO.OrganizationNumPO;
+
 public class LoadorderVO implements Serializable {
-	   String transferNum;
 	   String offName;
 	   
-	private LoadorderVO(String transferNum) {
+	public LoadorderVO(String transferNum) {
 		super();
-		this.transferNum = transferNum;
-//		this.offNum = 
+		OrganizationNumPO op=new OrganizationNumPO();
+		this.offName = op.getName(transferNum);
 	}
 
-	public String getTransferNum() {
-		return transferNum;
-	}
-
-	public String getOffNum() {
+	public String getOffName() {
 		return offName;
 	}	
 

@@ -72,7 +72,7 @@ public class Arriverorder extends JPanel {
 		lblNewLabel_8.setBounds(390, 159, 96, 15);
 		add(lblNewLabel_8);
 		
-		JLabel label_3 = new JLabel("中转单编号");
+		JLabel label_3 = new JLabel("中转中心编号");
 		label_3.setBounds(180, 211, 96, 15);
 		add(label_3);
 		
@@ -82,6 +82,7 @@ public class Arriverorder extends JPanel {
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("出发地");
+		lblNewLabel.setText(lv.getOffName());
 		lblNewLabel.setBounds(180, 263, 54, 15);
 		add(lblNewLabel);
 		
@@ -122,6 +123,7 @@ public class Arriverorder extends JPanel {
 		JButton btnNewButton = new JButton("确定");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				label_4.setText("创建成功");
 			}
 		});
