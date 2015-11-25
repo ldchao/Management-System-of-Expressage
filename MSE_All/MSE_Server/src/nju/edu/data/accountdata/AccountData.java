@@ -9,6 +9,7 @@ import nju.edu.data.FileIO.fileWriter;
 import nju.edu.dataservice.accountdataservice.AccountDataService;
 import PO.AccountPO;
 
+@SuppressWarnings("serial")
 public class AccountData extends UnicastRemoteObject implements
 		AccountDataService {
 

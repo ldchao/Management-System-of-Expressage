@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import nju.edu.dataservice.financedataservice.CalculateDataService;
 import PO.PayeeorderPO;
 
+@SuppressWarnings("serial")
 public class CalculateData extends UnicastRemoteObject implements CalculateDataService {
 
 	public CalculateData() throws RemoteException {

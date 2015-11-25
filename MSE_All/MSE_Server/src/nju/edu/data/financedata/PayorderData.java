@@ -1,9 +1,5 @@
 package nju.edu.data.financedata;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -14,6 +10,7 @@ import nju.edu.dataservice.financedataservice.PayorderDataService;
 import PO.PayeeorderPO;
 import PO.PayorderPO;
 
+@SuppressWarnings("serial")
 public class PayorderData extends UnicastRemoteObject implements
 		PayorderDataService {
 

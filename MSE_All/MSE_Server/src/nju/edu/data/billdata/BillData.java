@@ -9,6 +9,7 @@ import nju.edu.data.FileIO.fileWriter;
 import nju.edu.dataservice.billdataservice.BillDataService;
 import PO.StartinfoPO;
 
+@SuppressWarnings("serial")
 public class BillData extends UnicastRemoteObject implements BillDataService {
 
 	public BillData() throws RemoteException {

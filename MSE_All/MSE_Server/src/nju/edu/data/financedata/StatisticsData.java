@@ -8,6 +8,7 @@ import nju.edu.dataservice.financedataservice.StatisticsDataService;
 import PO.PayeeorderPO;
 import PO.PayorderPO;
 
+@SuppressWarnings("serial")
 public class StatisticsData extends UnicastRemoteObject implements StatisticsDataService{
 
 	public StatisticsData() throws RemoteException {

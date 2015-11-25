@@ -9,6 +9,7 @@ import nju.edu.data.FileIO.fileWriter;
 import nju.edu.dataservice.staffdataservice.UserDataService;
 import PO.UserPO;
 
+@SuppressWarnings("serial")
 public class UserData extends UnicastRemoteObject implements UserDataService {
 
 	public UserData() throws RemoteException {
