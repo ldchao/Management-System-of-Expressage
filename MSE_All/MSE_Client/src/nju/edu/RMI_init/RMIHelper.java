@@ -39,12 +39,12 @@ public class RMIHelper {
 	private static AccountDataService AccountData;
 	// private static ApproveDataService ApproveData;
 	private static BillDataService BillData;
-	// // private static ListinDataService ListinData;
+//	 private static ChecklistDataService ChecklistData;
 	private static CalculateDataService CalculateData;
 	private static PayorderDataService PayorderData;
-	// // private static ReceiFormDataService ReceiFormData;
+	//  private static PayeeorderDataService PayeeorderData;
 	private static StatisticsDataService StatisticsData;
-	// // private static ListinDataService ListinData;
+	//  private static ListinDataService ListinData;
     //private static ReceiverDataService ReceiverData;
 	// private static LoadDataService LoadData;
 	 private static ShippingDataService ShippingData;
@@ -55,7 +55,7 @@ public class RMIHelper {
 	 private static Warehouse_inDataService Warehouse_inData;
 	 private static Warehouse_outDataService Warehouse_outData;
 	 private static Inventory_managementDataService Inventory_managementData;
-	// // private static ReceiFormDataService ReceiFormData;
+	// private static ReceiFormDataService ReceiFormData;
 	 private static ReceiveDataService ReceiveData;
 	// private static SendFormDataService SendFormData;
 	 private static TransferDataService TransferData;
@@ -83,14 +83,14 @@ public class RMIHelper {
 		// ApproveData=(ApproveDataService)Naming.lookup(urlPrefix +
 		// "ApproveData");
 		BillData = (BillDataService) Naming.lookup(urlPrefix + "BillData");
-		// // ListinData=(ListinDataService)Naming.lookup(urlPrefix +
-		// "ListinData");
+		// // ChecklistData=(ChecklistDataService)Naming.lookup(urlPrefix +
+		// "ChecklistData");
 		 CalculateData=(CalculateDataService)Naming.lookup(urlPrefix +
 		 "CalculateData");
 		 PayorderData=(PayorderDataService)Naming.lookup(urlPrefix +
 		 "PayorderData");
-		// // ReceiFormData=(ReceiFormDataService)Naming.lookup(urlPrefix +
-		// "ReceiFormData");
+		// // PayeeorderData=(PayeeorderDataService)Naming.lookup(urlPrefix +
+		// "PayeeorderData");
 		 StatisticsData=(StatisticsDataService)Naming.lookup(urlPrefix +
 		 "StatisticsData");
 		// // ListinData=(ListinDataService)Naming.lookup(urlPrefix +
@@ -136,8 +136,8 @@ public class RMIHelper {
 	public static BillDataService getBillData() {
 		return BillData;
 	}
-	// // public static ListinDataService getListinData() {
-	// // return ListinData;
+	// // public static ChecklistDataService getChecklistData() {
+	// // return ChecklistData;
 	// // }
 	 public static CalculateDataService getCalculateData() {
 	 return CalculateData;
@@ -145,8 +145,8 @@ public class RMIHelper {
 	 public static PayorderDataService getPayorderData() {
 	 return PayorderData;
 	 }
-	// // public static ReceiFormDataService getReceiFormData() {
-	// // return ReceiFormData;
+	// // public static PayeeorderDataService getPayeeorderData() {
+	// // return PayeeorderData;
 	// // }
 	 public static StatisticsDataService getStatisticsData() {
 	 return StatisticsData;

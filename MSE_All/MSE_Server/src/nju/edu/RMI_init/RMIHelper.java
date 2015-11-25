@@ -31,10 +31,10 @@ public class RMIHelper {
 		NAMING_MAP.put("AccountData", AccountData.class);
 		// NAMING_MAP.put("ApproveData", ApproveData.class);
 		NAMING_MAP.put("BillData", BillData.class);
-		// // NAMING_MAP.put("ListinData", ListinData.class);
+		// // NAMING_MAP.put("ChecklistData", ChecklistData.class);
 		NAMING_MAP.put("CalculateData", CalculateData.class);
 		NAMING_MAP.put("PayorderData", PayorderData.class);
-		// // NAMING_MAP.put("ReceiFormData", ReceiFormData.class);
+		// // NAMING_MAP.put("PayeeorderData", PayeeorderData.class);
 		NAMING_MAP.put("StatisticsData", StatisticsData.class);
 		// // NAMING_MAP.put("ListinData", ListinData.class);
 		// NAMING_MAP.put("ReceiverData", ReceiverData.class);
