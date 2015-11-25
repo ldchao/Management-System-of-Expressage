@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import nju.edu.dataservice.transferdataservice.ReceiveDataService;
 import PO.ArriverorderPO;
+import PO.LoadorderPO;
 
 public class ReceiveData extends UnicastRemoteObject implements ReceiveDataService{
 
@@ -18,5 +19,12 @@ public class ReceiveData extends UnicastRemoteObject implements ReceiveDataServi
 		// TODO Auto-generated method stub
 		
 	}
+	//在数据中查找对应的未接收的装运单
+	@Override
+	public LoadorderPO checkUnreceive_loadorderPO(String s) throws RemoteException{
+		
+		return null;
+	}
+	
 
 }

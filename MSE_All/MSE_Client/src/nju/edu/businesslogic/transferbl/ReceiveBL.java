@@ -1,5 +1,6 @@
 package nju.edu.businesslogic.transferbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import nju.edu.RMI_init.RMIHelper;
@@ -7,10 +8,11 @@ import nju.edu.VO.LoadorderVO;
 import nju.edu.businesslogicservice.transferblservice.ReceiveBLService;
 import nju.edu.dataservice.transferdataservice.ReceiveDataService;
 import PO.ArriverorderPO;
+import PO.LoadorderPO;
 
 public class ReceiveBL implements ReceiveBLService{
 	
-	LoadorderVO needinputarrive=new LoadorderVO();
+	LoadorderVO needinputarrive;
 	
 	//创建中转中心到达单
 	@Override
@@ -29,7 +31,12 @@ public class ReceiveBL implements ReceiveBLService{
 	//查看未接收的装运单
 	@Override
 	public LoadorderVO checkUnreceive_loadorderPO(String s) {
-//		ReceiveDataService receivedata=RMIHelper.g
+		ReceiveDataService receivedata=RMIHelper.getReceiveData();
+		try {
+			LoadorderPO lp=receivedata.checkUnreceive_loadorderPO(s);
+		} catch (RemoteException e) {
+          e.printStackTrace();
+		}
 		
 		return needinputarrive;
 	}
