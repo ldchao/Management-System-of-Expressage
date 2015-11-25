@@ -24,11 +24,11 @@ public class PayorderData extends UnicastRemoteObject implements
 
 		String list = po.getDate() + ";" + po.getMoney() + ";"
 				+ po.getAccount() + ";" + po.getList() + ";" + po.getComment()
-				+ ";" + po.getPayor() + po.getState();
+				+ ";" + po.getPayor();
 		if (po.getState() == ApproveState.Valid)
 			fileWriter.Writer("DataBase/Payorder.txt", list, true);
-		else 
-			fileWriter.Writer("DataBase/Payorder.txt", list, true);
+		else if(po.getState() == ApproveState.NotApprove)
+			fileWriter.Writer("DataBase/uncheckedPayorder.txt", list, true);
 	}
 
 	@Override
