@@ -2,10 +2,11 @@ package nju.edu.businesslogic.listinbl;
 
 import nju.edu.VO.OrderVO;
 import nju.edu.businesslogicservice.listinblservice.ListinBLService;
+import nju.edu.businesslogic.checklistbl.ListinInfo;
 import State.ExpressType;
 import State.PackageType;
 
-public class Listinbl implements ListinBLService{
+public class Listinbl implements ListinBLService,nju.edu.businesslogic.checklistbl.ListinInfo{
 
 	@Override
 	public void addOrder(OrderVO vo) {
@@ -62,6 +63,12 @@ public class Listinbl implements ListinBLService{
 	public void endAddOrder() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public OrderVO getOrder(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,6 +1,6 @@
 package nju.edu.businesslogic.checklistbl;
 
-import nju.edu.VO.OrderVO;
+import nju.edu.VO.*;;
 
 public interface ListinInfo {
 	

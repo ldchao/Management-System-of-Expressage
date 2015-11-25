@@ -4,9 +4,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import PO.PayeeorderPO;
-import nju.edu.dataservice.financedataservice.PayeeorderDataService;
+import nju.edu.dataservice.financedataservice.ReceiFormDataService;
 
-public class PayeeorderData extends UnicastRemoteObject implements PayeeorderDataService{
+public class PayeeorderData extends UnicastRemoteObject implements ReceiFormDataService{
 
 	protected PayeeorderData() throws RemoteException {
 		super();
