@@ -11,6 +11,7 @@ public class Listinbl implements ListinBLService,nju.edu.businesslogic.checklist
 	@Override
 	public void addOrder(OrderVO vo) {
 		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
