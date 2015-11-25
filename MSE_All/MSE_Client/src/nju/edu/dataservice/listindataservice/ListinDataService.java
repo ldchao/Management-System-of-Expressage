@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 
 import PO.OrderPO;
 import State.ResultMessage;
+import nju.edu.VO.OrderVO;
 
 public interface ListinDataService extends Remote{
 	public void insert(OrderPO po) throws RemoteException;
@@ -12,4 +13,6 @@ public interface ListinDataService extends Remote{
 	public void getPrice(String address1,String address2)throws RemoteException;
 	
 	public ResultMessage find(String number)throws RemoteException;
+
+	public OrderPO getOrder(String id);
 }

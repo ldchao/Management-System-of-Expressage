@@ -32,10 +32,6 @@ public class ListinblController implements ListinBLService{
 		return address1+address2;
 	}
 
-	@Override
-	public void endAddOrder() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }

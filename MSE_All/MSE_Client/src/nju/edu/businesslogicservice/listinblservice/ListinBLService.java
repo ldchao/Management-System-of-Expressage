@@ -16,7 +16,5 @@ public interface ListinBLService {
 			PackageType pack);
 	
 	public String getTotalTime(String address1,String address2,ExpressType express);
-	
-	public void endAddOrder();
 
 }

@@ -29,5 +29,11 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public OrderPO getOrder(String id) throws RemoteException {
+		return null;
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -34,17 +34,17 @@ public class OrderVO implements Serializable {
 	private double height;
 	
 	//快递种类
-	ExpressType express;
+	private ExpressType express;
 	
 	//包装类型
-	PackageType pack;
+	private PackageType pack;
 	
 	//付款和预计时间
-	double bill;
-	String time;
+	private double bill;
+	private String time;
 
 	//物流信息
-	String transformState;
+	private String transformState;
 
 	public OrderVO(String courier, String id, ApproveState state, String sender,
 			String address1, String position1, String phone1,

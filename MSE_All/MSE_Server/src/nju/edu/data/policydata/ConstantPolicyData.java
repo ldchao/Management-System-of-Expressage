@@ -23,5 +23,12 @@ public class ConstantPolicyData extends UnicastRemoteObject implements ConstantP
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public double getPrice(String address1, String address2) throws RemoteException {
+		// TODO Auto-generated method stub
+		ConstantPO po=find(address1, address2);
+		return po.getPrice()*po.getDistance();
+	}
 	
 }

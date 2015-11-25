@@ -9,5 +9,4 @@ public interface ReceiverinBLService {
 	
 	public boolean searchOrder(String id);
 	
-	public void endAddReceiver();
 }

@@ -13,6 +13,7 @@ import nju.edu.dataservice.financedataservice.CalculateDataService;
 import nju.edu.dataservice.financedataservice.PayorderDataService;
 import nju.edu.dataservice.financedataservice.PayeeorderDataService;
 import nju.edu.dataservice.financedataservice.StatisticsDataService;
+import nju.edu.dataservice.listindataservice.ListinDataService;
 import nju.edu.dataservice.listindataservice.ReceiverDataService;
 import nju.edu.dataservice.loaddataservice.LoadDataService;
 import nju.edu.dataservice.loaddataservice.ShippingDataService;
@@ -38,20 +39,20 @@ public class RMIHelper {
 	private static boolean inited = false;
 
 	private static AccountDataService AccountData;
-	// private static ApproveDataService ApproveData;
+	 private static ApproveDataService ApproveData;
 	private static BillDataService BillData;
 	private static ChecklistDataService ChecklistData;
 	private static CalculateDataService CalculateData;
 	private static PayorderDataService PayorderData;
 	private static PayeeorderDataService PayeeorderData;
 	private static StatisticsDataService StatisticsData;
-	//  private static ListinDataService ListinData;
-    //private static ReceiverDataService ReceiverData;
+	  private static ListinDataService ListinData;
+    private static ReceiverDataService ReceiverData;
 	 private static LoadDataService LoadData;
 	 private static ShippingDataService ShippingData;
-	// private static ConstantDataSerivce ConstantData;
-	// private static SalaryPolicyDataService SalaryPolicyData;
-	// private static StaffDataService StaffData;
+	 private static ConstantDataSerivce ConstantData;
+	 private static SalaryPolicyDataService SalaryPolicyData;
+	 private static StaffDataService StaffData;
 	private static UserDataService UserData;
 	 private static Warehouse_inDataService Warehouse_inData;
 	 private static Warehouse_outDataService Warehouse_outData;
@@ -81,8 +82,8 @@ public class RMIHelper {
 		String urlPrefix = "rmi://" + IP + "/";
 		AccountData = (AccountDataService) Naming.lookup(urlPrefix
 				+ "AccountData");
-		// ApproveData=(ApproveDataService)Naming.lookup(urlPrefix +
-		// "ApproveData");
+		 ApproveData=(ApproveDataService)Naming.lookup(urlPrefix +
+		 "ApproveData");
 		BillData = (BillDataService) Naming.lookup(urlPrefix + "BillData");
 		 ChecklistData=(ChecklistDataService)Naming.lookup(urlPrefix +
 		 "ChecklistData");
@@ -94,18 +95,18 @@ public class RMIHelper {
 		 "PayeeorderData");
 		 StatisticsData=(StatisticsDataService)Naming.lookup(urlPrefix +
 		 "StatisticsData");
-		// // ListinData=(ListinDataService)Naming.lookup(urlPrefix +
-		// "ListinData");
-		// ReceiverData=(ReceiverDataService)Naming.lookup(urlPrefix +
-		// "ReceiverData");
+		 ListinData=(ListinDataService)Naming.lookup(urlPrefix +
+		 "ListinData");
+		 ReceiverData=(ReceiverDataService)Naming.lookup(urlPrefix +
+		 "ReceiverData");
 		 LoadData=(LoadDataService)Naming.lookup(urlPrefix + "LoadData");
 		 ShippingData=(ShippingDataService)Naming.lookup(urlPrefix +
 		 "ShippingData");
-		// ConstantData=(ConstantDataSerivce)Naming.lookup(urlPrefix +
-		// "ConstantData");
-		// SalaryPolicyData=(SalaryPolicyDataService)Naming.lookup(urlPrefix +
-		// "SalaryPolicyData");
-		// StaffData=(StaffDataService)Naming.lookup(urlPrefix + "StaffData");
+		 ConstantData=(ConstantDataSerivce)Naming.lookup(urlPrefix +
+		 "ConstantData");
+		 SalaryPolicyData=(SalaryPolicyDataService)Naming.lookup(urlPrefix +
+		 "SalaryPolicyData");
+		 StaffData=(StaffDataService)Naming.lookup(urlPrefix + "StaffData");
 		UserData=(UserDataService)Naming.lookup(urlPrefix + "UserData");
 		 Warehouse_inData=(Warehouse_inDataService)Naming.lookup(urlPrefix +
 		 "Warehouse_inData");
@@ -131,9 +132,9 @@ public class RMIHelper {
 		return AccountData;
 	}
 
-	// public static ApproveDataService getApproveData() {
-	// return ApproveData;
-	// }
+	 public static ApproveDataService getApproveData() {
+	 return ApproveData;
+	 }
 	public static BillDataService getBillData() {
 		return BillData;
 	}
@@ -152,27 +153,27 @@ public class RMIHelper {
 	 public static StatisticsDataService getStatisticsData() {
 	 return StatisticsData;
 	 }
-	// // public static ListinDataService getListinData() {
-	// // return ListinData;
-	// //}
-	// public static ReceiverDataService getReceiverData() {
-	// return ReceiverData;
-	// }
+	  public static ListinDataService getListinData() {
+	  return ListinData;
+	 }
+	 public static ReceiverDataService getReceiverData() {
+	 return ReceiverData;
+	 }
 	 public static LoadDataService getLoadData() {
 	 return LoadData;
 	 }
 	 public static ShippingDataService getShippingData() {
 	 return ShippingData;
 	 }
-	// public static ConstantDataSerivce getConstantData() {
-	// return ConstantData;
-	// }
-	// public static SalaryPolicyDataService getSalaryPolicyData() {
-	// return SalaryPolicyData;
-	// }
-	// public static StaffDataService getStaffData() {
-	// return StaffData;
-	// }
+	 public static ConstantDataSerivce getConstantData() {
+	 return ConstantData;
+	 }
+	 public static SalaryPolicyDataService getSalaryPolicyData() {
+	 return SalaryPolicyData;
+	 }
+	 public static StaffDataService getStaffData() {
+	 return StaffData;
+	 }
 	public static UserDataService getUserData() {
 		return UserData;
 	}
