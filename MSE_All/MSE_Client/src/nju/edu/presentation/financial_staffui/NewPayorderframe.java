@@ -1,7 +1,6 @@
 package nju.edu.presentation.financial_staffui;
 
 import java.awt.Font;
-import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -10,7 +9,6 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -18,18 +16,26 @@ import javax.swing.JToolBar;
 
 import nju.edu.businesslogic.financebl.PayorderBL;
 
-public class NewPayorderframe extends JFrame {
+@SuppressWarnings("serial")
+public class NewPayorderframe extends JFrame implements Runnable {
 
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTextArea textArea;
+	private JTextArea textArea_1;
+	private JLabel lblNewLabel;
+	private boolean success;
+	private boolean signal;
 	PayorderBL payorderBL = new PayorderBL();
 
 	/**
 	 * Create the panel.
 	 */
 	public NewPayorderframe() {
+		success = false;
+		signal = false;
 		getContentPane().setLayout(null);
 
 		NewPayorderframe npf = this;
@@ -95,7 +101,7 @@ public class NewPayorderframe extends JFrame {
 		toolBar.setBounds(0, 543, 744, 28);
 		getContentPane().add(toolBar);
 
-		JLabel lblNewLabel = new JLabel("×´Ì¬À¸");
+		lblNewLabel = new JLabel("×´Ì¬À¸");
 		toolBar.add(lblNewLabel);
 
 		JLabel label_3 = new JLabel("\u4ED8\u6B3E\u6761\u76EE");
@@ -115,13 +121,13 @@ public class NewPayorderframe extends JFrame {
 		jsp.setBounds(179, 261, 443, 69);
 		getContentPane().add(jsp);
 
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		jsp.setViewportView(textArea);
 		JScrollPane jsp2 = new JScrollPane();
 		jsp2.setBounds(179, 362, 443, 69);
 		getContentPane().add(jsp2);
 
-		JTextArea textArea_1 = new JTextArea();
+		textArea_1 = new JTextArea();
 		jsp2.setViewportView(textArea_1);
 
 		JButton button = new JButton("\u786E\u8BA4");
@@ -135,7 +141,6 @@ public class NewPayorderframe extends JFrame {
 				String date = textField_3.getText();
 				String list = textArea.getText();
 				String comment = textArea_1.getText();
-				boolean success = false;
 
 				if (payname.equals("") || payaccount.equals("")
 						|| date.equals("") || list.equals("")
@@ -149,20 +154,7 @@ public class NewPayorderframe extends JFrame {
 					success = true;
 				}
 
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				if (success) {
-					textField.setText("");
-					textField_1.setText("");
-					textField_2.setText("");
-					textField_3.setText("");
-					textArea.setText("");
-					textArea_1.setText("");
-				}
+				signal = true;
 			}
 		});
 		button.setBounds(238, 468, 93, 23);
@@ -191,5 +183,30 @@ public class NewPayorderframe extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setResizable(false);
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			if (signal) {
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				if (success) {
+					textField.setText("");
+					textField_1.setText("");
+					textField_2.setText("");
+					textField_3.setText("");
+					textArea.setText("");
+					textArea_1.setText("");
+				}
+
+				lblNewLabel.setText("×´Ì¬À¸");
+				signal = false;
+			}
+		}
 	}
 }

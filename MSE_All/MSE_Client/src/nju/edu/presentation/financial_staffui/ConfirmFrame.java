@@ -1,7 +1,6 @@
 package nju.edu.presentation.financial_staffui;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
@@ -10,24 +9,25 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
 import nju.edu.businesslogic.accountbl.AccountBL;
-import nju.edu.presentation.general_managerui.checkAccount;
 
+@SuppressWarnings("serial")
 public class ConfirmFrame extends JFrame {
 	AccountBL accountBL = new AccountBL();
-	
+
 	/**
 	 * Create the panel.
 	 */
 	public ConfirmFrame(String name) {
 		getContentPane().setLayout(null);
-		
+
 		ConfirmFrame conframe = this;
- 
+
 		JButton btnNewButton = new JButton("\u786E\u8BA4");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				conframe.dispose();
 				accountBL.deleteAccount(name);
+				CheckAccountframe.setLblNewLabel("É¾³ý³É¹¦£¡");
 				CheckAccountframe.showTable(accountBL.check());
 			}
 		});
@@ -43,17 +43,15 @@ public class ConfirmFrame extends JFrame {
 		button.setBounds(154, 87, 71, 23);
 		getContentPane().add(button);
 
-		JLabel label = new JLabel(
-				"\u662F\u5426\u786E\u8BA4\u5220\u9664");
+		JLabel label = new JLabel("\u662F\u5426\u786E\u8BA4\u5220\u9664");
 		label.setBounds(104, 42, 79, 15);
 		getContentPane().add(label);
 
-		
 		// frame
 		this.setSize(300, 180);
 		this.setLocation(400, 100);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
-	
+
 }

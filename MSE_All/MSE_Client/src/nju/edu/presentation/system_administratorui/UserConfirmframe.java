@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 
 import nju.edu.businesslogic.staffbl.UserBL;
 
+@SuppressWarnings("serial")
 public class UserConfirmframe extends JFrame {
 	UserBL usb = new UserBL();
 
@@ -25,8 +26,8 @@ public class UserConfirmframe extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				conframe.dispose();
 				usb.deleteUser(name);
+				CheckUserframe.setlblNewLabel("É¾³ý³É¹¦£¡");
 				CheckUserframe.showTable(usb.checkUsers());
-
 			}
 		});
 		btnNewButton.setBounds(53, 87, 71, 23);

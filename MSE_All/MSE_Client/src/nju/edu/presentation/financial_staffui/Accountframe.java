@@ -15,9 +15,8 @@ public class Accountframe extends JFrame {
 	public Accountframe() {
 
 		getContentPane().setLayout(null);
-		
+
 		Accountframe af = this;
-		
 
 		JLabel label = new JLabel(
 				"\u8D22\u52A1\u4EBA\u5458>>\u8D26\u6237\u7BA1\u7406");
@@ -51,6 +50,8 @@ public class Accountframe extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				af.dispose();
 				NewAccountframe nacframe = new NewAccountframe();
+				Thread t = new Thread(nacframe);
+				t.start();
 			}
 		});
 		button_1.setBounds(159, 222, 160, 128);
@@ -61,6 +62,8 @@ public class Accountframe extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				af.dispose();
 				CheckAccountframe caf = new CheckAccountframe();
+				Thread t = new Thread(caf);
+				t.start();
 			}
 		});
 		button.setBounds(417, 222, 160, 128);

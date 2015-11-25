@@ -19,15 +19,25 @@ import javax.swing.JTable;
 
 import nju.edu.businesslogic.billbl.BillBL;
 
-public class Newbillframe extends JFrame {
+@SuppressWarnings("serial")
+public class Newbillframe extends JFrame implements Runnable {
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextArea textArea;
+	private JTextArea textArea_1;
+	private JTextArea textArea_2;
+	private JTextArea textArea_3;
+	private boolean signal;
+	private boolean success;
+	private JLabel lblNewLabel;
 	BillBL billBL = new BillBL();
 
 	/**
 	 * Create the panel.
 	 */
 	public Newbillframe() {
+		success = false;
+		signal = false;
 		getContentPane().setLayout(null);
 
 		Newbillframe nbf = this;
@@ -54,7 +64,7 @@ public class Newbillframe extends JFrame {
 		toolBar.setBounds(0, 543, 744, 28);
 		getContentPane().add(toolBar);
 
-		JLabel lblNewLabel = new JLabel("×´Ì¬À¸");
+		lblNewLabel = new JLabel("×´Ì¬À¸");
 		toolBar.add(lblNewLabel);
 
 		JLabel label_1 = new JLabel("\u8D26\u540D\u79F0");
@@ -77,7 +87,7 @@ public class Newbillframe extends JFrame {
 		jsp.setBounds(170, 189, 172, 77);
 		getContentPane().add(jsp);
 
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		jsp.setViewportView(textArea);
 
 		textField_1 = new JTextField();
@@ -91,8 +101,8 @@ public class Newbillframe extends JFrame {
 		JScrollPane jsp1 = new JScrollPane();
 		jsp1.setBounds(466, 189, 172, 77);
 		getContentPane().add(jsp1);
-
-		JTextArea textArea_1 = new JTextArea();
+		
+		textArea_1 = new JTextArea();
 		jsp1.setViewportView(textArea_1);
 
 		JLabel label_5 = new JLabel("\u8F66\u8F86");
@@ -106,13 +116,13 @@ public class Newbillframe extends JFrame {
 		jsp2.setBounds(170, 304, 172, 77);
 		getContentPane().add(jsp2);
 
-		JTextArea textArea_2 = new JTextArea();
+		textArea_2 = new JTextArea();
 		jsp2.setViewportView(textArea_2);
 		JScrollPane jsp3 = new JScrollPane();
 		jsp3.setBounds(466, 304, 172, 77);
 		getContentPane().add(jsp3);
 
-		JTextArea textArea_3 = new JTextArea();
+		textArea_3 = new JTextArea();
 		jsp3.setViewportView(textArea_3);
 
 		JButton button = new JButton("\u786E\u8BA4");
@@ -125,7 +135,6 @@ public class Newbillframe extends JFrame {
 				String staff = textArea_1.getText();
 				String vehicle = textArea_2.getText();
 				String store = textArea_3.getText();
-				boolean success = false;
 
 				if (name.equals("") || account.equals("")
 						|| organization.equals("") || staff.equals("")
@@ -139,20 +148,7 @@ public class Newbillframe extends JFrame {
 					success = true;
 				}
 
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				if (success) {
-					textField.setText("");
-					textField_1.setText("");
-					textArea.setText("");
-					textArea_1.setText("");
-					textArea_2.setText("");
-					textArea_3.setText("");
-				}
+				signal = true;
 			}
 		});
 		button.setBounds(231, 453, 93, 23);
@@ -186,5 +182,30 @@ public class Newbillframe extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setResizable(false);
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			if (signal) {
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				if (success) {
+					textField.setText("");
+					textField_1.setText("");
+					textArea.setText("");
+					textArea_1.setText("");
+					textArea_2.setText("");
+					textArea_3.setText("");
+				}
+
+				lblNewLabel.setText("×´Ì¬À¸");
+				signal = false;
+			}
+		}
 	}
 }

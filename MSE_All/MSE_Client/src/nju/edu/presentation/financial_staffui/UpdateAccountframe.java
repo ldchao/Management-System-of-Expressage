@@ -1,7 +1,6 @@
 package nju.edu.presentation.financial_staffui;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -13,16 +12,20 @@ import javax.swing.JToolBar;
 
 import nju.edu.businesslogic.accountbl.AccountBL;
 
-public class UpdateAccountframe extends JFrame {
+@SuppressWarnings("serial")
+public class UpdateAccountframe extends JFrame implements Runnable{
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JLabel label_5;
+	private boolean signal;
 	AccountBL accountBL = new AccountBL();
 
 	/**
 	 * Create the panel.
 	 */
 	public UpdateAccountframe(String name, int rowpos) {
+		signal = false;
 		getContentPane().setLayout(null);
 		UpdateAccountframe up = this;
 
@@ -63,7 +66,7 @@ public class UpdateAccountframe extends JFrame {
 		toolBar.setBounds(0, 253, 444, 28);
 		getContentPane().add(toolBar);
 
-		JLabel label_5 = new JLabel("\u72B6\u6001\u680F");
+		label_5 = new JLabel("\u72B6\u6001\u680F");
 		toolBar.add(label_5);
 
 		JButton button = new JButton("\u786E\u8BA4");
@@ -76,9 +79,11 @@ public class UpdateAccountframe extends JFrame {
 
 				if (name.equals("") || creator.equals("") || date.equals("")) {
 					label_5.setText("信息录入不完整，无法完成修改");
+					signal = true;
 				} else {
 					CheckAccountframe.showTable(accountBL.updateAccount(
 							rowpos + 1, name, date, creator)); // rowpos为修改的位置
+					CheckAccountframe.setLblNewLabel("修改成功！");
 					up.dispose();
 				}
 
@@ -106,5 +111,20 @@ public class UpdateAccountframe extends JFrame {
 		this.setLocation(400, 100);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			if (signal) {
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				label_5.setText("状态栏");
+				signal = false;
+			}
+		}
 	}
 }

@@ -17,18 +17,21 @@ import javax.swing.JTextField;
 
 import nju.edu.businesslogic.accountbl.AccountBL;
 
-public class NewAccountframe extends JFrame {
+public class NewAccountframe extends JFrame implements Runnable {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JLabel lblNewLabel;
+	private boolean signal;
+	private boolean success;
 	AccountBL accountBL = new AccountBL();
 
 	/**
 	 * Create the panel.
 	 */
 	public NewAccountframe() {
-
+		success = false;
+		signal = false;
 		getContentPane().setLayout(null);
 
 		NewAccountframe naf = this;
@@ -109,29 +112,16 @@ public class NewAccountframe extends JFrame {
 				String name = textField.getText();
 				String creator = textField_1.getText();
 				String date = textField_2.getText();
-				boolean success = false;
 
 				if (name.equals("") || creator.equals("") || date.equals("")) {
 					lblNewLabel.setText("信息录入不完整，无法完成新建");
 					success = false;
 				} else {
-					lblNewLabel.setText("创建成功！");// 怎么实现在线程前执行！
+					lblNewLabel.setText("创建成功！");
 					accountBL.addAccount(name, "0.0", creator, date);
 					success = true;
 				}
-
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				if (success) {
-					textField.setText("");
-					textField_1.setText("");
-					textField_2.setText("");
-					// lblNewLabel.setText("状态栏");
-				}
+				signal = true;
 			}
 		});
 		button.setBounds(258, 444, 93, 23);
@@ -157,5 +147,27 @@ public class NewAccountframe extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setResizable(false);
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			if (signal) {
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				lblNewLabel.setText("状态栏");
+
+				if (success) {
+					textField.setText("");
+					textField_2.setText("");
+				}
+
+				success = false;
+				signal = false;
+			}
+		}
 	}
 }
