@@ -2,6 +2,8 @@ package PO;
 
 import java.io.Serializable;
 
+import State.ApproveState;
+
 public class PayorderPO implements Serializable {
 	private String date;
 	private double money;
@@ -9,6 +11,19 @@ public class PayorderPO implements Serializable {
 	private String list;
 	private String comment;
 	private String payor;
+	private ApproveState state;
+
+	public PayorderPO(String date, double money, String account, String list,
+			String comment, String payor, ApproveState state) {
+		super();
+		this.date = date;
+		this.money = money;
+		this.account = account;
+		this.list = list;
+		this.comment = comment;
+		this.payor = payor;
+		this.state = state;
+	}
 	
 	public PayorderPO(String date, double money, String account, String list,
 			String comment, String payor) {
@@ -19,6 +34,14 @@ public class PayorderPO implements Serializable {
 		this.list = list;
 		this.comment = comment;
 		this.payor = payor;
+	}
+
+	public ApproveState getState() {
+		return this.state;
+	}
+
+	public void setState(ApproveState state) {
+		this.state = state;
 	}
 
 	public String getDate() {

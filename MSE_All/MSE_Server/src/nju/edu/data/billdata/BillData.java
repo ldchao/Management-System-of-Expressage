@@ -19,11 +19,9 @@ public class BillData extends UnicastRemoteObject implements BillDataService {
 	@Override
 	public void insert(StartinfoPO po) throws RemoteException {
 
-		ArrayList<String> list = new ArrayList<String>();
-
-		list.add(po.getName() + ";" + po.getAccount() + ";"
+		String list = po.getName() + ";" + po.getAccount() + ";"
 				+ po.getOrganization() + ";" + po.getStaff() + ";"
-				+ po.getVehicle() + ";" + po.getStore());
+				+ po.getVehicle() + ";" + po.getStore();
 
 		fileWriter.Writer("DataBase/Startinfo.txt", list, true);
 	}
@@ -32,7 +30,8 @@ public class BillData extends UnicastRemoteObject implements BillDataService {
 	public ArrayList<StartinfoPO> find() throws RemoteException {
 		ArrayList<StartinfoPO> stpo = new ArrayList<>();
 
-		ArrayList<String> filelist = fileReader.Reader("DataBase/Startinfo.txt");
+		ArrayList<String> filelist = fileReader
+				.Reader("DataBase/Startinfo.txt");
 		for (String fl : filelist) {
 			String[] str = fl.split(";");
 			StartinfoPO startinfoPO = new StartinfoPO(str[0], str[1], str[2],

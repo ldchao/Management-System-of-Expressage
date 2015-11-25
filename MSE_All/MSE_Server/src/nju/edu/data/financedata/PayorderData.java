@@ -9,6 +9,7 @@ import nju.edu.data.FileIO.fileWriter;
 import nju.edu.dataservice.financedataservice.PayorderDataService;
 import PO.PayeeorderPO;
 import PO.PayorderPO;
+import State.ApproveState;
 
 @SuppressWarnings("serial")
 public class PayorderData extends UnicastRemoteObject implements
@@ -21,11 +22,13 @@ public class PayorderData extends UnicastRemoteObject implements
 	@Override
 	public void insert(PayorderPO po) {
 
-		ArrayList<String> list = new ArrayList<String>();
-		list.add(po.getDate() + ";" + po.getMoney() + ";" + po.getAccount()
-				+ ";" + po.getList() + ";" + po.getComment() + ";"
-				+ po.getPayor());
-		fileWriter.Writer("DataBase/Payorder.txt", list, true);
+		String list = po.getDate() + ";" + po.getMoney() + ";"
+				+ po.getAccount() + ";" + po.getList() + ";" + po.getComment()
+				+ ";" + po.getPayor() + po.getState();
+		if (po.getState() == ApproveState.Valid)
+			fileWriter.Writer("DataBase/Payorder.txt", list, true);
+		else 
+			fileWriter.Writer("DataBase/Payorder.txt", list, true);
 	}
 
 	@Override

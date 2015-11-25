@@ -9,7 +9,6 @@ import nju.edu.data.FileIO.fileWriter;
 import nju.edu.dataservice.accountdataservice.AccountDataService;
 import PO.AccountPO;
 
-@SuppressWarnings("serial")
 public class AccountData extends UnicastRemoteObject implements
 		AccountDataService {
 
@@ -20,9 +19,8 @@ public class AccountData extends UnicastRemoteObject implements
 	@Override
 	public void insert(AccountPO po) throws RemoteException {
 
-		ArrayList<String> list = new ArrayList<String>();
-		list.add(po.getName() + ";" + po.getMoney() + ";" + po.getCreator()
-				+ ";" + po.getDate());
+		String list = po.getName() + ";" + po.getMoney() + ";"
+				+ po.getCreator() + ";" + po.getDate();
 		fileWriter.Writer("DataBase/Account.txt", list, true);
 	}
 
@@ -76,7 +74,7 @@ public class AccountData extends UnicastRemoteObject implements
 
 	@Override
 	public ArrayList<AccountPO> check() throws RemoteException {
-		
+
 		ArrayList<AccountPO> aclist = new ArrayList<>();
 		ArrayList<String> strlist = fileReader.Reader("DataBase/Account.txt");
 		for (String str : strlist) {

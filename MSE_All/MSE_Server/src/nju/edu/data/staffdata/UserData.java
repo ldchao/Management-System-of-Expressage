@@ -19,8 +19,8 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 	@Override
 	public void insert(UserPO po) throws RemoteException {
 
-		ArrayList<String> arrayList = new ArrayList<String>();
-		arrayList.add(po.getName() + ";" + po.getKey() + ";" + po.getLimit());
+		String arrayList = po.getName() + ";" + po.getKey() + ";"
+				+ po.getLimit();
 		fileWriter.Writer("DataBase/User.txt", arrayList, true);
 	}
 
@@ -79,7 +79,7 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 			String str[] = fl.split(";");
 			userlist.add(new UserPO(str[0], str[1], str[2]));
 		}
-		
+
 		return userlist;
 	}
 }

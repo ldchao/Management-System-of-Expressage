@@ -2,6 +2,7 @@ package nju.edu.businesslogicservice.financeblservice;
 
 import java.util.ArrayList;
 
+import PO.PayorderPO;
 import nju.edu.VO.PayeeorderVO;
 import nju.edu.VO.PayorderVO;
 
@@ -20,4 +21,7 @@ public interface PayorderBLService {
 
 	// 导出截至当前日期的成本收益表
 	public void excel(String date, double income, double outcome, double benefit);
+	
+	// 审批后保存
+	public void save(PayorderPO po);
 }

@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.PayorderPO;
+import State.ApproveState;
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.PayeeorderVO;
 import nju.edu.VO.PayorderVO;
@@ -18,7 +19,7 @@ public class PayorderBL implements PayorderBLService {
 			String payaccount, String list, String comment) {
 
 		PayorderPO ppo = new PayorderPO(date, paymoney, payaccount, list,
-				comment, payname);
+				comment, payname, ApproveState.NotApprove);
 		try {
 			payorderData.insert(ppo);
 		} catch (RemoteException e) {
@@ -72,6 +73,16 @@ public class PayorderBL implements PayorderBLService {
 	public void excel(String date, double income, double outcome, double benefit) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void save(PayorderPO po) {
+
+		try {
+			payorderData.insert(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
