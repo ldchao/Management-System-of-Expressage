@@ -2,10 +2,10 @@ package nju.edu.businesslogic.financebl;
 
 import java.util.ArrayList;
 
-import nju.edu.businesslogicservice.financeblservice.ReceiFormBlService;
+import nju.edu.businesslogicservice.financeblservice.PayeeorderBlService;
 import PO.PayeeorderPO;
 
-public class ReceiFormController implements ReceiFormBlService{
+public class ReceiFormController implements PayeeorderBlService{
 
 	@Override
 	public void addReceiForm(String data, ArrayList<Integer> price, ArrayList<String> orderNum, String carrierName,

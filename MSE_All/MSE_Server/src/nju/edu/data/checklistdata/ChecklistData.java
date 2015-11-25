@@ -4,9 +4,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import PO.OrderPO;
-import nju.edu.dataservice.checklistdataservice.ListinDataService;
+import nju.edu.dataservice.checklistdataservice.ChecklistDataService;
 
-public class ChecklistData extends UnicastRemoteObject implements ListinDataService{
+public class ChecklistData extends UnicastRemoteObject implements ChecklistDataService{
 
 	protected ChecklistData() throws RemoteException {
 		super();

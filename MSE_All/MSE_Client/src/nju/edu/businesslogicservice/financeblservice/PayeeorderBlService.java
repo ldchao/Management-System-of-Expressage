@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import PO.PayeeorderPO;
 
-public interface ReceiFormBlService {
+public interface PayeeorderBlService {
 	
 	//新建收款单
 	public void addReceiForm(String data, ArrayList<Integer> price, 
