@@ -59,10 +59,10 @@ public class OrganizationNumPO {
 		OrganizationNum_MAP.put("021014", "上海青浦区营业厅");
 		OrganizationNum_MAP.put("021015", "上海奉贤区营业厅");
 		OrganizationNum_MAP.put("021016", "上海崇明县营业厅");
-		OrganizationNum_MAP.put("021017", "上海黄浦区第二营业厅");
-		OrganizationNum_MAP.put("021018", "上海闵行区第二营业厅");
-		OrganizationNum_MAP.put("021019", "上海静安区第二营业厅");
-		OrganizationNum_MAP.put("021020", "上海徐汇区第二营业厅");
+		OrganizationNum_MAP.put("021017", "上海工业区营业厅");
+		OrganizationNum_MAP.put("021018", "上海开发区营业厅");
+		OrganizationNum_MAP.put("021019", "上海外贸区营业厅");
+		OrganizationNum_MAP.put("021020", "上海高新区营业厅");
 		OrganizationNum_MAP.put("020", "广州中转中心");
 		OrganizationNum_MAP.put("020001", "广州越秀区营业厅");
 		OrganizationNum_MAP.put("020002", "广州天河区营业厅");
@@ -77,8 +77,8 @@ public class OrganizationNumPO {
 		OrganizationNum_MAP.put("020011", "广州从化市营业厅");
 		OrganizationNum_MAP.put("020012", "广州增城市营业厅");
 		OrganizationNum_MAP.put("020013", "广州东山区营业厅");
-		OrganizationNum_MAP.put("020014", "广州越秀区第二营业厅");
-		OrganizationNum_MAP.put("020015", "广州海珠区第二营业厅");
+		OrganizationNum_MAP.put("020014", "广州开发区营业厅");
+		OrganizationNum_MAP.put("020015", "广州高新区营业厅");
 		
 	}
 	
@@ -90,5 +90,5 @@ public class OrganizationNumPO {
 			   result = entry.getValue();
 		}
 		return result;
-	} 
+	}
 }

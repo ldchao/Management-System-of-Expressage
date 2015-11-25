@@ -9,6 +9,8 @@ import nju.edu.businesslogicservice.transferblservice.ReceiveBLService;
 import nju.edu.dataservice.transferdataservice.ReceiveDataService;
 import PO.ArriverorderPO;
 import PO.LoadorderPO;
+import State.ApproveState;
+import State.ArriveState;
 
 public class ReceiveBL implements ReceiveBLService {
 
@@ -17,8 +19,15 @@ public class ReceiveBL implements ReceiveBLService {
 	// 创建中转中心到达单
 	@Override
 	public void build(ArriverorderVO av) {
-		// TODO Auto-generated method stub
-		System.out.println("新建一张到达单");
+		ArriverorderPO PO=new ArriverorderPO(av.getNumberOfTransferStation(), 
+				av.getDate(), av.getOffnum(), getState(av.getArrive_state()), ApproveState.NotApprove);
+		ReceiveDataService receivedata = RMIHelper.getReceiveData();
+		try {
+			receivedata.insert(PO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		System.out.println("新建一张未审批到达单");
 	}
 
 	// 存储到达单
@@ -48,4 +57,14 @@ public class ReceiveBL implements ReceiveBLService {
 		return needinputarrive;
 	}
 
+	private ArriveState getState(String s){
+		if(s.equals("损坏")){
+			return ArriveState.Damaged;
+		}else if(s.equals("完整")){
+			return ArriveState.Whole;
+		}else{
+			return ArriveState.Lost;
+		}
+		
+	}
 }

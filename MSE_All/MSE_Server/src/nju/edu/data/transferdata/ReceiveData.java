@@ -24,8 +24,12 @@ public class ReceiveData extends UnicastRemoteObject implements
 		String new_arriverorder = ap.getDate() + ";" + ap.getNumberOfTransferStation()
 				+ ";" + ap.getOffnum() + ";" + ap.getArrive_state() + ";"
 				+ ap.getCheck_state();
+		if(ap.getCheck_state()==ApproveState.NotApprove)
+			fileWriter.Writer("DataBase/UncheckedArriverorder.txt", new_arriverorder, true);
+		else{
         fileWriter.Writer("DataBase/Arriverorder.txt", new_arriverorder, true);
         fileWriter.Writer("DataBase/unStorein_Arriveorder.txt", new_arriverorder, true);
+        }
 	}
 
 	// 在数据中查找对应的未接收的装运单
