@@ -3,60 +3,74 @@ package PO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import State.ApproveState;
+
+@SuppressWarnings("serial")
 public class PayeeorderPO implements Serializable {
+	String order;
+	double money;
 	String date;
 	String carrierName;
-	String recorder;
-	ArrayList<String> order;
-	ArrayList<Integer> price;
-
-	public PayeeorderPO(String date, String carrierName, String recorder,
-			ArrayList<String> order, ArrayList<Integer> price) {
-		date = this.date;
-		carrierName = this.carrierName;
-		recorder = this.recorder;
-		order = this.order;
-		price = this.price;
+	String shopperName;
+	ApproveState state;
+	
+	public PayeeorderPO(String order, double money, String date,
+			String carrierName, String shopperName, ApproveState state) {
+		super();
+		this.order = order;
+		this.money = money;
+		this.date = date;
+		this.carrierName = carrierName;
+		this.shopperName = shopperName;
+		this.state = state;
 	}
 
-	// 鏄剧ず鎵�鏈変粯娆惧崟鏃剁敤
-	public PayeeorderPO() {
-		// TODO Auto-generated constructor stub
+	public String getOrder() {
+		return order;
 	}
 
-	/*
-	 * getDate 杩斿洖鏀舵鍗曟棩鏈� return String
-	 */
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
+	}
+
 	public String getDate() {
 		return date;
 	}
 
-	/*
-	 * getCarrierName 杩斿洖蹇�掑憳濮撳悕 return String
-	 */
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public String getCarrierName() {
 		return carrierName;
 	}
 
-	/*
-	 * getRecorder 杩斿洖璁板綍鍛樺鍚� return String
-	 */
-	public String getRecorder() {
-		return recorder;
+	public void setCarrierName(String carrierName) {
+		this.carrierName = carrierName;
 	}
 
-	/*
-	 * getOrder 杩斿洖璁㈠崟鍙锋竻鍗� return ArrayList<String>
-	 */
-	public ArrayList<String> getOrder() {
-		return order;
+	public String getShopperName() {
+		return shopperName;
 	}
 
-	/*
-	 * getPrice 杩斿洖浠锋牸娓呭崟 return ArrayList<Integer>
-	 */
-	public ArrayList<Integer> getPrice() {
-		return price;
+	public void setShopperName(String shopperName) {
+		this.shopperName = shopperName;
+	}
+
+	public ApproveState getState() {
+		return state;
+	}
+
+	public void setState(ApproveState state) {
+		this.state = state;
 	}
 
 }

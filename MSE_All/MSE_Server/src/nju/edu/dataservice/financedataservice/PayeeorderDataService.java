@@ -2,12 +2,15 @@ package nju.edu.dataservice.financedataservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import PO.PayeeorderPO;
 
-public interface PayeeorderDataService extends Remote{
-	
-	//新建收款单
+public interface PayeeorderDataService extends Remote {
+
+	// 新建收款单
 	public void insert(PayeeorderPO po) throws RemoteException;
 
+	// 查看收款单
+	public ArrayList<PayeeorderPO> checkPayeeorder(String name, String shop)throws RemoteException;
 }

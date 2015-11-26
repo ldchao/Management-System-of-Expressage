@@ -1,18 +1,13 @@
 package nju.edu.presentation.financial_staffui;
 
-import javafx.scene.Scene;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class fsframe extends JFrame {
 
 	/**
@@ -120,9 +115,5 @@ public class fsframe extends JFrame {
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setVisible(true);
     	this.setResizable(false);
-	}
-	
-	public static void main(String[] args) {
-		fsframe fsframe = new fsframe();
 	}
 }
