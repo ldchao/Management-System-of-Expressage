@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import PO.PayeeorderPO;
 import State.ApproveState;
-import nju.edu.RMI_init.RMIHelper;
+import nju.edu.data.FileIO.fileReader;
 import nju.edu.data.FileIO.fileWriter;
 import nju.edu.dataservice.financedataservice.PayeeorderDataService;
 
@@ -22,17 +22,26 @@ public class PayeeorderData extends UnicastRemoteObject implements
 	public void insert(PayeeorderPO po) throws RemoteException {
 
 		String list = po.getOrder() + ";" + po.getMoney() + ";" + po.getDate()
-				+ ";" + po.getCarrierName() + ";" + po.getShopperName();
+				+ ";" + po.getCarrierName() + ";" + po.getShopperName() + ";"
+				+ po.getShop();
 		if (po.getState() == ApproveState.Valid)
 			fileWriter.Writer("DataBase/Payeeorder.txt", list, true);
 		else if (po.getState() == ApproveState.NotApprove)
 			fileWriter.Writer("DataBase/uncheckedPayeeorder.txt", list, true);
 
 	}
-	
-	public ArrayList<PayeeorderPO> checkPayeeorder(String name, String shop){
+
+	public ArrayList<PayeeorderPO> checkPayeeorder(String name, String shop) {
 		ArrayList<PayeeorderPO> list = new ArrayList<>();
 		// 读文件，并筛选
+		ArrayList<String> filelist = fileReader
+				.Reader("DataBase/Payeeorder.txt");
+		for (String fl : filelist) {
+			String str[] = fl.split(";");
+			if(name.equals(str[2])&&shop.equals(str[5])){
+				list.add(new PayeeorderPO(str[0], Double.parseDouble(str[1]), str[2], str[3], str[4], str[5]));
+			}
+		}
 		return list;
 	}
 

@@ -23,31 +23,26 @@ import javax.swing.JTextPane;
 import javax.swing.SpringLayout;
 
 public class Calculateframe extends JFrame {
+	private JTextField textField;
 
 	/**
 	 * Create the panel.
 	 */
 	public Calculateframe() {
-		
+
 		Calculateframe cf = this;
-		SpringLayout springLayout = new SpringLayout();
-		getContentPane().setLayout(springLayout);
+		getContentPane().setLayout(null);
 
 		JLabel label = new JLabel("财务人员>>结算管理");
-		springLayout.putConstraint(SpringLayout.NORTH, label, 5, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, label, 88, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, label, 606, SpringLayout.WEST, getContentPane());
+		label.setBounds(88, 5, 518, 15);
 		getContentPane().add(label);
 
 		JLabel lblHello = new JLabel("Hello!");
-		springLayout.putConstraint(SpringLayout.NORTH, lblHello, 0, SpringLayout.NORTH, label);
-		springLayout.putConstraint(SpringLayout.EAST, lblHello, -37, SpringLayout.EAST, getContentPane());
+		lblHello.setBounds(661, 5, 36, 15);
 		getContentPane().add(lblHello);
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
-		springLayout.putConstraint(SpringLayout.NORTH, button_4, 1, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, button_4, 10, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, button_4, 78, SpringLayout.WEST, getContentPane());
+		button_4.setBounds(10, 1, 68, 23);
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cf.dispose();
@@ -55,31 +50,38 @@ public class Calculateframe extends JFrame {
 			}
 		});
 		getContentPane().add(button_4);
-	
+
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 		JLabel showDate2 = new JLabel("请单击选择日期");
-		springLayout.putConstraint(SpringLayout.NORTH, showDate2, 215, SpringLayout.SOUTH, label);
-		springLayout.putConstraint(SpringLayout.WEST, showDate2, 320, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, showDate2, -292, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, showDate2, -321, SpringLayout.EAST, getContentPane());
+		showDate2.setBounds(320, 252, 93, 34);
 		dateChooser2.register(showDate2);
-		
-		//frame
 		getContentPane().add(showDate2);
-		
+
+		textField = new JTextField();
+		textField.setBounds(381, 177, 102, 21);
+		getContentPane().add(textField);
+		textField.setColumns(10);
+
 		JButton button = new JButton("\u786E\u8BA4");
-		springLayout.putConstraint(SpringLayout.NORTH, button, 134, SpringLayout.SOUTH, showDate2);
-		springLayout.putConstraint(SpringLayout.WEST, button, 0, SpringLayout.WEST, showDate2);
-		springLayout.putConstraint(SpringLayout.EAST, button, -321, SpringLayout.EAST, getContentPane());
+		button.setBounds(320, 426, 93, 23);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cf.dispose();
-				CheckPayeeframe cpef =  new CheckPayeeframe();
 				String date = showDate2.getText();
-				System.out.println(date);
+				String shop = textField.getText();
+				if (!date.equals("请单击选择日期") && shop != null) {
+					CheckPayeeframe cpef = new CheckPayeeframe(date, shop);
+				}
 			}
 		});
 		getContentPane().add(button);
+
+		JLabel label_1 = new JLabel(
+				"\u8BF7\u8F93\u5165\u8425\u4E1A\u5385\u7F16\u53F7");
+		label_1.setBounds(258, 180, 111, 15);
+		getContentPane().add(label_1);
+
+		// frame
 		this.setTitle("快递管理系统MSE客户端");
 		this.setSize(750, 600);
 		this.setLocation(400, 100);

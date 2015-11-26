@@ -8,7 +8,7 @@ public interface PayeeorderBlService {
 
 	// 新建收款单
 	public void addReceiForm(String order, String money, String date,
-			String carrierName, String shopperName, boolean over);
+			String carrierName, String shopperName, String shop, boolean over);
 
 	// 获得总金额
 	public double getTotal(ArrayList<PayeeorderPO> polist);

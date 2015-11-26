@@ -61,10 +61,10 @@ public class ReceiFormframe extends JFrame implements Runnable {
 		table1.setModel(new DefaultTableModel(new Object[][] {
 				{ "\u8BA2\u5355\u53F7", "\u6536\u6B3E\u91D1\u989D",
 						"\u6536\u6B3E\u65E5\u671F",
-						"\u5FEB\u9012\u5458\u59D3\u540D", "业务员姓名" },
-				{ null, null, null, null, null }, }, new String[] {
+						"\u5FEB\u9012\u5458\u59D3\u540D", "业务员姓名", "营业厅编号" },
+				{ null, null, null, null, null, null }, }, new String[] {
 				"New column", "New column", "New column", "New column",
-				"New column" }));
+				"New column", "" }));
 		table1.setBounds(92, 95, 549, 50);
 		getContentPane().add(table1);
 
@@ -83,18 +83,27 @@ public class ReceiFormframe extends JFrame implements Runnable {
 		scrollPane.setViewportView(table);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
-		tableModel = new DefaultTableModel(new Object[][] { { "", "", "", "" },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, }, new String[] { "订单号", "收款金额",
-				"收款日期", "快递员姓名" });
+		tableModel = new DefaultTableModel(new Object[][] {
+				{ "", "", "", "", "" }, { null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null },
+				{ null, null, null, null, null }, }, new String[] { "订单号",
+				"收款金额", "收款日期", "快递员姓名", "营业厅编号" });
 		table.setModel(tableModel);
 
 		// 总计表
@@ -115,10 +124,10 @@ public class ReceiFormframe extends JFrame implements Runnable {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String str[] = new String[5];
-				for (int i = 0; i < 5; i++)
+				for (int i = 0; i < 6; i++)
 					str[i] = table1.getValueAt(0, i).toString();
 				payeebl.addReceiForm(str[0], str[1], str[2], str[3], str[4],
-						false);
+						str[5], false);
 				signal = true;
 				showList(str, count);
 				count++;
@@ -131,7 +140,7 @@ public class ReceiFormframe extends JFrame implements Runnable {
 		JButton button_1 = new JButton("\u7ED3\u675F");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				payeebl.addReceiForm("", "", "", "", "", true);
+				payeebl.addReceiForm("", "", "", "", "", "", true);
 				signal = true;
 			}
 		});
@@ -164,7 +173,7 @@ public class ReceiFormframe extends JFrame implements Runnable {
 			table.setValueAt(str[i], n, i);
 
 		if (n >= table.getRowCount()) {
-			String[] rowstr = { "", "", "", "" };
+			String[] rowstr = { "", "", "", "", "" };
 			tableModel.addRow(rowstr);
 		}
 	}

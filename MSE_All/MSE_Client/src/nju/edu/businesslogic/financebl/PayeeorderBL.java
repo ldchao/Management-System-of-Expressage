@@ -1,21 +1,23 @@
 package nju.edu.businesslogic.financebl;
 
+import java.awt.List;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import nju.edu.RMI_init.RMIHelper;
+import nju.edu.VO.PayeeorderVO;
 import nju.edu.businesslogicservice.financeblservice.PayeeorderBlService;
 import nju.edu.dataservice.financedataservice.PayeeorderDataService;
 import PO.PayeeorderPO;
 import State.ApproveState;
 
-public class PayeeorderBL implements PayeeorderBlService {
+public class PayeeorderBL implements PayeeorderBlService, checkPayeeOrder {
 	PayeeorderDataService payeeorderData = RMIHelper.getPayeeorderData();
 	private ArrayList<PayeeorderPO> payeeList = new ArrayList<>();
 
 	@Override
 	public void addReceiForm(String order, String money, String date,
-			String carrierName, String shopperName, boolean over) {
+			String carrierName, String shopperName, String shop, boolean over) {
 		if (over) {
 			try {
 				for (PayeeorderPO po : payeeList)
@@ -27,7 +29,7 @@ public class PayeeorderBL implements PayeeorderBlService {
 		} else {
 			PayeeorderPO payeepo = new PayeeorderPO(order,
 					Double.parseDouble(money), date, carrierName, shopperName,
-					ApproveState.NotApprove);
+					shop, ApproveState.NotApprove);
 			payeeList.add(payeepo);
 		}
 	}
@@ -48,17 +50,23 @@ public class PayeeorderBL implements PayeeorderBlService {
 
 		return total;
 	}
-	
-	public ArrayList<PayeeorderPO> checkPayeeorder(String date, String shop){
-		
-		ArrayList<PayeeorderPO> list = new ArrayList<>();
+
+	public ArrayList<PayeeorderVO> checkPayeeorder(String date, String shop) {
+
+		ArrayList<PayeeorderVO> Vlist = new ArrayList<>();
 		try {
-			list = payeeorderData.checkPayeeorder(date, shop);
+			ArrayList<PayeeorderPO> Plist = payeeorderData.checkPayeeorder(date, shop);
+			for (PayeeorderPO po : Plist) {
+				PayeeorderVO vo = new PayeeorderVO(po.getOrder(),
+						po.getMoney(), po.getDate(), po.getCarrierName(),
+						po.getShopperName());
+				Vlist.add(vo);
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
-		return list;
+
+		return Vlist;
 	}
 
 	@Override
