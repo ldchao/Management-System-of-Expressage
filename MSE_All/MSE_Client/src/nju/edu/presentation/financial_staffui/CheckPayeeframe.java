@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
 import nju.edu.VO.PayeeorderVO;
+import nju.edu.businesslogic.financebl.CalculateBL;
 import nju.edu.businesslogic.financebl.PayeeorderBL;
 import nju.edu.businesslogic.financebl.checkPayeeOrder;
 import PO.OrganizationNumPO;
@@ -23,6 +24,7 @@ import PO.OrganizationNumPO;
 public class CheckPayeeframe extends JFrame {
 	private JTable table;
 	private DefaultTableModel tableModel;
+	CalculateBL cbl = new CalculateBL();
 
 	/**
 	 * Create the panel.
@@ -50,15 +52,20 @@ public class CheckPayeeframe extends JFrame {
 		button_4.setBounds(15, 6, 70, 23);
 		getContentPane().add(button_4);
 
+		JLabel label_1;
 		OrganizationNumPO opo = new OrganizationNumPO();
 		String shopname = opo.getName(shop);
-		JLabel label_1 = new JLabel(shopname + "的收款信息");
+		if (shopname != null) {
+			label_1 = new JLabel(shopname + "的收款信息");
+		} else {
+			label_1 = new JLabel("无此编号营业厅");
+		}
 		label_1.setFont(new Font("黑体", Font.BOLD, 15));
-		label_1.setBounds(285, 114, 144, 23);
+		label_1.setBounds(285, 114, 246, 23);
 		getContentPane().add(label_1);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(71, 177, 600, 203);
+		scrollPane.setBounds(71, 177, 600, 200);
 		getContentPane().add(scrollPane);
 
 		table = new JTable();
@@ -85,9 +92,7 @@ public class CheckPayeeframe extends JFrame {
 				"收款金额", "收款日期", "快递员姓名", "业务员姓名" });
 		table.setModel(tableModel);
 
-		checkPayeeOrder checkpayee = new PayeeorderBL();
-		ArrayList<PayeeorderVO> payeevo = checkpayee
-				.checkPayeeorder(date, shop);
+		ArrayList<PayeeorderVO> payeevo = cbl.check(date, shop);
 		showTable(payeevo);
 
 		// frame
@@ -96,6 +101,7 @@ public class CheckPayeeframe extends JFrame {
 		this.setLocation(400, 100);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

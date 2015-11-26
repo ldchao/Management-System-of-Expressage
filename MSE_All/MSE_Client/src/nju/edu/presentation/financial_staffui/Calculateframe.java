@@ -66,11 +66,11 @@ public class Calculateframe extends JFrame {
 		button.setBounds(320, 426, 93, 23);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cf.dispose();
 				String date = showDate2.getText();
 				String shop = textField.getText();
-				if (!date.equals("请单击选择日期") && shop != null) {
+				if (!date.equals("请单击选择日期") && !shop.equals("")) {
 					CheckPayeeframe cpef = new CheckPayeeframe(date, shop);
+					cf.dispose();
 				}
 			}
 		});
@@ -87,6 +87,7 @@ public class Calculateframe extends JFrame {
 		this.setLocation(400, 100);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
