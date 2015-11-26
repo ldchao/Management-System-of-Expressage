@@ -38,9 +38,23 @@ public class PayeeorderData extends UnicastRemoteObject implements
 				.Reader("DataBase/Payeeorder.txt");
 		for (String fl : filelist) {
 			String str[] = fl.split(";");
-			if(name.equals(str[2])&&shop.equals(str[5])){
-				list.add(new PayeeorderPO(str[0], Double.parseDouble(str[1]), str[2], str[3], str[4], str[5]));
+			if (name.equals(str[2]) && shop.equals(str[5])) {
+				list.add(new PayeeorderPO(str[0], Double.parseDouble(str[1]),
+						str[2], str[3], str[4], str[5]));
 			}
+		}
+		return list;
+	}
+
+	public ArrayList<PayeeorderPO> checkPayeeorders() {
+		ArrayList<PayeeorderPO> list = new ArrayList<>();
+		// 读文件，并筛选
+		ArrayList<String> filelist = fileReader
+				.Reader("DataBase/Payeeorder.txt");
+		for (String fl : filelist) {
+			String str[] = fl.split(";");
+			list.add(new PayeeorderPO(str[0], Double.parseDouble(str[1]),
+					str[2], str[3], str[4], str[5]));
 		}
 		return list;
 	}

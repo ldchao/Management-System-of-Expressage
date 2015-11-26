@@ -48,8 +48,12 @@ public class PayorderBL implements PayorderBLService {
 	}
 
 	@Override
-	public double[] profit(ArrayList<PayorderVO> pay,
-			ArrayList<PayeeorderVO> payee) {
+	public double[] profit() {
+		
+		ArrayList<PayorderVO> pay = checkPayorder();
+		checkPayeeOrder check = new PayeeorderBL();
+	    ArrayList<PayeeorderVO> payee = check.checkPayeeorder();
+	    
 		double res[] = new double[3];
 
 		double totalPay = 0;
@@ -59,7 +63,7 @@ public class PayorderBL implements PayorderBLService {
 
 		double totalPayee = 0;
 		for (PayeeorderVO pe : payee) {
-			totalPayee += 0;
+			totalPayee += pe.getMoney();
 		}
 
 		res[0] = totalPay;

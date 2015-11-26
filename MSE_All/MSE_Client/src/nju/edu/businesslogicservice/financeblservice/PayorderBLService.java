@@ -16,8 +16,7 @@ public interface PayorderBLService {
 	public ArrayList<PayorderVO> checkPayorder();
 
 	// 查看成本收益（计算总支出、收入、利润）
-	public double[] profit(ArrayList<PayorderVO> pay,
-			ArrayList<PayeeorderVO> payee);
+	public double[] profit();
 
 	// 导出截至当前日期的成本收益表
 	public void excel(String date, double income, double outcome, double benefit);

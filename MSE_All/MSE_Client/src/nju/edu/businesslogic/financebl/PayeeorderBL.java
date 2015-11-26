@@ -55,7 +55,8 @@ public class PayeeorderBL implements PayeeorderBlService, checkPayeeOrder {
 
 		ArrayList<PayeeorderVO> Vlist = new ArrayList<>();
 		try {
-			ArrayList<PayeeorderPO> Plist = payeeorderData.checkPayeeorder(date, shop);
+			ArrayList<PayeeorderPO> Plist = payeeorderData.checkPayeeorder(
+					date, shop);
 			for (PayeeorderPO po : Plist) {
 				PayeeorderVO vo = new PayeeorderVO(po.getOrder(),
 						po.getMoney(), po.getDate(), po.getCarrierName(),
@@ -77,6 +78,25 @@ public class PayeeorderBL implements PayeeorderBlService, checkPayeeOrder {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public ArrayList<PayeeorderVO> checkPayeeorder() {
+		
+		ArrayList<PayeeorderVO> Vlist = new ArrayList<>();
+		try {
+			ArrayList<PayeeorderPO> Plist = payeeorderData.checkPayeeorders();
+			for (PayeeorderPO po : Plist) {
+				PayeeorderVO vo = new PayeeorderVO(po.getOrder(),
+						po.getMoney(), po.getDate(), po.getCarrierName(),
+						po.getShopperName());
+				Vlist.add(vo);
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
+		return Vlist;
 	}
 
 }

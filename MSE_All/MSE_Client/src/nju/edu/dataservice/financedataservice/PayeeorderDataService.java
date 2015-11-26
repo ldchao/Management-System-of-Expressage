@@ -14,4 +14,6 @@ public interface PayeeorderDataService extends Remote{
 	// 查看收款单
 	public ArrayList<PayeeorderPO> checkPayeeorder(String date, String shop)throws RemoteException;
 
+	public ArrayList<PayeeorderPO> checkPayeeorders()throws RemoteException;
+
 }

@@ -63,10 +63,10 @@ public class Profitframe extends JFrame {
 		table.setBounds(194, 208, 356, 160);
 		getContentPane().add(table);
 
-		// double[] pro = payorderBL.profit(payorderBL.checkPayorder(), null);
+		double[] pro = payorderBL.profit();
 		// 收款单！
 		for (int i = 0; i < 3; i++)
-			table.setValueAt(0, i + 1, 1); // pro[i]
+			table.setValueAt(pro[i], i + 1, 1);
 
 		// 获取当前日期
 		Date dt = new Date();
