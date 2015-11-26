@@ -4,10 +4,12 @@ import javax.swing.JTextArea;
 
 import nju.edu.VO.OrderVO;
 import nju.edu.businesslogicservice.listinblservice.ListinBLService;
+import nju.edu.businesslogicservice.listinblservice.OrderInfo;
+import nju.edu.businesslogicservice.listinblservice.UpdateInfo;
 import State.ExpressType;
 import State.PackageType;
 
-public class ListinblController implements ListinBLService{
+public class ListinblController implements ListinBLService,OrderInfo,UpdateInfo{
 	Listinbl Listinbl=new Listinbl();
 	@Override
 	public void addOrder(OrderVO vo) {
@@ -30,6 +32,18 @@ public class ListinblController implements ListinBLService{
 	public String getTotalTime(String address1, String address2, ExpressType express) {
 		// TODO Auto-generated method stub
 		return address1+address2;
+	}
+
+	@Override
+	public void update(String id, String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getWeight(String id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

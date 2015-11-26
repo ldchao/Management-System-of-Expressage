@@ -4,7 +4,7 @@ import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.OrderVO;
 import nju.edu.businesslogicservice.listinblservice.ListinBLService;
 import nju.edu.dataservice.listindataservice.ListinDataService;
-import nju.edu.dataservice.policydataservice.ConstantDataSerivce;
+import nju.edu.dataservice.policydataservice.ConstantPolicyDataService;
 import nju.edu.businesslogic.checklistbl.ListinInfo;
 
 import java.rmi.RemoteException;
@@ -15,7 +15,7 @@ import State.PackageType;
 
 public class Listinbl implements ListinBLService,ListinInfo{
 	ListinDataService listinDataService=RMIHelper.getListinData();
-	ConstantDataSerivce ConstantDataSerivce=RMIHelper.getConstantPolicyData();
+	ConstantPolicyDataService ConstantPolicyDataSerivce=RMIHelper.getConstantPolicyData();
 	@Override
 	public void addOrder(OrderVO vo) {
 		// TODO Auto-generated method stub
@@ -29,7 +29,7 @@ public class Listinbl implements ListinBLService,ListinInfo{
 		double result=0;
 		//价格部分1：两地之间的距离
 		try {
-			result=ConstantDataSerivce.getPrice(address1, address2);
+			result=ConstantPolicyDataSerivce.getPrice(address1, address2);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

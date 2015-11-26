@@ -14,10 +14,10 @@ import nju.edu.dataservice.financedataservice.PayorderDataService;
 import nju.edu.dataservice.financedataservice.PayeeorderDataService;
 import nju.edu.dataservice.financedataservice.StatisticsDataService;
 import nju.edu.dataservice.listindataservice.ListinDataService;
-import nju.edu.dataservice.listindataservice.ReceiverDataService;
+import nju.edu.dataservice.listindataservice.ReceiverinDataService;
 import nju.edu.dataservice.loaddataservice.LoadDataService;
 import nju.edu.dataservice.loaddataservice.ShippingDataService;
-import nju.edu.dataservice.policydataservice.ConstantDataSerivce;
+import nju.edu.dataservice.policydataservice.ConstantPolicyDataService;
 import nju.edu.dataservice.policydataservice.SalaryPolicyDataService;
 import nju.edu.dataservice.staffdataservice.StaffDataService;
 import nju.edu.dataservice.staffdataservice.UserDataService;
@@ -47,10 +47,10 @@ public class RMIHelper {
 	private static PayeeorderDataService PayeeorderData;
 	private static StatisticsDataService StatisticsData;
 	private static ListinDataService ListinData;
-	private static ReceiverDataService ReceiverinData;
+	private static ReceiverinDataService ReceiverinData;
 	private static LoadDataService LoadData;
 	private static ShippingDataService ShippingData;
-	private static ConstantDataSerivce ConstantPolicyData;
+	private static ConstantPolicyDataService ConstantPolicyData;
 	private static SalaryPolicyDataService SalaryPolicyData;
 	private static StaffDataService StaffData;
 	private static UserDataService UserData;
@@ -97,12 +97,12 @@ public class RMIHelper {
 				+ "StatisticsData");
 		ListinData = (ListinDataService) Naming
 				.lookup(urlPrefix + "ListinData");
-		ReceiverinData = (ReceiverDataService) Naming.lookup(urlPrefix
+		ReceiverinData = (ReceiverinDataService) Naming.lookup(urlPrefix
 				+ "ReceiverinData");
 		LoadData = (LoadDataService) Naming.lookup(urlPrefix + "LoadData");
 		ShippingData = (ShippingDataService) Naming.lookup(urlPrefix
 				+ "ShippingData");
-		ConstantPolicyData = (ConstantDataSerivce) Naming.lookup(urlPrefix
+		ConstantPolicyData = (ConstantPolicyDataService) Naming.lookup(urlPrefix
 				+ "ConstantPolicyData");
 		SalaryPolicyData = (SalaryPolicyDataService) Naming.lookup(urlPrefix
 				+ "SalaryPolicyData");
@@ -164,7 +164,7 @@ public class RMIHelper {
 		return ListinData;
 	}
 
-	public static ReceiverDataService getReceiverinData() {
+	public static ReceiverinDataService getReceiverinData() {
 		return ReceiverinData;
 	}
 
@@ -176,7 +176,7 @@ public class RMIHelper {
 		return ShippingData;
 	}
 
-	public static ConstantDataSerivce getConstantPolicyData() {
+	public static ConstantPolicyDataService getConstantPolicyData() {
 		return ConstantPolicyData;
 	}
 

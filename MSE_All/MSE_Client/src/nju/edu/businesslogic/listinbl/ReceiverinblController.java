@@ -3,7 +3,6 @@ package nju.edu.businesslogic.listinbl;
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.ReceiverVO;
 import nju.edu.businesslogicservice.listinblservice.ReceiverinBLService;
-import nju.edu.dataservice.listindataservice.ReceiverDataService;
 import nju.edu.dataservice.transferdataservice.ReceiveDataService;
 
 public class ReceiverinblController implements ReceiverinBLService{

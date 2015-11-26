@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 import Client.PO.ReceiverPO;
 import State.ResultMessage;
 
-public interface ReceiverDataService extends Remote{
+public interface ReceiverinDataService extends Remote{
 	public void insertReceiver(ReceiverPO po)throws RemoteException;
 	
 	public ResultMessage find(String number)throws RemoteException;
