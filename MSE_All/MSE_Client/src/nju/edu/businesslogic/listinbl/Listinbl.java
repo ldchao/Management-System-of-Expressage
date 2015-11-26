@@ -15,7 +15,7 @@ import State.PackageType;
 
 public class Listinbl implements ListinBLService,ListinInfo{
 	ListinDataService listinDataService=RMIHelper.getListinData();
-	ConstantDataSerivce ConstantDataSerivce=RMIHelper.getConstantData();
+	ConstantDataSerivce ConstantDataSerivce=RMIHelper.getConstantPolicyData();
 	@Override
 	public void addOrder(OrderVO vo) {
 		// TODO Auto-generated method stub

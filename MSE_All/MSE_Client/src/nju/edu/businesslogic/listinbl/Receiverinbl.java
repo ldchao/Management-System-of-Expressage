@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 import State.ResultMessage;
 
 public class Receiverinbl implements ReceiverinBLService{
-	ReceiverDataService receiverDataService=RMIHelper.getReceiverData();
+	ReceiverDataService receiverDataService=RMIHelper.getReceiverinData();
 	@Override
 	public void addReceiver(ReceiverVO vo) {
 		// TODO Auto-generated method stub

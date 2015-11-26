@@ -9,14 +9,20 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import nju.edu.data.accountdata.AccountData;
+import nju.edu.data.approvedata.ApproveData;
 import nju.edu.data.billdata.BillData;
 import nju.edu.data.checklistdata.ChecklistData;
 import nju.edu.data.financedata.CalculateData;
 import nju.edu.data.financedata.PayeeorderData;
 import nju.edu.data.financedata.PayorderData;
 import nju.edu.data.financedata.StatisticsData;
+import nju.edu.data.listindata.ListinData;
+import nju.edu.data.listindata.ReceiverinData;
 import nju.edu.data.loaddata.LoadData;
 import nju.edu.data.loaddata.ShippingData;
+import nju.edu.data.policydata.ConstantPolicyData;
+import nju.edu.data.policydata.SalaryPolicyData;
+import nju.edu.data.staffdata.StaffData;
 import nju.edu.data.staffdata.UserData;
 import nju.edu.data.storedata.Inventory_managementData;
 import nju.edu.data.storedata.Warehouse_inData;
@@ -36,20 +42,20 @@ public class RMIHelper {
 
 	static {
 		NAMING_MAP.put("AccountData", AccountData.class);
-		// NAMING_MAP.put("ApproveData", ApproveData.class);
+		NAMING_MAP.put("ApproveData", ApproveData.class);
 		NAMING_MAP.put("BillData", BillData.class);
 		NAMING_MAP.put("ChecklistData", ChecklistData.class);
 		NAMING_MAP.put("CalculateData", CalculateData.class);
 		NAMING_MAP.put("PayorderData", PayorderData.class);
 		NAMING_MAP.put("PayeeorderData", PayeeorderData.class);
 		NAMING_MAP.put("StatisticsData", StatisticsData.class);
-		// // NAMING_MAP.put("ListinData", ListinData.class);
-		// NAMING_MAP.put("ReceiverData", ReceiverData.class);
+		NAMING_MAP.put("ListinData", ListinData.class);
+		NAMING_MAP.put("ReceiverinData", ReceiverinData.class);
 		NAMING_MAP.put("LoadData", LoadData.class);
 		NAMING_MAP.put("ShippingData", ShippingData.class);
-		// NAMING_MAP.put("ConstantData", ConstantData.class);
-		// NAMING_MAP.put("SalaryPolicyData", SalaryPolicyData.class);
-		// NAMING_MAP.put("StaffData", StaffData.class);
+		 NAMING_MAP.put("ConstantPolicyData", ConstantPolicyData.class);
+		 NAMING_MAP.put("SalaryPolicyData", SalaryPolicyData.class);
+		 NAMING_MAP.put("StaffData", StaffData.class);
 		NAMING_MAP.put("UserData", UserData.class);
 		NAMING_MAP.put("Warehouse_inData", Warehouse_inData.class);
 		NAMING_MAP.put("Warehouse_outData", Warehouse_outData.class);
