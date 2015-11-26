@@ -3,13 +3,14 @@ package nju.edu.businesslogic.listinbl;
 import javax.swing.JTextArea;
 
 import nju.edu.VO.OrderVO;
+import nju.edu.businesslogic.checklistbl.ListinInfo;
 import nju.edu.businesslogicservice.listinblservice.ListinBLService;
 import nju.edu.businesslogicservice.listinblservice.OrderInfo;
 import nju.edu.businesslogicservice.listinblservice.UpdateInfo;
 import State.ExpressType;
 import State.PackageType;
 
-public class ListinblController implements ListinBLService,OrderInfo,UpdateInfo{
+public class ListinblController implements ListinBLService,ListinInfo,OrderInfo,UpdateInfo{
 	Listinbl Listinbl=new Listinbl();
 	@Override
 	public void addOrder(OrderVO vo) {
@@ -41,10 +42,19 @@ public class ListinblController implements ListinBLService,OrderInfo,UpdateInfo{
 	}
 
 	@Override
-	public void getWeight(String id) {
+	public double getWeight(String id) {
+		return 0;
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public OrderVO getOrder(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 
 

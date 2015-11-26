@@ -99,8 +99,8 @@ public class Order extends JFrame implements Runnable{
 	private JTextField textField_17;
 	private JTextArea textArea_2;
 	private ListinblController listinblController;
-	private ExpressType express=null;
-	private PackageType pack=null;
+	private ExpressType express;
+	private PackageType pack;
 	JTextArea textArea;
 	JTextArea textArea_1; 
 	/**
@@ -112,6 +112,8 @@ public class Order extends JFrame implements Runnable{
 	 * Create the frame.
 	 */
 	public Order() {
+		express=null;
+		pack=null;
 		Order orderframe=this;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(300, 0, 712, 683);
