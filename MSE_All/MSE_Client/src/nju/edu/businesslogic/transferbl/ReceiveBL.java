@@ -27,7 +27,7 @@ public class ReceiveBL implements ReceiveBLService {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		System.out.println("新建一张未审批到达单");
+		System.out.println("到达单已提交总经理审批");
 	}
 
 	// 存储到达单
@@ -64,7 +64,13 @@ public class ReceiveBL implements ReceiveBLService {
 			return ArriveState.Whole;
 		}else{
 			return ArriveState.Lost;
-		}
+		}		
+	}
+	
+	//更新司机、交通工具、监装员、押运员的闲/忙信息和订单物流信息
+	private void update(){
+		
 		
 	}
+	
 }

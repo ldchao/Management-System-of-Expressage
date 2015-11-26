@@ -66,4 +66,5 @@ public class ReceiveData extends UnicastRemoteObject implements
 		return lp;
 	}
 
+
 }

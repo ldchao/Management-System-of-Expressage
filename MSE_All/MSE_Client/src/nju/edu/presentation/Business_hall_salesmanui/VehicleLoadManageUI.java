@@ -1,40 +1,54 @@
 package nju.edu.presentation.Business_hall_salesmanui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import nju.edu.VO.VehicleLoadorderVO;
+import nju.edu.businesslogic.loadbl.LoadBL;
+import nju.edu.businesslogicservice.loadblservice.LoadBlService;
+import nju.edu.presentation.Transit_center_salesmanui.Shipping_Car;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
-public class VehicleLoadManageUI extends JPanel{
+import javax.swing.JTextArea;
+
+public class VehicleLoadManageUI extends JPanel {
 	private int rowpos = -1;
-	
-	
-	//create the panel
-	public VehicleLoadManageUI(JFrame m, JPanel bf){
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_4;
+	private JTextField textField_5;
+
+	// create the panel
+	public VehicleLoadManageUI(JFrame m, JPanel bf) {
 		JFrame main = m;
 		JPanel lastui = bf;
 		VehicleLoadManageUI nowPanel = this;
 		setLayout(null);
-		
+
 		JButton button = new JButton("返回");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				main.remove(nowPanel);				
+				main.remove(nowPanel);
 				main.getContentPane().add(lastui);
 				main.invalidate();
 				main.repaint();
@@ -43,154 +57,155 @@ public class VehicleLoadManageUI extends JPanel{
 		});
 		button.setBounds(10, 10, 65, 23);
 		add(button);
-		
-		JLabel lblNewLabel = new JLabel("营业厅业务员>>车辆装车管理");
-		lblNewLabel.setBounds(100, 14, 263, 15);
-		add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("阙帅，你好！");
-		lblNewLabel_1.setBounds(600, 14, 100, 15);
-		add(lblNewLabel_1);
-		
+
+		JLabel label = new JLabel("营业厅业务员>>装车管理");
+		label.setBounds(100, 14, 200, 15);
+		add(label);
+
+		JLabel label_1 = new JLabel("张三，你好！");
+		label_1.setBounds(600, 14, 100, 15);
+		add(label_1);
+
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 533,734,28);
+		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
-		
-		JLabel lblNewLabel_2 = new JLabel("状态栏");
-		toolBar.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("装车日期");
-		lblNewLabel_3.setBounds(146, 75, 54, 15);
-		add(lblNewLabel_3);
-		
-		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
-		JLabel lblNewLabel_4 = new JLabel("单击选择日期");
-		dateChooser2.register(lblNewLabel_4);
-		lblNewLabel_4.setBounds(242, 75, 96, 15);
-		add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("营业厅编号");
-		lblNewLabel_5.setBounds(146, 123, 65, 15);
-		add(lblNewLabel_5);
-		
-		JTextField textField_1 = new JTextField();
-		textField_1.setBounds(238, 119, 118, 21);
-		add(textField_1);
-		
-		JLabel lblNewLabel_6 = new JLabel("汽运编号");
-		lblNewLabel_6.setBounds(146, 167, 65, 15);
-		add(lblNewLabel_6);
-		
-		JTextField textField_2 = new JTextField();
-		textField_2.setBounds(238, 163, 118, 21);
-		add(textField_2);
-		
-		JLabel lblNewLabel_7 = new JLabel("出发地");
-		lblNewLabel_7.setBounds(483, 78, 45, 15);
-		add(lblNewLabel_7);
-		
-		JLabel lblNewLabel_8 = new JLabel("到达地");
-		lblNewLabel_8.setBounds(483, 122, 43, 15);
+
+		JLabel label_4 = new JLabel("状态栏");
+		toolBar.add(label_4);
+
+		JLabel label_2 = new JLabel("装车日期");
+		label_2.setBounds(69, 134, 54, 15);
+		add(label_2);
+
+		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
+		JLabel lblNewLabel_8 = new JLabel("单击选择日期");
+		dateChooser1.register(lblNewLabel_8);
+		lblNewLabel_8.setBounds(169, 134, 85, 15);
 		add(lblNewLabel_8);
+
+		JLabel lblNewLabel = new JLabel("营业厅编号");
+		lblNewLabel.setBounds(69, 172, 88, 15);
+		add(lblNewLabel);
+
+		textField = new JTextField();
+		textField.setBounds(169, 169, 181, 21);
+		add(textField);
+		textField.setColumns(10);
 		
-		JLabel lblNewLabel_9 = new JLabel("运费总价");
-		lblNewLabel_9.setBounds(483, 167, 54, 15);
-		add(lblNewLabel_9);
+		JLabel lblNewLabel_1 = new JLabel("汽运编号");
+		lblNewLabel_1.setBounds(71, 217, 54, 15);
+		add(lblNewLabel_1);
+
+		textField_1 = new JTextField();
+		textField_1.setBounds(169, 214, 181, 21);
+		add(textField_1);
+		textField_1.setColumns(10);	
+
+		JLabel lblNewLabel_3 = new JLabel("汽车代号");
+		lblNewLabel_3.setBounds(71, 260, 54, 15);
+		add(lblNewLabel_3);
+
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(169, 257, 181, 21);
+		add(textField_2);
+
+		JLabel lblNewLabel_2 = new JLabel("到达地");
+		lblNewLabel_2.setBounds(71, 302, 54, 15);
+		add(lblNewLabel_2);
 		
-		JTextField textField_3 = new JTextField();
-		textField_3.setBounds(549, 163, 65, 21);
-		add(textField_3);
+		String[] arriveAddress={"","北京中转中心","上海中转中心","南京中转中心","广州中转中心"};
+		JComboBox comboBox_1 = new JComboBox(arriveAddress);
+		comboBox_1.setBounds(169, 299, 181, 21);
+		add(comboBox_1);
 		
+		JLabel lblNewLabel_4 = new JLabel("监装员");
+		lblNewLabel_4.setBounds(71, 343, 54, 15);
+		add(lblNewLabel_4);
+
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(169, 340, 181, 21);
+		add(textField_4);
 		
+		JLabel lblNewLabel_5 = new JLabel("押运员");
+		lblNewLabel_5.setBounds(71, 381, 54, 15);
+		add(lblNewLabel_5);
+
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		textField_5.setBounds(169, 378, 181, 21);
+		add(textField_5);
 		
-		String[] place = new String[3];
-		place[0] = "南京";
-		place[1] = "上海";
-		place[2] = "北京";
-		place[3] = "广州";
-		
-		JComboBox depart = new JComboBox(place);
-		depart.setEditable(false);
-		depart.setBounds(549, 75, 65, 23);
-		add(depart);
-		
-		JComboBox arrival = new JComboBox(place);
-		arrival.setEditable(false);
-		arrival.setBounds(549, 117, 65, 23);
-		add(arrival);
-		
+		JLabel lblNewLabel_6 = new JLabel("运费");
+		lblNewLabel_6.setBounds(77, 421, 54, 15);
+		add(lblNewLabel_6);
+
+		JLabel label_3 = new JLabel("_ _ _ _ _");
+		label_3.setBounds(182, 421, 72, 15);
+		add(label_3);
+
+		JLabel lblNewLabel_7 = new JLabel("审批状态");
+		lblNewLabel_7.setBounds(392, 421, 54, 15);
+		add(lblNewLabel_7);
+
+		String[] checkState={"未审批","审批通过","审批未通过"};
+		JComboBox comboBox = new JComboBox(checkState);
+		comboBox.setEnabled(false);
+		comboBox.setBounds(492, 418, 152, 21);
+		add(comboBox);
+	
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(126, 216, 506, 208);
-		add(scrollPane);
+		scrollPane.setBounds(403, 134, 241, 262);
+		add(scrollPane);		
+
+		JLabel lblNewLabel_9 = new JLabel("所有托运单号：");
+		lblNewLabel_9.setFont(new Font("微软雅黑", Font.BOLD, 14));
+		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
+		scrollPane.setColumnHeaderView(lblNewLabel_9);
 		
-		JTable table = new JTable();
-		//选取行
-		table.addMouseListener(new java.awt.event.MouseAdapter(){
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				Point mousepoint;
-				mousepoint = e.getPoint();
-				rowpos = table.rowAtPoint(mousepoint);
-				table.setRowSelectionInterval(rowpos, rowpos);
+		JTextArea textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+
+		JButton btnNewButton = new JButton("确定");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoadBlService lb=new LoadBL();
+				String loadorderNum=textField_1.getText()+textField_2.getText();
+			    String fee=""+lb.getTotal(textArea.getText());
+			    label_3.setText(fee+"元");
+			    
+				VehicleLoadorderVO vlv=new VehicleLoadorderVO(lblNewLabel_8.getText(),
+						loadorderNum,textField.getText(),(String)comboBox_1.getSelectedItem(), 
+						textField_4.getText(), textField_5.getText(), textField_2.getText(), 
+						textArea.getText(), fee);
+				lb.addLoadOrder(vlv);
+				label_4.setText("创建成功");
 			}
 		});
-		
-		scrollPane.setViewportView(table);
-		table.setBorder(new LineBorder(new Color(0, 0, 0),0,true));
-		table.setEnabled(false);
-		DefaultTableModel tableModel = new DefaultTableModel(new Object[][]{
-			{"","","",""},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},
-			{ null, null, null, null},},new String[]{
-				"订单号","发出时间","发出地","快递员"});
-		table.setModel(tableModel);
-		table.getColumnModel().getColumn(0).setPreferredWidth(85);
-		table.getColumnModel().getColumn(1).setPreferredWidth(85);
-		table.getColumnModel().getColumn(2).setPreferredWidth(90);
-		table.getColumnModel().getColumn(2).setMinWidth(20);
-		table.getColumnModel().getColumn(3).setPreferredWidth(125);
-		table.getColumnModel().getColumn(3).setMinWidth(20);
-		
-		JButton button2 = new JButton("确认");
-		button2.addActionListener(new ActionListener() {
+		btnNewButton.setBounds(219, 485, 85, 23);
+		add(btnNewButton);
+
+		JButton btnNewButton_1 = new JButton("取消");
+		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lblNewLabel_2.setText("保存成功");
-			}
-		});
-		button2.setBounds(262, 493, 65, 28);
-		add(button2);
-		
-		JButton button3 = new JButton("取消");
-		button3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				main.remove(nowPanel);				
-				main.getContentPane().add(lastui);
+				VehicleLoadManageUI r=new VehicleLoadManageUI(main, lastui);
+				main.remove(nowPanel);
+				main.getContentPane().add(r);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
 			}
 		});
-		button3.setBounds(342, 493, 65, 28);
-		add(button3);
+		btnNewButton_1.setBounds(426, 485, 93, 23);
+		add(btnNewButton_1);
+
+		JLabel label_5 = new JLabel("营业厅装车单");
+		label_5.setFont(new Font("微软雅黑", Font.BOLD, 20));
+		label_5.setBounds(286, 74, 223, 28);
+		add(label_5);
 		
 		
-		
-		
+
 	}
 }

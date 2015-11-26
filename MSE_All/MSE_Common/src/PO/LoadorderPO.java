@@ -6,7 +6,7 @@ import State.ApproveState;
 
 public class LoadorderPO implements Serializable{
 	String date;    //装运日期  2
-	String loadorderNum;  //装运单编号   1
+	String loadorderNum;  //装运单编号   1（前四位是交通工具代号，后六位为运输编号）
 	String transferNum;     //中转中心编号或营业厅编号  3
 	String arriveNum;      //到达地编号 4
 	String monitorName;   //监装员姓名 5
@@ -16,10 +16,10 @@ public class LoadorderPO implements Serializable{
 	double fee;   //运费  9 
 	ApproveState checkState;//审批状态  10
 
-	public LoadorderPO(String date,String offNum,String transferNum,String arriveNum,String monitorName,String transferName,String transportNum,ArrayList<String> order,double fee,ApproveState checkState){
+	public LoadorderPO(String date,String loadorderNum,String transferNum,String arriveNum,String monitorName,String transferName,String transportNum,ArrayList<String> order,double fee,ApproveState checkState){
 		super();
 		this.date = date;
-		this.loadorderNum = offNum;
+		this.loadorderNum = loadorderNum;
 		this.transferNum = transferNum;
 		this.arriveNum = arriveNum;
 		this.monitorName = monitorName;

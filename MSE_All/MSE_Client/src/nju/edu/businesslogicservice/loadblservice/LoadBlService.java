@@ -1,24 +1,20 @@
 package nju.edu.businesslogicservice.loadblservice;
 
-import java.util.ArrayList;
+import java.rmi.RemoteException;
 
+import nju.edu.VO.VehicleLoadorderVO;
+import PO.LoadorderPO;
 import PO.send_LoadorderPO;
 
 public interface LoadBlService {
 	
 	//新建装车单
-	public void addLoadOrder(String data, String shop, String carShippingNum,
-			String arrival, String vehicleNum, String monitor, String transfer, 
-			ArrayList<String> orderNum);
+	public void addLoadOrder(VehicleLoadorderVO vlv);
 	
 	//获得运费总价
 	public double getTotal(String arrival);
 	
 	//保存装车单
-	public void endLoad();
-	
-	//导出
-	public void exportLoad(send_LoadorderPO po);
-	
+	public void save(LoadorderPO lp);
 
 }

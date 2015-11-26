@@ -12,5 +12,4 @@ public interface ReceiveDataService extends Remote{
 	public void insert(ArriverorderPO ap)throws RemoteException;
 	//在数据中查找对应的未接收的装运单
 	public LoadorderPO checkUnreceive_loadorderPO(String s)throws RemoteException;
-	
 }
