@@ -100,7 +100,7 @@ public class fsframe extends JFrame {
 		label_5.setBounds(451, 304, 67, 15);
 		getContentPane().add(label_5);
 		
-		JButton button_4 = new JButton("\u9000\u51FA");
+		JButton button_4 = new JButton("\u6CE8\u9500");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fs.dispose();

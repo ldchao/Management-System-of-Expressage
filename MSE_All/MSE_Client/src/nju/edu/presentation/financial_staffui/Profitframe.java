@@ -19,6 +19,7 @@ import javax.swing.JToolBar;
 
 import nju.edu.businesslogic.financebl.PayorderBL;
 
+@SuppressWarnings("serial")
 public class Profitframe extends JFrame {
 	private JTable table;
 	static DefaultTableModel tableModel;

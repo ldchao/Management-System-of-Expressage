@@ -4,7 +4,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -46,7 +45,7 @@ public class Administratorframe extends JFrame {
 		label_4.setBounds(477, 177, 81, 15);
 		getContentPane().add(label_4);
 
-		JButton button_4 = new JButton("\u9000\u51FA");
+		JButton button_4 = new JButton("×¢Ïú");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				adf.dispose();
@@ -76,9 +75,4 @@ public class Administratorframe extends JFrame {
 		this.setVisible(true);
 		this.setResizable(false);
 	}
-	
-	public static void main(String[] args) {
-		Administratorframe adframe =  new Administratorframe();
-	}
-
 }

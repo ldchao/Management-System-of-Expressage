@@ -68,7 +68,7 @@ public class PayorderBL implements PayorderBLService {
 
 		res[0] = totalPay;
 		res[1] = totalPayee;
-		res[2] = totalPay + totalPayee;
+		res[2] = totalPay - totalPayee;
 
 		return res;
 	}
