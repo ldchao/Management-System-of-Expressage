@@ -36,11 +36,13 @@ public class ReceiFormframe extends JFrame implements Runnable {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private boolean over;
 
 	/**
 	 * Create the panel.
 	 */
 	public ReceiFormframe() {
+		over = false;
 		ReceiFormframe rff = this;
 		getContentPane().setLayout(null);
 		signal = false;
@@ -59,8 +61,12 @@ public class ReceiFormframe extends JFrame implements Runnable {
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				rff.dispose();
-				// 返回
+				if (over) {
+					rff.dispose();
+					// 返回
+				} else {
+					ReciveConfirmFrame rcon = new ReciveConfirmFrame(rff);
+				}
 			}
 		});
 		button_4.setBounds(10, 6, 67, 23);
@@ -71,23 +77,23 @@ public class ReceiFormframe extends JFrame implements Runnable {
 		getContentPane().add(lblHello);
 
 		textField = new JTextField();
-		textField.setBounds(92, 120, 92, 25);
+		textField.setBounds(94, 120, 92, 25);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(183, 120, 92, 25);
+		textField_1.setBounds(185, 120, 92, 25);
 		getContentPane().add(textField_1);
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(275, 120, 92, 25);
+		textField_2.setBounds(276, 120, 92, 25);
 		getContentPane().add(textField_2);
 
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(366, 120, 92, 25);
+		textField_3.setBounds(367, 120, 92, 25);
 		getContentPane().add(textField_3);
 
 		textField_4 = new JTextField();
@@ -113,7 +119,7 @@ public class ReceiFormframe extends JFrame implements Runnable {
 				"\u8425\u4E1A\u5385\u7F16\u53F7" }, }, new String[] {
 				"New column", "New column", "New column", "New column",
 				"New column", "New column" }));
-		table1.setBounds(92, 95, 549, 25);
+		table1.setBounds(94, 95, 546, 25);
 		getContentPane().add(table1);
 
 		Date dt = new Date();
@@ -178,23 +184,30 @@ public class ReceiFormframe extends JFrame implements Runnable {
 				str[3] = textField_3.getText();
 				str[4] = textField_4.getText();
 				str[5] = textField_5.getText();
-
-				payeebl.addReceiForm(str[0], str[1], str[2], str[3], str[4],
-						str[5], false);
-				showList(str, count);
-				label_3.setText("添加成功！");
+				if (str[0].equals("") || str[1].equals("") || str[3].equals("")
+						|| str[4].equals("") || str[5].equals("")) {
+					label_3.setText("信息录入不完整，无法完成添加");
+				} else {
+					payeebl.addReceiForm(str[0], str[1], str[2], str[3],
+							str[4], str[5], false);
+					showList(str, count);
+					label_3.setText("添加成功！");
+					count++;
+					showTotal(count, payeebl.getTotal());
+				}
 				signal = true;
-				count++;
-				showTotal(count, payeebl.getTotal());
 			}
 		});
 		button.setBounds(239, 171, 93, 23);
 		getContentPane().add(button);
 
-		JButton button_1 = new JButton("\u7ED3\u675F");
+		JButton button_1 = new JButton("\u63D0\u4EA4\u5BA1\u6279");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				payeebl.addReceiForm("", "", "", "", "", "", true);
+				over = true;
+				label_3.setText("已提交等待审批");
+				signal = true;
 			}
 		});
 		button_1.setBounds(393, 171, 93, 23);
