@@ -56,12 +56,12 @@ public class CheckPayeeframe extends JFrame {
 		OrganizationNumPO opo = new OrganizationNumPO();
 		String shopname = opo.getName(shop);
 		if (shopname != null) {
-			label_1 = new JLabel(shopname + "的收款信息");
+			label_1 = new JLabel(shopname + date + "的收款信息");
 		} else {
 			label_1 = new JLabel("无此编号营业厅");
 		}
 		label_1.setFont(new Font("黑体", Font.BOLD, 15));
-		label_1.setBounds(285, 114, 246, 23);
+		label_1.setBounds(225, 114, 310, 23);
 		getContentPane().add(label_1);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -76,24 +76,39 @@ public class CheckPayeeframe extends JFrame {
 		table.setEnabled(false);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		tableModel = new DefaultTableModel(new Object[][] {
-				{ null, null, null, null, null },
-				{ null, null, null, null, null },
-				{ null, null, null, null, null },
-				{ null, null, null, null, null },
-				{ null, null, null, null, null },
-				{ null, null, null, null, null },
-				{ null, null, null, null, null },
-				{ null, null, null, null, null },
-				{ null, null, null, null, null },
-				{ null, null, null, null, null },
-				{ null, null, null, null, null },
-				{ null, null, null, null, null },
-				{ null, null, null, null, null }, }, new String[] { "订单号",
-				"收款金额", "收款日期", "快递员姓名", "业务员姓名" });
+				{ null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, }, new String[] { "订单号", "收款金额",
+				"快递员姓名", "业务员姓名" });
 		table.setModel(tableModel);
 
 		ArrayList<PayeeorderVO> payeevo = cbl.check(date, shop);
 		showTable(payeevo);
+
+		JLabel label_2 = new JLabel("");
+		label_2.setFont(new Font("黑体", Font.BOLD, 15));
+		label_2.setBounds(276, 467, 107, 23);
+		getContentPane().add(label_2);
+
+		JLabel lblMoney = new JLabel("");
+		lblMoney.setFont(new Font("黑体", Font.BOLD, 15));
+		lblMoney.setBounds(385, 467, 107, 23);
+		getContentPane().add(lblMoney);
+		// 合计
+		JButton button = new JButton("\u5408\u8BA1");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				double total = cbl.total(payeevo);
+				label_2.setText("收款总金额：");
+				lblMoney.setText(total + "");
+			}
+		});
+		button.setBounds(318, 415, 93, 23);
+		getContentPane().add(button);
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");
@@ -111,9 +126,8 @@ public class CheckPayeeframe extends JFrame {
 		for (PayeeorderVO vo : payeevo) {
 			table.setValueAt(vo.getOrder(), count, 0);
 			table.setValueAt(vo.getMoney(), count, 1);
-			table.setValueAt(vo.getDate(), count, 2);
-			table.setValueAt(vo.getCarrierName(), count, 3);
-			table.setValueAt(vo.getShopperName(), count, 4);
+			table.setValueAt(vo.getCarrierName(), count, 2);
+			table.setValueAt(vo.getShopperName(), count, 3);
 			count++;
 
 			if (count >= table.getRowCount()) {

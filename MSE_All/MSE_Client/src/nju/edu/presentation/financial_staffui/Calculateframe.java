@@ -1,29 +1,19 @@
 package nju.edu.presentation.financial_staffui;
 
-import java.awt.BorderLayout;
-import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JList;
-import javax.swing.JFormattedTextField;
-import javax.swing.JSlider;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JTree;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.SpringLayout;
+import javax.swing.JToolBar;
 
-public class Calculateframe extends JFrame {
+@SuppressWarnings("serial")
+public class Calculateframe extends JFrame implements Runnable {
+	private boolean signal;
 	private JTextField textField;
+	private JLabel label_2;
 
 	/**
 	 * Create the panel.
@@ -32,6 +22,7 @@ public class Calculateframe extends JFrame {
 
 		Calculateframe cf = this;
 		getContentPane().setLayout(null);
+		signal = false;
 
 		JLabel label = new JLabel("财务人员>>结算管理");
 		label.setBounds(88, 5, 518, 15);
@@ -62,6 +53,13 @@ public class Calculateframe extends JFrame {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 
+		JToolBar toolBar = new JToolBar();
+		toolBar.setBounds(0, 543, 744, 28);
+		getContentPane().add(toolBar);
+
+		label_2 = new JLabel("\u72B6\u6001\u680F");
+		toolBar.add(label_2);
+
 		JButton button = new JButton("\u786E\u8BA4");
 		button.setBounds(320, 426, 93, 23);
 		button.addActionListener(new ActionListener() {
@@ -71,6 +69,9 @@ public class Calculateframe extends JFrame {
 				if (!date.equals("请单击选择日期") && !shop.equals("")) {
 					CheckPayeeframe cpef = new CheckPayeeframe(date, shop);
 					cf.dispose();
+				} else {
+					label_2.setText("请输入营业厅编号并选择日期后确认");
+					signal = true;
 				}
 			}
 		});
@@ -89,5 +90,21 @@ public class Calculateframe extends JFrame {
 		this.setVisible(true);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			if (signal) {
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				label_2.setText("状态栏");
+				signal = false;
+			}
+		}
+
 	}
 }

@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import java.awt.Font;
@@ -17,6 +16,7 @@ import javax.swing.JTextField;
 
 import nju.edu.businesslogic.accountbl.AccountBL;
 
+@SuppressWarnings("serial")
 public class NewAccountframe extends JFrame implements Runnable {
 	private JTextField textField;
 	private JTextField textField_1;

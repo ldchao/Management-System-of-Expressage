@@ -10,5 +10,5 @@ public interface CalculateBLService {
 	public ArrayList<PayeeorderVO> check(String data,String shop);
 	
 	// 计算总收款金额
-	public double total(double[] payee);
+	public double total(ArrayList<PayeeorderVO> volist);
 }

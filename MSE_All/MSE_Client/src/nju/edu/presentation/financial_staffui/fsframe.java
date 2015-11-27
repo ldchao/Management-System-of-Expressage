@@ -43,6 +43,8 @@ public class fsframe extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				fs.dispose();
 				Calculateframe calframe = new Calculateframe();
+				Thread t = new Thread(calframe);
+				t.start();
 			}
 		});
 		button.setBounds(316, 161, 125, 100);

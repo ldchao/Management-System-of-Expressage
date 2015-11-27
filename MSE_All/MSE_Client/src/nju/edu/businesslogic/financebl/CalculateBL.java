@@ -17,12 +17,11 @@ public class CalculateBL implements CalculateBLService {
 	}
 
 	@Override
-	public double total(double[] payee) {
-		// TODO Auto-generated method stub
+	public double total(ArrayList<PayeeorderVO> volist) {
 		double result = 0;
-		for (int i = 0; i < payee.length; i++) {
-			result += payee[i];
-		}
+		for (PayeeorderVO vo : volist)
+			result += vo.getMoney();
+
 		return result;
 	}
 
