@@ -17,7 +17,7 @@ import javax.swing.JScrollPane;
 import nju.edu.VO.PayeeorderVO;
 import nju.edu.businesslogic.financebl.CalculateBL;
 import nju.edu.businesslogic.financebl.PayeeorderBL;
-import nju.edu.businesslogic.financebl.checkPayeeOrder;
+import nju.edu.businesslogic.financebl.checkPayeeOrderInterface;
 import PO.OrganizationNumPO;
 
 @SuppressWarnings("serial")
@@ -47,6 +47,8 @@ public class CheckPayeeframe extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				cpef.dispose();
 				Calculateframe clf = new Calculateframe();
+				Thread t = new Thread(clf);
+				t.start();
 			}
 		});
 		button_4.setBounds(15, 6, 70, 23);

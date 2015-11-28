@@ -42,7 +42,7 @@ public class ReceiFormframe extends JFrame implements Runnable {
 	 * Create the panel.
 	 */
 	public ReceiFormframe() {
-		over = false;
+		over = true;
 		ReceiFormframe rff = this;
 		getContentPane().setLayout(null);
 		signal = false;
@@ -177,6 +177,7 @@ public class ReceiFormframe extends JFrame implements Runnable {
 		JButton button = new JButton("\u6DFB\u52A0");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				over = false;
 				String str[] = new String[6];
 				str[0] = textField.getText();
 				str[1] = textField_1.getText();

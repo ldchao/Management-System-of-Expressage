@@ -5,10 +5,6 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -18,13 +14,12 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.text.TabExpander;
 import javax.swing.JScrollPane;
 
 import nju.edu.VO.AccountVO;
 import nju.edu.businesslogic.accountbl.AccountBL;
 
+@SuppressWarnings("serial")
 public class CheckAccountframe extends JFrame implements Runnable {
 	private static JTable table;
 	private int rowpos = -1;

@@ -6,7 +6,7 @@ import PO.PayeeorderPO;
 import nju.edu.VO.*;
 
 
-public interface checkPayeeOrder {
+public interface checkPayeeOrderInterface {
 	
 	public ArrayList<PayeeorderVO> checkPayeeorder(String date, String shop);
 	

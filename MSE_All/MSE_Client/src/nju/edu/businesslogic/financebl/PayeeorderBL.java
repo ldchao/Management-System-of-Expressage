@@ -1,6 +1,5 @@
 package nju.edu.businesslogic.financebl;
 
-import java.awt.List;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -11,7 +10,7 @@ import nju.edu.dataservice.financedataservice.PayeeorderDataService;
 import PO.PayeeorderPO;
 import State.ApproveState;
 
-public class PayeeorderBL implements PayeeorderBlService, checkPayeeOrder {
+public class PayeeorderBL implements PayeeorderBlService, checkPayeeOrderInterface {
 	PayeeorderDataService payeeorderData = RMIHelper.getPayeeorderData();
 	private ArrayList<PayeeorderPO> payeeList = new ArrayList<>();
 
@@ -60,7 +59,7 @@ public class PayeeorderBL implements PayeeorderBlService, checkPayeeOrder {
 			for (PayeeorderPO po : Plist) {
 				PayeeorderVO vo = new PayeeorderVO(po.getOrder(),
 						po.getMoney(), po.getDate(), po.getCarrierName(),
-						po.getShopperName());
+						po.getShopperName(),po.getShop());
 				Vlist.add(vo);
 			}
 		} catch (RemoteException e) {
@@ -89,7 +88,7 @@ public class PayeeorderBL implements PayeeorderBlService, checkPayeeOrder {
 			for (PayeeorderPO po : Plist) {
 				PayeeorderVO vo = new PayeeorderVO(po.getOrder(),
 						po.getMoney(), po.getDate(), po.getCarrierName(),
-						po.getShopperName());
+						po.getShopperName(),po.getShop());
 				Vlist.add(vo);
 			}
 		} catch (RemoteException e) {

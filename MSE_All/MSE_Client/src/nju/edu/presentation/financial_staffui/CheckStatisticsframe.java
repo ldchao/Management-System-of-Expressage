@@ -2,9 +2,9 @@ package nju.edu.presentation.financial_staffui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,19 +14,29 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+import nju.edu.VO.PayeeorderVO;
+import nju.edu.VO.PayorderVO;
+import nju.edu.businesslogic.financebl.StatisticsBL;
+
+import javax.swing.JToolBar;
+
+@SuppressWarnings("serial")
 public class CheckStatisticsframe extends JFrame {
 	private JTable table;
 	private JTable table2;
-	private int rowpos1 = -1;
-	private int rowpos2 = -1;
+	private DefaultTableModel tableModel1;
+	private DefaultTableModel tableModel2;
+	StatisticsBL stbl = new StatisticsBL();
 
 	/**
 	 * Create the panel.
 	 */
-	public CheckStatisticsframe() {
+	public CheckStatisticsframe(String start, String end) {
 		getContentPane().setLayout(null);
-
 		CheckStatisticsframe csf = this;
+
+		int startnum = Integer.valueOf(start.replaceAll("-", ""));
+		int endnum = Integer.valueOf(end.replaceAll("-", ""));
 
 		JLabel label = new JLabel("财务人员>>统计报表>>查看收款信息和付款信息");
 		label.setBounds(92, 8, 563, 15);
@@ -40,7 +50,9 @@ public class CheckStatisticsframe extends JFrame {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				csf.dispose();
-				Calculateframe clf = new Calculateframe();
+				Statisticsframe sts = new Statisticsframe();
+				Thread t = new Thread(sts);
+				t.start();
 			}
 		});
 		button_4.setBounds(15, 6, 70, 23);
@@ -48,36 +60,25 @@ public class CheckStatisticsframe extends JFrame {
 
 		JLabel label_1 = new JLabel("收款信息");
 		label_1.setFont(new Font("黑体", Font.BOLD, 15));
-		label_1.setBounds(320, 78, 93, 15);
+		label_1.setBounds(320, 81, 93, 15);
 		getContentPane().add(label_1);
 
 		JLabel label_2 = new JLabel("\u4ED8\u6B3E\u5355\u8BB0\u5F55");
 		label_2.setFont(new Font("黑体", Font.BOLD, 15));
-		label_2.setBounds(320, 294, 93, 15);
+		label_2.setBounds(319, 293, 93, 15);
 		getContentPane().add(label_2);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(92, 114, 549, 144);
+		scrollPane.setBounds(43, 114, 654, 147);
 		getContentPane().add(scrollPane);
 
 		// 收款单
 		table = new JTable();
 		table.setRowHeight(25);
-
-		// 选取行
-		table.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				Point mousepoint;
-				mousepoint = e.getPoint();
-				rowpos1 = table.rowAtPoint(mousepoint);
-				table.setRowSelectionInterval(rowpos1, rowpos1);
-			}
-		});
-
 		scrollPane.setViewportView(table);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
-		table.setModel(new DefaultTableModel(new Object[][] {
+		tableModel1 = new DefaultTableModel(new Object[][] {
 				{ "", "", "", "", "", "" },
 				{ null, null, null, null, null, null },
 				{ null, null, null, null, null, null },
@@ -93,40 +94,26 @@ public class CheckStatisticsframe extends JFrame {
 				{ null, null, null, null, null, null },
 				{ null, null, null, null, null, null },
 				{ null, null, null, null, null, null }, }, new String[] {
-				"\u4ED8\u6B3E\u65E5\u671F", "\u4ED8\u6B3E\u91D1\u989D",
-				"\u4ED8\u6B3E\u8D26\u53F7", "\u4ED8\u6B3E\u6761\u76EE",
-				"\u5907\u6CE8", "\u4ED8\u6B3E\u4EBA" }));
-		table.getColumnModel().getColumn(0).setPreferredWidth(85);
-		table.getColumnModel().getColumn(1).setPreferredWidth(85);
-		table.getColumnModel().getColumn(2).setPreferredWidth(90);
-		table.getColumnModel().getColumn(2).setMinWidth(20);
-		table.getColumnModel().getColumn(3).setPreferredWidth(125);
-		table.getColumnModel().getColumn(3).setMinWidth(20);
-		table.getColumnModel().getColumn(4).setPreferredWidth(125);
-		table.getColumnModel().getColumn(5).setPreferredWidth(80);
+				"\u6536\u6B3E\u65E5\u671F", "\u6536\u6B3E\u91D1\u989D",
+				"\u8BA2\u5355\u53F7", "\u5FEB\u9012\u5458\u59D3\u540D",
+				"\u8425\u4E1A\u5385\u7F16\u53F7",
+				"\u4E1A\u52A1\u5458\u59D3\u540D" });
+		table.setModel(tableModel1);
+
+		ArrayList<PayeeorderVO> payeevo = stbl.checkPayee(startnum, endnum);
+		showPayeeTable(payeevo);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(92, 329, 549, 144);
+		scrollPane_1.setBounds(43, 324, 654, 147);
 		getContentPane().add(scrollPane_1);
 
 		// 付款单
 		table2 = new JTable();
 		table2.setRowHeight(25);
-
-		// 选取行
-		table2.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				Point mousepoint;
-				mousepoint = e.getPoint();
-				rowpos2 = table2.rowAtPoint(mousepoint);
-				table2.setRowSelectionInterval(rowpos2, rowpos2);
-			}
-		});
-
 		scrollPane_1.setViewportView(table2);
 		table2.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table2.setEnabled(false);
-		table2.setModel(new DefaultTableModel(new Object[][] {
+		tableModel2 = new DefaultTableModel(new Object[][] {
 				{ "", "", "", "", "", "" },
 				{ null, null, null, null, null, null },
 				{ null, null, null, null, null, null },
@@ -144,15 +131,27 @@ public class CheckStatisticsframe extends JFrame {
 				{ null, null, null, null, null, null }, }, new String[] {
 				"\u4ED8\u6B3E\u65E5\u671F", "\u4ED8\u6B3E\u91D1\u989D",
 				"\u4ED8\u6B3E\u8D26\u53F7", "\u4ED8\u6B3E\u6761\u76EE",
-				"\u5907\u6CE8", "\u4ED8\u6B3E\u4EBA" }));
-		table2.getColumnModel().getColumn(0).setPreferredWidth(85);
-		table2.getColumnModel().getColumn(1).setPreferredWidth(85);
-		table2.getColumnModel().getColumn(2).setPreferredWidth(90);
-		table2.getColumnModel().getColumn(2).setMinWidth(20);
-		table2.getColumnModel().getColumn(3).setPreferredWidth(125);
-		table2.getColumnModel().getColumn(3).setMinWidth(20);
-		table2.getColumnModel().getColumn(4).setPreferredWidth(125);
-		table2.getColumnModel().getColumn(5).setPreferredWidth(80);
+				"\u5907\u6CE8", "\u4ED8\u6B3E\u4EBA" });
+		table2.setModel(tableModel2);
+
+		ArrayList<PayorderVO> payvo = stbl.checkPay(startnum, endnum);
+		showPayTable(payvo);
+
+		JLabel label_3 = new JLabel(start + "至" + end + "期间的经营情况");
+		label_3.setFont(new Font("黑体", Font.BOLD, 17));
+		label_3.setBounds(188, 44, 368, 23);
+		getContentPane().add(label_3);
+
+		JButton button = new JButton("\u5BFC\u51FA");
+		button.setBounds(316, 489, 93, 23);
+		getContentPane().add(button);
+
+		JToolBar toolBar = new JToolBar();
+		toolBar.setBounds(-1, 532, 732, 28);
+		getContentPane().add(toolBar);
+
+		JLabel lblNewLabel = new JLabel("\u72B6\u6001\u680F");
+		toolBar.add(lblNewLabel);
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");
@@ -161,5 +160,41 @@ public class CheckStatisticsframe extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public void showPayeeTable(ArrayList<PayeeorderVO> payeeList) {
+		int i = 0;
+		for (PayeeorderVO vo : payeeList) {
+			tableModel1.setValueAt(vo.getDate(), i, 0);
+			tableModel1.setValueAt(vo.getMoney(), i, 1);
+			tableModel1.setValueAt(vo.getOrder(), i, 2);
+			tableModel1.setValueAt(vo.getCarrierName(), i, 3);
+			tableModel1.setValueAt(vo.getShop(), i, 4);
+			tableModel1.setValueAt(vo.getShopperName(), i, 5);
+			i++;
+
+			if (i >= tableModel1.getRowCount()) {
+				String[] rowstr = { "", "", "", "", "", "" };
+				tableModel1.addRow(rowstr);
+			}
+		}
+	}
+
+	public void showPayTable(ArrayList<PayorderVO> payList) {
+		int i = 0;
+		for (PayorderVO vo : payList) {
+			tableModel2.setValueAt(vo.getDate(), i, 0);
+			tableModel2.setValueAt(vo.getMoney(), i, 1);
+			tableModel2.setValueAt(vo.getAccount(), i, 2);
+			tableModel2.setValueAt(vo.getList(), i, 3);
+			tableModel2.setValueAt(vo.getComment(), i, 4);
+			tableModel2.setValueAt(vo.getPayor(), i, 5);
+			i++;
+
+			if (i >= tableModel2.getRowCount()) {
+				String[] rowstr = { "", "", "", "", "", "" };
+				tableModel2.addRow(rowstr);
+			}
+		}
 	}
 }

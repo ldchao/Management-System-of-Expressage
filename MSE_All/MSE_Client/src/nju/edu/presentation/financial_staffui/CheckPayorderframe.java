@@ -3,12 +3,10 @@ package nju.edu.presentation.financial_staffui;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -22,10 +20,10 @@ import java.awt.Color;
 
 import javax.swing.JScrollPane;
 
-import nju.edu.VO.AccountVO;
 import nju.edu.VO.PayorderVO;
 import nju.edu.businesslogic.financebl.PayorderBL;
 
+@SuppressWarnings("serial")
 public class CheckPayorderframe extends JFrame {
 	private static JTable table;
 	private int rowpos = -1;
@@ -115,7 +113,7 @@ public class CheckPayorderframe extends JFrame {
 		table.getColumnModel().getColumn(3).setMinWidth(20);
 		table.getColumnModel().getColumn(4).setPreferredWidth(125);
 		table.getColumnModel().getColumn(5).setPreferredWidth(80);
-		
+
 		showTable(payorderBL.checkPayorder());
 
 		// frame
@@ -140,11 +138,11 @@ public class CheckPayorderframe extends JFrame {
 			i++;
 
 			if (i >= table.getRowCount()) {
-				String[] rowstr = { "", "","","","","" };
+				String[] rowstr = { "", "", "", "", "", "" };
 				tableModel.addRow(rowstr);
 			}
 		}
-		
+
 		while (i < table.getRowCount()) {
 			tableModel.setValueAt("", i, 0);
 			tableModel.setValueAt("", i, 1);

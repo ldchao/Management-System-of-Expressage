@@ -55,6 +55,8 @@ public class fsframe extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				fs.dispose();
 				Statisticsframe sf = new Statisticsframe();
+				Thread t = new Thread(sf);
+				t.start();
 			}
 		});
 		button_1.setBounds(507, 161, 125, 100);

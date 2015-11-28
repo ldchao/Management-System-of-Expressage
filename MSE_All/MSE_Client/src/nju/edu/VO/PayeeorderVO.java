@@ -11,15 +11,21 @@ public class PayeeorderVO implements Serializable {
 	String date;
 	String carrierName;
 	String shopperName;
+	String shop;
 
 	public PayeeorderVO(String order, double money, String date,
-			String carrierName, String shopperName) {
+			String carrierName, String shopperName,String shop) {
 		super();
 		this.order = order;
 		this.money = money;
 		this.date = date;
 		this.carrierName = carrierName;
 		this.shopperName = shopperName;
+		this.shop = shop;
+	}
+	
+	public String getShop(){
+		return this.shop;
 	}
 
 	public String getOrder() {
