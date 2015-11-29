@@ -69,5 +69,10 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public double getWeigtht(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

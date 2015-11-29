@@ -89,6 +89,7 @@ public class Listinbl implements ListinBLService,ListinInfo,OrderInfo,UpdateInfo
 		double distance=0;
 		try {
 			distance=ConstantPolicyDataSerivce.GetDistance(address1, address2);
+			System.out.println(distance);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,7 +98,6 @@ public class Listinbl implements ListinBLService,ListinInfo,OrderInfo,UpdateInfo
 		return (int)(distance/80/24)+"天"+((int)(distance/80)-(int)(distance/80/24)*24)+"小时";
 	}
 
-	//是否要在data层分离接口
 	@Override
 	public OrderVO getOrder(String id) {
 		// TODO Auto-generated method stub
@@ -121,11 +121,24 @@ public class Listinbl implements ListinBLService,ListinInfo,OrderInfo,UpdateInfo
 	@Override
 	public void update(String id, String message) {
 		// TODO Auto-generated method stub
+		try {
+			listinDataService.update(id, message);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public double getWeight(String id) {
-		return 0;
+		double result=0;
+		try {
+			result=listinDataService.getWeigtht(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 		// TODO Auto-generated method stub
 		
 	}

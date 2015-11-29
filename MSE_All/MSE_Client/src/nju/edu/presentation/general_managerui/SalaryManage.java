@@ -8,8 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import nju.edu.VO.SalaryVO;
-import nju.edu.businesslogic.policybl.SalaryPolicyblController;
-
+import nju.edu.businesslogic.policybl.SalaryPolicybl;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -63,8 +62,8 @@ public class SalaryManage extends JFrame {
 		JButton button_1 = new JButton("\u786E\u5B9A");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SalaryPolicyblController salaryPolicyblController=new SalaryPolicyblController();
-				SalaryVO salaryVO=salaryPolicyblController.checkSalary(comboBox.getSelectedItem().toString());
+				SalaryPolicybl salaryPolicybl=new SalaryPolicybl();
+				SalaryVO salaryVO=salaryPolicybl.checkSalary(comboBox.getSelectedItem().toString());
 				Salary salary=new Salary(salaryVO);
 				salaryManageframe.dispose();
 			}

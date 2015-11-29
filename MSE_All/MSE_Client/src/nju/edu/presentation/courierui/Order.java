@@ -561,7 +561,7 @@ public class Order extends JFrame implements Runnable{
 					textField_14.getText().equals("")||textField_15.getText().equals("")))){
 					textField_16.setText(""+listinbl.getTotalTime(comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(), express));
 					textField_17.setText(""+listinbl.getTotalMoney(
-							textArea.getText(), textArea_1.getText(), textField_13.getText(), textField_14.getText(), textField_15.getText(), express, pack));
+							comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(), textField_13.getText(), textField_14.getText(), textField_15.getText(), express, pack));
 			}
 		}
 	}
