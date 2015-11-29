@@ -14,5 +14,5 @@ public interface StatisticsBLService {
 
 	// 导出付款单和收款单信息
 	public void excel(ArrayList<PayorderVO> payVo,
-			ArrayList<PayeeorderVO> payeeVo);
+			ArrayList<PayeeorderVO> payeeVo, String date);
 }

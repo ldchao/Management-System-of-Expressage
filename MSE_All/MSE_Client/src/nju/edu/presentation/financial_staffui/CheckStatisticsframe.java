@@ -142,16 +142,22 @@ public class CheckStatisticsframe extends JFrame {
 		label_3.setBounds(188, 44, 368, 23);
 		getContentPane().add(label_3);
 
-		JButton button = new JButton("\u5BFC\u51FA");
-		button.setBounds(316, 489, 93, 23);
-		getContentPane().add(button);
-
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(-1, 532, 732, 28);
+		toolBar.setBounds(0, 543, 744, 28);
 		getContentPane().add(toolBar);
 
 		JLabel lblNewLabel = new JLabel("\u72B6\u6001\u680F");
 		toolBar.add(lblNewLabel);
+
+		JButton button = new JButton("\u5BFC\u51FA");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				stbl.excel(payvo, payeevo, start + "至" + end + "的");
+				lblNewLabel.setText("已成功导出到本地！");
+			}
+		});
+		button.setBounds(316, 489, 93, 23);
+		getContentPane().add(button);
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");
@@ -159,6 +165,7 @@ public class CheckStatisticsframe extends JFrame {
 		this.setLocation(400, 100);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

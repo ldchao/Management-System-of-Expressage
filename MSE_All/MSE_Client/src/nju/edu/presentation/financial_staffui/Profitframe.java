@@ -80,17 +80,23 @@ public class Profitframe extends JFrame {
 		label_1.setFont(new Font("黑体", Font.BOLD, 20));
 		label_1.setBounds(242, 115, 260, 31);
 		getContentPane().add(label_1);
-
-		JButton button = new JButton("\u5BFC\u51FA");
-		button.setBounds(325, 449, 93, 23);
-		getContentPane().add(button);
-
+		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 543, 744, 28);
 		getContentPane().add(toolBar);
 
 		JLabel label_2 = new JLabel("\u72B6\u6001\u680F");
 		toolBar.add(label_2);
+
+		JButton button = new JButton("\u5BFC\u51FA");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				payorderBL.excel(date.format(dt), pro[0], pro[1], pro[2]);
+				label_2.setText("已成功导出到本地！");
+			}
+		});
+		button.setBounds(325, 449, 93, 23);
+		getContentPane().add(button);
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");

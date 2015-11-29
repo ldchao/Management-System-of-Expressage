@@ -11,7 +11,7 @@ import nju.edu.VO.PayorderVO;
 import nju.edu.businesslogicservice.financeblservice.PayorderBLService;
 import nju.edu.dataservice.financedataservice.PayorderDataService;
 
-public class PayorderBL implements PayorderBLService, checkPayorderInterface {
+public class PayorderBL implements PayorderBLService, checkPayorderInfo {
 	PayorderDataService payorderData = RMIHelper.getPayorderData();
 
 	@Override
@@ -51,7 +51,7 @@ public class PayorderBL implements PayorderBLService, checkPayorderInterface {
 	public double[] profit() {
 
 		ArrayList<PayorderVO> pay = checkPayorder();
-		checkPayeeOrderInterface check = new PayeeorderBL();
+		checkPayeeOrderInfo check = new PayeeorderBL();
 		ArrayList<PayeeorderVO> payee = check.checkPayeeorder();
 
 		double res[] = new double[3];
@@ -75,8 +75,12 @@ public class PayorderBL implements PayorderBLService, checkPayorderInterface {
 
 	@Override
 	public void excel(String date, double income, double outcome, double benefit) {
-		// TODO Auto-generated method stub
-
+		
+		try {
+			payorderData.excel(date, income, outcome, benefit);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

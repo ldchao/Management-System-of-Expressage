@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import nju.edu.data.FileIO.ExcelWriter;
 import nju.edu.data.FileIO.fileReader;
 import nju.edu.data.FileIO.fileWriter;
 import nju.edu.dataservice.financedataservice.PayorderDataService;
@@ -55,8 +56,12 @@ public class PayorderData extends UnicastRemoteObject implements
 
 	@Override
 	public void excel(String date, double income, double outcome, double benefit) {
-		// TODO Auto-generated method stub
-
+		ArrayList<String> list = new ArrayList<>();
+		
+		list.add("截至日期,总收入,总支出,总利润");
+		list.add(date+","+income+","+outcome+","+benefit+",");
+		
+		ExcelWriter.Writer("成本收益表", list);
 	}
 
 }

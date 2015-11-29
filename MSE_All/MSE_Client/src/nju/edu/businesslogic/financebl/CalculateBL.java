@@ -9,7 +9,7 @@ public class CalculateBL implements CalculateBLService {
 
 	@Override
 	public ArrayList<PayeeorderVO> check(String date, String shop) {
-		checkPayeeOrderInterface checkpayee = new PayeeorderBL();
+		checkPayeeOrderInfo checkpayee = new PayeeorderBL();
 		ArrayList<PayeeorderVO> payeevo = checkpayee
 				.checkPayeeorder(date, shop);
 

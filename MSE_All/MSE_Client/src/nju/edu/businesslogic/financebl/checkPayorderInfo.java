@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import nju.edu.VO.PayorderVO;
 
-public interface checkPayorderInterface {
+public interface checkPayorderInfo {
 
 	public ArrayList<PayorderVO> checkPayorder();
 }

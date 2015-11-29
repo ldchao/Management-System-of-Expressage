@@ -16,8 +16,6 @@ import javax.swing.JScrollPane;
 
 import nju.edu.VO.PayeeorderVO;
 import nju.edu.businesslogic.financebl.CalculateBL;
-import nju.edu.businesslogic.financebl.PayeeorderBL;
-import nju.edu.businesslogic.financebl.checkPayeeOrderInterface;
 import PO.OrganizationNumPO;
 
 @SuppressWarnings("serial")

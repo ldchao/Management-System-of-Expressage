@@ -10,7 +10,7 @@ import nju.edu.dataservice.financedataservice.PayeeorderDataService;
 import PO.PayeeorderPO;
 import State.ApproveState;
 
-public class PayeeorderBL implements PayeeorderBlService, checkPayeeOrderInterface {
+public class PayeeorderBL implements PayeeorderBlService, checkPayeeOrderInfo {
 	PayeeorderDataService payeeorderData = RMIHelper.getPayeeorderData();
 	private ArrayList<PayeeorderPO> payeeList = new ArrayList<>();
 

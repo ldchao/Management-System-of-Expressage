@@ -9,7 +9,7 @@ import nju.edu.businesslogicservice.accountblservice.AccountBLService;
 import nju.edu.dataservice.accountdataservice.AccountDataService;
 import PO.AccountPO;
 
-public class AccountBL implements AccountBLService {
+public class AccountBL implements AccountBLService, checkAccountInfo {
 	AccountDataService accountData = RMIHelper.getAccountData();
 
 	@Override
