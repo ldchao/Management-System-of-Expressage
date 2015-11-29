@@ -68,9 +68,9 @@ public class Warehouse_inui extends JPanel {
 		JButton btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Storeinorder_Input si=new Storeinorder_Input(main,nowPanel);
+				Storeinorder s=new Storeinorder(main,nowPanel);
 				main.remove(nowPanel);				
-				main.getContentPane().add(si);
+				main.getContentPane().add(s);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);

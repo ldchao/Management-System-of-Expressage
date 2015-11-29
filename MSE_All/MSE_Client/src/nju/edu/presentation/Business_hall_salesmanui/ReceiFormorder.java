@@ -81,7 +81,7 @@ public class ReceiFormorder extends JPanel {
 		lblNewLabel_8.setBounds(390, 159, 96, 15);
 		add(lblNewLabel_8);
 
-		JLabel label_3 = new JLabel("中转中心编号");
+		JLabel label_3 = new JLabel("到达地编号");
 		label_3.setBounds(180, 211, 96, 15);
 		add(label_3);
 
@@ -90,7 +90,7 @@ public class ReceiFormorder extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("出发地");
+		JLabel lblNewLabel = new JLabel("出发地编号");
 		lblNewLabel.setBounds(180, 263, 54, 15);
 		add(lblNewLabel);
 
@@ -139,9 +139,9 @@ public class ReceiFormorder extends JPanel {
 						|| !isSelected()) {
 					label_4.setText("输入信息有误");
 				} else {
-					ReceiFormVO rv = new ReceiFormVO(textField.getText(),
+					ReceiFormVO rv = new ReceiFormVO(
 							lblNewLabel_8.getText(), textField_1.getText(),
-							getSelection(), lv.getCarNum(),
+							textField.getText(),getSelection(), lv.getCarNum(),
 							lv.getMonitorName(), lv.getTransferName(), lv
 									.getOrder());
 					ReceiFormBlService rb = new ReceiFormBL();

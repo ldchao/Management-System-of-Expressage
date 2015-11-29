@@ -10,7 +10,7 @@ public class ReceiFormVO implements Serializable {
 
 	String data; //到达日期
 	String departPlace;  //出发地
-	String arriveState;  //到达地
+	String arrivePlace;  //到达地
 	String arrive_state;  //货物到达状态  4
 	
 	String carNum;  //通过装运单编号前四位得到交通工具代号
@@ -19,12 +19,12 @@ public class ReceiFormVO implements Serializable {
 	ArrayList<String> order;  //所有订单编号
 	
 	public ReceiFormVO(String data,  String departPlace,
-			String arriveState,String arrive_state, String carNum, String monitorName,
+			String arrivePlace,String arrive_state, String carNum, String monitorName,
 			String transferName, ArrayList<String> order) {
 		super();
 		this.data = data;
 		this.departPlace = departPlace;
-		this.arriveState = arriveState;
+		this.arrivePlace = arrivePlace;
 		this.arrive_state = arrive_state;
 		this.carNum = carNum;
 		this.monitorName = monitorName;
@@ -40,8 +40,8 @@ public class ReceiFormVO implements Serializable {
 		return departPlace;
 	}
 
-	public String getArriveState() {
-		return arriveState;
+	public String getArrivePlace() {
+		return arrivePlace;
 	}
 
 	public String getArrive_state() {

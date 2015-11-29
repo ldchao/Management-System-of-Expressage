@@ -33,7 +33,6 @@ public class Warehouse_in_checkRemindui extends JPanel {
 				main.getContentPane().add(lastui);
 				main.invalidate();
 				main.repaint();
-				main.setVisible(true);
 			}
 		});
 		button.setBounds(10, 10, 65, 23);
