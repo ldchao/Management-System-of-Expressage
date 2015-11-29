@@ -81,13 +81,23 @@ public class OrganizationNumPO {
 		OrganizationNum_MAP.put("020015", "广州高新区营业厅");
 		
 	}
-	
+	//由机构编号得到机构名字
 	public String getName(String num){
 		String result=null;
 		for (Entry<String, String> entry : OrganizationNum_MAP.entrySet()) {
-			String name = entry.getKey();
-			if(num.equals(name))
+			String number = entry.getKey();
+			if(num.equals(number))
 			   result = entry.getValue();
+		}
+		return result;
+	}
+	//由机构名字得到机构编号
+	public String getNum(String nam){
+		String result=null;
+		for (Entry<String, String> entry : OrganizationNum_MAP.entrySet()) {
+			String name = entry.getValue();
+			if(nam.equals(name))
+			   result = entry.getKey();
 		}
 		return result;
 	}

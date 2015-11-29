@@ -139,7 +139,8 @@ public class Arriverorder extends JPanel {
 				} else {
 					ArriverorderVO av = new ArriverorderVO(textField.getText(),
 							lblNewLabel_8.getText(), textField_1.getText(),
-							getSelection());
+							getSelection(),lv.getCarNum(),lv.getMonitorName(),
+							lv.getTransferName(),lv.getOrder());
 					ReceiveBLService rb=new ReceiveBL();
 					rb.build(av);
 					label_4.setText("到达单已提交总经理审批");

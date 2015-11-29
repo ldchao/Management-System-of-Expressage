@@ -19,8 +19,9 @@ public class ReceiveBL implements ReceiveBLService {
 	// 创建中转中心到达单
 	@Override
 	public void build(ArriverorderVO av) {
-		ArriverorderPO PO=new ArriverorderPO(av.getNumberOfTransferStation(), 
-				av.getDate(), av.getOffnum(), getState(av.getArrive_state()), ApproveState.NotApprove);
+		ArriverorderPO PO = new ArriverorderPO(av.getNumberOfTransferStation(),
+				av.getDate(), av.getOffnum(), getState(av.getArrive_state()),
+				ApproveState.NotApprove);
 		ReceiveDataService receivedata = RMIHelper.getReceiveData();
 		try {
 			receivedata.insert(PO);
@@ -50,27 +51,30 @@ public class ReceiveBL implements ReceiveBLService {
 		try {
 			lp = receivedata.checkUnreceive_loadorderPO(s);
 			if (lp != null)
-				needinputarrive = new LoadorderVO(lp.getTransferNum());
+				needinputarrive = new LoadorderVO(lp.getTransferNum(), lp
+						.getLoadorderNum().substring(0, 4),
+						lp.getMonitorName(), lp.getTransferName(),
+						lp.getOrder());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return needinputarrive;
 	}
 
-	private ArriveState getState(String s){
-		if(s.equals("损坏")){
+	private ArriveState getState(String s) {
+		if (s.equals("损坏")) {
 			return ArriveState.Damaged;
-		}else if(s.equals("完整")){
+		} else if (s.equals("完整")) {
 			return ArriveState.Whole;
-		}else{
+		} else {
 			return ArriveState.Lost;
-		}		
+		}
 	}
-	
-	//更新司机、交通工具、监装员、押运员的闲/忙信息和订单物流信息
-	private void update(){
-		
-		
+
+	// 更新司机、交通工具、监装员、押运员的闲/忙信息和订单物流信息
+	private void update() {
+
+		// 在build中通过loadervo中信息调用
 	}
-	
+
 }

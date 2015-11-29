@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.LoadorderPO;
+import PO.OrganizationNumPO;
 import PO.send_LoadorderPO;
 import State.ApproveState;
 import nju.edu.RMI_init.RMIHelper;
@@ -26,9 +27,9 @@ public class LoadBL implements LoadBlService {
 		for (int i = 0; i < orderlist.length; i++) {
 			list.add(orderlist[i]);
 		}
-
+        OrganizationNumPO op=new OrganizationNumPO();
 		LoadorderPO lp = new LoadorderPO(vlv.getDate(), vlv.getLoadorderNum(),
-				vlv.getTransferNum(), vlv.getArriveNum(), vlv.getMonitorName(),
+				vlv.getTransferNum(), op.getNum(vlv.getArriveNum()), vlv.getMonitorName(),
 				vlv.getTransferName(), vlv.getTransportNum(), list,
 				Double.parseDouble(vlv.getFee()), ApproveState.NotApprove);
 
@@ -66,7 +67,7 @@ public class LoadBL implements LoadBlService {
 
 	// 更新信息(车辆、司机及订单状态)
 	public void update(String key) {
-
+         //在save中通过loaderPO创建
 	}
 
 }
