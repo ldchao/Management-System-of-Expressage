@@ -61,7 +61,7 @@ public class CheckUserframe extends JFrame implements Runnable {
 		getContentPane().add(label_1);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(0, 543, 744, 28);
 		getContentPane().add(toolBar);
 
 		lblNewLabel = new JLabel("×´Ì¬À¸");

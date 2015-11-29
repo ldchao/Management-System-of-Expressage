@@ -1,19 +1,16 @@
 package nju.edu.businesslogic.staffbl;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.UserPO;
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.UserVO;
+import nju.edu.businesslogic.loginbl.checkUserInfo;
 import nju.edu.businesslogicservice.staffblservice.UserBLService;
 import nju.edu.dataservice.staffdataservice.UserDataService;
 
-public class UserBL implements UserBLService {
+public class UserBL implements UserBLService, checkUserInfo {
 	UserDataService userData = RMIHelper.getUserData();
 
 	@Override

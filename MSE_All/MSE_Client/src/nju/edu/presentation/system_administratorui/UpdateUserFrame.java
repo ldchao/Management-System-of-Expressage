@@ -62,38 +62,42 @@ public class UpdateUserFrame extends JFrame implements Runnable {
 
 		JRadioButton rdbtnNewRadioButton = new JRadioButton(
 				"\u5FEB\u9012\u5458");
-		rdbtnNewRadioButton.setBounds(43, 127, 65, 23);
+		rdbtnNewRadioButton.setBounds(31, 127, 65, 23);
 		getContentPane().add(rdbtnNewRadioButton);
 
 		JRadioButton radioButton_1 = new JRadioButton(
 				"\u8425\u4E1A\u5385\u4E1A\u52A1\u5458");
-		radioButton_1.setBounds(110, 127, 103, 23);
+		radioButton_1.setBounds(122, 127, 103, 23);
 		getContentPane().add(radioButton_1);
 
 		JRadioButton radioButton_2 = new JRadioButton("\u603B\u7ECF\u7406");
-		radioButton_2.setBounds(43, 163, 65, 23);
+		radioButton_2.setBounds(31, 163, 65, 23);
 		getContentPane().add(radioButton_2);
 
 		JRadioButton radioButton_3 = new JRadioButton(
 				"\u8D22\u52A1\u4EBA\u5458");
-		radioButton_3.setBounds(110, 163, 84, 23);
+		radioButton_3.setBounds(122, 163, 84, 23);
 		getContentPane().add(radioButton_3);
 
 		JRadioButton radioButton_4 = new JRadioButton(
 				"\u4E2D\u8F6C\u4E2D\u5FC3\u4E1A\u52A1\u5458");
-		radioButton_4.setBounds(211, 127, 128, 23);
+		radioButton_4.setBounds(223, 127, 128, 23);
 		getContentPane().add(radioButton_4);
 
 		JRadioButton radioButton_5 = new JRadioButton(
 				"\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u5458");
-		radioButton_5.setBounds(211, 163, 147, 23);
+		radioButton_5.setBounds(122, 198, 147, 23);
 		getContentPane().add(radioButton_5);
 
 		JRadioButton radioButton_6 = new JRadioButton(
 				"\u7CFB\u7EDF\u7BA1\u7406\u5458");
-		radioButton_6.setBounds(43, 198, 103, 23);
+		radioButton_6.setBounds(31, 198, 103, 23);
 		getContentPane().add(radioButton_6);
 
+		JRadioButton radioButton_7 = new JRadioButton("\u9AD8\u7EA7\u8D22\u52A1\u4EBA\u5458");
+		radioButton_7.setBounds(223, 163, 103, 23);
+		getContentPane().add(radioButton_7);
+		
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(rdbtnNewRadioButton);
 		bg.add(radioButton_1);
@@ -102,6 +106,7 @@ public class UpdateUserFrame extends JFrame implements Runnable {
 		bg.add(radioButton_4);
 		bg.add(radioButton_5);
 		bg.add(radioButton_6);
+		bg.add(radioButton_7);
 
 		// 设置原有权限
 		Enumeration<AbstractButton> radioBtns = bg.getElements();
@@ -152,7 +157,7 @@ public class UpdateUserFrame extends JFrame implements Runnable {
 		});
 		button_1.setBounds(210, 227, 65, 23);
 		getContentPane().add(button_1);
-
+		
 		// frame
 		this.setSize(390, 323);
 		this.setLocation(400, 100);

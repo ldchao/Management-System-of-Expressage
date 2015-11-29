@@ -110,13 +110,17 @@ public class NewUserframe extends JFrame implements Runnable {
 
 		JRadioButton radioButton_5 = new JRadioButton(
 				"\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u5458");
-		radioButton_5.setBounds(448, 303, 147, 23);
+		radioButton_5.setBounds(335, 340, 147, 23);
 		getContentPane().add(radioButton_5);
 
 		JRadioButton radioButton_6 = new JRadioButton(
 				"\u7CFB\u7EDF\u7BA1\u7406\u5458");
-		radioButton_6.setBounds(230, 339, 103, 23);
+		radioButton_6.setBounds(230, 340, 103, 23);
 		getContentPane().add(radioButton_6);
+	
+		JRadioButton radioButton_7 = new JRadioButton("\u9AD8\u7EA7\u8D22\u52A1\u4EBA\u5458");
+		radioButton_7.setBounds(448, 303, 111, 23);
+		getContentPane().add(radioButton_7);
 
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(rdbtnNewRadioButton);
@@ -126,6 +130,7 @@ public class NewUserframe extends JFrame implements Runnable {
 		bg.add(radioButton_4);
 		bg.add(radioButton_5);
 		bg.add(radioButton_6);
+		bg.add(radioButton_7);
 
 		JButton button = new JButton("\u786E\u8BA4");
 		button.addActionListener(new ActionListener() {
@@ -175,7 +180,7 @@ public class NewUserframe extends JFrame implements Runnable {
 		label_4.setFont(new Font("黑体", Font.BOLD, 15));
 		label_4.setBounds(326, 74, 69, 15);
 		getContentPane().add(label_4);
-
+		
 		// frame
 		this.setTitle("快递管理系统MSE客户端");
 		this.setSize(750, 600);

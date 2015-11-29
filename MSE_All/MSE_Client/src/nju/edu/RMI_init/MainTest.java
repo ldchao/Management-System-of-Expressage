@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
 import nju.edu.presentation.Business_hall_salesmanui.Business_hall_salesmanMainUI;
+import nju.edu.presentation.Loginui.LoginFrame;
 import nju.edu.presentation.Transit_center_salesmanui.Transit_center_salesman_mainui;
 import nju.edu.presentation.Transit_center_storemasterui.Transit_center_storemaster_mainui;
 import nju.edu.presentation.courierui.Courier;
@@ -137,5 +138,15 @@ public class MainTest extends JFrame {
 		});
 		button_6.setBounds(204, 314, 121, 88);
 		contentPane.add(button_6);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				main.dispose();
+				LoginFrame loginFrame = new LoginFrame();
+			}
+		});
+		btnLogin.setBounds(492, 314, 121, 88);
+		contentPane.add(btnLogin);
 	}
 }
