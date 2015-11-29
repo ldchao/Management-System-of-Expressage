@@ -9,6 +9,8 @@ import javax.swing.JFileChooser;
 
 public class ExcelWriter {
 
+	// fileName是导出文件的名称，注意不加保存格式的后缀
+	// list是要写入表格的内容，每列用逗号隔开
 	public static void Writer(String fileName, ArrayList<String> list) {
 
 		JFileChooser chooser = new JFileChooser();
