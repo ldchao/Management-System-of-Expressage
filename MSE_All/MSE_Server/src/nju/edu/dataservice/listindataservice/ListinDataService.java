@@ -14,4 +14,6 @@ public interface ListinDataService extends Remote{
 	public ResultMessage find(String number)throws RemoteException;
 	
 	public OrderPO getOrder(String id)throws RemoteException;
+	
+	public void update(String id,String message)throws RemoteException;
 }

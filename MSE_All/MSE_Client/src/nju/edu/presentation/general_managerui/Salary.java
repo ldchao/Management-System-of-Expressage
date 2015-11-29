@@ -6,39 +6,33 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import State.SalaryModel;
+import nju.edu.VO.SalaryVO;
+
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Salary extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	private SalaryModel salaryModel;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Salary frame = new Salary();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
-	public Salary() {
+	public Salary(SalaryVO vo) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750,600);
 		contentPane = new JPanel();
@@ -75,7 +69,22 @@ public class Salary extends JFrame {
 		radioButton_1.setBounds(419, 329, 100, 23);
 		contentPane.add(radioButton_1);
 		
+		if(vo.getTypeOfStrategy()==SalaryModel.ByMonth){
+			rdbtnNewRadioButton.setSelected(true);
+			salaryModel=SalaryModel.ByMonth;
+		}else if(vo.getTypeOfStrategy()==salaryModel.ByTimes){
+			radioButton.setSelected(true);
+			salaryModel=salaryModel.ByTimes;
+		}else{
+			radioButton_1.setSelected(true);
+			salaryModel=salaryModel.ByBenefit;
+		}
+		
 		JButton btnNewButton = new JButton("\u786E\u5B9A");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton.setBounds(219, 391, 93, 23);
 		contentPane.add(btnNewButton);
 		
@@ -86,11 +95,13 @@ public class Salary extends JFrame {
 		textField = new JTextField();
 		textField.setColumns(10);
 		textField.setBounds(332, 231, 154, 21);
+		textField.setText(vo.getTypeOfStaff());
 		contentPane.add(textField);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(332, 280, 154, 21);
+		textField_1.setText(vo.getSalary()+"");
 		contentPane.add(textField_1);
 		
 		JToolBar toolBar = new JToolBar();

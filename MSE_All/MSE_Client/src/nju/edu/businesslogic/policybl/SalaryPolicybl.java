@@ -17,10 +17,5 @@ public class SalaryPolicybl implements SalaryPolicyBLSerivce{
 		
 	}
 
-	@Override
-	public void endSalary() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

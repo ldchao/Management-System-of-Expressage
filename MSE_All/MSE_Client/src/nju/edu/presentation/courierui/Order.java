@@ -39,9 +39,9 @@ import javax.swing.JScrollBar;
 
 import nju.edu.VO.OrderVO;
 import nju.edu.businesslogic.listinbl.Listinbl;
-import nju.edu.businesslogic.listinbl.ListinblController;
-
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
 
 public class Order extends JFrame implements Runnable{
@@ -84,6 +84,9 @@ public class Order extends JFrame implements Runnable{
 	private JTextField textField_15;
 	private JLabel label_18;
 	private JLabel label_19;
+	private JRadioButton radioButton;
+	private JRadioButton radioButton_1;
+	private JRadioButton radioButton_2;
 	private JRadioButton radioButton_3;
 	private JRadioButton radioButton_4;
 	private JRadioButton radioButton_5;
@@ -98,11 +101,13 @@ public class Order extends JFrame implements Runnable{
 	private JLabel label_23;
 	private JTextField textField_17;
 	private JTextArea textArea_2;
-	private ListinblController listinblController;
+	private Listinbl listinbl;
 	private ExpressType express;
 	private PackageType pack;
 	JTextArea textArea;
 	JTextArea textArea_1; 
+	JComboBox comboBox_1;
+	JComboBox comboBox_2;
 	/**
 	 * Launch the application.
 	 */
@@ -112,13 +117,13 @@ public class Order extends JFrame implements Runnable{
 	 * Create the frame.
 	 */
 	public Order() {
-		express=null;
-		pack=null;
+		express=ExpressType.Economy;
+		pack=PackageType.Carton;
 		Order orderframe=this;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(300, 0, 712, 683);
 		this.setVisible(true);
-		listinblController=new ListinblController();
+		listinbl=new Listinbl();
 		
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.WHITE);
@@ -233,15 +238,15 @@ public class Order extends JFrame implements Runnable{
 		contentPane.add(label_12);
 		
 		label_13 = new JLabel("\u5730\u5740");
-		label_13.setBounds(22, 289, 54, 15);
+		label_13.setBounds(22, 278, 54, 15);
 		contentPane.add(label_13);
 		
 		label_14 = new JLabel("\u5730\u5740");
-		label_14.setBounds(387, 289, 54, 15);
+		label_14.setBounds(387, 278, 54, 15);
 		contentPane.add(label_14);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(86, 273, 179, 49);
+		scrollPane.setBounds(86, 303, 179, 49);
 		contentPane.add(scrollPane);
 		
 		textArea = new JTextArea();
@@ -249,7 +254,7 @@ public class Order extends JFrame implements Runnable{
 		textArea.setLineWrap(true);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(451, 273, 179, 49);
+		scrollPane_1.setBounds(451, 303, 179, 49);
 		contentPane.add(scrollPane_1);
 		
 		textArea_1 = new JTextArea();
@@ -320,40 +325,37 @@ public class Order extends JFrame implements Runnable{
 		label_18.setBounds(22, 439, 54, 15);
 		contentPane.add(label_18);
 		
-		JRadioButton radioButton = new JRadioButton("\u7ECF\u6D4E\u5FEB\u9012");
+		radioButton = new JRadioButton("\u7ECF\u6D4E\u5FEB\u9012");
 		radioButton.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				express=ExpressType.Economy;
-				System.out.println("1");
 			}
 		});
 		radioButton.setBounds(86, 435, 78, 23);
+		radioButton.setSelected(true);
 		contentPane.add(radioButton);
 		
-		JRadioButton radioButton_1 = new JRadioButton("\u6807\u51C6\u5FEB\u9012");
+		radioButton_1 = new JRadioButton("\u6807\u51C6\u5FEB\u9012");
 		radioButton_1.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				express=ExpressType.Standard;
-				System.out.println("2");
 			}
 		});
 		radioButton_1.setBounds(166, 435, 78, 23);
 		contentPane.add(radioButton_1);
 		
-		JRadioButton radioButton_2 = new JRadioButton("\u7279\u5FEB\u4E13\u9012");
+		radioButton_2 = new JRadioButton("\u7279\u5FEB\u4E13\u9012");
 		radioButton_2.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				express=ExpressType.Professional;
-				System.out.println("3");
 			}
 		});
 		radioButton_2.setBounds(246, 435, 90, 23);
@@ -378,6 +380,7 @@ public class Order extends JFrame implements Runnable{
 			}
 		});
 		radioButton_3.setBounds(451, 435, 54, 23);
+		radioButton_3.setSelected(true);
 		contentPane.add(radioButton_3);
 		
 		radioButton_4 = new JRadioButton("\u6728\u7BB1");
@@ -465,57 +468,18 @@ public class Order extends JFrame implements Runnable{
 		JButton btnNewButton = new JButton("\u786E\u5B9A");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//获取数据
-				String[] text=new String[18];
-				text[0]=textField.getText();
-				text[1]=textField_1.getText();
-				text[2]=textField_2.getText();
-				text[3]=textField_3.getText();
-				text[4]=textField_4.getText();
-				text[5]=textField_5.getText();
-				text[6]=textField_6.getText();
-				text[7]=textField_7.getText();
-				text[8]=textField_8.getText();
-				text[9]=textField_9.getText();
-				text[10]=textField_10.getText();
-				text[11]=textField_11.getText();
-				text[12]=textField_12.getText();
-				text[13]=textField_13.getText();
-				text[14]=textField_14.getText();
-				text[15]=textField_15.getText();
-				text[16]=textField_16.getText();
-				text[17]=textField_17.getText();
-				String[] textareas=new String[3];
-				textareas[0]=textArea.getText();
-				textareas[1]=textArea_1.getText();
-				textareas[2]=textArea_2.getText();
-				
+				OrderVO vo=new OrderVO(textField.getText(), textField_1.getText(), ApproveState.NotApprove, 
+						textField_2.getText(), comboBox_1.getSelectedItem().toString()+" "+textArea.getText(), textField_3.getText(), textField_4.getText(), textField_5.getText(),
+						textField_6.getText(), comboBox_2.getSelectedItem().toString()+" "+textArea_1.getText(), textField_7.getText(),
+						textField_8.getText(), textField_9.getText(),
+						textField_10.getText(), textField_11.getText(), textField_12.getText(), textField_13.getText(), textField_14.getText(),textField_15.getText(), express, pack, 
+						textField_16.getText(), textField_17.getText(), textArea_2.getText());
 				//是否有空的判断
-				Boolean valid=true;
-				
-				if(express==null||pack==null){
-					valid=false;
-				}else{
-					for(int i=0;i<16;i++){
-						if(text[i].equals("")){
-							valid=false;
-						}
-					}
-					for(int i=0;i<2;i++){
-						if(textareas[i].equals("")){
-							valid=false;
-						}
-					}
-				}
+				Boolean valid=listinbl.JudgeNull(vo);
 				
 				//执行相应操作
 				if(valid==true){
-					OrderVO vo=new OrderVO(text[0], text[1], ApproveState.NotApprove, 
-							text[2], textareas[0], text[3], text[4], text[5],
-							text[6], textareas[1], text[7], text[8], text[9],
-							text[10], text[11], text[12], text[13], text[14], text[15], express, pack, 
-							text[16], text[17], textareas[2]);
-
+					listinbl.addOrder(vo);
 					lblNewLabel.setText("新建成功");
 					clean();
 				}else{
@@ -535,6 +499,18 @@ public class Order extends JFrame implements Runnable{
 		});
 		button.setBounds(375, 581, 93, 23);
 		contentPane.add(button);
+		
+		String[] city={"南京鼓楼区营业厅","南京玄武区营业厅","南京建邺区营业厅","南京秦淮区营业厅","南京栖霞区营业厅","南京六合区营业厅","南京浦口区营业厅","南京江宁区营业厅","南京高淳区营业厅","南京溧水区营业厅",
+				"北京宣武区营业厅","北京东城区营业厅","北京西城区营业厅","北京崇文区营业厅","北京朝阳区营业厅","北京石景山区营业厅","北京海淀区营业厅","北京丰台区营业厅","北京房山区营业厅","北京大兴区营业厅","北京通州区营业厅","北京门头沟区营业厅","北京昌平区营业厅","北京顺义区营业厅","北京怀柔区营业厅","北京密云县营业厅","北京平谷区营业厅","北京延庆县营业厅","北京大学城营业厅","北京中关村营业厅",
+				"上海黄浦区营业厅","上海徐汇区营业厅","上海长宁区营业厅","上海静安区营业厅","上海普陀区营业厅","上海虹口区营业厅","上海杨浦区营业厅","上海闵行区营业厅","上海宝山区营业厅","上海嘉定区营业厅","上海浦东新区营业厅","上海金山区营业厅","上海松江区营业厅","上海青浦区营业厅","上海奉贤区营业厅","上海崇明县营业厅","上海工业区营业厅","上海开发区营业厅","上海外贸区营业厅","上海高新区营业厅",
+				"广州越秀区营业厅","广州天河区营业厅","广州白云区营业厅","广州荔湾区营业厅","广州萝岗区营业厅","广州黄埔区营业厅","广州海珠区营业厅","广州番禺区营业厅","广州花都区营业厅","广州南沙区营业厅","广州从化市营业厅","广州增城市营业厅","广州东山区营业厅","广州开发区营业厅","广州高新区营业厅"};
+		
+		comboBox_1 = new JComboBox(city);
+		comboBox_1.setBounds(86, 273, 179, 21);
+		contentPane.add(comboBox_1);
+		comboBox_2= new JComboBox(city);
+		comboBox_2.setBounds(451, 273, 179, 21);
+		contentPane.add(comboBox_2);
 	}
 	
 	public void clean(){
@@ -556,6 +532,12 @@ public class Order extends JFrame implements Runnable{
 		textField_15.setText("");
 		textField_16.setText("");
 		textField_17.setText("");
+		radioButton.setSelected(true);
+		radioButton_3.setSelected(true);
+		comboBox_1.setSelectedIndex(0);
+		comboBox_2.setSelectedIndex(0);
+		express=ExpressType.Economy;
+		pack=PackageType.Carton;
 		
 		textArea.setText("");
 		textArea_1.setText("");
@@ -575,11 +557,10 @@ public class Order extends JFrame implements Runnable{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if(!((textArea.getText().equals("")||textArea_1.getText().equals("")||
-				textField_13.getText().equals("")||textField_14.equals("")||
-				textField_15.equals("")||express==null||pack==null))){
-					textField_16.setText(""+listinblController.getTotalTime(textArea.getText(), textArea_1.getText(), express));
-					textField_17.setText(""+listinblController.getTotalMoney(
+			if(!((textField_12.getText().equals("")||textField_13.getText().equals("")||
+					textField_14.getText().equals("")||textField_15.getText().equals("")))){
+					textField_16.setText(""+listinbl.getTotalTime(comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(), express));
+					textField_17.setText(""+listinbl.getTotalMoney(
 							textArea.getText(), textArea_1.getText(), textField_13.getText(), textField_14.getText(), textField_15.getText(), express, pack));
 			}
 		}

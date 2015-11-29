@@ -30,4 +30,15 @@ public class Receiverinbl implements ReceiverinBLService{
 		
 	}
 
+	@Override
+	public boolean JudgeNull(ReceiverVO vo) {
+		// TODO Auto-generated method stub
+		boolean result=true;
+		if(vo.getCourier().equals("")||vo.getId().equals("")||vo.getPhoneOfcourier().equals("")||
+				vo.getReceiver().equals("")||vo.getAddress().equals("")||vo.getTime().equals("")||vo.getCellphone().equals("")){
+			result=false;
+		}
+		return result;
+	}
+
 }

@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import nju.edu.VO.SalaryVO;
+import nju.edu.businesslogic.policybl.SalaryPolicyblController;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -15,22 +19,9 @@ import java.awt.event.ActionEvent;
 public class SalaryManage extends JFrame {
 
 	private JPanel contentPane;
-
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					SalaryManage frame = new SalaryManage();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the frame.
@@ -67,8 +58,17 @@ public class SalaryManage extends JFrame {
 		JComboBox comboBox = new JComboBox(type);
 		comboBox.setBounds(280, 235, 180, 29);
 		contentPane.add(comboBox);
+
 		
 		JButton button_1 = new JButton("\u786E\u5B9A");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SalaryPolicyblController salaryPolicyblController=new SalaryPolicyblController();
+				SalaryVO salaryVO=salaryPolicyblController.checkSalary(comboBox.getSelectedItem().toString());
+				Salary salary=new Salary(salaryVO);
+				salaryManageframe.dispose();
+			}
+		});
 		button_1.setBounds(328, 303, 93, 23);
 		contentPane.add(button_1);
 	}

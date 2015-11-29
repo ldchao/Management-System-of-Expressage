@@ -20,7 +20,7 @@ import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 
 import nju.edu.VO.ReceiverVO;
-import nju.edu.businesslogic.listinbl.ReceiverinblController;
+import nju.edu.businesslogic.listinbl.Receiverinbl;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
 import java.awt.event.ActionListener;
@@ -37,7 +37,7 @@ public class Receiver extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextArea textArea;
-	private ReceiverinblController receiverinblController;
+	private Receiverinbl receiverinbl;
 	/**
 	 * Launch the application.
 	 */
@@ -46,7 +46,7 @@ public class Receiver extends JFrame {
 	 * Create the frame.
 	 */
 	public Receiver() {
-		receiverinblController=new ReceiverinblController();
+		receiverinbl=new Receiverinbl();
 		Receiver receiverframe=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 100, 750, 600);
@@ -163,29 +163,18 @@ public class Receiver extends JFrame {
 		JButton button = new JButton("\u786E\u5B9A");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String[] strings=new String[8];
-				strings[0]=textField.getText();
-				strings[1]=textField_1.getText();
-				strings[2]=textField_2.getText();
-				strings[3]=textField_3.getText();
-				strings[4]=textField_4.getText();
-				strings[5]=textField_5.getText();
-				strings[6]=textField_6.getText();
-				strings[7]=textArea.getText();
-				boolean valid=true;
+				ReceiverVO receiverVO=new ReceiverVO(textField.getText(), textField_1.getText(), textField_2.getText(), label_11.getText(), 
+						textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText(), textArea.getText());
+				//function:judge whether the information is not complete
+				boolean valid=receiverinbl.JudgeNull(receiverVO);
 				boolean complete=true;
-				for(int i=0;i<8;i++){
-					if(strings[i].equals("")){
-						complete=false;
-					}
-				}
-				valid=receiverinblController.searchOrder(textField_2.getText());
+
+				valid=receiverinbl.searchOrder(textField_2.getText());
 				if(complete==true){
 					if(valid==false){
 						label_12.setText("此订单不存在");
 					}else{
-						ReceiverVO receiverVO=new ReceiverVO(strings[0], strings[1], strings[2], label_11.getText(), strings[3], strings[4], strings[5], strings[6], strings[7]);
-						receiverinblController.addReceiver(receiverVO);
+						receiverinbl.addReceiver(receiverVO);
 						label_12.setText("新建成功");
 						clean();
 					}

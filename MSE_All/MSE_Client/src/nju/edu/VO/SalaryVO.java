@@ -2,12 +2,14 @@ package nju.edu.VO;
 
 import java.io.Serializable;
 
+import State.SalaryModel;
+
 public class SalaryVO implements Serializable{
 	String typeOfStaff;
 	double salary;
-	int typeOfStrategy;
+	SalaryModel typeOfStrategy;
 	
-	public SalaryVO(String typeOfStaff, double salary, int typeOfStrategy) {
+	public SalaryVO(String typeOfStaff, double salary, SalaryModel typeOfStrategy) {
 		super();
 		this.typeOfStaff = typeOfStaff;
 		this.salary = salary;
@@ -22,7 +24,7 @@ public class SalaryVO implements Serializable{
 		return salary;
 	}
 
-	public int getTypeOfStrategy() {
+	public SalaryModel getTypeOfStrategy() {
 		return typeOfStrategy;
 	}
 	

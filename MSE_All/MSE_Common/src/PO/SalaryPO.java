@@ -1,14 +1,16 @@
 package PO;
 import java.io.Serializable;
 
+import State.SalaryModel;
+
 
 public class SalaryPO implements Serializable{
 	//п╫к╝пео╒
 	String typeOfStaff;
 	double salary;
-	int typeOfStrategy;
+	SalaryModel typeOfStrategy;
 	
-	public SalaryPO(String typeOfStaff, double salary, int typeOfStrategy) {
+	public SalaryPO(String typeOfStaff, double salary, SalaryModel typeOfStrategy) {
 	
 		this.typeOfStaff = typeOfStaff;
 		this.salary = salary;
@@ -23,17 +25,24 @@ public class SalaryPO implements Serializable{
 		return salary;
 	}
 
-	public int getTypeOfStrategy() {
-		return typeOfStrategy;
-	}
 
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
 
-	public void setTypeOfStrategy(int typeOfStrategy) {
+	public SalaryModel getTypeOfStrategy() {
+		return typeOfStrategy;
+	}
+
+	public void setTypeOfStrategy(SalaryModel typeOfStrategy) {
 		this.typeOfStrategy = typeOfStrategy;
 	}
+
+	public void setTypeOfStaff(String typeOfStaff) {
+		this.typeOfStaff = typeOfStaff;
+	}
+
+	
 	
 	
 }

@@ -11,4 +11,6 @@ public interface ConstantPolicyDataService extends Remote{
 	public void updateConstant(ConstantPO po)throws RemoteException;
 	
 	public double getPrice(String address1,String address2)throws RemoteException;
+	
+	public double GetDistance(String address1,String address2)throws RemoteException;
 }

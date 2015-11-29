@@ -7,6 +7,5 @@ public interface SalaryPolicyBLSerivce {
 	
 	public void editSalary(String typeOfStaff,String salary,int typeOfSalary);
 	
-	public void endSalary();
 	
 }

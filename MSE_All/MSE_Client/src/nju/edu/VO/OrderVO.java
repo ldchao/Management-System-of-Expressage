@@ -68,14 +68,44 @@ public class OrderVO implements Serializable {
 		this.phone2 = phone2;
 		this.cellphone2 = cellphone2;
 		this.items = items;
-		this.count = Double.parseDouble(count);
-		this.weight = Double.parseDouble(weight);
-		this.length = Double.parseDouble(length);
-		this.width = Double.parseDouble(width);
-		this.height = Double.parseDouble(height);
+		if(count.equals("")){
+			this.count=-1;
+		}else{
+			this.count = Double.parseDouble(count);
+		}
+		
+		if(weight.equals("")){
+			this.weight=-1;
+		}else{
+			this.weight = Double.parseDouble(weight);
+		}
+		
+		if(length.equals("")){
+			this.length=-1;
+		}else{
+			this.length = Double.parseDouble(length);
+		}
+		
+		if(width.equals("")){
+			this.width=-1;
+		}else{
+			this.width = Double.parseDouble(width);
+		}
+		
+		if(height.equals("")){
+			this.height=-1;
+		}else{
+			this.height = Double.parseDouble(height);
+		}
+
 		this.express = express;
 		this.pack = pack;
-		this.bill = Double.parseDouble(bill);
+		if(bill.equals("")){
+			this.bill=-1;
+		}else{
+			this.bill = Double.parseDouble(bill);
+		}
+
 		this.time = time;
 		this.transformState = transformState;
 	}
