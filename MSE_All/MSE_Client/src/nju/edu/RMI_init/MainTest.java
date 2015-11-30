@@ -1,5 +1,6 @@
 package nju.edu.RMI_init;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -20,7 +21,6 @@ import nju.edu.presentation.system_administratorui.Administratorframe;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-@SuppressWarnings("serial")
 public class MainTest extends JFrame {
 
 	private JPanel contentPane;

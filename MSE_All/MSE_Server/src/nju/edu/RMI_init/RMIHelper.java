@@ -20,7 +20,6 @@ import nju.edu.data.listindata.ListinData;
 import nju.edu.data.listindata.ReceiverinData;
 import nju.edu.data.loaddata.LoadData;
 import nju.edu.data.loaddata.ShippingData;
-import nju.edu.data.logindata.LoginData;
 import nju.edu.data.policydata.ConstantPolicyData;
 import nju.edu.data.policydata.SalaryPolicyData;
 import nju.edu.data.staffdata.StaffData;
@@ -42,7 +41,6 @@ public class RMIHelper {
 	private static boolean inited = false;
 
 	static {
-		NAMING_MAP.put("LoginData", LoginData.class);
 		NAMING_MAP.put("AccountData", AccountData.class);
 		NAMING_MAP.put("ApproveData", ApproveData.class);
 		NAMING_MAP.put("BillData", BillData.class);

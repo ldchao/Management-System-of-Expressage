@@ -89,6 +89,7 @@ public class LoginPanel extends JPanel {
 			}
 		});
 		passwordField.setBounds(342, 306, 140, 28);
+		passwordField.setEchoChar('*');
 		this.add(passwordField);
 		if (!str[1].equals("0"))
 			passwordField.setText(str[1]);
