@@ -17,6 +17,7 @@ import nju.edu.dataservice.listindataservice.ListinDataService;
 import nju.edu.dataservice.listindataservice.ReceiverinDataService;
 import nju.edu.dataservice.loaddataservice.LoadDataService;
 import nju.edu.dataservice.loaddataservice.ShippingDataService;
+import nju.edu.dataservice.logindataservice.LoginDataService;
 import nju.edu.dataservice.policydataservice.ConstantPolicyDataService;
 import nju.edu.dataservice.policydataservice.SalaryPolicyDataService;
 import nju.edu.dataservice.staffdataservice.StaffDataService;
@@ -38,6 +39,7 @@ public class RMIHelper {
 
 	private static boolean inited = false;
 
+	private static LoginDataService LoginData;
 	private static AccountDataService AccountData;
 	private static ApproveDataService ApproveData;
 	private static BillDataService BillData;
@@ -80,6 +82,8 @@ public class RMIHelper {
 	private static void initObjects() throws MalformedURLException,
 			RemoteException, NotBoundException {
 		String urlPrefix = "rmi://" + IP + "/";
+
+		LoginData = (LoginDataService) Naming.lookup(urlPrefix + "LoginData");
 		AccountData = (AccountDataService) Naming.lookup(urlPrefix
 				+ "AccountData");
 		ApproveData = (ApproveDataService) Naming.lookup(urlPrefix
@@ -102,8 +106,8 @@ public class RMIHelper {
 		LoadData = (LoadDataService) Naming.lookup(urlPrefix + "LoadData");
 		ShippingData = (ShippingDataService) Naming.lookup(urlPrefix
 				+ "ShippingData");
-		ConstantPolicyData = (ConstantPolicyDataService) Naming.lookup(urlPrefix
-				+ "ConstantPolicyData");
+		ConstantPolicyData = (ConstantPolicyDataService) Naming
+				.lookup(urlPrefix + "ConstantPolicyData");
 		SalaryPolicyData = (SalaryPolicyDataService) Naming.lookup(urlPrefix
 				+ "SalaryPolicyData");
 		StaffData = (StaffDataService) Naming.lookup(urlPrefix + "StaffData");
@@ -128,6 +132,10 @@ public class RMIHelper {
 				+ "VehicleData");
 	}
 
+	public static LoginDataService getLoginData(){
+		return LoginData;
+	}
+	
 	public static AccountDataService getAccountData() {
 		return AccountData;
 	}
