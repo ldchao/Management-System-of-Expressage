@@ -50,8 +50,6 @@ public class CheckPayeePanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(cpep);
 				CalculatePanel clf = new CalculatePanel(loginPO, main);
-				Thread t = new Thread(clf);
-				t.start();
 				main.add(clf);
 				main.invalidate();
 				main.repaint();

@@ -7,21 +7,24 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import nju.edu.businesslogic.financebl.PayeeorderBL;
+import nju.edu.presentation.Business_hall_salesmanui.Business_hall_salesmanMainUI;
 
 import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import javax.swing.JToolBar;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class ReceiFormframe extends JFrame implements Runnable {
+public class ReceiFormPanel extends JPanel implements Runnable {
 	private JTable table;
 	private JTable table1;
 	private DefaultTableModel tableModel;
@@ -37,23 +40,28 @@ public class ReceiFormframe extends JFrame implements Runnable {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private boolean over;
+	private Thread t;
 
 	/**
 	 * Create the panel.
 	 */
-	public ReceiFormframe() {
+	public ReceiFormPanel(JFrame main, JPanel panel) {
 		over = true;
-		ReceiFormframe rff = this;
-		getContentPane().setLayout(null);
+		ReceiFormPanel rfp = this;
+		setLayout(null);
+		setSize(750, 600);
 		signal = false;
+
+		t = new Thread(this);
+		t.start();
 
 		JLabel label = new JLabel("营业厅业务员>>收款单管理");
 		label.setBounds(87, 10, 470, 15);
-		getContentPane().add(label);
+		add(label);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 543, 744, 28);
-		getContentPane().add(toolBar);
+		add(toolBar);
 
 		label_3 = new JLabel("\u72B6\u6001\u680F");
 		toolBar.add(label_3);
@@ -62,49 +70,53 @@ public class ReceiFormframe extends JFrame implements Runnable {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (over) {
-					rff.dispose();
-					// 返回
+					main.remove(rfp);
+					main.add(panel);
+					main.invalidate();
+					main.repaint();
+					main.setVisible(true);
 				} else {
-					ReciveConfirmFrame rcon = new ReciveConfirmFrame(rff);
+					@SuppressWarnings("unused")
+					ReciveConfirmFrame rcon = new ReciveConfirmFrame(main, rfp,panel);
 				}
 			}
 		});
 		button_4.setBounds(10, 6, 67, 23);
-		getContentPane().add(button_4);
+		add(button_4);
 
 		JLabel lblHello = new JLabel("Hello!");
 		lblHello.setBounds(630, 10, 54, 15);
-		getContentPane().add(lblHello);
+		add(lblHello);
 
 		textField = new JTextField();
 		textField.setBounds(94, 120, 92, 25);
-		getContentPane().add(textField);
+		add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(185, 120, 92, 25);
-		getContentPane().add(textField_1);
+		add(textField_1);
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(276, 120, 92, 25);
-		getContentPane().add(textField_2);
+		add(textField_2);
 
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(367, 120, 92, 25);
-		getContentPane().add(textField_3);
+		add(textField_3);
 
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
 		textField_4.setBounds(458, 120, 92, 25);
-		getContentPane().add(textField_4);
+		add(textField_4);
 
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
 		textField_5.setBounds(549, 120, 92, 25);
-		getContentPane().add(textField_5);
+		add(textField_5);
 
 		// 新建付款单
 		table1 = new JTable();
@@ -120,7 +132,7 @@ public class ReceiFormframe extends JFrame implements Runnable {
 				"New column", "New column", "New column", "New column",
 				"New column", "New column" }));
 		table1.setBounds(94, 95, 546, 25);
-		getContentPane().add(table1);
+		add(table1);
 
 		Date dt = new Date();
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -129,7 +141,7 @@ public class ReceiFormframe extends JFrame implements Runnable {
 		// 付款单列表
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(92, 252, 549, 201);
-		getContentPane().add(scrollPane);
+		add(scrollPane);
 
 		table = new JTable();
 		table.setRowHeight(25);
@@ -171,7 +183,7 @@ public class ReceiFormframe extends JFrame implements Runnable {
 		table_1.setRowHeight(25);
 		table_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		table_1.setBounds(92, 481, 549, 25);
-		getContentPane().add(table_1);
+		add(table_1);
 
 		// “添加”按钮
 		JButton button = new JButton("\u6DFB\u52A0");
@@ -200,7 +212,7 @@ public class ReceiFormframe extends JFrame implements Runnable {
 			}
 		});
 		button.setBounds(239, 171, 93, 23);
-		getContentPane().add(button);
+		add(button);
 
 		JButton button_1 = new JButton("\u63D0\u4EA4\u5BA1\u6279");
 		button_1.addActionListener(new ActionListener() {
@@ -212,27 +224,19 @@ public class ReceiFormframe extends JFrame implements Runnable {
 			}
 		});
 		button_1.setBounds(393, 171, 93, 23);
-		getContentPane().add(button_1);
+		add(button_1);
 
 		JLabel label_1 = new JLabel(
 				"\u5F55\u5165\u6536\u6B3E\u5355\u4FE1\u606F");
 		label_1.setFont(new Font("黑体", Font.BOLD, 15));
 		label_1.setBounds(311, 67, 121, 15);
-		getContentPane().add(label_1);
+		add(label_1);
 
 		JLabel label_2 = new JLabel("\u6536\u6B3E\u5355\u5217\u8868");
 		label_2.setFont(new Font("黑体", Font.BOLD, 15));
 		label_2.setBounds(329, 227, 85, 15);
-		getContentPane().add(label_2);
+		add(label_2);
 
-		// frame
-		this.setTitle("快递管理系统MSE客户端");
-		this.setSize(750, 600);
-		this.setLocation(400, 100);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
-		this.setResizable(false);
 	}
 
 	public void showList(String str[], int n) {

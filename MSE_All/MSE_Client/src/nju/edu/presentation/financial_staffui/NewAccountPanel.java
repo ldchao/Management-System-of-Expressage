@@ -26,6 +26,7 @@ public class NewAccountPanel extends JPanel implements Runnable {
 	private JLabel lblNewLabel;
 	private boolean signal;
 	private boolean success;
+	private Thread t;
 	AccountBL accountBL = new AccountBL();
 
 	/**
@@ -38,6 +39,9 @@ public class NewAccountPanel extends JPanel implements Runnable {
 		setSize(750, 600);
 
 		NewAccountPanel nap = this;
+
+		t = new Thread(this);
+		t.start();
 
 		JLabel label = new JLabel(
 				"\u8D22\u52A1\u4EBA\u5458>>\u8D26\u6237\u7BA1\u7406>>\u65B0\u5EFA\u8D26\u6237");
@@ -57,6 +61,7 @@ public class NewAccountPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
+				t.interrupt();
 			}
 		});
 		button_4.setBounds(10, 6, 67, 23);

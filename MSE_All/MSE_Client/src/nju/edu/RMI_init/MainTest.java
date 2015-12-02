@@ -14,7 +14,7 @@ import nju.edu.presentation.Loginui.LoginFrame;
 import nju.edu.presentation.Transit_center_salesmanui.Transit_center_salesman_mainui;
 import nju.edu.presentation.Transit_center_storemasterui.Transit_center_storemaster_mainui;
 import nju.edu.presentation.courierui.Courier;
-import nju.edu.presentation.financial_staffui.ReceiFormframe;
+import nju.edu.presentation.financial_staffui.ReceiFormPanel;
 import nju.edu.presentation.financial_staffui.FinanceFrame;
 import nju.edu.presentation.general_managerui.Manager;
 import nju.edu.presentation.system_administratorui.Administratorframe;
@@ -130,17 +130,15 @@ public class MainTest extends JFrame {
 		button_5.setBounds(588, 216, 121, 88);
 		contentPane.add(button_5);
 		
-		JButton button_6 = new JButton("\u5F55\u5165\u6536\u6B3E\u5355");
-		button_6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				main.dispose();
-				ReceiFormframe rff = new ReceiFormframe();
-				Thread t = new Thread(rff);
-				t.start();
-			}
-		});
-		button_6.setBounds(204, 314, 121, 88);
-		contentPane.add(button_6);
+//		JButton button_6 = new JButton("\u5F55\u5165\u6536\u6B3E\u5355");
+//		button_6.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//				main.dispose();
+//				ReceiFormPanel rff = new ReceiFormPanel();
+//			}
+//		});
+//		button_6.setBounds(204, 314, 121, 88);
+//		contentPane.add(button_6);
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {

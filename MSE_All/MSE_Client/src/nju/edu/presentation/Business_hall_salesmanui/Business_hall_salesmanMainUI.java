@@ -10,11 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
-import nju.edu.presentation.Transit_center_salesmanui.Receiveui;
-import nju.edu.presentation.Transit_center_salesmanui.Shippingui;
-import nju.edu.presentation.Transit_center_salesmanui.Transferui;
-import nju.edu.presentation.financial_staffui.ReceiFormframe;
+import nju.edu.presentation.financial_staffui.ReceiFormPanel;
 
+@SuppressWarnings("serial")
 public class Business_hall_salesmanMainUI extends JFrame {
 	private JPanel contentPane;
 	Business_hall_salesmanMainUI main;
@@ -44,7 +42,8 @@ public class Business_hall_salesmanMainUI extends JFrame {
 		setBounds(400, 100, 750, 600);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
-		getContentPane().add(contentPane);
+		this.add(contentPane);
+		this.setResizable(false);
 		contentPane.setLayout(null);
 
 		JLabel label = new JLabel("营业厅业务员");
@@ -172,10 +171,12 @@ public class Business_hall_salesmanMainUI extends JFrame {
 		JButton button_3 = new JButton("New button");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				main.dispose();
-				ReceiFormframe receiFormframe = new ReceiFormframe();
-				Thread t = new Thread(receiFormframe);
-				t.start();
+				main.remove(contentPane);
+				ReceiFormPanel rfp = new ReceiFormPanel(main,contentPane);
+				main.add(rfp);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button_3.setBounds(504, 355, 125, 100);

@@ -15,6 +15,7 @@ import PO.LoginPO;
 public class FmainPanel extends JPanel implements Runnable {
 	private boolean signal;
 	private JLabel label_6;
+	private Thread t;
 
 	/**
 	 * Create the panel.
@@ -26,6 +27,9 @@ public class FmainPanel extends JPanel implements Runnable {
 
 		JPanel fmp = this;
 
+		t = new Thread(this);
+	    t.start();
+		
 		JLabel label = new JLabel("财务人员");
 		label.setBounds(90, 10, 470, 15);
 		add(label);
@@ -44,6 +48,7 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
+				t.interrupt();
 			}
 		});
 		btnNewButton.setBounds(108, 161, 125, 100);
@@ -60,6 +65,7 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
+				t.interrupt();
 			}
 		});
 		button.setBounds(316, 161, 125, 100);
@@ -70,12 +76,11 @@ public class FmainPanel extends JPanel implements Runnable {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(fmp);
 				StatisticsPanel stp = new StatisticsPanel(loginPO, main);
-				Thread t = new Thread(stp);
-				t.start();
 				main.add(stp);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
+				t.interrupt();
 			}
 		});
 		button_1.setBounds(507, 161, 125, 100);
@@ -90,6 +95,7 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
+				t.interrupt();
 			}
 		});
 		button_2.setBounds(214, 329, 125, 100);
@@ -110,6 +116,7 @@ public class FmainPanel extends JPanel implements Runnable {
 					main.invalidate();
 					main.repaint();
 					main.setVisible(true);
+					t.interrupt();
 				} else {
 					label_6.setText("对不起，仅高级财务人员有此权限");
 					signal = true;

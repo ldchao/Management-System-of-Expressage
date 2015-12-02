@@ -16,6 +16,7 @@ import PO.LoginPO;
 public class StatisticsPanel extends JPanel implements Runnable {
 	private boolean signal;
 	private JLabel lblNewLabel;
+	private Thread t;
 
 	/**
 	 * Create the panel.
@@ -25,6 +26,9 @@ public class StatisticsPanel extends JPanel implements Runnable {
 		setSize(750, 600);
 		StatisticsPanel stp = this;
 		signal = false;
+		
+		t = new Thread(this);
+	    t.start();
 
 		JLabel label = new JLabel(
 				"\u8D22\u52A1\u4EBA\u5458>>\u7EDF\u8BA1\u62A5\u8868");
@@ -44,6 +48,7 @@ public class StatisticsPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
+				t.interrupt();
 			}
 		});
 		button_4.setBounds(10, 1, 68, 23);
@@ -86,6 +91,7 @@ public class StatisticsPanel extends JPanel implements Runnable {
 						main.invalidate();
 						main.repaint();
 						main.setVisible(true);
+						t.interrupt();
 					} else {
 						lblNewLabel.setText("截止日期不得在起始日期之前，请核对起止日期");
 					}

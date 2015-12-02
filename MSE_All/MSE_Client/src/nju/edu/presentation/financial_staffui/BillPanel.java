@@ -50,8 +50,6 @@ public class BillPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(bp);
 				NewbillPanel nbp = new NewbillPanel(loginPO,main);
-				Thread t = new Thread(nbp);
-				t.start();
 				main.add(nbp);
 				main.invalidate();
 				main.repaint();
