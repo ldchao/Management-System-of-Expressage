@@ -84,13 +84,9 @@ public class LoginBL implements LoginBLService {
 			break;
 		case "财务人员":
 			FinanceFrame fs1 = new FinanceFrame(loginPO);
-//			Thread t1 = new Thread(fs1);
-//			t1.start();
 			break;
 		case "高级财务人员":
 			FinanceFrame fs2 = new FinanceFrame(loginPO);
-//			Thread t2 = new Thread(fs2);
-//			t2.start();
 			break;
 		case "中转中心仓库管理员":
 			Transit_center_storemaster_mainui ts = new Transit_center_storemaster_mainui();
