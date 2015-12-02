@@ -8,6 +8,9 @@ import javax.swing.JToolBar;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
+import nju.edu.VO.StoreinVO;
+import nju.edu.businesslogic.storebl.Warehouse_inBL;
+import nju.edu.businesslogicservice.storeblservice.Warehouse_inBLService;
 import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
@@ -38,6 +41,7 @@ public class Storeinorder extends JPanel {
 				main.getContentPane().add(lastui);
 				main.invalidate();
 				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button.setBounds(10, 10, 65, 23);
@@ -136,8 +140,25 @@ public class Storeinorder extends JPanel {
 		JButton btnNewButton_1 = new JButton("确定");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String order_number=textField.getText();
+				String date=lblNewLabel_3_1.getText();
+				String offnum=textField_1.getText();
+				String qu=(String)comboBox.getSelectedItem();
+				String pai=textField_2.getText();
+				String wei=textField_3.getText();
+				String jia=textField_4.getText();
+				if(order_number.length()==0||date.equals("单击选择日期")
+						||offnum.length()==0||qu.length()==0||pai.length()
+						==0||wei.length()==0||jia.length()==0){
+					lblNewLabel_4.setText("有信息未输入");
+				}
+				else{
+				Warehouse_inBLService wb=new Warehouse_inBL();
+				StoreinVO sv=new StoreinVO(order_number,date ,offnum ,
+						qu,pai,wei,jia );
+				wb.build(sv);
 				lblNewLabel_4.setText("创建成功");
-			}
+				}}
 		});
 		btnNewButton_1.setBounds(180, 460, 93, 23);
 		add(btnNewButton_1);
@@ -150,6 +171,7 @@ public class Storeinorder extends JPanel {
 				main.getContentPane().add(s);
 				main.invalidate();
 				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		btnNewButton_2.setBounds(440, 460, 93, 23);
@@ -161,5 +183,4 @@ public class Storeinorder extends JPanel {
 		add(label);
 
 	}
-
 }

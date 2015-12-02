@@ -1,41 +1,78 @@
 package nju.edu.businesslogic.storebl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import nju.edu.VO.ArriverorderVO;
-import nju.edu.businesslogic.transferbl.StoreinInfo;
+import nju.edu.RMI_init.RMIHelper;
+import nju.edu.VO.StoreinVO;
 import nju.edu.businesslogicservice.storeblservice.Warehouse_inBLService;
+import nju.edu.businesslogicservice.transferblservice.StoreinInfo;
+import nju.edu.dataservice.storedataservice.Warehouse_inDataService;
+import PO.OrganizationNumPO;
 import PO.StoreinorderPO;
+import State.ApproveState;
 
 public class Warehouse_inBL implements Warehouse_inBLService,StoreinInfo{
 	
-	ArrayList<ArriverorderVO> needinstore=new ArrayList<ArriverorderVO>();
+
 	
 	//新建一张入库单
 	@Override
-	public void build(ArriverorderVO av, int jia, int wei) {
-		// TODO Auto-generated method stub
-		System.out.println("新建一张入库单");
-	}
-
-	//货物建立到达单后设置提醒值
-	@Override
-	public void setRemind(ArriverorderVO av) {
-		// TODO Auto-generated method stub
-		needinstore.add(av);
+	public void build(StoreinVO sv) {
+		Warehouse_inDataService wd=RMIHelper.getWarehouse_inData();
+		StoreinorderPO sp=new StoreinorderPO(sv.getOrder_number(), sv.getDate(),
+				sv.getOffnum(), sv.getQu(), sv.getPai(), sv.getWei(), 
+				sv.getJia(), ApproveState.NotApprove);
+		try {
+			wd.insert(sp);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		System.out.println("入库单已提交总经理审批");
 	}
 
 	//产看提醒
 	@Override
-	public ArrayList<ArriverorderVO> checkRemind() {
-		// TODO Auto-generated method stub
+	public String checkRemind() {
+		String needinstore="";
+		Warehouse_inDataService wd=RMIHelper.getWarehouse_inData();
+		ArrayList<String> arriveOrderList;
+		OrganizationNumPO op=new OrganizationNumPO();
+		try {
+			arriveOrderList = wd.checkUnstoreinArriveorder();
+		} catch (RemoteException e) {
+			arriveOrderList =null;
+			e.printStackTrace();
+		}
+		for(String arriverorder:arriveOrderList){
+			if(arriverorder.length()!=0){
+			   String[] order=arriverorder.split(";");
+			   needinstore+=(order[0]+"来自"+op.getName(order[2])+"的货物需要办理入库！"+"\n");
+			   }
+		}		
 		return needinstore;
+	}
+	//删除消息提醒
+	@Override
+	public void deleteRemind() {
+		Warehouse_inDataService wd=RMIHelper.getWarehouse_inData();
+		try {
+			wd.deleteRemind();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	//存储新建立的入库单
 	@Override
 	public void save(StoreinorderPO sp) {
-		// TODO Auto-generated method stub
+		Warehouse_inDataService wd=RMIHelper.getWarehouse_inData();
+		try {
+			wd.insert(sp);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		System.out.println("存储入库单");
 	}
 
@@ -48,4 +85,11 @@ public class Warehouse_inBL implements Warehouse_inBLService,StoreinInfo{
 		return Idlist;
 	}
 
+	private void update(){
+		
+		//在save中调用，更新订单物流信息以及仓库各个位置库存信息
+	}
+
+	
+	
 }

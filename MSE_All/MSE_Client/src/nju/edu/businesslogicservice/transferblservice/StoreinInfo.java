@@ -1,4 +1,4 @@
-package nju.edu.businesslogic.transferbl;
+package nju.edu.businesslogicservice.transferblservice;
 
 import java.util.ArrayList;
 

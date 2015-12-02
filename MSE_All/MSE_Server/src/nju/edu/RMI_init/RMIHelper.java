@@ -25,6 +25,7 @@ import nju.edu.data.policydata.SalaryPolicyData;
 import nju.edu.data.staffdata.StaffData;
 import nju.edu.data.staffdata.UserData;
 import nju.edu.data.storedata.Inventory_managementData;
+import nju.edu.data.storedata.StoreMessageData;
 import nju.edu.data.storedata.Warehouse_inData;
 import nju.edu.data.storedata.Warehouse_outData;
 import nju.edu.data.transferdata.ReceiFormData;
@@ -56,7 +57,8 @@ public class RMIHelper {
 		 NAMING_MAP.put("ConstantPolicyData", ConstantPolicyData.class);
 		 NAMING_MAP.put("SalaryPolicyData", SalaryPolicyData.class);
 		 NAMING_MAP.put("StaffData", StaffData.class);
-		NAMING_MAP.put("UserData", UserData.class);
+		NAMING_MAP.put("UserData", UserData.class);		
+		NAMING_MAP.put("StoreMessageData", StoreMessageData.class);
 		NAMING_MAP.put("Warehouse_inData", Warehouse_inData.class);
 		NAMING_MAP.put("Warehouse_outData", Warehouse_outData.class);
 		NAMING_MAP.put("Inventory_managementData", Inventory_managementData.class);

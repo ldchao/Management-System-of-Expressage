@@ -22,6 +22,7 @@ import nju.edu.dataservice.policydataservice.SalaryPolicyDataService;
 import nju.edu.dataservice.staffdataservice.StaffDataService;
 import nju.edu.dataservice.staffdataservice.UserDataService;
 import nju.edu.dataservice.storedataservice.Inventory_managementDataService;
+import nju.edu.dataservice.storedataservice.StoreMessageDataService;
 import nju.edu.dataservice.storedataservice.Warehouse_inDataService;
 import nju.edu.dataservice.storedataservice.Warehouse_outDataService;
 import nju.edu.dataservice.transferdataservice.ReceiFormDataService;
@@ -54,6 +55,7 @@ public class RMIHelper {
 	private static SalaryPolicyDataService SalaryPolicyData;
 	private static StaffDataService StaffData;
 	private static UserDataService UserData;
+	private static StoreMessageDataService StoreMessageData;
 	private static Warehouse_inDataService Warehouse_inData;
 	private static Warehouse_outDataService Warehouse_outData;
 	private static Inventory_managementDataService Inventory_managementData;
@@ -108,6 +110,7 @@ public class RMIHelper {
 				+ "SalaryPolicyData");
 		StaffData = (StaffDataService) Naming.lookup(urlPrefix + "StaffData");
 		UserData = (UserDataService) Naming.lookup(urlPrefix + "UserData");
+		StoreMessageData=(StoreMessageDataService) Naming.lookup(urlPrefix + "StoreMessageData");
 		Warehouse_inData = (Warehouse_inDataService) Naming.lookup(urlPrefix
 				+ "Warehouse_inData");
 		Warehouse_outData = (Warehouse_outDataService) Naming.lookup(urlPrefix
@@ -192,6 +195,10 @@ public class RMIHelper {
 		return UserData;
 	}
 
+	public static StoreMessageDataService getStoreMessageData() {
+		return StoreMessageData;
+	}
+	
 	public static Warehouse_inDataService getWarehouse_inData() {
 		return Warehouse_inData;
 	}

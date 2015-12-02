@@ -48,6 +48,7 @@ public class Arriverorder extends JPanel {
 				main.getContentPane().add(lastui);
 				main.invalidate();
 				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button.setBounds(10, 10, 65, 23);
@@ -157,6 +158,7 @@ public class Arriverorder extends JPanel {
 				main.getContentPane().add(a);
 				main.invalidate();
 				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(390, 457, 80, 23);

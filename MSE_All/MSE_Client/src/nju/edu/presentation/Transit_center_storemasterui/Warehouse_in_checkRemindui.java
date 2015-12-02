@@ -3,6 +3,7 @@ package nju.edu.presentation.Transit_center_storemasterui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,10 +14,12 @@ import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import nju.edu.businesslogic.storebl.Warehouse_inBL;
+import nju.edu.businesslogicservice.storeblservice.Warehouse_inBLService;
 import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 
 public class Warehouse_in_checkRemindui extends JPanel {
-
+	Warehouse_inBLService wb;
 	/**
 	 * Create the panel.
 	 */
@@ -25,6 +28,7 @@ public class Warehouse_in_checkRemindui extends JPanel {
 		JPanel lastui = jp;
 		Warehouse_in_checkRemindui nowPanel = this;
 		setLayout(null);
+		wb=new Warehouse_inBL();
 
 		JButton button = new JButton("返回");
 		button.addActionListener(new ActionListener() {
@@ -33,6 +37,7 @@ public class Warehouse_in_checkRemindui extends JPanel {
 				main.getContentPane().add(lastui);
 				main.invalidate();
 				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button.setBounds(10, 10, 65, 23);
@@ -56,7 +61,7 @@ public class Warehouse_in_checkRemindui extends JPanel {
 		add(scrollPane);
 
 		JTextArea textArea = new JTextArea();
-		textArea.setText("暂时没有需要入库的货物");
+		textArea.setText(wb.checkRemind());
 		scrollPane.setViewportView(textArea);
 
 		JLabel label_3 = new JLabel("\u5F85\u5904\u7406\u7684\u6D88\u606F");
@@ -65,6 +70,12 @@ public class Warehouse_in_checkRemindui extends JPanel {
 		scrollPane.setColumnHeaderView(label_3);
 
 		JButton button_1 = new JButton("确认已查看上述消息，点击后消息将被清空");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			   wb.deleteRemind();
+			   textArea.setText("暂时没有新消息需要处理！");
+			}
+		});
 		button_1.setBounds(223, 477, 340, 23);
 		add(button_1);
 

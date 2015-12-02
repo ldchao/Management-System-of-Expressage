@@ -6,9 +6,9 @@ public class StorePO implements Serializable {
 
 	double warn_value;
 	double remind_value;
-	int[][][][] location;
+	String[][][][] location;
 
-	public StorePO(double warn_value, double remind_value, int[][][][] location) {
+	public StorePO(double warn_value, double remind_value, String[][][][] location) {
 		super();
 		this.warn_value = warn_value;
 		this.remind_value = remind_value;
@@ -31,11 +31,11 @@ public class StorePO implements Serializable {
 		this.remind_value = remind_value;
 	}
 
-	public int[][][][] getLocation() {
+	public String[][][][] getLocation() {
 		return location;
 	}
 
-	public void setLocation(int[][][][] location) {
+	public void setLocation(String[][][][] location) {
 		this.location = location;
 	}
 

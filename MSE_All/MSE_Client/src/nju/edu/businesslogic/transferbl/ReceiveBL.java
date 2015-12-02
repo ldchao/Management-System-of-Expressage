@@ -1,6 +1,7 @@
 package nju.edu.businesslogic.transferbl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.ArriverorderVO;
@@ -28,6 +29,7 @@ public class ReceiveBL implements ReceiveBLService {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+//		update(av.getOrder(), av.getCarNum(), av.g);
 		System.out.println("到达单已提交总经理审批");
 	}
 
@@ -72,7 +74,7 @@ public class ReceiveBL implements ReceiveBLService {
 	}
 
 	// 更新司机、交通工具、监装员、押运员的闲/忙信息和订单物流信息
-	private void update() {
+	private void update(ArrayList<String> Idlist,String carNum,String driverName) {
 
 		// 在build中通过loadervo中信息调用
 	}
