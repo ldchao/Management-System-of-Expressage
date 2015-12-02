@@ -17,17 +17,17 @@ import nju.edu.businesslogicservice.transferblservice.ReceiveBLService;
 import nju.edu.presentation.Transit_center_salesmanui.Arriverorder;
 import nju.edu.presentation.Transit_center_salesmanui.Receiveui;
 
-public class ReceiFormui extends JPanel{
+public class ReceiFormUI extends JPanel{
 	private JTextField textField;
 	JFrame main;
 
 	/**
 	 * Create the panel.
 	 */
-	public ReceiFormui(JFrame m, JPanel jp) {
+	public ReceiFormUI(JFrame m, JPanel jp) {
 		main = m;
 		JPanel lastui = jp;
-		ReceiFormui nowPanel = this;
+		ReceiFormUI nowPanel = this;
 		setLayout(null);
 
 		JButton button = new JButton("·µ»Ø");
@@ -37,7 +37,6 @@ public class ReceiFormui extends JPanel{
 				main.getContentPane().add(lastui);
 				main.invalidate();
 				main.repaint();
-				main.setVisible(true);
 			}
 		});
 		button.setBounds(10, 10, 65, 23);
@@ -89,7 +88,6 @@ public class ReceiFormui extends JPanel{
 						main.getContentPane().add(r);
 						main.invalidate();
 						main.repaint();
-						main.setVisible(true);
 					}
 				}
 			}
