@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
@@ -23,7 +24,7 @@ import javax.swing.JToolBar;
 import PO.LoginPO;
 
 @SuppressWarnings("serial")
-public class CheckStatisticsframe extends JFrame {
+public class CheckStatisticsPanel extends JPanel {
 	private JTable table;
 	private JTable table2;
 	private DefaultTableModel tableModel1;
@@ -33,46 +34,51 @@ public class CheckStatisticsframe extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public CheckStatisticsframe(LoginPO loginPO,String start, String end) {
-		getContentPane().setLayout(null);
-		CheckStatisticsframe csf = this;
+	public CheckStatisticsPanel(JFrame main, LoginPO loginPO, String start,
+			String end) {
+		setLayout(null);
+		CheckStatisticsPanel csp = this;
 
 		int startnum = Integer.valueOf(start.replaceAll("-", ""));
 		int endnum = Integer.valueOf(end.replaceAll("-", ""));
 
 		JLabel label = new JLabel("财务人员>>统计报表>>查看收款信息和付款信息");
 		label.setBounds(92, 8, 563, 15);
-		getContentPane().add(label);
+		add(label);
 
 		JLabel lblHello = new JLabel("Hello!");
 		lblHello.setBounds(665, 8, 36, 15);
-		getContentPane().add(lblHello);
+		add(lblHello);
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				csf.dispose();
-				Statisticsframe sts = new Statisticsframe(loginPO);
+				main.remove(csp);
+				StatisticsPanel sts = new StatisticsPanel(loginPO, main);
 				Thread t = new Thread(sts);
 				t.start();
+				main.add(sts);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button_4.setBounds(15, 6, 70, 23);
-		getContentPane().add(button_4);
+		add(button_4);
 
 		JLabel label_1 = new JLabel("收款信息");
 		label_1.setFont(new Font("黑体", Font.BOLD, 15));
 		label_1.setBounds(320, 81, 93, 15);
-		getContentPane().add(label_1);
+		add(label_1);
 
 		JLabel label_2 = new JLabel("\u4ED8\u6B3E\u5355\u8BB0\u5F55");
 		label_2.setFont(new Font("黑体", Font.BOLD, 15));
 		label_2.setBounds(319, 293, 93, 15);
-		getContentPane().add(label_2);
+		add(label_2);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(43, 114, 654, 147);
-		getContentPane().add(scrollPane);
+		add(scrollPane);
 
 		// 收款单
 		table = new JTable();
@@ -107,7 +113,7 @@ public class CheckStatisticsframe extends JFrame {
 
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(43, 324, 654, 147);
-		getContentPane().add(scrollPane_1);
+		add(scrollPane_1);
 
 		// 付款单
 		table2 = new JTable();
@@ -142,11 +148,11 @@ public class CheckStatisticsframe extends JFrame {
 		JLabel label_3 = new JLabel(start + "至" + end + "期间的经营情况");
 		label_3.setFont(new Font("黑体", Font.BOLD, 17));
 		label_3.setBounds(188, 44, 368, 23);
-		getContentPane().add(label_3);
+		add(label_3);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 543, 744, 28);
-		getContentPane().add(toolBar);
+		add(toolBar);
 
 		JLabel lblNewLabel = new JLabel("\u72B6\u6001\u680F");
 		toolBar.add(lblNewLabel);
@@ -159,16 +165,7 @@ public class CheckStatisticsframe extends JFrame {
 			}
 		});
 		button.setBounds(316, 489, 93, 23);
-		getContentPane().add(button);
-
-		// frame
-		this.setTitle("快递管理系统MSE客户端");
-		this.setSize(750, 600);
-		this.setLocation(400, 100);
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		add(button);
 	}
 
 	public void showPayeeTable(ArrayList<PayeeorderVO> payeeList) {

@@ -44,7 +44,7 @@ public class ChoosePanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(choose);
 				LoginPanel login = new LoginPanel(main);
-				main.getContentPane().add(login);
+				main.add(login);
 				main.invalidate();
 				main.repaint();
 			}

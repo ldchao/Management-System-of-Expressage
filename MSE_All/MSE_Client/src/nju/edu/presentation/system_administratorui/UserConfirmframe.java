@@ -26,8 +26,8 @@ public class UserConfirmframe extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				conframe.dispose();
 				usb.deleteUser(name);
-				CheckUserframe.setlblNewLabel("删除成功！");
-				CheckUserframe.showTable(usb.checkUsers());
+				CheckUserPanel.setlblNewLabel("删除成功！");
+				CheckUserPanel.showTable(usb.checkUsers());
 			}
 		});
 		btnNewButton.setBounds(53, 87, 71, 23);

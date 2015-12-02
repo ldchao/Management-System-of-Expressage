@@ -81,9 +81,9 @@ public class UpdateAccountframe extends JFrame implements Runnable{
 					label_5.setText("信息录入不完整，无法完成修改");
 					signal = true;
 				} else {
-					CheckAccountframe.showTable(accountBL.updateAccount(
+					CheckAccountPanel.showTable(accountBL.updateAccount(
 							rowpos + 1, name, date, creator)); // rowpos为修改的位置
-					CheckAccountframe.setLblNewLabel("修改成功！");
+					CheckAccountPanel.setLblNewLabel("修改成功！");
 					up.dispose();
 				}
 

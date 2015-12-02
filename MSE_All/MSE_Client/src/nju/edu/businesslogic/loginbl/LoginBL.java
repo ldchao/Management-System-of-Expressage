@@ -20,7 +20,7 @@ import nju.edu.presentation.Business_hall_salesmanui.Business_hall_salesmanMainU
 import nju.edu.presentation.Transit_center_salesmanui.Transit_center_salesman_mainui;
 import nju.edu.presentation.Transit_center_storemasterui.Transit_center_storemaster_mainui;
 import nju.edu.presentation.courierui.Courier;
-import nju.edu.presentation.financial_staffui.fsframe;
+import nju.edu.presentation.financial_staffui.FinanceFrame;
 import nju.edu.presentation.general_managerui.Manager;
 import nju.edu.presentation.system_administratorui.Administratorframe;
 
@@ -54,7 +54,7 @@ public class LoginBL implements LoginBLService {
 		checkStaffInfo checkStaff = new Staffbl();
 		StaffPO staffPO = checkStaff.getStaffPO(user);
 		LoginPO loginPO = new LoginPO(user, password, staffPO.getPosition(),
-				staffPO.getName(), staffPO.getAddress());
+				staffPO.getName(), staffPO.getShop());
 
 		return loginPO;
 	}
@@ -83,14 +83,14 @@ public class LoginBL implements LoginBLService {
 			mframe.setVisible(true);
 			break;
 		case "财务人员":
-			fsframe fs1 = new fsframe(loginPO);
-			Thread t1 = new Thread(fs1);
-			t1.start();
+			FinanceFrame fs1 = new FinanceFrame(loginPO);
+//			Thread t1 = new Thread(fs1);
+//			t1.start();
 			break;
 		case "高级财务人员":
-			fsframe fs2 = new fsframe(loginPO);
-			Thread t2 = new Thread(fs2);
-			t2.start();
+			FinanceFrame fs2 = new FinanceFrame(loginPO);
+//			Thread t2 = new Thread(fs2);
+//			t2.start();
 			break;
 		case "中转中心仓库管理员":
 			Transit_center_storemaster_mainui ts = new Transit_center_storemaster_mainui();

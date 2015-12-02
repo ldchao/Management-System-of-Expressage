@@ -139,8 +139,8 @@ public class UpdateUserFrame extends JFrame implements Runnable {
 						}
 					}
 					up.dispose();
-					CheckUserframe.setlblNewLabel("修改成功！");
-					CheckUserframe.showTable(userBL.updateUser(pos + 1, name,
+					CheckUserPanel.setlblNewLabel("修改成功！");
+					CheckUserPanel.showTable(userBL.updateUser(pos + 1, name,
 							newlimit));
 				}
 			}

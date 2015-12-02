@@ -27,8 +27,8 @@ public class ConfirmFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				conframe.dispose();
 				accountBL.deleteAccount(name);
-				CheckAccountframe.setLblNewLabel("删除成功！");
-				CheckAccountframe.showTable(accountBL.check());
+				CheckAccountPanel.setLblNewLabel("删除成功！");
+				CheckAccountPanel.showTable(accountBL.check());
 			}
 		});
 		btnNewButton.setBounds(53, 87, 71, 23);

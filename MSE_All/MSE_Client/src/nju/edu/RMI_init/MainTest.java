@@ -15,7 +15,7 @@ import nju.edu.presentation.Transit_center_salesmanui.Transit_center_salesman_ma
 import nju.edu.presentation.Transit_center_storemasterui.Transit_center_storemaster_mainui;
 import nju.edu.presentation.courierui.Courier;
 import nju.edu.presentation.financial_staffui.ReceiFormframe;
-import nju.edu.presentation.financial_staffui.fsframe;
+import nju.edu.presentation.financial_staffui.FinanceFrame;
 import nju.edu.presentation.general_managerui.Manager;
 import nju.edu.presentation.system_administratorui.Administratorframe;
 
@@ -101,10 +101,8 @@ public class MainTest extends JFrame {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.dispose();
-				LoginPO po = new LoginPO("用户1", "1234561", "财务人员", "SURE", "南京栖霞营业厅");
-				fsframe fs = new fsframe(po);
-				Thread t = new Thread(fs);
-				t.start();
+				LoginPO po = new LoginPO("用户1", "1234561", "高级财务人员", "SURE", "南京栖霞营业厅");
+				FinanceFrame fs = new FinanceFrame(po);
 			}
 		});
 		button_3.setBounds(283, 216, 121, 88);

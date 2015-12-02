@@ -1,19 +1,22 @@
-package nju.edu.presentation.system_administratorui;
+package nju.edu.presentation.financial_staffui;
 
 import javax.swing.JFrame;
 
 import PO.LoginPO;
 
 @SuppressWarnings("serial")
-public class Administratorframe extends JFrame {
+public class FinanceFrame extends JFrame {
 
 	/**
 	 * Create the panel.
 	 */
-	public Administratorframe(LoginPO loginPO) {
 
-		AdminPanel adminPanel = new AdminPanel(loginPO, this);
-		this.add(adminPanel);
+	public FinanceFrame(LoginPO loginPO) {
+
+		FmainPanel fmainPanel = new FmainPanel(loginPO, this);
+		this.add(fmainPanel);
+		Thread t = new Thread(fmainPanel);
+		t.start();
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");

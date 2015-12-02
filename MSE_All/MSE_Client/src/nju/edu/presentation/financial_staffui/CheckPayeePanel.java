@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +21,7 @@ import PO.LoginPO;
 import PO.OrganizationNumPO;
 
 @SuppressWarnings("serial")
-public class CheckPayeeframe extends JFrame {
+public class CheckPayeePanel extends JPanel {
 	private JTable table;
 	private DefaultTableModel tableModel;
 	CalculateBL cbl = new CalculateBL();
@@ -28,30 +29,37 @@ public class CheckPayeeframe extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public CheckPayeeframe(LoginPO loginPO,String date, String shop) {
-		getContentPane().setLayout(null);
+	public CheckPayeePanel(JFrame main, LoginPO loginPO, String date,
+			String shop) {
 
-		CheckPayeeframe cpef = this;
+		setLayout(null);
+		setSize(750, 600);
+
+		CheckPayeePanel cpep = this;
 
 		JLabel label = new JLabel("财务人员>>结算管理>>查看结算信息");
 		label.setBounds(92, 8, 563, 15);
-		getContentPane().add(label);
+		add(label);
 
 		JLabel lblHello = new JLabel("Hello!");
 		lblHello.setBounds(665, 8, 36, 15);
-		getContentPane().add(lblHello);
+		add(lblHello);
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cpef.dispose();
-				Calculateframe clf = new Calculateframe(loginPO);
+				main.remove(cpep);
+				CalculatePanel clf = new CalculatePanel(loginPO, main);
 				Thread t = new Thread(clf);
 				t.start();
+				main.add(clf);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button_4.setBounds(15, 6, 70, 23);
-		getContentPane().add(button_4);
+		add(button_4);
 
 		JLabel label_1;
 		OrganizationNumPO opo = new OrganizationNumPO();
@@ -63,11 +71,11 @@ public class CheckPayeeframe extends JFrame {
 		}
 		label_1.setFont(new Font("黑体", Font.BOLD, 15));
 		label_1.setBounds(225, 114, 310, 23);
-		getContentPane().add(label_1);
+		add(label_1);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(71, 177, 600, 200);
-		getContentPane().add(scrollPane);
+		add(scrollPane);
 
 		table = new JTable();
 		table.setRowHeight(25);
@@ -93,12 +101,12 @@ public class CheckPayeeframe extends JFrame {
 		JLabel label_2 = new JLabel("");
 		label_2.setFont(new Font("黑体", Font.BOLD, 15));
 		label_2.setBounds(276, 467, 107, 23);
-		getContentPane().add(label_2);
+		add(label_2);
 
 		JLabel lblMoney = new JLabel("");
 		lblMoney.setFont(new Font("黑体", Font.BOLD, 15));
 		lblMoney.setBounds(385, 467, 107, 23);
-		getContentPane().add(lblMoney);
+		add(lblMoney);
 		// 合计
 		JButton button = new JButton("\u5408\u8BA1");
 		button.addActionListener(new ActionListener() {
@@ -109,16 +117,7 @@ public class CheckPayeeframe extends JFrame {
 			}
 		});
 		button.setBounds(318, 415, 93, 23);
-		getContentPane().add(button);
-
-		// frame
-		this.setTitle("快递管理系统MSE客户端");
-		this.setSize(750, 600);
-		this.setLocation(400, 100);
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		add(button);
 	}
 
 	public void showTable(ArrayList<PayeeorderVO> payeevo) {

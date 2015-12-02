@@ -10,18 +10,18 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
 import PO.LoginPO;
-import nju.edu.VO.AccountVO;
 import nju.edu.VO.StartinfoVO;
 import nju.edu.businesslogic.billbl.BillBL;
 
 @SuppressWarnings("serial")
-public class CheckBillframe extends JFrame {
+public class CheckBillPanel extends JPanel {
 	private static JTable table;
 	private int rowpos;
 	private static DefaultTableModel tableModel;
@@ -30,37 +30,42 @@ public class CheckBillframe extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public CheckBillframe(LoginPO loginPO) {
-		getContentPane().setLayout(null);
+	public CheckBillPanel(LoginPO loginPO, JFrame main) {
+		setLayout(null);
+		setSize(750, 600);
 
-		CheckBillframe cbf = this;
+		CheckBillPanel cbp = this;
 
 		JLabel label = new JLabel("财务人员>>期初建账>>查看期初信息");
 		label.setBounds(92, 8, 563, 15);
-		getContentPane().add(label);
+		add(label);
 
 		JLabel lblHello = new JLabel("Hello!");
 		lblHello.setBounds(665, 8, 36, 15);
-		getContentPane().add(lblHello);
+		add(lblHello);
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cbf.dispose();
-				Billframe bframe = new Billframe(loginPO);
+				main.remove(cbp);
+				BillPanel bpanel = new BillPanel(loginPO, main);
+				main.add(bpanel);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button_4.setBounds(15, 6, 70, 23);
-		getContentPane().add(button_4);
+		add(button_4);
 
 		JLabel label_1 = new JLabel("期初信息");
 		label_1.setFont(new Font("黑体", Font.BOLD, 15));
 		label_1.setBounds(332, 124, 70, 15);
-		getContentPane().add(label_1);
+		add(label_1);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 180, 709, 251);
-		getContentPane().add(scrollPane);
+		add(scrollPane);
 
 		table = new JTable();
 		table.setRowHeight(25);
@@ -108,15 +113,6 @@ public class CheckBillframe extends JFrame {
 		table.getColumnModel().getColumn(5).setPreferredWidth(120);
 
 		showTable(bbl.checkBill());
-
-		// frame
-		this.setTitle("快递管理系统MSE客户端");
-		this.setSize(750, 600);
-		this.setLocation(400, 100);
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public static void showTable(ArrayList<StartinfoVO> startinfoVO) {
@@ -129,7 +125,7 @@ public class CheckBillframe extends JFrame {
 			tableModel.setValueAt(sinvo.getVehicle(), i, 4);
 			tableModel.setValueAt(sinvo.getStore(), i, 5);
 			i++;
-			
+
 			if (i >= table.getRowCount()) {
 				String[] rowstr = { "", "", "", "", "", "" };
 				tableModel.addRow(rowstr);
