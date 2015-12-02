@@ -108,6 +108,7 @@ public class Order extends JFrame implements Runnable{
 	JTextArea textArea_1; 
 	JComboBox comboBox_1;
 	JComboBox comboBox_2;
+	private JButton button_1;
 	/**
 	 * Launch the application.
 	 */
@@ -511,6 +512,16 @@ public class Order extends JFrame implements Runnable{
 		comboBox_2= new JComboBox(city);
 		comboBox_2.setBounds(451, 273, 179, 21);
 		contentPane.add(comboBox_2);
+		
+		button_1 = new JButton("\u8FD4\u56DE");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Courier courier=new Courier();
+			}
+		});
+		button_1.setBounds(22, 20, 63, 23);
+		contentPane.add(button_1);
 	}
 	
 	public void clean(){

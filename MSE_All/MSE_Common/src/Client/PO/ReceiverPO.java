@@ -16,8 +16,8 @@ public class ReceiverPO implements Serializable{
 	String cellphone;
 	String position;
 	
-	public ReceiverPO(String courier, String phoneOfcourier, String id, String time, String receiver, String address,
-			String phone, String cellphone, String position) {
+	public ReceiverPO(String courier, String phoneOfcourier, String id, String time, String receiver, String phone,
+			String cellphone, String position, String address) {
 		super();
 		this.courier = courier;
 		this.phoneOfcourier = phoneOfcourier;

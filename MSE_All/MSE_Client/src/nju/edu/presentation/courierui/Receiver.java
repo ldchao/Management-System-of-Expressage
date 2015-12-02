@@ -38,9 +38,6 @@ public class Receiver extends JFrame {
 	private JTextField textField_6;
 	private JTextArea textArea;
 	private Receiverinbl receiverinbl;
-	/**
-	 * Launch the application.
-	 */
 
 	/**
 	 * Create the frame.
@@ -166,11 +163,9 @@ public class Receiver extends JFrame {
 				ReceiverVO receiverVO=new ReceiverVO(textField.getText(), textField_1.getText(), textField_2.getText(), label_11.getText(), 
 						textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText(), textArea.getText());
 				//function:judge whether the information is not complete
-				boolean valid=receiverinbl.JudgeNull(receiverVO);
-				boolean complete=true;
-
-				valid=receiverinbl.searchOrder(textField_2.getText());
+				boolean complete=receiverinbl.JudgeNull(receiverVO);
 				if(complete==true){
+					boolean valid=receiverinbl.searchOrder(textField_2.getText());
 					if(valid==false){
 						label_12.setText("此订单不存在");
 					}else{
@@ -186,14 +181,14 @@ public class Receiver extends JFrame {
 		button.setBounds(234, 489, 93, 23);
 		contentPane.add(button);
 		
-		JButton button_1 = new JButton("\u53D6\u6D88");
+		JButton button_1 = new JButton("\u8FD4\u56DE");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				receiverframe.dispose();
 				Courier newcourier=new Courier();
 			}
 		});
-		button_1.setBounds(402, 489, 93, 23);
+		button_1.setBounds(10, 10, 93, 23);
 		contentPane.add(button_1);
 		
 		JLabel label_13 = new JLabel("\u6D3E\u4EF6\u5458\u4FE1\u606F");
@@ -201,16 +196,25 @@ public class Receiver extends JFrame {
 		label_13.setBounds(311, 76, 85, 15);
 		contentPane.add(label_13);
 		
+		JButton button_2 = new JButton("\u6E05\u7A7A");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clean();
+			}
+		});
+		button_2.setBounds(384, 489, 93, 23);
+		contentPane.add(button_2);
+		
 	}
 	
 	public void clean(){
 		textField.setText("");
-		textField.setText("");
-		textField.setText("");
-		textField.setText("");
-		textField.setText("");
-		textField.setText("");
-		textField.setText("");
+		textField_1.setText("");
+		textField_2.setText("");
+		textField_3.setText("");
+		textField_4.setText("");
+		textField_5.setText("");
+		textField_6.setText("");
 		textArea.setText("");
 	}
 }

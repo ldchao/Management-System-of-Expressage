@@ -3,10 +3,12 @@ package nju.edu.businesslogic.staffbl;
 
 import java.util.ArrayList;
 
+import PO.StaffPO;
 import nju.edu.VO.StaffVO;
 import nju.edu.businesslogicservice.staffblservice.StaffBLService;
+import nju.edu.businesslogicservice.staffblservice.StaffInfo;
 
-public class Staffbl implements StaffBLService{
+public class Staffbl implements StaffBLService,StaffInfo{
 
 	@Override
 	public ArrayList<StaffVO> showStaff() {
@@ -48,6 +50,12 @@ public class Staffbl implements StaffBLService{
 	public void endStaff() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public StaffPO getStaffPO(String name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -9,5 +9,5 @@ import State.ResultMessage;
 public interface ReceiverinDataService extends Remote{
 	public void insertReceiver(ReceiverPO po)throws RemoteException;
 	
-	public ResultMessage find(String number)throws RemoteException;
+	public boolean find(String number)throws RemoteException;
 }

@@ -7,6 +7,7 @@ import nju.edu.dataservice.listindataservice.ReceiverinDataService;
 
 import java.rmi.RemoteException;
 
+import Client.PO.ReceiverPO;
 import State.ResultMessage;
 
 public class Receiverinbl implements ReceiverinBLService{
@@ -14,7 +15,13 @@ public class Receiverinbl implements ReceiverinBLService{
 	@Override
 	public void addReceiver(ReceiverVO vo) {
 		// TODO Auto-generated method stub
-//		ReceiveDataService.insertReceiver(po);
+		ReceiverPO po=new ReceiverPO(vo.getCourier(), vo.getPhoneOfcourier(), vo.getId(), vo.getTime(), vo.getReceiver(), vo.getAddress(), vo.getPhone(), vo.getCellphone(), vo.getPosition());
+		try {
+			receiverinDataService.insertReceiver(po);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -35,7 +42,7 @@ public class Receiverinbl implements ReceiverinBLService{
 		// TODO Auto-generated method stub
 		boolean result=true;
 		if(vo.getCourier().equals("")||vo.getId().equals("")||vo.getPhoneOfcourier().equals("")||
-				vo.getReceiver().equals("")||vo.getAddress().equals("")||vo.getTime().equals("")||vo.getCellphone().equals("")){
+				vo.getReceiver().equals("")||vo.getAddress().equals("")||vo.getTime().equals("点击选择日期")||vo.getCellphone().equals("")){
 			result=false;
 		}
 		return result;
