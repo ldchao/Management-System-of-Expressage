@@ -16,6 +16,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+import PO.LoginPO;
 import nju.edu.VO.UserVO;
 import nju.edu.businesslogic.staffbl.UserBL;
 
@@ -31,7 +32,7 @@ public class CheckUserframe extends JFrame implements Runnable {
 	/**
 	 * Create the panel.
 	 */
-	public CheckUserframe() {
+	public CheckUserframe(LoginPO loginPO) {
 		signal = false;
 		getContentPane().setLayout(null);
 
@@ -49,7 +50,7 @@ public class CheckUserframe extends JFrame implements Runnable {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cuf.dispose();
-				Administratorframe adf = new Administratorframe();
+				Administratorframe adf = new Administratorframe(loginPO);
 			}
 		});
 		button_4.setBounds(15, 6, 70, 23);

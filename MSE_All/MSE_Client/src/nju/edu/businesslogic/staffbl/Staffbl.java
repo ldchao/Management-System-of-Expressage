@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 import PO.StaffPO;
 import nju.edu.VO.StaffVO;
+import nju.edu.businesslogic.loginbl.checkStaffInfo;
 import nju.edu.businesslogicservice.staffblservice.StaffBLService;
-import nju.edu.businesslogicservice.staffblservice.StaffInfo;
 
-public class Staffbl implements StaffBLService,StaffInfo{
+public class Staffbl implements StaffBLService,checkStaffInfo{
 
 	@Override
 	public ArrayList<StaffVO> showStaff() {

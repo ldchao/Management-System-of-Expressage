@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import PO.LoginPO;
+import PO.StaffPO;
 import nju.edu.VO.UserVO;
+import nju.edu.businesslogic.staffbl.Staffbl;
 import nju.edu.businesslogic.staffbl.UserBL;
 import nju.edu.businesslogicservice.loginblservice.LoginBLService;
 import nju.edu.presentation.Business_hall_salesmanui.Business_hall_salesmanMainUI;
@@ -47,14 +49,21 @@ public class LoginBL implements LoginBLService {
 	}
 
 	@Override
-	public LoginPO getUserInfo(String user) {
-		// TODO Auto-generated method stub
-		return null;
+	public LoginPO getUserInfo(String user, String password) {
+
+		checkStaffInfo checkStaff = new Staffbl();
+		StaffPO staffPO = checkStaff.getStaffPO(user);
+		LoginPO loginPO = new LoginPO(user, password, staffPO.getPosition(),
+				staffPO.getName(), staffPO.getAddress());
+
+		return loginPO;
 	}
 
 	@Override
-	public void Enter(JFrame main, String limit) {
+	public void Enter(JFrame main, LoginPO loginPO) {
 		main.dispose();
+
+		String limit = loginPO.getLimit();
 
 		switch (limit) {
 		case "快递员":
@@ -74,17 +83,21 @@ public class LoginBL implements LoginBLService {
 			mframe.setVisible(true);
 			break;
 		case "财务人员":
-			fsframe fs1 = new fsframe();
+			fsframe fs1 = new fsframe(loginPO);
+			Thread t1 = new Thread(fs1);
+			t1.start();
 			break;
 		case "高级财务人员":
-			fsframe fs2 = new fsframe();
+			fsframe fs2 = new fsframe(loginPO);
+			Thread t2 = new Thread(fs2);
+			t2.start();
 			break;
 		case "中转中心仓库管理员":
 			Transit_center_storemaster_mainui ts = new Transit_center_storemaster_mainui();
 			ts.setVisible(true);
 			break;
 		case "系统管理员":
-			Administratorframe ad = new Administratorframe();
+			Administratorframe ad = new Administratorframe(loginPO);
 			break;
 		}
 	}

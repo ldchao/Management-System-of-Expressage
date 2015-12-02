@@ -11,9 +11,9 @@ public interface LoginBLService {
 	public int isLegal(String user, String password);
 
 	// 根据用户名获取用户信息
-	public LoginPO getUserInfo(String user);
+	public LoginPO getUserInfo(String user,String password);
 	
 	// 根据权限进入相应界面
-	public void Enter(JFrame main,String limit);
+	public void Enter(JFrame main,LoginPO loginPO);
 	
 }

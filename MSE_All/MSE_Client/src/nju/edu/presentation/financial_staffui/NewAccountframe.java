@@ -14,6 +14,7 @@ import java.util.Date;
 
 import javax.swing.JTextField;
 
+import PO.LoginPO;
 import nju.edu.businesslogic.accountbl.AccountBL;
 
 @SuppressWarnings("serial")
@@ -29,7 +30,7 @@ public class NewAccountframe extends JFrame implements Runnable {
 	/**
 	 * Create the panel.
 	 */
-	public NewAccountframe() {
+	public NewAccountframe(LoginPO loginPO) {
 		success = false;
 		signal = false;
 		getContentPane().setLayout(null);
@@ -49,7 +50,7 @@ public class NewAccountframe extends JFrame implements Runnable {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				naf.dispose();
-				Accountframe fs = new Accountframe();
+				Accountframe fs = new Accountframe(loginPO);
 			}
 		});
 		button_4.setBounds(10, 6, 67, 23);

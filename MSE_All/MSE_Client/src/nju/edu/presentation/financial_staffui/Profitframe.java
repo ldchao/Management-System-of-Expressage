@@ -18,6 +18,7 @@ import java.util.Date;
 
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
 import nju.edu.businesslogic.financebl.PayorderBL;
 
 @SuppressWarnings("serial")
@@ -29,7 +30,7 @@ public class Profitframe extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public Profitframe() {
+	public Profitframe(LoginPO loginPO) {
 		getContentPane().setLayout(null);
 		Profitframe pf = this;
 
@@ -45,7 +46,7 @@ public class Profitframe extends JFrame {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pf.dispose();
-				Payframe payframe = new Payframe();
+				Payframe payframe = new Payframe(loginPO);
 			}
 		});
 		button_4.setBounds(10, 1, 67, 23);

@@ -3,17 +3,19 @@ package nju.edu.presentation.financial_staffui;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import PO.LoginPO;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class Billframe extends JFrame {
 
 	/**
 	 * Create the panel.
 	 */
-	public Billframe() {
+	public Billframe(LoginPO loginPO) {
 
 		getContentPane().setLayout(null);
 		
@@ -31,7 +33,7 @@ public class Billframe extends JFrame {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				bf.dispose();
-				fsframe fsframe = new fsframe();
+				fsframe fsframe = new fsframe(loginPO);
 			}
 		});
 		button_4.setBounds(10, 1, 68, 23);
@@ -41,7 +43,7 @@ public class Billframe extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				bf.dispose();
-				Newbillframe nbframe = new Newbillframe();
+				Newbillframe nbframe = new Newbillframe(loginPO);
 				Thread t = new Thread(nbframe);
 				t.start();
 			}
@@ -61,7 +63,7 @@ public class Billframe extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				bf.dispose();
-				CheckBillframe cbf = new CheckBillframe();
+				CheckBillframe cbf = new CheckBillframe(loginPO);
 			}
 		});
 		button.setBounds(417, 221, 160, 128);

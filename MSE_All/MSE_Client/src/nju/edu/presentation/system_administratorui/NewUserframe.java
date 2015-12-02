@@ -12,6 +12,8 @@ import javax.swing.JToolBar;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 
+import PO.LoginPO;
+
 import java.awt.Font;
 import java.util.Enumeration;
 
@@ -30,7 +32,7 @@ public class NewUserframe extends JFrame implements Runnable {
 	/**
 	 * Create the panel.
 	 */
-	public NewUserframe() {
+	public NewUserframe(LoginPO loginPO) {
 		success = false;
 		signal = false;
 		getContentPane().setLayout(null);
@@ -50,7 +52,7 @@ public class NewUserframe extends JFrame implements Runnable {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nuf.dispose();
-				Administratorframe adf = new Administratorframe();
+				Administratorframe adf = new Administratorframe(loginPO);
 			}
 		});
 		getContentPane().add(button_4);

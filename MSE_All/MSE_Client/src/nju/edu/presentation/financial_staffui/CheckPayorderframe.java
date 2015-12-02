@@ -20,6 +20,7 @@ import java.awt.Color;
 
 import javax.swing.JScrollPane;
 
+import PO.LoginPO;
 import nju.edu.VO.PayorderVO;
 import nju.edu.businesslogic.financebl.PayorderBL;
 
@@ -33,7 +34,7 @@ public class CheckPayorderframe extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public CheckPayorderframe() {
+	public CheckPayorderframe(LoginPO loginPO) {
 		getContentPane().setLayout(null);
 
 		CheckPayorderframe cpf = this;
@@ -51,7 +52,7 @@ public class CheckPayorderframe extends JFrame {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cpf.dispose();
-				Payframe pf = new Payframe();
+				Payframe pf = new Payframe(loginPO);
 			}
 		});
 		button_4.setBounds(15, 6, 70, 23);

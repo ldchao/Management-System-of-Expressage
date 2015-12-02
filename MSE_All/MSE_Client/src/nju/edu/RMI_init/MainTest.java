@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
+import PO.LoginPO;
 import nju.edu.presentation.Business_hall_salesmanui.Business_hall_salesmanMainUI;
 import nju.edu.presentation.Loginui.LoginFrame;
 import nju.edu.presentation.Transit_center_salesmanui.Transit_center_salesman_mainui;
@@ -100,7 +101,10 @@ public class MainTest extends JFrame {
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.dispose();
-				fsframe fs = new fsframe();
+				LoginPO po = new LoginPO("用户1", "1234561", "财务人员", "SURE", "南京栖霞营业厅");
+				fsframe fs = new fsframe(po);
+				Thread t = new Thread(fs);
+				t.start();
 			}
 		});
 		button_3.setBounds(283, 216, 121, 88);
@@ -121,7 +125,8 @@ public class MainTest extends JFrame {
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.dispose();
-				Administratorframe adf = new Administratorframe();
+				LoginPO po = new LoginPO("用户2", "1234562", "系统管理员", "SURE", "南京栖霞营业厅");
+				Administratorframe adf = new Administratorframe(po);
 			}
 		});
 		button_5.setBounds(588, 216, 121, 88);

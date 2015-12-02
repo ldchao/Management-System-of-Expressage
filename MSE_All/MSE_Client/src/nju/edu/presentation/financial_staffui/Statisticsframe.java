@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
+
 @SuppressWarnings("serial")
 public class Statisticsframe extends JFrame implements Runnable {
 	private boolean signal;
@@ -17,7 +19,7 @@ public class Statisticsframe extends JFrame implements Runnable {
 	/**
 	 * Create the panel.
 	 */
-	public Statisticsframe() {
+	public Statisticsframe(LoginPO loginPO) {
 		getContentPane().setLayout(null);
 		Statisticsframe stf = this;
 		signal = false;
@@ -35,7 +37,7 @@ public class Statisticsframe extends JFrame implements Runnable {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				stf.dispose();
-				fsframe fs = new fsframe();
+				fsframe fs = new fsframe(loginPO);
 			}
 		});
 		button_4.setBounds(10, 1, 68, 23);
@@ -75,7 +77,7 @@ public class Statisticsframe extends JFrame implements Runnable {
 					if (d1 < d2) {
 						stf.dispose();
 						CheckStatisticsframe cstf = new CheckStatisticsframe(
-								date1, date2);
+								loginPO, date1, date2);
 					} else {
 						lblNewLabel.setText("截止日期不得在起始日期之前，请核对起止日期");
 					}

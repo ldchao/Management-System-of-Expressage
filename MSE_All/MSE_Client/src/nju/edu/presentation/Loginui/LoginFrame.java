@@ -31,8 +31,4 @@ public class LoginFrame extends JFrame {
 		this.setVisible(true);
 		this.setResizable(false);
 	}
-
-	public static void main(String[] args){
-		LoginFrame frame = new LoginFrame();
-	}
 }

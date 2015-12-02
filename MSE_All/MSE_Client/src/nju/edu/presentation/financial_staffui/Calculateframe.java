@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
+
 @SuppressWarnings("serial")
 public class Calculateframe extends JFrame implements Runnable {
 	private boolean signal;
@@ -18,7 +20,7 @@ public class Calculateframe extends JFrame implements Runnable {
 	/**
 	 * Create the panel.
 	 */
-	public Calculateframe() {
+	public Calculateframe(LoginPO loginPO) {
 
 		Calculateframe cf = this;
 		getContentPane().setLayout(null);
@@ -37,7 +39,7 @@ public class Calculateframe extends JFrame implements Runnable {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cf.dispose();
-				fsframe fs = new fsframe();
+				fsframe fs = new fsframe(loginPO);
 			}
 		});
 		getContentPane().add(button_4);
@@ -67,7 +69,8 @@ public class Calculateframe extends JFrame implements Runnable {
 				String date = showDate2.getText();
 				String shop = textField.getText();
 				if (!date.equals("请单击选择日期") && !shop.equals("")) {
-					CheckPayeeframe cpef = new CheckPayeeframe(date, shop);
+					CheckPayeeframe cpef = new CheckPayeeframe(loginPO, date,
+							shop);
 					cf.dispose();
 				} else {
 					label_2.setText("请输入营业厅编号并选择日期后确认");

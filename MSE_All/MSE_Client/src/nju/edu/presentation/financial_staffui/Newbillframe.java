@@ -17,6 +17,7 @@ import java.awt.Font;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
 
+import PO.LoginPO;
 import nju.edu.businesslogic.billbl.BillBL;
 
 @SuppressWarnings("serial")
@@ -35,7 +36,7 @@ public class Newbillframe extends JFrame implements Runnable {
 	/**
 	 * Create the panel.
 	 */
-	public Newbillframe() {
+	public Newbillframe(LoginPO loginPO) {
 		success = false;
 		signal = false;
 		getContentPane().setLayout(null);
@@ -55,7 +56,7 @@ public class Newbillframe extends JFrame implements Runnable {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nbf.dispose();
-				Billframe bf = new Billframe();
+				Billframe bf = new Billframe(loginPO);
 			}
 		});
 		getContentPane().add(button_4);

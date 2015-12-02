@@ -15,10 +15,12 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
+import PO.LoginPO;
 import nju.edu.VO.AccountVO;
 import nju.edu.VO.StartinfoVO;
 import nju.edu.businesslogic.billbl.BillBL;
 
+@SuppressWarnings("serial")
 public class CheckBillframe extends JFrame {
 	private static JTable table;
 	private int rowpos;
@@ -28,7 +30,7 @@ public class CheckBillframe extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public CheckBillframe() {
+	public CheckBillframe(LoginPO loginPO) {
 		getContentPane().setLayout(null);
 
 		CheckBillframe cbf = this;
@@ -45,7 +47,7 @@ public class CheckBillframe extends JFrame {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cbf.dispose();
-				Billframe bframe = new Billframe();
+				Billframe bframe = new Billframe(loginPO);
 			}
 		});
 		button_4.setBounds(15, 6, 70, 23);

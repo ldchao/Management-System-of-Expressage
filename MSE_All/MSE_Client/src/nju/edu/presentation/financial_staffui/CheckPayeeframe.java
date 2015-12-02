@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 
 import nju.edu.VO.PayeeorderVO;
 import nju.edu.businesslogic.financebl.CalculateBL;
+import PO.LoginPO;
 import PO.OrganizationNumPO;
 
 @SuppressWarnings("serial")
@@ -27,7 +28,7 @@ public class CheckPayeeframe extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public CheckPayeeframe(String date, String shop) {
+	public CheckPayeeframe(LoginPO loginPO,String date, String shop) {
 		getContentPane().setLayout(null);
 
 		CheckPayeeframe cpef = this;
@@ -44,7 +45,7 @@ public class CheckPayeeframe extends JFrame {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cpef.dispose();
-				Calculateframe clf = new Calculateframe();
+				Calculateframe clf = new Calculateframe(loginPO);
 				Thread t = new Thread(clf);
 				t.start();
 			}

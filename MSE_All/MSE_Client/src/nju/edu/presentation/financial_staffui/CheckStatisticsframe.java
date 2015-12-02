@@ -20,6 +20,8 @@ import nju.edu.businesslogic.financebl.StatisticsBL;
 
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
+
 @SuppressWarnings("serial")
 public class CheckStatisticsframe extends JFrame {
 	private JTable table;
@@ -31,7 +33,7 @@ public class CheckStatisticsframe extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public CheckStatisticsframe(String start, String end) {
+	public CheckStatisticsframe(LoginPO loginPO,String start, String end) {
 		getContentPane().setLayout(null);
 		CheckStatisticsframe csf = this;
 
@@ -50,7 +52,7 @@ public class CheckStatisticsframe extends JFrame {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				csf.dispose();
-				Statisticsframe sts = new Statisticsframe();
+				Statisticsframe sts = new Statisticsframe(loginPO);
 				Thread t = new Thread(sts);
 				t.start();
 			}

@@ -14,6 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
 import nju.edu.businesslogic.financebl.PayorderBL;
 
 @SuppressWarnings("serial")
@@ -33,7 +34,7 @@ public class NewPayorderframe extends JFrame implements Runnable {
 	/**
 	 * Create the panel.
 	 */
-	public NewPayorderframe() {
+	public NewPayorderframe(LoginPO loginPO) {
 		success = false;
 		signal = false;
 		getContentPane().setLayout(null);
@@ -53,7 +54,7 @@ public class NewPayorderframe extends JFrame implements Runnable {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				npf.dispose();
-				Payframe pf = new Payframe();
+				Payframe pf = new Payframe(loginPO);
 			}
 		});
 		getContentPane().add(button_4);

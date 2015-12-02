@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import PO.LoginPO;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -13,7 +15,7 @@ public class Payframe extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public Payframe() {
+	public Payframe(LoginPO loginPO) {
 		getContentPane().setLayout(null);
 
 		Payframe pf = this;
@@ -30,7 +32,7 @@ public class Payframe extends JFrame {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pf.dispose();
-				fsframe fs = new fsframe();
+				fsframe fs = new fsframe(loginPO);
 			}
 		});
 		button_4.setBounds(10, 1, 67, 23);
@@ -40,7 +42,7 @@ public class Payframe extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pf.dispose();
-				NewPayorderframe npf = new NewPayorderframe();
+				NewPayorderframe npf = new NewPayorderframe(loginPO);
 				Thread t = new Thread(npf);
 				t.start();
 			}
@@ -52,7 +54,7 @@ public class Payframe extends JFrame {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pf.dispose();
-				CheckPayorderframe cpf = new CheckPayorderframe();
+				CheckPayorderframe cpf = new CheckPayorderframe(loginPO);
 			}
 		});
 		button_1.setBounds(298, 221, 160, 128);
@@ -71,7 +73,7 @@ public class Payframe extends JFrame {
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pf.dispose();
-				Profitframe pro = new Profitframe();
+				Profitframe pro = new Profitframe(loginPO);
 			}
 		});
 		button_2.setBounds(539, 221, 160, 128);

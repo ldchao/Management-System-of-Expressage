@@ -63,8 +63,18 @@ public class LoginPanel extends JPanel {
 		label_4.setBounds(493, 310, 93, 20);
 		add(label_4);
 
-		String str[] = loginbl.getUser();
+		// 记住用户名
+		JCheckBox checkBox = new JCheckBox("\u8BB0\u4F4F\u7528\u6237\u540D");
+		checkBox.setSelected(true);
+		checkBox.setBounds(239, 357, 103, 23);
+		this.add(checkBox);
 
+		// 记住密码
+		JCheckBox checkBox_1 = new JCheckBox("\u8BB0\u4F4F\u5BC6\u7801");
+		checkBox_1.setBounds(345, 357, 84, 23);
+		this.add(checkBox_1);
+
+		String str[] = loginbl.getUser();
 		// 用户名
 		textField = new JTextField();
 		textField.addMouseListener(new MouseAdapter() {
@@ -91,23 +101,14 @@ public class LoginPanel extends JPanel {
 		passwordField.setBounds(342, 306, 140, 28);
 		passwordField.setEchoChar('*');
 		this.add(passwordField);
-		if (!str[1].equals("0"))
+		if (!str[1].equals("0")) {
 			passwordField.setText(str[1]);
+			checkBox_1.setSelected(true);
+		}
 
 		JLabel label_3 = new JLabel("\u5FD8\u8BB0\u5BC6\u7801\uFF1F");
 		label_3.setBounds(441, 361, 77, 15);
 		this.add(label_3);
-
-		// 记住用户名
-		JCheckBox checkBox = new JCheckBox("\u8BB0\u4F4F\u7528\u6237\u540D");
-		checkBox.setSelected(true);
-		checkBox.setBounds(239, 357, 103, 23);
-		this.add(checkBox);
-
-		// 记住密码
-		JCheckBox checkBox_1 = new JCheckBox("\u8BB0\u4F4F\u5BC6\u7801");
-		checkBox_1.setBounds(345, 357, 84, 23);
-		this.add(checkBox_1);
 
 		// 登录
 		JButton button = new JButton("\u767B\u5F55");
@@ -128,15 +129,16 @@ public class LoginPanel extends JPanel {
 						lblNewLabel.setText("用户不存在");
 						passwordField.setText("");
 					} else {
-						LoginPO loginPO = loginbl.getUserInfo(user);
-						loginbl.Enter(main, user); // 权限
+						// 获取用户信息
+						LoginPO loginPO = loginbl.getUserInfo(user, key);
+						loginbl.Enter(main, loginPO);
 
 						if (checkBox.isSelected())
 							loginbl.setUser(user, "0");
 						else
 							loginbl.setUser("0", "0");
 
-						if (checkBox_1.isSelected())
+						if (checkBox_1.isSelected() && checkBox.isSelected())
 							loginbl.setUser(user, key);
 					}
 				}

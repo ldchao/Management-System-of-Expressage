@@ -4,6 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import PO.LoginPO;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -13,7 +15,7 @@ public class Accountframe extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public Accountframe() {
+	public Accountframe(LoginPO loginPO) {
 
 		getContentPane().setLayout(null);
 
@@ -40,7 +42,7 @@ public class Accountframe extends JFrame {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				af.dispose();
-				fsframe fs = new fsframe();
+				fsframe fs = new fsframe(loginPO);
 			}
 		});
 		button_4.setBounds(10, 6, 67, 23);
@@ -50,7 +52,7 @@ public class Accountframe extends JFrame {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				af.dispose();
-				NewAccountframe nacframe = new NewAccountframe();
+				NewAccountframe nacframe = new NewAccountframe(loginPO);
 				Thread t = new Thread(nacframe);
 				t.start();
 			}
@@ -62,7 +64,7 @@ public class Accountframe extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				af.dispose();
-				CheckAccountframe caf = new CheckAccountframe();
+				CheckAccountframe caf = new CheckAccountframe(loginPO);
 				Thread t = new Thread(caf);
 				t.start();
 			}

@@ -4,6 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import PO.LoginPO;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -12,7 +14,7 @@ public class Administratorframe extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public Administratorframe() {
+	public Administratorframe(LoginPO loginPO) {
 		getContentPane().setLayout(null);
 
 		Administratorframe adf = this;
@@ -29,7 +31,7 @@ public class Administratorframe extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				adf.dispose();
-				NewUserframe nuf = new NewUserframe();
+				NewUserframe nuf = new NewUserframe(loginPO);
 				Thread t = new Thread(nuf);
 				t.start();
 			}
@@ -58,7 +60,7 @@ public class Administratorframe extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				adf.dispose();
-				CheckUserframe cuf = new CheckUserframe();
+				CheckUserframe cuf = new CheckUserframe(loginPO);
 				Thread t = new Thread(cuf);
 				t.start();
 			}
