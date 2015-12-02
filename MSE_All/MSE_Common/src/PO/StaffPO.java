@@ -1,16 +1,21 @@
 package PO;
-import java.io.Serializable;
 
+import java.io.Serializable;
 
 public class StaffPO implements Serializable{
 	//人员信息
 	String id;
 	String name;
+	//员工地址
 	String address;
+	//员工职位
 	String position;
 	String phone;
 	String cellphone;
-	public StaffPO(String id, String name, String address, String position, String phone, String cellphone) {
+	//员工单位
+	String shop;
+	public StaffPO(String id, String name, String address, String position, String phone, String cellphone,
+			String shop) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -18,6 +23,7 @@ public class StaffPO implements Serializable{
 		this.position = position;
 		this.phone = phone;
 		this.cellphone = cellphone;
+		this.shop = shop;
 	}
 	public String getId() {
 		return id;
@@ -54,6 +60,12 @@ public class StaffPO implements Serializable{
 	}
 	public void setCellphone(String cellphone) {
 		this.cellphone = cellphone;
+	}
+	public String getShop() {
+		return shop;
+	}
+	public void setShop(String shop) {
+		this.shop = shop;
 	}
 	
 	

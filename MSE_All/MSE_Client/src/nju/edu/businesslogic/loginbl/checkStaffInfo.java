@@ -4,5 +4,5 @@ import PO.StaffPO;
 
 public interface checkStaffInfo {
 
-	public StaffPO getStaffPO(String name);
+	public StaffPO getStaffPO(String id);
 }
