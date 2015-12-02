@@ -5,10 +5,10 @@ import java.io.Serializable;
 public class StorePO implements Serializable {
 
 	double warn_value;
-	double remind_value;
+	double[] remind_value;
 	String[][][][] location;
 
-	public StorePO(double warn_value, double remind_value, String[][][][] location) {
+	public StorePO(double warn_value, double[] remind_value, String[][][][] location) {
 		super();
 		this.warn_value = warn_value;
 		this.remind_value = remind_value;
@@ -23,11 +23,11 @@ public class StorePO implements Serializable {
 		this.warn_value = warn_value;
 	}
 
-	public double getRemind_value() {
+	public double[] getRemind_value() {
 		return remind_value;
 	}
 
-	public void setRemind_value(double remind_value) {
+	public void setRemind_value(double[] remind_value) {
 		this.remind_value = remind_value;
 	}
 

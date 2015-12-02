@@ -254,7 +254,9 @@ public class Changeorder_choose_BH extends JPanel {
 		add(checkBox_46);
 		
 		
-		String[] jiahao={"  1¼Ü","  2¼Ü","  3¼Ü","  4¼Ü","  5¼Ü","  6¼Ü","  7¼Ü","  8¼Ü","  9¼Ü","10¼Ü","11¼Ü","12¼Ü","13¼Ü","14¼Ü","15¼Ü"};
+		String[] jiahao={"  1¼Ü","  2¼Ü","  3¼Ü","  4¼Ü","  5¼Ü",
+				"  6¼Ü","  7¼Ü","  8¼Ü","  9¼Ü","10¼Ü","11¼Ü","12¼Ü",
+				"13¼Ü","14¼Ü","15¼Ü","16¼Ü","17¼Ü","18¼Ü","19¼Ü","20¼Ü"};
 		JComboBox comboBox = new JComboBox(jiahao);
 		comboBox.setBounds(565, 105, 77, 21);
 		add(comboBox);
