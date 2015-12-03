@@ -13,6 +13,7 @@ import javax.swing.JToolBar;
 import javax.swing.JTextArea;
 
 import java.awt.Font;
+
 import PO.LoginPO;
 import nju.edu.businesslogic.billbl.BillBL;
 
@@ -26,6 +27,7 @@ public class NewbillPanel extends JPanel implements Runnable {
 	private JTextArea textArea_3;
 	private boolean signal;
 	private boolean success;
+	private Thread t;
 	private JLabel lblNewLabel;
 	BillBL billBL = new BillBL();
 
@@ -39,6 +41,9 @@ public class NewbillPanel extends JPanel implements Runnable {
 		setSize(750, 600);
 
 		NewbillPanel nbp = this;
+		
+		t = new Thread(this);
+	    t.start();
 
 		JLabel label = new JLabel("财务人员>>期初建账>>新建账");
 		label.setBounds(88, 5, 518, 15);
@@ -58,6 +63,7 @@ public class NewbillPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
+				t.interrupt();
 			}
 		});
 		add(button_4);

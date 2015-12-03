@@ -1,6 +1,8 @@
 package PO;
 import java.io.Serializable;
 
+import State.TransportState;
+
 public class VehiclePO implements Serializable{
 	String carNum;
 	String engineNum;
@@ -8,10 +10,10 @@ public class VehiclePO implements Serializable{
 	String baseNum;
 	String buyDate;
 	String useDate; 
-	String carState;
+	TransportState carState;
 
 	public VehiclePO(String carNum,String engineNum,String car,String baseNum,
-		String buyDate,String useDate, String carState){
+		String buyDate,String useDate, TransportState carState){
 		carNum = this.carNum;
 		engineNum = this.engineNum;
 		car = this.car;
@@ -74,7 +76,7 @@ public class VehiclePO implements Serializable{
         杩斿洖杞﹁締鐘舵��
 	    return String
     */
-	public String getCarState(){
+	public TransportState getCarState(){
 		return carState;
 	}
 	/*  getCarState
@@ -82,7 +84,7 @@ public class VehiclePO implements Serializable{
         void
 */
 	
-    public void setCarState(String carState){
+    public void setCarState(TransportState carState){
     	this.carState = carState;
     }
 

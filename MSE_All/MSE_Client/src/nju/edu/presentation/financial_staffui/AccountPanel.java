@@ -58,8 +58,6 @@ public class AccountPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(accountPanel);
 				NewAccountPanel nacp = new NewAccountPanel(loginPO, main);
-				Thread t = new Thread(nacp);
-				t.start();
 				main.add(nacp);
 				main.invalidate();
 				main.repaint();
@@ -74,8 +72,6 @@ public class AccountPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(accountPanel);
 				CheckAccountPanel cap = new CheckAccountPanel(loginPO, main);
-				Thread t = new Thread(cap);
-				t.start();
 				main.add(cap);
 				main.invalidate();
 				main.repaint();

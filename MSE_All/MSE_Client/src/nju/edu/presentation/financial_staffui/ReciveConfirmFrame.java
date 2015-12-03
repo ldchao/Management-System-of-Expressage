@@ -6,49 +6,57 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import nju.edu.presentation.Business_hall_salesmanui.Business_hall_salesmanMainUI;
+
 @SuppressWarnings("serial")
 public class ReciveConfirmFrame extends JFrame {
 
 	/**
 	 * Create the panel.
 	 */
-	public ReciveConfirmFrame(ReceiFormframe frame) {
-		
-			getContentPane().setLayout(null);
+	public ReciveConfirmFrame(JFrame main, JPanel now, JPanel panel) {
 
-			ReciveConfirmFrame reconframe = this;
+		getContentPane().setLayout(null);
 
-			JButton btnNewButton = new JButton("\u662F");
-			btnNewButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					reconframe.dispose();
-					frame.dispose();
-				}
-			});
-			btnNewButton.setBounds(53, 87, 71, 23);
-			getContentPane().add(btnNewButton);
+		ReciveConfirmFrame reconframe = this;
 
-			JButton button = new JButton("\u5426");
-			button.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					reconframe.dispose();
-				}
-			});
-			button.setBounds(154, 87, 71, 23);
-			getContentPane().add(button);
+		JButton btnNewButton = new JButton("\u662F");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				reconframe.dispose();
+				main.remove(now);
+				main.add(panel);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(53, 87, 71, 23);
+		getContentPane().add(btnNewButton);
 
-			JLabel label = new JLabel("录入的收款单尚未提交审批");
-			label.setBounds(65, 26, 160, 23);
-			getContentPane().add(label);
-			
-			JLabel label_1 = new JLabel("\u662F\u5426\u7ACB\u5373\u9000\u51FA");
-			label_1.setBounds(102, 50, 79, 23);
-			getContentPane().add(label_1);
+		JButton button = new JButton("\u5426");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				reconframe.dispose();
+			}
+		});
+		button.setBounds(154, 87, 71, 23);
+		getContentPane().add(button);
 
-			// frame
-			this.setSize(300, 180);
-			this.setLocation(400, 100);
-			this.setLocationRelativeTo(null);
-			this.setVisible(true);
-		}
+		JLabel label = new JLabel("录入的收款单尚未提交审批");
+		label.setBounds(65, 26, 160, 23);
+		getContentPane().add(label);
+
+		JLabel label_1 = new JLabel("\u662F\u5426\u7ACB\u5373\u9000\u51FA");
+		label_1.setBounds(102, 50, 79, 23);
+		getContentPane().add(label_1);
+
+		// frame
+		this.setSize(300, 180);
+		this.setLocation(400, 100);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}
 }

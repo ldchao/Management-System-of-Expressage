@@ -1,6 +1,8 @@
 package PO;
 import java.io.Serializable;
 
+import State.DriverState;
+
 public class DriverPO implements Serializable{
 	String driverNum;
 	String name;
@@ -10,10 +12,10 @@ public class DriverPO implements Serializable{
 	String phoneNum; 
 	String sex;
 	String licenseDue;
-	String driverState;
+	DriverState driverState;
 
 	public DriverPO(String driverNum,String name,String shopNum,String birthDate,
-	String idNum,String phoneNum,String sex,String licenseDue,String driverState){
+	String idNum,String phoneNum,String sex,String licenseDue,DriverState driverState){
 		super();
 		this.driverNum = driverNum;
 		this.name = name;
@@ -94,7 +96,7 @@ public class DriverPO implements Serializable{
         杩斿洖鍙告満鐘舵��
 	    return String
     */
-	public String getDriverState(){
+	public DriverState getDriverState(){
 		return driverState;
 	}
 	

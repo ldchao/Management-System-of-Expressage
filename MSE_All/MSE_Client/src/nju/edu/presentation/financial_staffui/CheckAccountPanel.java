@@ -27,6 +27,7 @@ public class CheckAccountPanel extends JPanel implements Runnable {
 	private int rowpos = -1;
 	private static DefaultTableModel tableModel;
 	private static JLabel lblNewLabel;
+	private Thread t;
 	AccountBL accountBL = new AccountBL();
 	private static boolean signal;
 
@@ -39,6 +40,9 @@ public class CheckAccountPanel extends JPanel implements Runnable {
 		setSize(750, 600);
 
 		CheckAccountPanel cap = this;
+		
+		t = new Thread(this);
+	    t.start();
 
 		JLabel label = new JLabel("财务人员>>账户管理>>查改删已有账户");
 		label.setBounds(92, 8, 563, 15);
@@ -57,6 +61,7 @@ public class CheckAccountPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
+				t.interrupt();
 			}
 		});
 		button_4.setBounds(15, 6, 70, 23);

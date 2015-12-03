@@ -15,8 +15,6 @@ public class FinanceFrame extends JFrame {
 
 		FmainPanel fmainPanel = new FmainPanel(loginPO, this);
 		this.add(fmainPanel);
-		Thread t = new Thread(fmainPanel);
-		t.start();
 
 		// frame
 		this.setTitle("快递管理系统MSE客户端");

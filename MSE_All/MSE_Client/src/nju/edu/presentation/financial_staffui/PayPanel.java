@@ -48,8 +48,6 @@ public class PayPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(pp);
 				NewPayorderPanel npf = new NewPayorderPanel(loginPO, main);
-				Thread t = new Thread(npf);
-				t.start();
 				main.add(npf);
 				main.invalidate();
 				main.repaint();

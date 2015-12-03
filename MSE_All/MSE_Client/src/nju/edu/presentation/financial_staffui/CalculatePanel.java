@@ -17,6 +17,7 @@ public class CalculatePanel extends JPanel implements Runnable {
 	private boolean signal;
 	private JTextField textField;
 	private JLabel label_2;
+	private Thread t;
 
 	/**
 	 * Create the panel.
@@ -27,6 +28,9 @@ public class CalculatePanel extends JPanel implements Runnable {
 		setLayout(null);
 		setSize(750, 600);
 		signal = false;
+		
+		t = new Thread(this);
+	    t.start();
 
 		JLabel label = new JLabel("财务人员>>结算管理");
 		label.setBounds(88, 5, 518, 15);
@@ -46,6 +50,7 @@ public class CalculatePanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
+				t.interrupt();
 			}
 		});
 		add(button_4);
@@ -82,6 +87,7 @@ public class CalculatePanel extends JPanel implements Runnable {
 					main.invalidate();
 					main.repaint();
 					main.setVisible(true);
+					t.interrupt();
 				} else {
 					label_2.setText("请输入营业厅编号并选择日期后确认");
 					signal = true;

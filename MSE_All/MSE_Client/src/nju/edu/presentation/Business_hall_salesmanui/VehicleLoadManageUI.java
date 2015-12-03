@@ -52,7 +52,6 @@ public class VehicleLoadManageUI extends JPanel {
 				main.getContentPane().add(lastui);
 				main.invalidate();
 				main.repaint();
-				main.setVisible(true);
 			}
 		});
 		button.setBounds(10, 10, 65, 23);
@@ -194,7 +193,6 @@ public class VehicleLoadManageUI extends JPanel {
 				main.getContentPane().add(r);
 				main.invalidate();
 				main.repaint();
-				main.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(426, 485, 93, 23);

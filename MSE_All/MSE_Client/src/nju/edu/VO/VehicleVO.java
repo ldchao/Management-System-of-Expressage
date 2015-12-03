@@ -2,6 +2,8 @@ package nju.edu.VO;
 
 import java.io.Serializable;
 
+import State.TransportState;
+
 public class VehicleVO implements Serializable {
 	String carNum;
 	String engineNum;
@@ -9,10 +11,10 @@ public class VehicleVO implements Serializable {
 	String baseNum;
 	String buyDate;
 	String useDate; 
-	String carState;
+	TransportState carState;
 
 	public VehicleVO(String carNum,String engineNum,String car,String baseNum,
-		String buyDate,String useDate, String carState){
+		String buyDate,String useDate, TransportState carState){
 		carNum = this.carNum;
 		engineNum = this.engineNum;
 		car = this.car;
@@ -75,7 +77,7 @@ public class VehicleVO implements Serializable {
         ·µ»Ø³µÁ¾×´Ì¬
 	    return String
     */
-	public String getCarState(){
+	public TransportState getCarState(){
 		return carState;
 	}
 	/*  getCarState
@@ -83,7 +85,7 @@ public class VehicleVO implements Serializable {
         void
 */
 	
-    public void setCarState(String carState){
+    public void setCarState(TransportState carState){
     	this.carState = carState;
     }
 

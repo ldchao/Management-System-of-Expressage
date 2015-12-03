@@ -55,8 +55,6 @@ public class CheckStatisticsPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(csp);
 				StatisticsPanel sts = new StatisticsPanel(loginPO, main);
-				Thread t = new Thread(sts);
-				t.start();
 				main.add(sts);
 				main.invalidate();
 				main.repaint();

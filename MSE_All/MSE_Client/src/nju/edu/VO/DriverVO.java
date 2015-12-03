@@ -2,6 +2,8 @@ package nju.edu.VO;
 
 import java.io.Serializable;
 
+import State.DriverState;
+
 public class DriverVO implements Serializable {
 	String driverNum;
 	String name;
@@ -11,10 +13,10 @@ public class DriverVO implements Serializable {
 	String phoneNum; 
 	String sex;
 	String licenseDue;
-	String driverState;
+	DriverState driverState;
 
 	public DriverVO(String driverNum,String name,String shopNum,String birthDate,
-	String idNum,String phoneNum,String sex,String licenseDue,String driverState){
+	String idNum,String phoneNum,String sex,String licenseDue, DriverState driverState){
 		super();
 		this.driverNum = driverNum;
 		this.name = name;
@@ -95,7 +97,7 @@ public class DriverVO implements Serializable {
         ·µ»ØË¾»ú×´Ì¬
 	    return String
     */
-	public String getDriverState(){
+	public DriverState getDriverState(){
 		return driverState;
 	}
 	

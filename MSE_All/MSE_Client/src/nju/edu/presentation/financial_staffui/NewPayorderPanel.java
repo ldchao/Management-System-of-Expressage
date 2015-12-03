@@ -30,6 +30,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 	private JLabel lblNewLabel;
 	private boolean success;
 	private boolean signal;
+	private Thread t;
 	PayorderBL payorderBL = new PayorderBL();
 
 	/**
@@ -40,6 +41,9 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 		signal = false;
 		setLayout(null);
 		setSize(750, 600);
+		
+		t = new Thread(this);
+	    t.start();
 
 		NewPayorderPanel npp = this;
 
@@ -61,6 +65,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
+				t.interrupt();
 			}
 		});
 		add(button_4);
