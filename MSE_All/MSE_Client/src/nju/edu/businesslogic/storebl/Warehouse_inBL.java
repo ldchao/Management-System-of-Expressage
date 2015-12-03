@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.StoreinVO;
+import nju.edu.businesslogic.listinbl.Listinbl;
+import nju.edu.businesslogicservice.listinblservice.OrderInfo;
+import nju.edu.businesslogicservice.listinblservice.UpdateInfo;
+import nju.edu.businesslogicservice.storeblservice.StoreinUpdateInfo;
 import nju.edu.businesslogicservice.storeblservice.Warehouse_inBLService;
 import nju.edu.businesslogicservice.transferblservice.StoreinInfo;
 import nju.edu.dataservice.storedataservice.Warehouse_inDataService;
@@ -12,7 +16,7 @@ import PO.OrganizationNumPO;
 import PO.StoreinorderPO;
 import State.ApproveState;
 
-public class Warehouse_inBL implements Warehouse_inBLService,StoreinInfo{
+public class Warehouse_inBL implements Warehouse_inBLService{
 	
 
 	
@@ -28,6 +32,8 @@ public class Warehouse_inBL implements Warehouse_inBLService,StoreinInfo{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		update(sp.getOrder_number(), sp.getQu(), Integer.parseInt(sp.getPai()),
+				Integer.parseInt(sp.getJia()), Integer.parseInt(sp.getWei()));
 		System.out.println("入库单已提交总经理审批");
 	}
 
@@ -76,18 +82,13 @@ public class Warehouse_inBL implements Warehouse_inBLService,StoreinInfo{
 		System.out.println("存储入库单");
 	}
 
-	////根据库位得到对应位置的订单编号
-	@Override
-	public ArrayList<String> getId(int[][][][] location) {
-		// TODO Auto-generated method stub
-		ArrayList<String> Idlist=new ArrayList<String> ();
+	private void update(String id,String qu, int pai, int jia, int wei){
 		
-		return Idlist;
-	}
-
-	private void update(){
+		StoreinUpdateInfo sm=StoreMessageBL.getInstance();
+		sm.storein_update(qu, pai, jia, wei, id);
 		
-		//在save中调用，更新订单物流信息以及仓库各个位置库存信息
+		UpdateInfo order_update=new Listinbl();
+		order_update.update(id, "订单已在该中转中心入库");
 	}
 
 	

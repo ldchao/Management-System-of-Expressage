@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
 
+import nju.edu.businesslogic.storebl.StoreMessageBL;
 import nju.edu.presentation.Transit_center_salesmanui.Receiveui;
 import nju.edu.presentation.Transit_center_salesmanui.Transit_center_salesman_mainui;
 
@@ -19,6 +20,8 @@ public class Transit_center_storemaster_mainui extends JFrame {
 
 	private JPanel contentPane;
 	Transit_center_storemaster_mainui main;
+	StoreMessageBL sm;
+	JLabel label_3;
 
 	/**
 	 * Launch the application.
@@ -40,17 +43,30 @@ public class Transit_center_storemaster_mainui extends JFrame {
 	 * Create the frame.
 	 */
 	public Transit_center_storemaster_mainui() {
+		
 		main=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 100, 750, 600);
 		contentPane = new JPanel();
 		this.add(contentPane);
 		contentPane.setLayout(null);
+		
+		JToolBar toolBar = new JToolBar();
+		toolBar.setBounds(0, 533, 734, 28);
+		contentPane.add(toolBar);
 
+		label_3 = new JLabel("状态栏");
+		toolBar.add(label_3);
+		
+		sm=StoreMessageBL.getInstance();
+		label_3.setText("仓库信息初始化成功");
+		
 		JButton button = new JButton("注销");
 		button.setBounds(10, 10, 65, 23);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sm.save();
+				label_3.setText("库存信息储存完毕");
 				main.dispose();
 			}
 		});
@@ -118,12 +134,7 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		btnNewButton_2.setBounds(507, 217, 160, 128);
 		contentPane.add(btnNewButton_2);
 	
-		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 533, 734, 28);
-		contentPane.add(toolBar);
-
-		JLabel label_3 = new JLabel("状态栏");
-		toolBar.add(label_3);
+		
 
 	}
 

@@ -26,7 +26,6 @@ public class Warehouse_inData extends UnicastRemoteObject implements Warehouse_i
 			fileWriter.Writer("DataBase/UncheckedStoreinorder.txt", storeinorder, true);
 		}else{
 		fileWriter.Writer("DataBase/Storeinorder.txt", storeinorder, true);
-		fileWriter.Writer("DataBase/NeedOutStoreinorder.txt", storeinorder, true);
 		}
 	}
 	//查看未入库的到达单

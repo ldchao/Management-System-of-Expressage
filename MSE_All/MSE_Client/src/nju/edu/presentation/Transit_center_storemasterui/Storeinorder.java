@@ -145,8 +145,8 @@ public class Storeinorder extends JPanel {
 				String offnum=textField_1.getText();
 				String qu=(String)comboBox.getSelectedItem();
 				String pai=textField_2.getText();
-				String wei=textField_3.getText();
-				String jia=textField_4.getText();
+				String jia=textField_3.getText();
+				String wei=textField_4.getText();
 				if(order_number.length()==0||date.equals("单击选择日期")
 						||offnum.length()==0||qu.length()==0||pai.length()
 						==0||wei.length()==0||jia.length()==0){
