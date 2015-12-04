@@ -28,6 +28,7 @@ public class NewUserPanel extends JPanel implements Runnable {
 	private boolean signal;
 	private JLabel lblNewLabel;
 	private AbstractButton btn;
+	private Thread t;
 	UserBL userBL = new UserBL();
 
 	/**
@@ -39,6 +40,9 @@ public class NewUserPanel extends JPanel implements Runnable {
 		setLayout(null);
 
 		NewUserPanel nup = this;
+		
+		t = new Thread(this);
+		t.start();
 
 		JLabel label = new JLabel("系统管理员>>新建用户");
 		label.setBounds(88, 5, 518, 15);
@@ -51,6 +55,7 @@ public class NewUserPanel extends JPanel implements Runnable {
 		JButton button_4 = new JButton("返回");
 		button_4.setBounds(10, 1, 68, 23);
 		button_4.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nup);
 				AdminPanel adp = new AdminPanel(loginPO, main);
@@ -58,6 +63,7 @@ public class NewUserPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
+				t.stop();
 			}
 		});
 		add(button_4);

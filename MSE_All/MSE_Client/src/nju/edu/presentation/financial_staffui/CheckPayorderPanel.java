@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.Font;
@@ -37,7 +38,7 @@ public class CheckPayorderPanel extends JPanel {
 	 */
 	public CheckPayorderPanel(LoginPO loginPO, JFrame main) {
 		setLayout(null);
-		setSize(750,600);
+		setSize(750, 600);
 
 		CheckPayorderPanel cpp = this;
 
@@ -75,6 +76,11 @@ public class CheckPayorderPanel extends JPanel {
 
 		table = new JTable();
 		table.setRowHeight(25);
+		// 使表格居中
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		r.setHorizontalAlignment(JLabel.CENTER);
+		table.setDefaultRenderer(Object.class, r);
+		
 		// 选取行
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {

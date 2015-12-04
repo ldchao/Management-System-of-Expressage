@@ -54,6 +54,7 @@ public class NewAccountPanel extends JPanel implements Runnable {
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(nap);
 				AccountPanel acp = new AccountPanel(loginPO, main);
@@ -61,7 +62,7 @@ public class NewAccountPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.interrupt();
+				t.stop();
 			}
 		});
 		button_4.setBounds(10, 6, 67, 23);

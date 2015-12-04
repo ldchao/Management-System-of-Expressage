@@ -41,6 +41,7 @@ public class StatisticsPanel extends JPanel implements Runnable {
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(stp);
 				FmainPanel fm = new FmainPanel(loginPO, main);
@@ -48,7 +49,7 @@ public class StatisticsPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.interrupt();
+				t.stop();
 			}
 		});
 		button_4.setBounds(10, 1, 68, 23);
@@ -77,6 +78,7 @@ public class StatisticsPanel extends JPanel implements Runnable {
 
 		JButton button = new JButton("\u786E\u8BA4");
 		button.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				String date1 = showDate1.getText();
 				String date2 = showDate2.getText();
@@ -91,7 +93,7 @@ public class StatisticsPanel extends JPanel implements Runnable {
 						main.invalidate();
 						main.repaint();
 						main.setVisible(true);
-						t.interrupt();
+						t.stop();
 					} else {
 						lblNewLabel.setText("截止日期不得在起始日期之前，请核对起止日期");
 					}

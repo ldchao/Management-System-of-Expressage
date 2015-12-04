@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import nju.edu.businesslogic.financebl.PayeeorderBL;
@@ -68,6 +69,7 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				if (over) {
 					main.remove(rfp);
@@ -75,9 +77,11 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 					main.invalidate();
 					main.repaint();
 					main.setVisible(true);
+					t.stop();
 				} else {
 					@SuppressWarnings("unused")
-					ReciveConfirmFrame rcon = new ReciveConfirmFrame(main, rfp,panel);
+					ReciveConfirmFrame rcon = new ReciveConfirmFrame(main, rfp,
+							panel);
 				}
 			}
 		});
@@ -145,6 +149,10 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 
 		table = new JTable();
 		table.setRowHeight(25);
+		// 使表格居中
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		r.setHorizontalAlignment(JLabel.CENTER);
+		table.setDefaultRenderer(Object.class, r);
 
 		scrollPane.setViewportView(table);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));

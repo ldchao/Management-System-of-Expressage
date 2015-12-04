@@ -58,6 +58,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.setBounds(10, 1, 68, 23);
 		button_4.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				main.remove(npp);
 				PayPanel pp = new PayPanel(loginPO, main);
@@ -65,7 +66,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.interrupt();
+				t.stop();
 			}
 		});
 		add(button_4);

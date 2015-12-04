@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
@@ -40,9 +41,9 @@ public class CheckAccountPanel extends JPanel implements Runnable {
 		setSize(750, 600);
 
 		CheckAccountPanel cap = this;
-		
+
 		t = new Thread(this);
-	    t.start();
+		t.start();
 
 		JLabel label = new JLabel("财务人员>>账户管理>>查改删已有账户");
 		label.setBounds(92, 8, 563, 15);
@@ -54,6 +55,7 @@ public class CheckAccountPanel extends JPanel implements Runnable {
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(cap);
 				AccountPanel acp = new AccountPanel(loginPO, main);
@@ -61,7 +63,7 @@ public class CheckAccountPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.interrupt();
+				t.stop();
 			}
 		});
 		button_4.setBounds(15, 6, 70, 23);
@@ -89,7 +91,11 @@ public class CheckAccountPanel extends JPanel implements Runnable {
 
 		table = new JTable();
 		table.setRowHeight(25);
-
+		// 使表格居中
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		r.setHorizontalAlignment(JLabel.CENTER);
+		table.setDefaultRenderer(Object.class, r);
+	
 		// 选取行
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -122,7 +128,7 @@ public class CheckAccountPanel extends JPanel implements Runnable {
 		button_1.addActionListener(new ActionListener() {
 			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent e) {
-				if (rowpos != -1) {
+				if (rowpos != -1&& !tableModel.getValueAt(rowpos, 0).equals("")) {
 					String name = tableModel.getValueAt(rowpos, 0).toString();
 					ConfirmFrame conFrame = new ConfirmFrame(name);
 					signal = true;

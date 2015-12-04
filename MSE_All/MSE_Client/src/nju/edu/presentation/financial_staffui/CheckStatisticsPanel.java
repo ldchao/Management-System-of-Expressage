@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
@@ -81,6 +82,11 @@ public class CheckStatisticsPanel extends JPanel {
 		// 收款单
 		table = new JTable();
 		table.setRowHeight(25);
+		// 使表格居中
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		r.setHorizontalAlignment(JLabel.CENTER);
+		table.setDefaultRenderer(Object.class, r);
+
 		scrollPane.setViewportView(table);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
@@ -116,6 +122,9 @@ public class CheckStatisticsPanel extends JPanel {
 		// 付款单
 		table2 = new JTable();
 		table2.setRowHeight(25);
+		// 使表格居中
+		table2.setDefaultRenderer(Object.class, r);
+		
 		scrollPane_1.setViewportView(table2);
 		table2.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table2.setEnabled(false);

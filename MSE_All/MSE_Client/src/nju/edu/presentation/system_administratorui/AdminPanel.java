@@ -35,8 +35,6 @@ public class AdminPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(adp);
 				NewUserPanel nup = new NewUserPanel(loginPO, main);
-				Thread t = new Thread(nup);
-				t.start();
 				main.add(nup);
 				main.invalidate();
 				main.repaint();
@@ -68,8 +66,6 @@ public class AdminPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(adp);
 				CheckUserPanel cup = new CheckUserPanel(loginPO, main);
-				Thread t = new Thread(cup);
-				t.start();
 				main.add(cup);
 				main.invalidate();
 				main.repaint();

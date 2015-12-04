@@ -41,6 +41,7 @@ public class FmainPanel extends JPanel implements Runnable {
 		JButton btnNewButton = new JButton("New button");
 		// btnNewButton.setIcon(new ImageIcon("src/scene.jpg"));
 		btnNewButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				main.remove(fmp);
 				PayPanel paymain = new PayPanel(loginPO, main);
@@ -48,7 +49,7 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.interrupt();
+				t.stop();
 			}
 		});
 		btnNewButton.setBounds(108, 161, 125, 100);
@@ -56,6 +57,7 @@ public class FmainPanel extends JPanel implements Runnable {
 
 		JButton button = new JButton("New button");
 		button.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(fmp);
 				CalculatePanel calp = new CalculatePanel(loginPO, main);
@@ -65,7 +67,7 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.interrupt();
+				t.stop();
 			}
 		});
 		button.setBounds(316, 161, 125, 100);
@@ -73,6 +75,7 @@ public class FmainPanel extends JPanel implements Runnable {
 
 		JButton button_1 = new JButton("New button");
 		button_1.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(fmp);
 				StatisticsPanel stp = new StatisticsPanel(loginPO, main);
@@ -80,7 +83,7 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.interrupt();
+				t.stop();
 			}
 		});
 		button_1.setBounds(507, 161, 125, 100);
@@ -88,6 +91,7 @@ public class FmainPanel extends JPanel implements Runnable {
 
 		JButton button_2 = new JButton("New button");
 		button_2.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(fmp);
 				BillPanel billPanel = new BillPanel(loginPO, main);
@@ -95,7 +99,7 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.interrupt();
+				t.stop();
 			}
 		});
 		button_2.setBounds(214, 329, 125, 100);
@@ -108,6 +112,7 @@ public class FmainPanel extends JPanel implements Runnable {
 
 		JButton button_3 = new JButton("New button");
 		button_3.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				if (loginPO.getLimit().equals("高级财务人员")) {
 					main.remove(fmp);
@@ -116,7 +121,7 @@ public class FmainPanel extends JPanel implements Runnable {
 					main.invalidate();
 					main.repaint();
 					main.setVisible(true);
-					t.interrupt();
+					t.stop();
 				} else {
 					label_6.setText("对不起，仅高级财务人员有此权限");
 					signal = true;

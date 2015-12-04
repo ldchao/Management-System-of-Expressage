@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 
@@ -60,7 +61,11 @@ public class ProfitPanel extends JPanel {
 
 		table = new JTable();
 		table.setRowHeight(40);
-		table.setBackground(new Color(255, 255, 255));
+		// 使表格居中
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		r.setHorizontalAlignment(JLabel.CENTER);
+		table.setDefaultRenderer(Object.class, r);
+		
 		table.setEnabled(false);
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
 
