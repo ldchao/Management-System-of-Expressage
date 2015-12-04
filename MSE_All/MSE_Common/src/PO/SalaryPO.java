@@ -21,10 +21,13 @@ public class SalaryPO implements Serializable{
 		return typeOfStaff;
 	}
 
+	public void setTypeOfStaff(String typeOfStaff) {
+		this.typeOfStaff = typeOfStaff;
+	}
+
 	public double getSalary() {
 		return salary;
 	}
-
 
 	public void setSalary(double salary) {
 		this.salary = salary;
@@ -37,12 +40,6 @@ public class SalaryPO implements Serializable{
 	public void setTypeOfStrategy(SalaryModel typeOfStrategy) {
 		this.typeOfStrategy = typeOfStrategy;
 	}
-
-	public void setTypeOfStaff(String typeOfStaff) {
-		this.typeOfStaff = typeOfStaff;
-	}
-
-	
 	
 	
 }
