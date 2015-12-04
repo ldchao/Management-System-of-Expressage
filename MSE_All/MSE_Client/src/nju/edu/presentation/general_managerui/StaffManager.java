@@ -13,6 +13,9 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import nju.edu.businesslogic.staffbl.Staffbl;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -25,18 +28,6 @@ public class StaffManager extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					StaffManager frame = new StaffManager();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the frame.
@@ -75,6 +66,10 @@ public class StaffManager extends JFrame {
 		textField.setColumns(10);
 		
 		JButton button_1 = new JButton("\u786E\u5B9A");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		button_1.setBounds(449, 60, 69, 23);
 		contentPane.add(button_1);
 		

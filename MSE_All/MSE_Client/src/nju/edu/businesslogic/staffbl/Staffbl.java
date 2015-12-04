@@ -1,12 +1,15 @@
 
 package nju.edu.businesslogic.staffbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.StaffPO;
+import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.StaffVO;
 import nju.edu.businesslogic.loginbl.checkStaffInfo;
 import nju.edu.businesslogicservice.staffblservice.StaffBLService;
+import nju.edu.dataservice.staffdataservice.StaffDataService;
 
 public class Staffbl implements StaffBLService,checkStaffInfo{
 
@@ -55,7 +58,15 @@ public class Staffbl implements StaffBLService,checkStaffInfo{
 	@Override
 	public StaffPO getStaffPO(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		StaffDataService staffDataService=RMIHelper.getStaffData();
+		StaffPO staffPO=null;
+		try {
+			staffPO=staffDataService.get("123456");
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return staffPO;
 	}
 
 }
