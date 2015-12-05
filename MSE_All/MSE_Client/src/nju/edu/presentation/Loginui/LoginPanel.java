@@ -107,6 +107,12 @@ public class LoginPanel extends JPanel {
 		}
 
 		JLabel label_3 = new JLabel("\u5FD8\u8BB0\u5BC6\u7801\uFF1F");
+		label_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+		});
 		label_3.setBounds(441, 361, 77, 15);
 		this.add(label_3);
 
