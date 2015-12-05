@@ -31,6 +31,8 @@ public class ChoosePanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(choose);
 				// 进入订单查询界面
+				ChecklistPanel checklistPanel = new ChecklistPanel(main, choose);
+				main.add(checklistPanel);
 				main.invalidate();
 				main.repaint();
 			}

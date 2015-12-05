@@ -66,6 +66,11 @@ public class StoreMessageBL implements StoreinUpdateInfo,StoreinInfo{
 	public ArrayList<String> getId(int jia, int[] wei) {
 		return sp.getId(jia-1, wei);
 	}
+	//得到各个库存位置的库存比例
+	@Override
+	public String[][] getStoreRatio() {	
+		return sp.getStoreRatio();
+	}
 	
 	
 	

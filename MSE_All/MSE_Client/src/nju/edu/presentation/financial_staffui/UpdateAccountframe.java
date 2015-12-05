@@ -64,6 +64,7 @@ public class UpdateAccountframe extends JFrame implements Runnable{
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 253, 444, 28);
+		toolBar.setEnabled(false);
 		getContentPane().add(toolBar);
 
 		label_5 = new JLabel("\u72B6\u6001\u680F");

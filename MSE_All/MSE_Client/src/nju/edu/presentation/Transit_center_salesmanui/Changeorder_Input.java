@@ -64,6 +64,7 @@ public class Changeorder_Input extends JPanel {
 		add(label_3);
 
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
 

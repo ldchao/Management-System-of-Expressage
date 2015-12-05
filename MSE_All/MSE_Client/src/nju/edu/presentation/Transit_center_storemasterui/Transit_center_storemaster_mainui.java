@@ -52,6 +52,7 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		contentPane.setLayout(null);
 		
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533, 734, 28);
 		contentPane.add(toolBar);
 

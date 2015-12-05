@@ -80,6 +80,7 @@ public class Warehouse_inui extends JPanel {
 		add(btnNewButton_2);
 		
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
 		

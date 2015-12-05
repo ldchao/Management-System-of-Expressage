@@ -8,8 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import nju.edu.presentation.Business_hall_salesmanui.Business_hall_salesmanMainUI;
-
 @SuppressWarnings("serial")
 public class ReciveConfirmFrame extends JFrame {
 

@@ -119,6 +119,7 @@ public class Transit_center_salesman_mainui extends JFrame {
 		contentPane.add(btnNewButton_3);
 		
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533, 734, 28);
 		contentPane.add(toolBar);
 		

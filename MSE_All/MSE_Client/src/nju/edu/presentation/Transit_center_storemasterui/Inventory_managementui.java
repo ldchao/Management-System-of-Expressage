@@ -115,6 +115,7 @@ public class Inventory_managementui extends JPanel {
 		add(btnNewButton_4);
 		
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0,  533, 734, 28);
 		add(toolBar);
 		

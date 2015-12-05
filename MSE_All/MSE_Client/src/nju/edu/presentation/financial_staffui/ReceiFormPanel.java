@@ -15,7 +15,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import nju.edu.businesslogic.financebl.PayeeorderBL;
-import nju.edu.presentation.Business_hall_salesmanui.Business_hall_salesmanMainUI;
 
 import java.awt.Font;
 import java.text.SimpleDateFormat;
@@ -62,6 +61,7 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 543, 744, 28);
+		toolBar.setEnabled(false);
 		add(toolBar);
 
 		label_3 = new JLabel("\u72B6\u6001\u680F");

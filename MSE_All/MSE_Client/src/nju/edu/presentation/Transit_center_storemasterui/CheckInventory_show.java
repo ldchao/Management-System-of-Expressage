@@ -46,6 +46,7 @@ public class CheckInventory_show extends JPanel {
 		add(lblNewLabel_1);
 		
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533,734,28);
 		add(toolBar);
 		

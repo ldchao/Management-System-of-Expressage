@@ -13,6 +13,9 @@ import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import nju.edu.businesslogic.transferbl.TransferBL;
+import nju.edu.businesslogicservice.transferblservice.TransferBLService;
+
 public class Transfer_checkRemindui extends JPanel {
 	JFrame main;
 
@@ -57,7 +60,12 @@ public class Transfer_checkRemindui extends JPanel {
 		add(scrollPane);
 
 		JTextArea textArea = new JTextArea();
-		textArea.setText("暂时没有库区的库存量达到提醒值");
+		TransferBLService tb=new TransferBL();
+		String remind=tb.checkRemind();
+		if(remind.length()==0)
+		    textArea.setText("暂时没有库区的库存量达到提醒值");
+		else 
+			 textArea.setText(remind);
 		scrollPane.setViewportView(textArea);
 
 		JLabel label_3 = new JLabel("待处理的消息");
@@ -65,12 +73,9 @@ public class Transfer_checkRemindui extends JPanel {
 		label_3.setFont(new Font("微软雅黑", Font.BOLD, 14));
 		scrollPane.setColumnHeaderView(label_3);
 
-		JButton button_1 = new JButton("确认已查看上述消息，点击后消息将被清空");
-		button_1.setBounds(223, 477, 340, 23);
-		add(button_1);
-
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setEnabled(false);
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");

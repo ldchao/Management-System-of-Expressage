@@ -76,6 +76,7 @@ public class CheckAccountPanel extends JPanel implements Runnable {
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 546, 750, 28);
+		toolBar.setEnabled(false);
 		add(toolBar);
 
 		lblNewLabel = new JLabel("×´Ì¬À¸");

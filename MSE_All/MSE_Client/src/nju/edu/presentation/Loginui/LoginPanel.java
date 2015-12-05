@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import PO.LoginPO;
+
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -110,7 +111,8 @@ public class LoginPanel extends JPanel {
 		label_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+				ForgetPassword forgetPassword = new ForgetPassword();
+				forgetPassword.setVisible(true);
 			}
 		});
 		label_3.setBounds(441, 361, 77, 15);

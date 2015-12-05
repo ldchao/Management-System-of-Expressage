@@ -11,4 +11,7 @@ public interface StoreinInfo {
 	
 	//得到发往本市营业厅的订单编号
 	public ArrayList<String> getId(int jia,int[] wei);
+	
+	//得到各个库存位置的库存比例
+	public String[][] getStoreRatio();
 }
