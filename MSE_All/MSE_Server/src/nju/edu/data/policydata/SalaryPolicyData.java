@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import PO.SalaryPO;
 import State.SalaryModel;
 import nju.edu.data.FileIO.fileReader;
+import nju.edu.data.FileIO.fileWriter;
 import nju.edu.dataservice.policydataservice.SalaryPolicyDataService;
 
 public class SalaryPolicyData extends UnicastRemoteObject implements SalaryPolicyDataService{
@@ -48,7 +49,17 @@ public class SalaryPolicyData extends UnicastRemoteObject implements SalaryPolic
 	@Override
 	public void updateSalary(SalaryPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		fileReader fileReader=new fileReader();
+		String string=""+po.getTypeOfStaff()+";"+po.getSalary()+";"+po.getTypeOfStrategy();
+		ArrayList<String> strings=fileReader.Reader("Database/Salary.txt");
+		for(int i=0;i<strings.size();i++){
+			String[] temp=strings.get(i).split(";");
+			if(temp[0].equals(po.getTypeOfStaff())){
+				strings.set(i, string);
+			}
+		}
+		fileWriter fileWriter=new fileWriter();
+		fileWriter.Writer("Database/Salary.txt", strings, false);
 	}
 
 }
