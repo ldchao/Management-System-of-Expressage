@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
 import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
@@ -24,7 +25,7 @@ public class Storeoutorder extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Storeoutorder(JFrame m, JPanel jp) {
+	public Storeoutorder(JFrame m, JPanel jp,LoginPO loginPO) {
 		JFrame main = m;
 		JPanel lastui = jp;
 		Storeoutorder nowPanel = this;
@@ -47,11 +48,12 @@ public class Storeoutorder extends JPanel {
 		lblNewLabel.setBounds(100, 14, 347, 15);
 		add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("张三，你好！");
+		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
 		lblNewLabel_1.setBounds(600, 14, 100, 15);
 		add(lblNewLabel_1);
 
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
 
@@ -100,7 +102,7 @@ public class Storeoutorder extends JPanel {
 		JButton btnNewButton_2 = new JButton("取消");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Storeoutorder s=new Storeoutorder(main,lastui);
+				Storeoutorder s=new Storeoutorder(main,lastui,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(s);
 				main.invalidate();

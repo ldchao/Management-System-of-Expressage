@@ -13,6 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import PO.LoginPO;
 import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 
 public class Warehouse_out_checkRemindui extends JPanel {
@@ -20,7 +21,7 @@ public class Warehouse_out_checkRemindui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Warehouse_out_checkRemindui(JFrame m, JPanel jp) {
+	public Warehouse_out_checkRemindui(JFrame m, JPanel jp,LoginPO loginPO) {
 		JFrame main = m;
 		JPanel lastui = jp;
 		Warehouse_out_checkRemindui nowPanel = this;
@@ -44,7 +45,7 @@ public class Warehouse_out_checkRemindui extends JPanel {
 		label.setBounds(100, 14, 288, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 
@@ -71,6 +72,7 @@ public class Warehouse_out_checkRemindui extends JPanel {
 		add(button_1);
 
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
 

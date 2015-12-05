@@ -3,6 +3,7 @@ package nju.edu.presentation.Transit_center_salesmanui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -13,14 +14,20 @@ import javax.swing.JRadioButton;
 import javax.swing.JToolBar;
 import javax.swing.JCheckBox;
 
+import nju.edu.businesslogic.storebl.StoreMessageBL;
+import nju.edu.businesslogic.transferbl.TransferBL;
+import nju.edu.businesslogicservice.transferblservice.StoreinInfo;
+import nju.edu.businesslogicservice.transferblservice.TransferBLService;
+import PO.LoginPO;
+
 public class Changeorder_choose_TC extends JPanel {
 	JFrame main;
-	JCheckBox[] jia = new JCheckBox[20];
+	JCheckBox[] choose_jia = new JCheckBox[20];
 
 	/**
 	 * Create the panel.
 	 */
-	public Changeorder_choose_TC(JFrame m, JPanel jp,String qu,int pai) {
+	public Changeorder_choose_TC(JFrame m, JPanel jp,String qu,int pai,LoginPO loginPO) {
 		main = m;
 		JPanel lastui = jp;
 		Changeorder_choose_TC nowPanel = this;
@@ -43,11 +50,12 @@ public class Changeorder_choose_TC extends JPanel {
 		label.setBounds(100, 14, 270, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
 
@@ -59,17 +67,33 @@ public class Changeorder_choose_TC extends JPanel {
 		lblNewLabel_1.setBounds(197, 80, 338, 31);
 		add(lblNewLabel_1);
 
-		
+		for (int i = 0; i < choose_jia.length; i++) {
+			choose_jia[i]=new JCheckBox((i+1)+ " 架");
+			choose_jia[i].setBounds(140 + (i % 4) * 130, 150 + (i / 4) * 60, 80, 25);
+			add(choose_jia[i]);
+		}
 
 		JButton btnNewButton = new JButton("确定");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Changeorder c = new Changeorder(main, nowPanel);
+				StoreinInfo storein=StoreMessageBL.getInstance();
+				boolean isValue=false;
+				int[] jia={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+				for (int i = 0; i < jia.length; i++) {
+					if (choose_jia[i].isSelected()) {
+						jia[i]=1;
+						isValue=true;
+					}
+				}
+				if(isValue){
+				ArrayList<String> orderlist=storein.getId(qu+"区", pai, jia);
+				Changeorder c = new Changeorder(main, nowPanel,loginPO,qu,pai,orderlist);
 				main.remove(nowPanel);
 				main.getContentPane().add(c);
 				main.invalidate();
 				main.repaint();
-				main.setVisible(true);
+				main.setVisible(true);}
+				else label_4.setText("请选择架号");
 			}
 		});
 		btnNewButton.setBounds(190, 474, 93, 23);
@@ -79,7 +103,7 @@ public class Changeorder_choose_TC extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Changeorder_choose_TC ctc = new Changeorder_choose_TC(main,
-						lastui,qu,pai);
+						lastui,qu,pai,loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(ctc);
 				main.invalidate();
@@ -89,13 +113,6 @@ public class Changeorder_choose_TC extends JPanel {
 		});
 		btnNewButton_1.setBounds(425, 474, 93, 23);
 		add(btnNewButton_1);
-
-		for (int i = 0; i < jia.length; i++) {
-			jia[i]=new JCheckBox((i+1)+ " 架");
-			jia[i].setBounds(140 + (i % 4) * 130, 150 + (i / 4) * 60, 80, 25);
-			add(jia[i]);
-		}
-
 	}
 
 }

@@ -3,6 +3,7 @@ package nju.edu.businesslogic.policybl;
 import java.rmi.RemoteException;
 
 import PO.SalaryPO;
+import State.SalaryModel;
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.SalaryVO;
 import nju.edu.businesslogicservice.policyblservice.SalaryPolicyBLSerivce;
@@ -26,10 +27,27 @@ public class SalaryPolicybl implements SalaryPolicyBLSerivce{
 	}
 
 	@Override
-	public void editSalary(String typeOfStaff, String salary, int typeOfSalary) {
+	public void editSalary(SalaryVO vo) {
 		// TODO Auto-generated method stub
+		SalaryPO po=new SalaryPO(vo.getTypeOfStaff(), vo.getSalary(), vo.getTypeOfStrategy());
+		try {
+			SalaryPolicyDataService.updateSalary(po);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
-
+	public SalaryModel SelectModel(String string) {
+		// TODO Auto-generated method stub
+		String[] strings={"ByMonth","ByTimes","ByTimes"};
+		if(string.equals(strings[0])){
+			return SalaryModel.ByMonth;
+		}else if(string.equals(strings[1])){
+			return SalaryModel.ByTimes;
+		}else{
+			return SalaryModel.ByBenefit;
+		}
+	}
 }

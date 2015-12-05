@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.table.DefaultTableModel;
 
+import PO.LoginPO;
 import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 
 public class Storeoutorder_Input extends JPanel {
@@ -21,7 +22,7 @@ public class Storeoutorder_Input extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Storeoutorder_Input(JFrame m, JPanel jp) {
+	public Storeoutorder_Input(JFrame m, JPanel jp,LoginPO loginPO) {
 		JFrame main = m;
 		JPanel lastui = jp;
 		Storeoutorder_Input nowPanel = this;
@@ -44,7 +45,7 @@ public class Storeoutorder_Input extends JPanel {
 		label.setBounds(100, 14, 288, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 
@@ -69,7 +70,7 @@ public class Storeoutorder_Input extends JPanel {
 		JButton button_1 = new JButton("创建出库单");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Storeoutorder s=new Storeoutorder(main,nowPanel);
+				Storeoutorder s=new Storeoutorder(main,nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(s);
 				main.invalidate();
@@ -81,6 +82,7 @@ public class Storeoutorder_Input extends JPanel {
 		add(button_1);
 
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
 

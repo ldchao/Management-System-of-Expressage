@@ -16,6 +16,8 @@ import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import PO.LoginPO;
+
 public class Shipping_Inputui extends JPanel {
 	private JTable table;
 	JFrame main;
@@ -25,7 +27,7 @@ public class Shipping_Inputui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Shipping_Inputui(JFrame m, JPanel jp) {
+	public Shipping_Inputui(JFrame m, JPanel jp,LoginPO loginPO) {
 		main = m;
 		JPanel lastui = jp;
 		Shipping_Inputui nowPanel = this;
@@ -49,11 +51,12 @@ public class Shipping_Inputui extends JPanel {
 		label.setBounds(100, 14, 163, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
 
@@ -110,7 +113,7 @@ public class Shipping_Inputui extends JPanel {
 		JButton btnNewButton = new JButton("创建装运单");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Shipping_Plane sp = new Shipping_Plane(main, nowPanel);
+				Shipping_Plane sp = new Shipping_Plane(main, nowPanel,loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(sp);
 				main.invalidate();

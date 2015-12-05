@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.JComboBox;
 
+import PO.LoginPO;
 import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 
 import java.awt.Font;
@@ -21,7 +22,7 @@ public class SetRemindData extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SetRemindData(JFrame m,JPanel jp) {
+	public SetRemindData(JFrame m,JPanel jp,LoginPO loginPO) {
 		JFrame main=m;
 		JPanel lastui=jp;
 		SetRemindData nowPanel=this;
@@ -44,7 +45,7 @@ public class SetRemindData extends JPanel {
 		lblNewLabel.setBounds(100, 14, 263, 15);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("张三，你好！");
+		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
 		lblNewLabel_1.setBounds(600, 14, 100, 15);
 		add(lblNewLabel_1);
 		
@@ -57,6 +58,7 @@ public class SetRemindData extends JPanel {
 		add(lblNewLabel_2);
 		
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533,734,28);
 		add(toolBar);
 		
@@ -75,7 +77,7 @@ public class SetRemindData extends JPanel {
 		JButton btnNewButton_2 = new JButton("取消");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SetRemindData sr=new SetRemindData(main,lastui);
+				SetRemindData sr=new SetRemindData(main,lastui,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(sr);
 				main.invalidate();

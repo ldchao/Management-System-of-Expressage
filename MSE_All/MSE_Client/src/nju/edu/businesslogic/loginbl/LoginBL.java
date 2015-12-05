@@ -75,7 +75,7 @@ public class LoginBL implements LoginBLService {
 			frame.setVisible(true);
 			break;
 		case "中转中心业务员":
-			Transit_center_salesman_mainui tcs = new Transit_center_salesman_mainui();
+			Transit_center_salesman_mainui tcs = new Transit_center_salesman_mainui(loginPO);
 			tcs.setVisible(true);
 			break;
 		case "总经理":
@@ -89,7 +89,7 @@ public class LoginBL implements LoginBLService {
 			FinanceFrame fs2 = new FinanceFrame(loginPO);
 			break;
 		case "中转中心仓库管理员":
-			Transit_center_storemaster_mainui ts = new Transit_center_storemaster_mainui();
+			Transit_center_storemaster_mainui ts = new Transit_center_storemaster_mainui(loginPO);
 			ts.setVisible(true);
 			break;
 		case "系统管理员":

@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
 
+import PO.LoginPO;
+
 public class Changeorder_Input extends JPanel {
 	JFrame main;
 	JRadioButton[] pai = new JRadioButton[10];
@@ -21,7 +23,7 @@ public class Changeorder_Input extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Changeorder_Input(JFrame m, JPanel jp) {
+	public Changeorder_Input(JFrame m, JPanel jp,LoginPO loginPO) {
 		main = m;
 		JPanel lastui = jp;
 		Changeorder_Input nowPanel = this;
@@ -44,7 +46,7 @@ public class Changeorder_Input extends JPanel {
 		label.setBounds(100, 14, 270, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 
@@ -64,6 +66,7 @@ public class Changeorder_Input extends JPanel {
 		add(label_3);
 
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
 
@@ -88,7 +91,7 @@ public class Changeorder_Input extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int quNum = 0, paiNum = 0;
-				String[] qu = { "航运区", "铁运区", "汽运区" };
+				String[] qu = { "航运", "铁运", "汽运" };
 				for (int i = 0; i < pai.length; i++) {
 					if (pai[i].isSelected()) {
 						quNum = (i == 9 ? 2 : (i / 3));
@@ -100,12 +103,12 @@ public class Changeorder_Input extends JPanel {
 				} else {
 					if (paiNum == 4) {
 						Changeorder_choose_BH ctb = new Changeorder_choose_BH(
-								main, nowPanel, qu[quNum], paiNum);
+								main, nowPanel, qu[quNum], paiNum,loginPO);
 						main.remove(nowPanel);
 						main.getContentPane().add(ctb);
 					} else {
 						Changeorder_choose_TC ctc = new Changeorder_choose_TC(
-								main, nowPanel, qu[quNum], paiNum);
+								main, nowPanel, qu[quNum], paiNum,loginPO);
 						main.remove(nowPanel);
 						main.getContentPane().add(ctc);
 					}
@@ -121,7 +124,7 @@ public class Changeorder_Input extends JPanel {
 		JButton btnNewButton_1 = new JButton("取消");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Changeorder_Input ti = new Changeorder_Input(main, lastui);
+				Changeorder_Input ti = new Changeorder_Input(main, lastui,loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(ti);
 				main.invalidate();

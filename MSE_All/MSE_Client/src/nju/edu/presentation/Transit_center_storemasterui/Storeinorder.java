@@ -8,6 +8,7 @@ import javax.swing.JToolBar;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
+import PO.LoginPO;
 import nju.edu.VO.StoreinVO;
 import nju.edu.businesslogic.storebl.Warehouse_inBL;
 import nju.edu.businesslogicservice.storeblservice.Warehouse_inBLService;
@@ -28,7 +29,7 @@ public class Storeinorder extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Storeinorder(JFrame m, JPanel jp) {
+	public Storeinorder(JFrame m, JPanel jp,LoginPO loginPO) {
 		JFrame main = m;
 		JPanel lastui = jp;
 		Storeinorder nowPanel = this;
@@ -51,11 +52,12 @@ public class Storeinorder extends JPanel {
 		lblNewLabel.setBounds(100, 14, 347, 15);
 		add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("张三，你好！");
+		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
 		lblNewLabel_1.setBounds(600, 14, 100, 15);
 		add(lblNewLabel_1);
 
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
 
@@ -166,7 +168,7 @@ public class Storeinorder extends JPanel {
 		JButton btnNewButton_2 = new JButton("取消");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Storeinorder s=new Storeinorder(main,lastui);
+				Storeinorder s=new Storeinorder(main,lastui,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(s);
 				main.invalidate();

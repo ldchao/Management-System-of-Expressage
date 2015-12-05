@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import PO.LoginPO;
 import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
@@ -24,7 +25,7 @@ public class Take_Stock_show extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Take_Stock_show(JFrame m,JPanel jp) {
+	public Take_Stock_show(JFrame m,JPanel jp,LoginPO loginPO) {
 		JFrame main=m;
 		JPanel lastui=jp;
 		Take_Stock_show nowPanel=this;
@@ -50,12 +51,13 @@ public class Take_Stock_show extends JPanel {
 		lblNewLabel.setBounds(100, 14, 263, 15);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("张三，你好！");
+		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
 		lblNewLabel_1.setBounds(600, 14, 100, 15);
 		add(lblNewLabel_1);
 
 		
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533,734,28);
 		add(toolBar);
 		
