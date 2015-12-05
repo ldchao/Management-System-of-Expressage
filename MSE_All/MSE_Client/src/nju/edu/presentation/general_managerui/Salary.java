@@ -89,6 +89,12 @@ public class Salary extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton button = new JButton("\u53D6\u6D88");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				SalaryManage salaryManage=new SalaryManage();
+			}
+		});
 		button.setBounds(393, 391, 93, 23);
 		contentPane.add(button);
 		

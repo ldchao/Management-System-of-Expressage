@@ -1,0 +1,8 @@
+快递员;1000;ByMonth
+营业厅业务员;1500;ByMonth
+中转中心业务员;2000;ByMonth
+中转中心仓库管理员;2000;ByMonth
+高级财务人员;3000;ByMonth
+低级财务人员;1500;ByMonth
+总经理;3500;ByMonth
+管理员;2000;ByMonth
