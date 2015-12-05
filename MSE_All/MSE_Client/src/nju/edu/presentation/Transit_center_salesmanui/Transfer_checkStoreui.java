@@ -15,6 +15,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import nju.edu.businesslogic.transferbl.TransferBL;
@@ -64,16 +65,21 @@ public class Transfer_checkStoreui extends JPanel {
 		scrollPane.setBounds(120, 150, 514, 299);
 		add(scrollPane);
 
-		TransferBLService tb=new TransferBL();
-		String[][] storeRadio=tb.checkStore();
-		
+		TransferBLService tb = new TransferBL();
+		String[][] storeRadio = tb.checkStore();
+
 		table = new JTable();
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
 		table.setFont(new Font("宋体", Font.PLAIN, 12));
-		tableModel=new DefaultTableModel(storeRadio ,
-				new String[] { "库存区域", "库存比例", "提醒比例" });	
-				
+		// 使表格居中
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		r.setHorizontalAlignment(JLabel.CENTER);
+		table.setDefaultRenderer(Object.class, r);
+		
+		tableModel = new DefaultTableModel(storeRadio, new String[] { "库存区域",
+				"库存比例", "提醒比例" });
+
 		table.setModel(tableModel);
 		table.getColumnModel().getColumn(0).setPreferredWidth(157);
 		table.getColumnModel().getColumn(1).setPreferredWidth(100);
@@ -85,6 +91,7 @@ public class Transfer_checkStoreui extends JPanel {
 		add(button_1);
 
 		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
 
