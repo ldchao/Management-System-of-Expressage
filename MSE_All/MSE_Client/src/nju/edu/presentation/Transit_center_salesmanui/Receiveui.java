@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
+import PO.LoginPO;
 import nju.edu.VO.LoadorderVO;
 import nju.edu.businesslogic.transferbl.ReceiveBL;
 import nju.edu.businesslogicservice.transferblservice.ReceiveBLService;
@@ -23,7 +24,7 @@ public class Receiveui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Receiveui(JFrame m, JPanel jp) {
+	public Receiveui(JFrame m, JPanel jp,LoginPO loginPO) {
 		main = m;
 		JPanel lastui = jp;
 		Receiveui nowPanel = this;
@@ -46,7 +47,7 @@ public class Receiveui extends JPanel {
 		label.setBounds(100, 14, 187, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 
@@ -84,7 +85,7 @@ public class Receiveui extends JPanel {
 					if (lv == null) {
 						label_4.setText("未检测到该装运单");
 					} else {
-						Arriverorder a = new Arriverorder(main, nowPanel, lv);
+						Arriverorder a = new Arriverorder(main, nowPanel, lv,loginPO);
 						main.remove(nowPanel);
 						main.getContentPane().add(a);
 						main.invalidate();

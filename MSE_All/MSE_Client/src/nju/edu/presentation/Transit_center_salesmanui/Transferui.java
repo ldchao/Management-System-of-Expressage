@@ -9,12 +9,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
+
 public class Transferui extends JPanel {
 	JFrame main;
 	/**
 	 * Create the panel.
 	 */
-	public Transferui(JFrame m,JPanel jp) {
+	public Transferui(JFrame m,JPanel jp,LoginPO loginPO) {
 		main=m;
 		JPanel lastui=jp;
 		Transferui nowPanel=this;
@@ -37,7 +39,7 @@ public class Transferui extends JPanel {
 		label.setBounds(100, 14, 177, 15);
 		add(label);
 		
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 		
@@ -48,7 +50,7 @@ public class Transferui extends JPanel {
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Transfer_checkRemindui tr=new Transfer_checkRemindui(main, nowPanel);
+				Transfer_checkRemindui tr=new Transfer_checkRemindui(main, nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(tr);
 				main.invalidate();
@@ -66,7 +68,7 @@ public class Transferui extends JPanel {
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Transfer_checkStoreui tt=new Transfer_checkStoreui(main, nowPanel);
+				Transfer_checkStoreui tt=new Transfer_checkStoreui(main, nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(tt);
 				main.invalidate();
@@ -84,7 +86,7 @@ public class Transferui extends JPanel {
 		JButton btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Changeorder_Input ti=new Changeorder_Input(main, nowPanel);
+				Changeorder_Input ti=new Changeorder_Input(main, nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(ti);
 				main.invalidate();

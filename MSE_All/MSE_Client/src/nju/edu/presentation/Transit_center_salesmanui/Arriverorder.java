@@ -12,6 +12,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JLayeredPane;
 
 import PO.ArriverorderPO;
+import PO.LoginPO;
 import nju.edu.VO.ArriverorderVO;
 import nju.edu.VO.LoadorderVO;
 import nju.edu.businesslogic.transferbl.ReceiveBL;
@@ -34,7 +35,7 @@ public class Arriverorder extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Arriverorder(JFrame m, JPanel jp, LoadorderVO lv) {
+	public Arriverorder(JFrame m, JPanel jp, LoadorderVO lv,LoginPO loginPO) {
 		main = m;
 		this.lv = lv;
 		JPanel lastui = jp;
@@ -58,7 +59,7 @@ public class Arriverorder extends JPanel {
 		label.setBounds(100, 14, 360, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 
@@ -154,7 +155,7 @@ public class Arriverorder extends JPanel {
 		JButton btnNewButton_1 = new JButton("取消");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Arriverorder a = new Arriverorder(main, lastui, lv);
+				Arriverorder a = new Arriverorder(main, lastui, lv,loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(a);
 				main.invalidate();

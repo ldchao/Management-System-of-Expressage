@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.JRadioButton;
 
+import PO.LoginPO;
 import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
@@ -20,7 +21,7 @@ public class Take_Stock extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Take_Stock(JFrame m,JPanel jp) {
+	public Take_Stock(JFrame m,JPanel jp,LoginPO loginPO) {
 		JFrame main=m;
 		JPanel lastui=jp;
 		Take_Stock nowPanel=this;
@@ -45,7 +46,7 @@ public class Take_Stock extends JPanel {
 		lblNewLabel.setBounds(100, 14, 263, 15);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("张三，你好！");
+		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
 		lblNewLabel_1.setBounds(600, 14, 100, 15);
 		
 		JLabel lblNewLabel_2 = new JLabel("开始日期");
@@ -71,7 +72,7 @@ public class Take_Stock extends JPanel {
 		JButton btnNewButton_1 = new JButton("确定");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Take_Stock_show tss=new Take_Stock_show(main,nowPanel);
+				Take_Stock_show tss=new Take_Stock_show(main,nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(tss);
 				main.invalidate();
@@ -85,7 +86,7 @@ public class Take_Stock extends JPanel {
 		JButton btnNewButton_2 = new JButton("取消");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Take_Stock ts=new Take_Stock(main,lastui);
+				Take_Stock ts=new Take_Stock(main,lastui,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(ts);
 				main.invalidate();

@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -14,7 +16,7 @@ public class Inventory_managementui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Inventory_managementui(JFrame m,JPanel jp) {
+	public Inventory_managementui(JFrame m,JPanel jp,LoginPO loginPO) {
 		JFrame main=m;
 		JPanel lastui=jp;
 		Inventory_managementui nowPanel=this;
@@ -37,7 +39,7 @@ public class Inventory_managementui extends JPanel {
 		lblNewLabel.setBounds(100, 14, 150, 15);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("张三，你好！");
+		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
 		lblNewLabel_1.setBounds(600, 14, 100, 15);
 		add(lblNewLabel_1);
 		
@@ -48,7 +50,7 @@ public class Inventory_managementui extends JPanel {
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CheckInventory ci=new CheckInventory(main,nowPanel);
+				CheckInventory ci=new CheckInventory(main,nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(ci);
 				main.invalidate();
@@ -66,7 +68,7 @@ public class Inventory_managementui extends JPanel {
 		JButton btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Take_Stock ts=new Take_Stock(main,nowPanel);
+				Take_Stock ts=new Take_Stock(main,nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(ts);
 				main.invalidate();
@@ -85,7 +87,7 @@ public class Inventory_managementui extends JPanel {
 		JButton btnNewButton_3 = new JButton("New button");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SetWarnData sw=new SetWarnData(main,nowPanel);
+				SetWarnData sw=new SetWarnData(main,nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(sw);
 				main.invalidate();
@@ -103,7 +105,7 @@ public class Inventory_managementui extends JPanel {
 		JButton btnNewButton_4 = new JButton("New button");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SetRemindData sr=new SetRemindData(main,nowPanel);
+				SetRemindData sr=new SetRemindData(main,nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(sr);
 				main.invalidate();

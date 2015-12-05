@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
 import java.awt.Font;
@@ -18,7 +19,7 @@ public class CheckInventory extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CheckInventory(JFrame m,JPanel jp) {
+	public CheckInventory(JFrame m,JPanel jp,LoginPO loginPO) {
 		JFrame main=m;
 		JPanel lastui=jp;
 		CheckInventory nowPanel=this;
@@ -41,7 +42,7 @@ public class CheckInventory extends JPanel {
 		lblNewLabel.setBounds(100, 14, 263, 15);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("张三，你好！");
+		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
 		lblNewLabel_1.setBounds(600, 14, 100, 15);
 		add(lblNewLabel_1);
 		
@@ -70,7 +71,7 @@ public class CheckInventory extends JPanel {
 		JButton btnNewButton_1 = new JButton("确定");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CheckInventory_show cis=new CheckInventory_show(main,nowPanel);
+				CheckInventory_show cis=new CheckInventory_show(main,nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(cis);
 				main.invalidate();
@@ -84,7 +85,7 @@ public class CheckInventory extends JPanel {
 		JButton btnNewButton_2 = new JButton("取消");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CheckInventory ci=new CheckInventory(main,lastui);
+				CheckInventory ci=new CheckInventory(main,lastui,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(ci);
 				main.invalidate();

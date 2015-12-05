@@ -14,12 +14,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import PO.LoginPO;
+
 public class Shipping_checkremindui extends JPanel {
 	JFrame main;
 	/**
 	 * Create the panel.
 	 */
-	public Shipping_checkremindui(JFrame m,JPanel jp) {
+	public Shipping_checkremindui(JFrame m,JPanel jp,LoginPO loginPO) {
 		main=m;
 		JPanel lastui=jp;
 		Shipping_checkremindui nowPanel=this;
@@ -43,7 +45,7 @@ public class Shipping_checkremindui extends JPanel {
 		label.setBounds(100, 14, 260, 15);
 		add(label);
 		
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 		

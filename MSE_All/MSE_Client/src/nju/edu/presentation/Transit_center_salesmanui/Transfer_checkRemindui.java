@@ -13,6 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import PO.LoginPO;
 import nju.edu.businesslogic.transferbl.TransferBL;
 import nju.edu.businesslogicservice.transferblservice.TransferBLService;
 
@@ -22,7 +23,7 @@ public class Transfer_checkRemindui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Transfer_checkRemindui(JFrame m,JPanel jp) {
+	public Transfer_checkRemindui(JFrame m,JPanel jp,LoginPO loginPO) {
 		main = m;
 		JPanel lastui=jp;
 		Transfer_checkRemindui nowPanel=this;
@@ -46,7 +47,7 @@ public class Transfer_checkRemindui extends JPanel {
 		label.setBounds(100, 14, 288, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 

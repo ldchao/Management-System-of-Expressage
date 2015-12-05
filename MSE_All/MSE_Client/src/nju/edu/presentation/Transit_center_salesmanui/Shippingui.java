@@ -9,12 +9,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
+
 public class Shippingui extends JPanel {
 	JFrame main;
 	/**
 	 * Create the panel.
 	 */
-	public Shippingui(JFrame m,JPanel jp) {
+	public Shippingui(JFrame m,JPanel jp,LoginPO loginPO) {
 		main=m;
 		JPanel lastui=jp;
 		Shippingui nowPanel=this;
@@ -38,7 +40,7 @@ public class Shippingui extends JPanel {
 		label.setBounds(100, 14, 163, 15);
 		add(label);
 		
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 		
@@ -51,7 +53,7 @@ public class Shippingui extends JPanel {
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Shipping_checkremindui check=new Shipping_checkremindui(main, nowPanel);
+				Shipping_checkremindui check=new Shipping_checkremindui(main, nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(check);
 				main.invalidate();
@@ -71,7 +73,7 @@ public class Shippingui extends JPanel {
 		btnNewButton_1.setBounds(428, 219, 160, 128);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Shipping_Inputui input=new Shipping_Inputui(main, nowPanel);
+				Shipping_Inputui input=new Shipping_Inputui(main, nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(input);
 				main.invalidate();
