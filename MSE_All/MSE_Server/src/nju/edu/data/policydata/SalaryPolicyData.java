@@ -22,7 +22,7 @@ public class SalaryPolicyData extends UnicastRemoteObject implements SalaryPolic
 		String [] strings={"快递员","营业厅业务员","中转中心业务员","中转中心仓库管理员","高级财务人员","低级财务人员","总经理","管理员"};
 		int temp=-1;
 		for(int i=0;i<strings.length;i++){
-			if(typeOfStaff==strings[i]){
+			if(typeOfStaff.equals(strings[i])){
 				temp=i;
 			}
 		}
