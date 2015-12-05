@@ -14,9 +14,7 @@ import PO.LoginPO;
 
 @SuppressWarnings("serial")
 public class StatisticsPanel extends JPanel implements Runnable {
-	private boolean signal;
 	private JLabel lblNewLabel;
-	private Thread t;
 
 	/**
 	 * Create the panel.
@@ -25,10 +23,6 @@ public class StatisticsPanel extends JPanel implements Runnable {
 		setLayout(null);
 		setSize(750, 600);
 		StatisticsPanel stp = this;
-		signal = false;
-		
-		t = new Thread(this);
-	    t.start();
 
 		JLabel label = new JLabel(
 				"\u8D22\u52A1\u4EBA\u5458>>\u7EDF\u8BA1\u62A5\u8868");
@@ -41,7 +35,6 @@ public class StatisticsPanel extends JPanel implements Runnable {
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(stp);
 				FmainPanel fm = new FmainPanel(loginPO, main);
@@ -49,7 +42,6 @@ public class StatisticsPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.stop();
 			}
 		});
 		button_4.setBounds(10, 1, 68, 23);
@@ -79,7 +71,6 @@ public class StatisticsPanel extends JPanel implements Runnable {
 
 		JButton button = new JButton("\u786E\u8BA4");
 		button.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				String date1 = showDate1.getText();
 				String date2 = showDate2.getText();
@@ -94,14 +85,14 @@ public class StatisticsPanel extends JPanel implements Runnable {
 						main.invalidate();
 						main.repaint();
 						main.setVisible(true);
-						t.stop();
 					} else {
 						lblNewLabel.setText("截止日期不得在起始日期之前，请核对起止日期");
 					}
 				} else {
 					lblNewLabel.setText("请选择起始日期和截止日期后确认");
 				}
-				signal = true;
+				Thread t = new Thread(stp);
+				t.start();
 			}
 		});
 		button.setBounds(309, 405, 93, 23);
@@ -119,16 +110,11 @@ public class StatisticsPanel extends JPanel implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
-			if (signal) {
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				lblNewLabel.setText("状态栏");
-				signal = false;
-			}
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		lblNewLabel.setText("状态栏");
 	}
 }

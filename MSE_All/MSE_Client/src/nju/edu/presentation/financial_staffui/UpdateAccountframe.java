@@ -13,20 +13,19 @@ import javax.swing.JToolBar;
 import nju.edu.businesslogic.accountbl.AccountBL;
 
 @SuppressWarnings("serial")
-public class UpdateAccountframe extends JFrame implements Runnable{
+public class UpdateAccountframe extends JFrame implements Runnable {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JLabel label_5;
-	private boolean signal;
 	AccountBL accountBL = new AccountBL();
 
 	/**
 	 * Create the panel.
 	 */
-	public UpdateAccountframe(String name, int rowpos) {
-		signal = false;
+	public UpdateAccountframe(CheckAccountPanel cap, String name, int rowpos) {
 		getContentPane().setLayout(null);
+
 		UpdateAccountframe up = this;
 
 		JLabel label = new JLabel("\u8BF7\u5F55\u5165\u65B0\u7684\u4FE1\u606F");
@@ -80,11 +79,14 @@ public class UpdateAccountframe extends JFrame implements Runnable{
 
 				if (name.equals("") || creator.equals("") || date.equals("")) {
 					label_5.setText("信息录入不完整，无法完成修改");
-					signal = true;
+					Thread t = new Thread(up);
+					t.start();
 				} else {
 					CheckAccountPanel.showTable(accountBL.updateAccount(
 							rowpos + 1, name, date, creator)); // rowpos为修改的位置
 					CheckAccountPanel.setLblNewLabel("修改成功！");
+					Thread t = new Thread(cap);
+					t.start();
 					up.dispose();
 				}
 
@@ -116,16 +118,11 @@ public class UpdateAccountframe extends JFrame implements Runnable{
 
 	@Override
 	public void run() {
-		while (true) {
-			if (signal) {
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				label_5.setText("状态栏");
-				signal = false;
-			}
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		label_5.setText("状态栏");
 	}
 }

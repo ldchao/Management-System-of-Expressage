@@ -25,10 +25,8 @@ public class NewUserPanel extends JPanel implements Runnable {
 	private JTextField textField;
 	private JTextField textField_1;
 	private boolean success;
-	private boolean signal;
 	private JLabel lblNewLabel;
 	private AbstractButton btn;
-	private Thread t;
 	UserBL userBL = new UserBL();
 
 	/**
@@ -36,13 +34,9 @@ public class NewUserPanel extends JPanel implements Runnable {
 	 */
 	public NewUserPanel(LoginPO loginPO, JFrame main) {
 		success = false;
-		signal = false;
 		setLayout(null);
 
 		NewUserPanel nup = this;
-		
-		t = new Thread(this);
-		t.start();
 
 		JLabel label = new JLabel("系统管理员>>新建用户");
 		label.setBounds(88, 5, 518, 15);
@@ -55,7 +49,6 @@ public class NewUserPanel extends JPanel implements Runnable {
 		JButton button_4 = new JButton("返回");
 		button_4.setBounds(10, 1, 68, 23);
 		button_4.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nup);
 				AdminPanel adp = new AdminPanel(loginPO, main);
@@ -63,7 +56,6 @@ public class NewUserPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.stop();
 			}
 		});
 		add(button_4);
@@ -174,7 +166,8 @@ public class NewUserPanel extends JPanel implements Runnable {
 					success = true;
 				}
 
-				signal = true;
+				Thread t = new Thread(nup);
+				t.start();
 			}
 		});
 		button.setBounds(216, 448, 93, 23);
@@ -199,24 +192,19 @@ public class NewUserPanel extends JPanel implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
-			if (signal) {
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				if (success) {
-					textField.setText("");
-					textField_1.setText("");
-					btn.setSelected(false);
-					// 怎么取消单选框的选择！
-				}
-
-				lblNewLabel.setText("状态栏");
-				signal = false;
-			}
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+		if (success) {
+			textField.setText("");
+			textField_1.setText("");
+			btn.setSelected(false);
+			// 怎么取消单选框的选择！
+		}
+
+		lblNewLabel.setText("状态栏");
 	}
 }
