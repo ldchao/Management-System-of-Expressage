@@ -61,7 +61,7 @@ public class Staffbl implements StaffBLService,checkStaffInfo{
 		StaffDataService staffDataService=RMIHelper.getStaffData();
 		StaffPO staffPO=null;
 		try {
-			staffPO=staffDataService.get("123456");
+			staffPO=staffDataService.get(name);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
