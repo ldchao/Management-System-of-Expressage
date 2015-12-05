@@ -3,6 +3,8 @@ package PO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import StaticValue.StoreNum;
+
 //StorePO（仓库信息）类包含库存警戒值、提醒值、各位置库存信息。
 public class StorePO implements Serializable {
 
@@ -45,32 +47,16 @@ public class StorePO implements Serializable {
 		return airToTC;
 	}
 
-	public void setAirToTC(String[][][] airToTC) {
-		this.airToTC = airToTC;
-	}
-
 	public String[][][] getTrainToTC() {
 		return trainToTC;
-	}
-
-	public void setTrainToTC(String[][][] trainToTC) {
-		this.trainToTC = trainToTC;
 	}
 
 	public String[][][] getCarToTC() {
 		return carToTC;
 	}
 
-	public void setCarToTC(String[][][] carToTC) {
-		this.carToTC = carToTC;
-	}
-
 	public String[][] getCarToBH() {
 		return carToBH;
-	}
-
-	public void setCarToBH(String[][] carToBH) {
-		this.carToBH = carToBH;
 	}
 
 	public void update(String qu, int pai, int jia, int wei, String orderNum) {
@@ -131,5 +117,58 @@ public class StorePO implements Serializable {
 		}
 		return idList;
 	}
-
+	//得到各个库存位置的库存比例
+	public String[][] getStoreRatio() {
+		String[][] storeRatio=new String[9+StoreNum.businessHall][3];
+		for (int i = 0; i < remind_value.length; i++) {
+			storeRatio[i][2]=remind_value[i];
+		}
+		for (int i = 0; i < 3; i++) {
+			storeRatio[i][0]="航运区"+(i+1)+"排";
+			int number=0;
+			for (int j = 0; j < 20; j++) {
+				for (int j2 = 0; j2 < 60; j2++) {
+					if(!airToTC[i][j][j2].equals("0")){
+						number++;
+					}
+				}
+			}
+			storeRatio[i][1]=number+"/"+1200;
+		}
+		for (int i = 0; i < 3; i++) {
+			storeRatio[i+3][0]="铁运区"+(i+1)+"排";
+			int number=0;
+			for (int j = 0; j < 20; j++) {
+				for (int j2 = 0; j2 < 60; j2++) {
+					if(!trainToTC[i][j][j2].equals("0")){
+						number++;
+					}
+				}
+			}
+			storeRatio[i+3][1]=number+"/"+1200;
+		}
+		for (int i = 0; i < 3; i++) {
+			storeRatio[i+6][0]="汽运区"+(i+1)+"排";
+			int number=0;
+			for (int j = 0; j < 20; j++) {
+				for (int j2 = 0; j2 < 60; j2++) {
+					if(!carToTC[i][j][j2].equals("0")){
+						number++;
+					}
+				}
+			}
+			storeRatio[i+6][1]=number+"/"+1200;
+		}
+		for (int i = 0; i <StoreNum.businessHall; i++) {
+			storeRatio[i+9][0]="汽运区4排"+(i+1)+"架";
+			int number=0;
+			for (int j = 0; j < 60; j++) {
+				if(!carToBH[i][j].equals("0")){
+					number++;
+				}
+			}
+			storeRatio[i+9][1]=number+"/"+60;
+		}
+		return storeRatio;
+	}
 }

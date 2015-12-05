@@ -1,6 +1,8 @@
 package nju.edu.businesslogic.transferbl;
 
 import nju.edu.VO.ChangeorderVO;
+import nju.edu.businesslogic.storebl.StoreMessageBL;
+import nju.edu.businesslogicservice.transferblservice.StoreinInfo;
 import nju.edu.businesslogicservice.transferblservice.TransferBLService;
 import PO.ChangeorderPO;
 
@@ -19,9 +21,9 @@ public class TransferBL implements TransferBLService{
 	}
 
 	@Override
-	public String checkStore() {
-		// TODO Auto-generated method stub
-		return null;
+	public String[][] checkStore() {
+		StoreinInfo sm=StoreMessageBL.getInstance();		
+		return sm.getStoreRatio();
 	}
 	
 	@Override

@@ -17,6 +17,9 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import nju.edu.businesslogic.transferbl.TransferBL;
+import nju.edu.businesslogicservice.transferblservice.TransferBLService;
+
 public class Transfer_checkStoreui extends JPanel {
 	private JTable table;
 	JFrame main;
@@ -61,27 +64,16 @@ public class Transfer_checkStoreui extends JPanel {
 		scrollPane.setBounds(120, 150, 514, 299);
 		add(scrollPane);
 
+		TransferBLService tb=new TransferBL();
+		String[][] storeRadio=tb.checkStore();
+		
 		table = new JTable();
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
 		table.setFont(new Font("ÀŒÃÂ", Font.PLAIN, 12));
-		tableModel=new DefaultTableModel(new Object[][] {
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, },
-				new String[] { "ø‚¥Ê«¯”Ú", "ø‚¥Ê±»¿˝", "Ã·–—±»¿˝" });		
+		tableModel=new DefaultTableModel(storeRadio ,
+				new String[] { "ø‚¥Ê«¯”Ú", "ø‚¥Ê±»¿˝", "Ã·–—±»¿˝" });	
+				
 		table.setModel(tableModel);
 		table.getColumnModel().getColumn(0).setPreferredWidth(157);
 		table.getColumnModel().getColumn(1).setPreferredWidth(100);
