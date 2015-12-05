@@ -112,6 +112,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 543, 744, 28);
+		toolBar.setEnabled(false);
 		add(toolBar);
 
 		lblNewLabel = new JLabel("×´Ì¬À¸");

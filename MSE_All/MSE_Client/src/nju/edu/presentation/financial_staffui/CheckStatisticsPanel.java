@@ -159,6 +159,7 @@ public class CheckStatisticsPanel extends JPanel {
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 543, 744, 28);
+		toolBar.setEnabled(false);
 		add(toolBar);
 
 		JLabel lblNewLabel = new JLabel("\u72B6\u6001\u680F");
