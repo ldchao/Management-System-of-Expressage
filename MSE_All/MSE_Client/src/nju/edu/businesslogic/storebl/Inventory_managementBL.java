@@ -9,14 +9,6 @@ public class Inventory_managementBL implements Inventory_managementBLService{
 
 	int store_num;
 	
-	
-	//查看指定库区的库存量
-	@Override
-	public ArrayList<String> checkInventory(int store_qu) {
-		// TODO Auto-generated method stub
-		ArrayList<String> inventory=new ArrayList<String>();
-		return inventory;
-	}
 
 	//查看指定仓库在指定时间段内的出入库数量和金额
 	@Override

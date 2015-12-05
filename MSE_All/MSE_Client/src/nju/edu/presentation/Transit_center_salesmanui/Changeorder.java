@@ -25,6 +25,7 @@ public class Changeorder extends JPanel {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	JFrame main;
+	private JTextField textField_4;
 	/**
 	 * Create the panel.
 	 */
@@ -62,41 +63,85 @@ public class Changeorder extends JPanel {
 		
 		JLabel label_4 = new JLabel("状态栏");
 		toolBar.add(label_4);
-		JLabel label_2 = new JLabel("装车日期");
-		label_2.setBounds(70, 146, 54, 15);
-		add(label_2);
 		
+		JLabel label_2 = new JLabel("装车日期");
+		label_2.setBounds(70, 132, 54, 15);
+		add(label_2);		
 		
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
 		JLabel lblNewLabel_8 = new JLabel("单击选择日期");
 		dateChooser1.register(lblNewLabel_8);
-		lblNewLabel_8.setBounds(180, 146, 96, 15);
+		lblNewLabel_8.setBounds(180, 132, 96, 15);
 		add(lblNewLabel_8);
 		
 		JLabel label_3 = new JLabel("中转单编号");
-		label_3.setBounds(70, 198, 96, 15);
+		label_3.setBounds(70, 174, 96, 15);
 		add(label_3);
 		
 		textField = new JTextField();
-		textField.setBounds(180, 192, 134, 21);
+		textField.setBounds(180, 168, 134, 21);
 		add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("出发地");
-		lblNewLabel.setBounds(70, 244, 54, 15);
+		lblNewLabel.setBounds(70, 216, 54, 15);
 		add(lblNewLabel);
+				
+		textField_1 = new JTextField();
+		textField_1.setBounds(180, 213, 134, 21);
+		add(textField_1);
+		textField_1.setColumns(10);		
+		
+		JLabel lblNewLabel_3 = new JLabel("到达地");
+		lblNewLabel_3.setBounds(70, 262, 54, 15);
+		add(lblNewLabel_3);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(180, 259, 134, 21);
+		add(textField_2);
+		
+		JLabel label_6 = new JLabel("运输方式");
+		label_6.setBounds(70, 307, 54, 15);
+		add(label_6);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(180, 304, 134, 21);
+		add(textField_3);
+		
+		JLabel lblNewLabel_1 = new JLabel("监装员");
+		lblNewLabel_1.setBounds(70, 355, 54, 15);
+		add(lblNewLabel_1);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(180, 352, 134, 21);
+		add(textField_4);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(374, 131, 295, 289);
+		add(scrollPane);
+		
+		JList list = new JList();
+		scrollPane.setViewportView(list);
+		
+		JLabel lblNewLabel_4 = new JLabel("本次中转所有单号");
+		lblNewLabel_4.setFont(new Font("微软雅黑", Font.BOLD, 14));
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		scrollPane.setColumnHeaderView(lblNewLabel_4);
+		
+		JLabel label_5 = new JLabel("中转中心中转单");
+		label_5.setFont(new Font("微软雅黑", Font.BOLD, 24));
+		label_5.setBounds(273, 60, 235, 33);
+		add(label_5);
 		
 		JLabel lblNewLabel_2 = new JLabel("审批状态");
-		lblNewLabel_2.setBounds(70, 405, 69, 15);
+		lblNewLabel_2.setBounds(70, 402, 69, 15);
 		add(lblNewLabel_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(180, 241, 134, 21);
-		add(textField_1);
-		textField_1.setColumns(10);
-		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(180, 402, 134, 21);
+		comboBox.setBounds(180, 399, 134, 21);
 		add(comboBox);
 		
 		JButton btnNewButton = new JButton("确定");
@@ -121,40 +166,5 @@ public class Changeorder extends JPanel {
 		});
 		btnNewButton_1.setBounds(428, 457, 80, 23);
 		add(btnNewButton_1);
-		
-		JLabel lblNewLabel_3 = new JLabel("到达地");
-		lblNewLabel_3.setBounds(70, 296, 54, 15);
-		add(lblNewLabel_3);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(180, 293, 134, 21);
-		add(textField_2);
-		
-		JLabel lblNewLabel_1 = new JLabel("监装员");
-		lblNewLabel_1.setBounds(70, 349, 54, 15);
-		add(lblNewLabel_1);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(180, 346, 134, 21);
-		add(textField_3);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(374, 131, 295, 289);
-		add(scrollPane);
-		
-		JList list = new JList();
-		scrollPane.setViewportView(list);
-		
-		JLabel lblNewLabel_4 = new JLabel("\u672C\u6B21\u4E2D\u8F6C\u6240\u6709\u5355\u53F7");
-		lblNewLabel_4.setFont(new Font("微软雅黑", Font.BOLD, 14));
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		scrollPane.setColumnHeaderView(lblNewLabel_4);
-		
-		JLabel label_5 = new JLabel("\u4E2D\u8F6C\u4E2D\u5FC3\u4E2D\u8F6C\u5355");
-		label_5.setFont(new Font("微软雅黑", Font.BOLD, 24));
-		label_5.setBounds(273, 60, 235, 33);
-		add(label_5);
 	}
 }

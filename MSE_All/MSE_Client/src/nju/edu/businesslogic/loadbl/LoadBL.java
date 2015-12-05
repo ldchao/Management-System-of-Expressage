@@ -13,6 +13,7 @@ import State.ApproveState;
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.VehicleLoadorderVO;
 import nju.edu.businesslogic.listinbl.Listinbl;
+import nju.edu.businesslogic.vehiclebl.driverUpdateInfo;
 import nju.edu.businesslogicservice.listinblservice.OrderInfo;
 import nju.edu.businesslogicservice.loadblservice.LoadBlService;
 import nju.edu.dataservice.loaddataservice.LoadDataService;
@@ -63,11 +64,13 @@ public class LoadBL implements LoadBlService {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		update(lp.getOrder(),lp.getTransferNum(),lp.getLoadorderNum().substring(0, 4));
 	}
 
 	// 更新信息(车辆、司机及订单状态)
-	public void update(String key) {
+	public void update(ArrayList<String> orderlist,String offNum,String transportNum) {
          //在save中通过loaderPO创建
+//		driverUpdateInfo du=new 
 	}
 
 }

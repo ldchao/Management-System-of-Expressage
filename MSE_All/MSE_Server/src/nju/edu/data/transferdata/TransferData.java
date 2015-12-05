@@ -10,7 +10,6 @@ public class TransferData extends UnicastRemoteObject implements TransferDataSer
 
 	public TransferData() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	//在数据库中插入一个中转单PO

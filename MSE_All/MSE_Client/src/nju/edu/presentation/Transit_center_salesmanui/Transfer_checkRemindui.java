@@ -60,7 +60,7 @@ public class Transfer_checkRemindui extends JPanel {
 		textArea.setText("暂时没有库区的库存量达到提醒值");
 		scrollPane.setViewportView(textArea);
 
-		JLabel label_3 = new JLabel("\u5F85\u5904\u7406\u7684\u6D88\u606F");
+		JLabel label_3 = new JLabel("待处理的消息");
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setFont(new Font("微软雅黑", Font.BOLD, 14));
 		scrollPane.setColumnHeaderView(label_3);

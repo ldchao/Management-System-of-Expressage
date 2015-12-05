@@ -1,5 +1,6 @@
 package nju.edu.presentation.Transit_center_salesmanui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,25 +14,27 @@ import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class Transfer_checkStoreui extends JPanel {
 	private JTable table;
 	JFrame main;
+	private DefaultTableModel tableModel;
 
 	/**
 	 * Create the panel.
 	 */
-	public Transfer_checkStoreui(JFrame m,JPanel jp) {
+	public Transfer_checkStoreui(JFrame m, JPanel jp) {
 		main = m;
-		JPanel lastui=jp;
-		Transfer_checkStoreui nowPanel=this;
+		JPanel lastui = jp;
+		Transfer_checkStoreui nowPanel = this;
 		setLayout(null);
 
 		JButton button = new JButton("∑µªÿ");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				main.remove(nowPanel);				
+				main.remove(nowPanel);
 				main.getContentPane().add(lastui);
 				main.invalidate();
 				main.repaint();
@@ -59,9 +62,10 @@ public class Transfer_checkStoreui extends JPanel {
 		add(scrollPane);
 
 		table = new JTable();
+		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
 		table.setFont(new Font("ÀŒÃÂ", Font.PLAIN, 12));
-		table.setModel(new DefaultTableModel(new Object[][] {
+		tableModel=new DefaultTableModel(new Object[][] {
 				{ null, null, null }, { null, null, null },
 				{ null, null, null }, { null, null, null },
 				{ null, null, null }, { null, null, null },
@@ -76,22 +80,9 @@ public class Transfer_checkStoreui extends JPanel {
 				{ null, null, null }, { null, null, null },
 				{ null, null, null }, { null, null, null },
 				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null }, }, new String[] {
-				"\u5E93\u5B58\u533A\u57DF", "\u5E93\u5B58\u6BD4\u4F8B",
-				"\u63D0\u9192\u6BD4\u4F8B" }) {
-			Class[] columnTypes = new Class[] { String.class, String.class,
-					String.class };
-
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-
-			boolean[] columnEditables = new boolean[] { false, false, false };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
+				{ null, null, null }, },
+				new String[] { "ø‚¥Ê«¯”Ú", "ø‚¥Ê±»¿˝", "Ã·–—±»¿˝" });		
+		table.setModel(tableModel);
 		table.getColumnModel().getColumn(0).setPreferredWidth(157);
 		table.getColumnModel().getColumn(1).setPreferredWidth(100);
 		table.getColumnModel().getColumn(2).setPreferredWidth(108);
