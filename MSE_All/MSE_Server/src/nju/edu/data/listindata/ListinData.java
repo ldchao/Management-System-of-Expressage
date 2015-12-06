@@ -29,14 +29,14 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 		temp+=po.getState()+";";
 		temp+=po.getSender()+";";
 		temp+=po.getAddress1()+";";
-		temp+=po.getPosition1()+";";
 		temp+=po.getPhone1()+";";
 		temp+=po.getCellphone1()+";";
+		temp+=po.getPosition1()+";";
 		temp+=po.getReceiver()+";";
 		temp+=po.getAddress2()+";";
-		temp+=po.getPosition2()+";";
 		temp+=po.getPhone2()+";";
 		temp+=po.getCellphone2()+";";
+		temp+=po.getPosition2()+";";
 		temp+=po.getItems()+";";
 		temp+=po.getCount()+";";
 		temp+=po.getWeight()+";";
@@ -45,6 +45,7 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 		temp+=po.getHeight()+";";
 		temp+=po.getExpress()+";";
 		temp+=po.getPack()+";";
+		temp+=po.getBill()+";";
 		temp+=po.getTime()+";";
 		temp+=po.getTransformState()+";";
 		fileWriter.Writer("Database/Order.txt", temp, true);
@@ -73,7 +74,7 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 			}
 		}
 		
-		String []statetype={"Valid,Invalid,NotApprove"};
+		String []statetype={"Valid","Invalid","NotApprove"};
 		ApproveState state=null;
 		if(temp[2].equals(statetype[0])){
 			state=ApproveState.Valid;

@@ -10,8 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
+import nju.edu.VO.VehicleVO;
+
 public class VehicleMainUI extends JPanel{
 	private JTextField textField;
+	private boolean isValid = false;
+	private VehicleVO vo;
 	
 	public VehicleMainUI(JFrame m, JPanel bf) {
 		JFrame main = m;
@@ -59,6 +63,18 @@ public class VehicleMainUI extends JPanel{
 		JButton button_1 = new JButton("查询");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String id = textField.getText();
+				if (id.length() == 0) {
+					label_4.setText("未输入车辆代号");
+				}else {
+					
+					if (isValid) {
+						
+					}
+					
+					
+				}
 			}
 		});
 		button_1.setBounds(221, 321, 105, 29);
@@ -67,6 +83,11 @@ public class VehicleMainUI extends JPanel{
 		JButton button_2 = new JButton("新建");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				VehicleNew vn = new VehicleNew(main, nowPanel);
+				main.remove(nowPanel);
+				main.add(vn);
+				main.invalidate();
+				main.repaint();
 			}
 		});
 		button_2.setBounds(345, 321, 105, 29);

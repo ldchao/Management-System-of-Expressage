@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import State.ApproveState;
+import State.ExpressType;
+import State.PackageType;
 import nju.edu.VO.OrderVO;
 import nju.edu.businesslogic.checklistbl.ChecklistController;
 import nju.edu.businesslogic.listinbl.Receiverinbl;
@@ -18,12 +21,13 @@ import nju.edu.presentation.Business_hall_salesmanui.VehicleLoadManageUI;
 import javax.swing.JButton;
 import java.awt.Color;
 
-public class ChecklistPanel extends JPanel{
+public class ChecklistPanel extends JPanel implements Runnable{
 	private JTextField textField;
 	private ChecklistController checklistController;
 	private Receiverinbl receiverinbl;
 	private boolean isValid = false;
-	private OrderVO vo;
+	private OrderVO vo = null;
+	private boolean signal;
 	
 	
 	public ChecklistPanel(JFrame m, JPanel bf){
@@ -64,24 +68,35 @@ public class ChecklistPanel extends JPanel{
 		JButton button2 = new JButton("确认");
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				signal=true;
 				String id = textField.getText();
 				if (id.length() != 0) {
+					receiverinbl = new Receiverinbl();
 					isValid = receiverinbl.searchOrder(id);
 				}
 				if (isValid) {
+					checklistController = new ChecklistController();
 					vo = checklistController.getOrder(id);
+//					OrderVO vo1 = new OrderVO("1234","1231",ApproveState.NotApprove,"1","南京鼓楼区营业厅 1","1","1","11","1","南京鼓楼区营业厅 1","1","1","1","1","1.0","1.0","1.0","1.0","1000", ExpressType.Economy,PackageType.Carton,"1月1日","0","aaa");
 					ChecklistImfo imfo = new ChecklistImfo(main, nowPanel);
+					imfo.show(vo);
 					main.remove(nowPanel);
 					main.getContentPane().add(imfo);
 					main.invalidate();
 					main.repaint();
+				
 				}else{
 					textField.setText("订单不存在");
 					textField.setFont(new Font("微软雅黑", Font.ITALIC, 28));
 					textField.setForeground(Color.RED);
+					Thread t = new Thread(nowPanel);
+					t.start();
+					
+					
 					
 				}
 				
+
 				
 			}
 		});
@@ -90,5 +105,18 @@ public class ChecklistPanel extends JPanel{
 		add(button2);
 		
 		
+	}
+
+
+	@Override
+	public void run() {
+		try {
+			Thread.sleep(1000);
+			textField.setText("");
+			textField.setForeground(Color.BLACK);
+			textField.setFont(new Font("微软雅黑", Font.PLAIN, 28));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }

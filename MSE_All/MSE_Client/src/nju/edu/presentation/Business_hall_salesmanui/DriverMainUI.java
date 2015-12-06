@@ -137,6 +137,18 @@ public class DriverMainUI extends JPanel {
 		panel.setBounds(268, 104, 160, 160);
 		add(panel);
 		
+		JButton btnNewButton = new JButton("\u786E\u8BA4");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(268, 492, 67, 29);
+		add(btnNewButton);
+		
+		JButton button_1 = new JButton("\u53D6\u6D88");
+		button_1.setBounds(347, 492, 67, 29);
+		add(button_1);
+		
 		
 		
 		
