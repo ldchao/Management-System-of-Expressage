@@ -13,9 +13,11 @@ import State.ApproveState;
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.VehicleLoadorderVO;
 import nju.edu.businesslogic.listinbl.Listinbl;
+import nju.edu.businesslogic.policybl.ConstantPolicybl;
 import nju.edu.businesslogic.vehiclebl.driverUpdateInfo;
 import nju.edu.businesslogicservice.listinblservice.OrderInfo;
 import nju.edu.businesslogicservice.loadblservice.LoadBlService;
+import nju.edu.businesslogicservice.policyblservice.ConstantInfo;
 import nju.edu.dataservice.loaddataservice.LoadDataService;
 
 public class LoadBL implements LoadBlService {
@@ -45,13 +47,14 @@ public class LoadBL implements LoadBlService {
 	
 	// 获得运费总价
 	@Override
-	public double getTotal(String arrival) {
+	public double getTotal(String orderTotransfer) {
 		double total=0;
 		OrderInfo order=new Listinbl();
-		String[] orderlist = arrival.split("\n");
+		String[] orderlist = orderTotransfer.split("\n");
 		for (int i = 0; i < orderlist.length; i++) {
 			total+=order.getWeight(orderlist[i]);
 		}
+		total=total*30*2/1000;
 		return total;
 	}
 

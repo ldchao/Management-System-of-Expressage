@@ -9,12 +9,17 @@ import javax.swing.JToolBar;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import nju.edu.VO.ChangeorderVO;
+import nju.edu.businesslogic.loadbl.ShippingBL;
+import nju.edu.businesslogicservice.loadblservice.ShippingBLService;
 import PO.LoginPO;
+import PO.OrganizationNumPO;
 
 public class Shipping_checkremindui extends JPanel {
 	JFrame main;
@@ -41,7 +46,7 @@ public class Shipping_checkremindui extends JPanel {
 		button.setBounds(10, 10, 65, 23);
 		add(button);
 		
-		JLabel label = new JLabel("中转中心业务员>>装运管理>>产看消息提醒");
+		JLabel label = new JLabel("中转中心业务员>>装运管理>>查看消息提醒");
 		label.setBounds(100, 14, 260, 15);
 		add(label);
 		
@@ -57,7 +62,7 @@ public class Shipping_checkremindui extends JPanel {
 		JLabel label_4 = new JLabel("状态栏");
 		toolBar.add(label_4);
 		
-		JLabel label_2 = new JLabel("\u88C5\u8FD0\u6D88\u606F\u63D0\u9192");
+		JLabel label_2 = new JLabel("装运消息提醒");
 		label_2.setFont(new Font("微软雅黑", Font.BOLD, 20));
 		label_2.setBounds(289, 80, 192, 35);
 		add(label_2);
@@ -66,18 +71,27 @@ public class Shipping_checkremindui extends JPanel {
 		scrollPane.setBounds(120, 150, 514, 299);
 		add(scrollPane);
 		
+		
 		JTextArea textArea = new JTextArea();
-		textArea.setText("\u6682\u65F6\u6CA1\u6709\u8D27\u7269\u9700\u8981\u88C5\u8FD0");
+		ShippingBLService sb = new ShippingBL();
+		ArrayList<ChangeorderVO> changeorderList = sb.checkRemind();
+		String  remind_message = "";
+		if (changeorderList != null) {
+			OrganizationNumPO op = new OrganizationNumPO();
+			for (ChangeorderVO cv : changeorderList) {
+			    remind_message+="发往"+op.getName(cv.getArrivenum())+"的中转单需要在"
+			    		+ cv.getDate()+"进行装运。\n";
+			}
+			 textArea.setText(remind_message);
+		}		
+		else
+		   textArea.setText("暂时没有货物需要装运");
 		scrollPane.setViewportView(textArea);
 		
-		JLabel label_3 = new JLabel("\u5F85\u5904\u7406\u7684\u6D88\u606F");
+		JLabel label_3 = new JLabel("待处理的消息");
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setFont(new Font("微软雅黑", Font.BOLD, 14));
 		scrollPane.setColumnHeaderView(label_3);
-		
-		JButton button_1 = new JButton("确认已查看上述消息，点击后消息将被清空");
-		button_1.setBounds(223, 477, 340, 23);
-		add(button_1);
 
 	}
 }

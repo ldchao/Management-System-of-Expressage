@@ -25,10 +25,13 @@ import javax.swing.table.DefaultTableModel;
 import nju.edu.VO.VehicleLoadorderVO;
 import nju.edu.businesslogic.loadbl.LoadBL;
 import nju.edu.businesslogicservice.loadblservice.LoadBlService;
-import nju.edu.presentation.Transit_center_salesmanui.Shipping_Car;
+import nju.edu.presentation.Transit_center_salesmanui.Shippingorder;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
 import javax.swing.JTextArea;
+
+import PO.LoginPO;
+import PO.OrganizationNumPO;
 
 public class VehicleLoadManageUI extends JPanel {
 	private int rowpos = -1;
@@ -44,6 +47,7 @@ public class VehicleLoadManageUI extends JPanel {
 		JPanel lastui = bf;
 		VehicleLoadManageUI nowPanel = this;
 		setLayout(null);
+		OrganizationNumPO op=new OrganizationNumPO();
 
 		JButton button = new JButton("·µ»Ø");
 		button.addActionListener(new ActionListener() {
@@ -170,7 +174,7 @@ public class VehicleLoadManageUI extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LoadBlService lb=new LoadBL();
-				String loadorderNum=textField_1.getText()+textField_2.getText();
+				String loadorderNum=textField_2.getText()+textField_1.getText();
 			    String fee=""+lb.getTotal(textArea.getText());
 			    label_3.setText(fee+"Ôª");
 			    

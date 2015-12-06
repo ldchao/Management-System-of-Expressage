@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.channels.NetworkChannel;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,20 +16,25 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import nju.edu.VO.ChangeorderVO;
+import nju.edu.businesslogic.loadbl.ShippingBL;
+import nju.edu.businesslogicservice.loadblservice.ShippingBLService;
 import PO.LoginPO;
+import PO.OrganizationNumPO;
 
 public class Shipping_Inputui extends JPanel {
 	private JTable table;
 	JFrame main;
 	private int rowpos = -1;
-	private static DefaultTableModel tableModel;
+	private DefaultTableModel tableModel;
 
 	/**
 	 * Create the panel.
 	 */
-	public Shipping_Inputui(JFrame m, JPanel jp,LoginPO loginPO) {
+	public Shipping_Inputui(JFrame m, JPanel jp, LoginPO loginPO) {
 		main = m;
 		JPanel lastui = jp;
 		Shipping_Inputui nowPanel = this;
@@ -51,7 +58,7 @@ public class Shipping_Inputui extends JPanel {
 		label.setBounds(100, 14, 163, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName() + "，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 
@@ -63,16 +70,30 @@ public class Shipping_Inputui extends JPanel {
 		JLabel label_4 = new JLabel("状态栏");
 		toolBar.add(label_4);
 
-		JLabel label_2 = new JLabel(
-				"\u9009\u62E9\u8981\u88C5\u8FD0\u7684\u4E2D\u8F6C\u5355");
+		JLabel label_2 = new JLabel("选择要装运的中转单");
 		label_2.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		label_2.setBounds(262, 78, 234, 28);
+		label_2.setBounds(280, 78, 234, 28);
 		add(label_2);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(96, 125, 557, 328);
 		add(scrollPane);
 
+		ShippingBLService sb = new ShippingBL();
+		ArrayList<ChangeorderVO> changeorderList = sb.checkRemind();
+		String[][] tablemessage = null;
+		if (changeorderList != null) {
+			tablemessage = new String[changeorderList.size()][4];
+			OrganizationNumPO op = new OrganizationNumPO();
+			int i = -1;
+			for (ChangeorderVO cv : changeorderList) {
+				i++;
+				tablemessage[i][0] = cv.getNumberOfTransfer();
+				tablemessage[i][1] = op.getName(cv.getArrivenum());
+				tablemessage[i][2] = cv.getWayOfTransport();
+				tablemessage[i][3] = cv.getDate();
+			}
+		}
 		table = new JTable();
 		// 选取行
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,41 +105,43 @@ public class Shipping_Inputui extends JPanel {
 			}
 		});
 
+		// 使表格居中
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		r.setHorizontalAlignment(JLabel.CENTER);
+		table.setDefaultRenderer(Object.class, r);
+
 		scrollPane.setViewportView(table);
 		table.setEnabled(false);
 		table.setRowSelectionAllowed(true);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
-		tableModel = new DefaultTableModel(new Object[][] {
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null },
-				{ null, null, null }, { null, null, null }, }, new String[] {
-				"\u4E2D\u8F6C\u5355\u7F16\u53F7", "\u5230\u8FBE\u5730",
-				"\u88C5\u8FD0\u65B9\u5F0F" });
+		tableModel = new DefaultTableModel(tablemessage, new String[] {
+				"中转单编号", "到达地", "装运方式", "装运日期" });
 		table.setModel(tableModel);
-		table.getColumnModel().getColumn(0).setPreferredWidth(80);
-		table.getColumnModel().getColumn(1).setPreferredWidth(80);
-
-
 
 		// 创建装运单
 		JButton btnNewButton = new JButton("创建装运单");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Shipping_Plane sp = new Shipping_Plane(main, nowPanel,loginPO);
-				main.remove(nowPanel);
-				main.getContentPane().add(sp);
-				main.invalidate();
-				main.repaint();
-				main.setVisible(true);
+				if (rowpos == -1) {
+					label_4.setText("请选择一张中转单");
+				} else {
+					Shippingorder shipping_panel;
+					if (tableModel.getValueAt(rowpos, 2).equals("航运")) {
+						shipping_panel = new Shippingorder(main, nowPanel,
+								loginPO, changeorderList.get(rowpos), "飞机");
+					} else if (tableModel.getValueAt(rowpos, 2).equals("铁运")) {
+						shipping_panel = new Shippingorder(main, nowPanel,
+								loginPO, changeorderList.get(rowpos), "火车");
+					} else {
+						shipping_panel = new Shippingorder(main, nowPanel,
+								loginPO, changeorderList.get(rowpos), "汽车");
+					}
+					main.remove(nowPanel);
+					main.getContentPane().add(shipping_panel);
+					main.invalidate();
+					main.repaint();
+					main.setVisible(true);
+				}
 			}
 		});
 		btnNewButton.setBounds(193, 486, 100, 23);

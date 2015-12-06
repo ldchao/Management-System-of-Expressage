@@ -3,11 +3,15 @@ package nju.edu.businesslogic.storebl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.tools.DocumentationTool.Location;
+
 import nju.edu.RMI_init.RMIHelper;
+import nju.edu.VO.StoreLocationVO;
 import nju.edu.VO.StoreinVO;
 import nju.edu.businesslogic.listinbl.Listinbl;
 import nju.edu.businesslogicservice.listinblservice.OrderInfo;
 import nju.edu.businesslogicservice.listinblservice.UpdateInfo;
+import nju.edu.businesslogicservice.storeblservice.GetLocationInfo;
 import nju.edu.businesslogicservice.storeblservice.StoreinUpdateInfo;
 import nju.edu.businesslogicservice.storeblservice.Warehouse_inBLService;
 import nju.edu.businesslogicservice.transferblservice.StoreinInfo;
@@ -16,7 +20,7 @@ import PO.OrganizationNumPO;
 import PO.StoreinorderPO;
 import State.ApproveState;
 
-public class Warehouse_inBL implements Warehouse_inBLService{
+public class Warehouse_inBL implements Warehouse_inBLService,GetLocationInfo{
 	
 
 	
@@ -82,6 +86,22 @@ public class Warehouse_inBL implements Warehouse_inBLService{
 		System.out.println("存储入库单");
 	}
 
+	//根据订单号通过查找入库单的方式查找订单库存位置
+	@Override
+	public StoreLocationVO getLocation(String orderNum) {
+		Warehouse_inDataService wd=RMIHelper.getWarehouse_inData();	
+		StoreLocationVO sv=null;
+		try {
+			String[] location=wd.getLocation(orderNum);
+			sv=new StoreLocationVO(location[0], Integer.parseInt(location[1]), Integer.parseInt(location[2]), Integer.parseInt(location[3]));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return sv;
+	}
+	
+	//更新订单物流信息和库存信息
 	private void update(String id,String qu, int pai, int jia, int wei){
 		
 		StoreinUpdateInfo sm=StoreMessageBL.getInstance();
@@ -90,6 +110,8 @@ public class Warehouse_inBL implements Warehouse_inBLService{
 		UpdateInfo order_update=new Listinbl();
 		order_update.update(id, "订单已在该中转中心入库");
 	}
+
+	
 
 	
 	

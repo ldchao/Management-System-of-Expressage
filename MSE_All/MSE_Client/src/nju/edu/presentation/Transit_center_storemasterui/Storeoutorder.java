@@ -9,6 +9,10 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
 import PO.LoginPO;
+import PO.OrganizationNumPO;
+import nju.edu.VO.ChangeorderVO;
+import nju.edu.businesslogic.storebl.Warehouse_outBL;
+import nju.edu.businesslogicservice.storeblservice.Warehouse_outBLService;
 import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
@@ -17,19 +21,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Storeoutorder extends JPanel {
-	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 
 	/**
 	 * Create the panel.
 	 */
-	public Storeoutorder(JFrame m, JPanel jp,LoginPO loginPO) {
+	public Storeoutorder(JFrame m, JPanel jp, LoginPO loginPO, ChangeorderVO cv) {
 		JFrame main = m;
 		JPanel lastui = jp;
 		Storeoutorder nowPanel = this;
 		setLayout(null);
+		OrganizationNumPO op = new OrganizationNumPO();
 
 		JButton button = new JButton("返回");
 		button.addActionListener(new ActionListener() {
@@ -48,7 +53,7 @@ public class Storeoutorder extends JPanel {
 		lblNewLabel.setBounds(100, 14, 347, 15);
 		add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
+		JLabel lblNewLabel_1 = new JLabel(loginPO.getName() + "，你好！");
 		lblNewLabel_1.setBounds(600, 14, 100, 15);
 		add(lblNewLabel_1);
 
@@ -64,6 +69,13 @@ public class Storeoutorder extends JPanel {
 		lblNewLabel_2.setBounds(168, 163, 54, 15);
 		add(lblNewLabel_2);
 
+		textField_1 = new JTextField();
+		textField_1.setText("该中转单上所有单号");
+		textField_1.setEnabled(false);
+		textField_1.setBounds(298, 160, 234, 21);
+		add(textField_1);
+		textField_1.setColumns(10);
+
 		JLabel lblNewLabel_3 = new JLabel("出库日期");
 		lblNewLabel_3.setBounds(168, 207, 54, 15);
 		add(lblNewLabel_3);
@@ -78,22 +90,57 @@ public class Storeoutorder extends JPanel {
 		lblNewLabel_5.setBounds(168, 262, 54, 15);
 		add(lblNewLabel_5);
 
+		textField_2 = new JTextField();
+		textField_2.setText(op.getName(cv.getArrivenum()));
+		textField_2.setEnabled(false);
+		textField_2.setBounds(298, 259, 234, 21);
+		add(textField_2);
+		textField_2.setColumns(10);
+
 		JLabel lblNewLabel_6 = new JLabel("装运形式");
 		lblNewLabel_6.setBounds(168, 313, 54, 15);
 		add(lblNewLabel_6);
+
+		textField_3 = new JTextField();
+		textField_3.setText(cv.getWayOfTransport());
+		textField_3.setEnabled(false);
+		textField_3.setBounds(298, 310, 234, 21);
+		add(textField_3);
+		textField_3.setColumns(10);
 
 		JLabel lblNewLabel_7 = new JLabel("中转单编号");
 		lblNewLabel_7.setBounds(168, 361, 78, 15);
 		add(lblNewLabel_7);
 
+		textField_4 = new JTextField();
+		textField_4.setText(cv.getNumberOfTransfer());
+		textField_4.setEnabled(false);
+		textField_4.setBounds(298, 358, 237, 21);
+		add(textField_4);
+		textField_4.setColumns(10);
+
 		JLabel lblNewLabel_10 = new JLabel("审批状态");
 		lblNewLabel_10.setBounds(168, 412, 54, 15);
 		add(lblNewLabel_10);
 
+		String[] approveState = { "未审批", "审批通过", "审批未通过" };
+		JComboBox comboBox = new JComboBox(approveState);
+		comboBox.setBounds(298, 409, 234, 21);
+		comboBox.setEnabled(false);
+		add(comboBox);
+
 		JButton btnNewButton_1 = new JButton("确定");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lblNewLabel_4.setText("创建成功");
+				String date = lblNewLabel_3_1.getText();
+				if (date.equals("单击选择日期")) {
+					lblNewLabel_4.setText("请选择日期！");
+				} else {
+                     Warehouse_outBLService wb=new Warehouse_outBL();
+                     wb.build(cv, date);
+                     lblNewLabel_4.setText("入库单创建成功！");
+				}
+
 			}
 		});
 		btnNewButton_1.setBounds(188, 464, 93, 23);
@@ -102,8 +149,8 @@ public class Storeoutorder extends JPanel {
 		JButton btnNewButton_2 = new JButton("取消");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Storeoutorder s=new Storeoutorder(main,lastui,loginPO);
-				main.remove(nowPanel);				
+				Storeoutorder s = new Storeoutorder(main, lastui, loginPO, cv);
+				main.remove(nowPanel);
 				main.getContentPane().add(s);
 				main.invalidate();
 				main.repaint();
@@ -113,33 +160,9 @@ public class Storeoutorder extends JPanel {
 		btnNewButton_2.setBounds(418, 464, 93, 23);
 		add(btnNewButton_2);
 
-		textField = new JTextField();
-		textField.setBounds(298, 358, 237, 21);
-		add(textField);
-		textField.setColumns(10);
-
-		textField_1 = new JTextField();
-		textField_1.setBounds(298, 310, 234, 21);
-		add(textField_1);
-		textField_1.setColumns(10);
-
-		textField_3 = new JTextField();
-		textField_3.setBounds(298, 160, 234, 21);
-		add(textField_3);
-		textField_3.setColumns(10);
-
-		textField_4 = new JTextField();
-		textField_4.setBounds(298, 259, 234, 21);
-		add(textField_4);
-		textField_4.setColumns(10);
-
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(298, 409, 234, 21);
-		add(comboBox_1);
-
-		JLabel label = new JLabel("\u51FA  \u5E93  \u5355");
+		JLabel label = new JLabel("出  库 单");
 		label.setFont(new Font("微软雅黑", Font.BOLD, 24));
-		label.setBounds(297, 88, 148, 38);
+		label.setBounds(320, 88, 148, 38);
 		add(label);
 	}
 }

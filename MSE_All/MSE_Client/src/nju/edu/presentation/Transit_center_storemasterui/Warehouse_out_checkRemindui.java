@@ -3,6 +3,7 @@ package nju.edu.presentation.Transit_center_storemasterui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +15,10 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import PO.LoginPO;
+import PO.OrganizationNumPO;
+import nju.edu.VO.ChangeorderVO;
+import nju.edu.businesslogic.storebl.Warehouse_outBL;
+import nju.edu.businesslogicservice.storeblservice.Warehouse_outBLService;
 import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 
 public class Warehouse_out_checkRemindui extends JPanel {
@@ -59,17 +64,24 @@ public class Warehouse_out_checkRemindui extends JPanel {
 		add(scrollPane);
 
 		JTextArea textArea = new JTextArea();
-		textArea.setText("暂时没有需要出库的货物");
+		Warehouse_outBLService wb=new Warehouse_outBL();
+		ArrayList<ChangeorderVO> changeorderList = wb.checkRemind();
+		String  remind_message = "";
+		if (changeorderList != null) {
+			for (ChangeorderVO cv : changeorderList) {
+			    remind_message+="编号为"+cv.getNumberOfTransfer()+"的中转单上的订单需要在"
+			    		+ cv.getDate()+"之前办理出库。\n";
+			}
+			 textArea.setText(remind_message);
+		}		
+		else
+		   textArea.setText("暂时没有货物需要装运");
 		scrollPane.setViewportView(textArea);
 
-		JLabel label_3 = new JLabel("\u5F85\u5904\u7406\u7684\u6D88\u606F");
+		JLabel label_3 = new JLabel("待处理的消息");
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setFont(new Font("微软雅黑", Font.BOLD, 14));
 		scrollPane.setColumnHeaderView(label_3);
-
-		JButton button_1 = new JButton("确认已查看上述消息，点击后消息将被清空");
-		button_1.setBounds(223, 477, 340, 23);
-		add(button_1);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);

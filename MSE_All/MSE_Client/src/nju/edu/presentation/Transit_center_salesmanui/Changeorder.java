@@ -14,7 +14,11 @@ import javax.swing.JList;
 import javax.swing.SwingConstants;
 
 import PO.LoginPO;
+import PO.OrganizationNumPO;
 import StaticValue.StoreNum;
+import nju.edu.VO.ChangeorderVO;
+import nju.edu.businesslogic.transferbl.TransferBL;
+import nju.edu.businesslogicservice.transferblservice.TransferBLService;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
 import java.awt.Font;
@@ -159,14 +163,33 @@ public class Changeorder extends JPanel {
 		lblNewLabel_2.setBounds(70, 402, 69, 15);
 		add(lblNewLabel_2);
 		
-		JComboBox comboBox = new JComboBox();
+		
+		String[] approveState = { "未审批", "审批通过", "审批未通过" };
+		JComboBox comboBox = new JComboBox(approveState);
 		comboBox.setBounds(180, 399, 134, 21);
+		comboBox.setEnabled(false);
 		add(comboBox);
 		
 		JButton btnNewButton = new JButton("确定");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				label_4.setText("创建成功");
+				OrganizationNumPO op=new OrganizationNumPO();
+				String date=lblNewLabel_8.getText();
+				String transferNum=textField.getText();
+				String offNum=op.getNum(textField_1.getText());
+				String arriveNum=op.getNum(textField_2.getText());
+				String moniterName=textField_4.getText();
+				if(date.equals("单击选择日期")||
+						transferNum.length()==0||moniterName.length()==0
+						){
+					label_4.setText("输入信息有误！");
+				}else{
+					ChangeorderVO cv=new ChangeorderVO(transferNum, date, offNum, arriveNum, 
+							transferWay, moniterName, orderlist);
+					TransferBLService tb=new TransferBL();
+					tb.build(cv);
+				}
+				
 			}
 		});
 		btnNewButton.setBounds(226, 457, 80, 23);

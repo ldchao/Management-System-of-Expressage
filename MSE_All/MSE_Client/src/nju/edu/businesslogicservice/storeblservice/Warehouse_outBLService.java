@@ -8,10 +8,7 @@ import PO.StoreoutorderPO;
 public interface Warehouse_outBLService {
 
 	//新建一张入库单
-	public void build(ChangeorderVO cv,String number);
-	
-	//货物录入中转单后设置提醒
-	public void setRemind(ChangeorderVO cv);
+	public void build(ChangeorderVO cv,String date);
 	
 	//查看提醒值
 	public ArrayList<ChangeorderVO> checkRemind();

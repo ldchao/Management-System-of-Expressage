@@ -16,4 +16,7 @@ public interface Warehouse_inDataService extends Remote{
 		
 	//清空未入库到达单消息提醒
 	public void deleteRemind()throws RemoteException;
+	
+	//根据订单查看对应的库存位置
+	public String[] getLocation(String id) throws RemoteException;
 }

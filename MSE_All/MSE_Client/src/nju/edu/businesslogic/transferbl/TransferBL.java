@@ -1,17 +1,30 @@
 package nju.edu.businesslogic.transferbl;
 
+import java.rmi.RemoteException;
+
+import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.ChangeorderVO;
 import nju.edu.businesslogic.storebl.StoreMessageBL;
 import nju.edu.businesslogicservice.transferblservice.StoreinInfo;
 import nju.edu.businesslogicservice.transferblservice.TransferBLService;
+import nju.edu.dataservice.transferdataservice.TransferDataService;
 import PO.ChangeorderPO;
+import State.ApproveState;
 import StaticValue.StoreNum;
 
 public class TransferBL implements TransferBLService{
 
 	@Override
 	public void build(ChangeorderVO cv) {
-		// TODO Auto-generated method stub
+		ChangeorderPO cp=new ChangeorderPO(cv.getDate(), cv.getNumberOfTransfer(),
+				cv.getOffnum(), cv.getArrivenum(), cv.getWayOfTransport(),
+				cv.getMonitor(), cv.getOrder_number(), ApproveState.NotApprove);
+		TransferDataService td=RMIHelper.getTransferData();
+		try {
+			td.insert(cp);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -42,7 +55,12 @@ public class TransferBL implements TransferBLService{
 	
 	@Override
 	public void save(ChangeorderPO cp) {
-		// TODO Auto-generated method stub
+		TransferDataService td=RMIHelper.getTransferData();
+		try {
+			td.insert(cp);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

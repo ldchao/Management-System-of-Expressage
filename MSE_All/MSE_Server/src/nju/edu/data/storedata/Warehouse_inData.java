@@ -24,8 +24,9 @@ public class Warehouse_inData extends UnicastRemoteObject implements Warehouse_i
 				+";"+sp.getWei()+";"+sp.getCheck_state();
 		if(sp.getCheck_state()==ApproveState.NotApprove){
 			fileWriter.Writer("DataBase/UncheckedStoreinorder.txt", storeinorder, true);
+			fileWriter.Writer("DataBase/NeedOutStoreinorder.txt", storeinorder, true);	
 		}else{
-		fileWriter.Writer("DataBase/Storeinorder.txt", storeinorder, true);
+		fileWriter.Writer("DataBase/Storeinorder.txt", storeinorder, true);			
 		}
 	}
 	//查看未入库的到达单
@@ -36,11 +37,30 @@ public class Warehouse_inData extends UnicastRemoteObject implements Warehouse_i
 				.Reader("DataBase/unStorein_Arriveorder.txt");
 		return Arriveorderlist;
 	}
-
+    //清空消息提醒
 	@Override
 	public void deleteRemind() throws RemoteException {
 		fileWriter.Writer("DataBase/unStorein_Arriveorder.txt","", false);
 		
+	}
+    //根据订单查看对应的库存位置
+	@Override
+	public String[] getLocation(String id) throws RemoteException {
+		String[] location =new String[4];
+		ArrayList<String> Storeinorderlist = fileReader
+				.Reader("DataBase/NeedOutStoreinorder.txt");
+		for (String s:Storeinorderlist) {
+			if(s.startsWith(id)){
+				String[] storeinOrder=s.split(";");
+				for (int i = 0; i < 4; i++) {
+					location[i]=storeinOrder[i+3];
+				}
+			    Storeinorderlist.remove(s);
+			    break;
+			}
+		}
+		fileWriter.Writer("DataBase/NeedOutStoreinorder.txt", Storeinorderlist, false);
+		return location;
 	}
 
 }
