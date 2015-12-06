@@ -1,8 +1,8 @@
-快递员;2000.0;ByTimes
+快递员;3.0;ByBenefit
 营业厅业务员;1500;ByMonth
 中转中心业务员;2000;ByMonth
 中转中心仓库管理员;2000;ByMonth
-高级财务人员;5000.0;ByBenefit
+高级财务人员;5000.0;ByTimes
 低级财务人员;1500;ByMonth
 总经理;3500;ByMonth
 管理员;2000;ByMonth

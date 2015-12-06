@@ -12,7 +12,7 @@ public interface ListinBLService {
 	//ÐÂ½¨¶©µ¥
 	public void addOrder(OrderVO vo);
 	
-	public double getTotalMoney(String address1, String address2, String text, String text2, String text3, ExpressType express,
+	public double getTotalMoney(String address1, String address2, String weight,String length, String width, String height, ExpressType express,
 			PackageType pack);
 	
 	public String getTotalTime(String address1,String address2,ExpressType express);

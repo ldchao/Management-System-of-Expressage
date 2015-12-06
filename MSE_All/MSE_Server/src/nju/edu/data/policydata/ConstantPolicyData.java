@@ -10,21 +10,10 @@ import javax.naming.spi.DirStateFactory.Result;
 
 import PO.ConstantPO;
 import nju.edu.data.FileIO.fileReader;
+import nju.edu.data.FileIO.fileWriter;
 import nju.edu.dataservice.policydataservice.ConstantPolicyDataService;
 
 public class ConstantPolicyData extends UnicastRemoteObject implements ConstantPolicyDataService{
-	
-//	public static void main(String []args){
-//		ConstantPolicyData constantPolicyData;
-//		try {
-//			constantPolicyData = new ConstantPolicyData();
-//			constantPolicyData.find("南京栖霞区营业厅","南京栖霞区营业厅");
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//	}
 	
 	public ConstantPolicyData() throws RemoteException{
 		// TODO Auto-generated constructor stub
@@ -36,19 +25,51 @@ public class ConstantPolicyData extends UnicastRemoteObject implements ConstantP
 		ConstantPO po=null;
 		fileReader fileReader=new fileReader();
 		ArrayList<String> arrayList=fileReader.Reader("Database/Constant.txt");
-		for(int i=0;i<arrayList.size();i++){
-			if(arrayList.get(i).equals(address1)&&arrayList.get(i+1).equals(address2)){
-				po=new ConstantPO(arrayList.get(i), arrayList.get(i+1), Double.parseDouble(arrayList.get(i+2)), Double.parseDouble(arrayList.get(i+3)));
-				break;
+		//用映射的方式指定下标对应城市
+		String[] strings={"南京","北京","广州","上海"};
+		String a=address1.substring(0,2);
+		String b=address2.substring(0,2);
+		int num1=0,num2=0;
+		for(int i=0;i<strings.length;i++){
+			if(a.equals(strings[i])){
+				num1=i;
+			}
+			if(b.equals(strings[i])){
+				num2=i;
 			}
 		}
+
+		String[] t1=arrayList.get(num1).split(";");
+		String[] t2=t1[num2].split(",");
+		po=new ConstantPO(address1, address2, Double.parseDouble(t2[0]), Double.parseDouble(t2[1]));
 		return po;
 	}
 
 	@Override
 	public void updateConstant(ConstantPO po) throws RemoteException {
 		// TODO Auto-generated method stub
+		fileReader fileReader=new fileReader();
+		fileWriter fileWriter=new fileWriter();
+		ArrayList<String> arrayList=fileReader.Reader("Database/Constant.txt");
+		String[] city={"南京","北京","广州","上海"};
+		int a=-1,b=-1;
+		for(int i=0;i<city.length;i++){
+			if(po.getAddress1().equals(city[i])){
+				a=i;
+			}
+			if(po.getAddress2().equals(city[i])){
+				b=i;
+			}
+		}
 		
+		String []temp=arrayList.get(a).split(";");
+		temp[b]=po.getDistance()+","+po.getPrice();
+		String t="";
+		for(int i=0;i<temp.length;i++){
+			t=t+temp[i]+";";
+		}
+		arrayList.set(a, t);
+		fileWriter.Writer("Database/Constant.txt", arrayList, false);
 	}
 
 	@Override

@@ -42,7 +42,8 @@ public class ReceiverinData extends UnicastRemoteObject implements ReceiverinDat
 		fileReader fileReader=new fileReader();
 		ArrayList<String> arrayList=fileReader.Reader("Database/Order.txt");
 		for(int i=0;i<arrayList.size();i++){
-			if(arrayList.get(i).equals(number)){
+			String [] temp=arrayList.get(i).split(";");
+			if(temp[1].equals(number)){
 				result=true;
 				break;
 			}

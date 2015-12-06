@@ -36,6 +36,7 @@ public class Receiver extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
+	JLabel label_11;
 	private JTextArea textArea;
 	private Receiverinbl receiverinbl;
 
@@ -143,7 +144,7 @@ public class Receiver extends JFrame {
 		label_10.setBounds(441, 165, 54, 15);
 		contentPane.add(label_10);
 		
-		JLabel label_11 = new JLabel("点击选择日期");
+		label_11 = new JLabel("点击选择日期");
 		label_11.setBounds(545, 165, 179, 15);
 		
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
@@ -216,5 +217,6 @@ public class Receiver extends JFrame {
 		textField_5.setText("");
 		textField_6.setText("");
 		textArea.setText("");
+		label_11.setText("点击选择日期");
 	}
 }

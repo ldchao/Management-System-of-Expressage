@@ -32,19 +32,20 @@ public class Listinbl implements ListinBLService,ListinInfo,OrderInfo,UpdateInfo
 	}
 
 	@Override
-	public double getTotalMoney(String address1, String address2, String length, String width, String height, ExpressType express,
+	public double getTotalMoney(String address1, String address2, String weight,String length, String width, String height, ExpressType express,
 			PackageType pack) {
 		// TODO Auto-generated method stub
 		double result=0;
+		double distance=0;
 		//价格部分1：两地之间的距离*单价
 		try {
-			result=ConstantPolicyDataSerivce.getPrice(address1, address2);
+			distance=ConstantPolicyDataSerivce.GetDistance(address1, address2);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 		//部分价格部分2：质量；3：包裹种类；4：快递种类
-		result=result+WeightPrice(length, width, height)+PackPrice(pack)+ExpressPrice(express);
+		result=(distance+30*2)/1000*ExpressPrice(express)*WeightPrice(weight,length, width, height)+PackPrice(pack);
 		return result;
 	}
 
@@ -62,24 +63,25 @@ public class Listinbl implements ListinBLService,ListinInfo,OrderInfo,UpdateInfo
 	protected double ExpressPrice(ExpressType express) {
 		// TODO Auto-generated method stub
 		if(express==ExpressType.Economy){
-			return 10;
+			return 18;
 		}else if(express==ExpressType.Standard){
-			return 25;
+			return 23;
 		}else{
-			return 50;
+			return 25;
 		}
 
 	}
 
-	protected double WeightPrice(String l, String w, String h) {
+	protected double WeightPrice(String zhiliang,String l, String w, String h) {
 		// TODO Auto-generated method stub
 		Double length=Double.parseDouble(l);
 		Double width=Double.parseDouble(w);
 		Double height=Double.parseDouble(h);
-		if(length*width*height>50000){
+		Double weight=Double.parseDouble(zhiliang);
+		if(length*width*height/5000>weight){
 			return length*width*height/5000;
 		}else{
-			return 20;
+			return weight;
 		}
 	}
 
@@ -88,8 +90,7 @@ public class Listinbl implements ListinBLService,ListinInfo,OrderInfo,UpdateInfo
 		// TODO Auto-generated method stub
 		double distance=0;
 		try {
-			distance=ConstantPolicyDataSerivce.GetDistance(address1, address2);
-			System.out.println(distance);
+			distance=ConstantPolicyDataSerivce.GetDistance(address1, address2)+30*2;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
