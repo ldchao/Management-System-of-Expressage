@@ -469,6 +469,7 @@ public class Order extends JFrame implements Runnable{
 		JButton btnNewButton = new JButton("\u786E\u5B9A");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//				OrderVO vo=listinbl.getOrder("141250089");
 				OrderVO vo=new OrderVO(textField.getText(), textField_1.getText(), ApproveState.NotApprove, 
 						textField_2.getText(), comboBox_1.getSelectedItem().toString()+" "+textArea.getText(), textField_3.getText(), textField_4.getText(), textField_5.getText(),
 						textField_6.getText(), comboBox_2.getSelectedItem().toString()+" "+textArea_1.getText(), textField_7.getText(),

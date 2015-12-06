@@ -10,26 +10,36 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Point;
+
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
+import nju.edu.VO.AccountVO;
+import nju.edu.businesslogic.accountbl.AccountBL;
 
 public class checkAccount extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
+	private static JTable table;
+	private int rowpos = -1;
+	private static DefaultTableModel tableModel;
+	private AccountBL accountBL;
+	
 	public checkAccount() {
+		accountBL=new AccountBL();
 		checkAccount checkAccountframe=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -49,30 +59,68 @@ public class checkAccount extends JFrame {
 		lblNewLabel.setBounds(95, 14, 110, 15);
 		contentPane.add(lblNewLabel);
 		
-		JLabel label = new JLabel("\u8D26\u6237");
-		label.setBounds(253, 195, 54, 15);
+		JLabel label = new JLabel("\u94F6\u884C\u8D26\u6237");
+		label.setFont(new Font("黑体", Font.BOLD, 15));
+		label.setBounds(343, 96, 70, 15);
 		contentPane.add(label);
 		
-		JLabel label_1 = new JLabel("\u5BC6\u7801");
-		label_1.setBounds(253, 284, 54, 15);
-		contentPane.add(label_1);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(156, 141, 432, 271);
+		contentPane.add(scrollPane);
 		
-		textField = new JTextField();
-		textField.setBounds(317, 192, 183, 21);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		table = new JTable();
+		table.setRowHeight(25);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(317, 281, 183, 21);
-		contentPane.add(textField_1);
+		// 使表格居中
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		r.setHorizontalAlignment(JLabel.CENTER);
+		table.setDefaultRenderer(Object.class, r);
 		
-		JButton button_1 = new JButton("\u786E\u5B9A");
-		button_1.setBounds(284, 368, 75, 23);
-		contentPane.add(button_1);
+		// 选取行
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				Point mousepoint;
+				mousepoint = e.getPoint();
+				rowpos = table.rowAtPoint(mousepoint);
+				table.setRowSelectionInterval(rowpos, rowpos);
+			}
+		});
 		
-		JButton button_2 = new JButton("\u6E05\u7A7A");
-		button_2.setBounds(385, 368, 75, 23);
-		contentPane.add(button_2);
+		tableModel=new DefaultTableModel(
+				new Object[][] {
+					{null, null},{null, null},{null, null},{null, null},{null, null},
+					{null, null},{null, null},{null, null},{null, null},{null, null},
+					{null, null},{null, null},{null, null},{null, null},{null, null},
+				},new String[] {
+					"\u8D26\u6237\u540D\u79F0", "\u8D26\u6237\u4F59\u989D"
+				}
+			);
+		table.setEnabled(false);
+		table.setModel(tableModel);
+		table.getColumnModel().getColumn(0).setPreferredWidth(130);
+		table.getColumnModel().getColumn(1).setPreferredWidth(130);
+		scrollPane.setViewportView(table);
+		
+		// 显示表格
+		showTable(accountBL.check());
+	}
+	
+	public static void showTable(ArrayList<AccountVO> acvo) {
+		int i = 0;
+		for (AccountVO ac : acvo) {
+			tableModel.setValueAt(ac.getAcName(), i, 0);
+			tableModel.setValueAt(ac.getMoney(), i, 1);
+			i++;
+			if (i >= table.getRowCount()) {
+				String[] rowstr = { "", "" };
+				tableModel.addRow(rowstr);
+			}
+
+		}
+		while (i < table.getRowCount()) {
+			tableModel.setValueAt("", i, 0);
+			tableModel.setValueAt("", i, 1);
+			i++;
+		}
 	}
 }

@@ -1,32 +1,36 @@
 package nju.edu.presentation.general_managerui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import nju.edu.businesslogic.financebl.PayorderBL;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class checkCost_Benefit extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-;
-
-	/**
-	 * Create the frame.
-	 */
+	private JTable table;
+	static DefaultTableModel tableModel;
+	PayorderBL payorderBL = new PayorderBL();
+	
 	public checkCost_Benefit() {
 		checkCost_Benefit checkCost_Benefitframe=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,40 +55,35 @@ public class checkCost_Benefit extends JFrame {
 		label.setBounds(95, 14, 211, 15);
 		contentPane.add(label);
 		
-		JLabel label_1 = new JLabel("\u8BF7\u70B9\u51FB\u53F3\u4FA7\u6309\u94AE\u9009\u62E9\u8D77\u59CB\u65F6\u95F4");
-		label_1.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-		label_1.setBounds(186, 194, 211, 15);
+		JLabel label_1 = new JLabel("\u622A\u81F3\u5F53\u524D\u65E5\u671F\u7684\u6210\u672C\u6536\u76CA\u8868");
+		label_1.setFont(new Font("黑体", Font.BOLD, 20));
+		label_1.setBounds(260, 78, 260, 31);
 		contentPane.add(label_1);
+		// 使表格居中
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		r.setHorizontalAlignment(JLabel.CENTER);
 		
-		JLabel label_2 = new JLabel("\u8BF7\u70B9\u51FB\u53F3\u4FA7\u6309\u94AE\u9009\u62E9\u7ED3\u675F\u65F6\u95F4");
-		label_2.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-		label_2.setBounds(186, 272, 211, 15);
-		contentPane.add(label_2);
+		tableModel = new DefaultTableModel(new Object[][] {
+			{ "\u622A\u81F3\u65E5\u671F", null },
+			{ "\u603B\u6536\u5165", null }, { "\u603B\u652F\u51FA", null },
+			{ "\u603B\u5229\u6DA6", null }, }, new String[] { "", "" });
 		
-		JButton button_3 = new JButton("\u786E\u5B9A");
-		button_3.setBounds(233, 353, 93, 23);
-		contentPane.add(button_3);
-		
-		JButton button_4 = new JButton("\u53D6\u6D88");
-		button_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				checkCost_Benefitframe.dispose();
-			}
-		});
-		button_4.setBounds(391, 353, 93, 23);
-		contentPane.add(button_4);
-		
-		JLabel label_3 = new JLabel("\u8D77\u59CB\u65E5\u671F");
-		label_3.setBounds(450, 195, 54, 15);
-		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
-		dateChooser1.register(label_3);
-		contentPane.add(label_3);
-		
-		JLabel label_4 = new JLabel("\u7ED3\u675F\u65E5\u671F");
-		label_4.setBounds(450, 273, 54, 15);
-		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
-		dateChooser2.register(label_4);
-		contentPane.add(label_4);
+		table = new JTable();
+		table.setBounds(143, 132, 479, 160);
+		contentPane.add(table);
+		table.setRowHeight(40);
+		table.setDefaultRenderer(Object.class, r);
+		table.setBorder(new LineBorder(new Color(0, 0, 0)));
+		table.setEnabled(false);
+		table.setModel(tableModel);
+		double[] pro = payorderBL.profit();
+		for (int i = 0; i < 3; i++)
+			table.setValueAt(pro[i], i + 1, 1);
+
+		// 获取当前日期
+		Date dt = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		table.setValueAt(date.format(dt), 0, 1);
 	}
 
 }
