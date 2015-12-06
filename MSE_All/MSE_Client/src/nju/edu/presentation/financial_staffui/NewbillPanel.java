@@ -25,9 +25,7 @@ public class NewbillPanel extends JPanel implements Runnable {
 	private JTextArea textArea_1;
 	private JTextArea textArea_2;
 	private JTextArea textArea_3;
-	private boolean signal;
 	private boolean success;
-	private Thread t;
 	private JLabel lblNewLabel;
 	BillBL billBL = new BillBL();
 
@@ -36,14 +34,10 @@ public class NewbillPanel extends JPanel implements Runnable {
 	 */
 	public NewbillPanel(LoginPO loginPO, JFrame main) {
 		success = false;
-		signal = false;
 		setLayout(null);
 		setSize(750, 600);
 
 		NewbillPanel nbp = this;
-		
-		t = new Thread(this);
-	    t.start();
 
 		JLabel label = new JLabel("财务人员>>期初建账>>新建账");
 		label.setBounds(88, 5, 518, 15);
@@ -56,7 +50,6 @@ public class NewbillPanel extends JPanel implements Runnable {
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.setBounds(10, 1, 68, 23);
 		button_4.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nbp);
 				BillPanel bp = new BillPanel(loginPO, main);
@@ -64,7 +57,6 @@ public class NewbillPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.stop();
 			}
 		});
 		add(button_4);
@@ -158,7 +150,8 @@ public class NewbillPanel extends JPanel implements Runnable {
 					success = true;
 				}
 
-				signal = true;
+				Thread t = new Thread(nbp);
+				t.start();
 			}
 		});
 		button.setBounds(231, 453, 93, 23);
@@ -187,26 +180,21 @@ public class NewbillPanel extends JPanel implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
-			if (signal) {
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				if (success) {
-					textField.setText("");
-					textField_1.setText("");
-					textArea.setText("");
-					textArea_1.setText("");
-					textArea_2.setText("");
-					textArea_3.setText("");
-				}
-
-				lblNewLabel.setText("状态栏");
-				signal = false;
-			}
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+		if (success) {
+			textField.setText("");
+			textField_1.setText("");
+			textArea.setText("");
+			textArea_1.setText("");
+			textArea_2.setText("");
+			textArea_3.setText("");
+		}
+
+		lblNewLabel.setText("状态栏");
 	}
 }

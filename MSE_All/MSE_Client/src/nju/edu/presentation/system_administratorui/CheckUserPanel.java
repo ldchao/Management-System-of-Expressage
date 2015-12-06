@@ -28,21 +28,16 @@ public class CheckUserPanel extends JPanel implements Runnable {
 	private int rowpos = -1;
 	private static DefaultTableModel tableModel;
 	private static JLabel lblNewLabel;
-	private static boolean signal;
-	private Thread t;
+	static CheckUserPanel cup;
 	UserBL usb = new UserBL();
 
 	/**
 	 * Create the panel.
 	 */
 	public CheckUserPanel(LoginPO loginPO, JFrame main) {
-		signal = false;
 		setLayout(null);
 
-		CheckUserPanel cup = this;
-		
-		t = new Thread(this);
-		t.start();
+		cup = this;
 
 		JLabel label = new JLabel("财务人员>>账户管理>>查改删已有账户");
 		label.setBounds(92, 8, 563, 15);
@@ -54,7 +49,6 @@ public class CheckUserPanel extends JPanel implements Runnable {
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(cup);
 				AdminPanel adp = new AdminPanel(loginPO, main);
@@ -62,7 +56,6 @@ public class CheckUserPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.stop();
 			}
 		});
 		button_4.setBounds(15, 6, 70, 23);
@@ -136,7 +129,8 @@ public class CheckUserPanel extends JPanel implements Runnable {
 					@SuppressWarnings("unused")
 					UserConfirmframe userConfirmframe = new UserConfirmframe(
 							name);
-					signal = true;
+					Thread t = new Thread(cup);
+					t.start();
 				}
 			}
 		});
@@ -144,14 +138,13 @@ public class CheckUserPanel extends JPanel implements Runnable {
 		JButton button = new JButton("\u4FEE\u6539");
 		// 修改用户信息
 		button.addActionListener(new ActionListener() {
+			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent arg0) {
 				String name = tableModel.getValueAt(rowpos, 0).toString();
 				String limit = tableModel.getValueAt(rowpos, 2).toString();
 				if (rowpos != -1) {
-					UpdateUserFrame up = new UpdateUserFrame(name, limit,
+					UpdateUserFrame up = new UpdateUserFrame(cup, name, limit,
 							rowpos);
-					Thread t = new Thread(up);
-					t.start();
 				}
 			}
 		});
@@ -183,21 +176,17 @@ public class CheckUserPanel extends JPanel implements Runnable {
 
 	public static void setlblNewLabel(String str) {
 		lblNewLabel.setText(str);
-		signal = true;
+		Thread t = new Thread(cup);
+		t.start();
 	}
 
 	@Override
 	public void run() {
-		while (true) {
-			if (signal) {
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				lblNewLabel.setText("状态栏");
-				signal = false;
-			}
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		lblNewLabel.setText("状态栏");
 	}
 }

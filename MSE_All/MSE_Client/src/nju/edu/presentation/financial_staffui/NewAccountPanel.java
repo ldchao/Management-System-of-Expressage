@@ -24,9 +24,7 @@ public class NewAccountPanel extends JPanel implements Runnable {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JLabel lblNewLabel;
-	private boolean signal;
 	private boolean success;
-	private Thread t;
 	AccountBL accountBL = new AccountBL();
 
 	/**
@@ -34,14 +32,10 @@ public class NewAccountPanel extends JPanel implements Runnable {
 	 */
 	public NewAccountPanel(LoginPO loginPO, JFrame main) {
 		success = false;
-		signal = false;
 		setLayout(null);
 		setSize(750, 600);
 
 		NewAccountPanel nap = this;
-
-		t = new Thread(this);
-		t.start();
 
 		JLabel label = new JLabel(
 				"\u8D22\u52A1\u4EBA\u5458>>\u8D26\u6237\u7BA1\u7406>>\u65B0\u5EFA\u8D26\u6237");
@@ -54,7 +48,6 @@ public class NewAccountPanel extends JPanel implements Runnable {
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(nap);
 				AccountPanel acp = new AccountPanel(loginPO, main);
@@ -62,7 +55,6 @@ public class NewAccountPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.stop();
 			}
 		});
 		button_4.setBounds(10, 6, 67, 23);
@@ -126,6 +118,7 @@ public class NewAccountPanel extends JPanel implements Runnable {
 				String name = textField.getText();
 				String creator = textField_1.getText();
 				String date = textField_2.getText();
+				Thread t = new Thread(nap);
 
 				if (name.equals("") || creator.equals("") || date.equals("")) {
 					lblNewLabel.setText("信息录入不完整，无法完成新建");
@@ -135,7 +128,8 @@ public class NewAccountPanel extends JPanel implements Runnable {
 					accountBL.addAccount(name, "0.0", creator, date);
 					success = true;
 				}
-				signal = true;
+
+				t.start();
 			}
 		});
 		button.setBounds(258, 444, 93, 23);
@@ -155,23 +149,18 @@ public class NewAccountPanel extends JPanel implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
-			if (signal) {
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				lblNewLabel.setText("状态栏");
-
-				if (success) {
-					textField.setText("");
-					textField_2.setText("");
-				}
-
-				success = false;
-				signal = false;
-			}
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		lblNewLabel.setText("状态栏");
+
+		if (success) {
+			textField.setText("");
+			textField_2.setText("");
+		}
+
+		success = false;
 	}
 }

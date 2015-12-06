@@ -29,8 +29,6 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 	private JTextArea textArea_1;
 	private JLabel lblNewLabel;
 	private boolean success;
-	private boolean signal;
-	private Thread t;
 	PayorderBL payorderBL = new PayorderBL();
 
 	/**
@@ -38,12 +36,8 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 	 */
 	public NewPayorderPanel(LoginPO loginPO, JFrame main) {
 		success = false;
-		signal = false;
 		setLayout(null);
 		setSize(750, 600);
-		
-		t = new Thread(this);
-	    t.start();
 
 		NewPayorderPanel npp = this;
 
@@ -58,7 +52,6 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.setBounds(10, 1, 68, 23);
 		button_4.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				main.remove(npp);
 				PayPanel pp = new PayPanel(loginPO, main);
@@ -66,7 +59,6 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.stop();
 			}
 		});
 		add(button_4);
@@ -168,7 +160,8 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 					success = true;
 				}
 
-				signal = true;
+				Thread t = new Thread(npp);
+				t.start();
 			}
 		});
 		button.setBounds(238, 468, 93, 23);
@@ -192,26 +185,21 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
-			if (signal) {
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				if (success) {
-					textField.setText("");
-					textField_1.setText("");
-					textField_2.setText("");
-					textField_3.setText("");
-					textArea.setText("");
-					textArea_1.setText("");
-				}
-
-				lblNewLabel.setText("×´Ì¬À¸");
-				signal = false;
-			}
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+		if (success) {
+			textField.setText("");
+			textField_1.setText("");
+			textField_2.setText("");
+			textField_3.setText("");
+			textArea.setText("");
+			textArea_1.setText("");
+		}
+
+		lblNewLabel.setText("×´Ì¬À¸");
 	}
 }

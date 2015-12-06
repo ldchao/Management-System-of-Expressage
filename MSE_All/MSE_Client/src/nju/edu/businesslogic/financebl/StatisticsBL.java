@@ -3,7 +3,6 @@ package nju.edu.businesslogic.financebl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import PO.OrganizationNumPO;
 import PO.PayeeorderPO;
 import PO.PayorderPO;
 import nju.edu.RMI_init.RMIHelper;

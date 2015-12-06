@@ -30,9 +30,7 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 	private DefaultTableModel tableModel;
 	private JTable table_1;
 	private JLabel label_3;
-	private boolean signal;
 	private static int count;
-	PayeeorderBL payeebl = new PayeeorderBL();
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -40,7 +38,7 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private boolean over;
-	private Thread t;
+	PayeeorderBL payeebl = new PayeeorderBL();
 
 	/**
 	 * Create the panel.
@@ -50,10 +48,6 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 		ReceiFormPanel rfp = this;
 		setLayout(null);
 		setSize(750, 600);
-		signal = false;
-
-		t = new Thread(this);
-		t.start();
 
 		JLabel label = new JLabel("营业厅业务员>>收款单管理");
 		label.setBounds(87, 10, 470, 15);
@@ -69,7 +63,6 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				if (over) {
 					main.remove(rfp);
@@ -77,7 +70,6 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 					main.invalidate();
 					main.repaint();
 					main.setVisible(true);
-					t.stop();
 				} else {
 					@SuppressWarnings("unused")
 					ReciveConfirmFrame rcon = new ReciveConfirmFrame(main, rfp,
@@ -216,7 +208,8 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 					count++;
 					showTotal(count, payeebl.getTotal());
 				}
-				signal = true;
+				Thread t = new Thread(rfp);
+				t.start();
 			}
 		});
 		button.setBounds(239, 171, 93, 23);
@@ -228,7 +221,8 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 				payeebl.addReceiForm("", "", "", "", "", "", true);
 				over = true;
 				label_3.setText("已提交等待审批");
-				signal = true;
+				Thread t = new Thread(rfp);
+				t.start();
 			}
 		});
 		button_1.setBounds(393, 171, 93, 23);
@@ -265,18 +259,13 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
-			if (signal) {
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				textField.setText("");
-				textField_1.setText("");
-				label_3.setText("状态栏");
-				signal = false;
-			}
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		textField.setText("");
+		textField_1.setText("");
+		label_3.setText("状态栏");
 	}
 }
