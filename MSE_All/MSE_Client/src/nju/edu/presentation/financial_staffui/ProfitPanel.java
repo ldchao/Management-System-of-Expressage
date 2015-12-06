@@ -14,7 +14,6 @@ import javax.swing.border.LineBorder;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -78,9 +77,8 @@ public class ProfitPanel extends JPanel {
 		add(table);
 
 		double[] pro = payorderBL.profit();
-		DecimalFormat df = new DecimalFormat("0.0");
 		for (int i = 0; i < 3; i++)
-			table.setValueAt(df.format(pro[i]), i + 1, 1);
+			table.setValueAt(pro[i], i + 1, 1);
 
 		// 获取当前日期
 		Date dt = new Date();

@@ -1,6 +1,7 @@
 package nju.edu.businesslogic.financebl;
 
 import java.rmi.RemoteException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import PO.PayorderPO;
@@ -11,7 +12,9 @@ import nju.edu.VO.PayorderVO;
 import nju.edu.businesslogicservice.financeblservice.PayorderBLService;
 import nju.edu.dataservice.financedataservice.PayorderDataService;
 
-public class PayorderBL implements PayorderBLService, checkPayorderInfo {
+public class PayorderBL implements PayorderBLService, checkPayorderInfo,
+		checkProfitInfo {
+	
 	PayorderDataService payorderData = RMIHelper.getPayorderData();
 
 	@Override
@@ -66,16 +69,17 @@ public class PayorderBL implements PayorderBLService, checkPayorderInfo {
 			totalPayee += pe.getMoney();
 		}
 
-		res[0] = totalPay;
-		res[1] = totalPayee;
-		res[2] = totalPay - totalPayee;
+		DecimalFormat df = new DecimalFormat("0.0");
+		res[0] = Double.parseDouble(df.format(totalPay));
+		res[1] = Double.parseDouble(df.format(totalPayee));
+		res[2] = Double.parseDouble(df.format(totalPay - totalPayee));
 
 		return res;
 	}
 
 	@Override
 	public void excel(String date, double income, double outcome, double benefit) {
-		
+
 		try {
 			payorderData.excel(date, income, outcome, benefit);
 		} catch (RemoteException e) {
