@@ -12,31 +12,17 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
 
+import PO.LoginPO;
+
 public class Transit_center_salesman_mainui extends JFrame {
 
 	private JPanel contentPane;
 	Transit_center_salesman_mainui main;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Transit_center_salesman_mainui frame = new Transit_center_salesman_mainui();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public Transit_center_salesman_mainui() {
+	public Transit_center_salesman_mainui(LoginPO loginPO) {
 		main=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 100, 750, 600);
@@ -48,7 +34,7 @@ public class Transit_center_salesman_mainui extends JFrame {
 		label.setBounds(100, 14, 127, 15);
 		contentPane.add(label);
 		
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		contentPane.add(label_1);
 		
@@ -69,7 +55,7 @@ public class Transit_center_salesman_mainui extends JFrame {
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Receiveui r=new Receiveui(main,contentPane);
+				Receiveui r=new Receiveui(main,contentPane,loginPO);
 				main.remove(contentPane);				
 				main.getContentPane().add(r);
 				main.invalidate();
@@ -88,7 +74,7 @@ public class Transit_center_salesman_mainui extends JFrame {
 		JButton btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Transferui t=new Transferui(main,contentPane);
+				Transferui t=new Transferui(main,contentPane,loginPO);
 				main.remove(contentPane);
 				main.getContentPane().add(t);
 				main.invalidate();
@@ -107,7 +93,7 @@ public class Transit_center_salesman_mainui extends JFrame {
 		JButton btnNewButton_3 = new JButton("New button");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Shippingui s=new Shippingui(main,contentPane);
+				Shippingui s=new Shippingui(main,contentPane,loginPO);
 				main.remove(contentPane);				
 				main.getContentPane().add(s);
 				main.invalidate();

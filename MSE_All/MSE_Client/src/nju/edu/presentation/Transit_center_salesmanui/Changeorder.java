@@ -13,11 +13,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.SwingConstants;
 
+import PO.LoginPO;
+import StaticValue.StoreNum;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
 import java.awt.Font;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JTextArea;
 
 public class Changeorder extends JPanel {
 	private JTextField textField;
@@ -29,7 +35,7 @@ public class Changeorder extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Changeorder(JFrame m,JPanel jp) {
+	public Changeorder(JFrame m,JPanel jp,LoginPO loginPO,String transferWay,int arriveNum,ArrayList<String> orderlist) {
 
 		main=m;
 		JPanel lastui=jp;
@@ -53,7 +59,7 @@ public class Changeorder extends JPanel {
 		label.setBounds(100, 14, 393, 15);
 		add(label);
 		
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 		
@@ -89,6 +95,8 @@ public class Changeorder extends JPanel {
 		add(lblNewLabel);
 				
 		textField_1 = new JTextField();
+		textField_1.setText(loginPO.getShop());
+		textField_1.setEnabled(false);
 		textField_1.setBounds(180, 213, 134, 21);
 		add(textField_1);
 		textField_1.setColumns(10);		
@@ -98,6 +106,8 @@ public class Changeorder extends JPanel {
 		add(lblNewLabel_3);
 		
 		textField_2 = new JTextField();
+		textField_2.setText(StoreNum.storeName[arriveNum-1]);
+		textField_2.setEnabled(false);
 		textField_2.setColumns(10);
 		textField_2.setBounds(180, 259, 134, 21);
 		add(textField_2);
@@ -107,6 +117,8 @@ public class Changeorder extends JPanel {
 		add(label_6);
 		
 		textField_3 = new JTextField();
+		textField_3.setText(transferWay);
+		textField_3.setEnabled(false);
 		textField_3.setColumns(10);
 		textField_3.setBounds(180, 304, 134, 21);
 		add(textField_3);
@@ -124,13 +136,19 @@ public class Changeorder extends JPanel {
 		scrollPane.setBounds(374, 131, 295, 289);
 		add(scrollPane);
 		
-		JList list = new JList();
-		scrollPane.setViewportView(list);
+		String order="";
+		for(String s:orderlist){
+			order+=s+"\n";
+		}
 		
 		JLabel lblNewLabel_4 = new JLabel("本次中转所有单号");
 		lblNewLabel_4.setFont(new Font("微软雅黑", Font.BOLD, 14));
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		scrollPane.setColumnHeaderView(lblNewLabel_4);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setText(order);
+		scrollPane.setViewportView(textArea);
 		
 		JLabel label_5 = new JLabel("中转中心中转单");
 		label_5.setFont(new Font("微软雅黑", Font.BOLD, 24));
@@ -157,7 +175,7 @@ public class Changeorder extends JPanel {
 		JButton btnNewButton_1 = new JButton("取消");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Changeorder c=new Changeorder(main, lastui);
+				Changeorder c=new Changeorder(main, lastui,loginPO,transferWay,arriveNum,orderlist);
 				main.remove(nowPanel);				
 				main.getContentPane().add(c);
 				main.invalidate();

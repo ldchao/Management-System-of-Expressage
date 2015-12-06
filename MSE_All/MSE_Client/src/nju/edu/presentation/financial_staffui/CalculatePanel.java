@@ -14,7 +14,6 @@ import PO.LoginPO;
 
 @SuppressWarnings("serial")
 public class CalculatePanel extends JPanel implements Runnable {
-	private boolean signal;
 	private JTextField textField;
 	private JLabel label_2;
 	private Thread t;
@@ -27,10 +26,6 @@ public class CalculatePanel extends JPanel implements Runnable {
 		CalculatePanel cp = this;
 		setLayout(null);
 		setSize(750, 600);
-		signal = false;
-		
-		t = new Thread(this);
-	    t.start();
 
 		JLabel label = new JLabel("财务人员>>结算管理");
 		label.setBounds(88, 5, 518, 15);
@@ -43,7 +38,6 @@ public class CalculatePanel extends JPanel implements Runnable {
 		JButton button_4 = new JButton("\u8FD4\u56DE");
 		button_4.setBounds(10, 1, 68, 23);
 		button_4.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(cp);
 				FmainPanel fm = new FmainPanel(loginPO, main);
@@ -51,7 +45,6 @@ public class CalculatePanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.stop();
 			}
 		});
 		add(button_4);
@@ -83,16 +76,16 @@ public class CalculatePanel extends JPanel implements Runnable {
 				String shop = textField.getText();
 				if (!date.equals("请单击选择日期") && !shop.equals("")) {
 					main.remove(cp);
-					CheckPayeePanel cpep = new CheckPayeePanel(main,loginPO, date,
-							shop);
+					CheckPayeePanel cpep = new CheckPayeePanel(main, loginPO,
+							date, shop);
 					main.add(cpep);
 					main.invalidate();
 					main.repaint();
 					main.setVisible(true);
-					t.interrupt();
 				} else {
 					label_2.setText("请输入营业厅编号并选择日期后确认");
-					signal = true;
+					t = new Thread(cp);
+					t.start();
 				}
 			}
 		});
@@ -106,17 +99,12 @@ public class CalculatePanel extends JPanel implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
-			if (signal) {
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				label_2.setText("状态栏");
-				signal = false;
-			}
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		label_2.setText("状态栏");
 
 	}
 }

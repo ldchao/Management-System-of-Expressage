@@ -18,21 +18,22 @@ import nju.edu.businesslogic.staffbl.UserBL;
 @SuppressWarnings("serial")
 public class UpdateUserFrame extends JFrame implements Runnable {
 	private JTextField textField;
-	private boolean signal;
 	private JLabel label_5;
 	UserBL userBL = new UserBL();
 
 	/**
 	 * Create the panel.
 	 */
-	public UpdateUserFrame(String name, String limit, int pos) {
+	public UpdateUserFrame(CheckUserPanel cup, String name, String limit,
+			int pos) {
 
 		/**
 		 * Create the panel.
 		 */
-		signal = false;
 		getContentPane().setLayout(null);
 		UpdateUserFrame up = this;
+
+		Thread t1 = new Thread(this);
 
 		JLabel label = new JLabel("\u8BF7\u5F55\u5165\u65B0\u7684\u4FE1\u606F");
 		label.setBounds(140, 31, 93, 15);
@@ -95,10 +96,11 @@ public class UpdateUserFrame extends JFrame implements Runnable {
 		radioButton_6.setBounds(31, 198, 103, 23);
 		getContentPane().add(radioButton_6);
 
-		JRadioButton radioButton_7 = new JRadioButton("\u9AD8\u7EA7\u8D22\u52A1\u4EBA\u5458");
+		JRadioButton radioButton_7 = new JRadioButton(
+				"\u9AD8\u7EA7\u8D22\u52A1\u4EBA\u5458");
 		radioButton_7.setBounds(223, 163, 103, 23);
 		getContentPane().add(radioButton_7);
-		
+
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(rdbtnNewRadioButton);
 		bg.add(radioButton_1);
@@ -128,7 +130,7 @@ public class UpdateUserFrame extends JFrame implements Runnable {
 
 				if (name.equals("")) {
 					label_5.setText("信息录入不完整，无法完成修改");
-					signal = true;
+					t1.start();
 				} else {
 					Enumeration<AbstractButton> radioBtns2 = bg.getElements();
 					AbstractButton btn2 = null;
@@ -143,6 +145,8 @@ public class UpdateUserFrame extends JFrame implements Runnable {
 					CheckUserPanel.setlblNewLabel("修改成功！");
 					CheckUserPanel.showTable(userBL.updateUser(pos + 1, name,
 							newlimit));
+					Thread t = new Thread(cup);
+					t.start();
 				}
 			}
 		});
@@ -158,7 +162,7 @@ public class UpdateUserFrame extends JFrame implements Runnable {
 		});
 		button_1.setBounds(210, 227, 65, 23);
 		getContentPane().add(button_1);
-		
+
 		// frame
 		this.setSize(390, 323);
 		this.setLocation(400, 100);
@@ -168,16 +172,11 @@ public class UpdateUserFrame extends JFrame implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
-			if (signal) {
-				try {
-					Thread.sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				label_5.setText("状态栏");
-				signal = false;
-			}
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		label_5.setText("状态栏");
 	}
 }

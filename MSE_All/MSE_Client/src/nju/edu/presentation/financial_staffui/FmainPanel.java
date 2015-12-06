@@ -13,7 +13,6 @@ import PO.LoginPO;
 
 @SuppressWarnings("serial")
 public class FmainPanel extends JPanel implements Runnable {
-	private boolean signal;
 	private JLabel label_6;
 	private Thread t;
 
@@ -22,14 +21,10 @@ public class FmainPanel extends JPanel implements Runnable {
 	 */
 	public FmainPanel(LoginPO loginPO, JFrame main) {
 		setLayout(null);
-		signal = false;
 		setSize(750, 600);
 
-		JPanel fmp = this;
+		FmainPanel fmp = this;
 
-		t = new Thread(this);
-	    t.start();
-		
 		JLabel label = new JLabel("财务人员");
 		label.setBounds(90, 10, 470, 15);
 		add(label);
@@ -41,7 +36,6 @@ public class FmainPanel extends JPanel implements Runnable {
 		JButton btnNewButton = new JButton("New button");
 		// btnNewButton.setIcon(new ImageIcon("src/scene.jpg"));
 		btnNewButton.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				main.remove(fmp);
 				PayPanel paymain = new PayPanel(loginPO, main);
@@ -49,7 +43,6 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.stop();
 			}
 		});
 		btnNewButton.setBounds(108, 161, 125, 100);
@@ -57,17 +50,13 @@ public class FmainPanel extends JPanel implements Runnable {
 
 		JButton button = new JButton("New button");
 		button.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(fmp);
 				CalculatePanel calp = new CalculatePanel(loginPO, main);
-				Thread t = new Thread(calp);
-				t.start();
 				main.add(calp);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.stop();
 			}
 		});
 		button.setBounds(316, 161, 125, 100);
@@ -75,7 +64,6 @@ public class FmainPanel extends JPanel implements Runnable {
 
 		JButton button_1 = new JButton("New button");
 		button_1.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(fmp);
 				StatisticsPanel stp = new StatisticsPanel(loginPO, main);
@@ -83,7 +71,6 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.stop();
 			}
 		});
 		button_1.setBounds(507, 161, 125, 100);
@@ -91,7 +78,6 @@ public class FmainPanel extends JPanel implements Runnable {
 
 		JButton button_2 = new JButton("New button");
 		button_2.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(fmp);
 				BillPanel billPanel = new BillPanel(loginPO, main);
@@ -99,7 +85,6 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-				t.stop();
 			}
 		});
 		button_2.setBounds(214, 329, 125, 100);
@@ -124,7 +109,8 @@ public class FmainPanel extends JPanel implements Runnable {
 					t.stop();
 				} else {
 					label_6.setText("对不起，仅高级财务人员有此权限");
-					signal = true;
+					t = new Thread(fmp);
+					t.start();
 				}
 			}
 		});
@@ -163,16 +149,11 @@ public class FmainPanel extends JPanel implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
-			if (signal) {
-				try {
-					Thread.sleep(1500);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				label_6.setText("");
-				signal = false;
-			}
+		try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
+		label_6.setText("");
 	}
 }

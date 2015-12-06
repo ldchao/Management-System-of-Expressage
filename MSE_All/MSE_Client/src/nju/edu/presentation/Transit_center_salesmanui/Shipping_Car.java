@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import PO.LoginPO;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
 import java.awt.Font;
@@ -30,7 +31,7 @@ public class Shipping_Car extends JPanel {
 	private JTextField textField_5;
 	JFrame main;
 	
-	public Shipping_Car(JFrame m,JPanel jp) {
+	public Shipping_Car(JFrame m,JPanel jp,LoginPO loginPO) {
 		main=m;
 		JPanel lastui=jp;
 		Shipping_Car nowPanel=this;
@@ -53,7 +54,7 @@ public class Shipping_Car extends JPanel {
 		label.setBounds(100, 14, 376, 15);
 		add(label);
 		
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 		
@@ -170,7 +171,7 @@ public class Shipping_Car extends JPanel {
 		JButton btnNewButton_1 = new JButton("取消");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Shipping_Car sc=new Shipping_Car(main, lastui);
+				Shipping_Car sc=new Shipping_Car(main, lastui,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(sc);
 				main.invalidate();

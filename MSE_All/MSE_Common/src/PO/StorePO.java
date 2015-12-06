@@ -78,11 +78,12 @@ public class StorePO implements Serializable {
 		ArrayList<String> idList = new ArrayList<>();
 		if (qu.equals("航运区")) {
 			for (int i = 0; i < 20; i++) {
-				if (jia[i] == 1)
+				if (jia[i] == 1) {
 					for (int j = 0; j < 60; j++) {
 						if (!airToTC[pai][i][j].equals("0"))
 							idList.add(airToTC[pai][i][j]);
 					}
+				}
 			}
 
 		} else if (qu.equals("铁运区")) {
@@ -117,57 +118,58 @@ public class StorePO implements Serializable {
 		}
 		return idList;
 	}
-	//得到各个库存位置的库存比例
+
+	// 得到各个库存位置的库存比例
 	public String[][] getStoreRatio() {
-		String[][] storeRatio=new String[9+StoreNum.businessHall][3];
+		String[][] storeRatio = new String[9 + StoreNum.businessHall][3];
 		for (int i = 0; i < remind_value.length; i++) {
-			storeRatio[i][2]=remind_value[i];
+			storeRatio[i][2] = remind_value[i];
 		}
 		for (int i = 0; i < 3; i++) {
-			storeRatio[i][0]="航运区"+(i+1)+"排";
-			int number=0;
+			storeRatio[i][0] = "航运区" + (i + 1) + "排";
+			int number = 0;
 			for (int j = 0; j < 20; j++) {
 				for (int j2 = 0; j2 < 60; j2++) {
-					if(!airToTC[i][j][j2].equals("0")){
+					if (!airToTC[i][j][j2].equals("0")) {
 						number++;
 					}
 				}
 			}
-			storeRatio[i][1]=number+"/"+1200;
+			storeRatio[i][1] = number + "/" + 1200;
 		}
 		for (int i = 0; i < 3; i++) {
-			storeRatio[i+3][0]="铁运区"+(i+1)+"排";
-			int number=0;
+			storeRatio[i + 3][0] = "铁运区" + (i + 1) + "排";
+			int number = 0;
 			for (int j = 0; j < 20; j++) {
 				for (int j2 = 0; j2 < 60; j2++) {
-					if(!trainToTC[i][j][j2].equals("0")){
+					if (!trainToTC[i][j][j2].equals("0")) {
 						number++;
 					}
 				}
 			}
-			storeRatio[i+3][1]=number+"/"+1200;
+			storeRatio[i + 3][1] = number + "/" + 1200;
 		}
 		for (int i = 0; i < 3; i++) {
-			storeRatio[i+6][0]="汽运区"+(i+1)+"排";
-			int number=0;
+			storeRatio[i + 6][0] = "汽运区" + (i + 1) + "排";
+			int number = 0;
 			for (int j = 0; j < 20; j++) {
 				for (int j2 = 0; j2 < 60; j2++) {
-					if(!carToTC[i][j][j2].equals("0")){
+					if (!carToTC[i][j][j2].equals("0")) {
 						number++;
 					}
 				}
 			}
-			storeRatio[i+6][1]=number+"/"+1200;
+			storeRatio[i + 6][1] = number + "/" + 1200;
 		}
-		for (int i = 0; i <StoreNum.businessHall; i++) {
-			storeRatio[i+9][0]="汽运区4排"+(i+1)+"架";
-			int number=0;
+		for (int i = 0; i < StoreNum.businessHall; i++) {
+			storeRatio[i + 9][0] = "汽运区4排" + (i + 1) + "架";
+			int number = 0;
 			for (int j = 0; j < 60; j++) {
-				if(!carToBH[i][j].equals("0")){
+				if (!carToBH[i][j].equals("0")) {
 					number++;
 				}
 			}
-			storeRatio[i+9][1]=number+"/"+60;
+			storeRatio[i + 9][1] = number + "/" + 60;
 		}
 		return storeRatio;
 	}

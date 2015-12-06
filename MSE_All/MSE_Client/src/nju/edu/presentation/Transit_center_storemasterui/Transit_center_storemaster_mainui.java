@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
 
+import PO.LoginPO;
 import nju.edu.businesslogic.storebl.StoreMessageBL;
 import nju.edu.presentation.Transit_center_salesmanui.Receiveui;
 import nju.edu.presentation.Transit_center_salesmanui.Transit_center_salesman_mainui;
@@ -24,25 +25,9 @@ public class Transit_center_storemaster_mainui extends JFrame {
 	JLabel label_3;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Transit_center_storemaster_mainui frame = new Transit_center_storemaster_mainui();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public Transit_center_storemaster_mainui() {
+	public Transit_center_storemaster_mainui(LoginPO loginPO) {
 		
 		main=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,7 +62,7 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		label.setBounds(100, 14, 73, 15);
 		contentPane.add(label);
 
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		contentPane.add(label_1);
 
@@ -88,7 +73,7 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Warehouse_inui wi=new Warehouse_inui(main,contentPane);
+				Warehouse_inui wi=new Warehouse_inui(main,contentPane,loginPO);
 				main.remove(contentPane);				
 				main.getContentPane().add(wi);
 				main.invalidate();
@@ -106,7 +91,7 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Inventory_managementui im=new Inventory_managementui(main,contentPane);
+				Inventory_managementui im=new Inventory_managementui(main,contentPane,loginPO);
 				main.remove(contentPane);				
 				main.getContentPane().add(im);
 				main.invalidate();
@@ -124,7 +109,7 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		JButton btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Warehouse_outui wo=new Warehouse_outui(main,contentPane);
+				Warehouse_outui wo=new Warehouse_outui(main,contentPane,loginPO);
 				main.remove(contentPane);				
 				main.getContentPane().add(wo);
 				main.invalidate();

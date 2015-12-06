@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
 import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 
 public class Warehouse_inui extends JPanel {
@@ -16,7 +17,7 @@ public class Warehouse_inui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Warehouse_inui(JFrame m,JPanel jp) {
+	public Warehouse_inui(JFrame m,JPanel jp,LoginPO loginPO) {
 		JFrame main=m;
 		JPanel lastui=jp;
 		Warehouse_inui nowPanel=this;
@@ -39,7 +40,7 @@ public class Warehouse_inui extends JPanel {
 		lblNewLabel.setBounds(100, 14, 173, 15);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("张三，你好！");
+		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
 		lblNewLabel_1.setBounds(600, 14, 100, 15);
 		add(lblNewLabel_1);
 		
@@ -50,7 +51,7 @@ public class Warehouse_inui extends JPanel {
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Warehouse_in_checkRemindui wic=new Warehouse_in_checkRemindui(main,nowPanel);
+				Warehouse_in_checkRemindui wic=new Warehouse_in_checkRemindui(main,nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(wic);
 				main.invalidate();
@@ -68,7 +69,7 @@ public class Warehouse_inui extends JPanel {
 		JButton btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Storeinorder s=new Storeinorder(main,nowPanel);
+				Storeinorder s=new Storeinorder(main,nowPanel,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(s);
 				main.invalidate();

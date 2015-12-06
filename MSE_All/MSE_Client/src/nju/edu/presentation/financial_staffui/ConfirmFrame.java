@@ -17,7 +17,7 @@ public class ConfirmFrame extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public ConfirmFrame(String name) {
+	public ConfirmFrame(CheckAccountPanel cap, String name) {
 		getContentPane().setLayout(null);
 
 		ConfirmFrame conframe = this;
@@ -29,6 +29,8 @@ public class ConfirmFrame extends JFrame {
 				accountBL.deleteAccount(name);
 				CheckAccountPanel.setLblNewLabel("É¾³ý³É¹¦£¡");
 				CheckAccountPanel.showTable(accountBL.check());
+				Thread t = new Thread(cap);
+				t.start();
 			}
 		});
 		btnNewButton.setBounds(53, 87, 71, 23);
