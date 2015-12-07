@@ -10,7 +10,7 @@ import nju.edu.businesslogic.loginbl.checkUserInfo;
 import nju.edu.businesslogicservice.staffblservice.UserBLService;
 import nju.edu.dataservice.staffdataservice.UserDataService;
 
-public class UserBL implements UserBLService, checkUserInfo {
+public class UserBL implements UserBLService, checkUserInfo, DeleteUserInterface {
 	UserDataService userData = RMIHelper.getUserData();
 
 	@Override

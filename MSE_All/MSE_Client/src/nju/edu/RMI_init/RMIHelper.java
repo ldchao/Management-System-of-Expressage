@@ -9,10 +9,8 @@ import nju.edu.dataservice.accountdataservice.AccountDataService;
 import nju.edu.dataservice.approvedataservice.ApproveDataService;
 import nju.edu.dataservice.billdataservice.BillDataService;
 import nju.edu.dataservice.checklistdataservice.ChecklistDataService;
-import nju.edu.dataservice.financedataservice.CalculateDataService;
 import nju.edu.dataservice.financedataservice.PayorderDataService;
 import nju.edu.dataservice.financedataservice.PayeeorderDataService;
-import nju.edu.dataservice.financedataservice.StatisticsDataService;
 import nju.edu.dataservice.listindataservice.ListinDataService;
 import nju.edu.dataservice.listindataservice.ReceiverinDataService;
 import nju.edu.dataservice.loaddataservice.LoadDataService;
@@ -43,10 +41,8 @@ public class RMIHelper {
 	private static ApproveDataService ApproveData;
 	private static BillDataService BillData;
 	private static ChecklistDataService ChecklistData;
-	private static CalculateDataService CalculateData;
 	private static PayorderDataService PayorderData;
 	private static PayeeorderDataService PayeeorderData;
-	private static StatisticsDataService StatisticsData;
 	private static ListinDataService ListinData;
 	private static ReceiverinDataService ReceiverinData;
 	private static LoadDataService LoadData;
@@ -89,14 +85,10 @@ public class RMIHelper {
 		BillData = (BillDataService) Naming.lookup(urlPrefix + "BillData");
 		ChecklistData = (ChecklistDataService) Naming.lookup(urlPrefix
 				+ "ChecklistData");
-		CalculateData = (CalculateDataService) Naming.lookup(urlPrefix
-				+ "CalculateData");
 		PayorderData = (PayorderDataService) Naming.lookup(urlPrefix
 				+ "PayorderData");
 		PayeeorderData = (PayeeorderDataService) Naming.lookup(urlPrefix
 				+ "PayeeorderData");
-		StatisticsData = (StatisticsDataService) Naming.lookup(urlPrefix
-				+ "StatisticsData");
 		ListinData = (ListinDataService) Naming
 				.lookup(urlPrefix + "ListinData");
 		ReceiverinData = (ReceiverinDataService) Naming.lookup(urlPrefix
@@ -147,20 +139,12 @@ public class RMIHelper {
 		return ChecklistData;
 	}
 
-	public static CalculateDataService getCalculateData() {
-		return CalculateData;
-	}
-
 	public static PayorderDataService getPayorderData() {
 		return PayorderData;
 	}
 
 	public static PayeeorderDataService getPayeeorderData() {
 		return PayeeorderData;
-	}
-
-	public static StatisticsDataService getStatisticsData() {
-		return StatisticsData;
 	}
 
 	public static ListinDataService getListinData() {

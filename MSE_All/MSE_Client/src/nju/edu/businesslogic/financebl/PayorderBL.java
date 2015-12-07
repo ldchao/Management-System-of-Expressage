@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import ExcelWriter.ExcelWriter;
 import PO.PayorderPO;
 import State.ApproveState;
 import nju.edu.RMI_init.RMIHelper;
@@ -14,7 +15,7 @@ import nju.edu.dataservice.financedataservice.PayorderDataService;
 
 public class PayorderBL implements PayorderBLService, checkPayorderInfo,
 		checkProfitInfo {
-	
+
 	PayorderDataService payorderData = RMIHelper.getPayorderData();
 
 	@Override
@@ -80,11 +81,11 @@ public class PayorderBL implements PayorderBLService, checkPayorderInfo,
 	@Override
 	public void excel(String date, double income, double outcome, double benefit) {
 
-		try {
-			payorderData.excel(date, income, outcome, benefit);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		ArrayList<String> list = new ArrayList<>();
+		list.add("截至日期,总收入,总支出,总利润");
+		list.add(date + "," + income + "," + outcome + "," + benefit + ",");
+
+		ExcelWriter.Writer("成本收益表", list);
 	}
 
 	@Override

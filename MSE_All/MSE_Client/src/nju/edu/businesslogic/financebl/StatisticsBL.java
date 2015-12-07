@@ -1,15 +1,12 @@
 package nju.edu.businesslogic.financebl;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import PO.PayeeorderPO;
-import PO.PayorderPO;
-import nju.edu.RMI_init.RMIHelper;
+import ExcelWriter.ExcelWriter;
+import PO.OrganizationNumPO;
 import nju.edu.VO.PayeeorderVO;
 import nju.edu.VO.PayorderVO;
 import nju.edu.businesslogicservice.financeblservice.StatisticsBLService;
-import nju.edu.dataservice.financedataservice.StatisticsDataService;
 
 public class StatisticsBL implements StatisticsBLService {
 
@@ -47,28 +44,25 @@ public class StatisticsBL implements StatisticsBLService {
 	public void excel(ArrayList<PayorderVO> payVo,
 			ArrayList<PayeeorderVO> payeeVo, String date) {
 
-		ArrayList<PayorderPO> paylist = new ArrayList<>();
-		ArrayList<PayeeorderPO> payeelist = new ArrayList<>();
 
+		ArrayList<String> list = new ArrayList<>();
+
+		list.add("付款日期,付款金额,付款账号,付款条目,备注,付款人");
 		for (PayorderVO vo : payVo) {
-			PayorderPO po = new PayorderPO(vo.getDate(), vo.getMoney(),
-					vo.getAccount(), vo.getList(), vo.getComment(),
-					vo.getPayor());
-			paylist.add(po);
+			list.add(vo.getDate() + "," + vo.getMoney() + "," + vo.getAccount()
+					+ "," + vo.getList() + "," + vo.getComment() + ","
+					+ vo.getPayor());
 		}
 
+		list.add("\n收款日期,收款金额,订单号,快递员姓名,营业厅,业务员姓名");
 		for (PayeeorderVO vo : payeeVo) {
-			PayeeorderPO po = new PayeeorderPO(vo.getOrder(), vo.getMoney(),
-					vo.getDate(), vo.getCarrierName(), vo.getShopperName(),
-					vo.getShop());
-			payeelist.add(po);
+			OrganizationNumPO opo = new OrganizationNumPO();
+			String shop = opo.getName(vo.getShop());
+			list.add(vo.getDate() + "," + vo.getMoney() + "," + vo.getOrder()
+					+ "," + vo.getCarrierName() + "," + shop + ","
+					+ vo.getShopperName());
 		}
 
-		StatisticsDataService std = RMIHelper.getStatisticsData();
-		try {
-			std.excel(paylist, payeelist, date);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		ExcelWriter.Writer(date + "经营情况表", list);
 	}
 }
