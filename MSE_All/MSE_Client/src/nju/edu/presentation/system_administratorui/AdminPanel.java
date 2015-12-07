@@ -2,16 +2,20 @@ package nju.edu.presentation.system_administratorui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import nju.edu.presentation.Loginui.PersonalInfomation;
 import PO.LoginPO;
 
 @SuppressWarnings("serial")
 public class AdminPanel extends JPanel {
+	private PersonalInfomation perinfo;
 
 	/**
 	 * Create the panel.
@@ -27,6 +31,26 @@ public class AdminPanel extends JPanel {
 		add(label);
 
 		JLabel lblHello = new JLabel("Hello!");
+		lblHello.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				perinfo = new PersonalInfomation(loginPO);
+				perinfo.setLocation(750, 115);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (perinfo.getMouseState() == true)
+					perinfo.dispose();
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				perinfo.setLocation(750, 115);
+				perinfo.setAlwaysOnTop(true);
+				perinfo.setMouseState(false);
+			}
+		});
 		lblHello.setBounds(630, 10, 54, 15);
 		add(lblHello);
 

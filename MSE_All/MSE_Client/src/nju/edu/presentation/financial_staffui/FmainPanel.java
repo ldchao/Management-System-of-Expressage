@@ -19,7 +19,7 @@ import java.awt.event.MouseEvent;
 public class FmainPanel extends JPanel implements Runnable {
 	private JLabel label_6;
 	private Thread t;
-	private static PersonalInfomation perinfo;
+	private PersonalInfomation perinfo;
 
 	/**
 	 * Create the panel.
