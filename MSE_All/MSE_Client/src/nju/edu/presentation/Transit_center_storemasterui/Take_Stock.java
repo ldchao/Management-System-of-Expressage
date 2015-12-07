@@ -9,6 +9,8 @@ import javax.swing.JToolBar;
 import javax.swing.JRadioButton;
 
 import PO.LoginPO;
+import nju.edu.businesslogic.storebl.Inventory_managementBL;
+import nju.edu.businesslogicservice.storeblservice.Inventory_managementBLService;
 import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
@@ -18,6 +20,7 @@ import java.awt.event.ActionListener;
 
 public class Take_Stock extends JPanel {
 
+	JRadioButton[] radioButton=new JRadioButton[3];
 	/**
 	 * Create the panel.
 	 */
@@ -26,9 +29,7 @@ public class Take_Stock extends JPanel {
 		JPanel lastui=jp;
 		Take_Stock nowPanel=this;
         setLayout(null);
-		
-
-
+        
 		JButton button = new JButton("返回");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -47,40 +48,79 @@ public class Take_Stock extends JPanel {
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
-		lblNewLabel_1.setBounds(600, 14, 100, 15);
+		lblNewLabel_1.setBounds(600, 14, 100, 15);		
 		
-		JLabel lblNewLabel_2 = new JLabel("开始日期");
-		lblNewLabel_2.setBounds(129, 208, 54, 15);
-		add(lblNewLabel_2);
+		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
+		toolBar.setBounds(0, 533,734,28);
+		add(toolBar);
 		
-		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
-		JLabel lblNewLabel_8 = new JLabel("单击选择日期");
-		dateChooser1.register(lblNewLabel_8);
-		lblNewLabel_8.setBounds(232, 208, 96, 15);
-		add(lblNewLabel_8);
+		JLabel lblNewLabel_6 = new JLabel("状态栏");
+		toolBar.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_3 = new JLabel("结束日期");
-		lblNewLabel_3.setBounds(387, 208, 54, 15);
-		add(lblNewLabel_3);
+		JLabel lblNewLabel_4 = new JLabel("选择库区");
+		lblNewLabel_4.setBounds(163, 191, 54, 15);
+		add(lblNewLabel_4);		
+
+		radioButton[0] = new JRadioButton("航运区");
+		radioButton[0].setBounds(312, 191, 79, 23);
+		add(radioButton[0]);
 		
-		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
-		JLabel lblNewLabel_9 = new JLabel("单击选择日期");
-		dateChooser2.register(lblNewLabel_9);
-		lblNewLabel_9.setBounds(488, 208, 96, 15);
-		add(lblNewLabel_9);
+		radioButton[1] = new JRadioButton("铁运区");
+		radioButton[1].setBounds(456, 191, 79, 23);
+		add(radioButton[1]);
+		
+		radioButton[2] = new JRadioButton("汽运区");
+		radioButton[2].setBounds(312, 246, 121, 23);
+		add(radioButton[2]);
+		
+		ButtonGroup bg1=new ButtonGroup();
+		for (int i = 0; i < 3; i++) {
+			add(radioButton[i]);
+			bg1.add(radioButton[i]);
+		}
+		
+		JLabel lblNewLabel_5 = new JLabel("选择查看方式");
+		lblNewLabel_5.setBounds(163, 336, 88, 15);
+		add(lblNewLabel_5);		
+		
+		JRadioButton radioButton_3 = new JRadioButton("页面显示");
+		radioButton_3.setBounds(312, 332, 88, 23);
+		add(radioButton_3);
+		
+		JRadioButton radioButton_4 = new JRadioButton("输出Excel表");
+		radioButton_4.setBounds(456, 332, 121, 23);
+		add(radioButton_4);
+		
+		ButtonGroup bg2=new ButtonGroup();
+		bg2.add(radioButton_3);
+		bg2.add(radioButton_4);
+		
+		JLabel label = new JLabel("库存盘点");
+		label.setFont(new Font("微软雅黑", Font.BOLD, 24));
+		label.setBounds(312, 101, 130, 33);
+		add(label);
 		
 		JButton btnNewButton_1 = new JButton("确定");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Take_Stock_show tss=new Take_Stock_show(main,nowPanel,loginPO);
-				main.remove(nowPanel);				
-				main.getContentPane().add(tss);
-				main.invalidate();
-				main.repaint();
-				main.setVisible(true);
+				if(radioButton_3.isSelected()&& isSelected_qu()){
+					Take_Stock_show tss=new Take_Stock_show(main,nowPanel,loginPO,getString());
+					main.remove(nowPanel);				
+					main.getContentPane().add(tss);
+					main.invalidate();
+					main.repaint();
+					main.setVisible(true);
+				}else if(radioButton_4.isSelected()&& isSelected_qu()){
+					Inventory_managementBLService ib=new Inventory_managementBL();
+					ib.InventoryOrderToExcel(getString());
+				}else{
+					lblNewLabel_6.setText("请选择库区和查看方式");
+				}
+				
 			}
 		});
-		btnNewButton_1.setBounds(151, 445, 130, 25);
+		btnNewButton_1.setBounds(220, 434, 98, 25);
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("取消");
@@ -94,58 +134,22 @@ public class Take_Stock extends JPanel {
 				main.setVisible(true);
 			}
 		});		
-		btnNewButton_2.setBounds(421, 445, 123, 25);
+		btnNewButton_2.setBounds(400, 434, 88, 25);
 		add(btnNewButton_2);
-		
-		JToolBar toolBar = new JToolBar();
-		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533,734,28);
-		add(toolBar);
-		
-		JLabel lblNewLabel_6 = new JLabel("状态栏");
-		toolBar.add(lblNewLabel_6);
-		
-		JLabel lblNewLabel_4 = new JLabel("选择库区");
-		lblNewLabel_4.setBounds(129, 285, 54, 15);
-		add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("选择查看方式");
-		lblNewLabel_5.setBounds(129, 353, 88, 15);
-		add(lblNewLabel_5);
-		
-		JRadioButton radioButton = new JRadioButton("航运区");
-		radioButton.setBounds(260, 281, 79, 23);
-		add(radioButton);
-		
-		JRadioButton radioButton_1 = new JRadioButton("铁运区");
-		radioButton_1.setBounds(389, 281, 79, 23);
-		add(radioButton_1);
-		
-		JRadioButton radioButton_2 = new JRadioButton("汽运区");
-		radioButton_2.setBounds(511, 281, 121, 23);
-		add(radioButton_2);
-		
-		ButtonGroup bg1=new ButtonGroup();
-		bg1.add(radioButton_2);
-		bg1.add(radioButton_1);
-		bg1.add(radioButton);
-		
-		
-		JRadioButton radioButton_3 = new JRadioButton("页面显示");
-		radioButton_3.setBounds(260, 349, 121, 23);
-		add(radioButton_3);
-		
-		JRadioButton radioButton_4 = new JRadioButton("输出Excel表");
-		radioButton_4.setBounds(410, 349, 121, 23);
-		add(radioButton_4);
-		
-		ButtonGroup bg2=new ButtonGroup();
-		bg2.add(radioButton_3);
-		bg2.add(radioButton_4);
-		
-		JLabel label = new JLabel("\u5E93\u5B58\u76D8\u70B9");
-		label.setFont(new Font("微软雅黑", Font.BOLD, 24));
-		label.setBounds(283, 118, 130, 33);
-		add(label);
+	}
+	
+	private boolean isSelected_qu(){
+		if(radioButton[0].isSelected()||radioButton[1].isSelected()||radioButton[2].isSelected())
+			return true;
+		return false;
+	}
+	
+	private String getString(){
+		String[] s={"航运区","铁运区","汽运区"};
+		for (int i = 0; i < 3; i++) {
+			if(radioButton[i].isSelected())
+				return s[i];
+		}
+		return "";
 	}
 }

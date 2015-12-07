@@ -73,7 +73,7 @@ public class StorePO implements Serializable {
 
 	}
 
-	// 根据库位查找对应位置的订单编号
+	// 根据库位(精确到架)查找对应位置的订单编号
 	public ArrayList<String> getId(String qu, int pai, int[] jia) {
 		ArrayList<String> idList = new ArrayList<>();
 		if (qu.equals("航运区")) {
@@ -107,13 +107,54 @@ public class StorePO implements Serializable {
 		return idList;
 	}
 
-	// 根据库位查找对应位置的订单编号
+	// 根据库位(精确到位)查找对应位置的订单编号
 	public ArrayList<String> getId(int jia, int[] wei) {
 		ArrayList<String> idList = new ArrayList<>();
 
 		for (int i = 0; i < 60; i++) {
 			if (!carToBH[jia][i].equals("0")) {
 				idList.add(carToBH[jia][i]);
+			}
+		}
+		return idList;
+	}
+
+	// 根据库位(精确到区)查找对应位置的订单编号
+	public ArrayList<String> getId(String qu) {
+		ArrayList<String> idList = new ArrayList<>();
+
+		if (qu.equals("航运区")) {
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 20; j++) {
+					for (int j2 = 0; j2 < 60; j2++) {
+						if (!airToTC[i][j][j2].equals("0"))
+							idList.add(airToTC[i][j][j2]);
+					}
+				}
+			}
+		} else if (qu.equals("铁运区")) {
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 20; j++) {
+					for (int j2 = 0; j2 < 60; j2++) {
+						if (!trainToTC[i][j][j2].equals("0"))
+							idList.add(airToTC[i][j][j2]);
+					}
+				}
+			}
+		} else {
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < 20; j++) {
+					for (int j2 = 0; j2 < 60; j2++) {
+						if (!carToTC[i][j][j2].equals("0"))
+							idList.add(carToTC[i][j][j2]);
+					}
+				}
+			}
+			for (int i = 0; i < 20; i++) {
+				for (int j = 0; j < 60; j++) {
+					if (!carToBH[i][j].equals("0"))
+						idList.add(carToBH[i][j]);
+				}
 			}
 		}
 		return idList;

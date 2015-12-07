@@ -92,7 +92,7 @@ public class Shippingorder extends JPanel {
 
 		textField = new JTextField();
 		textField.setText(cv.getOffnum());
-		textField.setEnabled(false);
+		textField.setEditable(false);
 		textField.setBounds(169, 169, 181, 21);
 		add(textField);
 		textField.setColumns(10);
@@ -121,7 +121,7 @@ public class Shippingorder extends JPanel {
 
 		textField_3 = new JTextField();
 		textField_3.setText(op.getName(cv.getArrivenum()));
-		textField_3.setEnabled(false);
+		textField_3.setEditable(false);
 		textField_3.setColumns(10);
 		textField_3.setBounds(169, 299, 181, 21);
 		add(textField_3);

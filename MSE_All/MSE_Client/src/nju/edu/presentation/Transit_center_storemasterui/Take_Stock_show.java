@@ -16,6 +16,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import PO.LoginPO;
+import nju.edu.businesslogic.storebl.Inventory_managementBL;
+import nju.edu.businesslogicservice.storeblservice.Inventory_managementBLService;
 import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
@@ -25,14 +27,13 @@ public class Take_Stock_show extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Take_Stock_show(JFrame m,JPanel jp,LoginPO loginPO) {
-		JFrame main=m;
-		JPanel lastui=jp;
-		Take_Stock_show nowPanel=this;
-
-        setLayout(null);
-		
-
+	public Take_Stock_show(JFrame m, JPanel jp, LoginPO loginPO,String qu) {
+		JFrame main = m;
+		JPanel lastui = jp;
+		Take_Stock_show nowPanel = this;
+		setLayout(null);
+		Inventory_managementBLService ib=new Inventory_managementBL();
+		String[][] inventoryMessage=ib.checkInventoryOrder(qu);
 
 		JButton button = new JButton("返回");
 		button.addActionListener(new ActionListener() {
@@ -46,71 +47,35 @@ public class Take_Stock_show extends JPanel {
 		});
 		button.setBounds(10, 10, 65, 23);
 		add(button);
-		
-		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理>>盘点库存");
+
+		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理>>盘点库存>>当前各库位订单信息");
 		lblNewLabel.setBounds(100, 14, 263, 15);
 		add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
+
+		JLabel lblNewLabel_1 = new JLabel(loginPO.getName() + "，你好！");
 		lblNewLabel_1.setBounds(600, 14, 100, 15);
 		add(lblNewLabel_1);
 
-		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533,734,28);
+		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
-		
+
 		JLabel lblNewLabel_6 = new JLabel("状态栏");
 		toolBar.add(lblNewLabel_6);
-		
-		
-		
+
 		JLabel label = new JLabel("出入库快递信息");
 		label.setFont(new Font("微软雅黑", Font.BOLD, 24));
 		label.setBounds(268, 76, 196, 33);
 		add(label);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(70, 116, 604, 339);
 		add(scrollPane);
-		
+
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"\u5FEB\u9012\u7F16\u53F7", "\u5165\u5E93\u65E5\u671F", "\u76EE\u7684\u5730", "\u533A\u53F7", "\u4F4D\u53F7", "\u67B6\u53F7", "\u6392\u53F7"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		table.setModel(new DefaultTableModel(inventoryMessage, new String[] {
+				"快递编号", "入库日期", "目的地", "区号", "排号", "架号", "位号" }));
 		scrollPane.setViewportView(table);
 	}
 }

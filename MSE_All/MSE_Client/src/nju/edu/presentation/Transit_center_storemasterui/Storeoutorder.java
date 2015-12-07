@@ -71,7 +71,7 @@ public class Storeoutorder extends JPanel {
 
 		textField_1 = new JTextField();
 		textField_1.setText("该中转单上所有单号");
-		textField_1.setEnabled(false);
+		textField_1.setEditable(false);
 		textField_1.setBounds(298, 160, 234, 21);
 		add(textField_1);
 		textField_1.setColumns(10);
@@ -92,7 +92,7 @@ public class Storeoutorder extends JPanel {
 
 		textField_2 = new JTextField();
 		textField_2.setText(op.getName(cv.getArrivenum()));
-		textField_2.setEnabled(false);
+		textField_2.setEditable(false);
 		textField_2.setBounds(298, 259, 234, 21);
 		add(textField_2);
 		textField_2.setColumns(10);
@@ -103,7 +103,7 @@ public class Storeoutorder extends JPanel {
 
 		textField_3 = new JTextField();
 		textField_3.setText(cv.getWayOfTransport());
-		textField_3.setEnabled(false);
+		textField_3.setEditable(false);
 		textField_3.setBounds(298, 310, 234, 21);
 		add(textField_3);
 		textField_3.setColumns(10);
@@ -114,7 +114,7 @@ public class Storeoutorder extends JPanel {
 
 		textField_4 = new JTextField();
 		textField_4.setText(cv.getNumberOfTransfer());
-		textField_4.setEnabled(false);
+		textField_4.setEditable(false);
 		textField_4.setBounds(298, 358, 237, 21);
 		add(textField_4);
 		textField_4.setColumns(10);

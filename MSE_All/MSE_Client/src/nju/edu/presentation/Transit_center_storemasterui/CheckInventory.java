@@ -68,16 +68,34 @@ public class CheckInventory extends JPanel {
 		lblNewLabel_9.setBounds(402, 313, 96, 15);
 		add(lblNewLabel_9);
 		
+		JToolBar toolBar = new JToolBar();
+		toolBar.setEnabled(false);
+		toolBar.setBounds(0, 533,734,28);
+		add(toolBar);
+		
+		JLabel lblNewLabel_6 = new JLabel("状态栏");
+		toolBar.add(lblNewLabel_6);
+		
+		JLabel label = new JLabel("选择要查看的起止日期");
+		label.setFont(new Font("微软雅黑", Font.BOLD, 20));
+		label.setBounds(260, 135, 257, 28);
+		add(label);
+		
 		JButton btnNewButton_1 = new JButton("确定");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CheckInventory_show cis=new CheckInventory_show(main,nowPanel,loginPO);
+				String startData=lblNewLabel_8.getText();
+				String overData=lblNewLabel_9.getText();
+				if(startData.equals("单击选择日期")||overData.equals("单击选择日期")){
+					lblNewLabel_6.setText("请选择日期！");
+				}else{
+				CheckInventory_show cis=new CheckInventory_show(main,nowPanel,loginPO,startData,overData);
 				main.remove(nowPanel);				
 				main.getContentPane().add(cis);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
-			}
+			}}
 		});
 		btnNewButton_1.setBounds(196, 405, 130, 25);
 		add(btnNewButton_1);
@@ -96,18 +114,7 @@ public class CheckInventory extends JPanel {
 		btnNewButton_2.setBounds(413, 405, 123, 25);
 		add(btnNewButton_2);
 		
-		JToolBar toolBar = new JToolBar();
-		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533,734,28);
-		add(toolBar);
 		
-		JLabel lblNewLabel_6 = new JLabel("状态栏");
-		toolBar.add(lblNewLabel_6);
-		
-		JLabel label = new JLabel("\u9009\u62E9\u8981\u67E5\u770B\u7684\u8D77\u6B62\u65E5\u671F");
-		label.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		label.setBounds(241, 135, 257, 28);
-		add(label);
 
 	}
 

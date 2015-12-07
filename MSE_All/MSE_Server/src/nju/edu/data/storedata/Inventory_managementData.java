@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import nju.edu.data.FileIO.fileReader;
 import nju.edu.dataservice.storedataservice.Inventory_managementDataService;
 import PO.OrderPO;
 import PO.StorePO;
@@ -12,47 +13,69 @@ public class Inventory_managementData extends UnicastRemoteObject implements Inv
 
 	public Inventory_managementData() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-	// 查看指定仓库所有位置库存状态
-	@Override
-	public StorePO check(int store_number) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	// 更新指定仓库所有位置库存状态
-	@Override
-	public void updata(StorePO sp, int store_number) throws RemoteException {
-		// TODO Auto-generated method stub
 		
 	}
-	// 查看指定仓库指定时间段内出入库数量和金额
+	// 查看指定仓库指定时间段内入库量
 	@Override
-	public String checknumber(int store_number, String startdata,
+	public ArrayList<String> checkStoreinNumber(String startdata,
 			String overdata) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> allStoreinorderList=fileReader.Reader("DataBase/Storeinorder.txt");
+		ArrayList<String> quList=new ArrayList<String>();
+		String[] Storeinorder;
+		for (String s:allStoreinorderList) {
+			Storeinorder=s.split(";");
+			if(isValue(Storeinorder[1], startdata, overdata)){
+				quList.add(Storeinorder[3]);
+			}
+		}
+		return quList;
 	}
-	// 在文件中插入指定天的出入库数量和金额
+	// 查看指定仓库指定时间段内出库量
 	@Override
-	public void addnumber(int store_number, String date, int storein_number,
-			int storeout_number, int storein_money, int storeout_money)
-			throws RemoteException {
-		// TODO Auto-generated method stub
+	public ArrayList<String> checkStoreoutNumber(String startdata,
+			String overdata) throws RemoteException {
+		ArrayList<String> allStoreoutorderList=fileReader.Reader("DataBase/Storeoutorder.txt");
+		ArrayList<String> quList=new ArrayList<String>();
+		String[] Storeoutorder;
+		for (String s:allStoreoutorderList) {
+			Storeoutorder=s.split(";");
+			if(isValue(Storeoutorder[1], startdata, overdata)){
+				quList.add(Storeoutorder[3]+"区");
+			}
+		}
+		return quList;
+	}
+	// 根据订单号查找入库单
+	@Override
+	public ArrayList<String> checkorder(ArrayList<String> orderNum) throws RemoteException {
+		ArrayList<String> allStoreinorderList=fileReader.Reader("DataBase/NeedOutStoreinorder.txt");
+		ArrayList<String> StoreinorderList=new ArrayList<String>();
+		for(String orderid:orderNum){
+			for(String storeinOrder:allStoreinorderList){
+				if(storeinOrder.startsWith(orderid)){
+					StoreinorderList.add(storeinOrder);
+					break;
+				}
+			}
+		}
+		return StoreinorderList;
+	}
+	
+	private boolean isValue(String date,String startdata,String overdata){
+		int a=changeToDouble(date);
+		int m=changeToDouble(startdata);
+		int n=changeToDouble(overdata);
 		
+		if(a>=m&&a<=n){
+			return true;
+		}		
+		return false;
 	}
-	// 查看指定仓库指定区域在指定时间段内所有订单信息
-	@Override
-	public ArrayList<String> checkorder(int store_number, int store_qu,
-			String startdata, String overdata) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	// 在文件中插入一行快递信息及入库信息
-	@Override
-	public void addorder(int store_number, OrderPO op) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+	private int changeToDouble(String date){
+		String[] s=date.split("-");
+		String combingDate=s[0]+s[1]+s[2];
+		int valueofDate=Integer.parseInt(combingDate);
+		return valueofDate;
 	}
 
 }

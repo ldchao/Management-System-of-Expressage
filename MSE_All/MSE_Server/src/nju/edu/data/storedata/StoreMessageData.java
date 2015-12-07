@@ -75,7 +75,7 @@ public class StoreMessageData extends UnicastRemoteObject implements
 		storeMessage.add(warn_value);
 		String s = "";
 		for (int i = 0; i < remind_value.length; i++) {
-			s += (remind_value[1] + ";");
+			s += (remind_value[i] + ";");
 		}
 		storeMessage.add(s);
 		for (int i = 0; i < 3; i++) {

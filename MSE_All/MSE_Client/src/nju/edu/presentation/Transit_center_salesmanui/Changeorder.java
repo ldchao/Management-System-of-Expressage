@@ -100,7 +100,7 @@ public class Changeorder extends JPanel {
 				
 		textField_1 = new JTextField();
 		textField_1.setText(loginPO.getShop());
-		textField_1.setEnabled(false);
+		textField_1.setEditable(false);
 		textField_1.setBounds(180, 213, 134, 21);
 		add(textField_1);
 		textField_1.setColumns(10);		
@@ -111,7 +111,7 @@ public class Changeorder extends JPanel {
 		
 		textField_2 = new JTextField();
 		textField_2.setText(StoreNum.storeName[arriveNum-1]);
-		textField_2.setEnabled(false);
+		textField_2.setEditable(false);
 		textField_2.setColumns(10);
 		textField_2.setBounds(180, 259, 134, 21);
 		add(textField_2);
@@ -122,7 +122,7 @@ public class Changeorder extends JPanel {
 		
 		textField_3 = new JTextField();
 		textField_3.setText(transferWay);
-		textField_3.setEnabled(false);
+		textField_3.setEditable(false);
 		textField_3.setColumns(10);
 		textField_3.setBounds(180, 304, 134, 21);
 		add(textField_3);

@@ -4,13 +4,14 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import nju.edu.RMI_init.RMIHelper;
+import nju.edu.businesslogicservice.storeblservice.Inventory_managementInfo;
 import nju.edu.businesslogicservice.storeblservice.StoreinUpdateInfo;
 import nju.edu.businesslogicservice.transferblservice.StoreinInfo;
 import nju.edu.dataservice.storedataservice.StoreMessageDataService;
 import PO.StorePO;
 import PO.StoreinorderPO;
 
-public class StoreMessageBL implements StoreinUpdateInfo,StoreinInfo{
+public class StoreMessageBL implements StoreinUpdateInfo,StoreinInfo,Inventory_managementInfo{
 	
 	private static StoreMessageBL store_message=null;
 	private StorePO sp;
@@ -70,6 +71,36 @@ public class StoreMessageBL implements StoreinUpdateInfo,StoreinInfo{
 	@Override
 	public String[][] getStoreRatio() {	
 		return sp.getStoreRatio();
+	}
+	
+	//得到当前警戒值
+	@Override
+	public String getWarnData() {
+		return sp.getWarn_value();
+	}
+	//设置警戒值
+	@Override
+	public void setWarnData(String warnData) {
+		sp.setWarn_value(warnData);
+		
+	}
+	//得到指定区域的提醒值
+	@Override
+	public String getRemindData(int area) {
+		String[] remindData=sp.getRemind_value();
+		return remindData[area];
+	}
+	//设置指定区域的提醒值
+	@Override
+	public void setRemindData(int area, String RemindData) {
+		String[] remindData=sp.getRemind_value();
+		remindData[area]=RemindData;
+		sp.setRemind_value(remindData);		
+	}
+	//根据区域得到所有订单号
+	@Override
+	public ArrayList<String> getOrderList(String qu) {
+		return sp.getId(qu);
 	}
 	
 	
