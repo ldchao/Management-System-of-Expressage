@@ -20,7 +20,7 @@ import nju.edu.businesslogicservice.loadblservice.LoadBlService;
 import nju.edu.businesslogicservice.policyblservice.ConstantInfo;
 import nju.edu.dataservice.loaddataservice.LoadDataService;
 
-public class LoadBL implements LoadBlService {
+public class LoadBL implements LoadBlService,ApproveLoadInfo {
 
 	// 新建装车单
 	@Override
@@ -57,7 +57,12 @@ public class LoadBL implements LoadBlService {
 		total=total*30*2/1000;
 		return total;
 	}
-
+    //得到未审批的装运单
+	@Override
+	public ArrayList<LoadorderPO> get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	// 保存装车单
 	@Override
 	public void save(LoadorderPO lp) {
@@ -75,5 +80,8 @@ public class LoadBL implements LoadBlService {
          //在save中通过loaderPO创建
 //		driverUpdateInfo du=new 
 	}
+
+
+	
 
 }

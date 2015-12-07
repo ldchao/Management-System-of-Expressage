@@ -14,7 +14,4 @@ public interface ReceiveBLService {
 	//查看未接收的装运单
 	public LoadorderVO checkUnreceive_loadorderPO(String s);
 	
-	//存储到达单
-	public void save(ArriverorderPO PO);
-	
 }

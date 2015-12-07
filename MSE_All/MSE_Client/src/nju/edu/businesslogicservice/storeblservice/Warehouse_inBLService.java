@@ -14,9 +14,6 @@ public interface Warehouse_inBLService {
 	//查看提醒
 	public String checkRemind();
 	
-	//存储新建立的入库单
-	public void save(StoreinorderPO sp);
-	
 	//删除消息提醒
 	public void deleteRemind();
 	

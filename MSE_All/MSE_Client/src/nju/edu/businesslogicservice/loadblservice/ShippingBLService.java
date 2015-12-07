@@ -17,7 +17,4 @@ public interface ShippingBLService {
 	//查看提醒值
 	public ArrayList<ChangeorderVO> checkRemind();
 	
-	//存储新建的装车单
-	public void save(LoadorderPO lp);
-	
 }

@@ -137,7 +137,7 @@ public class StorePO implements Serializable {
 				for (int j = 0; j < 20; j++) {
 					for (int j2 = 0; j2 < 60; j2++) {
 						if (!trainToTC[i][j][j2].equals("0"))
-							idList.add(airToTC[i][j][j2]);
+							idList.add(trainToTC[i][j][j2]);
 					}
 				}
 			}

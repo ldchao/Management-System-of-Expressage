@@ -20,7 +20,7 @@ import PO.OrganizationNumPO;
 import PO.StoreinorderPO;
 import State.ApproveState;
 
-public class Warehouse_inBL implements Warehouse_inBLService,GetLocationInfo{
+public class Warehouse_inBL implements Warehouse_inBLService,GetLocationInfo,ApproveWarehouse_inInfo{
 	
 
 	
@@ -73,7 +73,15 @@ public class Warehouse_inBL implements Warehouse_inBLService,GetLocationInfo{
 		}
 		
 	}
+	
+	//得到未审批的入库单
+	@Override
+	public ArrayList<StoreinorderPO> get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	
 	//存储新建立的入库单
 	@Override
 	public void save(StoreinorderPO sp) {

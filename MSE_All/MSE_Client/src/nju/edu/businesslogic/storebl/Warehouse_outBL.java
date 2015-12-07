@@ -13,10 +13,11 @@ import nju.edu.businesslogicservice.storeblservice.StoreinUpdateInfo;
 import nju.edu.businesslogicservice.storeblservice.Warehouse_outBLService;
 import nju.edu.dataservice.loaddataservice.ShippingDataService;
 import nju.edu.dataservice.storedataservice.Warehouse_outDataService;
+import PO.StoreinorderPO;
 import PO.StoreoutorderPO;
 import State.ApproveState;
 
-public class Warehouse_outBL implements Warehouse_outBLService{
+public class Warehouse_outBL implements Warehouse_outBLService,ApproveWarehouse_outInfo{
 
 	ArrayList<ChangeorderVO> needoutstore=new ArrayList<ChangeorderVO>();
 	
@@ -74,6 +75,13 @@ public class Warehouse_outBL implements Warehouse_outBLService{
 		}
 	}
 
+	//得到未审批的入库单
+	@Override
+	public ArrayList<StoreoutorderPO> get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	//存储新建的入库单
 	@Override
 	public void save(StoreoutorderPO sp) {
@@ -97,4 +105,7 @@ public class Warehouse_outBL implements Warehouse_outBLService{
 		updateOrder.update(orderNum, "您的订单已办理出库");
 		
 	}
+
+	
+
 }

@@ -13,7 +13,7 @@ import PO.LoadorderPO;
 import State.ApproveState;
 import State.ArriveState;
 
-public class ReceiveBL implements ReceiveBLService {
+public class ReceiveBL implements ReceiveBLService ,ApproveReceiveInfo{
 
 	LoadorderVO needinputarrive = null;
 
@@ -32,7 +32,12 @@ public class ReceiveBL implements ReceiveBLService {
 //		update(av.getOrder(), av.getCarNum(), av.g);
 		System.out.println("到达单已提交总经理审批");
 	}
-
+//得到未审批的中转中心到达单
+	@Override
+	public ArrayList<ArriverorderPO> get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	// 存储到达单
 	@Override
 	public void save(ArriverorderPO PO) {
@@ -74,9 +79,11 @@ public class ReceiveBL implements ReceiveBLService {
 	}
 
 	// 更新司机、交通工具、监装员、押运员的闲/忙信息和订单物流信息
-	private void update(ArrayList<String> Idlist,String carNum,String driverName) {
+	private void update(ArrayList<String> Idlist,String carNum) {
 
 		// 在build中通过loadervo中信息调用
 	}
+
+	
 
 }

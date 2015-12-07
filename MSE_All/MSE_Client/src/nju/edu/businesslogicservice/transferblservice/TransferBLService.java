@@ -13,7 +13,4 @@ public interface TransferBLService {
 	 
 	 //查看当前各个库区库存比例
 	 public String[][] checkStore();
-	 
-	 //存储中转单
-	 public void save(ChangeorderPO cp);
 }

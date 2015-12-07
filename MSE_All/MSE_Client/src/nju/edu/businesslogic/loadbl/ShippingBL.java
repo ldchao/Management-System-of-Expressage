@@ -16,7 +16,7 @@ import PO.LoadorderPO;
 import PO.OrganizationNumPO;
 import State.ApproveState;
 
-public class ShippingBL implements ShippingBLService {
+public class ShippingBL implements ShippingBLService,ApproveLoadInfo {
 
 	// 新建一张装运单
 	@Override
@@ -87,7 +87,12 @@ public class ShippingBL implements ShippingBLService {
 			return needship;
 		}
 	}
-
+   //得到未审批的装运单
+	@Override
+	public ArrayList<LoadorderPO> get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	// 存储新建的装车单
 	@Override
 	public void save(LoadorderPO lp) {
@@ -116,4 +121,6 @@ public class ShippingBL implements ShippingBLService {
 			return 2;
 		}
 	}
+
+	
 }

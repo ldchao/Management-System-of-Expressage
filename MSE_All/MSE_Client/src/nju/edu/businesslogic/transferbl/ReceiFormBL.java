@@ -1,6 +1,7 @@
 package nju.edu.businesslogic.transferbl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.ReceiFormVO;
@@ -10,7 +11,7 @@ import PO.ReceiveorderPO;
 import State.ApproveState;
 import State.ArriveState;
 
-public class ReceiFormBL implements ReceiFormBlService{
+public class ReceiFormBL implements ReceiFormBlService,ApproveReceiFormInfo{
 	//新建接收单
 	@Override
 	public void addReceiveOrder(ReceiFormVO rv) {
@@ -25,6 +26,13 @@ public class ReceiFormBL implements ReceiFormBlService{
 		}
 		System.out.println("接收单已提交总经理审批");
 	}
+	//得到未审批的营业厅接收单
+	@Override
+	public ArrayList<ReceiveorderPO> get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	//保存接收单
 	@Override
 	public void save(ReceiveorderPO rp) {
@@ -52,6 +60,6 @@ public class ReceiFormBL implements ReceiFormBlService{
 			return ArriveState.Lost;
 		}
 	}
-
+	
 
 }

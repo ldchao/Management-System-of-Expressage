@@ -14,7 +14,5 @@ public interface LoadBlService {
 	//获得运费总价
 	public double getTotal(String arrival);
 	
-	//保存装车单
-	public void save(LoadorderPO lp);
 
 }

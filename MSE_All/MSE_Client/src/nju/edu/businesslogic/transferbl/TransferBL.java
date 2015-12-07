@@ -1,6 +1,7 @@
 package nju.edu.businesslogic.transferbl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.ChangeorderVO;
@@ -12,7 +13,7 @@ import PO.ChangeorderPO;
 import State.ApproveState;
 import StaticValue.StoreNum;
 
-public class TransferBL implements TransferBLService{
+public class TransferBL implements TransferBLService,ApproveTransferInfo{
 
 	@Override
 	public void build(ChangeorderVO cv) {
@@ -53,6 +54,14 @@ public class TransferBL implements TransferBLService{
 		return sm.getStoreRatio();
 	}
 	
+	
+//得到未审批的中转单
+	@Override
+	public ArrayList<ChangeorderPO> get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	//存储审批后的中转单
 	@Override
 	public void save(ChangeorderPO cp) {
 		TransferDataService td=RMIHelper.getTransferData();
@@ -63,6 +72,7 @@ public class TransferBL implements TransferBLService{
 		}
 		
 	}
+
 
 	
 

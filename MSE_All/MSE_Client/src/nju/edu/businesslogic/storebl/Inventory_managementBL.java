@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.OrganizationNumPO;
+import nju.edu.ExcelWriter.ExcelWriter;
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.StoreinVO;
 import nju.edu.businesslogicservice.storeblservice.Inventory_managementBLService;
@@ -100,7 +101,7 @@ public class Inventory_managementBL implements Inventory_managementBLService{
 		 +ordermessage[i][3]+","+ordermessage[i][4]+","+ordermessage[i][5]+","+ordermessage[i][6];
 			orderlist.add(s);
 		}
-		
+		ExcelWriter.Writer("InventoryMessage.txt", orderlist);
 	}
 
 	
