@@ -80,4 +80,12 @@ public class AccountBL implements AccountBLService, checkAccountInfo {
 		return null;
 	}
 
+	public void save(AccountPO po) {
+
+		try {
+			accountData.insert(po);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

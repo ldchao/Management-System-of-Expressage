@@ -9,12 +9,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import nju.edu.presentation.Loginui.PersonalInfomation;
 import PO.LoginPO;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class FmainPanel extends JPanel implements Runnable {
 	private JLabel label_6;
 	private Thread t;
+	private static PersonalInfomation perinfo;
 
 	/**
 	 * Create the panel.
@@ -30,6 +35,26 @@ public class FmainPanel extends JPanel implements Runnable {
 		add(label);
 
 		JLabel lblHello = new JLabel("Hello!");
+		lblHello.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				perinfo = new PersonalInfomation(loginPO);
+				perinfo.setLocation(750, 115);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (perinfo.getMouseState() == true)
+					perinfo.dispose();
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				perinfo.setLocation(750, 115);
+				perinfo.setAlwaysOnTop(true);
+				perinfo.setMouseState(false);
+			}
+		});
 		lblHello.setBounds(650, 10, 54, 15);
 		add(lblHello);
 
@@ -39,7 +64,7 @@ public class FmainPanel extends JPanel implements Runnable {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(fmp);
 				PayPanel paymain = new PayPanel(loginPO, main);
-				main.add(paymain);
+				main.getContentPane().add(paymain);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -53,7 +78,7 @@ public class FmainPanel extends JPanel implements Runnable {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(fmp);
 				CalculatePanel calp = new CalculatePanel(loginPO, main);
-				main.add(calp);
+				main.getContentPane().add(calp);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -67,7 +92,7 @@ public class FmainPanel extends JPanel implements Runnable {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(fmp);
 				StatisticsPanel stp = new StatisticsPanel(loginPO, main);
-				main.add(stp);
+				main.getContentPane().add(stp);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -81,7 +106,7 @@ public class FmainPanel extends JPanel implements Runnable {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(fmp);
 				BillPanel billPanel = new BillPanel(loginPO, main);
-				main.add(billPanel);
+				main.getContentPane().add(billPanel);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -97,16 +122,14 @@ public class FmainPanel extends JPanel implements Runnable {
 
 		JButton button_3 = new JButton("New button");
 		button_3.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				if (loginPO.getLimit().equals("高级财务人员")) {
 					main.remove(fmp);
 					AccountPanel acp = new AccountPanel(loginPO, main);
-					main.add(acp);
+					main.getContentPane().add(acp);
 					main.invalidate();
 					main.repaint();
 					main.setVisible(true);
-					t.stop();
 				} else {
 					label_6.setText("对不起，仅高级财务人员有此权限");
 					t = new Thread(fmp);

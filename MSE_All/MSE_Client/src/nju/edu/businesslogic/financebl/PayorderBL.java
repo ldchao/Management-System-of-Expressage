@@ -83,7 +83,7 @@ public class PayorderBL implements PayorderBLService, checkPayorderInfo,
 
 		ArrayList<String> list = new ArrayList<>();
 		list.add("截至日期,总收入,总支出,总利润");
-		list.add(date + "," + income + "," + outcome + "," + benefit + ",");
+		list.add(date + "," + income + "," + outcome + "," + benefit);
 
 		ExcelWriter.Writer("成本收益表", list);
 	}
