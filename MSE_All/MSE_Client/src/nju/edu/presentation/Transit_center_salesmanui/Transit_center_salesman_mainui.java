@@ -1,25 +1,23 @@
 package nju.edu.presentation.Transit_center_salesmanui;
 
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
+import javax.swing.border.EmptyBorder;
 
-import nju.edu.presentation.Loginui.PersonalInfomation;
 import PO.LoginPO;
 
-@SuppressWarnings("serial")
 public class Transit_center_salesman_mainui extends JFrame {
 
 	private JPanel contentPane;
 	Transit_center_salesman_mainui main;
-	private PersonalInfomation perinfo;
 
 	/**
 	 * Create the frame.
@@ -27,8 +25,7 @@ public class Transit_center_salesman_mainui extends JFrame {
 	public Transit_center_salesman_mainui(LoginPO loginPO) {
 		main=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(750, 600);
-		setLocationRelativeTo(null);
+		setBounds(400, 100, 750, 600);
 		contentPane = new JPanel();
 		getContentPane().add(contentPane);
 		contentPane.setLayout(null);
@@ -40,26 +37,6 @@ public class Transit_center_salesman_mainui extends JFrame {
 		JLabel label_1 = new JLabel(loginPO.getName()+"£¬ÄãºÃ£¡");
 		label_1.setBounds(600, 14, 100, 15);
 		contentPane.add(label_1);
-		label_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				perinfo = new PersonalInfomation(loginPO, main);
-				perinfo.setLocation(750, 125);
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if (perinfo.getMouseState() == true)
-					perinfo.dispose();
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				perinfo.setLocation(750, 125);
-				perinfo.setAlwaysOnTop(true);
-				perinfo.setMouseState(false);
-			}
-		});
 		
 		JButton btnNewButton = new JButton("×¢Ïú");
 		btnNewButton.addActionListener(new ActionListener() {

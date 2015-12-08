@@ -26,7 +26,7 @@ import java.util.Enumeration;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
-public class Staff extends JFrame{
+public class Staff extends JFrame implements ItemListener{
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -251,4 +251,9 @@ public class Staff extends JFrame{
 		contentPane.add(textArea);
 	}
 
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -8,17 +8,13 @@ import nju.edu.VO.ChangeorderVO;
 import nju.edu.VO.VehicleLoadorderVO;
 import nju.edu.businesslogic.listinbl.Listinbl;
 import nju.edu.businesslogic.policybl.ConstantPolicybl;
-import nju.edu.businesslogic.vehiclebl.VehicleBl;
-import nju.edu.businesslogic.vehiclebl.transportUpdateInfo;
 import nju.edu.businesslogicservice.listinblservice.OrderInfo;
-import nju.edu.businesslogicservice.listinblservice.UpdateInfo;
 import nju.edu.businesslogicservice.loadblservice.ShippingBLService;
 import nju.edu.businesslogicservice.policyblservice.ConstantInfo;
 import nju.edu.dataservice.loaddataservice.ShippingDataService;
 import PO.LoadorderPO;
 import PO.OrganizationNumPO;
 import State.ApproveState;
-import State.TransportState;
 
 public class ShippingBL implements ShippingBLService,ApproveLoadInfo {
 
@@ -112,22 +108,12 @@ public class ShippingBL implements ShippingBLService,ApproveLoadInfo {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		update(lp.getOrder(),lp.getTransferNum(),lp.getLoadorderNum().substring(0, 4));
 		System.out.println("存储新建的装车单");
 	}
 
 	// 更新订单信息和交通工具信息
-	private void update(ArrayList<String> id,String offNum,String carNum) {
-		UpdateInfo ui=new Listinbl();
-		OrganizationNumPO op=new OrganizationNumPO();
-		String message="您的订单已从"+op.getName(offNum)+"发出";
-		for (String s : id) {
-			ui.update(s, message);
-		}
-		
-		transportUpdateInfo du=new VehicleBl();
-		du.update(carNum, TransportState.Busy);
-		
+	private void update() {
+		// 在sava中调用
 
 	}
 
