@@ -125,10 +125,10 @@ public class UpdateUserFrame extends JFrame implements Runnable {
 		// 确认修改
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String name = textField.getText();
+				String newname = textField.getText();
 				String newlimit = "";
 
-				if (name.equals("")) {
+				if (newname.equals("")) {
 					label_5.setText("信息录入不完整，无法完成修改");
 					t1.start();
 				} else {
@@ -144,7 +144,7 @@ public class UpdateUserFrame extends JFrame implements Runnable {
 					up.dispose();
 					CheckUserPanel.setlblNewLabel("修改成功！");
 					CheckUserPanel.showTable(userBL.updateUser(pos + 1, name,
-							newlimit));
+							newname, newlimit));
 					Thread t = new Thread(cup);
 					t.start();
 				}
