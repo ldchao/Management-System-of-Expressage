@@ -120,7 +120,8 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 	@Override
 	public double getWeigtht(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		return 0;
+		OrderPO orderPO=getOrder(id);
+		return orderPO.getWeight();
 	}
 
 }

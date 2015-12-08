@@ -9,44 +9,85 @@ import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.StaffVO;
 import nju.edu.businesslogic.loginbl.checkStaffInfo;
 import nju.edu.businesslogicservice.staffblservice.StaffBLService;
+import nju.edu.businesslogicservice.staffblservice.editStaffInfo;
 import nju.edu.dataservice.staffdataservice.StaffDataService;
 
-public class Staffbl implements StaffBLService,checkStaffInfo{
-
+public class Staffbl implements StaffBLService,checkStaffInfo,editStaffInfo{
+	StaffDataService staffDataService=RMIHelper.getStaffData();
 	@Override
 	public ArrayList<StaffVO> showStaff() {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<StaffPO> staffPOs=null;
+		try {
+			staffPOs=staffDataService.gets();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<StaffVO> staffVOs=new ArrayList<StaffVO>();
+		for(int i=0;i<staffPOs.size();i++){
+			StaffPO po=staffPOs.get(i);
+			StaffVO staffVO=new StaffVO(po.getId(), po.getName(), po.getAddress(), po.getPosition(), po.getPhone(), po.getCellphone(), po.getShop());
+			staffVOs.add(staffVO);
+		}
+		return staffVOs;
 	}
 
+	//根据用户名获得StaffPO
 	@Override
 	public StaffVO checkStaff(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		StaffPO po=null;
+		try {
+			po=staffDataService.get(name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(po==null)
+			return null;
+		else{
+			StaffVO vo=new StaffVO(po.getId(), po.getName(), po.getAddress(),
+					po.getPosition(), po.getPhone(), po.getCellphone(), po.getShop());
+			return vo;
+		}
+
+
 	}
 
 	@Override
-	public void addStaff(String name, String address, String position, String phone, String cellphone) {
+	public void addStaff(StaffVO vo) {
 		// TODO Auto-generated method stub
-		
+		StaffPO po=new StaffPO(vo.getId(), vo.getName(), vo.getAddress(), vo.getPosition(), vo.getPhone(), vo.getCellphone(), vo.getShop());
+		try {
+			staffDataService.insert(po);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
-	public StaffVO searchStaff(String name) {
+	public void editStaff(StaffVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		StaffPO po=new StaffPO(vo.getId(), vo.getName(), vo.getAddress(), vo.getPosition(), vo.getPhone(), vo.getCellphone(), vo.getShop());
+		try {
+			staffDataService.update(po);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
-	public void editStaff(String name) {
+	public void deleteStaff(String id) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteStaff(String name) {
-		// TODO Auto-generated method stub
-		
+		try {
+			staffDataService.delete(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -67,6 +108,22 @@ public class Staffbl implements StaffBLService,checkStaffInfo{
 			e.printStackTrace();
 		}
 		return staffPO;
+	}
+
+	public boolean JudgeNull(StaffVO vo) {
+		// TODO Auto-generated method stub
+		boolean result=false;
+		if(vo.getId().equals("")||vo.getName().equals("")||vo.getAddress().equals("")||vo.getPosition().equals("")
+				||vo.getPhone().equals("")||vo.getCellphone().equals("")||vo.getShop().equals(""))
+			result=true;
+		return result;
+	}
+	
+	
+	@Override
+	public void editTheID(String oldID, String newID) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

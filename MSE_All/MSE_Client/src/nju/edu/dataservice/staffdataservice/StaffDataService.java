@@ -13,8 +13,10 @@ public interface StaffDataService extends Remote{
 	
 	public void insert(StaffPO po)throws RemoteException;
 	
-	public void delete(StaffPO po)throws RemoteException;
+	public void delete(String id)throws RemoteException;
 	
 	public void update(StaffPO po)throws RemoteException;
 	
+	//修改用户名,前一个为旧用户名，后一个为新用户名
+	public void editTheID(String oldID,String newID)throws RemoteException;
 }
