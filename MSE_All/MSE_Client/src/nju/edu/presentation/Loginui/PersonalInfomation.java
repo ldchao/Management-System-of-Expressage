@@ -20,7 +20,7 @@ public class PersonalInfomation extends JFrame {
 	/*
 	 * 用法模板参照financebl包中FmainPanel类中的37到57行
 	 */
-	public PersonalInfomation(LoginPO loginPO) {
+	public PersonalInfomation(LoginPO loginPO, JFrame main) {
 		getContentPane().setLayout(null);
 
 		JLabel label = new JLabel("\u59D3\u540D\uFF1A");
@@ -48,6 +48,13 @@ public class PersonalInfomation extends JFrame {
 		getContentPane().add(lblUser);
 
 		JButton button = new JButton("\u4FEE\u6539\u5BC6\u7801");
+		button.addActionListener(new ActionListener() {
+			@SuppressWarnings("unused")
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				UpdatePasswordFrame upframe = new UpdatePasswordFrame(loginPO,main);
+			}
+		});
 		button.setBounds(42, 140, 87, 23);
 		getContentPane().add(button);
 

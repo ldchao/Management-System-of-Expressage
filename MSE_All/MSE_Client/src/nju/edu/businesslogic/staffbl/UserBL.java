@@ -7,10 +7,13 @@ import PO.UserPO;
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.UserVO;
 import nju.edu.businesslogic.loginbl.checkUserInfo;
+import nju.edu.businesslogicservice.loginblservice.UpdatePasswordService;
 import nju.edu.businesslogicservice.staffblservice.UserBLService;
 import nju.edu.dataservice.staffdataservice.UserDataService;
 
-public class UserBL implements UserBLService, checkUserInfo, DeleteUserInterface {
+public class UserBL implements UserBLService, checkUserInfo,
+		DeleteUserInterface, UpdatePasswordService {
+
 	UserDataService userData = RMIHelper.getUserData();
 
 	@Override
@@ -75,6 +78,17 @@ public class UserBL implements UserBLService, checkUserInfo, DeleteUserInterface
 		}
 
 		return userlist;
+	}
+
+	@Override
+	public void UpdatePassword(String User, String newKey) {
+
+		try {
+			userData.UpdatePassword(User, newKey);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

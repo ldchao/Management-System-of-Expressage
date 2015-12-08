@@ -23,4 +23,6 @@ public interface UserDataService extends Remote{
 	// 查找所有用户
 	public ArrayList<UserPO> finds()throws RemoteException;
 
+	// 修改账户密码
+	public void UpdatePassword(String User, String password)throws RemoteException;
 }
