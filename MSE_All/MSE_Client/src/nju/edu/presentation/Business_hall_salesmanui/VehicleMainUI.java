@@ -10,12 +10,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
+import State.TransportState;
 import nju.edu.VO.VehicleVO;
+import nju.edu.businesslogic.vehiclebl.VehicleBl;
+import nju.edu.businesslogicservice.vehicleblservice.VehicleBlService;
 
 public class VehicleMainUI extends JPanel{
 	private JTextField textField;
 	private boolean isValid = false;
 	private VehicleVO vo;
+	private VehicleBlService vehicleBl = new VehicleBl();
 	
 	public VehicleMainUI(JFrame m, JPanel bf) {
 		JFrame main = m;
@@ -64,13 +68,20 @@ public class VehicleMainUI extends JPanel{
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String id = textField.getText();
-				if (id.length() == 0) {
+				String carNum = textField.getText();
+				if (carNum.length() == 0) {
 					label_4.setText("Œ¥ ‰»Î≥µ¡æ¥˙∫≈");
 				}else {
-					
+					isValid = vehicleBl.searchVehicle(carNum);
 					if (isValid) {
-						
+						vo = vehicleBl.find(carNum);
+						VehicleImfo imfo = new VehicleImfo(main, nowPanel);
+//						vo = new VehicleVO("11111111","1","1", "1", "1", "1", "1", TransportState.Busy);
+						imfo.show(vo);
+						main.remove(nowPanel);
+						main.getContentPane().add(imfo);
+						main.invalidate();
+						main.repaint();
 					}
 					
 					
@@ -94,8 +105,6 @@ public class VehicleMainUI extends JPanel{
 		add(button_2);
 		
 		
-		
-		
-
 }
+	
 	}

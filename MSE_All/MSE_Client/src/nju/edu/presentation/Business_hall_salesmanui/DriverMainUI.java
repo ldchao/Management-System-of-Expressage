@@ -115,7 +115,6 @@ public class DriverMainUI extends JPanel {
 		label_10.setBounds(133, 397, 57, 28);
 		add(label_10);
 		
-//		String[] general = new String[]{"ÇëÑ¡Ôñ","ÄÐ","Å®"};
 		JComboBox<String> sex = new JComboBox<>();
 		sex.addItem("ÇëÑ¡Ôñ");
 		sex.addItem("ÄÐ");

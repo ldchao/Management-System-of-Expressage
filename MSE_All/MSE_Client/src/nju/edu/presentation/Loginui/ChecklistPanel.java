@@ -77,7 +77,6 @@ public class ChecklistPanel extends JPanel implements Runnable{
 				if (isValid) {
 					checklistController = new ChecklistController();
 					vo = checklistController.getOrder(id);
-//					OrderVO vo1 = new OrderVO("1234","1231",ApproveState.NotApprove,"1","南京鼓楼区营业厅 1","1","1","11","1","南京鼓楼区营业厅 1","1","1","1","1","1.0","1.0","1.0","1.0","1000", ExpressType.Economy,PackageType.Carton,"1月1日","0","aaa");
 					ChecklistImfo imfo = new ChecklistImfo(main, nowPanel);
 					imfo.show(vo);
 					main.remove(nowPanel);

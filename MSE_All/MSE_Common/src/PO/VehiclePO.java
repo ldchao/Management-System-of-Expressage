@@ -7,25 +7,28 @@ public class VehiclePO implements Serializable{
 	String carNum;
 	String engineNum;
 	String car;
+	String driver;
 	String baseNum;
 	String buyDate;
 	String useDate; 
 	TransportState carState;
 
-	public VehiclePO(String carNum,String engineNum,String car,String baseNum,
+	public VehiclePO(String carNum,String engineNum,String car,String driver, String baseNum,
 		String buyDate,String useDate, TransportState carState){
-		carNum = this.carNum;
-		engineNum = this.engineNum;
-		car = this.car;
-		baseNum = this.baseNum;
-		buyDate = this.buyDate;
-		useDate = this.useDate;
-		carState = this.carState;
+		super();
+		this.carNum = carNum;
+		this.engineNum = engineNum;
+		this.car = car;
+		this.driver = driver;
+		this.baseNum = baseNum;
+		this.buyDate = buyDate;
+		this.useDate = useDate;
+		this.carState = carState;
 	}
     
 
     /*  getCarNum
-        æ©æ–¿æ´–æï¹ç· æµ ï½…å½¿
+        ·µ»Ø³µÁ¾´úºÅ
 	    return String
     */
 	public String getCarNum(){
@@ -33,7 +36,7 @@ public class VehiclePO implements Serializable{
 	}
 
 	/*  getEnginNum
-        æ©æ–¿æ´–é™æˆå§©éˆè½°å”¬é™ï¿½
+        ·µ»Ø·¢¶¯»ú´úºÅ
 	    return String
     */
 	public String getEngineNum(){
@@ -41,15 +44,23 @@ public class VehiclePO implements Serializable{
 	}
 	
 	/*  getCar
-        æ©æ–¿æ´–æï¹ç· é™ï¿½
+        ·µ»Ø³µÁ¾ºÅ
 	    return String
     */
 	public String getCar(){
 		return car;
 	}
+	
+	/*  getDriver
+    ·µ»ØË¾»úĞÕÃû
+    return String
+*/
+	public String getDriver(){
+		return driver;
+	}
 
 	/*  getBaseNum
-        æ©æ–¿æ´–æ´æ› æ´é™ï¿½
+        ·µ»Øµ×ÅÌºÅ
 	    return String
     */
 	public String getBaseNum(){
@@ -57,7 +68,7 @@ public class VehiclePO implements Serializable{
 	}
 
 	/*  getBuyDate
-        æ©æ–¿æ´–ç’î…æ‹±éƒãƒ¦æ¹¡
+        ·µ»Ø¹ºÂòÊ±¼ä
 	    return String
     */
 	public String getBuyDate(){
@@ -65,7 +76,7 @@ public class VehiclePO implements Serializable{
 	}
 
 	/*  getUseDate
-        æ©æ–¿æ´–éˆå¶…ç„¦éƒå •æ£¿
+        ·µ»Ø·şÒÛÊ±¼ä
 	    return String
     */
 	public String getUseDate(){
@@ -73,14 +84,14 @@ public class VehiclePO implements Serializable{
 	}
 
 	/*  getCarState
-        æ©æ–¿æ´–æï¹ç· é˜èˆµï¿½ï¿½
+        ·µ»Ø³µÁ¾×´Ì¬
 	    return String
     */
 	public TransportState getCarState(){
 		return carState;
 	}
 	/*  getCarState
-        ç’å‰§ç–†æï¹ç· é˜èˆµï¿½ï¿½
+        ÉèÖÃ³µÁ¾×´Ì¬
         void
 */
 	

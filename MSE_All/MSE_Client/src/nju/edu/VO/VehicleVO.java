@@ -8,20 +8,23 @@ public class VehicleVO implements Serializable {
 	String carNum;
 	String engineNum;
 	String car;
+	String driver;
 	String baseNum;
 	String buyDate;
 	String useDate; 
 	TransportState carState;
 
-	public VehicleVO(String carNum,String engineNum,String car,String baseNum,
+	public VehicleVO(String carNum,String engineNum,String car,String driver,String baseNum,
 		String buyDate,String useDate, TransportState carState){
-		carNum = this.carNum;
-		engineNum = this.engineNum;
-		car = this.car;
-		baseNum = this.baseNum;
-		buyDate = this.buyDate;
-		useDate = this.useDate;
-		carState = this.carState;
+		super();
+		this.carNum = carNum;
+		this.engineNum = engineNum;
+		this.car = car;
+		this.driver = driver;
+		this.baseNum = baseNum;
+		this.buyDate = buyDate;
+		this.useDate = useDate;
+		this.carState = carState;
 	}
     
 
@@ -47,6 +50,14 @@ public class VehicleVO implements Serializable {
     */
 	public String getCar(){
 		return car;
+	}
+	
+	/*  getDriver
+    返回司机姓名
+    return String
+*/
+	public String getDriver(){
+		return driver;
 	}
 
 	/*  getBaseNum
