@@ -6,12 +6,16 @@ import java.util.ArrayList;
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.VehicleLoadorderVO;
 import nju.edu.businesslogic.listinbl.Listinbl;
+import nju.edu.businesslogic.vehiclebl.VehicleBl;
+import nju.edu.businesslogic.vehiclebl.transportUpdateInfo;
 import nju.edu.businesslogicservice.listinblservice.OrderInfo;
+import nju.edu.businesslogicservice.listinblservice.UpdateInfo;
 import nju.edu.businesslogicservice.loadblservice.LoadBlService;
 import nju.edu.dataservice.loaddataservice.ShippingDataService;
 import PO.LoadorderPO;
 import PO.OrganizationNumPO;
 import State.ApproveState;
+import State.TransportState;
 
 public class LoadBL implements LoadBlService,ApproveLoadInfo {
 
@@ -75,9 +79,16 @@ public class LoadBL implements LoadBlService,ApproveLoadInfo {
 	}
 
 	// 更新信息(车辆、司机及订单状态)
-	public void update(ArrayList<String> orderlist,String offNum,String transportNum) {
-         //在save中通过loaderPO创建
-//		driverUpdateInfo du=new 
+	public void update(ArrayList<String> id,String offNum,String carNum) {
+		UpdateInfo ui=new Listinbl();
+		OrganizationNumPO op=new OrganizationNumPO();
+		String message="您的订单已从"+op.getName(offNum)+"发出";
+		for (String s : id) {
+			ui.update(s, message);
+		}
+		
+		transportUpdateInfo du=new VehicleBl();
+		du.update(carNum, TransportState.Busy);
 	}
 
 

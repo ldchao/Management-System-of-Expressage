@@ -5,11 +5,17 @@ import java.util.ArrayList;
 
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.ReceiFormVO;
+import nju.edu.businesslogic.listinbl.Listinbl;
+import nju.edu.businesslogic.vehiclebl.VehicleBl;
+import nju.edu.businesslogic.vehiclebl.transportUpdateInfo;
+import nju.edu.businesslogicservice.listinblservice.UpdateInfo;
 import nju.edu.businesslogicservice.transferblservice.ReceiFormBlService;
 import nju.edu.dataservice.transferdataservice.ReceiFormDataService;
+import PO.OrganizationNumPO;
 import PO.ReceiveorderPO;
 import State.ApproveState;
 import State.ArriveState;
+import State.TransportState;
 
 public class ReceiFormBL implements ReceiFormBlService,ApproveReceiFormInfo{
 	//新建接收单
@@ -24,6 +30,7 @@ public class ReceiFormBL implements ReceiFormBlService,ApproveReceiFormInfo{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		update(rv.getOrderNum(), rv.getArrivePlace(), rv.getCarNum());
 		System.out.println("接收单已提交总经理审批");
 	}
 	//得到未审批的营业厅接收单
@@ -62,10 +69,16 @@ public class ReceiFormBL implements ReceiFormBlService,ApproveReceiFormInfo{
 		System.out.println("存储已完成审批的到达单");
 	}
 	//更新订单物流信息，司机、监装员、押运员、车辆状态信息
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		//在build中利用rv更新
+	public void update(ArrayList<String> id,String arriveNum,String carNum) {
+		UpdateInfo ui=new Listinbl();
+		OrganizationNumPO op=new OrganizationNumPO();
+		String message="您的订单已到达"+op.getName(arriveNum);
+		for (String s : id) {
+			ui.update(s, message);
+		}
+		
+		transportUpdateInfo du=new VehicleBl();
+		du.update(carNum, TransportState.Available);
 	}
 
 	private ArriveState getState(String s) {
