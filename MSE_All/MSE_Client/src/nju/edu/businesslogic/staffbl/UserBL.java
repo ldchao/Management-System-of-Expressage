@@ -9,7 +9,6 @@ import nju.edu.VO.UserVO;
 import nju.edu.businesslogic.loginbl.checkUserInfo;
 import nju.edu.businesslogicservice.loginblservice.UpdatePasswordService;
 import nju.edu.businesslogicservice.staffblservice.UserBLService;
-import nju.edu.businesslogicservice.staffblservice.editStaffInfo;
 import nju.edu.dataservice.staffdataservice.UserDataService;
 
 public class UserBL implements UserBLService, checkUserInfo,
@@ -29,8 +28,7 @@ public class UserBL implements UserBLService, checkUserInfo,
 	}
 
 	@Override
-	public ArrayList<UserVO> updateUser(int pos, String oldname, String name,
-			String limit) {
+	public ArrayList<UserVO> updateUser(int pos, String name, String limit) {
 
 		ArrayList<UserVO> list = new ArrayList<UserVO>();
 		UserPO userpo = new UserPO(name, "0", limit);
@@ -44,9 +42,6 @@ public class UserBL implements UserBLService, checkUserInfo,
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-
-		editStaffInfo editstaff = new Staffbl();
-	//	editstaff.editTheID(oldname, name, limit);
 
 		return list;
 	}
