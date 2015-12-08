@@ -8,19 +8,18 @@ import State.ApproveState;
 //ChangeorderPO（中转单）类包含装车日期、本中转中心中转单编号、出发地、到达地、装运方式、监装员、本次中转所有单号、审批状态
 public class ChangeorderPO implements Serializable {
 
-	String date;  //装车日期   2
-	String numberOfTransfer;  //本中转中心中转单编号  1
-	String offnum;  //出发地   3
-	String arrivenum;  //到达地   4
-	String wayOfTransport;  //装运方式   5
-	String monitor;  //监装员   6
-	ArrayList<String> order_number;  //本次中转所有单号   7
-	ApproveState check_state;  //审批状态   8
+	String date; // 装车日期 2
+	String numberOfTransfer; // 本中转中心中转单编号 1
+	String offnum; // 出发地 3
+	String arrivenum; // 到达地 4
+	String wayOfTransport; // 装运方式 5
+	String monitor; // 监装员 6
+	ArrayList<String> order_number; // 本次中转所有单号 7
+	ApproveState check_state; // 审批状态 8
 
-	public ChangeorderPO( String date, String numberOfTransfer,
-			String offnum, String arrivenum, String wayOfTransport,
-			String monitor, ArrayList<String> order_number,
-			ApproveState check_state) {
+	public ChangeorderPO(String date, String numberOfTransfer, String offnum,
+			String arrivenum, String wayOfTransport, String monitor,
+			ArrayList<String> order_number, ApproveState check_state) {
 		super();
 		this.date = date;
 		this.numberOfTransfer = numberOfTransfer;
@@ -64,4 +63,7 @@ public class ChangeorderPO implements Serializable {
 		return check_state;
 	}
 
+	public void setCheck_state(ApproveState check_state) {
+		this.check_state = check_state;
+	}
 }

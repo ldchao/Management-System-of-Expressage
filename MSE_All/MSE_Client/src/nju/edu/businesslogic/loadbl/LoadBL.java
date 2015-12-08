@@ -1,24 +1,17 @@
 package nju.edu.businesslogic.loadbl;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import PO.LoadorderPO;
-import PO.OrganizationNumPO;
-import PO.send_LoadorderPO;
-import State.ApproveState;
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.VehicleLoadorderVO;
 import nju.edu.businesslogic.listinbl.Listinbl;
-import nju.edu.businesslogic.policybl.ConstantPolicybl;
-import nju.edu.businesslogic.vehiclebl.driverUpdateInfo;
 import nju.edu.businesslogicservice.listinblservice.OrderInfo;
 import nju.edu.businesslogicservice.loadblservice.LoadBlService;
-import nju.edu.businesslogicservice.policyblservice.ConstantInfo;
-import nju.edu.dataservice.loaddataservice.LoadDataService;
+import nju.edu.dataservice.loaddataservice.ShippingDataService;
+import PO.LoadorderPO;
+import PO.OrganizationNumPO;
+import State.ApproveState;
 
 public class LoadBL implements LoadBlService,ApproveLoadInfo {
 
@@ -36,9 +29,9 @@ public class LoadBL implements LoadBlService,ApproveLoadInfo {
 				vlv.getTransferName(), vlv.getTransportNum(), list,
 				Double.parseDouble(vlv.getFee()), ApproveState.NotApprove);
 
-		LoadDataService lds=RMIHelper.getLoadData();
+		ShippingDataService sd=RMIHelper.getShippingData();
 		try {
-			lds.insert(lp);
+			sd.insert(lp);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -60,15 +53,21 @@ public class LoadBL implements LoadBlService,ApproveLoadInfo {
     //得到未审批的装运单
 	@Override
 	public ArrayList<LoadorderPO> get() {
-		// TODO Auto-generated method stub
+		ShippingDataService sd=RMIHelper.getShippingData();
+		try {
+			ArrayList<LoadorderPO> loadorderList=sd.get();
+			return loadorderList;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	// 保存装车单
 	@Override
 	public void save(LoadorderPO lp) {
-		LoadDataService lds=RMIHelper.getLoadData();
+		ShippingDataService sd=RMIHelper.getShippingData();
 		try {
-			lds.insert(lp);
+			sd.insert(lp);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

@@ -26,7 +26,8 @@ public class Warehouse_inData extends UnicastRemoteObject implements Warehouse_i
 			fileWriter.Writer("DataBase/UncheckedStoreinorder.txt", storeinorder, true);
 			fileWriter.Writer("DataBase/NeedOutStoreinorder.txt", storeinorder, true);	
 		}else{
-		fileWriter.Writer("DataBase/Storeinorder.txt", storeinorder, true);			
+		fileWriter.Writer("DataBase/Storeinorder.txt", storeinorder, true);	
+		deleteUncheckedStoreinorder(sp.getOrder_number());
 		}
 	}
 	//查看未入库的到达单
@@ -61,6 +62,25 @@ public class Warehouse_inData extends UnicastRemoteObject implements Warehouse_i
 		}
 		fileWriter.Writer("DataBase/NeedOutStoreinorder.txt", Storeinorderlist, false);
 		return location;
+	}
+	//得到未审批的入库单
+	@Override
+	public ArrayList<String> get() throws RemoteException {
+		ArrayList<String> StoreinOrderList=fileReader
+				.Reader("DataBase/UncheckedStoreinorder.txt");
+		return StoreinOrderList;
+	}
+	//删除审批过的入库单
+	private void deleteUncheckedStoreinorder(String id){
+		ArrayList<String> StoreinOrderList=fileReader
+				.Reader("DataBase/UncheckedStoreinorder.txt");
+		for (String s : StoreinOrderList) {
+			if(s.startsWith(id)){
+				StoreinOrderList.remove(s);
+				break;
+			}			
+		}
+		fileWriter.Writer("DataBase/UncheckedStoreinorder.txt", StoreinOrderList, false);
 	}
 
 }

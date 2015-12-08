@@ -28,32 +28,16 @@ public class ArriverorderPO implements Serializable {
 		return numberOfTransferStation;
 	}
 
-	public void setNumberOfTransferStation(String numberOfTransferStation) {
-		this.numberOfTransferStation = numberOfTransferStation;
-	}
-
 	public String getDate() {
 		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
 	}
 
 	public String getOffnum() {
 		return offnum;
 	}
 
-	public void setOffnum(String offnum) {
-		this.offnum = offnum;
-	}
-
 	public ArriveState getArrive_state() {
 		return arrive_state;
-	}
-
-	public void setArrive_state(ArriveState arrive_state) {
-		this.arrive_state = arrive_state;
 	}
 
 	public ApproveState getCheck_state() {

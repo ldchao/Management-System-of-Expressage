@@ -29,8 +29,8 @@ public class Warehouse_inBL implements Warehouse_inBLService,GetLocationInfo,App
 	public void build(StoreinVO sv) {
 		Warehouse_inDataService wd=RMIHelper.getWarehouse_inData();
 		StoreinorderPO sp=new StoreinorderPO(sv.getOrder_number(), sv.getDate(),
-				sv.getOffnum(), sv.getQu(), sv.getPai(), sv.getWei(), 
-				sv.getJia(), ApproveState.NotApprove);
+				sv.getOffnum(), sv.getQu(), sv.getPai(),  
+				sv.getJia(),sv.getWei(), ApproveState.NotApprove);
 		try {
 			wd.insert(sp);
 		} catch (RemoteException e) {
@@ -77,7 +77,22 @@ public class Warehouse_inBL implements Warehouse_inBLService,GetLocationInfo,App
 	//得到未审批的入库单
 	@Override
 	public ArrayList<StoreinorderPO> get() {
-		// TODO Auto-generated method stub
+		ArrayList<StoreinorderPO> storeinorderList=new ArrayList<>();
+		Warehouse_inDataService wd=RMIHelper.getWarehouse_inData();
+		
+		try {
+			ArrayList<String> list=wd.get();
+			for (String s : list) {
+				String[] order=s.split(";");
+				StoreinorderPO sp=new StoreinorderPO(order[0],
+						order[1], order[2], order[3], order[4], 
+						order[5], order[6], ApproveState.NotApprove);
+				storeinorderList.add(sp);
+			}
+			return storeinorderList;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

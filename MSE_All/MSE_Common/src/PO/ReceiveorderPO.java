@@ -6,12 +6,12 @@ import State.ApproveState;
 import State.ArriveState;
 
 public class ReceiveorderPO implements Serializable{
-	String date;
-	String departPlace;
-	String arrivePlace;
-	ArriveState arriveState;
-	ArrayList<String> order;
-	ApproveState approveState;
+	String date;  //到达日期1
+	String departPlace;//出发地2
+	String arrivePlace;//到达地3
+	ArriveState arriveState;//到达状态4
+	ArrayList<String> order;//所有单据5
+	ApproveState approveState;//审批状态6
 
 	public ReceiveorderPO(String date, String departPlace, String arrivePlace,
 			ArriveState arriveState, ArrayList<String> order,ApproveState approveState) {
@@ -46,6 +46,10 @@ public class ReceiveorderPO implements Serializable{
 
 	public ApproveState getApproveState(){
 		return approveState;
+	}
+
+	public void setApproveState(ApproveState approveState) {
+		this.approveState = approveState;
 	}
 	
 }

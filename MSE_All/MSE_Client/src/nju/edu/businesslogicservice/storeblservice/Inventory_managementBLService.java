@@ -27,6 +27,4 @@ public interface Inventory_managementBLService {
 	// 设置指定区域的提醒值
 	public void setRemindData(int area, String RemindData);
 
-	// 根据区域得到所有订单号
-	public ArrayList<String> getOrderList(String qu);
 }

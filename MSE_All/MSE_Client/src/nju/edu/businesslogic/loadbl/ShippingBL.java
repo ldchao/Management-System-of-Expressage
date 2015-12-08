@@ -90,7 +90,13 @@ public class ShippingBL implements ShippingBLService,ApproveLoadInfo {
    //得到未审批的装运单
 	@Override
 	public ArrayList<LoadorderPO> get() {
-		// TODO Auto-generated method stub
+		ShippingDataService sd=RMIHelper.getShippingData();
+		try {
+			ArrayList<LoadorderPO> loadorderList=sd.get();
+			return loadorderList;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	// 存储新建的装车单

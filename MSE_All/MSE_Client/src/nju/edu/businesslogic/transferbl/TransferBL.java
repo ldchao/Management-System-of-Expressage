@@ -8,9 +8,12 @@ import nju.edu.VO.ChangeorderVO;
 import nju.edu.businesslogic.storebl.StoreMessageBL;
 import nju.edu.businesslogicservice.transferblservice.StoreinInfo;
 import nju.edu.businesslogicservice.transferblservice.TransferBLService;
+import nju.edu.dataservice.transferdataservice.ReceiFormDataService;
 import nju.edu.dataservice.transferdataservice.TransferDataService;
 import PO.ChangeorderPO;
+import PO.ReceiveorderPO;
 import State.ApproveState;
+import State.ArriveState;
 import StaticValue.StoreNum;
 
 public class TransferBL implements TransferBLService,ApproveTransferInfo{
@@ -58,7 +61,24 @@ public class TransferBL implements TransferBLService,ApproveTransferInfo{
 //得到未审批的中转单
 	@Override
 	public ArrayList<ChangeorderPO> get() {
-		// TODO Auto-generated method stub
+		ArrayList<ChangeorderPO> changeorderList=new ArrayList<>();
+		TransferDataService td = RMIHelper.getTransferData();
+		ArrayList<String> orderlist=new ArrayList<>();
+		try {
+			ArrayList<String> list=td.get();
+			for (String s : list) {
+				String[] order=s.split(";");
+				orderlist.clear();
+				orderlist.add(order[6]);
+				ChangeorderPO rp=new ChangeorderPO(
+						order[1], order[0], order[2], order[3], order[4],
+						order[5], orderlist, ApproveState.NotApprove);
+				changeorderList.add(rp);
+			}
+			return changeorderList;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	//存储审批后的中转单

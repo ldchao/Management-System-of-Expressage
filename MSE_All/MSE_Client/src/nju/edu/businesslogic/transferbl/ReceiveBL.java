@@ -7,9 +7,11 @@ import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.ArriverorderVO;
 import nju.edu.VO.LoadorderVO;
 import nju.edu.businesslogicservice.transferblservice.ReceiveBLService;
+import nju.edu.dataservice.transferdataservice.ReceiFormDataService;
 import nju.edu.dataservice.transferdataservice.ReceiveDataService;
 import PO.ArriverorderPO;
 import PO.LoadorderPO;
+import PO.ReceiveorderPO;
 import State.ApproveState;
 import State.ArriveState;
 
@@ -35,7 +37,21 @@ public class ReceiveBL implements ReceiveBLService ,ApproveReceiveInfo{
 //得到未审批的中转中心到达单
 	@Override
 	public ArrayList<ArriverorderPO> get() {
-		// TODO Auto-generated method stub
+		ArrayList<ArriverorderPO> arriverorderList=new ArrayList<>();
+		ReceiveDataService rd = RMIHelper.getReceiveData();
+		try {
+			ArrayList<String> list=rd.get();
+			for (String s : list) {
+				String[] order=s.split(";");
+				ArriverorderPO rp=new ArriverorderPO(
+						order[0], order[1], order[2], ArriveState.Whole,
+						 ApproveState.NotApprove);
+				arriverorderList.add(rp);
+			}
+			return arriverorderList;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	// 存储到达单

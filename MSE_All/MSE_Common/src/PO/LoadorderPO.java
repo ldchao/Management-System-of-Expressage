@@ -70,6 +70,10 @@ public class LoadorderPO implements Serializable{
 		return checkState;
 	}
 
+	public void setCheckState(ApproveState checkState) {
+		this.checkState = checkState;
+	}
+
 
 
 }

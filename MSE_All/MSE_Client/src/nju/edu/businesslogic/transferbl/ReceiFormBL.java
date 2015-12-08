@@ -29,7 +29,24 @@ public class ReceiFormBL implements ReceiFormBlService,ApproveReceiFormInfo{
 	//得到未审批的营业厅接收单
 	@Override
 	public ArrayList<ReceiveorderPO> get() {
-		// TODO Auto-generated method stub
+		ArrayList<ReceiveorderPO> receiveorderList=new ArrayList<>();
+		ReceiFormDataService receiFormdata = RMIHelper.getReceiFormData();
+		ArrayList<String> orderlist=new ArrayList<>();
+		try {
+			ArrayList<String> list=receiFormdata.get();
+			for (String s : list) {
+				String[] order=s.split(";");
+				orderlist.clear();
+				orderlist.add(order[4]);
+				ReceiveorderPO rp=new ReceiveorderPO(
+						order[0], order[1], order[2], ArriveState.Whole,
+						orderlist, ApproveState.NotApprove);
+				receiveorderList.add(rp);
+			}
+			return receiveorderList;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

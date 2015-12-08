@@ -10,6 +10,9 @@ public interface Warehouse_outDataService extends Remote {
 
 	// 在数据库中插入一条出库单PO
 	public void insert(StoreoutorderPO sp) throws RemoteException;
+	
+	//得到未审批的出库单
+	public ArrayList<String> get() throws RemoteException;
 
 	// 查看未办理出库的中转单
 	public ArrayList<String> checkUnstoreoutChangeorder()

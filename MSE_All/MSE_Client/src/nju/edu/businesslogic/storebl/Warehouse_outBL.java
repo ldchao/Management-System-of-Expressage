@@ -12,6 +12,7 @@ import nju.edu.businesslogicservice.storeblservice.GetLocationInfo;
 import nju.edu.businesslogicservice.storeblservice.StoreinUpdateInfo;
 import nju.edu.businesslogicservice.storeblservice.Warehouse_outBLService;
 import nju.edu.dataservice.loaddataservice.ShippingDataService;
+import nju.edu.dataservice.storedataservice.Warehouse_inDataService;
 import nju.edu.dataservice.storedataservice.Warehouse_outDataService;
 import PO.StoreinorderPO;
 import PO.StoreoutorderPO;
@@ -78,8 +79,24 @@ public class Warehouse_outBL implements Warehouse_outBLService,ApproveWarehouse_
 	//得到未审批的入库单
 	@Override
 	public ArrayList<StoreoutorderPO> get() {
-		// TODO Auto-generated method stub
+		ArrayList<StoreoutorderPO> storeoutorderList=new ArrayList<>();
+		Warehouse_outDataService wd=RMIHelper.getWarehouse_outData();
+		
+		try {
+			ArrayList<String> list=wd.get();
+			for (String s : list) {
+				String[] order=s.split(";");
+				StoreoutorderPO sp=new StoreoutorderPO(order[0],
+						order[1], order[2], order[3], order[4], 
+						 ApproveState.NotApprove);
+				storeoutorderList.add(sp);
+			}
+			return storeoutorderList;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
+
 	}
 
 	//存储新建的入库单

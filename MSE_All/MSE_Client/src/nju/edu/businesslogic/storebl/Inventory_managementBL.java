@@ -96,6 +96,8 @@ public class Inventory_managementBL implements Inventory_managementBLService{
 	public void InventoryOrderToExcel(String qu) {
 		String[][] ordermessage=checkInventoryOrder(qu);
 		ArrayList<String> orderlist=new ArrayList<>();
+		String header="快递编号,入库日期,目的地,区号,排号,架号,位号";
+		orderlist.add(header);
 		for (int i = 0; i < ordermessage.length; i++) {
 			String s=ordermessage[i][0]+","+ordermessage[i][1]+","+ordermessage[i][2]+","
 		 +ordermessage[i][3]+","+ordermessage[i][4]+","+ordermessage[i][5]+","+ordermessage[i][6];
@@ -129,18 +131,5 @@ public class Inventory_managementBL implements Inventory_managementBLService{
 		im.setRemindData(area, RemindData);
 		
 	}
-
-	@Override
-	public ArrayList<String> getOrderList(String qu) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-
-	
-	
-
-	
 
 }

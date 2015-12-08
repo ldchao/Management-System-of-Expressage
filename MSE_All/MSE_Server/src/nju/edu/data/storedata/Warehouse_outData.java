@@ -24,6 +24,7 @@ public class Warehouse_outData extends UnicastRemoteObject implements  Warehouse
 			fileWriter.Writer("DataBase/UncheckedStoreoutorder.txt", storeoutorder, true);
 		}else{
 		fileWriter.Writer("DataBase/Storeoutorder.txt", storeoutorder, true);
+		deleteUncheckedStoreoutorder(sp.getOrder_number());
 		}
 		
 	}
@@ -50,5 +51,24 @@ public class Warehouse_outData extends UnicastRemoteObject implements  Warehouse
 		fileWriter.Writer("DataBase/unStoreout_Changeorder.txt", Changeorderlist, false);
 		
 	}
+	//得到未审批的出库单
+	@Override
+	public ArrayList<String> get() throws RemoteException {
+		ArrayList<String> StoreoutOrderList=fileReader
+				.Reader("DataBase/UncheckedStoreoutorder.txt");
+		return StoreoutOrderList;
+	}
+	//删除审批过的入库单
+		private void deleteUncheckedStoreoutorder(String id){
+			ArrayList<String> StoreinOrderList=fileReader
+					.Reader("DataBase/UncheckedStoreoutorder.txt");
+			for (String s : StoreinOrderList) {
+				if(s.startsWith(id)){
+					StoreinOrderList.remove(s);
+					break;
+				}			
+			}
+			fileWriter.Writer("DataBase/UncheckedStoreoutorder.txt", StoreinOrderList, false);
+		}
 
 }

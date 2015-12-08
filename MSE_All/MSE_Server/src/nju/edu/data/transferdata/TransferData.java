@@ -2,7 +2,9 @@ package nju.edu.data.transferdata;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
+import nju.edu.data.FileIO.fileReader;
 import nju.edu.data.FileIO.fileWriter;
 import nju.edu.dataservice.transferdataservice.TransferDataService;
 import PO.ChangeorderPO;
@@ -27,10 +29,27 @@ public class TransferData extends UnicastRemoteObject implements TransferDataSer
 			fileWriter.Writer("DataBase/UncheckedChangeorder.txt", new_changeorder, true);
 		else{
         fileWriter.Writer("DataBase/Changeorder.txt", new_changeorder, true);
+        deleteUncheckedChangeorder(cp.getNumberOfTransfer());
         fileWriter.Writer("DataBase/unStoreout_Changeorder.txt", new_changeorder, true);
         fileWriter.Writer("DataBase/unShipping_Changeorder.txt", new_changeorder, true);
         }
 		
 	}
+	//得到未审批的中转单
+	@Override
+	public ArrayList<String> get() throws RemoteException {
+		ArrayList<String> list=fileReader.Reader("DataBase/UncheckedChangeorder.txt");
+		return list;
+	}
 
+	private void deleteUncheckedChangeorder(String id){
+		ArrayList<String> list=fileReader.Reader("DataBase/UncheckedChangeorder.txt");
+		for (String s : list) {
+			if(s.startsWith(id)){
+				list.remove(s);
+				break;
+			}
+		}
+		fileWriter.Writer("DataBase/UncheckedChangeorder.txt", list, false);
+	}
 }

@@ -22,13 +22,15 @@ public class ReceiveData extends UnicastRemoteObject implements
 	@Override
 	public void insert(ArriverorderPO ap) throws RemoteException {
 		String new_arriverorder = ap.getDate() + ";" + ap.getNumberOfTransferStation()
-				+ ";" + ap.getOffnum() + ";" + ap.getArrive_state() + ";"
-				+ ap.getCheck_state();
+				+ ";" + ap.getOffnum() + ";" + ap.getArrive_state() + ";";
+		String s=new_arriverorder+ApproveState.NotApprove;
+		new_arriverorder+=ap.getCheck_state();
 		if(ap.getCheck_state()==ApproveState.NotApprove)
 			fileWriter.Writer("DataBase/UncheckedArriverorder.txt", new_arriverorder, true);
 		else{
         fileWriter.Writer("DataBase/Arriverorder.txt", new_arriverorder, true);
         fileWriter.Writer("DataBase/unStorein_Arriveorder.txt", new_arriverorder, true);
+        deleteUncheckedArriverorder(s);
         }
 	}
 
@@ -65,6 +67,18 @@ public class ReceiveData extends UnicastRemoteObject implements
 
 		return lp;
 	}
+	//查看未审批的接收单
+	@Override
+	public ArrayList<String> get() throws RemoteException {
+		ArrayList<String> list=fileReader.Reader("DataBase/UncheckedArriverorder.txt");
+		return list;
+	}
+	
+	private void deleteUncheckedArriverorder(String s){
+		ArrayList<String> list=fileReader.Reader("DataBase/UncheckedArriverorder.txt");
 
+		list.remove(s);
+		fileWriter.Writer("DataBase/UncheckedArriverorder.txt", list, false);		 
+	}
 
 }
