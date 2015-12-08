@@ -1,28 +1,28 @@
 package nju.edu.presentation.Transit_center_storemasterui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
-import javax.swing.border.EmptyBorder;
 
 import PO.LoginPO;
 import nju.edu.businesslogic.storebl.StoreMessageBL;
-import nju.edu.presentation.Transit_center_salesmanui.Receiveui;
-import nju.edu.presentation.Transit_center_salesmanui.Transit_center_salesman_mainui;
+import nju.edu.presentation.Loginui.PersonalInfomation;
 
+@SuppressWarnings("serial")
 public class Transit_center_storemaster_mainui extends JFrame {
 
 	private JPanel contentPane;
 	Transit_center_storemaster_mainui main;
 	StoreMessageBL sm;
 	JLabel label_3;
+	private PersonalInfomation perinfo;
 
 	/**
 	 * Create the frame.
@@ -31,7 +31,8 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		
 		main=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 100, 750, 600);
+		setSize(750, 600);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		this.add(contentPane);
 		contentPane.setLayout(null);
@@ -65,6 +66,26 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		contentPane.add(label_1);
+		label_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				perinfo = new PersonalInfomation(loginPO, main);
+				perinfo.setLocation(750, 125);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (perinfo.getMouseState() == true)
+					perinfo.dispose();
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				perinfo.setLocation(750, 125);
+				perinfo.setAlwaysOnTop(true);
+				perinfo.setMouseState(false);
+			}
+		});
 
 		JLabel label_2 = new JLabel("入库管理");
 		label_2.setBounds(109, 172, 54, 15);

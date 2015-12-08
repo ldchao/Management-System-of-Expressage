@@ -24,6 +24,6 @@ public interface VehicleDataService extends Remote{
 	public boolean isExist(String carNum) throws RemoteException;
 	
 	//¸ü¸Ä³µÁ¾×´Ì¬
-	public boolean updateState(String carNum, TransportState state);
+	public boolean updateState(String carNum, TransportState state)throws RemoteException;
 	
 }
