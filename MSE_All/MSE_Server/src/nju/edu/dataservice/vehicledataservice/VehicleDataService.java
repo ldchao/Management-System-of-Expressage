@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import PO.VehiclePO;
+import State.TransportState;
 
 public interface VehicleDataService extends Remote{
 	
@@ -18,5 +19,11 @@ public interface VehicleDataService extends Remote{
 	
 	//删除车辆信息
 	public void delete(VehiclePO po) throws RemoteException;
+	
+	//是否存在
+	public boolean isExist(String carNum) throws RemoteException;
+	
+	//更改车辆状态
+	public boolean updateState(String carNum, TransportState state);
 	
 }

@@ -38,7 +38,7 @@ public class FmainPanel extends JPanel implements Runnable {
 		lblHello.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				perinfo = new PersonalInfomation(loginPO);
+				perinfo = new PersonalInfomation(loginPO, main);
 				perinfo.setLocation(750, 115);
 			}
 

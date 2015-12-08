@@ -82,4 +82,24 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 
 		return userlist;
 	}
+
+	public void UpdatePassword(String User, String password) {
+
+		ArrayList<String> userList = new ArrayList<>();
+		try {
+			ArrayList<UserPO> list = finds();
+			for (UserPO po : list) {
+				if (po.getName().equals(User)) {
+					userList.add(User + ";" + password + ";" + po.getLimit());
+				} else {
+					userList.add(po.getName() + ";" + po.getKey() + ";"
+							+ po.getLimit());
+				}
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
+		fileWriter.Writer("DataBase/User.txt", userList, false);
+	}
 }

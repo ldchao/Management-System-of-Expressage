@@ -3,4 +3,5 @@ encoding//src/PO/DriverPO.java=UTF-8
 encoding//src/PO/PayeeorderPO.java=UTF-8
 encoding//src/PO/ReceiveorderPO.java=UTF-8
 encoding//src/PO/SendorderPO.java=UTF-8
-encoding//src/PO/VehiclePO.java=UTF-8
+encoding//src/PO/VehiclePO.java=GBK
+encoding/<project>=GBK

@@ -2,39 +2,118 @@ package nju.edu.data.vehicledata;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+
+
 
 import PO.VehiclePO;
+import State.TransportState;
+import nju.edu.data.FileIO.fileReader;
+import nju.edu.data.FileIO.fileWriter;
 import nju.edu.dataservice.vehicledataservice.VehicleDataService;
 
 public class VehicleData extends UnicastRemoteObject implements VehicleDataService{
 
 	public VehicleData() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void insert(VehiclePO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		fileWriter fileWriter=new fileWriter();
+		String temp="";
+		temp+=po.getCarNum()+";";
+		temp+=po.getEngineNum()+";";
+		temp+=po.getCar()+";";
+		temp+=po.getDriver()+";";
+		temp+=po.getBaseNum()+";";
+		temp+=po.getBuyDate()+";";
+		temp+=po.getUseDate()+";";
+		temp+=po.getCarState().toString();
+		fileWriter.Writer("Database/Vehicle.txt", temp, true);
 	}
 
 	@Override
 	public void update(VehiclePO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		VehicleData data = new VehicleData();
+		data.delete(data.find(po.getCarNum()));
+		data.insert(po);
 	}
 
 	@Override
 	public VehiclePO find(String carNum) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		VehiclePO po;
+		fileReader fileReader = new fileReader();
+		String[] temp = null;
+		ArrayList<String> arrayList = fileReader.Reader("Database/Vehicle.txt");
+		for (int i = 0; i < arrayList.size(); i++) {
+			temp = arrayList.get(i).split(";");
+			if (temp[0].equals(carNum)) {
+				break;
+			}
+		}
+		
+		TransportState state = null;
+		switch (temp[7]) {
+		case "Busy":state = TransportState.Busy;
+	 	case "Available":state = TransportState.Available;
+			break;
+		default:
+			break;
+		}
+		
+		po = new VehiclePO(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6],state);
+		return po;
 	}
 
 	@Override
 	public void delete(VehiclePO po) throws RemoteException {
-		// TODO Auto-generated method stub
+		fileReader fileReader = new fileReader();
+		String[] temp = null;
+		ArrayList<String> arrayList = fileReader.Reader("Database/Vehicle.txt");
+		for (int i = 0; i < arrayList.size(); i++) {
+			temp = arrayList.get(i).split(";");
+			if (temp[0].equals(po.getCarNum())) {
+				arrayList.remove(i);
+				break;
+			}
+		}
+		fileWriter fileWriter = new fileWriter();
+		fileWriter.Writer("Database/Vehicle.txt", arrayList, false);
+		
 		
 	}
 
+	@Override
+	public boolean isExist(String carNum) throws RemoteException {
+		boolean isExist = false;
+		fileReader fileReader = new fileReader();
+		String[] temp = null;
+		ArrayList<String> arrayList = fileReader.Reader("Database/Vehicle.txt");
+		for (int i = 0; i < arrayList.size(); i++) {
+			temp = arrayList.get(i).split(";");
+			if (temp[0].equals(carNum)) {
+				isExist = true;
+			}
+		}
+		return isExist;
+	}
+
+	@Override
+	public boolean updateState(String carNum, TransportState state) {
+		boolean success = false;
+		VehicleData data;
+		try {
+			data = new VehicleData();
+			VehiclePO po = data.find(carNum);
+			po.setCarState(state);
+			data.update(po);
+			if (data.find(carNum).getCarState() == state) {
+				success = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return success;
+	}
 }

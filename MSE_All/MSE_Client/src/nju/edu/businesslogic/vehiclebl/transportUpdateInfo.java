@@ -4,5 +4,6 @@ import State.TransportState;
 
 public interface transportUpdateInfo {
 	//¸üÐÂ³µÁ¾×´Ì¬
-	public void update(String key,TransportState state);
+	public boolean update(String carNum,TransportState state);
+		
 }
