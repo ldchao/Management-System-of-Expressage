@@ -4,14 +4,15 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-
-
+import PO.DriverPO;
 import PO.VehiclePO;
+import State.DriverState;
 import State.TransportState;
 import nju.edu.data.FileIO.fileReader;
 import nju.edu.data.FileIO.fileWriter;
 import nju.edu.dataservice.vehicledataservice.VehicleDataService;
 
+@SuppressWarnings("serial")
 public class VehicleData extends UnicastRemoteObject implements VehicleDataService{
 
 	public VehicleData() throws RemoteException {
@@ -103,13 +104,20 @@ public class VehicleData extends UnicastRemoteObject implements VehicleDataServi
 	public boolean updateState(String carNum, TransportState state) {
 		boolean success = false;
 		VehicleData data;
+		DriverData data2;
+		DriverState driverState = DriverState.Available;
+		if (state.toString().equals("Busy")) {
+			driverState = DriverState.Busy;
+		}
+		
 		try {
 			data = new VehicleData();
+			data2 = new DriverData();
 			VehiclePO po = data.find(carNum);
 			po.setCarState(state);
 			data.update(po);
 			if (data.find(carNum).getCarState() == state) {
-				success = true;
+				success = data2.updateState(po.getDriver(), driverState);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

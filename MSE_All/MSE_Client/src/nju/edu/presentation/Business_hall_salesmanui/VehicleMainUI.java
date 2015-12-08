@@ -44,13 +44,14 @@ public class VehicleMainUI extends JPanel{
 		label.setBounds(100, 14, 200, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("张三，你好！");
+		JLabel label_1 = new JLabel("阙帅，你好！");
 		label_1.setBounds(600, 14, 100, 15);
 		add(label_1);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 533, 734, 28);
 		add(toolBar);
+		toolBar.setEnabled(false);
 
 		JLabel label_4 = new JLabel("状态栏");
 		toolBar.add(label_4);
@@ -76,7 +77,6 @@ public class VehicleMainUI extends JPanel{
 					if (isValid) {
 						vo = vehicleBl.find(carNum);
 						VehicleImfo imfo = new VehicleImfo(main, nowPanel);
-//						vo = new VehicleVO("11111111","1","1", "1", "1", "1", "1", TransportState.Busy);
 						imfo.show(vo);
 						main.remove(nowPanel);
 						main.getContentPane().add(imfo);

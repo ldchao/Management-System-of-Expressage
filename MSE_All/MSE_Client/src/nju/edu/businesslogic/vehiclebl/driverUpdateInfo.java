@@ -5,6 +5,6 @@ import State.DriverState;
 public interface driverUpdateInfo {
 	
 	//更新司机信息
-	public void update(String key, DriverState state);
+	public boolean update(String name, DriverState state);
 
 }

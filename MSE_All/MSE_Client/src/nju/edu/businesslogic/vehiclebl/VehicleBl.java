@@ -3,7 +3,6 @@ package nju.edu.businesslogic.vehiclebl;
 import PO.VehiclePO;
 import State.TransportState;
 import nju.edu.RMI_init.RMIHelper;
-import nju.edu.VO.OrderVO;
 import nju.edu.VO.VehicleVO;
 import nju.edu.businesslogicservice.vehicleblservice.VehicleBlService;
 import nju.edu.dataservice.vehicledataservice.VehicleDataService;
@@ -73,7 +72,7 @@ public class VehicleBl implements VehicleBlService,transportUpdateInfo{
 		try {
 			success = VehicleData.updateState(carNum, state);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return success;
 	}

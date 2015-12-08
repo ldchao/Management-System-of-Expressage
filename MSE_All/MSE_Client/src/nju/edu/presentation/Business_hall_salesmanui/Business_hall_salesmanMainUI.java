@@ -112,9 +112,9 @@ public class Business_hall_salesmanMainUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DriverMainUI driverImfoUI = new DriverMainUI(main, contentPane);
+				DriverMainUI driverMainUI = new DriverMainUI(main, contentPane);
 				main.remove(contentPane);
-				main.getContentPane().add(driverImfoUI);
+				main.getContentPane().add(driverMainUI);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);

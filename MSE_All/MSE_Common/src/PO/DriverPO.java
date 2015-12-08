@@ -105,7 +105,7 @@ public class DriverPO implements Serializable{
         void
     */
 	
-	public void setDriverState() {
+	public void setDriverState(DriverState driverState) {
 		this.driverState = driverState;
 	}
 
