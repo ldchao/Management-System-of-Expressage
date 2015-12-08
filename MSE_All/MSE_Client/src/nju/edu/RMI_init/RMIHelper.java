@@ -9,11 +9,10 @@ import nju.edu.dataservice.accountdataservice.AccountDataService;
 import nju.edu.dataservice.approvedataservice.ApproveDataService;
 import nju.edu.dataservice.billdataservice.BillDataService;
 import nju.edu.dataservice.checklistdataservice.ChecklistDataService;
-import nju.edu.dataservice.financedataservice.PayorderDataService;
 import nju.edu.dataservice.financedataservice.PayeeorderDataService;
+import nju.edu.dataservice.financedataservice.PayorderDataService;
 import nju.edu.dataservice.listindataservice.ListinDataService;
 import nju.edu.dataservice.listindataservice.ReceiverinDataService;
-import nju.edu.dataservice.loaddataservice.LoadDataService;
 import nju.edu.dataservice.loaddataservice.ShippingDataService;
 import nju.edu.dataservice.policydataservice.ConstantPolicyDataService;
 import nju.edu.dataservice.policydataservice.SalaryPolicyDataService;
@@ -45,7 +44,6 @@ public class RMIHelper {
 	private static PayeeorderDataService PayeeorderData;
 	private static ListinDataService ListinData;
 	private static ReceiverinDataService ReceiverinData;
-	private static LoadDataService LoadData;
 	private static ShippingDataService ShippingData;
 	private static ConstantPolicyDataService ConstantPolicyData;
 	private static SalaryPolicyDataService SalaryPolicyData;
@@ -93,7 +91,6 @@ public class RMIHelper {
 				.lookup(urlPrefix + "ListinData");
 		ReceiverinData = (ReceiverinDataService) Naming.lookup(urlPrefix
 				+ "ReceiverinData");
-		LoadData = (LoadDataService) Naming.lookup(urlPrefix + "LoadData");
 		ShippingData = (ShippingDataService) Naming.lookup(urlPrefix
 				+ "ShippingData");
 		ConstantPolicyData = (ConstantPolicyDataService) Naming.lookup(urlPrefix
@@ -153,10 +150,6 @@ public class RMIHelper {
 
 	public static ReceiverinDataService getReceiverinData() {
 		return ReceiverinData;
-	}
-
-	public static LoadDataService getLoadData() {
-		return LoadData;
 	}
 
 	public static ShippingDataService getShippingData() {

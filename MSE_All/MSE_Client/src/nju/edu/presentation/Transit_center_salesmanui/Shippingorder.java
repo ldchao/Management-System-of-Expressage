@@ -149,9 +149,8 @@ public class Shippingorder extends JPanel {
 		add(lblNewLabel_6);
 
 		JLabel label_3 = new JLabel("_ _ _ _ _");
-		double total = 0;
-		// total=sb.getTotal(cv.getOrder_number(), cv.getOffnum(),
-		// cv.getArrivenum(), cv.getWayOfTransport());
+		double total = sb.getTotal(cv.getOrder_number(), cv.getOffnum(),
+		 cv.getArrivenum(), cv.getWayOfTransport());
 		label_3.setText(total + "Ԫ");
 		label_3.setBounds(182, 421, 72, 15);
 		add(label_3);
