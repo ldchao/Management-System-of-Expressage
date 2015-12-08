@@ -115,7 +115,25 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 	@Override
 	public void update(String id, String message) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		fileReader fileReader=new fileReader();
+		String [] temp=null;
+		ArrayList<String> arrayList=fileReader.Reader("Database/Order.txt");
+		int a=-1;
+		for(int i=0;i<arrayList.size();i++){
+			temp=arrayList.get(i).split(";");
+			if(temp[1].equals(id)){
+				a=i;
+				break;
+			}
+		}
+		String t="";
+		for(int j=0;j<temp.length-1;j++){
+			t+=temp[j]+";";
+		}
+		t+=temp[temp.length-1]+message+";";
+		arrayList.set(a, t);
+		fileWriter fileWriter=new fileWriter();
+		fileWriter.Writer("Database/Order.txt", arrayList, false);
 	}
 	@Override
 	public double getWeigtht(String id) throws RemoteException {

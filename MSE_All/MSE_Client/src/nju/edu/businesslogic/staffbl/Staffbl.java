@@ -121,7 +121,7 @@ public class Staffbl implements StaffBLService,checkStaffInfo,editStaffInfo{
 	
 	
 	@Override
-	public void editTheID(String oldID, String newID) {
+	public void editTheID(String oldID, String newID,String position) {
 		// TODO Auto-generated method stub
 		
 	}
