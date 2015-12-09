@@ -23,7 +23,7 @@ public class Changeorder_Input extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Changeorder_Input(JFrame m, JPanel jp,LoginPO loginPO) {
+	public Changeorder_Input(JFrame m, JPanel jp,JPanel jp2,LoginPO loginPO) {
 		main = m;
 		JPanel lastui = jp;
 		Changeorder_Input nowPanel = this;
@@ -103,12 +103,12 @@ public class Changeorder_Input extends JPanel {
 				} else {
 					if (paiNum == 4) {
 						Changeorder_choose_BH ctb = new Changeorder_choose_BH(
-								main, nowPanel, qu[quNum], paiNum,loginPO);
+								main, nowPanel,jp2, qu[quNum], paiNum,loginPO);
 						main.remove(nowPanel);
 						main.getContentPane().add(ctb);
 					} else {
 						Changeorder_choose_TC ctc = new Changeorder_choose_TC(
-								main, nowPanel, qu[quNum], paiNum,loginPO);
+								main, nowPanel,jp2, qu[quNum], paiNum,loginPO);
 						main.remove(nowPanel);
 						main.getContentPane().add(ctc);
 					}
@@ -124,7 +124,7 @@ public class Changeorder_Input extends JPanel {
 		JButton btnNewButton_1 = new JButton("È¡Ïû");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Changeorder_Input ti = new Changeorder_Input(main, lastui,loginPO);
+				Changeorder_Input ti = new Changeorder_Input(main, lastui,jp2,loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(ti);
 				main.invalidate();

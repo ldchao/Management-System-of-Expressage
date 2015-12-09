@@ -25,7 +25,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Shippingorder extends JPanel {
+public class Shippingorder extends JPanel implements Runnable{
 
 	/**
 	 * Create the panel.
@@ -37,12 +37,17 @@ public class Shippingorder extends JPanel {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	JFrame main;
+	Shippingorder nowPanel;
+	JPanel returnui;
+	LoginPO loginpo;
 
-	public Shippingorder(JFrame m, JPanel jp, LoginPO loginPO,
+	public Shippingorder(JFrame m, JPanel jp,JPanel jp2, LoginPO loginPO,
 			ChangeorderVO cv, String transport) {
 		main = m;
 		JPanel lastui = jp;
-		Shippingorder nowPanel = this;
+		nowPanel = this;
+		returnui=jp2;
+		loginpo=loginPO;
 		setLayout(null);
 		ShippingBLService sb = new ShippingBL();
 		OrganizationNumPO op = new OrganizationNumPO();
@@ -207,6 +212,8 @@ public class Shippingorder extends JPanel {
 							transferName, transportNum, orderlist, fee,cv.getNumberOfTransfer());
 					sb.build(vlv);
 					label_4.setText("装运单创建成功！");
+					Thread t=new Thread(nowPanel);
+					t.start();
 				}
 			}
 		});
@@ -216,7 +223,7 @@ public class Shippingorder extends JPanel {
 		JButton btnNewButton_1 = new JButton("取消");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Shippingorder sc = new Shippingorder(main, lastui, loginPO, cv,
+				Shippingorder sc = new Shippingorder(main, lastui,jp2, loginPO, cv,
 						transport);
 				main.remove(nowPanel);
 				main.getContentPane().add(sc);
@@ -233,6 +240,21 @@ public class Shippingorder extends JPanel {
 		label_5.setBounds(286, 74, 223, 28);
 		add(label_5);
 
+	}
+
+	@Override
+	public void run() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		Shipping_Inputui si=new Shipping_Inputui(main, returnui, loginpo);
+		main.remove(nowPanel);
+		main.getContentPane().add(si);
+		main.invalidate();
+		main.repaint();
+		main.setVisible(true);
 	}
 
 }

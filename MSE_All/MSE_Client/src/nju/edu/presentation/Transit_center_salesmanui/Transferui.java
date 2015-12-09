@@ -86,7 +86,7 @@ public class Transferui extends JPanel {
 		JButton btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Changeorder_Input ti=new Changeorder_Input(main, nowPanel,loginPO);
+				Changeorder_Input ti=new Changeorder_Input(main, nowPanel,lastui,loginPO);
 				main.remove(nowPanel);				
 				main.getContentPane().add(ti);
 				main.invalidate();

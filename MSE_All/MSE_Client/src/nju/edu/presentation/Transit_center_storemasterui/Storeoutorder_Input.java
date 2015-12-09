@@ -70,9 +70,9 @@ public class Storeoutorder_Input extends JPanel {
 
 		Warehouse_outBLService wb = new Warehouse_outBL();
 		ArrayList<ChangeorderVO> changeorderList = wb.checkRemind();
-		String[][] tablemessage =null;
+		String[][] tablemessage = null;
 		if (changeorderList != null) {
-			 tablemessage = new String[changeorderList.size()][3];
+			tablemessage = new String[changeorderList.size()][3];
 			OrganizationNumPO op = new OrganizationNumPO();
 			int i = -1;
 			for (ChangeorderVO cv : changeorderList) {
@@ -121,7 +121,8 @@ public class Storeoutorder_Input extends JPanel {
 				if (rowpos == -1) {
 					label_4.setText("请选择一张中转单");
 				} else {
-					Storeoutorder s = new Storeoutorder(main, nowPanel, loginPO,changeorderList.get(rowpos));
+					Storeoutorder s = new Storeoutorder(main, nowPanel, lastui,
+							loginPO, changeorderList.get(rowpos));
 					main.remove(nowPanel);
 					main.getContentPane().add(s);
 					main.invalidate();

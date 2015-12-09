@@ -27,7 +27,7 @@ public class Changeorder_choose_TC extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Changeorder_choose_TC(JFrame m, JPanel jp,String qu,int pai,LoginPO loginPO) {
+	public Changeorder_choose_TC(JFrame m, JPanel jp,JPanel jp2,String qu,int pai,LoginPO loginPO) {
 		main = m;
 		JPanel lastui = jp;
 		Changeorder_choose_TC nowPanel = this;
@@ -87,7 +87,7 @@ public class Changeorder_choose_TC extends JPanel {
 				}
 				if(isValue){
 				ArrayList<String> orderlist=storein.getId(qu+"Çø", pai, jia);
-				Changeorder c = new Changeorder(main, nowPanel,loginPO,qu,pai,orderlist);
+				Changeorder c = new Changeorder(main, nowPanel,jp2,loginPO,qu,pai,orderlist);
 				main.remove(nowPanel);
 				main.getContentPane().add(c);
 				main.invalidate();
@@ -103,7 +103,7 @@ public class Changeorder_choose_TC extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Changeorder_choose_TC ctc = new Changeorder_choose_TC(main,
-						lastui,qu,pai,loginPO);
+						lastui,jp2,qu,pai,loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(ctc);
 				main.invalidate();

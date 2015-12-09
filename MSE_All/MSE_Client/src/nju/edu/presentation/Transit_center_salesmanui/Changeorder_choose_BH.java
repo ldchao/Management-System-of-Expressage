@@ -20,11 +20,10 @@ import PO.LoginPO;
 public class Changeorder_choose_BH extends JPanel {
 	JFrame main;
 	JCheckBox[] weiNum = new JCheckBox[60];
-
 	/**
 	 * Create the panel.
 	 */
-	public Changeorder_choose_BH(JFrame m, JPanel jp, String qu, int pai,
+	public Changeorder_choose_BH(JFrame m, JPanel jp, JPanel jp2,String qu, int pai,
 			LoginPO loginPO) {
 		main = m;
 		JPanel lastui = jp;
@@ -131,7 +130,7 @@ public class Changeorder_choose_BH extends JPanel {
 				}
 				if (jia > -1 && isValue) {
 					ArrayList<String> orderlist = storein.getId(jia, wei);
-					Changeorder c = new Changeorder(main, nowPanel, loginPO,"ÆûÔË",9+jia,
+					Changeorder c = new Changeorder(main, nowPanel, jp2,loginPO,"ÆûÔË",9+jia,
 							orderlist);
 					main.remove(nowPanel);
 					main.getContentPane().add(c);
@@ -149,7 +148,7 @@ public class Changeorder_choose_BH extends JPanel {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Changeorder_choose_BH ctb = new Changeorder_choose_BH(main,
-						lastui, qu, pai, loginPO);
+						lastui,jp2, qu, pai, loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(ctb);
 				main.invalidate();

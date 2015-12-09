@@ -13,6 +13,7 @@ import javax.swing.JLayeredPane;
 
 import PO.ArriverorderPO;
 import PO.LoginPO;
+import PO.OrganizationNumPO;
 import nju.edu.VO.ArriverorderVO;
 import nju.edu.VO.LoadorderVO;
 import nju.edu.businesslogic.transferbl.ReceiveBL;
@@ -23,14 +24,16 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Arriverorder extends JPanel {
+public class Arriverorder extends JPanel implements Runnable{
 	private JTextField textField;
 	private JTextField textField_1;
 	JRadioButton rdbtnNewRadioButton;
 	JRadioButton rdbtnNewRadioButton_1;
 	JRadioButton rdbtnNewRadioButton_2;
 	JFrame main;
+	JPanel lastui;
 	LoadorderVO lv;
+	Arriverorder nowPanel;
 
 	/**
 	 * Create the panel.
@@ -38,8 +41,9 @@ public class Arriverorder extends JPanel {
 	public Arriverorder(JFrame m, JPanel jp, LoadorderVO lv,LoginPO loginPO) {
 		main = m;
 		this.lv = lv;
-		JPanel lastui = jp;
-		Arriverorder nowPanel = this;
+		lastui = jp;
+		nowPanel = this;
+		OrganizationNumPO op=new OrganizationNumPO();
 		setLayout(null);
 
 		JButton button = new JButton("返回");
@@ -86,6 +90,8 @@ public class Arriverorder extends JPanel {
 		add(label_3);
 
 		textField = new JTextField();
+		textField.setText(op.getNum(loginPO.getShop()));
+		textField.setEditable(false);
 		textField.setBounds(333, 208, 192, 21);
 		add(textField);
 		textField.setColumns(10);
@@ -96,6 +102,7 @@ public class Arriverorder extends JPanel {
 
 		textField_1 = new JTextField();
 		textField_1.setText(lv.getOffName());
+		textField_1.setEditable(false);
 		textField_1.setBounds(333, 260, 192, 21);
 		add(textField_1);
 		textField_1.setColumns(10);
@@ -140,12 +147,15 @@ public class Arriverorder extends JPanel {
 					label_4.setText("输入信息有误");
 				} else {
 					ArriverorderVO av = new ArriverorderVO(textField.getText(),
-							lblNewLabel_8.getText(), textField_1.getText(),
+							lblNewLabel_8.getText(), lv.getOffNum(),
 							getSelection(),lv.getCarNum(),lv.getMonitorName(),
 							lv.getTransferName(),lv.getOrder());
 					ReceiveBLService rb=new ReceiveBL();
 					rb.build(av);
 					label_4.setText("到达单已提交总经理审批");
+					Thread t=new Thread(nowPanel);
+					t.start();
+					
 				}
 			}
 		});
@@ -187,5 +197,20 @@ public class Arriverorder extends JPanel {
 		return (rdbtnNewRadioButton.isSelected()
 				|| rdbtnNewRadioButton_1.isSelected() || rdbtnNewRadioButton_2
 					.isSelected());
+	}
+
+	@Override
+	public void run() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		main.remove(nowPanel);
+		main.getContentPane().add(lastui);
+		main.invalidate();
+		main.repaint();
+		main.setVisible(true);
+		
 	}
 }

@@ -29,21 +29,26 @@ import java.util.ArrayList;
 
 import javax.swing.JTextArea;
 
-public class Changeorder extends JPanel {
+public class Changeorder extends JPanel implements Runnable{
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	JFrame main;
 	private JTextField textField_4;
+	Changeorder nowPanel;
+	JPanel returnui;
+	LoginPO loginpo;
 	/**
 	 * Create the panel.
 	 */
-	public Changeorder(JFrame m,JPanel jp,LoginPO loginPO,String transferWay,int arriveNum,ArrayList<String> orderlist) {
+	public Changeorder(JFrame m,JPanel jp,JPanel jp2,LoginPO loginPO,String transferWay,int arriveNum,ArrayList<String> orderlist) {
 
 		main=m;
 		JPanel lastui=jp;
-		Changeorder nowPanel=this;
+		nowPanel=this;
+		returnui=jp2;
+		loginpo=loginPO;
 		setLayout(null);
 		
 		JButton button = new JButton("·µ»Ø");
@@ -188,6 +193,8 @@ public class Changeorder extends JPanel {
 							transferWay, moniterName, orderlist);
 					TransferBLService tb=new TransferBL();
 					tb.build(cv);
+					Thread t=new Thread(nowPanel);
+					t.start();
 				}
 				
 			}
@@ -198,7 +205,7 @@ public class Changeorder extends JPanel {
 		JButton btnNewButton_1 = new JButton("È¡Ïû");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Changeorder c=new Changeorder(main, lastui,loginPO,transferWay,arriveNum,orderlist);
+				Changeorder c=new Changeorder(main, lastui,jp2,loginPO,transferWay,arriveNum,orderlist);
 				main.remove(nowPanel);				
 				main.getContentPane().add(c);
 				main.invalidate();
@@ -208,5 +215,19 @@ public class Changeorder extends JPanel {
 		});
 		btnNewButton_1.setBounds(428, 457, 80, 23);
 		add(btnNewButton_1);
+	}
+	@Override
+	public void run() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		Transferui tf=new Transferui(main, returnui, loginpo);
+		main.remove(nowPanel);				
+		main.getContentPane().add(tf);
+		main.invalidate();
+		main.repaint();
+		main.setVisible(true);
 	}
 }

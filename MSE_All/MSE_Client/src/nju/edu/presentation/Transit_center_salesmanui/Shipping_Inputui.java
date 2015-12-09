@@ -127,13 +127,13 @@ public class Shipping_Inputui extends JPanel {
 				} else {
 					Shippingorder shipping_panel;
 					if (tableModel.getValueAt(rowpos, 2).equals("航运")) {
-						shipping_panel = new Shippingorder(main, nowPanel,
+						shipping_panel = new Shippingorder(main, nowPanel,lastui,
 								loginPO, changeorderList.get(rowpos), "飞机");
 					} else if (tableModel.getValueAt(rowpos, 2).equals("铁运")) {
-						shipping_panel = new Shippingorder(main, nowPanel,
+						shipping_panel = new Shippingorder(main, nowPanel,lastui,
 								loginPO, changeorderList.get(rowpos), "火车");
 					} else {
-						shipping_panel = new Shippingorder(main, nowPanel,
+						shipping_panel = new Shippingorder(main, nowPanel,lastui,
 								loginPO, changeorderList.get(rowpos), "汽车");
 					}
 					main.remove(nowPanel);

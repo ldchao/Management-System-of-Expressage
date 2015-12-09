@@ -20,19 +20,27 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Storeoutorder extends JPanel {
+public class Storeoutorder extends JPanel implements Runnable {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	JFrame main;
+	JPanel returnui;
+	JPanel lastui;
+	Storeoutorder nowPanel;
+	LoginPO loginpo;
 
 	/**
 	 * Create the panel.
 	 */
-	public Storeoutorder(JFrame m, JPanel jp, LoginPO loginPO, ChangeorderVO cv) {
-		JFrame main = m;
-		JPanel lastui = jp;
-		Storeoutorder nowPanel = this;
+	public Storeoutorder(JFrame m, JPanel jp, JPanel jp2, LoginPO loginPO,
+			ChangeorderVO cv) {
+		main = m;
+		returnui = jp2;
+		lastui = jp;
+		nowPanel = this;
+		loginpo = loginPO;
 		setLayout(null);
 		OrganizationNumPO op = new OrganizationNumPO();
 
@@ -136,9 +144,11 @@ public class Storeoutorder extends JPanel {
 				if (date.equals("单击选择日期")) {
 					lblNewLabel_4.setText("请选择日期！");
 				} else {
-                     Warehouse_outBLService wb=new Warehouse_outBL();
-                     wb.build(cv, date);
-                     lblNewLabel_4.setText("入库单创建成功！");
+					Warehouse_outBLService wb = new Warehouse_outBL();
+					wb.build(cv, date);
+					lblNewLabel_4.setText("入库单创建成功！");
+					Thread t = new Thread(nowPanel);
+					t.start();
 				}
 
 			}
@@ -149,7 +159,8 @@ public class Storeoutorder extends JPanel {
 		JButton btnNewButton_2 = new JButton("取消");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Storeoutorder s = new Storeoutorder(main, lastui, loginPO, cv);
+				Storeoutorder s = new Storeoutorder(main, lastui, jp2, loginPO,
+						cv);
 				main.remove(nowPanel);
 				main.getContentPane().add(s);
 				main.invalidate();
@@ -164,5 +175,21 @@ public class Storeoutorder extends JPanel {
 		label.setFont(new Font("微软雅黑", Font.BOLD, 24));
 		label.setBounds(320, 88, 148, 38);
 		add(label);
+	}
+
+	@Override
+	public void run() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		Storeoutorder_Input si = new Storeoutorder_Input(main, returnui,
+				loginpo);
+		main.remove(nowPanel);
+		main.getContentPane().add(si);
+		main.invalidate();
+		main.repaint();
+		main.setVisible(true);
 	}
 }
