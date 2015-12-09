@@ -1,5 +1,6 @@
 package nju.edu.presentation.Loginui;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JFrame;
@@ -15,7 +16,6 @@ import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class ChoosePanel extends JPanel {
-	
 
 	/**
 	 * Create the panel.
@@ -25,8 +25,16 @@ public class ChoosePanel extends JPanel {
 		this.setSize(750, 600);
 		JPanel choose = this;
 
-		JButton button = new JButton("查询订单");
-		
+		JButton button = new JButton("");
+		button.setBounds(250, 277, 250, 45);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		ImageIcon icon = new ImageIcon("image/mainSearchButton.png");
+		Image temp = icon.getImage().getScaledInstance(button.getWidth(), button.getHeight(),
+				icon.getImage().SCALE_DEFAULT);
+		icon = new ImageIcon(temp);
+		button.setIcon(icon);
+
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(choose);
@@ -35,14 +43,22 @@ public class ChoosePanel extends JPanel {
 				main.getContentPane().add(checklistPanel);
 				main.invalidate();
 				main.repaint();
+				main.setVisible(true);
 			}
 		});
-		button.setFont(new Font("华文隶书", Font.BOLD, 25));
-//		button.setIcon(new ImageIcon("image/main查询订单按钮.png"));
-		button.setBounds(279, 270, 200, 40);
 		add(button);
 
-		JButton button_1 = new JButton("\u7528\u6237\u767B\u5F55");
+		JButton button_1 = new JButton("登 录");
+		button_1.setBounds(250, 346, 250, 45);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		
+		ImageIcon icon2 = new ImageIcon("image/mainLoginButton.png");
+		Image temp2 = icon2.getImage().getScaledInstance(button_1.getWidth(), button_1.getHeight(),
+				icon2.getImage().SCALE_DEFAULT);
+		icon2 = new ImageIcon(temp2);
+		button_1.setIcon(icon2);
+		
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(choose);
@@ -50,24 +66,16 @@ public class ChoosePanel extends JPanel {
 				main.getContentPane().add(login);
 				main.invalidate();
 				main.repaint();
+				main.setVisible(true);
 			}
 		});
-		button_1.setFont(new Font("华文隶书", Font.BOLD, 25));
-		button_1.setBounds(279, 339, 200, 40);
 		add(button_1);
 	}
-	
-	
-	public void paintComponent(Graphics g){
-		int x =0,y=0;
-		ImageIcon icon = new ImageIcon("image/Artboard 1@3x.png");
-		g.drawImage(icon.getImage(), x, y, getSize().width,
-			     getSize().height, this);
-		
+
+	public void paintComponent(Graphics g) {
+		int x = 0, y = 0;
+		ImageIcon icon = new ImageIcon("image/main.png");
+		g.drawImage(icon.getImage(), x, y, getSize().width, getSize().height, this);
 	}
-//	protected void paintComponent(Graphics g){
-//		super.paintComponent(g);
-//		
-//	}
 
 }
