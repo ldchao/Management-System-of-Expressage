@@ -162,7 +162,7 @@ public class Staff extends JFrame{
 		rdbtnNewRadioButton.setBounds(138, 332, 96, 23);
 		contentPane.add(rdbtnNewRadioButton);
 		
-		radioButton = new JRadioButton("\u7BA1\u7406\u5458");
+		radioButton = new JRadioButton("\u7CFB\u7EDF\u7BA1\u7406\u5458");
 		radioButton.setBounds(267, 332, 126, 23);
 		contentPane.add(radioButton);
 		
@@ -170,7 +170,7 @@ public class Staff extends JFrame{
 		radioButton_1.setBounds(421, 332, 123, 23);
 		contentPane.add(radioButton_1);
 		
-		radioButton_2 = new JRadioButton("\u4F4E\u7EA7\u8D22\u52A1\u4EBA\u5458");
+		radioButton_2 = new JRadioButton("\u8D22\u52A1\u4EBA\u5458");
 		radioButton_2.setBounds(579, 332, 119, 23);
 		contentPane.add(radioButton_2);
 		
@@ -182,7 +182,7 @@ public class Staff extends JFrame{
 		radioButton_4.setBounds(421, 374, 145, 23);
 		contentPane.add(radioButton_4);
 		
-		radioButton_5 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u4EBA\u5458");
+		radioButton_5 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u5458");
 		radioButton_5.setBounds(579, 374, 145, 23);
 		contentPane.add(radioButton_5);
 		

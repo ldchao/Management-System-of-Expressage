@@ -18,7 +18,7 @@ import State.ApproveState;
 import State.ExpressType;
 import State.PackageType;
 
-public class Listinbl implements ListinBLService,ListinInfo,OrderInfo,UpdateInfo{
+public class Listinbl implements ListinBLService,ListinInfo,OrderInfo,UpdateInfo,ListApprove{
 	ListinDataService listinDataService=RMIHelper.getListinData();
 	ConstantPolicyDataService ConstantPolicyDataSerivce=RMIHelper.getConstantPolicyData();
 	@Override
@@ -175,10 +175,8 @@ public class Listinbl implements ListinBLService,ListinInfo,OrderInfo,UpdateInfo
 		return arrayList;
 	}
 	
-	public void changestate(int num){
-		ArrayList<OrderPO> arrayList=getAllOrders();
-		OrderPO po=arrayList.get(num);
-		po.setState(ApproveState.Valid);
+	public void changestate(OrderPO po){
+
 		try {
 			listinDataService.changestate(po);
 		} catch (RemoteException e) {

@@ -125,7 +125,7 @@ public class addStaff extends JFrame implements ItemListener,Runnable{
 		rdbtnNewRadioButton.setBounds(118, 332, 86, 23);
 		contentPane.add(rdbtnNewRadioButton);
 		
-		radioButton = new JRadioButton("\u7BA1\u7406\u5458");
+		radioButton = new JRadioButton("\u7CFB\u7EDF\u7BA1\u7406\u5458");
 		radioButton.setBounds(235, 332, 126, 23);
 		contentPane.add(radioButton);
 		
@@ -150,7 +150,7 @@ public class addStaff extends JFrame implements ItemListener,Runnable{
 		comboBox_1.setBounds(185, 239, 126, 21);
 		contentPane.add(comboBox_1);
 		
-		radioButton_2 = new JRadioButton("\u4F4E\u7EA7\u8D22\u52A1\u4EBA\u5458");
+		radioButton_2 = new JRadioButton("\u8D22\u52A1\u4EBA\u5458");
 		radioButton_2.setBounds(515, 332, 119, 23);
 		contentPane.add(radioButton_2);
 		
@@ -166,7 +166,7 @@ public class addStaff extends JFrame implements ItemListener,Runnable{
 		radioButton_5.setBounds(374, 374, 139, 23);
 		contentPane.add(radioButton_5);
 		
-		radioButton_6 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u4EBA\u5458");
+		radioButton_6 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u5458");
 		radioButton_6.setBounds(515, 374, 154, 23);
 		contentPane.add(radioButton_6);
 		

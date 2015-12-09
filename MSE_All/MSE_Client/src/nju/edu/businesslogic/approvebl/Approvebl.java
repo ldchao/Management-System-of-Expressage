@@ -1,13 +1,19 @@
 package nju.edu.businesslogic.approvebl;
 
+import java.net.InterfaceAddress;
 import java.util.ArrayList;
 
+import PO.LoadorderPO;
 import PO.OrderPO;
+import State.ApproveState;
+import nju.edu.businesslogic.listinbl.ListApprove;
 import nju.edu.businesslogic.listinbl.Listinbl;
+import nju.edu.businesslogic.loadbl.ApproveLoadInfo;
+import nju.edu.businesslogic.loadbl.LoadBL;
 import nju.edu.businesslogicservice.approveblservice.ApproveBLService;
 
 public class Approvebl implements ApproveBLService{
-	Listinbl listinbl=new Listinbl();
+	ListApprove listinbl=new Listinbl();
 	@Override
 	public ArrayList<String> showList(String type) {
 		// TODO Auto-generated method stub
@@ -77,7 +83,24 @@ public class Approvebl implements ApproveBLService{
 
 	private ArrayList<String> getloadorder() {
 		// TODO Auto-generated method stub
-		return null;
+		ApproveLoadInfo approveLoadInfo=new LoadBL();
+		ArrayList<LoadorderPO> arrayList=approveLoadInfo.get();
+		ArrayList<String> strings=new ArrayList<>();
+		for(int i=0;i<arrayList.size();i++){
+			LoadorderPO po=arrayList.get(i);
+			String temp=po.getDate()+";";
+			temp+=po.getLoadorderNum()+";";
+			temp+=po.getTransferNum()+";";
+			temp+=po.getArriveNum()+";";
+			temp+=po.getMonitorName()+";";
+			temp+=po.getTransferName()+";";
+			temp+=po.getTransportNum()+";";
+			temp+=po.getFee()+";";
+			temp+=po.getCheckState()+";";
+			strings.add(temp);
+		}
+		System.out.print(arrayList.size());
+		return strings;
 	}
 
 	private ArrayList<String> getorder() {
@@ -126,9 +149,12 @@ public class Approvebl implements ApproveBLService{
 	public void editList(int num,String type) {
 		// TODO Auto-generated method stub
 		if(type.equals("寄件单")){
-			listinbl.changestate(num);
+			ArrayList<OrderPO> arrayList=listinbl.getAllOrders();
+			OrderPO po=arrayList.get(num);
+			po.setState(ApproveState.Valid);
+//			listinbl.changestate(po);
 		}else if(type.equals("装车单")){
-//			return getloadorder();
+//			ArrayList<LoadorderPO> arrayList
 		}else if(type.equals("营业厅到达单")){
 //			return receiveorder();
 		}else if(type.equals("收款单")){
