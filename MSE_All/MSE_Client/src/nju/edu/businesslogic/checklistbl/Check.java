@@ -3,7 +3,7 @@ import nju.edu.VO.OrderVO;
 import nju.edu.businesslogic.listinbl.Listinbl;
 
 public class Check {
-	private Listinbl listin;
+	private ListinInfo listin;
 	private OrderVO vo;
 	
 	
