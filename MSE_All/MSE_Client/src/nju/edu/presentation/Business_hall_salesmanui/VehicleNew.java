@@ -140,7 +140,7 @@ public class VehicleNew extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (carNum.getText().length() == 0 || engineNum.getText().length() == 0 || car.getText().length() == 0
 						|| driver.getText().length() == 0 || baseNum.getText().length() == 0
-						|| buyDate.getText().length() == 0 || useDate.getText().length() == 0) {
+						|| buyDate.getText().length() == 0 || useDate.getText().length() == 0||useDate.getText().equals("请单击选择日期")||buyDate.getText().equals("请单击选择日期")) {
 					label_4.setText("信息未填写完整！");
 				}else{
 				VehicleVO vo = new VehicleVO(carNum.getText(), engineNum.getText(), car.getText(), driver.getText(),

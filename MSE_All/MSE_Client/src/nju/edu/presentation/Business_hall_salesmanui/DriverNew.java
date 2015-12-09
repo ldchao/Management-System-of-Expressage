@@ -150,7 +150,8 @@ public class DriverNew extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (driverNum.getText().length() == 0 || name.getText().length() == 0 || shopNum.getText().length() == 0
 						|| phoneNum.getText().length() == 0 || idNum.getText().length() == 0
-						|| sex.getSelectedItem().equals("请选择")) {
+						|| sex.getSelectedItem().equals("请选择") || birthDate.getText().equals("请单击选择日期")
+						|| licenseDue.getText().equals("请单击选择日期")) {
 					label_4.setText("信息未填写完整！");
 
 				} else {

@@ -16,7 +16,7 @@ public class SendorderPO implements Serializable{
     
 
     /*  getDate
-        杩斿洖娲鹃�佹棩鏈�
+        返回日期
 	    return String
     */
 	public String getDate(){
@@ -24,7 +24,7 @@ public class SendorderPO implements Serializable{
 	}
 
 	/*  getSender
-        杩斿洖娲鹃�佸憳
+        返回派送员
 	    return sender
     */
 	public String getSender(){
@@ -32,7 +32,7 @@ public class SendorderPO implements Serializable{
 	}
 	
 	/*  getOrder
-        杩斿洖璁㈠崟鍙锋竻鍗�
+        返回订单列表
 	    return ArrayList<String>
     */
 	public ArrayList<String> getOrder(){

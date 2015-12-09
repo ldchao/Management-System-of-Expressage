@@ -109,7 +109,7 @@ public class ReceiFormorder extends JPanel {
 
 		String[] approveState = { "未审批", "审批通过", "审批未通过" };
 		JComboBox comboBox = new JComboBox(approveState);
-		comboBox.setBounds(344, 369, 181, 21);
+		comboBox.setBounds(333, 370, 181, 21);
 		comboBox.setEnabled(false);
 		add(comboBox);
 
@@ -122,7 +122,7 @@ public class ReceiFormorder extends JPanel {
 		add(rdbtnNewRadioButton_1);
 
 		rdbtnNewRadioButton_2 = new JRadioButton("丢失");
-		rdbtnNewRadioButton_2.setBounds(479, 313, 57, 23);
+		rdbtnNewRadioButton_2.setBounds(479, 313, 80, 23);
 		add(rdbtnNewRadioButton_2);
 
 		ButtonGroup bg = new ButtonGroup();
