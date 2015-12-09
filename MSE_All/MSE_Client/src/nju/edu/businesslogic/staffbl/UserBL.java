@@ -46,7 +46,7 @@ public class UserBL implements UserBLService, checkUserInfo,
 		}
 
 		editStaffInfo editstaff = new Staffbl();
-		// editstaff.editTheID(oldname, name,limit);
+		editstaff.editTheID(oldname, name,limit);
 
 		return list;
 	}
