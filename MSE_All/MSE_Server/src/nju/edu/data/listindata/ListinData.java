@@ -134,6 +134,7 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 			t+=temp[j]+";";
 		}
 		t+=temp[temp.length-1]+message+";";
+		if(a!=-1)
 		arrayList.set(a, t);
 		fileWriter fileWriter=new fileWriter();
 		fileWriter.Writer("Database/UnReceiveOrder.txt", arrayList, false);
