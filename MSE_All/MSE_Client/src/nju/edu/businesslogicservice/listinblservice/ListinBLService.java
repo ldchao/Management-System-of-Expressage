@@ -22,6 +22,4 @@ public interface ListinBLService {
 	
 	public boolean JudgeNull(OrderVO vo);
 	
-	//获得所有订单
-	public ArrayList<OrderPO> getAllOrders();
 }
