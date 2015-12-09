@@ -107,6 +107,8 @@ public class Staffbl implements StaffBLService,checkStaffInfo,editStaffInfo{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String []temp=staffPO.getShop().split(",");
+		staffPO.setShop(temp[0]+temp[1]);
 		return staffPO;
 	}
 

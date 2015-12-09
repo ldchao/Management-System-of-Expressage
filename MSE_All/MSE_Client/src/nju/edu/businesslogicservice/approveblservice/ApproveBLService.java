@@ -2,12 +2,14 @@ package nju.edu.businesslogicservice.approveblservice;
 
 import java.util.ArrayList;
 
+import PO.OrderPO;
+
 public interface ApproveBLService {
-	public <T> ArrayList<T> showList(int state,String type);
+	public ArrayList<String> showList(String type);
 	
 	public <T> T checkList(String type);
 	
-	public <T> void editList(T t);
+	public void editList(int num,String type);
 	
 	public void endApprove();
 }

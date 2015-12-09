@@ -141,5 +141,36 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 		OrderPO orderPO=getOrder(id);
 		return orderPO.getWeight();
 	}
+	@Override
+	public ArrayList<OrderPO> getAllOrders() throws RemoteException {
+		// TODO Auto-generated method stub
+		fileReader fileReader=new fileReader();
+		ArrayList<String> arrayList=fileReader.Reader("Database/Order.txt");
+		ArrayList<OrderPO> orderPOs=new ArrayList<>();
+		String []temp=null;
+		for(int i=0;i<arrayList.size();i++){
+			temp=arrayList.get(i).split(";");
+			OrderPO po=getOrder(temp[1]);
+			orderPOs.add(po);
+		}
+		return orderPOs;
+	}
+	
+	@Override
+	public void changestate(OrderPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		fileReader fileReader=new fileReader();
+		String [] temp=null;
+		ArrayList<String> arrayList=fileReader.Reader("Database/Order.txt");
+		int a=-1;
+		for(int i=0;i<arrayList.size();i++){
+			temp=arrayList.get(i).split(";");
+			if(temp[1].equals(po.getId())){
+				a=i;
+				break;
+			}
+		}
+	}
 
+	
 }

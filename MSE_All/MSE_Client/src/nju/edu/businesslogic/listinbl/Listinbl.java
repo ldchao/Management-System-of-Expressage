@@ -10,9 +10,11 @@ import nju.edu.dataservice.policydataservice.ConstantPolicyDataService;
 import nju.edu.businesslogic.checklistbl.ListinInfo;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import PO.OrderPO;
+import State.ApproveState;
 import State.ExpressType;
 import State.PackageType;
 
@@ -160,4 +162,28 @@ public class Listinbl implements ListinBLService,ListinInfo,OrderInfo,UpdateInfo
 		return result;
 	}
 
+	@Override
+	public ArrayList<OrderPO> getAllOrders() {
+		// TODO Auto-generated method stub
+		ArrayList<OrderPO> arrayList=new ArrayList<>();
+		try {
+			arrayList=listinDataService.getAllOrders();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return arrayList;
+	}
+	
+	public void changestate(int num){
+		ArrayList<OrderPO> arrayList=getAllOrders();
+		OrderPO po=arrayList.get(num);
+		po.setState(ApproveState.Valid);
+		try {
+			listinDataService.changestate(po);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

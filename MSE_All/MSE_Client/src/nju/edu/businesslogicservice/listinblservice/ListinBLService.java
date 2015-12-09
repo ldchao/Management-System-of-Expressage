@@ -2,8 +2,11 @@ package nju.edu.businesslogicservice.listinblservice;
 
 import nju.edu.VO.OrderVO;
 
+import java.util.ArrayList;
+
 import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
+import PO.OrderPO;
 import State.ExpressType;
 import State.PackageType;
 import State.ResultMessage;
@@ -18,4 +21,7 @@ public interface ListinBLService {
 	public String getTotalTime(String address1,String address2,ExpressType express);
 	
 	public boolean JudgeNull(OrderVO vo);
+	
+	//获得所有订单
+	public ArrayList<OrderPO> getAllOrders();
 }
