@@ -18,5 +18,5 @@ public interface StaffDataService extends Remote{
 	public void update(StaffPO po)throws RemoteException;
 	
 	//修改用户名,前一个为旧用户名，后一个为新用户名
-	public void editTheID(String oldID,String newID)throws RemoteException;
+	public void editTheID(String oldID,String newID,String position)throws RemoteException;
 }

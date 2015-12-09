@@ -89,7 +89,7 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService {
 
 
 	@Override
-	public void editTheID(String oldID,String newID) throws RemoteException {
+	public void editTheID(String oldID,String newID,String position) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}

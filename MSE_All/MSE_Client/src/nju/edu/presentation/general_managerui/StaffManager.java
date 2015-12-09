@@ -139,7 +139,6 @@ public class StaffManager extends JFrame {
 		
 		// œ‘ æ±Ì∏Ò
 		showTable(staffbl.showStaff());
-		System.out.print(staffbl.showStaff().size());
 		
 		JButton button_2 = new JButton("\u4FEE\u6539");
 		button_2.addActionListener(new ActionListener() {

@@ -107,6 +107,8 @@ public class Staffbl implements StaffBLService,checkStaffInfo,editStaffInfo{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String []temp=staffPO.getShop().split(",");
+		staffPO.setShop(temp[0]+temp[1]);
 		return staffPO;
 	}
 
@@ -121,7 +123,7 @@ public class Staffbl implements StaffBLService,checkStaffInfo,editStaffInfo{
 	
 	
 	@Override
-	public void editTheID(String oldID, String newID) {
+	public void editTheID(String oldID, String newID,String position) {
 		// TODO Auto-generated method stub
 		
 	}
