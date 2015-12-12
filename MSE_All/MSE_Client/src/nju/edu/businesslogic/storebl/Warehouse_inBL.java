@@ -89,11 +89,10 @@ public class Warehouse_inBL implements Warehouse_inBLService,GetLocationInfo,App
 						order[5], order[6], ApproveState.NotApprove);
 				storeinorderList.add(sp);
 			}
-			return storeinorderList;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return storeinorderList;
 	}
 
 	

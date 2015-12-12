@@ -50,11 +50,10 @@ public class ReceiFormBL implements ReceiFormBlService,ApproveReceiFormInfo{
 						orderlist, ApproveState.NotApprove);
 				receiveorderList.add(rp);
 			}
-			return receiveorderList;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return receiveorderList;
 	}
 
 	//保存接收单

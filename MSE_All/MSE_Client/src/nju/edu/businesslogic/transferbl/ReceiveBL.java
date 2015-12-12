@@ -54,11 +54,10 @@ public class ReceiveBL implements ReceiveBLService ,ApproveReceiveInfo{
 						 ApproveState.NotApprove);
 				arriverorderList.add(rp);
 			}
-			return arriverorderList;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return arriverorderList;
 	}
 	// ´æ´¢µ½´ïµ¥
 	@Override

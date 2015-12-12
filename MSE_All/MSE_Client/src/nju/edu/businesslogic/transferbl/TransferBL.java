@@ -75,11 +75,10 @@ public class TransferBL implements TransferBLService,ApproveTransferInfo{
 						order[5], orderlist, ApproveState.NotApprove);
 				changeorderList.add(rp);
 			}
-			return changeorderList;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return changeorderList;
 	}
 	//存储审批后的中转单
 	@Override

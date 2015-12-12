@@ -91,11 +91,10 @@ public class Warehouse_outBL implements Warehouse_outBLService,ApproveWarehouse_
 						 ApproveState.NotApprove);
 				storeoutorderList.add(sp);
 			}
-			return storeoutorderList;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return storeoutorderList;
 
 	}
 
