@@ -45,4 +45,26 @@ public class PayorderData extends UnicastRemoteObject implements
 		return paylist;
 	}
 
+	public void delete(PayorderPO po) throws RemoteException {
+
+		ArrayList<String> filelist = fileReader
+				.Reader("DataBase/uncheckedPayorder.txt");
+		ArrayList<String> list = filelist;
+
+		for (String str : filelist) {
+			String part[] = str.split(";");
+			if (part[0].equals(po.getDate()) && part[1].equals(po.getMoney())
+					&& part[2].equals(po.getAccount())
+					&& part[3].equals(po.getList())
+					&& part[4].equals(po.getComment())
+					&& part[5].equals(po.getPayor())) {
+				
+				list.remove(str);
+				break;
+			}
+		}
+
+		fileWriter.Writer("DataBase/uncheckedPayorder.txt", list, false);
+	}
+
 }

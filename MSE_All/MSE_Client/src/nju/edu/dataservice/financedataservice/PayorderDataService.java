@@ -19,4 +19,7 @@ public interface PayorderDataService extends Remote {
 	public double[] profit(ArrayList<PayorderPO> pay,
 			ArrayList<PayeeorderPO> payee) throws RemoteException;
 
+	// É¾³ıÒÑÉóÅúµÄ
+	public void delete(PayorderPO po) throws RemoteException;
+
 }

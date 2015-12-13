@@ -93,6 +93,7 @@ public class PayorderBL implements PayorderBLService, checkPayorderInfo,
 
 		try {
 			payorderData.insert(po);
+			payorderData.delete(po);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

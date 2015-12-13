@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.PayeeorderPO;
+import PO.PayorderPO;
 
 public interface PayeeorderDataService extends Remote {
 
@@ -15,4 +16,6 @@ public interface PayeeorderDataService extends Remote {
 	public ArrayList<PayeeorderPO> checkPayeeorder(String name, String shop)throws RemoteException;
 	
 	public ArrayList<PayeeorderPO> checkPayeeorders()throws RemoteException;
+	
+	public void delete(PayeeorderPO po) throws RemoteException;
 }

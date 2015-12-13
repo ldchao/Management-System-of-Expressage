@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import State.ApproveState;
 
+@SuppressWarnings("serial")
 public class PayorderPO implements Serializable {
 	private String date;
 	private double money;

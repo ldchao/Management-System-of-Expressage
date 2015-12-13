@@ -74,6 +74,7 @@ public class PayeeorderBL implements PayeeorderBlService, checkPayeeOrderInfo {
 
 		try {
 			payeeorderData.insert(po);
+			payeeorderData.delete(po);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
