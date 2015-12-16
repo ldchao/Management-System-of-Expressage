@@ -1,5 +1,6 @@
 package nju.edu.presentation.system_administratorui;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -35,7 +36,7 @@ public class AdminPanel extends JPanel {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				perinfo = new PersonalInfomation(loginPO, main);
-				perinfo.setLocation(750, 115);
+				perinfo.setBounds(new Rectangle(main.getX()+450, main.getY()+70,290, 215));
 			}
 
 			@Override
@@ -46,7 +47,7 @@ public class AdminPanel extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				perinfo.setLocation(750, 115);
+				perinfo.setBounds(new Rectangle(main.getX()+450, main.getY()+70,290, 215));
 				perinfo.setAlwaysOnTop(true);
 				perinfo.setMouseState(false);
 			}

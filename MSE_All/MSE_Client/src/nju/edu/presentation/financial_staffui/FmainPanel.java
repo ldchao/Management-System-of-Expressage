@@ -3,6 +3,7 @@ package nju.edu.presentation.financial_staffui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,7 +40,7 @@ public class FmainPanel extends JPanel implements Runnable {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				perinfo = new PersonalInfomation(loginPO, main);
-				perinfo.setLocation(600, 115);
+				perinfo.setBounds(new Rectangle(main.getX()+450, main.getY()+70,290, 215));
 			}
 
 			@Override
@@ -50,7 +51,7 @@ public class FmainPanel extends JPanel implements Runnable {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				perinfo.setLocation(600, 115);
+				perinfo.setBounds(new Rectangle(main.getX()+450, main.getY()+70,290, 215));
 				perinfo.setAlwaysOnTop(true);
 				perinfo.setMouseState(false);
 			}
