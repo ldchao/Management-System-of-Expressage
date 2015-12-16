@@ -161,9 +161,14 @@ public class NewUserPanel extends JPanel implements Runnable {
 					lblNewLabel.setText("信息录入不完整，无法完成新建");
 					success = false;
 				} else {
-					userBL.addUser(name, key, limit);
-					lblNewLabel.setText("创建成功!");
-					success = true;
+					if (key.contains(";")) {
+						lblNewLabel.setText("含有非法字符“;”，请重新设置密码");
+						success = false;
+					} else {
+						userBL.addUser(name, key, limit);
+						lblNewLabel.setText("创建成功!");
+						success = true;
+					}
 				}
 
 				Thread t = new Thread(nup);

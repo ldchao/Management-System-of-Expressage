@@ -102,13 +102,19 @@ public class UpdatePasswordFrame extends JFrame implements Runnable {
 				} else {
 					if (oldKey.equals(loginPO.getPassword())) {
 						if (newKey1.equals(newkey2)) {
-							UpdatePasswordService userbl = new UserBL();
-							userbl.UpdatePassword(loginPO.getUser(), newKey1);
-							label_4.setText("修改成功！请重新登陆");
-							t.start();
-							dispose();
-							main.dispose();
-							LoginFrame loginFrame = new LoginFrame();
+							if (newKey1.contains(";")) {
+								label_4.setText("含有非法字符“;”，请重新设置密码");
+								t.start();
+							} else {
+								UpdatePasswordService userbl = new UserBL();
+								userbl.UpdatePassword(loginPO.getUser(),
+										newKey1);
+								label_4.setText("修改成功！请重新登陆");
+								t.start();
+								dispose();
+								main.dispose();
+								LoginFrame loginFrame = new LoginFrame();
+							}
 						} else {
 							label_4.setText("两次密码输入不一致，请重新核对");
 							t.start();
