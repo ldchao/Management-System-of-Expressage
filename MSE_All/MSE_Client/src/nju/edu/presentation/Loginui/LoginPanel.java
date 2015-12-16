@@ -58,14 +58,16 @@ public class LoginPanel extends JPanel {
 		// 记住用户名
 		JCheckBox checkBox = new JCheckBox("记住用户名");
 		checkBox.setSelected(true);
+		checkBox.setOpaque(false);
 		checkBox.setBounds(270, 357, 103, 23);
-		checkBox.setForeground(new Color(255, 255, 255, 99));
+		checkBox.setForeground(new Color(255, 255, 255,200));
 		this.add(checkBox);
 
 		// 记住密码
 		JCheckBox checkBox_1 = new JCheckBox("记住密码");
 		checkBox_1.setBounds(390, 357, 84, 23);
-		checkBox_1.setForeground(new Color(255, 255, 255, 99));
+		checkBox_1.setOpaque(false);
+		checkBox_1.setForeground(new Color(255, 255, 255,200));
 		this.add(checkBox_1);
 
 		String str[] = loginbl.getUser();
