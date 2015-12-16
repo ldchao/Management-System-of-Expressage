@@ -38,7 +38,7 @@ public class ForgetPassword extends JFrame {
 		JLabel label_1 = new JLabel(
 				"\u5927\u9646\u7528\u6237\u8BF7\u53D1\u9001\u77ED\u4FE1\u81F3\u624B\u673A15651706602");
 		label_1.setFont(new Font("»ªÎÄÐÐ¿¬", Font.BOLD, 20));
-		label_1.setBounds(45, 72, 364, 70);
+		label_1.setBounds(30, 72, 379, 70);
 		contentPane.add(label_1);
 
 		JLabel label_2 = new JLabel(
