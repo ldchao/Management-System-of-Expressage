@@ -33,21 +33,24 @@ import javax.swing.JTextArea;
 import PO.LoginPO;
 import PO.OrganizationNumPO;
 
-public class VehicleLoadManageUI extends JPanel {
+public class VehicleLoadManageUI extends JPanel implements Runnable {
 	private int rowpos = -1;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	JFrame main;
+	JPanel lastui;
+	VehicleLoadManageUI nowPanel;
 
 	// create the panel
 	public VehicleLoadManageUI(JFrame m, JPanel bf) {
-		JFrame main = m;
-		JPanel lastui = bf;
-		VehicleLoadManageUI nowPanel = this;
+		main = m;
+		lastui = bf;
+		nowPanel = this;
 		setLayout(null);
-		OrganizationNumPO op=new OrganizationNumPO();
+		OrganizationNumPO op = new OrganizationNumPO();
 
 		JButton button = new JButton("返回");
 		button.addActionListener(new ActionListener() {
@@ -95,7 +98,7 @@ public class VehicleLoadManageUI extends JPanel {
 		textField.setBounds(169, 169, 181, 21);
 		add(textField);
 		textField.setColumns(10);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("汽运编号");
 		lblNewLabel_1.setBounds(71, 217, 54, 15);
 		add(lblNewLabel_1);
@@ -103,7 +106,7 @@ public class VehicleLoadManageUI extends JPanel {
 		textField_1 = new JTextField();
 		textField_1.setBounds(169, 214, 181, 21);
 		add(textField_1);
-		textField_1.setColumns(10);	
+		textField_1.setColumns(10);
 
 		JLabel lblNewLabel_3 = new JLabel("汽车代号");
 		lblNewLabel_3.setBounds(71, 260, 54, 15);
@@ -117,12 +120,12 @@ public class VehicleLoadManageUI extends JPanel {
 		JLabel lblNewLabel_2 = new JLabel("到达地");
 		lblNewLabel_2.setBounds(71, 302, 54, 15);
 		add(lblNewLabel_2);
-		
-		String[] arriveAddress={"","北京中转中心","上海中转中心","南京中转中心","广州中转中心"};
+
+		String[] arriveAddress = { "", "北京中转中心", "上海中转中心", "南京中转中心", "广州中转中心" };
 		JComboBox comboBox_1 = new JComboBox(arriveAddress);
 		comboBox_1.setBounds(169, 299, 181, 21);
 		add(comboBox_1);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("监装员");
 		lblNewLabel_4.setBounds(71, 343, 54, 15);
 		add(lblNewLabel_4);
@@ -131,7 +134,7 @@ public class VehicleLoadManageUI extends JPanel {
 		textField_4.setColumns(10);
 		textField_4.setBounds(169, 340, 181, 21);
 		add(textField_4);
-		
+
 		JLabel lblNewLabel_5 = new JLabel("押运员");
 		lblNewLabel_5.setBounds(71, 381, 54, 15);
 		add(lblNewLabel_5);
@@ -140,7 +143,7 @@ public class VehicleLoadManageUI extends JPanel {
 		textField_5.setColumns(10);
 		textField_5.setBounds(169, 378, 181, 21);
 		add(textField_5);
-		
+
 		JLabel lblNewLabel_6 = new JLabel("运费");
 		lblNewLabel_6.setBounds(77, 421, 54, 15);
 		add(lblNewLabel_6);
@@ -153,38 +156,42 @@ public class VehicleLoadManageUI extends JPanel {
 		lblNewLabel_7.setBounds(392, 421, 54, 15);
 		add(lblNewLabel_7);
 
-		String[] checkState={"未审批","审批通过","审批未通过"};
+		String[] checkState = { "未审批", "审批通过", "审批未通过" };
 		JComboBox comboBox = new JComboBox(checkState);
 		comboBox.setEnabled(false);
 		comboBox.setBounds(492, 418, 152, 21);
 		add(comboBox);
-	
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(403, 134, 241, 262);
-		add(scrollPane);		
+		add(scrollPane);
 
 		JLabel lblNewLabel_9 = new JLabel("所有托运单号：");
 		lblNewLabel_9.setFont(new Font("微软雅黑", Font.BOLD, 14));
 		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
 		scrollPane.setColumnHeaderView(lblNewLabel_9);
-		
+
 		JTextArea textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
 
 		JButton btnNewButton = new JButton("确定");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoadBlService lb=new LoadBL();
-				String loadorderNum=textField_2.getText()+textField_1.getText();
-			    String fee=""+lb.getTotal(textArea.getText());
-			    label_3.setText(fee+"元");
-			    
-				VehicleLoadorderVO vlv=new VehicleLoadorderVO(lblNewLabel_8.getText(),
-						loadorderNum,textField.getText(),(String)comboBox_1.getSelectedItem(), 
-						textField_4.getText(), textField_5.getText(), textField_2.getText(), 
-						textArea.getText(), fee);
+				LoadBlService lb = new LoadBL();
+				String loadorderNum = textField_2.getText()
+						+ textField_1.getText();
+				String fee = "" + lb.getTotal(textArea.getText());
+				label_3.setText(fee + "元");
+
+				VehicleLoadorderVO vlv = new VehicleLoadorderVO(lblNewLabel_8
+						.getText(), loadorderNum, textField.getText(),
+						(String) comboBox_1.getSelectedItem(), textField_4
+								.getText(), textField_5.getText(), textField_2
+								.getText(), textArea.getText(), fee);
 				lb.addLoadOrder(vlv);
 				label_4.setText("创建成功");
+				Thread t=new Thread(nowPanel);
+				t.start();
 			}
 		});
 		btnNewButton.setBounds(219, 485, 85, 23);
@@ -193,7 +200,7 @@ public class VehicleLoadManageUI extends JPanel {
 		JButton btnNewButton_1 = new JButton("取消");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VehicleLoadManageUI r=new VehicleLoadManageUI(main, lastui);
+				VehicleLoadManageUI r = new VehicleLoadManageUI(main, lastui);
 				main.remove(nowPanel);
 				main.getContentPane().add(r);
 				main.invalidate();
@@ -208,8 +215,21 @@ public class VehicleLoadManageUI extends JPanel {
 		label_5.setFont(new Font("微软雅黑", Font.BOLD, 20));
 		label_5.setBounds(286, 74, 223, 28);
 		add(label_5);
-		
-		
+
+	}
+
+	@Override
+	public void run() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		main.remove(nowPanel);
+		main.getContentPane().add(lastui);
+		main.invalidate();
+		main.repaint();
+		main.setVisible(true);
 
 	}
 }

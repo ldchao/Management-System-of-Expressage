@@ -23,7 +23,7 @@ import nju.edu.businesslogicservice.transferblservice.ReceiFormBlService;
 import nju.edu.businesslogicservice.transferblservice.ReceiveBLService;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
-public class ReceiFormorder extends JPanel {
+public class ReceiFormorder extends JPanel implements Runnable{
 
 	private JTextField textField;
 	private JTextField textField_1;
@@ -32,6 +32,8 @@ public class ReceiFormorder extends JPanel {
 	JRadioButton rdbtnNewRadioButton_2;
 	JFrame main;
 	LoadorderVO lv;
+	ReceiFormorder nowPanel;
+	JPanel lastui;
 
 	/**
 	 * Create the panel.
@@ -39,8 +41,8 @@ public class ReceiFormorder extends JPanel {
 	public ReceiFormorder(JFrame m, JPanel jp, LoadorderVO lv) {
 		main = m;
 		this.lv = lv;
-		JPanel lastui = jp;
-		ReceiFormorder nowPanel = this;
+		lastui = jp;
+		nowPanel = this;
 		setLayout(null);
 
 		JButton button = new JButton("返回");
@@ -146,6 +148,8 @@ public class ReceiFormorder extends JPanel {
 					ReceiFormBlService rb = new ReceiFormBL();
 					rb.addReceiveOrder(rv);
 					label_4.setText("接收单已提交总经理审批");
+					Thread t=new Thread(nowPanel);
+					t.start();
 				}
 			}
 		});
@@ -186,6 +190,21 @@ public class ReceiFormorder extends JPanel {
 		return (rdbtnNewRadioButton.isSelected()
 				|| rdbtnNewRadioButton_1.isSelected() || rdbtnNewRadioButton_2
 					.isSelected());
+	}
+
+	@Override
+	public void run() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		main.remove(nowPanel);
+		main.getContentPane().add(lastui);
+		main.invalidate();
+		main.repaint();
+		main.setVisible(true);
+		
 	}
 
 }
