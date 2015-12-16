@@ -1,9 +1,12 @@
 package nju.edu.presentation.financial_staffui;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,16 +33,13 @@ public class FmainPanel extends JPanel implements Runnable {
 
 		FmainPanel fmp = this;
 
-		JLabel label = new JLabel("财务人员");
-		label.setBounds(90, 10, 470, 15);
-		add(label);
-
 		JLabel lblHello = new JLabel("Hello!");
+		lblHello.setForeground(Color.WHITE);
 		lblHello.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				perinfo = new PersonalInfomation(loginPO, main);
-				perinfo.setLocation(750, 115);
+				perinfo.setLocation(600, 115);
 			}
 
 			@Override
@@ -50,16 +50,40 @@ public class FmainPanel extends JPanel implements Runnable {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				perinfo.setLocation(750, 115);
+				perinfo.setLocation(600, 115);
 				perinfo.setAlwaysOnTop(true);
 				perinfo.setMouseState(false);
 			}
 		});
-		lblHello.setBounds(650, 10, 54, 15);
+		lblHello.setBounds(667, 9, 54, 18);
 		add(lblHello);
 
-		JButton btnNewButton = new JButton("New button");
-		// btnNewButton.setIcon(new ImageIcon("src/scene.jpg"));
+		JButton btnNewButton = new JButton(){
+//			@Override
+//			protected void paintComponent(Graphics g) {
+//				BufferedImage image = new BufferedImage(125, 100, BufferedImage.TYPE_4BYTE_ABGR_PRE);
+//				try {
+//					image = ImageIO.read(new File("image/financial_stuff/costManage.png"));
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//				Graphics2D g2d = image.createGraphics();
+////				Graphics2D g2d = (Graphics2D)g;
+//				g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);  
+//				g2d.drawImage(image.getScaledInstance(125, 100, Image.SCALE_SMOOTH), 0, 0, null); 
+//				super.paintComponent(g2d);
+//			}
+//			
+		};
+		btnNewButton.setBounds(122, 188, 125, 100);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+		
+		ImageIcon icon = new ImageIcon("image/transparent.png");
+		Image temp = icon.getImage().getScaledInstance(btnNewButton.getWidth(),
+				 btnNewButton.getHeight(),icon.getImage().SCALE_DEFAULT);
+		icon = new ImageIcon(temp);
+		btnNewButton.setIcon(icon);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(fmp);
@@ -70,10 +94,17 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(108, 161, 125, 100);
 		add(btnNewButton);
 
-		JButton button = new JButton("New button");
+		JButton button = new JButton();
+		button.setBounds(312, 188, 125, 100);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		ImageIcon icon2 = new ImageIcon("image/transparent.png");
+		Image temp2 = icon2.getImage().getScaledInstance(button.getWidth(),
+				 button.getHeight(),icon2.getImage().SCALE_DEFAULT);
+		icon2 = new ImageIcon(temp2);
+		button.setIcon(icon2);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(fmp);
@@ -84,10 +115,17 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(316, 161, 125, 100);
 		add(button);
 
-		JButton button_1 = new JButton("New button");
+		JButton button_1 = new JButton();
+		button_1.setBounds(504, 188, 125, 100);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		ImageIcon icon3 = new ImageIcon("image/transparent.png");
+		Image temp3 = icon3.getImage().getScaledInstance(button_1.getWidth(),
+				 button_1.getHeight(),icon3.getImage().SCALE_DEFAULT);
+		icon3 = new ImageIcon(temp3);
+		button_1.setIcon(icon3);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(fmp);
@@ -98,10 +136,17 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(507, 161, 125, 100);
 		add(button_1);
 
-		JButton button_2 = new JButton("New button");
+		JButton button_2 = new JButton();
+		button_2.setBounds(218, 360, 125, 100);
+		button_2.setContentAreaFilled(false);
+		button_2.setBorderPainted(false);
+		ImageIcon icon4 = new ImageIcon("image/transparent.png");
+		Image temp4 = icon4.getImage().getScaledInstance(button_2.getWidth(),
+				 button_2.getHeight(),icon4.getImage().SCALE_DEFAULT);
+		icon4 = new ImageIcon(temp4);
+		button_2.setIcon(icon4);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(fmp);
@@ -112,7 +157,6 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.setVisible(true);
 			}
 		});
-		button_2.setBounds(214, 329, 125, 100);
 		add(button_2);
 
 		label_6 = new JLabel("");
@@ -120,7 +164,15 @@ public class FmainPanel extends JPanel implements Runnable {
 		label_6.setBounds(381, 447, 211, 15);
 		add(label_6);
 
-		JButton button_3 = new JButton("New button");
+		JButton button_3 = new JButton();
+		button_3.setBounds(410, 360, 125, 100);
+		button_3.setContentAreaFilled(false);
+		button_3.setBorderPainted(false);
+		ImageIcon icon5 = new ImageIcon("image/transparent.png");
+		Image temp5 = icon5.getImage().getScaledInstance(button_3.getWidth(),
+				 button_3.getHeight(),icon5.getImage().SCALE_DEFAULT);
+		icon5 = new ImageIcon(temp5);
+		button_3.setIcon(icon5);
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (loginPO.getLimit().equals("高级财务人员")) {
@@ -137,36 +189,22 @@ public class FmainPanel extends JPanel implements Runnable {
 				}
 			}
 		});
-		button_3.setBounds(416, 329, 125, 100);
 		add(button_3);
 
-		JLabel label_1 = new JLabel("成本管理");
-		label_1.setBounds(146, 129, 57, 15);
-		add(label_1);
-
-		JLabel label_2 = new JLabel("结算管理");
-		label_2.setBounds(352, 129, 81, 15);
-		add(label_2);
-
-		JLabel label_3 = new JLabel("统计报表");
-		label_3.setBounds(544, 129, 81, 15);
-		add(label_3);
-
-		JLabel label_4 = new JLabel("期初建账");
-		label_4.setBounds(250, 304, 67, 15);
-		add(label_4);
-
-		JLabel label_5 = new JLabel("账户管理");
-		label_5.setBounds(451, 304, 67, 15);
-		add(label_5);
-
-		JButton button_4 = new JButton("\u6CE8\u9500");
+		JButton button_4 = new JButton("");
+		button_4.setBounds(15, -9, 60, 60);
+		button_4.setContentAreaFilled(false);
+		button_4.setBorderPainted(false);
+		ImageIcon icon6 = new ImageIcon("image/transparentCircle.png");
+		Image temp6 = icon6.getImage().getScaledInstance(button_4.getWidth(),
+				 button_4.getHeight(),icon6.getImage().SCALE_DEFAULT);
+		icon6 = new ImageIcon(temp6);
+		button_4.setIcon(icon6);
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.dispose();
 			}
 		});
-		button_4.setBounds(10, 6, 67, 23);
 		add(button_4);
 	}
 
@@ -178,5 +216,12 @@ public class FmainPanel extends JPanel implements Runnable {
 			e.printStackTrace();
 		}
 		label_6.setText("");
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		ImageIcon icon = new ImageIcon("image/financial_stuff/financeMain1.png");
+		g.drawImage(icon.getImage(), 0, 0, getSize().width, getSize().height, this);
+//		super.paintComponent(g);
 	}
 }

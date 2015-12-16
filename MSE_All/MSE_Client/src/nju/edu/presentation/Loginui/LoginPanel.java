@@ -2,7 +2,9 @@ package nju.edu.presentation.Loginui;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -10,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -23,6 +26,11 @@ import PO.LoginPO;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 @SuppressWarnings("serial")
 public class LoginPanel extends JPanel {
@@ -70,7 +78,7 @@ public class LoginPanel extends JPanel {
 		textField = new JTextField();
 		textField.setOpaque(false);
 		textField.setBorder(null);
-		textField.setForeground(new Color(255, 255, 255,200));
+		textField.setForeground(new Color(255, 255, 255, 200));
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -115,7 +123,15 @@ public class LoginPanel extends JPanel {
 		this.add(label_3);
 
 		// 登录
-		JButton button = new JButton("");
+		JButton button = new JButton() {
+			public void paintComponent(Graphics g) {
+				Graphics2D graphics2d = (Graphics2D)g;
+				graphics2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+				graphics2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+						RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+				super.paintComponent(graphics2d);
+			}
+		};
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				user = textField.getText();
@@ -148,24 +164,22 @@ public class LoginPanel extends JPanel {
 				}
 			}
 		});
-		button.setFont(new Font("华文行楷", Font.PLAIN, 18));
-		button.setBounds(270, 409, 90, 40);
-		button.setContentAreaFilled(false);
-		button.setBorderPainted(false);
-		ImageIcon icon = new ImageIcon("image/LoginSure.png");
-		Image temp = icon.getImage().getScaledInstance(button.getWidth(), button.getHeight(),
-				icon.getImage().SCALE_DEFAULT);
-		icon = new ImageIcon(temp);
-		button.setIcon(icon);
+		 button.setBounds(270, 409, 90, 40);
+		 button.setContentAreaFilled(false);
+		 button.setBorderPainted(false);
+		 ImageIcon icon = new ImageIcon("image/LoginSure.png");
+		 Image temp = icon.getImage().getScaledInstance(button.getWidth(),
+		 button.getHeight(),icon.getImage().SCALE_DEFAULT);
+		 icon = new ImageIcon(temp);
+		 button.setIcon(icon);
 		add(button);
 
 		JButton button_1 = new JButton("");
-		
-		button_1.setFont(new Font("华文行楷", Font.PLAIN, 18));
+
 		button_1.setBounds(390, 409, 90, 40);
 		button_1.setContentAreaFilled(false);
 		button_1.setBorderPainted(false);
-		
+
 		ImageIcon icon2 = new ImageIcon("image/LoginCancel.png");
 		Image temp2 = icon2.getImage().getScaledInstance(button_1.getWidth(), button_1.getHeight(),
 				icon2.getImage().SCALE_DEFAULT);
@@ -184,9 +198,28 @@ public class LoginPanel extends JPanel {
 		add(button_1);
 
 	}
-	
-	public void paintComponent(Graphics g){
+
+//	 class SureButton extends JButton {
+//	 public void paintComponent(Graphics g){
+//	// BufferedImage image = null;
+//	 ImageIcon icon = new ImageIcon("image/LoginSure.png");
+//	 BufferedImage image =
+//	 icon.getImage().getScaledInstance(button.getWidth(), button.getHeight(),
+//	 icon.getImage().SCALE_DEFAULT);
+//	// BufferedImage image = ImageIO.read(new
+//	 FileInputStream("image/LoginSure.png"));
+//	 g = image.createGraphics();
+//	 Graphics2D graphics = (Graphics2D) g;
+//	 graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+//	 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+//	 graphics.drawImage(image, 0, 0, getSize().width, getSize().height, this);
+//	
+//	
+//	 }
+//	 }
+
+	public void paintComponent(Graphics g) {
 		ImageIcon icon = new ImageIcon("image/mainLoginUI.png");
-		g.drawImage(icon.getImage(), 0, 0, getSize().width,getSize().height,this);
+		g.drawImage(icon.getImage(), 0, 0, getSize().width, getSize().height, this);
 	}
 }
