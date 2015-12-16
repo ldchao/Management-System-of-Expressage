@@ -71,7 +71,6 @@ public class Transit_center_storemaster_mainui extends JFrame {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				perinfo = new PersonalInfomation(loginPO, main);
-				perinfo.setBounds(new Rectangle(main.getX()+450, main.getY()+70,290, 215));
 			}
 
 			@Override
@@ -82,7 +81,6 @@ public class Transit_center_storemaster_mainui extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				perinfo.setBounds(new Rectangle(main.getX()+450, main.getY()+70,290, 215));
 				perinfo.setAlwaysOnTop(true);
 				perinfo.setMouseState(false);
 			}

@@ -34,7 +34,7 @@ public class UpdatePasswordFrame extends JFrame implements Runnable {
 	 * Create the frame.
 	 */
 	public UpdatePasswordFrame(LoginPO loginPO, JFrame main) {
-		setBounds(100, 100, 400, 310);
+		setSize(400, 310);
 		setVisible(true);
 		setResizable(false);
 		setLocationRelativeTo(null);
