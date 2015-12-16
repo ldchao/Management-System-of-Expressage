@@ -75,14 +75,14 @@ public class FmainPanel extends JPanel implements Runnable {
 //			}
 //			
 		};
-		btnNewButton.setBounds(122, 188, 125, 100);
+		btnNewButton.setBounds(122, 191, 125, 100);
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setBorderPainted(false);
 		
-		ImageIcon icon = new ImageIcon("image/transparent.png");
-		Image temp = icon.getImage().getScaledInstance(btnNewButton.getWidth(),
-				 btnNewButton.getHeight(),icon.getImage().SCALE_DEFAULT);
-		icon = new ImageIcon(temp);
+		ImageIcon icon = new ImageIcon("image/transparent_small.png");
+//		Image temp = icon.getImage().getScaledInstance(btnNewButton.getWidth(),
+//				 btnNewButton.getHeight(),icon.getImage().SCALE_DEFAULT);
+//		icon = new ImageIcon(temp);
 		btnNewButton.setIcon(icon);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -94,16 +94,19 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.setVisible(true);
 			}
 		});
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnNewButton.setIcon(new ImageIcon("image/mask_small.png"));
+			}
+		});
 		add(btnNewButton);
 
 		JButton button = new JButton();
-		button.setBounds(312, 188, 125, 100);
+		button.setBounds(312, 191, 125, 100);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
-		ImageIcon icon2 = new ImageIcon("image/transparent.png");
-		Image temp2 = icon2.getImage().getScaledInstance(button.getWidth(),
-				 button.getHeight(),icon2.getImage().SCALE_DEFAULT);
-		icon2 = new ImageIcon(temp2);
+		ImageIcon icon2 = new ImageIcon("image/transparent_small.png");
 		button.setIcon(icon2);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -115,13 +118,19 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.setVisible(true);
 			}
 		});
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_small.png"));
+			}
+		});
 		add(button);
 
 		JButton button_1 = new JButton();
-		button_1.setBounds(504, 188, 125, 100);
+		button_1.setBounds(504, 191, 125, 100);
 		button_1.setContentAreaFilled(false);
 		button_1.setBorderPainted(false);
-		ImageIcon icon3 = new ImageIcon("image/transparent.png");
+		ImageIcon icon3 = new ImageIcon("image/transparent_small.png");
 		Image temp3 = icon3.getImage().getScaledInstance(button_1.getWidth(),
 				 button_1.getHeight(),icon3.getImage().SCALE_DEFAULT);
 		icon3 = new ImageIcon(temp3);
@@ -136,13 +145,19 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.setVisible(true);
 			}
 		});
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button_1.setIcon(new ImageIcon("image/mask_small.png"));
+			}
+		});
 		add(button_1);
 
 		JButton button_2 = new JButton();
 		button_2.setBounds(218, 360, 125, 100);
 		button_2.setContentAreaFilled(false);
 		button_2.setBorderPainted(false);
-		ImageIcon icon4 = new ImageIcon("image/transparent.png");
+		ImageIcon icon4 = new ImageIcon("image/transparent_small.png");
 		Image temp4 = icon4.getImage().getScaledInstance(button_2.getWidth(),
 				 button_2.getHeight(),icon4.getImage().SCALE_DEFAULT);
 		icon4 = new ImageIcon(temp4);
@@ -157,6 +172,12 @@ public class FmainPanel extends JPanel implements Runnable {
 				main.setVisible(true);
 			}
 		});
+		button_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button_2.setIcon(new ImageIcon("image/mask_small.png"));
+			}
+		});
 		add(button_2);
 
 		label_6 = new JLabel("");
@@ -168,7 +189,7 @@ public class FmainPanel extends JPanel implements Runnable {
 		button_3.setBounds(410, 360, 125, 100);
 		button_3.setContentAreaFilled(false);
 		button_3.setBorderPainted(false);
-		ImageIcon icon5 = new ImageIcon("image/transparent.png");
+		ImageIcon icon5 = new ImageIcon("image/transparent_small.png");
 		Image temp5 = icon5.getImage().getScaledInstance(button_3.getWidth(),
 				 button_3.getHeight(),icon5.getImage().SCALE_DEFAULT);
 		icon5 = new ImageIcon(temp5);
@@ -188,14 +209,22 @@ public class FmainPanel extends JPanel implements Runnable {
 					t.start();
 				}
 			}
+			
+			
+		});
+		button_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button_3.setIcon(new ImageIcon("image/mask_small.png"));
+			}
 		});
 		add(button_3);
 
 		JButton button_4 = new JButton("");
-		button_4.setBounds(15, -9, 60, 60);
+		button_4.setBounds(14, -9, 63, 63);
 		button_4.setContentAreaFilled(false);
 		button_4.setBorderPainted(false);
-		ImageIcon icon6 = new ImageIcon("image/transparentCircle.png");
+		ImageIcon icon6 = new ImageIcon("image/transparent_circle.png");
 		Image temp6 = icon6.getImage().getScaledInstance(button_4.getWidth(),
 				 button_4.getHeight(),icon6.getImage().SCALE_DEFAULT);
 		icon6 = new ImageIcon(temp6);
@@ -203,6 +232,12 @@ public class FmainPanel extends JPanel implements Runnable {
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.dispose();
+			}
+		});
+		button_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button_4.setIcon(new ImageIcon("image/mask_circle.png"));
 			}
 		});
 		add(button_4);
