@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import PO.LoginPO;
 
 import java.awt.event.ActionListener;
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 
@@ -23,28 +24,35 @@ public class PersonalInfomation extends JFrame {
 	 */
 	public PersonalInfomation(LoginPO loginPO, JFrame main) {
 		getContentPane().setLayout(null);
+		getContentPane().setBackground(new Color(88, 93, 103));
 
 		JLabel label = new JLabel("\u59D3\u540D\uFF1A");
-		label.setBounds(17, 12, 67, 15);
+		label.setForeground(Color.WHITE);
+		label.setBounds(28, 12, 67, 15);
 		getContentPane().add(label);
 
 		JLabel label_1 = new JLabel("\u804C\u4F4D\uFF1A");
-		label_1.setBounds(17, 39, 67, 15);
+		label_1.setForeground(Color.WHITE);
+		label_1.setBounds(28, 39, 67, 15);
 		getContentPane().add(label_1);
 
 		JLabel label_3 = new JLabel("\u7528\u6237\u540D\uFF1A");
-		label_3.setBounds(17, 66, 67, 15);
+		label_3.setForeground(Color.WHITE);
+		label_3.setBounds(28, 66, 67, 15);
 		getContentPane().add(label_3);
 
 		JLabel lblName = new JLabel(loginPO.getName());
+		lblName.setForeground(Color.WHITE);
 		lblName.setBounds(96, 12, 120, 15);
 		getContentPane().add(lblName);
 
 		JLabel lblPosition = new JLabel(loginPO.getLimit());
+		lblPosition.setForeground(Color.WHITE);
 		lblPosition.setBounds(96, 39, 120, 15);
 		getContentPane().add(lblPosition);
 
 		JLabel lblUser = new JLabel(loginPO.getUser());
+		lblUser.setForeground(Color.WHITE);
 		lblUser.setBounds(96, 66, 120, 15);
 		getContentPane().add(lblUser);
 

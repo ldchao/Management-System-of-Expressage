@@ -1,8 +1,14 @@
 package nju.edu.presentation.Loginui;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,6 +24,7 @@ import nju.edu.businesslogic.listinbl.Receiverinbl;
 import nju.edu.presentation.Business_hall_salesmanui.ChecklistImfo;
 import nju.edu.presentation.Business_hall_salesmanui.VehicleLoadManageUI;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 
@@ -38,7 +45,12 @@ public class ChecklistPanel extends JPanel implements Runnable{
 		setLayout(null);
 		
 		
-		JButton button = new JButton("∑µªÿ");
+		JButton button = new JButton("");
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		button.setIcon(image1);		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -47,25 +59,24 @@ public class ChecklistPanel extends JPanel implements Runnable{
 				main.repaint();
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_cirlce.png"));
+			}
+		});
 		add(button);
+		
 
-		JLabel label_1 = new JLabel("’≈»˝£¨ƒ„∫√£°");
-		label_1.setBounds(644, 13, 100, 15);
-		add(label_1);
-		
-		JLabel check = new JLabel("≤È—Ø∂©µ•");
-		check.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.BOLD, 50));
-		check.setBounds(277,185,205,83);
-		this.add(check);
-		
-		textField = new JTextField();
-		textField.setBounds(155, 315, 329, 60);
-		textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 40));
-		this.add(textField);
-		textField.setColumns(10);
-		
-		JButton button2 = new JButton("»∑»œ");
+		JButton button2 = new JButton("");
+		button2.setBounds(528, 254, 84, 84);
+		button2.setContentAreaFilled(false);
+		button2.setBorderPainted(false);
+		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
+		Image temp = image2.getImage().getScaledInstance(button2.getWidth(),
+				button2.getHeight(),image2.getImage().SCALE_DEFAULT);
+		image2 = new ImageIcon(temp);
+		button2.setIcon(image2);
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				signal=true;
@@ -86,36 +97,66 @@ public class ChecklistPanel extends JPanel implements Runnable{
 				
 				}else{
 					textField.setText("∂©µ•≤ª¥Ê‘⁄");
-					textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.ITALIC, 28));
-					textField.setForeground(Color.RED);
+					textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 20));
+					textField.setForeground(new Color(248, 179, 28,200));
 					Thread t = new Thread(nowPanel);
 					t.start();
-					
-					
-					
 				}
-				
-
-				
 			}
 		});
 		button2.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 20));
-		button2.setBounds(511, 318, 82, 50);
 		add(button2);
 		
+		textField = new JTextField();
+		textField.setOpaque(false);
+		textField.setBorder(null);
+		textField.setBounds(154, 267, 327, 55);
+		textField.setCaretColor(new Color(248, 179, 28,230));
+		textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 28));
+		textField.setForeground(new Color(255, 255, 255,220));
+		textField.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (e.getKeyCode() == 13) {
+					button2.getActionListeners();
+				}
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		textField.setColumns(10);
+		this.add(textField);
 		
 	}
 
-
+	
+	
 	@Override
 	public void run() {
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(1150);
 			textField.setText("");
-			textField.setForeground(Color.BLACK);
+			textField.setForeground(new Color(255, 255, 255, 220));
 			textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 28));
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		ImageIcon icon = new ImageIcon("image/searchOrderMain.png");
+		g.drawImage(icon.getImage(), 0,0,getSize().width,getSize().height, this);
 	}
 }
