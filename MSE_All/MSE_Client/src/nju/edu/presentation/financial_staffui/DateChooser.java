@@ -11,6 +11,7 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Polygon;
+import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
@@ -52,7 +53,7 @@ public class DateChooser extends JPanel {
 	private JP2 jp2;
 	private JP3 jp3;
 	private JP4 jp4;
-	private Font font = new Font("宋体", Font.PLAIN, 12);
+	private Font font = new Font("微软雅黑", Font.PLAIN, 12);
 	private final LabelManager lm = new LabelManager();
 	private SimpleDateFormat sdf;
 	private boolean isShow = false;
@@ -126,7 +127,7 @@ public class DateChooser extends JPanel {
 	//根据初始化的日期,初始化面板  
 	private void initPanel() {
 		monthPanel = new JPanel(new BorderLayout());
-		monthPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+//		monthPanel.setBorder(BorderFactory.createLineBorder(new Color(248, 179, 28)));
 		JPanel up = new JPanel(new BorderLayout());
 		up.add(jp1 = new JP1(), BorderLayout.NORTH);
 		up.add(jp2 = new JP2(), BorderLayout.CENTER);
@@ -158,15 +159,15 @@ public class DateChooser extends JPanel {
 				showDate.requestFocusInWindow();
 			}
 		});
-		this.setBackground(Color.WHITE);
+		this.setBackground(new Color(248, 179, 28));
 		this.add(showDate, BorderLayout.CENTER);
 		this.setPreferredSize(new Dimension(90, 25));
-		this.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+//		this.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		showDate.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent me) {
 				if (showDate.isEnabled()) {
 					showDate.setCursor(new Cursor(Cursor.HAND_CURSOR));
-					showDate.setForeground(Color.RED);
+					showDate.setForeground(new Color(248, 179, 28));
 				}
 			}
  
@@ -269,24 +270,28 @@ public class DateChooser extends JPanel {
  
 		public JP1() {
 			super(new BorderLayout());
-			this.setBackground(new Color(160, 185, 215));
+			this.setBackground(new Color(88,93,103));
 			initJP1();
 		}
  
 		private void initJP1() {
 			yearleft = new JLabel("  <<", JLabel.CENTER);
+			yearleft.setForeground(new Color(255, 255, 255, 120));
 			yearleft.setToolTipText("上一年");
 			yearright = new JLabel(">>  ", JLabel.CENTER);
+			yearright.setForeground(new Color(255, 255, 255, 120));
 			yearright.setToolTipText("下一年");
-			yearleft.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0));
-			yearright.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0));
+			yearleft.setBorder(BorderFactory.createEmptyBorder(-2, 0, 0, 0));
+			yearright.setBorder(BorderFactory.createEmptyBorder(-2, 0, 0, 0));
  
 			monthleft = new JLabel("  <", JLabel.RIGHT);
+			monthleft.setForeground(new Color(255, 255, 255, 210));
 			monthleft.setToolTipText("上一月");
 			monthright = new JLabel(">  ", JLabel.LEFT);
+			monthright.setForeground(new Color(255, 255, 255, 210));
 			monthright.setToolTipText("下一月");
-			monthleft.setBorder(BorderFactory.createEmptyBorder(2, 30, 0, 0));
-			monthright.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 30));
+			monthleft.setBorder(BorderFactory.createEmptyBorder(-2, 30, 0, 0));
+			monthright.setBorder(BorderFactory.createEmptyBorder(-2, 0, 0, 30));
  
 			centercontainer = new JLabel("", JLabel.CENTER);
 			centercontainer.setLayout(new BorderLayout());
@@ -306,12 +311,12 @@ public class DateChooser extends JPanel {
 			yearleft.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent me) {
 					yearleft.setCursor(new Cursor(Cursor.HAND_CURSOR));
-					yearleft.setForeground(Color.RED);
+					yearleft.setForeground(new Color(200, 200, 200, 210));
 				}
  
 				public void mouseExited(MouseEvent me) {
 					yearleft.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-					yearleft.setForeground(Color.BLACK);
+					yearleft.setForeground(new Color(255, 255, 255, 120));
 				}
  
 				public void mousePressed(MouseEvent me) {
@@ -321,18 +326,18 @@ public class DateChooser extends JPanel {
 				}
  
 				public void mouseReleased(MouseEvent me) {
-					yearleft.setForeground(Color.BLACK);
+					yearleft.setForeground(new Color(255, 255, 255, 120));
 				}
 			});
 			yearright.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent me) {
 					yearright.setCursor(new Cursor(Cursor.HAND_CURSOR));
-					yearright.setForeground(Color.RED);
+					yearright.setForeground(new Color(200, 200, 200, 210));
 				}
  
 				public void mouseExited(MouseEvent me) {
 					yearright.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-					yearright.setForeground(Color.BLACK);
+					yearright.setForeground(new Color(255, 255, 255, 120));
 				}
  
 				public void mousePressed(MouseEvent me) {
@@ -342,18 +347,18 @@ public class DateChooser extends JPanel {
 				}
  
 				public void mouseReleased(MouseEvent me) {
-					yearright.setForeground(Color.BLACK);
+					yearright.setForeground(new Color(255, 255, 255, 120));
 				}
 			});
 			monthleft.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent me) {
 					monthleft.setCursor(new Cursor(Cursor.HAND_CURSOR));
-					monthleft.setForeground(Color.RED);
+					monthleft.setForeground(new Color(200, 200, 200, 210));
 				}
  
 				public void mouseExited(MouseEvent me) {
 					monthleft.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-					monthleft.setForeground(Color.BLACK);
+					monthleft.setForeground(new Color(255, 255, 255, 210));
 				}
  
 				public void mousePressed(MouseEvent me) {
@@ -363,18 +368,18 @@ public class DateChooser extends JPanel {
 				}
  
 				public void mouseReleased(MouseEvent me) {
-					monthleft.setForeground(Color.BLACK);
+					monthleft.setForeground(new Color(255, 255, 255, 210));
 				}
 			});
 			monthright.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent me) {
 					monthright.setCursor(new Cursor(Cursor.HAND_CURSOR));
-					monthright.setForeground(Color.RED);
+					monthright.setForeground(new Color(200, 200, 200, 210));
 				}
  
 				public void mouseExited(MouseEvent me) {
 					monthright.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-					monthright.setForeground(Color.BLACK);
+					monthright.setForeground(new Color(255, 255, 255, 210));
 				}
  
 				public void mousePressed(MouseEvent me) {
@@ -384,13 +389,14 @@ public class DateChooser extends JPanel {
 				}
  
 				public void mouseReleased(MouseEvent me) {
-					monthright.setForeground(Color.BLACK);
+					monthright.setForeground(new Color(255, 255, 255, 210));
 				}
 			});
 		}
  
 		private void updateDate() {
 			center.setText(select.get(Calendar.YEAR) + "年" + (select.get(Calendar.MONTH) + 1) + "月");
+			center.setForeground(new Color(255,255,255,230));
 		}
 	}
  
@@ -398,13 +404,21 @@ public class DateChooser extends JPanel {
 		private static final long serialVersionUID = -8176264838786175724L;
  
 		public JP2() {
-			this.setPreferredSize(new Dimension(295, 20));
+			this.setPreferredSize(new Dimension(295, 17));
+			this.setOpaque(false);
+			this.setBorder(null);
 		}
  
 		protected void paintComponent(Graphics g) {
-			g.setFont(font);
-			g.drawString("星期日 星期一 星期二 星期三 星期四 星期五 星期六", 5, 10);
-			g.drawLine(0, 15, getWidth(), 15);
+			Graphics2D g2d = (Graphics2D)g;
+//			g2d.setColor(new Color(99, 103, 112));
+//			g2d.drawRect(0,0,295,25);
+			g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+			g2d.setFont(font);
+			g2d.setColor(new Color(99, 103, 112));
+			g2d.drawString(" 星期日 星期一 星期二 星期三 星期四 星期五 星期六", 5, 12);
+			g2d.drawLine(0, 17, getWidth(), 17);
+			
 		}
  
 		private void updateDate() {
@@ -418,6 +432,7 @@ public class DateChooser extends JPanel {
 		public JP3() {
 			super(new GridLayout(6, 7));
 			this.setPreferredSize(new Dimension(295, 100));
+			this.setBackground(new Color(99, 103, 112));
 			initJP3();
 		}
  
@@ -460,12 +475,12 @@ public class DateChooser extends JPanel {
 			this.addMouseMotionListener(this);
 			this.setFont(font);
 			if (month == select.get(Calendar.MONTH)) {
-				this.setForeground(Color.BLACK);
+				this.setForeground(new Color(255, 255, 255,220));
 			} else {
-				this.setForeground(Color.LIGHT_GRAY);
+				this.setForeground(new Color(200, 200, 200,220));
 			}
 			if (day == select.get(Calendar.DAY_OF_MONTH)) {
-				this.setBackground(new Color(160, 185, 215));
+				this.setBackground(new Color(248, 179, 28));
 			} else {
 				this.setBackground(Color.WHITE);
 			}
@@ -492,31 +507,21 @@ public class DateChooser extends JPanel {
 		protected void paintComponent(Graphics g) {
 			if (day == select.get(Calendar.DAY_OF_MONTH) && month == select.get(Calendar.MONTH)) {
 				//如果当前日期是选择日期,则高亮显示  
-				g.setColor(new Color(160, 185, 215));
+				g.setColor(new Color(248, 179, 28, 220));
 				g.fillRect(0, 0, getWidth(), getHeight());
+				this.setForeground(new Color(100, 100, 100,200));
 			}
-			if (year == now.get(Calendar.YEAR) && month == now.get(Calendar.MONTH) && day == now.get(Calendar.DAY_OF_MONTH)) {
-				//如果日期和当前日期一样,则用红框  
-				Graphics2D gd = (Graphics2D) g;
-				gd.setColor(Color.RED);
-				Polygon p = new Polygon();
-				p.addPoint(0, 0);
-				p.addPoint(getWidth() - 1, 0);
-				p.addPoint(getWidth() - 1, getHeight() - 1);
-				p.addPoint(0, getHeight() - 1);
-				gd.drawPolygon(p);
+			if ((!isSelected)&&year == now.get(Calendar.YEAR) && month == now.get(Calendar.MONTH) && day == now.get(Calendar.DAY_OF_MONTH)) {
+				g.setColor(new Color(248, 179, 28));
+				g.fillRect(0, 0, getWidth(), getHeight());
+				this.setForeground(new Color(100, 100, 100,200));
 			}
-			if (isSelected) {//如果被选中了就画出一个虚线框出来  
-				Stroke s = new BasicStroke(1.0f, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, 1.0f, new float[] { 2.0f, 2.0f }, 1.0f);
+			if (isSelected) {  
 				Graphics2D gd = (Graphics2D) g;
-				gd.setStroke(s);
-				gd.setColor(Color.BLACK);
-				Polygon p = new Polygon();
-				p.addPoint(0, 0);
-				p.addPoint(getWidth() - 1, 0);
-				p.addPoint(getWidth() - 1, getHeight() - 1);
-				p.addPoint(0, getHeight() - 1);
-				gd.drawPolygon(p);
+				gd.setColor(new Color(248, 179, 28, 220));
+				gd.drawRect(0, 0, getWidth(), getHeight());
+			}else if(month == select.get(Calendar.MONTH)&&(!isSelected)&&!(year == now.get(Calendar.YEAR) && month == now.get(Calendar.MONTH) && day == now.get(Calendar.DAY_OF_MONTH))){
+				this.setForeground(new Color(255, 255, 255,220));
 			}
 			super.paintComponent(g);
 		}
@@ -641,20 +646,22 @@ public class DateChooser extends JPanel {
 		public JP4() {
 			super(new BorderLayout());
 			this.setPreferredSize(new Dimension(295, 20));
-			this.setBackground(new Color(160, 185, 215));
+			this.setBackground(new Color(248, 179, 28));
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
-			final JLabel jl = new JLabel("今天: " + sdf.format(new Date()));
+			final JLabel jl = new JLabel("  今天: " + sdf.format(new Date()));
+			jl.setForeground(new Color(88, 93, 103));
+			jl.setFont(font);
 			jl.setToolTipText("点击选择今天日期");
 			this.add(jl, BorderLayout.CENTER);
 			jl.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent me) {
 					jl.setCursor(new Cursor(Cursor.HAND_CURSOR));
-					jl.setForeground(Color.RED);
+					jl.setForeground(new Color(100, 100, 100,200));
 				}
  
 				public void mouseExited(MouseEvent me) {
 					jl.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-					jl.setForeground(Color.BLACK);
+					jl.setForeground(new Color(88, 93, 103));
 				}
  
 				public void mousePressed(MouseEvent me) {
