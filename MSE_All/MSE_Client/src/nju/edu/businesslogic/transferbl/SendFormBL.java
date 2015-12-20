@@ -49,6 +49,7 @@ public class SendFormBL implements SendFormBlService, ApproveSendFormInfo {
 	public void addReceiveOrder(SendorderVO sv) {
 		SendorderPO sp = new SendorderPO(sv.getDate(), sv.getSender(),
 				sv.getOrder(), ApproveState.NotApprove);
+
 		SendFormDataService sd = RMIHelper.getSendFormData();
 		try {
 			sd.insert(sp);

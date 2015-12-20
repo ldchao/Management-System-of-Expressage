@@ -136,7 +136,7 @@ public class SendUI extends JPanel implements Runnable {
 					label_4.setText("«Î ‰»Î∂©µ•∫≈");
 				} else {
 					String[] sendOrder = orderList.split("\n");
-					ArrayList<String> order = new ArrayList<>();
+					ArrayList<String> order = new ArrayList<String>();
 					boolean isTrue = true;
 					for (int i = 0; i < sendOrder.length; i++) {
 						if (sendOrder[i].length() != 10) {
@@ -145,6 +145,7 @@ public class SendUI extends JPanel implements Runnable {
 						}
 						order.add(sendOrder[i]);
 					}
+
 					if (isTrue) {
 						SendorderVO sv = new SendorderVO(sendDate, sendPerson,
 								order);

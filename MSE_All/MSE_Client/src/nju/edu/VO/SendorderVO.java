@@ -8,9 +8,9 @@ public class SendorderVO {
 	ArrayList<String> order;
 
 	public SendorderVO(String date, String sender, ArrayList<String> order) {
-		date = this.date;
-		sender = this.sender;
-		order = this.order;
+		this.date=date;
+		this.sender=sender;
+		this.order=order;
 	}
 
 	/*
