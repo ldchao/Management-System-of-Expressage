@@ -24,41 +24,40 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class checkCost_Benefit extends JFrame {
+public class checkCost_Benefit extends JPanel {
 
-	private JPanel contentPane;
 	private JTable table;
 	static DefaultTableModel tableModel;
 	PayorderBL payorderBL = new PayorderBL();
 	
-	public checkCost_Benefit() {
+	public checkCost_Benefit(JFrame main) {
 		checkCost_Benefit checkCost_Benefitframe=this;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setLayout(null);
 		
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				checkCost_Benefitframe.dispose();
-				checkStatics_Analysis newcheckStatics_Analysis=new checkStatics_Analysis();
+				checkStatics_Analysis newcheckStatics_Analysis=new checkStatics_Analysis(main);
+				main.remove(checkCost_Benefitframe);
+				main.add(newcheckStatics_Analysis);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button.setBounds(10, 10, 75, 23);
-		contentPane.add(button);
+		add(button);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u6210\u672C\u6536\u76CA\u8868\u67E5\u8BE2");
 		label.setBounds(95, 14, 211, 15);
-		contentPane.add(label);
+		add(label);
 		
 		JLabel label_1 = new JLabel("\u622A\u81F3\u5F53\u524D\u65E5\u671F\u7684\u6210\u672C\u6536\u76CA\u8868");
 		label_1.setFont(new Font("黑体", Font.BOLD, 20));
 		label_1.setBounds(260, 78, 260, 31);
-		contentPane.add(label_1);
+		add(label_1);
 		// 使表格居中
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
@@ -70,7 +69,7 @@ public class checkCost_Benefit extends JFrame {
 		
 		table = new JTable();
 		table.setBounds(143, 132, 479, 160);
-		contentPane.add(table);
+		add(table);
 		table.setRowHeight(40);
 		table.setDefaultRenderer(Object.class, r);
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));

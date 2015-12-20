@@ -29,55 +29,54 @@ import nju.edu.businesslogic.approvebl.Approvebl;
 
 import javax.swing.JToolBar;
 
-public class ListApprove extends JFrame implements ItemListener{
+public class ListApprove extends JPanel implements ItemListener{
 
-	private JPanel contentPane;
 	private static JTable table;
 	private static DefaultTableModel tableModel;
 	private int rowpos = -1;
 	private Approvebl approvebl=new Approvebl();
 	JComboBox comboBox ;
 	
-	public ListApprove() {
+	public ListApprove(JFrame main) {
 		ListApprove listApproveframe=this;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setLayout(null);
 		
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				listApproveframe.dispose();
-				Manager newmanager=new Manager();
+				Manager newmanager=new Manager(main);
+				main.remove(listApproveframe);
+				main.add(newmanager);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button.setBounds(10, 10, 76, 23);
-		contentPane.add(button);
+		add(button);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u5355\u636E\u5BA1\u6279");
 		label.setBounds(96, 14, 108, 15);
-		contentPane.add(label);
+		add(label);
 		
 //		String[] state={"未审批","审批已通过","审批未通过"};
 		
 
 		JLabel label_2 = new JLabel("\u5355\u636E\u79CD\u7C7B");
 		label_2.setBounds(257, 63, 54, 15);
-		contentPane.add(label_2);
+		add(label_2);
 		
 		String[] type={"寄件单","装车单","营业厅到达单","收款单","派件单","中转中心到达单","入库单","中转单","出库单","付款单"};
 		comboBox = new JComboBox(type);
 		comboBox.setBounds(392, 59, 144, 23);
 		comboBox.addItemListener(this);
-		contentPane.add(comboBox);
+		add(comboBox);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(85, 102, 566, 344);
-		contentPane.add(scrollPane);
+		add(scrollPane);
 		
 		table = new JTable();
 		table.setRowHeight(40);
@@ -115,7 +114,7 @@ public class ListApprove extends JFrame implements ItemListener{
 			}
 		});
 		button_1.setBounds(230, 474, 93, 23);
-		contentPane.add(button_1);
+		add(button_1);
 		
 		JButton button_2 = new JButton("\u53D6\u6D88");
 		button_2.addActionListener(new ActionListener() {
@@ -123,11 +122,11 @@ public class ListApprove extends JFrame implements ItemListener{
 			}
 		});
 		button_2.setBounds(392, 474, 93, 23);
-		contentPane.add(button_2);
+		add(button_2);
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 534, 724, 28);
-		contentPane.add(toolBar);
+		add(toolBar);
 		
 		JLabel label_3 = new JLabel("\u72B6\u6001\u680F");
 		toolBar.add(label_3);

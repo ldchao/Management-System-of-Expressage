@@ -25,48 +25,47 @@ import javax.swing.table.DefaultTableModel;
 import nju.edu.VO.AccountVO;
 import nju.edu.businesslogic.accountbl.AccountBL;
 
-public class checkAccount extends JFrame {
+public class checkAccount extends JPanel {
 
-	private JPanel contentPane;
 	private static JTable table;
 	private int rowpos = -1;
 	private static DefaultTableModel tableModel;
 	private AccountBL accountBL;
 	
-	public checkAccount() {
+	public checkAccount(JFrame main) {
 		accountBL=new AccountBL();
 		checkAccount checkAccountframe=this;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
 		
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setLayout(null);
 		
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				checkAccountframe.dispose();
-				checkStatics_Analysis newcheckStatics_Analysis=new checkStatics_Analysis();
+				checkStatics_Analysis newcheckStatics_Analysis=new checkStatics_Analysis(main);
+				main.remove(checkAccountframe);
+				main.add(newcheckStatics_Analysis);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button.setBounds(10, 10, 75, 23);
-		contentPane.add(button);
+		add(button);
 		
 		JLabel lblNewLabel = new JLabel("\u603B\u7ECF\u7406>>\u8D26\u6237\u67E5\u8BE2");
 		lblNewLabel.setBounds(95, 14, 110, 15);
-		contentPane.add(lblNewLabel);
+		add(lblNewLabel);
 		
 		JLabel label = new JLabel("\u94F6\u884C\u8D26\u6237");
 		label.setFont(new Font("ºÚÌå", Font.BOLD, 15));
 		label.setBounds(343, 96, 70, 15);
-		contentPane.add(label);
+		add(label);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(156, 141, 432, 271);
-		contentPane.add(scrollPane);
+		add(scrollPane);
 		
 		table = new JTable();
 		table.setRowHeight(25);

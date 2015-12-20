@@ -24,46 +24,45 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class checkStatisticInformation extends JFrame {
+public class checkStatisticInformation extends JPanel {
 
-	private JPanel contentPane;
 	private JTable table;
 	private JTable table2;
 	private DefaultTableModel tableModel1;
 	private DefaultTableModel tableModel2;
 	StatisticsBL stbl = new StatisticsBL();
-	public checkStatisticInformation(String start, String end) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public checkStatisticInformation(String start, String end,JFrame main) {
+		checkStatisticInformation checkStatisticInformation=this;
 		setBounds(100, 100, 750, 600);
 		this.setVisible(true);
-		
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setLayout(null);
 		
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				checkStatistic checkStatistic=new checkStatistic();
-				dispose();
+				checkStatistic checkStatistic=new checkStatistic(main);
+				main.remove(checkStatisticInformation);
+				main.add(checkStatistic);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button.setBounds(10, 10, 93, 23);
-		contentPane.add(button);
+		add(button);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u67E5\u770B\u7EDF\u8BA1\u5206\u6790");
 		label.setBounds(113, 14, 130, 15);
-		contentPane.add(label);
+		add(label);
 		
 		JLabel label_1 = new JLabel(start + "至" + end + "期间的经营情况");
 		label_1.setFont(new Font("黑体", Font.BOLD, 17));
 		label_1.setBounds(209, 71, 368, 23);
-		contentPane.add(label_1);
+		add(label_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(43, 114, 654, 147);
-		getContentPane().add(scrollPane);
+		add(scrollPane);
 		
 		int startnum = Integer.valueOf(start.replaceAll("-", ""));
 		int endnum = Integer.valueOf(end.replaceAll("-", ""));
@@ -106,7 +105,7 @@ public class checkStatisticInformation extends JFrame {
 
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(43, 324, 654, 147);
-		getContentPane().add(scrollPane_1);
+		add(scrollPane_1);
 
 		// 付款单
 		table2 = new JTable();

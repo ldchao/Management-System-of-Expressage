@@ -26,9 +26,8 @@ import java.util.Enumeration;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
-public class Staff extends JFrame{
+public class Staff extends JPanel{
 
-	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -64,31 +63,28 @@ public class Staff extends JFrame{
 			"浦东新区营业厅","金山区营业厅","松江区营业厅","青浦区营业厅","奉贤区营业厅",
 			"崇明县营业厅","工业区营业厅","开发区营业厅","外贸区营业厅","高新区营业厅"}};
 	private JTextField textField_3;
+	Staff thiStaff=this;
 
-
-	public Staff(StaffVO vo) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public Staff(StaffVO vo, JFrame main) {
+		
 		setBounds(100, 100, 750, 600);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setLayout(null);
 		this.setVisible(true);
 		
 		JLabel label = new JLabel("\u4EBA\u5458\u5177\u4F53\u4FE1\u606F");
 		label.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		label.setBounds(312, 68, 96, 15);
-		contentPane.add(label);
+		add(label);
 		
 		JLabel label_1 = new JLabel("\u7528\u6237\u540D");
 		label_1.setBounds(55, 133, 54, 15);
-		contentPane.add(label_1);
+		add(label_1);
 		
 		textField = new JTextField();
 		textField.setBounds(119, 130, 217, 21);
 		textField.setText(vo.getId());
 		textField.setEnabled(false);
-		contentPane.add(textField);
+		add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
@@ -96,37 +92,37 @@ public class Staff extends JFrame{
 		textField_1.setBounds(481, 130, 217, 21);
 		textField_1.setText(vo.getName());
 		textField_1.setEnabled(false);
-		contentPane.add(textField_1);
+		add(textField_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(119, 186, 217, 21);
 		textField_2.setText(vo.getPhone());
 		textField_2.setEnabled(false);
-		contentPane.add(textField_2);
+		add(textField_2);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(481, 186, 217, 21);
 		textField_3.setText(vo.getCellphone());
 		textField_3.setEnabled(false);
-		contentPane.add(textField_3);
+		add(textField_3);
 		
 		label_2 = new JLabel("\u59D3\u540D");
 		label_2.setBounds(421, 133, 54, 15);
-		contentPane.add(label_2);
+		add(label_2);
 		
 		label_3 = new JLabel("\u7535\u8BDD");
 		label_3.setBounds(55, 189, 54, 15);
-		contentPane.add(label_3);
+		add(label_3);
 		
 		label_4 = new JLabel("\u804C\u4F4D");
 		label_4.setBounds(74, 336, 54, 15);
-		contentPane.add(label_4);
+		add(label_4);
 		
 		label_5 = new JLabel("\u5355\u4F4D");
 		label_5.setBounds(55, 243, 54, 15);
-		contentPane.add(label_5);
+		add(label_5);
 		//初始化
 		int a=-1,b=-1;
 		String[] temp=vo.getShop().split(",");
@@ -147,7 +143,7 @@ public class Staff extends JFrame{
 		comboBox.setSelectedIndex(a);
 		comboBox.setEnabled(false);
 		comboBox.setBounds(119, 240, 69, 21);
-		contentPane.add(comboBox);
+		add(comboBox);
 		
 		
 		DefaultComboBoxModel comboBoxModel=new DefaultComboBoxModel(position[a]);
@@ -156,39 +152,39 @@ public class Staff extends JFrame{
 		comboBox_1.setSelectedIndex(b);
 		comboBox_1.setEnabled(false);
 		comboBox_1.setBounds(198, 240, 138, 21);
-		contentPane.add(comboBox_1);
+		add(comboBox_1);
 		
 		rdbtnNewRadioButton = new JRadioButton("\u5FEB\u9012\u5458");
 		rdbtnNewRadioButton.setBounds(138, 332, 96, 23);
-		contentPane.add(rdbtnNewRadioButton);
+		add(rdbtnNewRadioButton);
 		
 		radioButton = new JRadioButton("\u7CFB\u7EDF\u7BA1\u7406\u5458");
 		radioButton.setBounds(267, 332, 126, 23);
-		contentPane.add(radioButton);
+		add(radioButton);
 		
 		radioButton_1 = new JRadioButton("\u603B\u7ECF\u7406");
 		radioButton_1.setBounds(421, 332, 123, 23);
-		contentPane.add(radioButton_1);
+		add(radioButton_1);
 		
 		radioButton_2 = new JRadioButton("\u8D22\u52A1\u4EBA\u5458");
 		radioButton_2.setBounds(579, 332, 119, 23);
-		contentPane.add(radioButton_2);
+		add(radioButton_2);
 		
 		radioButton_3 = new JRadioButton("\u9AD8\u7EA7\u8D22\u52A1\u4EBA\u5458");
 		radioButton_3.setBounds(138, 374, 126, 23);
-		contentPane.add(radioButton_3);
+		add(radioButton_3);
 		
 		radioButton_4 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4E1A\u52A1\u5458");
 		radioButton_4.setBounds(421, 374, 145, 23);
-		contentPane.add(radioButton_4);
+		add(radioButton_4);
 		
 		radioButton_5 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u5458");
 		radioButton_5.setBounds(579, 374, 145, 23);
-		contentPane.add(radioButton_5);
+		add(radioButton_5);
 		
 		radioButton_6 = new JRadioButton("\u8425\u4E1A\u5385\u4E1A\u52A1\u5458");
 		radioButton_6.setBounds(267, 374, 138, 23);
-		contentPane.add(radioButton_6);
+		add(radioButton_6);
 		
 		ButtonGroup bg=new ButtonGroup();
 		bg.add(radioButton);
@@ -211,44 +207,52 @@ public class Staff extends JFrame{
 		button = new JButton("\u7F16\u8F91");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				editStaff editStaff=new editStaff(vo);
-				dispose();
+				editStaff editStaff=new editStaff(vo,main);
+				main.remove(thiStaff);
+				main.getContentPane().add(editStaff);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button.setBounds(243, 481, 93, 23);
-		contentPane.add(button);
+		add(button);
 		
 		button_1 = new JButton("\u8FD4\u56DE");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StaffManager staffManager=new StaffManager();
-				dispose();
+				StaffManager staffManager=new StaffManager(main);
+				main.remove(thiStaff);
+				main.getContentPane().add(staffManager);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button_1.setBounds(423, 481, 93, 23);
-		contentPane.add(button_1);
+		add(button_1);
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(10, 533, 714, 28);
-		contentPane.add(toolBar);
+		add(toolBar);
 		
 		JLabel label_8 = new JLabel("\u72B6\u6001");
 		toolBar.add(label_8);
 		
 		JLabel label_6 = new JLabel("\u624B\u673A");
 		label_6.setBounds(421, 189, 54, 15);
-		contentPane.add(label_6);
+		add(label_6);
 		
 		
 		JLabel label_7 = new JLabel("\u5730\u5740");
 		label_7.setBounds(421, 243, 54, 15);
-		contentPane.add(label_7);
+		add(label_7);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(481, 239, 217, 52);
 		textArea.setText(vo.getAddress());
 		textArea.setEnabled(false);
-		contentPane.add(textArea);
+		add(textArea);
 	}
 
 }

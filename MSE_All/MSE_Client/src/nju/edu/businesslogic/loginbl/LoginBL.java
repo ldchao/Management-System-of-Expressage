@@ -19,8 +19,10 @@ import nju.edu.presentation.Business_hall_salesmanui.Business_hall_salesmanMainU
 import nju.edu.presentation.Transit_center_salesmanui.Transit_center_salesman_mainui;
 import nju.edu.presentation.Transit_center_storemasterui.Transit_center_storemaster_mainui;
 import nju.edu.presentation.courierui.Courier;
+import nju.edu.presentation.courierui.CourierFrame;
 import nju.edu.presentation.financial_staffui.FinanceFrame;
 import nju.edu.presentation.general_managerui.Manager;
+import nju.edu.presentation.general_managerui.ManagerFrame;
 import nju.edu.presentation.system_administratorui.Administratorframe;
 
 public class LoginBL implements LoginBLService {
@@ -66,7 +68,7 @@ public class LoginBL implements LoginBLService {
 
 		switch (limit) {
 		case "快递员":
-			Courier aCourier = new Courier();
+			CourierFrame aCourier = new CourierFrame();
 			aCourier.setVisible(true);
 			break;
 		case "营业厅业务员":
@@ -78,7 +80,7 @@ public class LoginBL implements LoginBLService {
 			tcs.setVisible(true);
 			break;
 		case "总经理":
-			Manager mframe = new Manager();
+			ManagerFrame mframe = new ManagerFrame();
 			mframe.setVisible(true);
 			break;
 		case "财务人员":

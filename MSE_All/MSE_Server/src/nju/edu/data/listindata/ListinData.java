@@ -3,7 +3,9 @@ package nju.edu.data.listindata;
 import java.io.File;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import PO.OrderPO;
 import State.ApproveState;
@@ -129,11 +131,15 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 				break;
 			}
 		}
+		
 		String t="";
 		for(int j=0;j<temp.length-1;j++){
 			t+=temp[j]+";";
 		}
-		t+=temp[temp.length-1]+message+";";
+		Date date=new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String now = dateFormat.format(date); 
+		t+=temp[temp.length-1]+","+now+" : "+message+";";
 		if(a!=-1)
 		arrayList.set(a, t);
 		fileWriter fileWriter=new fileWriter();

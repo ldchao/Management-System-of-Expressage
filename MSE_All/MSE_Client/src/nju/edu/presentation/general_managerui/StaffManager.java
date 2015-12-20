@@ -31,9 +31,8 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JToolBar;
 
-public class StaffManager extends JFrame {
+public class StaffManager extends JPanel {
 
-	private JPanel contentPane;
 	private JTextField textField;
 	private static JTable table;
 	private JLabel label_3;
@@ -41,45 +40,39 @@ public class StaffManager extends JFrame {
 	private static DefaultTableModel tableModel;
 	Staffbl staffbl;
 	StaffManager thiStaffManager=this;
-	/**
-	 * Launch the application.
-	 */
 
-	/**
-	 * Create the frame.
-	 */
-	public StaffManager() {
+	public StaffManager(JFrame main) {
 		staffbl=new Staffbl();
 		StaffManager staffManagerframe=this;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setLayout(null);
 		
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				staffManagerframe.dispose();
-				Manager newmanager=new Manager();
+				Manager newmanager=new Manager(main);
+				main.remove(staffManagerframe);
+				main.add(newmanager);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button.setBounds(10, 10, 75, 23);
-		contentPane.add(button);
+		add(button);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u4EBA\u5458\u673A\u6784\u7BA1\u7406");
 		label.setBounds(95, 14, 132, 15);
-		contentPane.add(label);
+		add(label);
 		
 		JLabel label_1 = new JLabel("\u7528\u6237\u540D\u68C0\u7D22");
 		label_1.setBounds(191, 93, 82, 15);
-		contentPane.add(label_1);
+		add(label_1);
 		
 		textField = new JTextField();
 		textField.setBounds(283, 90, 161, 21);
-		contentPane.add(textField);
+		add(textField);
 		textField.setColumns(10);
 		
 		JButton button_1 = new JButton("\u786E\u5B9A");
@@ -92,23 +85,27 @@ public class StaffManager extends JFrame {
 					if(vo==null){
 						label_3.setText("查无此人");
 					}else{
-						Staff staff=new Staff(vo);
-						dispose();
+						Staff staff=new Staff(vo,main);
+						main.remove(thiStaffManager);
+						main.add(staff);
+						main.invalidate();
+						main.repaint();
+						main.setVisible(true);
 					}
 				}
 			}
 		});
 		button_1.setBounds(454, 89, 69, 23);
-		contentPane.add(button_1);
+		add(button_1);
 		
 		JLabel label_2 = new JLabel("\u5168\u5458\u5217\u8868");
 		label_2.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		label_2.setBounds(331, 153, 94, 15);
-		contentPane.add(label_2);
+		add(label_2);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(150, 178, 434, 188);
-		contentPane.add(scrollPane);
+		add(scrollPane);
 		
 		table = new JTable();
 		table.setRowHeight(25);
@@ -146,27 +143,35 @@ public class StaffManager extends JFrame {
 				if (rowpos != -1) {
 					String id = tableModel.getValueAt(rowpos, 0).toString();
 					StaffVO selectVo=staffbl.checkStaff(id);	
-					Staff staff=new Staff(selectVo);
-					dispose();
+					Staff staff=new Staff(selectVo,main);
+					main.remove(staffManagerframe);
+					main.add(staff);
+					main.invalidate();
+					main.repaint();
+					main.setVisible(true);
 				}
 			}
 		});
 		button_2.setBounds(214, 400, 93, 23);
-		contentPane.add(button_2);
+		add(button_2);
 		
 		JButton button_3 = new JButton("\u65B0\u5EFA\u4EBA\u5458");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addStaff addStaff=new addStaff();
-				dispose();
+				addStaff addStaff=new addStaff(main);
+				main.remove(staffManagerframe);
+				main.add(addStaff);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button_3.setBounds(430, 400, 93, 23);
-		contentPane.add(button_3);
+		add(button_3);
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(10, 534, 714, 17);
-		contentPane.add(toolBar);
+		add(toolBar);
 		
 		label_3 = new JLabel("\u72B6\u6001\u680F");
 		toolBar.add(label_3);

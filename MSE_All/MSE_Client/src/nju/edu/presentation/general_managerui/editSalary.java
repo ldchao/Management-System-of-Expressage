@@ -21,9 +21,8 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class editSalary extends JFrame{
+public class editSalary extends JPanel{
 
-	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 	private SalaryModel salaryModel;
@@ -32,37 +31,29 @@ public class editSalary extends JFrame{
 	JRadioButton radioButton;
 	JRadioButton radioButton_1 ;
 	ButtonGroup buttonGroup;
-	/**
-	 * Launch the application.
-	 */
-	/**
-	 * Create the frame.
-	 */
-	public editSalary(SalaryVO vo) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	public editSalary(SalaryVO vo,JFrame main) {
+		editSalary editSalary=this;
 		setBounds(100, 100, 750,600);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setLayout(null);
 		this.setVisible(true);
 		
 		JLabel label = new JLabel("\u85AA\u6C34\u5177\u4F53\u4FE1\u606F");
 		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 24));
 		label.setBounds(283, 133, 179, 50);
-		contentPane.add(label);
+		add(label);
 		
 		JLabel label_1 = new JLabel("\u804C\u4F4D\uFF1A");
 		label_1.setBounds(219, 234, 54, 15);
-		contentPane.add(label_1);
+		add(label_1);
 		
 		JLabel label_2 = new JLabel("\u85AA\u6C34\uFF08\u5143\uFF09\uFF1A");
 		label_2.setBounds(219, 283, 72, 15);
-		contentPane.add(label_2);
+		add(label_2);
 		
 		JLabel label_3 = new JLabel("\u85AA\u6C34\u6A21\u5F0F");
 		label_3.setBounds(219, 333, 72, 15);
-		contentPane.add(label_3);
+		add(label_3);
 		//first
 		rdbtnNewRadioButton = new JRadioButton("\u6309\u6708");
 		rdbtnNewRadioButton.setBounds(307, 329, 54, 23);
@@ -73,7 +64,7 @@ public class editSalary extends JFrame{
 				salaryModel=SalaryModel.ByMonth;
 			}
 		});
-		contentPane.add(rdbtnNewRadioButton);
+		add(rdbtnNewRadioButton);
 		
 		//second
 		radioButton = new JRadioButton("\u6309\u6B21");
@@ -85,7 +76,7 @@ public class editSalary extends JFrame{
 				salaryModel=salaryModel.ByTimes;
 			}
 		});
-		contentPane.add(radioButton);
+		add(radioButton);
 		
 		//third
 		radioButton_1 = new JRadioButton("\u6309\u63D0\u6210");
@@ -97,7 +88,7 @@ public class editSalary extends JFrame{
 				salaryModel=salaryModel.ByBenefit;
 			}
 		});
-		contentPane.add(radioButton_1);
+		add(radioButton_1);
 		
 		buttonGroup=new ButtonGroup();
 		buttonGroup.add(rdbtnNewRadioButton);
@@ -121,39 +112,47 @@ public class editSalary extends JFrame{
 				SalaryVO salaryVO=new SalaryVO(textField.getText(), Double.parseDouble(textField_1.getText()), salaryModel);
 				SalaryPolicybl salaryPolicybl=new SalaryPolicybl();
 				salaryPolicybl.editSalary(salaryVO);
-				Salary salary=new Salary(salaryVO);
-				dispose();
+				Salary salary=new Salary(salaryVO,main);
+				main.remove(editSalary);
+				main.add(salary);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		btnNewButton.setBounds(219, 391, 93, 23);
-		contentPane.add(btnNewButton);
+		add(btnNewButton);
 		
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Salary salary=new Salary(vo);
-				dispose();
+				Salary salary=new Salary(vo,main);
+				main.remove(editSalary);
+				main.add(salary);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		button.setBounds(393, 391, 93, 23);
-		contentPane.add(button);
+		add(button);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
 		textField.setBounds(332, 231, 154, 21);
 		textField.setText(vo.getTypeOfStaff());
 		textField.setEditable(false);
-		contentPane.add(textField);
+		add(textField);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(332, 280, 154, 21);
 		textField_1.setText(vo.getSalary()+"");
-		contentPane.add(textField_1);
+		add(textField_1);
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(10, 533, 714, 28);
-		contentPane.add(toolBar);
+		add(toolBar);
 		
 		label_4 = new JLabel("\u72B6\u6001");
 		toolBar.add(label_4);
