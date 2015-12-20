@@ -23,6 +23,9 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 
+import nju.edu.VO.SendorderVO;
+import nju.edu.businesslogic.transferbl.SendFormBL;
+import nju.edu.businesslogicservice.transferblservice.SendFormBlService;
 import nju.edu.presentation.Transit_center_storemasterui.SetWarnData;
 
 public class SendUI extends JPanel {
@@ -134,8 +137,20 @@ public class SendUI extends JPanel {
 				} else {
 					String[] sendOrder = orderList.split("\n");
 					ArrayList<String> order = new ArrayList<>();
+					boolean isTrue=true;
 					for (int i = 0; i < sendOrder.length; i++) {
+						if(sendOrder[i].length()!=10){
+							isTrue=false;
+						    break;
+						}
 						order.add(sendOrder[i]);
+					}
+					if(isTrue){
+					SendorderVO sv=new SendorderVO(sendDate, sendPerson, order);
+					SendFormBlService sb=new SendFormBL();
+					sb.addReceiveOrder(sv);
+					}else{
+						label_4.setText("请检查订单号输入是否正确");
 					}
 				}
 			}
