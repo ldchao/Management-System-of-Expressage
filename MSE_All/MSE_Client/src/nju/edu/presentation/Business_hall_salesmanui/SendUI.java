@@ -28,7 +28,7 @@ import nju.edu.businesslogic.transferbl.SendFormBL;
 import nju.edu.businesslogicservice.transferblservice.SendFormBlService;
 import nju.edu.presentation.Transit_center_storemasterui.SetWarnData;
 
-public class SendUI extends JPanel {
+public class SendUI extends JPanel implements Runnable {
 	private JTextField textField;
 	JFrame main;
 	JPanel lastui;
@@ -137,19 +137,22 @@ public class SendUI extends JPanel {
 				} else {
 					String[] sendOrder = orderList.split("\n");
 					ArrayList<String> order = new ArrayList<>();
-					boolean isTrue=true;
+					boolean isTrue = true;
 					for (int i = 0; i < sendOrder.length; i++) {
-						if(sendOrder[i].length()!=10){
-							isTrue=false;
-						    break;
+						if (sendOrder[i].length() != 10) {
+							isTrue = false;
+							break;
 						}
 						order.add(sendOrder[i]);
 					}
-					if(isTrue){
-					SendorderVO sv=new SendorderVO(sendDate, sendPerson, order);
-					SendFormBlService sb=new SendFormBL();
-					sb.addReceiveOrder(sv);
-					}else{
+					if (isTrue) {
+						SendorderVO sv = new SendorderVO(sendDate, sendPerson,
+								order);
+						SendFormBlService sb = new SendFormBL();
+						sb.addReceiveOrder(sv);
+						Thread t=new Thread(nowPanel);
+						t.start();
+					} else {
 						label_4.setText("请检查订单号输入是否正确");
 					}
 				}
@@ -172,6 +175,21 @@ public class SendUI extends JPanel {
 
 		btnNewButton_1.setBounds(412, 435, 93, 23);
 		add(btnNewButton_1);
+
+	}
+
+	@Override
+	public void run() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		main.remove(nowPanel);
+		main.getContentPane().add(lastui);
+		main.invalidate();
+		main.repaint();
+		main.setVisible(true);
 
 	}
 }
