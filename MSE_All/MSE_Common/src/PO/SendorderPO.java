@@ -2,16 +2,20 @@ package PO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import State.ApproveState;
+
 public class SendorderPO implements Serializable{
 	String date;
 	String sender;
 	ArrayList<String> order;
+	ApproveState approvestate;
 
 	public SendorderPO(String date,String sender,
-		ArrayList<String> order){
-		date = this.date;
-		sender = this.sender;
-		order = this.order;
+		ArrayList<String> order,ApproveState approvestate){
+		this.date=date;
+		this.sender=sender;
+		this.order=order;
+		this.approvestate=approvestate;
 	}
     
 
@@ -22,6 +26,7 @@ public class SendorderPO implements Serializable{
 	public String getDate(){
 		return date;
 	}
+
 
 	/*  getSender
         返回派送员
@@ -39,5 +44,14 @@ public class SendorderPO implements Serializable{
 		return order;
 	}
 
+
+	public ApproveState getApprovestate() {
+		return approvestate;
+	}
+
+
+	public void setApprovestate(ApproveState approvestate) {
+		this.approvestate = approvestate;
+	}
 
 }

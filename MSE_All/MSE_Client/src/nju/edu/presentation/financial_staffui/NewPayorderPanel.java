@@ -17,6 +17,8 @@ import javax.swing.JToolBar;
 
 import PO.LoginPO;
 import nju.edu.businesslogic.financebl.PayorderBL;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class NewPayorderPanel extends JPanel implements Runnable {
@@ -55,7 +57,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(npp);
 				PayPanel pp = new PayPanel(loginPO, main);
-				main.add(pp);
+				main.getContentPane().add(pp);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -80,6 +82,14 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 		add(label_5);
 
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+		});
 		textField.setBounds(179, 145, 157, 21);
 		add(textField);
 		textField.setColumns(10);
@@ -195,7 +205,6 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 			textField.setText("");
 			textField_1.setText("");
 			textField_2.setText("");
-			textField_3.setText("");
 			textArea.setText("");
 			textArea_1.setText("");
 		}

@@ -23,6 +23,9 @@ import java.util.Date;
 import javax.swing.JToolBar;
 import javax.swing.JTextField;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 @SuppressWarnings("serial")
 public class ReceiFormPanel extends JPanel implements Runnable {
 	private JTable table;
@@ -66,7 +69,7 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 			public void actionPerformed(ActionEvent arg0) {
 				if (over) {
 					main.remove(rfp);
-					main.add(panel);
+					main.getContentPane().add(panel);
 					main.invalidate();
 					main.repaint();
 					main.setVisible(true);
@@ -85,11 +88,27 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 		add(lblHello);
 
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+		});
 		textField.setBounds(94, 120, 92, 25);
 		add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
+		textField_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+		});
 		textField_1.setColumns(10);
 		textField_1.setBounds(185, 120, 92, 25);
 		add(textField_1);
