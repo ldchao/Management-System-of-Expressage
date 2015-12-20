@@ -78,7 +78,7 @@ public class Receiver extends JPanel {
 		add(textField_1);
 		
 		JLabel label_4 = new JLabel("\u8BA2\u5355\u53F7");
-		label_4.setBounds(34, 165, 36, 15);
+		label_4.setBounds(34, 165, 42, 15);
 		add(label_4);
 		
 		textField_2 = new JTextField();
@@ -182,7 +182,7 @@ public class Receiver extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Courier newcourier=new Courier(main);
 				main.remove(receiverframe);
-				main.add(newcourier);
+				main.getContentPane().add(newcourier);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);

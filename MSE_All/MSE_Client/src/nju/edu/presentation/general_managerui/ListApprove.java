@@ -96,6 +96,7 @@ public class ListApprove extends JPanel implements ItemListener{
 			}
 		});
 		scrollPane.setViewportView(table);
+		table.setEnabled(false);
 		tableModel = new DefaultTableModel(
 				new Object[][] {{null},{null},{null},{null},{null},{null},{null},{null}},
 					new String[] {	"单据信息"

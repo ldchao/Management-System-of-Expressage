@@ -126,13 +126,11 @@ public class Order extends JPanel implements Runnable{
 		textField = new JTextField();
 		textField.setBounds(126, 57, 179, 21);
 		textField.setColumns(10);
-		textField.addKeyListener(new keyListener());
 		add(textField);
 
 		
 		textField_1 = new JTextField();
 		textField_1.setBounds(517, 57, 179, 21);
-		textField_1.addKeyListener(new keyListener());
 		textField_1.setColumns(10);
 		add(textField_1);
 		
@@ -268,6 +266,7 @@ public class Order extends JPanel implements Runnable{
 		textField_11 = new JTextField();
 		textField_11.setColumns(10);
 		textField_11.setBounds(517, 386, 179, 21);
+		textField_11.addKeyListener(new InputNumber());
 		add(textField_11);
 		
 		JLabel label_17 = new JLabel("\u7269\u54C1\u6570");
@@ -281,6 +280,7 @@ public class Order extends JPanel implements Runnable{
 		textField_12 = new JTextField();
 		textField_12.setColumns(10);
 		textField_12.setBounds(172, 411, 43, 21);
+		textField_12.addKeyListener(new InputNumber());
 		add(textField_12);
 		
 		lblcm = new JLabel("\u7269\u54C1\u957F\u5EA6\uFF08cm\uFF09");
@@ -290,6 +290,7 @@ public class Order extends JPanel implements Runnable{
 		textField_13 = new JTextField();
 		textField_13.setColumns(10);
 		textField_13.setBounds(334, 411, 43, 21);
+		textField_13.addKeyListener(new InputNumber());
 		add(textField_13);
 		
 		lblcm_1 = new JLabel("\u7269\u54C1\u5BBD\u5EA6\uFF08cm\uFF09");
@@ -299,6 +300,7 @@ public class Order extends JPanel implements Runnable{
 		textField_14 = new JTextField();
 		textField_14.setColumns(10);
 		textField_14.setBounds(496, 411, 43, 21);
+		textField_14.addKeyListener(new InputNumber());
 		add(textField_14);
 		
 		lblcm_2 = new JLabel("\u7269\u54C1\u9AD8\u5EA6\uFF08cm\uFF09");
@@ -308,6 +310,7 @@ public class Order extends JPanel implements Runnable{
 		textField_15 = new JTextField();
 		textField_15.setColumns(10);
 		textField_15.setBounds(653, 411, 43, 21);
+		textField_15.addKeyListener(new InputNumber());
 		add(textField_15);
 		
 		label_18 = new JLabel("\u5FEB\u9012\u79CD\u7C7B");
@@ -397,7 +400,7 @@ public class Order extends JPanel implements Runnable{
 		
 		toolBar = new JToolBar();
 		toolBar.setName("");
-		toolBar.setBounds(10, 614, 686, 18);
+		toolBar.setBounds(10, 544, 686, 18);
 		add(toolBar);
 		
 		lblNewLabel = new JLabel("\u72B6\u6001");
@@ -458,7 +461,7 @@ public class Order extends JPanel implements Runnable{
 			}
 
 		});
-		btnNewButton.setBounds(268, 530, 93, 23);
+		btnNewButton.setBounds(267, 511, 93, 23);
 		add(btnNewButton);
 		
 		JButton button = new JButton("清空");
@@ -467,7 +470,7 @@ public class Order extends JPanel implements Runnable{
 				clean();
 			}
 		});
-		button.setBounds(439, 530, 93, 23);
+		button.setBounds(446, 511, 93, 23);
 		add(button);
 				String[] city={"南京鼓楼区","南京玄武区","南京建邺区","南京秦淮区","南京栖霞区","南京六合区","南京浦口区","南京江宁区","南京高淳区","南京溧水区",
 				"北京宣武区","北京东城区","北京西城区","北京崇文区","北京朝阳区","北京石景山区","北京海淀区","北京丰台区","北京房山区","北京大兴区","北京通州区","北京门头沟区","北京昌平区","北京顺义区","北京怀柔区","北京密云县","北京平谷区","北京延庆县","北京大学城","北京中关村",
@@ -487,7 +490,7 @@ public class Order extends JPanel implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				Courier courier=new Courier(main);
 				main.remove(orderframe);
-				main.add(courier);
+				main.getContentPane().add(courier);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);

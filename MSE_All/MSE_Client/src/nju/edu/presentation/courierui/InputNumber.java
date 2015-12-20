@@ -2,8 +2,10 @@ package nju.edu.presentation.courierui;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-public class keyListener implements KeyListener{
+/*
+ * function:limit the input that only the number can be admitted
+ */
+public class InputNumber implements KeyListener{
 
 	@Override
 	public void  keyTyped(KeyEvent e) {

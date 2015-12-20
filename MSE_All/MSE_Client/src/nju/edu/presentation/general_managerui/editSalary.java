@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import State.SalaryModel;
 import nju.edu.VO.SalaryVO;
 import nju.edu.businesslogic.policybl.SalaryPolicybl;
+import nju.edu.presentation.courierui.InputNumber;
 
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -109,15 +110,19 @@ public class editSalary extends JPanel{
 		JButton btnNewButton = new JButton("\u786E\u5B9A");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SalaryVO salaryVO=new SalaryVO(textField.getText(), Double.parseDouble(textField_1.getText()), salaryModel);
-				SalaryPolicybl salaryPolicybl=new SalaryPolicybl();
-				salaryPolicybl.editSalary(salaryVO);
-				Salary salary=new Salary(salaryVO,main);
-				main.remove(editSalary);
-				main.add(salary);
-				main.invalidate();
-				main.repaint();
-				main.setVisible(true);
+				if(textField_1.getText().equals("")){
+					label_4.setText("«Î ‰»Îº€∏Ò");
+				}else{
+					SalaryVO salaryVO=new SalaryVO(textField.getText(), Double.parseDouble(textField_1.getText()), salaryModel);
+					SalaryPolicybl salaryPolicybl=new SalaryPolicybl();
+					salaryPolicybl.editSalary(salaryVO);
+					Salary salary=new Salary(salaryVO,main);
+					main.remove(editSalary);
+					main.add(salary);
+					main.invalidate();
+					main.repaint();
+					main.setVisible(true);
+				}
 			}
 		});
 		btnNewButton.setBounds(219, 391, 93, 23);
@@ -147,6 +152,7 @@ public class editSalary extends JPanel{
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(332, 280, 154, 21);
+		textField_1.addKeyListener(new InputNumber());
 		textField_1.setText(vo.getSalary()+"");
 		add(textField_1);
 		

@@ -198,7 +198,6 @@ public class addStaff extends JPanel implements ItemListener,Runnable{
 				}else{
 					staffbl.addStaff(vo);
 					label_8.setText("新建成功");
-					thiStaff.setEnabled(false);
 					Thread thread=new Thread(thiStaff);
 					thread.start();
 				}

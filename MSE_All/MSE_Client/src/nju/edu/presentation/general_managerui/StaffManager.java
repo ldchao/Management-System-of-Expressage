@@ -126,6 +126,7 @@ public class StaffManager extends JPanel {
 		
 		scrollPane.setViewportView(table);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
+		table.setEnabled(false);
 		tableModel = new DefaultTableModel(
 			new Object[][] {
 				{null, null,null},{null, null,null},{null, null,null},{null, null,null},{null, null,null},

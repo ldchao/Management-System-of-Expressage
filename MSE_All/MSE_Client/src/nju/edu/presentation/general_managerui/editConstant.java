@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import PO.ConstantPO;
 import nju.edu.VO.ConstantVO;
 import nju.edu.businesslogic.policybl.ConstantPolicybl;
+import nju.edu.presentation.courierui.InputNumber;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -115,11 +116,13 @@ public class editConstant extends JPanel {
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(396, 198, 120, 21);
+		textField_2.addKeyListener(new InputNumber());
 		add(textField_2);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(396, 271, 120, 21);
+		textField_3.addKeyListener(new InputNumber());
 		add(textField_3);
 	}
 }

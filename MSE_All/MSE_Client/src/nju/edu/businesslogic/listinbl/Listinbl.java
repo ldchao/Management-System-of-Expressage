@@ -117,7 +117,6 @@ public class Listinbl implements ListinBLService,ListinInfo,OrderInfo,UpdateInfo
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return 	vo;
 	}
 
@@ -151,14 +150,15 @@ public class Listinbl implements ListinBLService,ListinInfo,OrderInfo,UpdateInfo
 		// TODO Auto-generated method stub
 		boolean result=true;
 		if (vo.getCourier().equals("")||vo.getId().equals("")||
-				vo.getSender().equals("")||vo.getAddress1().equals("")||vo.getPhone1().equals("")||vo.getCellphone1().equals("")||
-				vo.getReceiver().equals("")||vo.getAddress2().equals("")||vo.getPhone2().equals("")||vo.getCellphone2().equals("")||
+				vo.getSender().equals("")||vo.getAddress1().equals("")||vo.getPhone1().equals("")||vo.getCellphone1().equals("")||vo.getAddress1().equals("")||vo.getPosition1().equals("")||
+				vo.getReceiver().equals("")||vo.getAddress2().equals("")||vo.getPhone2().equals("")||vo.getCellphone2().equals("")||vo.getAddress2().equals("")||vo.getPosition2().equals("")||
 				vo.getItems().equals("")||vo.getCount()<0||vo.getWeight()<0||vo.getLength()<0||vo.getWidth()<0||vo.getHeight()<0||
 				vo.getExpress()==null||vo.getPack()==null||vo.getBill()<0
 				) {
 			result=false;
 			return result;
 		}
+		System.out.print(vo.getPhone1()+";"+vo.getPhone2()+";");
 		return result;
 	}
 

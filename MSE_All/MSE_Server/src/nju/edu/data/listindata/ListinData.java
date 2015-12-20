@@ -70,14 +70,17 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 	public OrderPO getOrder(String id) throws RemoteException {
 		fileReader fileReader=new fileReader();
 		String [] temp=null;
+		boolean valid=false;
 		ArrayList<String> arrayList=fileReader.Reader("Database/UnReceiveOrder.txt");
 		for(int i=0;i<arrayList.size();i++){
 			temp=arrayList.get(i).split(";");
 			if(temp[1].equals(id)){
+				valid=true;
 				break;
 			}
 		}
 		
+		if(valid==true){
 		String []statetype={"Valid","Invalid","NotApprove"};
 		ApproveState state=null;
 		if(temp[2].equals(statetype[0])){
@@ -113,6 +116,9 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 				temp[13], Double.parseDouble(temp[14]), Double.parseDouble(temp[15]), Double.parseDouble(temp[16]), Double.parseDouble(temp[17]), Double.parseDouble(temp[18]), 
 				express, pack, Double.parseDouble(temp[21]), temp[22], temp[23]);
 		return po;
+		}else{
+			return null;
+		}
 		// TODO Auto-generated method stub
 		
 	}
@@ -149,7 +155,13 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 	public double getWeigtht(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		OrderPO orderPO=getOrder(id);
-		return orderPO.getWeight();
+		double result=0;
+		try {
+			result=orderPO.getWeight();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return result;
 	}
 	@Override
 	public ArrayList<OrderPO> getAllOrders() throws RemoteException {

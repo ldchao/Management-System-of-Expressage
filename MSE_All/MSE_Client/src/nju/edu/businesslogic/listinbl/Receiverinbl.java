@@ -42,7 +42,8 @@ public class Receiverinbl implements ReceiverinBLService{
 		// TODO Auto-generated method stub
 		boolean result=true;
 		if(vo.getCourier().equals("")||vo.getId().equals("")||vo.getPhoneOfcourier().equals("")||
-				vo.getReceiver().equals("")||vo.getAddress().equals("")||vo.getTime().equals("点击选择日期")||vo.getCellphone().equals("")){
+				vo.getReceiver().equals("")||vo.getAddress().equals("")||vo.getTime().equals("点击选择日期")||vo.getCellphone().equals("")
+				||vo.getPhone().equals("")||vo.getPosition().equals("")){
 			result=false;
 		}
 		return result;

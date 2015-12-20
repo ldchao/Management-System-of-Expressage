@@ -48,7 +48,7 @@ public class Salary extends JPanel{
 		add(label_1);
 		
 		JLabel label_2 = new JLabel("\u85AA\u6C34\uFF08\u5143\uFF09\uFF1A");
-		label_2.setBounds(219, 283, 72, 15);
+		label_2.setBounds(219, 283, 93, 15);
 		add(label_2);
 		
 		JLabel label_3 = new JLabel("\u85AA\u6C34\u6A21\u5F0F");
@@ -93,7 +93,7 @@ public class Salary extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				editSalary editSalary=new editSalary(vo,main);
 				main.remove(salary);
-				main.add(editSalary);
+				main.getContentPane().add(editSalary);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -107,7 +107,7 @@ public class Salary extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				SalaryManage salaryManage=new SalaryManage(main);	
 				main.remove(salary);
-				main.add(salaryManage);
+				main.getContentPane().add(salaryManage);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
