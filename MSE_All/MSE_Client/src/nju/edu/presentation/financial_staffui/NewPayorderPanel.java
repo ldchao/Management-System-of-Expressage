@@ -205,7 +205,6 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 			textField.setText("");
 			textField_1.setText("");
 			textField_2.setText("");
-			textField_3.setText("");
 			textArea.setText("");
 			textArea_1.setText("");
 		}
