@@ -94,7 +94,7 @@ public class Business_hall_salesmanMainUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VehicleMainUI vehicleImfoUI = new VehicleMainUI(main,
-						contentPane);
+						contentPane,loginPO);
 				main.remove(contentPane);
 				main.getContentPane().add(vehicleImfoUI);
 				main.invalidate();

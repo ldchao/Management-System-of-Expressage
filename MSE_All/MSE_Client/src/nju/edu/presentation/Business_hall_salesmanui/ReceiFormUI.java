@@ -1,11 +1,15 @@
 package nju.edu.presentation.Business_hall_salesmanui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,20 +23,31 @@ import nju.edu.businesslogic.transferbl.ReceiveBL;
 import nju.edu.businesslogicservice.transferblservice.ReceiveBLService;
 
 @SuppressWarnings("serial")
-public class ReceiFormUI extends JPanel{
+public class ReceiFormUI extends JPanel {
 	private JTextField textField;
 	JFrame main;
 
 	/**
 	 * Create the panel.
 	 */
-	public ReceiFormUI(JFrame m, JPanel jp,LoginPO loginPO) {
+	public ReceiFormUI(JFrame m, JPanel jp, LoginPO loginPO) {
 		main = m;
 		JPanel lastui = jp;
 		ReceiFormUI nowPanel = this;
 		setLayout(null);
 
 		JButton button = new JButton("返回");
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}
+		});
+
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -42,23 +57,26 @@ public class ReceiFormUI extends JPanel{
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
 		add(button);
 
 		JLabel label = new JLabel("营业厅业务员>>接收");
 		label.setBounds(100, 14, 187, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("张三，你好！");
-		label_1.setBounds(600, 14, 100, 15);
-		add(label_1);
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		setForeground(Color.WHITE);
+		add(lblHello);
 
 		JLabel label_2 = new JLabel("输入装运单编号");
 		label_2.setBounds(179, 255, 110, 23);
 		add(label_2);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
@@ -70,6 +88,8 @@ public class ReceiFormUI extends JPanel{
 		add(label_3);
 
 		textField = new JTextField();
+		textField.setForeground(new Color(88, 93, 103));
+		textField.setCaretColor(new Color(88, 93, 103));
 		textField.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				label_4.setText("状态栏");
@@ -85,7 +105,7 @@ public class ReceiFormUI extends JPanel{
 		JButton button_1 = new JButton("创建接收单");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().length()!=10) {
+				if (textField.getText().length() != 10) {
 					label_4.setText("请输入正确的装运单号");
 				} else {
 					ReceiveBLService rbs = new ReceiveBL();
@@ -94,7 +114,8 @@ public class ReceiFormUI extends JPanel{
 					if (lv == null) {
 						label_4.setText("未检测到该装运单");
 					} else {
-						ReceiFormorder r = new ReceiFormorder(main, nowPanel, lv,loginPO);
+						ReceiFormorder r = new ReceiFormorder(main, nowPanel,
+								lv, loginPO);
 						main.remove(nowPanel);
 						main.getContentPane().add(r);
 						main.invalidate();
