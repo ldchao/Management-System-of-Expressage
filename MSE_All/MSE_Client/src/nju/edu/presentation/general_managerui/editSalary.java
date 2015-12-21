@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import PO.LoginPO;
 import State.SalaryModel;
 import nju.edu.VO.SalaryVO;
 import nju.edu.businesslogic.policybl.SalaryPolicybl;
@@ -33,7 +34,7 @@ public class editSalary extends JPanel{
 	JRadioButton radioButton_1 ;
 	ButtonGroup buttonGroup;
 
-	public editSalary(SalaryVO vo,JFrame main) {
+	public editSalary(SalaryVO vo,JFrame main,LoginPO loginPO) {
 		editSalary editSalary=this;
 		setBounds(100, 100, 750,600);
 		setLayout(null);
@@ -116,7 +117,7 @@ public class editSalary extends JPanel{
 					SalaryVO salaryVO=new SalaryVO(textField.getText(), Double.parseDouble(textField_1.getText()), salaryModel);
 					SalaryPolicybl salaryPolicybl=new SalaryPolicybl();
 					salaryPolicybl.editSalary(salaryVO);
-					Salary salary=new Salary(salaryVO,main);
+					Salary salary=new Salary(salaryVO,main,loginPO);
 					main.remove(editSalary);
 					main.add(salary);
 					main.invalidate();
@@ -131,7 +132,7 @@ public class editSalary extends JPanel{
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Salary salary=new Salary(vo,main);
+				Salary salary=new Salary(vo,main,loginPO);
 				main.remove(editSalary);
 				main.add(salary);
 				main.invalidate();

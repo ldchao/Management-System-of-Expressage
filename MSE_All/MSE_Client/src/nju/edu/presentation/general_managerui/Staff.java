@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import PO.LoginPO;
 import nju.edu.VO.StaffVO;
 
 import javax.swing.JLabel;
@@ -65,7 +66,7 @@ public class Staff extends JPanel{
 	private JTextField textField_3;
 	Staff thiStaff=this;
 
-	public Staff(StaffVO vo, JFrame main) {
+	public Staff(StaffVO vo, JFrame main,LoginPO loginPO) {
 		
 		setBounds(100, 100, 750, 600);
 		setLayout(null);
@@ -207,7 +208,7 @@ public class Staff extends JPanel{
 		button = new JButton("\u7F16\u8F91");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				editStaff editStaff=new editStaff(vo,main);
+				editStaff editStaff=new editStaff(vo,main,loginPO);
 				main.remove(thiStaff);
 				main.getContentPane().add(editStaff);
 				main.invalidate();
@@ -221,7 +222,7 @@ public class Staff extends JPanel{
 		button_1 = new JButton("\u8FD4\u56DE");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StaffManager staffManager=new StaffManager(main);
+				StaffManager staffManager=new StaffManager(main,loginPO);
 				main.remove(thiStaff);
 				main.getContentPane().add(staffManager);
 				main.invalidate();

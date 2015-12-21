@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import PO.LoginPO;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -22,7 +25,7 @@ public class checkStatistic extends JPanel {
 	JLabel label_4;
 	JLabel label_5;
 
-	public checkStatistic(JFrame main) {
+	public checkStatistic(JFrame main,LoginPO loginPO) {
 		checkStatistic checkStatisticframe=this;
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
@@ -31,7 +34,7 @@ public class checkStatistic extends JPanel {
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				checkStatics_Analysis newcheckStatics_Analysis=new checkStatics_Analysis(main);
+				checkStatics_Analysis newcheckStatics_Analysis=new checkStatics_Analysis(main,loginPO);
 				main.remove(checkStatisticframe);
 				main.add(newcheckStatics_Analysis);
 				main.invalidate();
@@ -83,7 +86,7 @@ public class checkStatistic extends JPanel {
 					if(start>end){
 						label_5.setText("起始日期应晚于结束日期");
 					}else{
-						checkStatisticInformation checkStatisticInformation=new checkStatisticInformation(label_2.getText(),label_4.getText(),main);
+						checkStatisticInformation checkStatisticInformation=new checkStatisticInformation(label_2.getText(),label_4.getText(),main,loginPO);
 						main.remove(checkStatisticframe);
 						main.add(checkStatisticInformation);
 						main.invalidate();

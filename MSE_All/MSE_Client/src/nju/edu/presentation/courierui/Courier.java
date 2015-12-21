@@ -1,20 +1,28 @@
 package nju.edu.presentation.courierui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import PO.LoginPO;
+import nju.edu.presentation.Loginui.PersonalInfomation;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
 
 public class Courier extends JPanel {
+	private PersonalInfomation perinfo;
 
-	public Courier(JFrame main) {
+	public Courier(JFrame main,LoginPO loginPO) {
 		Courier courierframe=this;
 		setBounds(300, 100, 750, 600);
 		setVisible(true);
@@ -25,9 +33,32 @@ public class Courier extends JPanel {
 			}
 		});
 		btnNewButton.setBounds(10, 10, 65, 23);
-		
 		setLayout(null);
 		add(btnNewButton);
+		
+		
+		JLabel lblHello = new JLabel("Hello!");
+		lblHello.setForeground(Color.WHITE);
+		lblHello.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				perinfo = new PersonalInfomation(loginPO, main);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (perinfo.getMouseState() == true)
+					perinfo.dispose();
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				perinfo.setAlwaysOnTop(true);
+				perinfo.setMouseState(false);
+			}
+		});
+		lblHello.setBounds(667, 9, 54, 18);
+		add(lblHello);
 		
 		JLabel label = new JLabel("\u5FEB\u9012\u5458");
 		label.setBounds(96, 14, 54, 15);
@@ -41,7 +72,7 @@ public class Courier extends JPanel {
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Order neworder=new Order(main);
+				Order neworder=new Order(main,loginPO);
 				main.remove(courierframe);
 				main.getContentPane().add(neworder);
 				main.invalidate();
@@ -59,7 +90,7 @@ public class Courier extends JPanel {
 		JButton btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Receiver newreceiver=new Receiver(main);
+				Receiver newreceiver=new Receiver(main,loginPO);
 				main.remove(courierframe);
 				main.add(newreceiver);
 				main.invalidate();

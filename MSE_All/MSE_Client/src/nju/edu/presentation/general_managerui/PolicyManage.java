@@ -1,11 +1,15 @@
 package nju.edu.presentation.general_managerui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import PO.LoginPO;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
@@ -13,16 +17,21 @@ import java.awt.event.ActionEvent;
 
 public class PolicyManage extends JPanel {
 
-	public PolicyManage(JFrame main) {
+	public PolicyManage(JFrame main,LoginPO loginPO) {
 		PolicyManage policyManageframe=this;
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
 		setLayout(null);
 		
+		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(677, 6, 67, 25);
+		add(lblHello);
+		
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Manager newmanager=new Manager(main);
+				Manager newmanager=new Manager(main,loginPO);
 				main.remove(policyManageframe);
 				main.add(newmanager);
 				main.invalidate();
@@ -48,7 +57,7 @@ public class PolicyManage extends JPanel {
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SalaryManage newsalaryManage=new SalaryManage(main);
+				SalaryManage newsalaryManage=new SalaryManage(main,loginPO);
 				main.remove(policyManageframe);
 				main.add(newsalaryManage);
 				main.invalidate();
@@ -62,7 +71,7 @@ public class PolicyManage extends JPanel {
 		JButton button_1 = new JButton("New button");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ConstantManage newconstantManage=new ConstantManage(main);
+				ConstantManage newconstantManage=new ConstantManage(main,loginPO);
 				main.remove(policyManageframe);
 				main.add(newconstantManage);
 				main.invalidate();

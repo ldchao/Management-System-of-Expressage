@@ -2,10 +2,12 @@ package nju.edu.presentation.general_managerui;
 
 import javax.swing.JFrame;
 
+import PO.LoginPO;
+
 public class ManagerFrame extends JFrame{
-	public ManagerFrame() {
+	public ManagerFrame(LoginPO loginPO) {
 		// TODO Auto-generated constructor stub
-		Manager manager=new Manager(this);
+		Manager manager=new Manager(this,loginPO);
 		this.add(manager);
 		// frame
 		this.setTitle("快递管理系统MSE客户端");

@@ -68,7 +68,7 @@ public class LoginBL implements LoginBLService {
 
 		switch (limit) {
 		case "快递员":
-			CourierFrame aCourier = new CourierFrame();
+			CourierFrame aCourier = new CourierFrame(loginPO);
 			aCourier.setVisible(true);
 			break;
 		case "营业厅业务员":
@@ -80,7 +80,7 @@ public class LoginBL implements LoginBLService {
 			tcs.setVisible(true);
 			break;
 		case "总经理":
-			ManagerFrame mframe = new ManagerFrame();
+			ManagerFrame mframe = new ManagerFrame(loginPO);
 			mframe.setVisible(true);
 			break;
 		case "财务人员":

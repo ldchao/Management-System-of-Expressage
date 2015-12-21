@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import PO.LoginPO;
 import PO.StaffPO;
 import nju.edu.VO.StaffVO;
 import nju.edu.businesslogic.staffbl.Staffbl;
@@ -75,8 +76,10 @@ public class addStaff extends JPanel implements ItemListener,Runnable{
 	Staffbl staffbl=new Staffbl();
 	private addStaff thiStaff=this;
 	private ManagerFrame managerFrame;
+	LoginPO loginPO;
 
-	public addStaff(JFrame main) {
+	public addStaff(JFrame main,LoginPO loginPO) {
+		this.loginPO=loginPO;
 		managerFrame=(ManagerFrame) main;
 		setBounds(100, 100, 750, 600);
 		setLayout(null);
@@ -209,7 +212,7 @@ public class addStaff extends JPanel implements ItemListener,Runnable{
 		button_1 = new JButton("\u53D6\u6D88");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StaffManager staffManager=new StaffManager(main);
+				StaffManager staffManager=new StaffManager(main,loginPO);
 				main.remove(thiStaff);
 				main.add(staffManager);
 				main.invalidate();
@@ -263,7 +266,7 @@ public class addStaff extends JPanel implements ItemListener,Runnable{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		StaffManager staffManager=new StaffManager(managerFrame);
+		StaffManager staffManager=new StaffManager(managerFrame,loginPO);
 		managerFrame.remove(thiStaff);
 		managerFrame.add(staffManager);
 		managerFrame.invalidate();

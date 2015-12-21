@@ -24,6 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import PO.LoginPO;
 import nju.edu.VO.StaffVO;
 import nju.edu.businesslogic.approvebl.Approvebl;
 
@@ -37,7 +38,7 @@ public class ListApprove extends JPanel implements ItemListener{
 	private Approvebl approvebl=new Approvebl();
 	JComboBox comboBox ;
 	
-	public ListApprove(JFrame main) {
+	public ListApprove(JFrame main,LoginPO loginPO) {
 		ListApprove listApproveframe=this;
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
@@ -46,7 +47,7 @@ public class ListApprove extends JPanel implements ItemListener{
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Manager newmanager=new Manager(main);
+				Manager newmanager=new Manager(main,loginPO);
 				main.remove(listApproveframe);
 				main.add(newmanager);
 				main.invalidate();

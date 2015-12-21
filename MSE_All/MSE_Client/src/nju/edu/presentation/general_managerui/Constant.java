@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import PO.ConstantPO;
+import PO.LoginPO;
 import nju.edu.VO.ConstantVO;
 
 import javax.swing.JLabel;
@@ -25,7 +26,7 @@ public class Constant extends JPanel {
 	private JTextField textField_2;
 	private JTextField textField_3;
 
-	public Constant(ConstantVO vo,JFrame main) {
+	public Constant(ConstantVO vo,JFrame main,LoginPO loginPO) {
 		Constant constant=this;
 		setBounds(100, 100, 750, 600);
 		setLayout(null);
@@ -47,7 +48,7 @@ public class Constant extends JPanel {
 		JButton button = new JButton("\u7F16\u8F91");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				editConstant editConstant=new editConstant(vo,main);
+				editConstant editConstant=new editConstant(vo,main,loginPO);
 				main.remove(constant);
 				main.add(editConstant);
 				main.invalidate();
@@ -61,7 +62,7 @@ public class Constant extends JPanel {
 		JButton button_1 = new JButton("\u8FD4\u56DE");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ConstantManage constantManage=new ConstantManage(main);
+				ConstantManage constantManage=new ConstantManage(main,loginPO);
 				main.remove(constant);
 				main.add(constantManage);
 				main.invalidate();

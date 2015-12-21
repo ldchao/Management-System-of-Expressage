@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import PO.LoginPO;
 import nju.edu.VO.StaffVO;
 import nju.edu.businesslogic.staffbl.Staffbl;
 
@@ -72,7 +73,7 @@ public class editStaff extends JPanel implements ItemListener,Runnable{
 	DefaultComboBoxModel comboBoxModel;
 	
 
-	public editStaff(StaffVO vo, JFrame main) {
+	public editStaff(StaffVO vo, JFrame main,LoginPO loginPO) {
 		setBounds(100, 100, 750, 600);
 		setLayout(null);
 		this.setVisible(true);
@@ -226,7 +227,7 @@ public class editStaff extends JPanel implements ItemListener,Runnable{
 				}else{
 					staffbl.editStaff(vo);
 					StaffVO staffVO=staffbl.checkStaff(textField.getText());
-					Staff staff=new Staff(staffVO,main);
+					Staff staff=new Staff(staffVO,main,loginPO);
 					main.remove(thiStaff);
 					main.add(staff);
 					main.invalidate();
@@ -245,7 +246,7 @@ public class editStaff extends JPanel implements ItemListener,Runnable{
 				thiStaff.setEnabled(false);
 				Thread thread=new Thread(thiStaff);
 				thread.start();
-				StaffManager staffManager=new StaffManager(main);
+				StaffManager staffManager=new StaffManager(main,loginPO);
 				main.remove(thiStaff);
 				main.add(staffManager);
 				main.invalidate();
@@ -280,7 +281,7 @@ public class editStaff extends JPanel implements ItemListener,Runnable{
 		JButton button_2 = new JButton("\u8FD4\u56DE");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Staff staff=new Staff(vo,main);
+				Staff staff=new Staff(vo,main,loginPO);
 				main.remove(thiStaff);
 				main.add(staff);
 				main.invalidate();
