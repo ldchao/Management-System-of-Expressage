@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import PO.LoginPO;
+
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -16,7 +19,7 @@ import javax.swing.JLabel;
 public class checkStatics_Analysis extends JPanel {
 
 	checkStatics_Analysis checkStatics_Analysis=this;
-	public checkStatics_Analysis(JFrame main) {
+	public checkStatics_Analysis(JFrame main,LoginPO loginPO) {
 		checkStatics_Analysis checkStatics_Analysisframe=this;
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
@@ -25,7 +28,7 @@ public class checkStatics_Analysis extends JPanel {
 		Button button = new Button("·µ»Ø");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Manager newmanager=new Manager(main);	
+				Manager newmanager=new Manager(main,loginPO);	
 				main.remove(checkStatics_Analysis);
 				main.add(newmanager);
 				main.invalidate();
@@ -43,7 +46,7 @@ public class checkStatics_Analysis extends JPanel {
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				checkAccount newcheckAccount=new checkAccount(main);
+				checkAccount newcheckAccount=new checkAccount(main,loginPO);
 				main.remove(checkStatics_Analysis);
 				main.add(newcheckAccount);
 				main.invalidate();
@@ -57,7 +60,7 @@ public class checkStatics_Analysis extends JPanel {
 		JButton button_1 = new JButton("New button");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				checkCost_Benefit newcheckCost_Benefit=new checkCost_Benefit(main);
+				checkCost_Benefit newcheckCost_Benefit=new checkCost_Benefit(main,loginPO);
 				main.remove(checkStatics_Analysis);
 				main.add(newcheckCost_Benefit);
 				main.invalidate();
@@ -71,7 +74,7 @@ public class checkStatics_Analysis extends JPanel {
 		JButton button_2 = new JButton("New button");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				checkStatistic newcheckStatistic=new checkStatistic(main);
+				checkStatistic newcheckStatistic=new checkStatistic(main,loginPO);
 				main.remove(checkStatics_Analysis);
 				main.add(newcheckStatistic);
 				main.invalidate();

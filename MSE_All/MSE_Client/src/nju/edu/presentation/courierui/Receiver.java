@@ -1,5 +1,6 @@
 package nju.edu.presentation.courierui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -7,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import PO.LoginPO;
 import sun.misc.Cleaner;
 
 import java.awt.Font;
@@ -38,17 +40,25 @@ public class Receiver extends JPanel {
 	JLabel label_11;
 	private JTextArea textArea;
 	private Receiverinbl receiverinbl;
-
+	LoginPO loginPO;
+	JFrame main;
+	Receiver receiverframe;
 	/**
 	 * Create the frame.
 	 */
-	public Receiver(JFrame main) {
+	public Receiver(JFrame main,LoginPO loginPO) {
+		this.main=main;
+		this.loginPO=loginPO;
 		receiverinbl=new Receiverinbl();
-		Receiver receiverframe=this;
+		receiverframe=this;
 		setBounds(300, 100, 750, 600);
 		setVisible(true);
 		setLayout(null);
 		
+		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(677, 6, 67, 25);
+		add(lblHello);
 		
 		JLabel label = new JLabel("\u6536\u4EF6\u4EBA\u4FE1\u606F\u5355");
 		label.setFont(new Font("微软雅黑", Font.PLAIN, 24));
@@ -180,7 +190,7 @@ public class Receiver extends JPanel {
 		JButton button_1 = new JButton("\u8FD4\u56DE");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Courier newcourier=new Courier(main);
+				Courier newcourier=new Courier(main,loginPO);
 				main.remove(receiverframe);
 				main.getContentPane().add(newcourier);
 				main.invalidate();
@@ -208,14 +218,10 @@ public class Receiver extends JPanel {
 	}
 	
 	public void clean(){
-		textField.setText("");
-		textField_1.setText("");
-		textField_2.setText("");
-		textField_3.setText("");
-		textField_4.setText("");
-		textField_5.setText("");
-		textField_6.setText("");
-		textArea.setText("");
-		label_11.setText("点击选择日期");
+		main.remove(receiverframe);
+		main.add(new Receiver(main, loginPO));
+		main.repaint();
+		main.invalidate();
+		main.setVisible(true);
 	}
 }

@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import PO.LoginPO;
 import PO.StaffPO;
 import nju.edu.VO.AccountVO;
 import nju.edu.VO.StaffVO;
@@ -41,17 +42,22 @@ public class StaffManager extends JPanel {
 	Staffbl staffbl;
 	StaffManager thiStaffManager=this;
 
-	public StaffManager(JFrame main) {
+	public StaffManager(JFrame main,LoginPO loginPO) {
 		staffbl=new Staffbl();
 		StaffManager staffManagerframe=this;
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
 		setLayout(null);
 		
+		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(677, 6, 67, 25);
+		add(lblHello);
+		
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Manager newmanager=new Manager(main);
+				Manager newmanager=new Manager(main,loginPO);
 				main.remove(staffManagerframe);
 				main.add(newmanager);
 				main.invalidate();
@@ -85,7 +91,7 @@ public class StaffManager extends JPanel {
 					if(vo==null){
 						label_3.setText("查无此人");
 					}else{
-						Staff staff=new Staff(vo,main);
+						Staff staff=new Staff(vo,main,loginPO);
 						main.remove(thiStaffManager);
 						main.add(staff);
 						main.invalidate();
@@ -144,7 +150,7 @@ public class StaffManager extends JPanel {
 				if (rowpos != -1) {
 					String id = tableModel.getValueAt(rowpos, 0).toString();
 					StaffVO selectVo=staffbl.checkStaff(id);	
-					Staff staff=new Staff(selectVo,main);
+					Staff staff=new Staff(selectVo,main,loginPO);
 					main.remove(staffManagerframe);
 					main.add(staff);
 					main.invalidate();
@@ -159,7 +165,7 @@ public class StaffManager extends JPanel {
 		JButton button_3 = new JButton("\u65B0\u5EFA\u4EBA\u5458");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addStaff addStaff=new addStaff(main);
+				addStaff addStaff=new addStaff(main,loginPO);
 				main.remove(staffManagerframe);
 				main.add(addStaff);
 				main.invalidate();

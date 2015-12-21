@@ -24,13 +24,15 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import PO.LoginPO;
+
 public class checkCost_Benefit extends JPanel {
 
 	private JTable table;
 	static DefaultTableModel tableModel;
 	PayorderBL payorderBL = new PayorderBL();
 	
-	public checkCost_Benefit(JFrame main) {
+	public checkCost_Benefit(JFrame main,LoginPO loginPO) {
 		checkCost_Benefit checkCost_Benefitframe=this;
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
@@ -39,7 +41,7 @@ public class checkCost_Benefit extends JPanel {
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				checkStatics_Analysis newcheckStatics_Analysis=new checkStatics_Analysis(main);
+				checkStatics_Analysis newcheckStatics_Analysis=new checkStatics_Analysis(main,loginPO);
 				main.remove(checkCost_Benefitframe);
 				main.add(newcheckStatics_Analysis);
 				main.invalidate();

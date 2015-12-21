@@ -26,6 +26,7 @@ import java.awt.Color;
 
 import javax.swing.table.DefaultTableModel;
 
+import PO.LoginPO;
 import State.ApproveState;
 import State.ExpressType;
 import State.PackageType;
@@ -107,16 +108,25 @@ public class Order extends JPanel implements Runnable{
 	JComboBox comboBox_1;
 	JComboBox comboBox_2;
 	private JButton button_1;
-
-	public Order(JFrame main) {
-		express=ExpressType.Economy;
-		pack=PackageType.Carton;
-		Order orderframe=this;
+	JFrame main;
+	Order orderframe;
+	LoginPO po;
+	public Order(JFrame main,LoginPO loginPO) {
+		po=loginPO;
+		this.main=main;
+		orderframe=this;
+		
 		this.setBounds(0, 0, 750, 600);
 		this.setVisible(true);
 		listinbl=new Listinbl();
-		
 		setLayout(null);
+		express=ExpressType.Economy;
+		pack=PackageType.Carton;
+		
+		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(677, 6, 67, 25);
+		add(lblHello);
 		
 		JLabel label = new JLabel("\u5BC4\u4EF6\u4EBA\u4FE1\u606F");
 		label.setBounds(62, 125, 94, 15);
@@ -455,6 +465,7 @@ public class Order extends JPanel implements Runnable{
 					listinbl.addOrder(vo);
 					lblNewLabel.setText("新建成功");
 					clean();
+					
 				}else{
 					lblNewLabel.setText("信息不完整，请补全信息");
 				}
@@ -468,6 +479,12 @@ public class Order extends JPanel implements Runnable{
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clean();
+				main.remove(orderframe);
+				main.add(new Order(main,loginPO));
+				main.repaint();
+				main.invalidate();
+				main.setVisible(true);
+				
 			}
 		});
 		button.setBounds(446, 511, 93, 23);
@@ -488,7 +505,7 @@ public class Order extends JPanel implements Runnable{
 		button_1 = new JButton("\u8FD4\u56DE");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Courier courier=new Courier(main);
+				Courier courier=new Courier(main,loginPO);
 				main.remove(orderframe);
 				main.getContentPane().add(courier);
 				main.invalidate();
@@ -505,33 +522,11 @@ public class Order extends JPanel implements Runnable{
 	}
 	
 	public void clean(){
-		textField.setText("");
-		textField_1.setText("");
-		textField_2.setText("");
-		textField_3.setText("");
-		textField_4.setText("");
-		textField_5.setText("");
-		textField_6.setText("");
-		textField_7.setText("");
-		textField_8.setText("");
-		textField_9.setText("");
-		textField_10.setText("");
-		textField_11.setText("");
-		textField_12.setText("");
-		textField_13.setText("");
-		textField_14.setText("");
-		textField_15.setText("");
-		textField_16.setText("");
-		textField_17.setText("");
-		radioButton.setSelected(true);
-		radioButton_3.setSelected(true);
-		comboBox_1.setSelectedIndex(0);
-		comboBox_2.setSelectedIndex(0);
-		express=ExpressType.Economy;
-		pack=PackageType.Carton;
-		
-		textArea.setText("");
-		textArea_1.setText("");
+		main.remove(orderframe);
+		main.add(new Order(main,po));
+		main.repaint();
+		main.invalidate();
+		main.setVisible(true);
 	}
 	
 	/*function:

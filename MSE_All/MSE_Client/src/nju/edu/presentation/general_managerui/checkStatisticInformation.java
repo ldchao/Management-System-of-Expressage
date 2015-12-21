@@ -13,6 +13,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import PO.LoginPO;
 import nju.edu.VO.PayeeorderVO;
 import nju.edu.VO.PayorderVO;
 import nju.edu.businesslogic.financebl.StatisticsBL;
@@ -31,7 +32,7 @@ public class checkStatisticInformation extends JPanel {
 	private DefaultTableModel tableModel1;
 	private DefaultTableModel tableModel2;
 	StatisticsBL stbl = new StatisticsBL();
-	public checkStatisticInformation(String start, String end,JFrame main) {
+	public checkStatisticInformation(String start, String end,JFrame main,LoginPO loginPO) {
 		checkStatisticInformation checkStatisticInformation=this;
 		setBounds(100, 100, 750, 600);
 		this.setVisible(true);
@@ -40,7 +41,7 @@ public class checkStatisticInformation extends JPanel {
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				checkStatistic checkStatistic=new checkStatistic(main);
+				checkStatistic checkStatistic=new checkStatistic(main,loginPO);
 				main.remove(checkStatisticInformation);
 				main.add(checkStatistic);
 				main.invalidate();

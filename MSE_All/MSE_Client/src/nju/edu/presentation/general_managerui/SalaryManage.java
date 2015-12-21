@@ -1,12 +1,14 @@
 package nju.edu.presentation.general_managerui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import PO.LoginPO;
 import nju.edu.VO.SalaryVO;
 import nju.edu.businesslogic.policybl.SalaryPolicybl;
 import javax.swing.JButton;
@@ -18,16 +20,21 @@ import java.awt.event.ActionEvent;
 public class SalaryManage extends JPanel {
 
 	 
-	public SalaryManage(JFrame main) {
+	public SalaryManage(JFrame main,LoginPO loginPO) {
 		SalaryManage salaryManageframe=this;
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
 		setLayout(null);
 		
+		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(677, 6, 67, 25);
+		add(lblHello);
+		
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PolicyManage newpolicyManage=new PolicyManage(main);
+				PolicyManage newpolicyManage=new PolicyManage(main,loginPO);
 				main.remove(salaryManageframe);
 				main.add(newpolicyManage);
 				main.invalidate();
@@ -57,7 +64,7 @@ public class SalaryManage extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				SalaryPolicybl salaryPolicybl=new SalaryPolicybl();
 				SalaryVO salaryVO=salaryPolicybl.checkSalary(comboBox.getSelectedItem().toString());
-				Salary salary=new Salary(salaryVO,main);
+				Salary salary=new Salary(salaryVO,main,loginPO);
 				main.remove(salaryManageframe);
 				main.add(salary);
 				main.invalidate();

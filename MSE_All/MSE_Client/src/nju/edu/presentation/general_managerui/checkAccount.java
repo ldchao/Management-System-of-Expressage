@@ -22,6 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import PO.LoginPO;
 import nju.edu.VO.AccountVO;
 import nju.edu.businesslogic.accountbl.AccountBL;
 
@@ -32,7 +33,7 @@ public class checkAccount extends JPanel {
 	private static DefaultTableModel tableModel;
 	private AccountBL accountBL;
 	
-	public checkAccount(JFrame main) {
+	public checkAccount(JFrame main,LoginPO loginPO) {
 		accountBL=new AccountBL();
 		checkAccount checkAccountframe=this;
 		setBounds(100, 100, 750, 600);
@@ -43,7 +44,7 @@ public class checkAccount extends JPanel {
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				checkStatics_Analysis newcheckStatics_Analysis=new checkStatics_Analysis(main);
+				checkStatics_Analysis newcheckStatics_Analysis=new checkStatics_Analysis(main,loginPO);
 				main.remove(checkAccountframe);
 				main.add(newcheckStatics_Analysis);
 				main.invalidate();

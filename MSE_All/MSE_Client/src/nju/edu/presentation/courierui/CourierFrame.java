@@ -6,8 +6,8 @@ import PO.LoginPO;
 import nju.edu.presentation.financial_staffui.FmainPanel;
 
 public class CourierFrame extends JFrame{
-	public CourierFrame() {
-		Courier courier=new Courier(this);
+	public CourierFrame(LoginPO loginPO) {
+		Courier courier=new Courier(this,loginPO);
 		this.add(courier);
 
 		// frame

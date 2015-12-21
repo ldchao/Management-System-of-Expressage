@@ -1,6 +1,7 @@
 package nju.edu.presentation.general_managerui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import PO.ConstantPO;
+import PO.LoginPO;
 import nju.edu.VO.ConstantVO;
 import nju.edu.businesslogic.policybl.ConstantPolicybl;
 
@@ -23,16 +25,21 @@ import java.awt.event.ActionEvent;
 public class ConstantManage extends JPanel {
 
 
-	public ConstantManage(JFrame main) {
+	public ConstantManage(JFrame main,LoginPO loginPO) {
 		ConstantManage constantManageframe=this;
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
 		setLayout(null);
 		
+		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(677, 6, 67, 25);
+		add(lblHello);
+		
 		JButton button = new JButton("\u8FD4\u56DE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PolicyManage newpolicyManage=new PolicyManage(main);
+				PolicyManage newpolicyManage=new PolicyManage(main,loginPO);
 				main.remove(constantManageframe);
 				main.add(newpolicyManage);
 				main.invalidate();
@@ -69,7 +76,7 @@ public class ConstantManage extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				ConstantPolicybl constantPolicybl=new ConstantPolicybl();
 				ConstantVO vo=constantPolicybl.checkConstant(comboBox.getSelectedItem().toString(), comboBox_1.getSelectedItem().toString());
-				Constant constant=new Constant(vo,main);
+				Constant constant=new Constant(vo,main,loginPO);
 				main.remove(constantManageframe);
 				main.add(constant);
 				main.invalidate();

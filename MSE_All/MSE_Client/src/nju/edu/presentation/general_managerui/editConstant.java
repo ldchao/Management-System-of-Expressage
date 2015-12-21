@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import PO.ConstantPO;
+import PO.LoginPO;
 import nju.edu.VO.ConstantVO;
 import nju.edu.businesslogic.policybl.ConstantPolicybl;
 import nju.edu.presentation.courierui.InputNumber;
@@ -28,7 +29,7 @@ public class editConstant extends JPanel {
 	private JTextField textField_3;
 	JLabel label_4 ;
 
-	public editConstant(ConstantVO vo, JFrame main) {
+	public editConstant(ConstantVO vo, JFrame main,LoginPO loginPO) {
 		editConstant editConstant=this;
 		setBounds(100, 100, 750, 600);
 		setLayout(null);
@@ -57,7 +58,7 @@ public class editConstant extends JPanel {
 					ConstantVO constantVO=new ConstantVO(textField.getText(), textField_1.getText(), Double.parseDouble(textField_2.getText()), Double.parseDouble(textField_3.getText()));
 					constantPolicybl.editConstant(constantVO);
 					ConstantVO newvo=constantPolicybl.checkConstant(textField.getText(), textField_1.getText());
-					Constant constant=new Constant(newvo,main);
+					Constant constant=new Constant(newvo,main,loginPO);
 					main.remove(editConstant);
 					main.add(constant);
 					main.invalidate();
@@ -73,7 +74,7 @@ public class editConstant extends JPanel {
 		JButton button_1 = new JButton("\u53D6\u6D88");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Constant constant=new Constant(vo,main);
+				Constant constant=new Constant(vo,main,loginPO);
 				main.remove(editConstant);
 				main.add(constant);
 				main.invalidate();
