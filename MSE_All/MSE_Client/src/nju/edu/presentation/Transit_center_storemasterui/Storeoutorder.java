@@ -19,6 +19,8 @@ import nju.edu.presentation.financial_staffui.DateChooser;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Storeoutorder extends JPanel implements Runnable {
 	private JTextField textField_1;
@@ -88,9 +90,11 @@ public class Storeoutorder extends JPanel implements Runnable {
 		lblNewLabel_3.setBounds(168, 207, 54, 15);
 		add(lblNewLabel_3);
 
-		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
-		JLabel lblNewLabel_3_1 = new JLabel("单击选择日期");
-		dateChooser1.register(lblNewLabel_3_1);
+		SimpleDateFormat bartDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String sendDate = bartDateFormat.format(date);
+
+		JLabel lblNewLabel_3_1 = new JLabel(sendDate);
 		lblNewLabel_3_1.setBounds(360, 207, 85, 15);
 		add(lblNewLabel_3_1);
 
@@ -140,17 +144,12 @@ public class Storeoutorder extends JPanel implements Runnable {
 		JButton btnNewButton_1 = new JButton("确定");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String date = lblNewLabel_3_1.getText();
-				if (date.equals("单击选择日期")) {
-					lblNewLabel_4.setText("请选择日期！");
-				} else {
+				
 					Warehouse_outBLService wb = new Warehouse_outBL();
-					wb.build(cv, date);
+					wb.build(cv, sendDate);
 					lblNewLabel_4.setText("入库单创建成功！");
 					Thread t = new Thread(nowPanel);
 					t.start();
-				}
-
 			}
 		});
 		btnNewButton_1.setBounds(188, 464, 93, 23);
@@ -159,10 +158,8 @@ public class Storeoutorder extends JPanel implements Runnable {
 		JButton btnNewButton_2 = new JButton("取消");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Storeoutorder s = new Storeoutorder(main, lastui, jp2, loginPO,
-						cv);
 				main.remove(nowPanel);
-				main.getContentPane().add(s);
+				main.getContentPane().add(lastui);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);

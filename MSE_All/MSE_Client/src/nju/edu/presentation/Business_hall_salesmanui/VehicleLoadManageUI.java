@@ -5,8 +5,12 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -34,7 +38,6 @@ import PO.LoginPO;
 import PO.OrganizationNumPO;
 
 public class VehicleLoadManageUI extends JPanel implements Runnable {
-	private int rowpos = -1;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -45,12 +48,13 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 	VehicleLoadManageUI nowPanel;
 
 	// create the panel
-	public VehicleLoadManageUI(JFrame m, JPanel bf) {
+	public VehicleLoadManageUI(JFrame m, JPanel bf, LoginPO loginPO) {
 		main = m;
 		lastui = bf;
 		nowPanel = this;
 		setLayout(null);
 		OrganizationNumPO op = new OrganizationNumPO();
+		String offnum = op.getNum(loginPO.getShop());
 
 		JButton button = new JButton("返回");
 		button.addActionListener(new ActionListener() {
@@ -84,9 +88,10 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		label_2.setBounds(69, 134, 54, 15);
 		add(label_2);
 
-		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
-		JLabel lblNewLabel_8 = new JLabel("单击选择日期");
-		dateChooser1.register(lblNewLabel_8);
+		SimpleDateFormat bartDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String sendDate = bartDateFormat.format(date);
+		JLabel lblNewLabel_8 = new JLabel(sendDate);
 		lblNewLabel_8.setBounds(169, 134, 85, 15);
 		add(lblNewLabel_8);
 
@@ -95,6 +100,8 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		add(lblNewLabel);
 
 		textField = new JTextField();
+		textField.setText(offnum);
+		textField.setEditable(false);
 		textField.setBounds(169, 169, 181, 21);
 		add(textField);
 		textField.setColumns(10);
@@ -104,6 +111,13 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		add(lblNewLabel_1);
 
 		textField_1 = new JTextField();
+		textField_1.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+		});
 		textField_1.setBounds(169, 214, 181, 21);
 		add(textField_1);
 		textField_1.setColumns(10);
@@ -113,6 +127,13 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		add(lblNewLabel_3);
 
 		textField_2 = new JTextField();
+		textField_2.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+		});
 		textField_2.setColumns(10);
 		textField_2.setBounds(169, 257, 181, 21);
 		add(textField_2);
@@ -172,6 +193,13 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		scrollPane.setColumnHeaderView(lblNewLabel_9);
 
 		JTextArea textArea = new JTextArea();
+		textArea.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if (!(Character.isDigit(e.getKeyChar()) || e.getKeyChar() == '\n')) {
+					e.consume();
+				}
+			}
+		});
 		scrollPane.setViewportView(textArea);
 
 		JButton btnNewButton = new JButton("确定");
@@ -182,16 +210,25 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 						+ textField_1.getText();
 				String fee = "" + lb.getTotal(textArea.getText());
 				label_3.setText(fee + "元");
-
-				VehicleLoadorderVO vlv = new VehicleLoadorderVO(lblNewLabel_8
-						.getText(), loadorderNum, textField.getText(),
-						(String) comboBox_1.getSelectedItem(), textField_4
-								.getText(), textField_5.getText(), textField_2
-								.getText(), textArea.getText(), fee);
-				lb.addLoadOrder(vlv);
-				label_4.setText("创建成功");
-				Thread t=new Thread(nowPanel);
-				t.start();
+				String monitorName = textField_4.getText();
+				String transferName = textField_5.getText();
+				String carNum = textField_2.getText();
+				String orderList = textArea.getText();
+				String arrivePlace=(String) comboBox_1
+				.getSelectedItem();
+				if (monitorName.length() == 0 || transferName.length() == 0
+						|| carNum.length() != 4 || loadorderNum.length() != 10
+						||arrivePlace.length()==0|| orderList.length() == 0) {
+					label_4.setText("请检查信息是否输入正确");
+				} else {
+					VehicleLoadorderVO vlv = new VehicleLoadorderVO(sendDate,
+							loadorderNum, offnum, arrivePlace, monitorName,
+							transferName, carNum, orderList, fee);
+					lb.addLoadOrder(vlv);
+					label_4.setText("创建成功");
+					Thread t = new Thread(nowPanel);
+					t.start();
+				}
 			}
 		});
 		btnNewButton.setBounds(219, 485, 85, 23);
@@ -200,7 +237,8 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		JButton btnNewButton_1 = new JButton("取消");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VehicleLoadManageUI r = new VehicleLoadManageUI(main, lastui);
+				VehicleLoadManageUI r = new VehicleLoadManageUI(main, lastui,
+						loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(r);
 				main.invalidate();

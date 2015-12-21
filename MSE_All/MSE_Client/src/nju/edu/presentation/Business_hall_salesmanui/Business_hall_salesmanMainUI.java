@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
 import nju.edu.presentation.financial_staffui.ReceiFormPanel;
 
 @SuppressWarnings("serial")
@@ -17,26 +18,11 @@ public class Business_hall_salesmanMainUI extends JFrame {
 	private JPanel contentPane;
 	Business_hall_salesmanMainUI main;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Business_hall_salesmanMainUI frame = new Business_hall_salesmanMainUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Business_hall_salesmanMainUI() {
+	public Business_hall_salesmanMainUI(LoginPO loginPO) {
 		main = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 100, 750, 600);
@@ -71,7 +57,7 @@ public class Business_hall_salesmanMainUI extends JFrame {
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VehicleLoadManageUI r = new VehicleLoadManageUI(main, contentPane);
+				VehicleLoadManageUI r = new VehicleLoadManageUI(main, contentPane,loginPO);
 				main.remove(contentPane);
 				main.getContentPane().add(r);
 				main.invalidate();
@@ -132,7 +118,7 @@ public class Business_hall_salesmanMainUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ReceiFormUI receiUI = new ReceiFormUI(main, contentPane);
+				ReceiFormUI receiUI = new ReceiFormUI(main, contentPane,loginPO);
 				main.remove(contentPane);
 				main.getContentPane().add(receiUI);
 				main.invalidate();
@@ -152,7 +138,7 @@ public class Business_hall_salesmanMainUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SendUI sendUI = new SendUI(main, contentPane);
+				SendUI sendUI = new SendUI(main, contentPane,loginPO);
 				main.remove(contentPane);
 				main.getContentPane().add(sendUI);
 				main.invalidate();

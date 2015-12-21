@@ -23,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 
+import PO.LoginPO;
 import nju.edu.VO.SendorderVO;
 import nju.edu.businesslogic.transferbl.SendFormBL;
 import nju.edu.businesslogicservice.transferblservice.SendFormBlService;
@@ -34,7 +35,7 @@ public class SendUI extends JPanel implements Runnable {
 	JPanel lastui;
 	SendUI nowPanel;
 
-	public SendUI(JFrame m, JPanel bf) {
+	public SendUI(JFrame m, JPanel bf,LoginPO loginPO) {
 		main = m;
 		lastui = bf;
 		nowPanel = this;
@@ -165,7 +166,7 @@ public class SendUI extends JPanel implements Runnable {
 		JButton btnNewButton_1 = new JButton("È¡Ïû");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SendUI su = new SendUI(main, lastui);
+				SendUI su = new SendUI(main, lastui,loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(su);
 				main.invalidate();

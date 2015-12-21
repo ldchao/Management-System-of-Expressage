@@ -23,7 +23,11 @@ import nju.edu.presentation.financial_staffui.DateChooser;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Shippingorder extends JPanel implements Runnable{
 
@@ -85,9 +89,10 @@ public class Shippingorder extends JPanel implements Runnable{
 		label_2.setBounds(69, 134, 54, 15);
 		add(label_2);
 
-		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
-		JLabel lblNewLabel_8 = new JLabel("单击选择日期");
-		dateChooser1.register(lblNewLabel_8);
+		SimpleDateFormat bartDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String sendDate = bartDateFormat.format(date);
+		JLabel lblNewLabel_8 = new JLabel(sendDate);
 		lblNewLabel_8.setBounds(169, 134, 85, 15);
 		add(lblNewLabel_8);
 
@@ -107,6 +112,13 @@ public class Shippingorder extends JPanel implements Runnable{
 		add(lblNewLabel_1);
 
 		textField_1 = new JTextField();
+		textField_1.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+		});
 		textField_1.setBounds(169, 214, 181, 21);
 		add(textField_1);
 		textField_1.setColumns(10);
@@ -116,6 +128,13 @@ public class Shippingorder extends JPanel implements Runnable{
 		add(lblNewLabel_3);
 
 		textField_2 = new JTextField();
+		textField_2.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if (!Character.isDigit(e.getKeyChar())) {
+					e.consume();
+				}
+			}
+		});
 		textField_2.setColumns(10);
 		textField_2.setBounds(169, 257, 181, 21);
 		add(textField_2);
@@ -202,10 +221,10 @@ public class Shippingorder extends JPanel implements Runnable{
 																// 7
 				ArrayList<String> orderlist = cv.getOrder_number(); // 所有订单编号 8
 				String fee = total + ""; // 运费 9
-				if (date.equals("单击选择日期") || loadorderNum.length() != 10
+				if (transportNum.length()!=4 || loadorderNum.length() != 10
 						|| monitorName.length() == 0
 						|| transferName.length() == 0) {
-					label_4.setText("装运单信息输入不完整");
+					label_4.setText("请正确输入装运单信息");
 				} else {
 					VehicleLoadorderVO vlv = new VehicleLoadorderVO(date,
 							loadorderNum, transferNum, arriveNum, monitorName,

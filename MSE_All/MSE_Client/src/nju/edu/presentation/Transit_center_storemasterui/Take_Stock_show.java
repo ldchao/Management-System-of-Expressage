@@ -49,7 +49,7 @@ public class Take_Stock_show extends JPanel {
 		add(button);
 
 		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理>>盘点库存>>当前各库位订单信息");
-		lblNewLabel.setBounds(100, 14, 263, 15);
+		lblNewLabel.setBounds(100, 14, 350, 15);
 		add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel(loginPO.getName() + "，你好！");

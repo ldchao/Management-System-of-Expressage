@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -90,9 +92,11 @@ public class Storeinorder extends JPanel implements Runnable {
 		lblNewLabel_3.setBounds(168, 207, 54, 15);
 		add(lblNewLabel_3);
 
-		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
-		JLabel lblNewLabel_3_1 = new JLabel("单击选择日期");
-		dateChooser1.register(lblNewLabel_3_1);
+		SimpleDateFormat bartDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String sendDate = bartDateFormat.format(date);
+
+		JLabel lblNewLabel_3_1 = new JLabel(sendDate);
 		lblNewLabel_3_1.setBounds(346, 207, 85, 15);
 		add(lblNewLabel_3_1);
 
@@ -176,20 +180,19 @@ public class Storeinorder extends JPanel implements Runnable {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String order_number = textField.getText();
-				String date = lblNewLabel_3_1.getText();
 				String offnum = textField_1.getText();
 				String qu = (String) comboBox.getSelectedItem();
 				String pai = textField_2.getText();
 				String jia = textField_3.getText();
 				String wei = textField_4.getText();
-				if (order_number.length() == 0 || date.equals("单击选择日期")
+				if (order_number.length() != 0 
 						|| offnum.length() == 0 || qu.length() == 0
 						|| pai.length() == 0 || wei.length() == 0
 						|| jia.length() == 0) {
 					lblNewLabel_4.setText("有信息未输入");
 				} else {
 					Warehouse_inBLService wb = new Warehouse_inBL();
-					StoreinVO sv = new StoreinVO(order_number, date, offnum,
+					StoreinVO sv = new StoreinVO(order_number, sendDate, offnum,
 							qu, pai, wei, jia);
 					wb.build(sv);
 					lblNewLabel_4.setText("创建成功");

@@ -23,6 +23,8 @@ import nju.edu.presentation.financial_staffui.DateChooser;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Arriverorder extends JPanel implements Runnable{
 	private JTextField textField;
@@ -79,9 +81,10 @@ public class Arriverorder extends JPanel implements Runnable{
 		label_2.setBounds(180, 159, 54, 15);
 		add(label_2);
 
-		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
-		JLabel lblNewLabel_8 = new JLabel("单击选择日期");
-		dateChooser1.register(lblNewLabel_8);
+		SimpleDateFormat bartDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String sendDate = bartDateFormat.format(date);
+		JLabel lblNewLabel_8 = new JLabel(sendDate);
 		lblNewLabel_8.setBounds(390, 159, 96, 15);
 		add(lblNewLabel_8);
 
@@ -141,13 +144,11 @@ public class Arriverorder extends JPanel implements Runnable{
 		JButton btnNewButton = new JButton("确定");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().length() == 0
-						|| lblNewLabel_8.getText().equals("单击选择日期")
-						|| !isSelected()) {
-					label_4.setText("输入信息有误");
+				if (!isSelected()) {
+					label_4.setText("请选择货物到达状态");
 				} else {
 					ArriverorderVO av = new ArriverorderVO(textField.getText(),
-							lblNewLabel_8.getText(), lv.getOffNum(),
+							sendDate, lv.getOffNum(),
 							getSelection(),lv.getCarNum(),lv.getMonitorName(),
 							lv.getTransferName(),lv.getOrder());
 					ReceiveBLService rb=new ReceiveBL();

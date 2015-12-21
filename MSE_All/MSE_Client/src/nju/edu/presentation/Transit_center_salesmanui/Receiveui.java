@@ -9,6 +9,8 @@ import javax.swing.JToolBar;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JTextField;
 
@@ -69,6 +71,14 @@ public class Receiveui extends JPanel {
 		add(label_3);
 
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				label_4.setText("状态栏");
+				if (!(Character.isDigit(e.getKeyChar()))) {
+					e.consume();
+				}
+			}
+		});
 		textField.setBounds(342, 254, 196, 23);
 		add(textField);
 		textField.setColumns(10);
@@ -76,8 +86,8 @@ public class Receiveui extends JPanel {
 		JButton button_1 = new JButton("创建到达单");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().length()==0) {
-					label_4.setText("未输入装运单号");
+				if (textField.getText().length()!=10) {
+					label_4.setText("请输入正确装运单号");
 				} else {
 					ReceiveBLService rbs = new ReceiveBL();
 					LoadorderVO lv = rbs.checkUnreceive_loadorderPO(textField

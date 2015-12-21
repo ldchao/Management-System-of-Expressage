@@ -25,6 +25,8 @@ import java.awt.Font;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JTextArea;
@@ -95,6 +97,13 @@ public class Changeorder extends JPanel implements Runnable{
 		add(label_3);
 		
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if (!(Character.isDigit(e.getKeyChar()))) {
+					e.consume();
+				}
+			}
+		});
 		textField.setBounds(180, 168, 134, 21);
 		add(textField);
 		textField.setColumns(10);
@@ -156,6 +165,7 @@ public class Changeorder extends JPanel implements Runnable{
 		scrollPane.setColumnHeaderView(lblNewLabel_4);
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
 		textArea.setText(order);
 		scrollPane.setViewportView(textArea);
 		
@@ -185,7 +195,7 @@ public class Changeorder extends JPanel implements Runnable{
 				String arriveNum=op.getNum(textField_2.getText());
 				String moniterName=textField_4.getText();
 				if(date.equals("单击选择日期")||
-						transferNum.length()==0||moniterName.length()==0
+						transferNum.length()!=10||moniterName.length()==0
 						){
 					label_4.setText("输入信息有误！");
 				}else{

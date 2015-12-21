@@ -72,7 +72,7 @@ public class LoginBL implements LoginBLService {
 			aCourier.setVisible(true);
 			break;
 		case "营业厅业务员":
-			Business_hall_salesmanMainUI frame = new Business_hall_salesmanMainUI();
+			Business_hall_salesmanMainUI frame = new Business_hall_salesmanMainUI(loginPO);
 			frame.setVisible(true);
 			break;
 		case "中转中心业务员":

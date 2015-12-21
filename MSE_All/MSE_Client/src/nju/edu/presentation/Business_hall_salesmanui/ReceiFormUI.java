@@ -3,6 +3,8 @@ package nju.edu.presentation.Business_hall_salesmanui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
 import nju.edu.VO.LoadorderVO;
 import nju.edu.businesslogic.transferbl.ReceiveBL;
 import nju.edu.businesslogicservice.transferblservice.ReceiveBLService;
@@ -24,7 +27,7 @@ public class ReceiFormUI extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	public ReceiFormUI(JFrame m, JPanel jp) {
+	public ReceiFormUI(JFrame m, JPanel jp,LoginPO loginPO) {
 		main = m;
 		JPanel lastui = jp;
 		ReceiFormUI nowPanel = this;
@@ -68,6 +71,14 @@ public class ReceiFormUI extends JPanel{
 		add(label_3);
 
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				label_4.setText("状态栏");
+				if (!(Character.isDigit(e.getKeyChar()))) {
+					e.consume();
+				}
+			}
+		});
 		textField.setBounds(342, 254, 196, 23);
 		add(textField);
 		textField.setColumns(10);
@@ -75,8 +86,8 @@ public class ReceiFormUI extends JPanel{
 		JButton button_1 = new JButton("创建接收单");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().length()==0) {
-					label_4.setText("未输入装运单号");
+				if (textField.getText().length()!=10) {
+					label_4.setText("请输入正确的装运单号");
 				} else {
 					ReceiveBLService rbs = new ReceiveBL();
 					LoadorderVO lv = rbs.checkUnreceive_loadorderPO(textField
@@ -84,7 +95,7 @@ public class ReceiFormUI extends JPanel{
 					if (lv == null) {
 						label_4.setText("未检测到该装运单");
 					} else {
-						ReceiFormorder r = new ReceiFormorder(main, nowPanel, lv);
+						ReceiFormorder r = new ReceiFormorder(main, nowPanel, lv,loginPO);
 						main.remove(nowPanel);
 						main.getContentPane().add(r);
 						main.invalidate();

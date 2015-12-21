@@ -3,6 +3,8 @@ package nju.edu.presentation.Business_hall_salesmanui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -14,6 +16,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
+import PO.OrganizationNumPO;
 import nju.edu.VO.ArriverorderVO;
 import nju.edu.VO.LoadorderVO;
 import nju.edu.VO.ReceiFormVO;
@@ -38,7 +42,7 @@ public class ReceiFormorder extends JPanel implements Runnable{
 	/**
 	 * Create the panel.
 	 */
-	public ReceiFormorder(JFrame m, JPanel jp, LoadorderVO lv) {
+	public ReceiFormorder(JFrame m, JPanel jp, LoadorderVO lv,LoginPO loginPO) {
 		main = m;
 		this.lv = lv;
 		lastui = jp;
@@ -82,21 +86,24 @@ public class ReceiFormorder extends JPanel implements Runnable{
 		lblNewLabel_8.setBounds(390, 159, 96, 15);
 		add(lblNewLabel_8);
 
-		JLabel label_3 = new JLabel("到达地编号");
+		JLabel label_3 = new JLabel("到达地");
 		label_3.setBounds(180, 211, 96, 15);
 		add(label_3);
 
 		textField = new JTextField();
+		textField.setText(loginPO.getShop());
+		textField.setEditable(false);
 		textField.setBounds(333, 208, 192, 21);
 		add(textField);
 		textField.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("出发地编号");
+		JLabel lblNewLabel = new JLabel("出发地");
 		lblNewLabel.setBounds(180, 263, 54, 15);
 		add(lblNewLabel);
 
 		textField_1 = new JTextField();
 		textField_1.setText(lv.getOffName());
+		textField_1.setEditable(false);
 		textField_1.setBounds(333, 260, 192, 21);
 		add(textField_1);
 		textField_1.setColumns(10);
@@ -135,14 +142,14 @@ public class ReceiFormorder extends JPanel implements Runnable{
 		JButton btnNewButton = new JButton("确定");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().length() == 0
-						|| lblNewLabel_8.getText().equals("单击选择日期")
+				if (lblNewLabel_8.getText().equals("单击选择日期")
 						|| !isSelected()) {
 					label_4.setText("输入信息有误");
 				} else {
+					OrganizationNumPO op=new OrganizationNumPO();
 					ReceiFormVO rv = new ReceiFormVO(
 							lblNewLabel_8.getText(), textField_1.getText(),
-							textField.getText(),getSelection(), lv.getCarNum(),
+							op.getNum(loginPO.getShop()),getSelection(), lv.getCarNum(),
 							lv.getMonitorName(), lv.getTransferName(), lv
 									.getOrder());
 					ReceiFormBlService rb = new ReceiFormBL();
@@ -159,7 +166,7 @@ public class ReceiFormorder extends JPanel implements Runnable{
 		JButton btnNewButton_1 = new JButton("取消");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ReceiFormorder f = new ReceiFormorder(main, lastui, lv);
+				ReceiFormorder f = new ReceiFormorder(main, lastui, lv,loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(f);
 				main.invalidate();
