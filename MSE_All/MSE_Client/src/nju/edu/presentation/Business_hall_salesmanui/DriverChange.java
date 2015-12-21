@@ -1,9 +1,13 @@
 package nju.edu.presentation.Business_hall_salesmanui;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -12,14 +16,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
-import State.DriverState;
-import State.TransportState;
+import PO.LoginPO;
 import nju.edu.VO.DriverVO;
-import nju.edu.VO.VehicleVO;
 import nju.edu.businesslogic.vehiclebl.DriverBl;
 import nju.edu.businesslogicservice.vehicleblservice.DriverBlService;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
+@SuppressWarnings("serial")
 public class DriverChange extends JPanel {
 	private JTextField driverNum;
 	private JTextField name;
@@ -31,13 +34,24 @@ public class DriverChange extends JPanel {
 	private JLabel licenseDue;
 	DriverBlService bl = new DriverBl();
 
-	public DriverChange(JFrame m, JPanel bf) {
+	public DriverChange(JFrame m, JPanel bf, LoginPO loginPO) {
 		JFrame main = m;
 		JPanel lastui = bf;
 		DriverChange nowPanel = this;
 		setLayout(null);
 
 		JButton button = new JButton("返回");
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}
+		});
+
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -47,15 +61,17 @@ public class DriverChange extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
+		button.setBounds(13, -9, 63, 63);
 		add(button);
 
 		JLabel label = new JLabel("营业厅业务员>>修改司机信息");
 		label.setBounds(100, 14, 200, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("阙帅，你好！");
-		label_1.setBounds(600, 14, 100, 15);
+		JLabel label_1 = new JLabel("Hello！" + loginPO.getName());
+		label_1.setForeground(Color.WHITE);
+		label_1.setBounds(655, 12, 100, 15);
+		setForeground(Color.WHITE);
 		add(label_1);
 
 		JToolBar toolBar = new JToolBar();
@@ -68,6 +84,8 @@ public class DriverChange extends JPanel {
 		toolBar.setEnabled(false);
 
 		driverNum = new JTextField();
+		driverNum.setForeground(new Color(88, 93, 103));
+		driverNum.setCaretColor(new Color(88, 93, 103));
 		driverNum.setColumns(10);
 		driverNum.setBounds(239, 305, 106, 26);
 		add(driverNum);
@@ -77,6 +95,8 @@ public class DriverChange extends JPanel {
 		add(label_2);
 
 		name = new JTextField();
+		name.setForeground(new Color(88, 93, 103));
+		name.setCaretColor(new Color(88, 93, 103));
 		name.setColumns(10);
 		name.setBounds(239, 343, 106, 26);
 		add(name);
@@ -90,6 +110,8 @@ public class DriverChange extends JPanel {
 		add(label_5);
 
 		shopNum = new JTextField();
+		shopNum.setForeground(new Color(88, 93, 103));
+		shopNum.setCaretColor(new Color(88, 93, 103));
 		shopNum.setColumns(10);
 		shopNum.setBounds(239, 424, 106, 26);
 		add(shopNum);
@@ -99,6 +121,8 @@ public class DriverChange extends JPanel {
 		add(label_6);
 
 		phoneNum = new JTextField();
+		phoneNum.setForeground(new Color(88, 93, 103));
+		phoneNum.setCaretColor(new Color(88, 93, 103));
 		phoneNum.setColumns(10);
 		phoneNum.setBounds(488, 306, 106, 26);
 		add(phoneNum);
@@ -139,6 +163,8 @@ public class DriverChange extends JPanel {
 		add(label_11);
 
 		idNum = new JTextField();
+		idNum.setForeground(new Color(88, 93, 103));
+		idNum.setCaretColor(new Color(88, 93, 103));
 		idNum.setColumns(10);
 		idNum.setBounds(488, 343, 106, 26);
 		add(idNum);
@@ -149,19 +175,36 @@ public class DriverChange extends JPanel {
 		add(panel);
 
 		JButton btnNewButton = new JButton("确定");
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		@SuppressWarnings("static-access")
+		Image temp1 = image1.getImage().getScaledInstance(
+				btnNewButton.getWidth(), btnNewButton.getHeight(),
+				image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		btnNewButton.setIcon(image1);
+
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DriverVO vo1 = bl.find(name.getText());
-				DriverVO vo = new DriverVO(driverNum.getText(), name.getText(), shopNum.getText(), birthDate.getText(),
-						idNum.getText(), phoneNum.getText(), sex.getSelectedItem().toString(), licenseDue.getText(),
-						vo1.getDriverState());
+				DriverVO vo = new DriverVO(driverNum.getText(), name.getText(),
+						shopNum.getText(), birthDate.getText(),
+						idNum.getText(), phoneNum.getText(), sex
+								.getSelectedItem().toString(), licenseDue
+								.getText(), vo1.getDriverState());
 				bl.updateDriver(vo);
 			}
 		});
-		btnNewButton.setBounds(295, 478, 67, 29);
+		btnNewButton.setBounds(274, 459, 52, 52);
 		add(btnNewButton);
 
 		JButton button_1 = new JButton("取消");
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+
+		button_1.setIcon(image1);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -171,7 +214,7 @@ public class DriverChange extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(374, 478, 67, 29);
+		button_1.setBounds(425, 459, 52, 52);
 		add(button_1);
 
 	}

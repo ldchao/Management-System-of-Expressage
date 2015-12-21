@@ -1,12 +1,15 @@
 package nju.edu.presentation.Business_hall_salesmanui;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -18,16 +21,14 @@ import javax.swing.JToolBar;
 
 import PO.LoginPO;
 import PO.OrganizationNumPO;
-import nju.edu.VO.ArriverorderVO;
 import nju.edu.VO.LoadorderVO;
 import nju.edu.VO.ReceiFormVO;
 import nju.edu.businesslogic.transferbl.ReceiFormBL;
-import nju.edu.businesslogic.transferbl.ReceiveBL;
 import nju.edu.businesslogicservice.transferblservice.ReceiFormBlService;
-import nju.edu.businesslogicservice.transferblservice.ReceiveBLService;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
-public class ReceiFormorder extends JPanel implements Runnable{
+@SuppressWarnings("serial")
+public class ReceiFormorder extends JPanel implements Runnable {
 
 	private JTextField textField;
 	private JTextField textField_1;
@@ -42,7 +43,8 @@ public class ReceiFormorder extends JPanel implements Runnable{
 	/**
 	 * Create the panel.
 	 */
-	public ReceiFormorder(JFrame m, JPanel jp, LoadorderVO lv,LoginPO loginPO) {
+	@SuppressWarnings("static-access")
+	public ReceiFormorder(JFrame m, JPanel jp, LoadorderVO lv, LoginPO loginPO) {
 		main = m;
 		this.lv = lv;
 		lastui = jp;
@@ -50,6 +52,18 @@ public class ReceiFormorder extends JPanel implements Runnable{
 		setLayout(null);
 
 		JButton button = new JButton("返回");
+
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}
+		});
+
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -58,19 +72,22 @@ public class ReceiFormorder extends JPanel implements Runnable{
 				main.repaint();
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
 		add(button);
 
 		JLabel label = new JLabel("营业厅业务员>>接收>>新建接收单");
 		label.setBounds(100, 14, 360, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("张三，你好！");
-		label_1.setBounds(600, 14, 100, 15);
-		add(label_1);
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		setForeground(Color.WHITE);
+		add(lblHello);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
@@ -117,6 +134,7 @@ public class ReceiFormorder extends JPanel implements Runnable{
 		add(lblNewLabel_2);
 
 		String[] approveState = { "未审批", "审批通过", "审批未通过" };
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		JComboBox comboBox = new JComboBox(approveState);
 		comboBox.setBounds(333, 370, 181, 21);
 		comboBox.setEnabled(false);
@@ -140,40 +158,53 @@ public class ReceiFormorder extends JPanel implements Runnable{
 		bg.add(rdbtnNewRadioButton_2);
 
 		JButton btnNewButton = new JButton("确定");
+
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(
+				btnNewButton.getWidth(), btnNewButton.getHeight(),
+				image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		btnNewButton.setIcon(image1);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+		button.setBounds(274, 459, 52, 52);
+
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (lblNewLabel_8.getText().equals("单击选择日期")
-						|| !isSelected()) {
+				if (lblNewLabel_8.getText().equals("单击选择日期") || !isSelected()) {
 					label_4.setText("输入信息有误");
 				} else {
-					OrganizationNumPO op=new OrganizationNumPO();
-					ReceiFormVO rv = new ReceiFormVO(
-							lblNewLabel_8.getText(), textField_1.getText(),
-							op.getNum(loginPO.getShop()),getSelection(), lv.getCarNum(),
-							lv.getMonitorName(), lv.getTransferName(), lv
-									.getOrder());
+					OrganizationNumPO op = new OrganizationNumPO();
+					ReceiFormVO rv = new ReceiFormVO(lblNewLabel_8.getText(),
+							textField_1.getText(),
+							op.getNum(loginPO.getShop()), getSelection(), lv
+									.getCarNum(), lv.getMonitorName(), lv
+									.getTransferName(), lv.getOrder());
 					ReceiFormBlService rb = new ReceiFormBL();
 					rb.addReceiveOrder(rv);
 					label_4.setText("接收单已提交总经理审批");
-					Thread t=new Thread(nowPanel);
+					Thread t = new Thread(nowPanel);
 					t.start();
 				}
 			}
 		});
-		btnNewButton.setBounds(220, 457, 80, 23);
 		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("取消");
+		btnNewButton_1.setIcon(image1);
+		btnNewButton_1.setBounds(425, 459, 52, 52);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ReceiFormorder f = new ReceiFormorder(main, lastui, lv,loginPO);
+				ReceiFormorder f = new ReceiFormorder(main, lastui, lv, loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(f);
 				main.invalidate();
 				main.repaint();
 			}
 		});
-		btnNewButton_1.setBounds(390, 457, 80, 23);
 		add(btnNewButton_1);
 
 		JLabel label_5 = new JLabel(
@@ -211,7 +242,7 @@ public class ReceiFormorder extends JPanel implements Runnable{
 		main.invalidate();
 		main.repaint();
 		main.setVisible(true);
-		
+
 	}
 
 }

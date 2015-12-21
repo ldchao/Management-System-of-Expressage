@@ -17,9 +17,8 @@ import PO.LoginPO;
 import nju.edu.VO.LoadorderVO;
 import nju.edu.businesslogic.transferbl.ReceiveBL;
 import nju.edu.businesslogicservice.transferblservice.ReceiveBLService;
-import nju.edu.presentation.Transit_center_salesmanui.Arriverorder;
-import nju.edu.presentation.Transit_center_salesmanui.Receiveui;
 
+@SuppressWarnings("serial")
 public class ReceiFormUI extends JPanel{
 	private JTextField textField;
 	JFrame main;
