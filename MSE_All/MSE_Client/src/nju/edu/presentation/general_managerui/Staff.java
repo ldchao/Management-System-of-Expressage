@@ -1,31 +1,29 @@
 package nju.edu.presentation.general_managerui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import PO.LoginPO;
-import nju.edu.VO.StaffVO;
-
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.JComboBox;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Enumeration;
+
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JToolBar;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.Enumeration;
-import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
+
+import PO.LoginPO;
+import nju.edu.VO.StaffVO;
 
 public class Staff extends JPanel{
 
@@ -216,7 +214,14 @@ public class Staff extends JPanel{
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(243, 481, 93, 23);
+		button.setBounds(274, 459, 52, 52);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
+				button.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		button.setIcon(image1);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
 		add(button);
 		
 		button_1 = new JButton("\u8FD4\u56DE");
@@ -230,7 +235,16 @@ public class Staff extends JPanel{
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(423, 481, 93, 23);
+		button_1.setBounds(13, -9, 63, 63);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		button_1.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button_1.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button_1.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		add(button_1);
 		
 		JToolBar toolBar = new JToolBar();

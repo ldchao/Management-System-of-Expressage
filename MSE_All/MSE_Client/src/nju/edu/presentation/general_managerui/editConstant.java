@@ -1,25 +1,25 @@
 package nju.edu.presentation.general_managerui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
 
-import PO.ConstantPO;
 import PO.LoginPO;
 import nju.edu.VO.ConstantVO;
 import nju.edu.businesslogic.policybl.ConstantPolicybl;
 import nju.edu.presentation.courierui.InputNumber;
-
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import java.awt.Font;
-import javax.swing.JToolBar;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class editConstant extends JPanel {
 
@@ -65,10 +65,16 @@ public class editConstant extends JPanel {
 					main.repaint();
 					main.setVisible(true);
 				}
-
 			}
 		});
-		button.setBounds(239, 335, 93, 23);
+		button.setBounds(274, 459, 52, 52);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
+				button.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		button.setIcon(image1);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
 		add(button);
 		
 		JButton button_1 = new JButton("\u53D6\u6D88");
@@ -82,13 +88,24 @@ public class editConstant extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(410, 335, 93, 23);
+		button_1.setBounds(13, -9, 63, 63);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		button_1.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button_1.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button_1.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		add(button_1);
 		
 		textField = new JTextField();
 		textField.setBounds(317, 129, 120, 21);
 		textField.setText(vo.getAddress1());
 		textField.setEditable(false);
+		textField.setForeground(new Color(88, 93, 103));
+		textField.setCaretColor(new Color(88, 93, 103));
 		add(textField);
 		textField.setColumns(10);
 		
@@ -97,6 +114,8 @@ public class editConstant extends JPanel {
 		textField_1.setColumns(10);
 		textField_1.setBounds(472, 129, 120, 21);
 		textField_1.setEditable(false);
+		textField_1.setForeground(new Color(88, 93, 103));
+		textField_1.setCaretColor(new Color(88, 93, 103));
 		add(textField_1);
 		
 		JLabel label_3 = new JLabel("\u5730\u70B9\uFF1A");
@@ -104,7 +123,9 @@ public class editConstant extends JPanel {
 		add(label_3);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 534, 724, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 		
 		label_4 = new JLabel("\u72B6\u6001");
@@ -118,12 +139,16 @@ public class editConstant extends JPanel {
 		textField_2.setColumns(10);
 		textField_2.setBounds(396, 198, 120, 21);
 		textField_2.addKeyListener(new InputNumber());
+		textField_2.setForeground(new Color(88, 93, 103));
+		textField_2.setCaretColor(new Color(88, 93, 103));
 		add(textField_2);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(396, 271, 120, 21);
 		textField_3.addKeyListener(new InputNumber());
+		textField_3.setForeground(new Color(88, 93, 103));
+		textField_3.setCaretColor(new Color(88, 93, 103));
 		add(textField_3);
 	}
 }

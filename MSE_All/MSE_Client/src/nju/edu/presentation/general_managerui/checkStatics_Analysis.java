@@ -1,20 +1,19 @@
 package nju.edu.presentation.general_managerui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import PO.LoginPO;
-
-import java.awt.Button;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Label;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 
 public class checkStatics_Analysis extends JPanel {
 
@@ -25,7 +24,7 @@ public class checkStatics_Analysis extends JPanel {
 		setVisible(true);
 		setLayout(null);
 		
-		Button button = new Button("返回");
+		JButton button = new JButton("返回");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Manager newmanager=new Manager(main,loginPO);	
@@ -36,8 +35,24 @@ public class checkStatics_Analysis extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 76, 23);
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
+
 		add(button);
+		
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		setForeground(Color.WHITE);
+
 		
 		Label label = new Label("总经理>>查看统计分析");
 		label.setBounds(105, 10, 136, 23);

@@ -10,9 +10,12 @@ import javax.swing.border.EmptyBorder;
 
 import PO.LoginPO;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 public class PolicyManage extends JPanel {
@@ -39,7 +42,16 @@ public class PolicyManage extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 75, 23);
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		add(button);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u7B56\u7565\u7BA1\u7406");

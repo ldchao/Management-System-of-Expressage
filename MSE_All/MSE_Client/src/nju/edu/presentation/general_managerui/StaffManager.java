@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -28,6 +29,8 @@ import nju.edu.businesslogic.staffbl.Staffbl;
 import nju.edu.presentation.financial_staffui.UpdateAccountframe;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JToolBar;
@@ -65,7 +68,16 @@ public class StaffManager extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 75, 23);
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		add(button);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u4EBA\u5458\u673A\u6784\u7BA1\u7406");
@@ -78,6 +90,8 @@ public class StaffManager extends JPanel {
 		
 		textField = new JTextField();
 		textField.setBounds(283, 90, 161, 21);
+		textField.setForeground(new Color(88, 93, 103));
+		textField.setCaretColor(new Color(88, 93, 103));
 		add(textField);
 		textField.setColumns(10);
 		

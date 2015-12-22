@@ -1,27 +1,28 @@
 package nju.edu.presentation.general_managerui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
 
 import PO.LoginPO;
 import State.SalaryModel;
 import nju.edu.VO.SalaryVO;
 import nju.edu.businesslogic.policybl.SalaryPolicybl;
 import nju.edu.presentation.courierui.InputNumber;
-
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JToolBar;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class editSalary extends JPanel{
 
@@ -126,7 +127,14 @@ public class editSalary extends JPanel{
 				}
 			}
 		});
-		btnNewButton.setBounds(219, 391, 93, 23);
+		btnNewButton.setBounds(274, 459, 52, 52);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(btnNewButton.getWidth(),
+				btnNewButton.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		btnNewButton.setIcon(image1);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
 		add(btnNewButton);
 		
 		JButton button = new JButton("\u8FD4\u56DE");
@@ -140,7 +148,17 @@ public class editSalary extends JPanel{
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(393, 391, 93, 23);
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
+
 		add(button);
 		
 		textField = new JTextField();
@@ -148,6 +166,8 @@ public class editSalary extends JPanel{
 		textField.setBounds(332, 231, 154, 21);
 		textField.setText(vo.getTypeOfStaff());
 		textField.setEditable(false);
+		textField.setForeground(new Color(88, 93, 103));
+		textField.setCaretColor(new Color(88, 93, 103));
 		add(textField);
 		
 		textField_1 = new JTextField();
@@ -155,10 +175,14 @@ public class editSalary extends JPanel{
 		textField_1.setBounds(332, 280, 154, 21);
 		textField_1.addKeyListener(new InputNumber());
 		textField_1.setText(vo.getSalary()+"");
+		textField_1.setForeground(new Color(88, 93, 103));
+		textField_1.setCaretColor(new Color(88, 93, 103));
 		add(textField_1);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(10, 533, 714, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 		
 		label_4 = new JLabel("\u72B6\u6001");

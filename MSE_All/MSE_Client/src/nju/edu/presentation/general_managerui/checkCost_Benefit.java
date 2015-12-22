@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -16,6 +17,8 @@ import nju.edu.presentation.financial_staffui.DateChooser;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
@@ -49,7 +52,16 @@ public class checkCost_Benefit extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 75, 23);
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		add(button);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u6210\u672C\u6536\u76CA\u8868\u67E5\u8BE2");

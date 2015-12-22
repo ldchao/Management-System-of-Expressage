@@ -1,21 +1,22 @@
 package nju.edu.presentation.general_managerui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import PO.LoginPO;
 import nju.edu.VO.SalaryVO;
 import nju.edu.businesslogic.policybl.SalaryPolicybl;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class SalaryManage extends JPanel {
 
@@ -42,7 +43,16 @@ public class SalaryManage extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 75, 23);
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		add(button);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u7B56\u7565\u7BA1\u7406>>\u85AA\u6C34\u7BA1\u7406");
@@ -72,7 +82,14 @@ public class SalaryManage extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(328, 303, 93, 23);
+		button_1.setBounds(274, 459, 52, 52);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(button_1.getWidth(),
+						button_1.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		button_1.setIcon(image1);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
 		add(button_1);
 	}
 }

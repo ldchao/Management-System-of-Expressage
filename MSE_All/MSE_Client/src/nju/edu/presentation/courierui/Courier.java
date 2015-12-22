@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import PO.LoginPO;
 import nju.edu.presentation.Loginui.PersonalInfomation;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -30,15 +31,24 @@ public class Courier extends JPanel {
 		JButton btnNewButton = new JButton("·µ»Ø");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
-		btnNewButton.setBounds(10, 10, 65, 23);
+		btnNewButton.setBounds(13, -9, 63, 63);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setIcon(new ImageIcon("image/transparent_circle.png"));
+		btnNewButton.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						btnNewButton.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		setLayout(null);
 		add(btnNewButton);
 		
 		
-		JLabel lblHello = new JLabel("Hello!");
-		lblHello.setForeground(Color.WHITE);
+		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
 		lblHello.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -57,7 +67,8 @@ public class Courier extends JPanel {
 				perinfo.setMouseState(false);
 			}
 		});
-		lblHello.setBounds(667, 9, 54, 18);
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 		
 		JLabel label = new JLabel("\u5FEB\u9012\u5458");

@@ -1,39 +1,70 @@
 package nju.edu.presentation.general_managerui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import PO.LoginPO;
-
-import java.awt.Button;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JComboBox;
+import nju.edu.presentation.Loginui.PersonalInfomation;
 
 public class Manager extends JPanel{
-
+	private PersonalInfomation perinfo;
+	
 	public Manager(JFrame main,LoginPO loginPO) {
 		Manager managerframe=this;
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
 		setLayout(null);
 		
-		Button button = new Button("·µ»Ø");
+		JButton button = new JButton("·µ»Ø");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button.setBounds(10, 10, 76, 23);
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
+
 		add(button);
+		
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		lblHello.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				perinfo = new PersonalInfomation(loginPO, main);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (perinfo.getMouseState() == true)
+					perinfo.dispose();
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				perinfo.setAlwaysOnTop(true);
+				perinfo.setMouseState(false);
+			}
+		});
+		setForeground(Color.WHITE);
+
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406");
 		label.setBounds(107, 10, 62, 23);
