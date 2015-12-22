@@ -3,6 +3,7 @@ package nju.edu.presentation.financial_staffui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,6 +20,7 @@ import javax.swing.JTextField;
 
 import PO.LoginPO;
 import nju.edu.businesslogic.accountbl.AccountBL;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class NewAccountPanel extends JPanel implements Runnable {
@@ -37,58 +41,44 @@ public class NewAccountPanel extends JPanel implements Runnable {
 
 		NewAccountPanel nap = this;
 
-		JLabel label = new JLabel(
-				"\u8D22\u52A1\u4EBA\u5458>>\u8D26\u6237\u7BA1\u7406>>\u65B0\u5EFA\u8D26\u6237");
-		label.setBounds(87, 10, 470, 15);
-		add(label);
-
-		JLabel lblHello = new JLabel("Hello!");
-		lblHello.setBounds(630, 10, 54, 15);
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JButton button_4 = new JButton("\u8FD4\u56DE");
+		JButton button_4 = new JButton("");
+		button_4.setContentAreaFilled(false);
+		button_4.setBorderPainted(false);
+		button_4.setIcon(new ImageIcon("image/transparent_circle.png"));
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(nap);
 				AccountPanel acp = new AccountPanel(loginPO, main);
-				main.add(acp);
+				main.getContentPane().add(acp);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
 			}
 		});
-		button_4.setBounds(10, 6, 67, 23);
+		button_4.setBounds(13, -9, 63, 63);
 		add(button_4);
 
-		JLabel label_1 = new JLabel("\u8D26\u6237\u4FE1\u606F");
-		label_1.setFont(new Font("ºÚÌå", Font.BOLD, 15));
-		label_1.setBounds(335, 109, 73, 15);
-		add(label_1);
-
-		JLabel label_2 = new JLabel("\u8D26\u6237\u540D\u79F0");
-		label_2.setBounds(239, 178, 54, 15);
-		add(label_2);
-
-		JLabel label_3 = new JLabel("\u8D26\u6237\u4F59\u989D");
-		label_3.setBounds(239, 233, 54, 15);
-		add(label_3);
-
-		JLabel label_4 = new JLabel("\u5EFA\u8D26\u65E5\u671F");
-		label_4.setBounds(239, 290, 54, 15);
-		add(label_4);
-
-		JLabel label_5 = new JLabel("\u5EFA\u8D26\u4EBA");
-		label_5.setBounds(239, 348, 54, 15);
-		add(label_5);
-
 		textField = new JTextField();
-		textField.setBounds(359, 175, 181, 21);
+		textField.setForeground(new Color(88, 93, 103));
+		textField.setCaretColor(new Color(88, 93, 103));
+		textField.setOpaque(false);
+		textField.setBorder(null);
+		textField.setBounds(354, 211, 140, 27);
 		add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(359, 287, 181, 21);
+		textField_1.setForeground(new Color(88, 93, 103));
+		textField_1.setCaretColor(new Color(88, 93, 103));
+		textField_1.setOpaque(false);
+		textField_1.setBorder(null);
+		textField_1.setBounds(354, 346, 140, 27);
 		add(textField_1);
 		Date dt = new Date();
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -96,23 +86,40 @@ public class NewAccountPanel extends JPanel implements Runnable {
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(359, 345, 181, 21);
+		textField_2.setForeground(new Color(88, 93, 103));
+		textField_2.setCaretColor(new Color(88, 93, 103));
+		textField_2.setOpaque(false);
+		textField_2.setBorder(null);
+		textField_2.setBounds(354, 256, 140, 27);
 		add(textField_2);
 
 		JLabel label_6 = new JLabel("0.0");
-		label_6.setBounds(359, 233, 181, 15);
+		label_6.setForeground(new Color(248, 179, 28));
+		label_6.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
+		label_6.setBounds(358, 307, 54, 15);
 		add(label_6);
 
 		JToolBar toolBar = new JToolBar();
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		toolBar.setBounds(0, 543, 744, 28);
 		toolBar.setEnabled(false);
 		add(toolBar);
 
 		lblNewLabel = new JLabel("×´Ì¬À¸");
+		lblNewLabel.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel);
 
 		// È·ÈÏÍê³ÉÐÂ½¨
-		JButton button = new JButton("\u786E\u8BA4");
+		JButton button = new JButton("");
+		button.setBounds(274, 459, 52, 52);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
+						button.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		button.setIcon(image1);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String name = textField.getText();
@@ -132,10 +139,12 @@ public class NewAccountPanel extends JPanel implements Runnable {
 				t.start();
 			}
 		});
-		button.setBounds(258, 444, 93, 23);
 		add(button);
 
-		JButton button_1 = new JButton("\u64A4\u9500");
+		JButton button_1 = new JButton("");
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		button_1.setBounds(425, 459, 52, 52);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				textField.setText("");
@@ -143,8 +152,18 @@ public class NewAccountPanel extends JPanel implements Runnable {
 				lblNewLabel.setText("×´Ì¬À¸");
 			}
 		});
-		button_1.setBounds(411, 444, 93, 23);
+		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
+		Image temp2 = image2.getImage().getScaledInstance(button_1.getWidth(),
+						button_1.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image2 = new ImageIcon(temp2);
+		button_1.setIcon(image2);
 		add(button_1);
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/financial_stuff/newAccount.png");
+		g.drawImage(image.getImage(), 0, 0,getSize().width,getSize().height, this);
 	}
 
 	@Override

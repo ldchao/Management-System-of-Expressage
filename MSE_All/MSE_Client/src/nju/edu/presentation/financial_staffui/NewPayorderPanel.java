@@ -1,11 +1,14 @@
 package nju.edu.presentation.financial_staffui;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,6 +22,9 @@ import PO.LoginPO;
 import nju.edu.businesslogic.financebl.PayorderBL;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class NewPayorderPanel extends JPanel implements Runnable {
@@ -43,16 +49,17 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 
 		NewPayorderPanel npp = this;
 
-		JLabel label = new JLabel("财务人员>>成本管理>>新建付款单");
-		label.setBounds(88, 5, 518, 15);
-		add(label);
-
-		JLabel lblHello = new JLabel("Hello!");
-		lblHello.setBounds(677, 5, 36, 15);
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JButton button_4 = new JButton("\u8FD4\u56DE");
-		button_4.setBounds(10, 1, 68, 23);
+		JButton button_4 = new JButton();
+		button_4.setBounds(13, -9, 63, 63);
+		button_4.setContentAreaFilled(false);
+		button_4.setBorderPainted(false);
+		ImageIcon icon = new ImageIcon("image/transparent_circle.png");
+		button_4.setIcon(icon);
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(npp);
@@ -63,25 +70,19 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 				main.setVisible(true);
 			}
 		});
+		button_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button_4.setIcon(new ImageIcon("image/mask_circle.png"));
+			}
+		});
 		add(button_4);
 
-		JLabel label_1 = new JLabel("付款金额");
-		label_1.setBounds(112, 148, 62, 15);
-		add(label_1);
-
-		JLabel label_2 = new JLabel("付款人");
-		label_2.setBounds(112, 205, 54, 15);
-		add(label_2);
-
-		JLabel label_4 = new JLabel("付款账号");
-		label_4.setBounds(390, 148, 54, 15);
-		add(label_4);
-
-		JLabel label_5 = new JLabel("付款日期");
-		label_5.setBounds(392, 205, 62, 15);
-		add(label_5);
-
 		textField = new JTextField();
+		textField.setForeground(new Color(88, 93, 103));
+		textField.setCaretColor(new Color(88, 93, 103));
+		textField.setOpaque(false);
+		textField.setBorder(null);
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -90,63 +91,86 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 				}
 			}
 		});
-		textField.setBounds(179, 145, 157, 21);
+		textField.setBounds(218, 143, 137, 27);
 		add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
-		textField_1.setBounds(179, 202, 157, 21);
+		textField_1.setBounds(218, 185, 137, 27);
+		textField_1.setForeground(new Color(88, 93, 103));
+		textField_1.setCaretColor(new Color(88, 93, 103));
+		textField_1.setOpaque(false);
+		textField_1.setBorder(null);
 		textField_1.setColumns(10);
 		add(textField_1);
 
 		textField_2 = new JTextField();
-		textField_2.setBounds(465, 145, 157, 21);
+		textField_2.setBounds(498, 143, 133, 27);
+		textField_2.setForeground(new Color(88, 93, 103));
+		textField_2.setCaretColor(new Color(88, 93, 103));
+		textField_2.setOpaque(false);
+		textField_2.setBorder(null);
 		textField_2.setColumns(10);
 		add(textField_2);
 
 		textField_3 = new JTextField();
-		textField_3.setBounds(465, 202, 157, 21);
+		textField_3.setBounds(498, 185, 133, 27);
 		textField_3.setColumns(10);
+		textField_3.setForeground(new Color(88, 93, 103));
+		textField_3.setCaretColor(new Color(88, 93, 103));
+		textField_3.setOpaque(false);
+		textField_3.setBorder(null);
 		add(textField_3);
 		Date dt = new Date();
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		textField_3.setText(date.format(dt));
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 543, 744, 28);
+		
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		toolBar.setEnabled(false);
 		add(toolBar);
 
 		lblNewLabel = new JLabel("状态栏");
+		lblNewLabel.setForeground(new Color(255, 255, 255,200));
 		toolBar.add(lblNewLabel);
 
-		JLabel label_3 = new JLabel("\u4ED8\u6B3E\u6761\u76EE");
-		label_3.setBounds(112, 261, 54, 15);
-		add(label_3);
-
-		JLabel label_6 = new JLabel("\u5907\u6CE8");
-		label_6.setBounds(112, 362, 45, 15);
-		add(label_6);
-
-		JLabel label_7 = new JLabel("\u4ED8\u6B3E\u4FE1\u606F");
-		label_7.setFont(new Font("黑体", Font.BOLD, 15));
-		label_7.setBounds(338, 81, 78, 15);
-		add(label_7);
-
 		JScrollPane jsp = new JScrollPane();
-		jsp.setBounds(179, 261, 443, 69);
+		jsp.setOpaque(false);
+		jsp.getViewport().setOpaque(false);
+		jsp.setBorder(null);
+		jsp.setBounds(218, 237, 409, 79);
 		add(jsp);
 
 		textArea = new JTextArea();
+		textArea.setOpaque(false);
+		textArea.setBorder(null);
+		textArea.setForeground(new Color(88, 93, 103));
 		jsp.setViewportView(textArea);
 		JScrollPane jsp2 = new JScrollPane();
-		jsp2.setBounds(179, 362, 443, 69);
+		jsp2.setBounds(218, 344, 409, 79);
+		jsp2.setOpaque(false);
+		jsp2.setBorder(null);
+		jsp2.getViewport().setOpaque(false);
 		add(jsp2);
 
 		textArea_1 = new JTextArea();
+		textArea_1.setOpaque(false);
+		textArea_1.setBorder(null);
+		textArea_1.setForeground(new Color(88, 93, 103));
 		jsp2.setViewportView(textArea_1);
 
-		JButton button = new JButton("\u786E\u8BA4");
+		JButton button = new JButton();
+		button.setBounds(274, 459, 52, 52);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
+		Image temp = image2.getImage().getScaledInstance(button.getWidth(),
+				button.getHeight(),image2.getImage().SCALE_DEFAULT);
+		image2 = new ImageIcon(temp);
+		button.setIcon(image2);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				double money = 0;
@@ -174,10 +198,17 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 				t.start();
 			}
 		});
-		button.setBounds(238, 468, 93, 23);
 		add(button);
 
-		JButton button_1 = new JButton("\u64A4\u9500");
+		JButton button_1 = new JButton();
+		button_1.setBounds(425, 459, 52, 52);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(button_1.getWidth(),
+				button_1.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		button_1.setIcon(image1);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				textField.setText("");
@@ -189,7 +220,6 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 				lblNewLabel.setText("状态栏");
 			}
 		});
-		button_1.setBounds(413, 468, 93, 23);
 		add(button_1);
 	}
 
@@ -205,10 +235,14 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 			textField.setText("");
 			textField_1.setText("");
 			textField_2.setText("");
-			textArea.setText("");
 			textArea_1.setText("");
 		}
 
 		lblNewLabel.setText("状态栏");
+	}
+	@Override
+	protected void paintComponent(Graphics g) {
+		ImageIcon icon = new ImageIcon("image/financial_stuff/newPay.png");
+		g.drawImage(icon.getImage(), 0, 0, getSize().width, getSize().height, this);
 	}
 }

@@ -1,16 +1,22 @@
 package nju.edu.presentation.financial_staffui;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JToolBar;
 
 import PO.LoginPO;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class StatisticsPanel extends JPanel implements Runnable {
@@ -19,57 +25,72 @@ public class StatisticsPanel extends JPanel implements Runnable {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/financial_stuff/statisticsPanel.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public StatisticsPanel(LoginPO loginPO, JFrame main) {
 		setLayout(null);
 		setSize(750, 600);
 		StatisticsPanel stp = this;
 
-		JLabel label = new JLabel(
-				"\u8D22\u52A1\u4EBA\u5458>>\u7EDF\u8BA1\u62A5\u8868");
-		label.setBounds(88, 5, 518, 15);
-		add(label);
-
-		JLabel lblHello = new JLabel("Hello!");
-		lblHello.setBounds(677, 5, 36, 15);
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JButton button_4 = new JButton("\u8FD4\u56DE");
+		JButton button_4 = new JButton("");
+		button_4.setContentAreaFilled(false);
+		button_4.setBorderPainted(false);
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(stp);
 				FmainPanel fm = new FmainPanel(loginPO, main);
-				main.add(fm);
+				main.getContentPane().add(fm);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
 			}
 		});
-		button_4.setBounds(10, 1, 68, 23);
+		button_4.setBounds(13, -9, 63, 63);
+		button_4.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button_4.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+				button_4.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		add(button_4);
 
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
 		JLabel showDate1 = new JLabel("请单击选择起始日期");
-		showDate1.setBounds(182, 238, 122, 23);
+		showDate1.setBounds(361, 225, 122, 23);
 		dateChooser1.register(showDate1);
 
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 		JLabel showDate2 = new JLabel(
 				"\u8BF7\u5355\u51FB\u9009\u62E9\u622A\u6B62\u65E5\u671F");
-		showDate2.setBounds(500, 231, 122, 30);
+		showDate2.setBounds(361, 304, 122, 30);
 		dateChooser2.register(showDate2);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 543, 744, 28);
-		toolBar.setEnabled(false);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 
 		lblNewLabel = new JLabel("\u72B6\u6001\u680F");
+		lblNewLabel.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel);
 
 		add(showDate1);
 		add(showDate2);
 
-		JButton button = new JButton("\u786E\u8BA4");
+		JButton button = new JButton("");
+		button.setBounds(349, 422, 52, 52);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String date1 = showDate1.getText();
@@ -81,7 +102,7 @@ public class StatisticsPanel extends JPanel implements Runnable {
 						main.remove(stp);
 						CheckStatisticsPanel cstp = new CheckStatisticsPanel(
 								main, loginPO, date1, date2);
-						main.add(cstp);
+						main.getContentPane().add(cstp);
 						main.invalidate();
 						main.repaint();
 						main.setVisible(true);
@@ -95,16 +116,12 @@ public class StatisticsPanel extends JPanel implements Runnable {
 				t.start();
 			}
 		});
-		button.setBounds(309, 405, 93, 23);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
+						button.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		button.setIcon(image1);
 		add(button);
-
-		JLabel label_1 = new JLabel("\u8D77\u59CB\u65E5\u671F\uFF1A");
-		label_1.setBounds(88, 242, 65, 15);
-		add(label_1);
-
-		JLabel label_2 = new JLabel("\u622A\u6B62\u65E5\u671F\uFF1A");
-		label_2.setBounds(413, 239, 65, 15);
-		add(label_2);
 
 	}
 

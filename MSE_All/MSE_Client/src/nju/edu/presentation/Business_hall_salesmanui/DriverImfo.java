@@ -4,23 +4,23 @@ import javax.swing.JPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
 import State.DriverState;
-import State.TransportState;
 import nju.edu.VO.DriverVO;
-import nju.edu.VO.VehicleVO;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
-import javax.swing.JTextField;
 import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class DriverImfo extends JPanel {
 	private JLabel driverNum;
 	private JLabel name;
@@ -32,13 +32,24 @@ public class DriverImfo extends JPanel {
 	private JLabel licenseDue;
 	private JLabel status;
 
-	public DriverImfo(JFrame m, JPanel bf) {
+	public DriverImfo(JFrame m, JPanel bf, LoginPO loginPO) {
 		JFrame main = m;
 		JPanel lastui = bf;
 		DriverImfo nowPanel = this;
 		setLayout(null);
 
 		JButton button = new JButton("返回");
+
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}
+		});
+
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -48,22 +59,24 @@ public class DriverImfo extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
+		button.setBounds(13, -9, 63, 63);
 		add(button);
 
 		JLabel label = new JLabel("营业厅业务员>>新建司机信息");
 		label.setBounds(100, 14, 200, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("阙帅，你好！");
-		label_1.setBounds(600, 14, 100, 15);
+		JLabel label_1 = new JLabel("Hello！" + loginPO.getName());
+		label_1.setForeground(Color.WHITE);
+		label_1.setBounds(655, 12, 100, 15);
+		setForeground(Color.WHITE);
 		add(label_1);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
-		toolBar.setEnabled(false);
 
 		JLabel label_4 = new JLabel("状态栏");
 		toolBar.add(label_4);
@@ -84,6 +97,7 @@ public class DriverImfo extends JPanel {
 		label_6.setBounds(409, 290, 57, 28);
 		add(label_6);
 
+		@SuppressWarnings("unused")
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 
 		JLabel label_7 = new JLabel("出生日期");
@@ -150,7 +164,8 @@ public class DriverImfo extends JPanel {
 		JButton button_1 = new JButton("修改");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 DriverChange driverChange = new DriverChange(main, nowPanel);
+				DriverChange driverChange = new DriverChange(main, nowPanel,
+						loginPO);
 				DriverState state = DriverState.Available;
 				switch (status.getText()) {
 				case "Busy":
@@ -161,8 +176,10 @@ public class DriverImfo extends JPanel {
 				default:
 					break;
 				}
-				DriverVO vo = new DriverVO(driverNum.getText(), name.getText(), shopNum.getText(), birthDate.getText(),
-						idNum.getText(), phoneNum.getText(), sex.getText(), licenseDue.getText(), state);
+				DriverVO vo = new DriverVO(driverNum.getText(), name.getText(),
+						shopNum.getText(), birthDate.getText(),
+						idNum.getText(), phoneNum.getText(), sex.getText(),
+						licenseDue.getText(), state);
 				driverChange.show(vo);
 				main.remove(nowPanel);
 				main.getContentPane().add(driverChange);
@@ -175,8 +192,8 @@ public class DriverImfo extends JPanel {
 		add(button_1);
 
 	}
-	
-	public void show(DriverVO vo){
+
+	public void show(DriverVO vo) {
 		this.driverNum.setText(vo.getDriverNum());
 		this.name.setText(vo.getName());
 		this.sex.setText(vo.getSex());

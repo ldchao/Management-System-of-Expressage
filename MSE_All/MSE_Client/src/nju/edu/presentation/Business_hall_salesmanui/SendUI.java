@@ -4,17 +4,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JTextField;
@@ -27,21 +31,32 @@ import PO.LoginPO;
 import nju.edu.VO.SendorderVO;
 import nju.edu.businesslogic.transferbl.SendFormBL;
 import nju.edu.businesslogicservice.transferblservice.SendFormBlService;
-import nju.edu.presentation.Transit_center_storemasterui.SetWarnData;
 
+@SuppressWarnings("serial")
 public class SendUI extends JPanel implements Runnable {
 	private JTextField textField;
 	JFrame main;
 	JPanel lastui;
 	SendUI nowPanel;
 
-	public SendUI(JFrame m, JPanel bf,LoginPO loginPO) {
+	@SuppressWarnings("unchecked")
+	public SendUI(JFrame m, JPanel bf, LoginPO loginPO) {
 		main = m;
 		lastui = bf;
 		nowPanel = this;
 		setLayout(null);
 
 		JButton button = new JButton("返回");
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}
+		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -50,19 +65,22 @@ public class SendUI extends JPanel implements Runnable {
 				main.repaint();
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
 		add(button);
 
 		JLabel label = new JLabel("营业厅业务员>>车辆信息管理");
 		label.setBounds(100, 14, 200, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("张三，你好！");
-		label_1.setBounds(600, 14, 100, 15);
-		add(label_1);
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		setForeground(Color.WHITE);
+		add(lblHello);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
@@ -92,6 +110,8 @@ public class SendUI extends JPanel implements Runnable {
 		add(label_5);
 
 		textField = new JTextField();
+		textField.setForeground(new Color(88, 93, 103));
+		textField.setCaretColor(new Color(88, 93, 103));
 		textField.setBounds(246, 270, 93, 21);
 		add(textField);
 		textField.setColumns(10);
@@ -102,6 +122,7 @@ public class SendUI extends JPanel implements Runnable {
 		add(lblNewLabel_1);
 
 		String[] checkState = { "未审批", "审批通过", "审批未通过" };
+		@SuppressWarnings("rawtypes")
 		JComboBox comboBox = new JComboBox(checkState);
 		comboBox.setEnabled(false);
 		comboBox.setBounds(246, 347, 93, 21);
@@ -127,6 +148,17 @@ public class SendUI extends JPanel implements Runnable {
 		scrollPane.setViewportView(textArea);
 
 		JButton btnNewButton = new JButton("确定");
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		@SuppressWarnings("static-access")
+		Image temp1 = image1.getImage().getScaledInstance(
+				btnNewButton.getWidth(), btnNewButton.getHeight(),
+				image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		btnNewButton.setIcon(image1);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setBounds(274, 459, 52, 52);
+
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String sendPerson = textField.getText();
@@ -152,7 +184,7 @@ public class SendUI extends JPanel implements Runnable {
 								order);
 						SendFormBlService sb = new SendFormBL();
 						sb.addReceiveOrder(sv);
-						Thread t=new Thread(nowPanel);
+						Thread t = new Thread(nowPanel);
 						t.start();
 					} else {
 						label_4.setText("请检查订单号输入是否正确");
@@ -160,13 +192,16 @@ public class SendUI extends JPanel implements Runnable {
 				}
 			}
 		});
-		btnNewButton.setBounds(221, 435, 93, 23);
 		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("取消");
+		btnNewButton_1.setIcon(image1);
+		btnNewButton_1.setBounds(425, 459, 52, 52);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SendUI su = new SendUI(main, lastui,loginPO);
+				SendUI su = new SendUI(main, lastui, loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(su);
 				main.invalidate();
@@ -174,8 +209,6 @@ public class SendUI extends JPanel implements Runnable {
 				main.setVisible(true);
 			}
 		});
-
-		btnNewButton_1.setBounds(412, 435, 93, 23);
 		add(btnNewButton_1);
 
 	}

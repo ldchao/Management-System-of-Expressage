@@ -180,7 +180,7 @@ public class DateChooser extends JPanel {
  
 			public void mousePressed(MouseEvent me) {
 				if (showDate.isEnabled()) {
-					showDate.setForeground(Color.CYAN);
+					showDate.setForeground(new Color(255, 255, 255, 200));
 					if (isShow) {
 						hidePanel();
 					} else {

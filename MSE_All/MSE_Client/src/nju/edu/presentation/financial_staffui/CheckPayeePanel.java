@@ -51,7 +51,7 @@ public class CheckPayeePanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(cpep);
 				CalculatePanel clf = new CalculatePanel(loginPO, main);
-				main.add(clf);
+				main.getContentPane().add(clf);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -86,6 +86,7 @@ public class CheckPayeePanel extends JPanel {
 		scrollPane.setViewportView(table);
 		table.setRowSelectionAllowed(true);
 		table.setEnabled(false);
+		
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		tableModel = new DefaultTableModel(new Object[][] {
 				{ null, null, null, null }, { null, null, null, null },
@@ -111,7 +112,7 @@ public class CheckPayeePanel extends JPanel {
 		lblMoney.setBounds(385, 467, 107, 23);
 		add(lblMoney);
 		// ºÏ¼Æ
-		JButton button = new JButton("\u5408\u8BA1");
+		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				double total = cbl.total(payeevo);

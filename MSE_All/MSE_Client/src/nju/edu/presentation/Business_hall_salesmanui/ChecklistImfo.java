@@ -1,88 +1,27 @@
 package nju.edu.presentation.Business_hall_salesmanui;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 import java.awt.Font;
-import java.awt.TextArea;
-
-import javax.swing.JTextArea;
-import javax.swing.JScrollPane;
-
 import java.awt.Color;
 
-import javax.swing.table.DefaultTableModel;
-
-import org.junit.experimental.theories.Theories;
-
-import State.ApproveState;
-import State.ExpressType;
-import State.PackageType;
-import sun.misc.Cleaner;
-
-import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
-import javax.swing.JToolBar;
-import javax.swing.JComboBox;
-import javax.swing.JScrollBar;
-
 import nju.edu.VO.OrderVO;
-import nju.edu.businesslogic.listinbl.Listinbl;
+
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 
-import java.awt.Font;
-import java.awt.TextArea;
-
-import javax.swing.JTextArea;
-import javax.swing.JScrollPane;
-
-import java.awt.Color;
-
-import javax.swing.table.DefaultTableModel;
-
-import State.ApproveState;
-import State.ExpressType;
-import State.PackageType;
-import sun.misc.Cleaner;
-
-import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
-import javax.swing.JToolBar;
-import javax.swing.JComboBox;
-import javax.swing.JScrollBar;
-
-import nju.edu.VO.OrderVO;
-import nju.edu.businesslogic.listinbl.Listinbl;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.ActionEvent;
-
+@SuppressWarnings("serial")
 public class ChecklistImfo extends JPanel{
 	
 	/*
@@ -250,11 +189,14 @@ public class ChecklistImfo extends JPanel{
 			label_18.setBounds(411, 382, 54, 15);
 			contentPane.add(label_18);
 			
+			@SuppressWarnings("unused")
 			ButtonGroup bg1=new ButtonGroup();
 			
 			label_19 = new JLabel("\u5305\u88C5\u79CD\u7C7B");
 			label_19.setBounds(411, 409, 54, 15);
 			contentPane.add(label_19);
+			
+			@SuppressWarnings("unused")
 			ButtonGroup bg2=new ButtonGroup();
 			
 			label_20 = new JLabel("\u7269\u6D41\u4FE1\u606F");
@@ -275,7 +217,18 @@ public class ChecklistImfo extends JPanel{
 			contentPane.add(label_23);
 			
 			button_1 = new JButton("·µ»Ø");
-			button_1.setBounds(10, 10, 65, 23);
+			button_1.setContentAreaFilled(false);
+			button_1.setBorderPainted(false);
+			button_1.setBounds(13, -9, 63, 63);
+			
+			button_1.setIcon(new ImageIcon("image/transparent_circle.png"));
+			button_1.addMouseListener(new MouseAdapter() {
+						@Override
+				public void mousePressed(MouseEvent e) {
+					button_1.setIcon(new ImageIcon("image/mask_circle.png"));
+				}	
+			});
+			
 			button_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					main.remove(contentPane);
@@ -285,7 +238,6 @@ public class ChecklistImfo extends JPanel{
 					
 				}
 			});
-			button_1.setBounds(22, 20, 63, 23);
 			contentPane.add(button_1);
 			
 			label_5 = new JLabel("\u5FEB\u9012\u5458");

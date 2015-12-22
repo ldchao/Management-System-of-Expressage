@@ -2,14 +2,17 @@ package nju.edu.presentation.Business_hall_salesmanui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+import PO.LoginPO;
 import State.TransportState;
 import nju.edu.VO.VehicleVO;
 import nju.edu.businesslogic.vehiclebl.VehicleBl;
@@ -17,8 +20,11 @@ import nju.edu.businesslogicservice.vehicleblservice.VehicleBlService;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
 import javax.swing.JTextField;
-import java.awt.Color;
 
+import java.awt.Color;
+import java.awt.Image;
+
+@SuppressWarnings("serial")
 public class VehicleNew extends JPanel {
 
 	private JTextField carNum;
@@ -30,7 +36,8 @@ public class VehicleNew extends JPanel {
 	private JLabel useDate;
 	private VehicleBlService vehicleBl = new VehicleBl();
 
-	public VehicleNew(JFrame m, JPanel bf) {
+	@SuppressWarnings("static-access")
+	public VehicleNew(JFrame m, JPanel bf, LoginPO loginPO) {
 		JFrame main = m;
 		JPanel lastui = bf;
 		VehicleNew nowPanel = this;
@@ -38,6 +45,17 @@ public class VehicleNew extends JPanel {
 		setLayout(null);
 
 		JButton button = new JButton("返回");
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}
+		});
+
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -47,25 +65,30 @@ public class VehicleNew extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
 		add(button);
 
 		JLabel label = new JLabel("营业厅业务员>>新建车辆信息");
 		label.setBounds(100, 14, 200, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel("阙帅，你好！");
-		label_1.setBounds(600, 14, 100, 15);
-		add(label_1);
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		setForeground(Color.WHITE);
+		add(lblHello);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
 		toolBar.add(label_4);
 
 		carNum = new JTextField();
+		carNum.setForeground(new Color(88, 93, 103));
+		carNum.setCaretColor(new Color(88, 93, 103));
 		carNum.setColumns(10);
 		carNum.setBounds(212, 319, 106, 26);
 		add(carNum);
@@ -75,6 +98,8 @@ public class VehicleNew extends JPanel {
 		add(carNumLabel);
 
 		engineNum = new JTextField();
+		engineNum.setForeground(new Color(88, 93, 103));
+		engineNum.setCaretColor(new Color(88, 93, 103));
 		engineNum.setColumns(10);
 		engineNum.setBounds(212, 357, 106, 26);
 		add(engineNum);
@@ -88,6 +113,8 @@ public class VehicleNew extends JPanel {
 		add(carLabel);
 
 		car = new JTextField();
+		car.setForeground(new Color(88, 93, 103));
+		car.setCaretColor(new Color(88, 93, 103));
 		car.setColumns(10);
 		car.setBounds(212, 438, 106, 26);
 		add(car);
@@ -97,6 +124,8 @@ public class VehicleNew extends JPanel {
 		add(baseLabel);
 
 		baseNum = new JTextField();
+		baseNum.setForeground(new Color(88, 93, 103));
+		baseNum.setCaretColor(new Color(88, 93, 103));
 		baseNum.setColumns(10);
 		baseNum.setBounds(212, 399, 106, 26);
 		add(baseNum);
@@ -126,6 +155,8 @@ public class VehicleNew extends JPanel {
 		add(label_11);
 
 		driver = new JTextField();
+		driver.setForeground(new Color(88, 93, 103));
+		driver.setCaretColor(new Color(88, 93, 103));
 		driver.setColumns(10);
 		driver.setBounds(458, 319, 106, 26);
 		add(driver);
@@ -136,24 +167,46 @@ public class VehicleNew extends JPanel {
 		add(panel);
 
 		JButton btnNewButton = new JButton("确认");
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(
+				btnNewButton.getWidth(), btnNewButton.getHeight(),
+				image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		btnNewButton.setIcon(image1);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setBounds(274, 459, 52, 52);
+
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (carNum.getText().length() == 0 || engineNum.getText().length() == 0 || car.getText().length() == 0
-						|| driver.getText().length() == 0 || baseNum.getText().length() == 0
-						|| buyDate.getText().length() == 0 || useDate.getText().length() == 0||useDate.getText().equals("请单击选择日期")||buyDate.getText().equals("请单击选择日期")) {
+				if (carNum.getText().length() == 0
+						|| engineNum.getText().length() == 0
+						|| car.getText().length() == 0
+						|| driver.getText().length() == 0
+						|| baseNum.getText().length() == 0
+						|| buyDate.getText().length() == 0
+						|| useDate.getText().length() == 0
+						|| useDate.getText().equals("请单击选择日期")
+						|| buyDate.getText().equals("请单击选择日期")) {
 					label_4.setText("信息未填写完整！");
-				}else{
-				VehicleVO vo = new VehicleVO(carNum.getText(), engineNum.getText(), car.getText(), driver.getText(),
-						baseNum.getText(), buyDate.getText(), useDate.getText(), TransportState.Available);
-				vehicleBl.addVehicle(vo);
-				label_4.setText("新建成功！");
+				} else {
+					VehicleVO vo = new VehicleVO(carNum.getText(), engineNum
+							.getText(), car.getText(), driver.getText(),
+							baseNum.getText(), buyDate.getText(), useDate
+									.getText(), TransportState.Available);
+					vehicleBl.addVehicle(vo);
+					label_4.setText("新建成功！");
 				}
 			}
 		});
-		btnNewButton.setBounds(268, 492, 67, 29);
 		add(btnNewButton);
 
 		JButton button_1 = new JButton("取消");
+		button_1.setIcon(image1);
+		button_1.setBounds(425, 459, 52, 52);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -163,7 +216,6 @@ public class VehicleNew extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(347, 492, 67, 29);
 		add(button_1);
 
 	}
