@@ -56,7 +56,7 @@ public class CheckStatisticsPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(csp);
 				StatisticsPanel sts = new StatisticsPanel(loginPO, main);
-				main.add(sts);
+				main.getContentPane().add(sts);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);

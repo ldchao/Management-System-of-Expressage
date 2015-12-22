@@ -1,11 +1,14 @@
 package nju.edu.presentation.financial_staffui;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -14,6 +17,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Point;
 
 import javax.swing.border.LineBorder;
@@ -36,42 +40,51 @@ public class CheckPayorderPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	@Override
+	protected void paintComponent(Graphics g) {
+		ImageIcon icon = new ImageIcon("image/financial_stuff/lookPay.png");
+		g.drawImage(icon.getImage(), 0, 0, getSize().width, getSize().height, this);
+	}
+	
 	public CheckPayorderPanel(LoginPO loginPO, JFrame main) {
 		setLayout(null);
 		setSize(750, 600);
 
 		CheckPayorderPanel cpp = this;
 
-		JLabel label = new JLabel(
-				"\u8D22\u52A1\u4EBA\u5458>>\u6210\u672C\u7BA1\u7406>>\u67E5\u770B\u4ED8\u6B3E\u5355\u8BB0\u5F55");
-		label.setBounds(92, 8, 563, 15);
-		add(label);
-
-		JLabel lblHello = new JLabel("Hello!");
-		lblHello.setBounds(665, 8, 36, 15);
+		JLabel lblHello = new JLabel("Hello! "+ loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JButton button_4 = new JButton("\u8FD4\u56DE");
+		JButton button_4 = new JButton("");
+		button_4.setBounds(13, -9, 63, 63);
+		button_4.setContentAreaFilled(false);
+		button_4.setBorderPainted(false);
+		button_4.setIcon(new ImageIcon("image/transparent_circle.png"));
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(cpp);
 				PayPanel pp = new PayPanel(loginPO, main);
-				main.add(pp);
+				main.getContentPane().add(pp);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
 			}
 		});
-		button_4.setBounds(15, 6, 70, 23);
+		button_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button_4.setIcon(new ImageIcon("image/mask_circle.png"));
+			}
+		});
 		add(button_4);
 
-		JLabel label_1 = new JLabel("\u4ED8\u6B3E\u5355\u8BB0\u5F55");
-		label_1.setFont(new Font("黑体", Font.BOLD, 15));
-		label_1.setBounds(320, 129, 93, 15);
-		add(label_1);
-
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(92, 176, 549, 208);
+		scrollPane.setBounds(72, 166, 606, 297);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
 		add(scrollPane);
 
 		table = new JTable();
@@ -80,7 +93,9 @@ public class CheckPayorderPanel extends JPanel {
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
 		table.setDefaultRenderer(Object.class, r);
-		
+		table.setSelectionBackground(new Color(88, 93, 103,200));
+		table.setSelectionForeground(new Color(255, 255, 255, 230));
+		table.setOpaque(false);
 		// 选取行
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -91,7 +106,8 @@ public class CheckPayorderPanel extends JPanel {
 			}
 		});
 		scrollPane.setViewportView(table);
-		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
+		table.setBorder(null);
+//		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
 		tableModel = new DefaultTableModel(new Object[][] {
 				{ "", "", "", "", "", "" },
@@ -129,6 +145,8 @@ public class CheckPayorderPanel extends JPanel {
 
 		showTable(payorderBL.checkPayorder());
 	}
+	
+	
 
 	// 显示
 	public static void showTable(ArrayList<PayorderVO> pavo) {

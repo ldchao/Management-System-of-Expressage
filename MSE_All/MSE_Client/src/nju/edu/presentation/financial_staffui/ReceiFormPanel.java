@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +18,8 @@ import javax.swing.table.DefaultTableModel;
 import nju.edu.businesslogic.financebl.PayeeorderBL;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -25,6 +28,8 @@ import javax.swing.JTextField;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class ReceiFormPanel extends JPanel implements Runnable {
@@ -46,25 +51,40 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/financial_stuff/payeeForm.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public ReceiFormPanel(JFrame main, JPanel panel) {
 		over = true;
 		ReceiFormPanel rfp = this;
 		setLayout(null);
 		setSize(750, 600);
 
-		JLabel label = new JLabel("营业厅业务员>>收款单管理");
-		label.setBounds(87, 10, 470, 15);
-		add(label);
-
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 543, 744, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		toolBar.setEnabled(false);
 		add(toolBar);
 
 		label_3 = new JLabel("\u72B6\u6001\u680F");
+		label_3.setForeground(Color.WHITE);
 		toolBar.add(label_3);
 
-		JButton button_4 = new JButton("\u8FD4\u56DE");
+		JButton button_4 = new JButton();
+		button_4.setContentAreaFilled(false);
+		button_4.setBorderPainted(false);
+		button_4.setBounds(13, -9, 63, 63);
+		button_4.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button_4.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+				button_4.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (over) {
@@ -80,14 +100,18 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 				}
 			}
 		});
-		button_4.setBounds(10, 6, 67, 23);
 		add(button_4);
 
-		JLabel lblHello = new JLabel("Hello!");
-		lblHello.setBounds(630, 10, 54, 15);
+		JLabel lblHello = new JLabel("Hello! ");
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
 		textField = new JTextField();
+		textField.setForeground(new Color(88, 93, 103));
+		textField.setCaretColor(new Color(88, 93, 103));
+		textField.setOpaque(false);
+		textField.setBorder(null);
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -96,11 +120,15 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 				}
 			}
 		});
-		textField.setBounds(94, 120, 92, 25);
+		textField.setBounds(131, 160, 89, 25);
 		add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
+		textField_1.setForeground(new Color(88, 93, 103));
+		textField_1.setCaretColor(new Color(88, 93, 103));
+		textField_1.setOpaque(false);
+		textField_1.setBorder(null);
 		textField_1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -110,34 +138,53 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 			}
 		});
 		textField_1.setColumns(10);
-		textField_1.setBounds(185, 120, 92, 25);
+		textField_1.setBounds(226, 160, 75, 25);
 		add(textField_1);
 
 		textField_2 = new JTextField();
+		textField_2.setForeground(new Color(88, 93, 103));
+		textField_2.setCaretColor(new Color(88, 93, 103));
+		textField_2.setOpaque(false);
+		textField_2.setBorder(null);
 		textField_2.setColumns(10);
-		textField_2.setBounds(276, 120, 92, 25);
+		textField_2.setBounds(305, 160, 89, 25);
 		add(textField_2);
 
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(367, 120, 92, 25);
+		textField_3.setForeground(new Color(88, 93, 103));
+		textField_3.setCaretColor(new Color(88, 93, 103));
+		textField_3.setOpaque(false);
+		textField_3.setBorder(null);
+		textField_3.setBounds(400, 160, 75, 25);
 		add(textField_3);
 
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setBounds(458, 120, 92, 25);
+		textField_4.setForeground(new Color(88, 93, 103));
+		textField_4.setCaretColor(new Color(88, 93, 103));
+		textField_4.setOpaque(false);
+		textField_4.setBorder(null);
+		textField_4.setBounds(480, 160, 75, 25);
 		add(textField_4);
 
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
-		textField_5.setBounds(549, 120, 92, 25);
+		textField_5.setForeground(new Color(88, 93, 103));
+		textField_5.setCaretColor(new Color(88, 93, 103));
+		textField_5.setOpaque(false);
+		textField_5.setBorder(null);
+		textField_5.setBounds(559, 160, 92, 25);
 		add(textField_5);
 
 		// 新建付款单
 		table1 = new JTable();
+		table1.setBackground(new Color(128, 132, 139,0));
+		table1.setForeground(new Color(255, 255, 255,200));
+		table1.setGridColor(new Color(0, 0, 0,0));
 		table1.setRowSelectionAllowed(false);
 		table1.setCellSelectionEnabled(true);
-		table1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		table1.setBorder(null);
 		table1.setRowHeight(25);
 		table1.setModel(new DefaultTableModel(new Object[][] { {
 				"\u8BA2\u5355\u53F7", "\u6536\u6B3E\u91D1\u989D",
@@ -146,7 +193,7 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 				"\u8425\u4E1A\u5385\u7F16\u53F7" }, }, new String[] {
 				"New column", "New column", "New column", "New column",
 				"New column", "New column" }));
-		table1.setBounds(94, 95, 546, 25);
+		table1.setBounds(141, 133, 510, 25);
 		add(table1);
 
 		Date dt = new Date();
@@ -155,7 +202,7 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 
 		// 付款单列表
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(92, 252, 549, 201);
+		scrollPane.setBounds(100, 306, 574, 160);
 		add(scrollPane);
 
 		table = new JTable();
@@ -166,7 +213,9 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 		table.setDefaultRenderer(Object.class, r);
 
 		scrollPane.setViewportView(table);
-		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
+		table.setBorder(null);
+		table.setSelectionBackground(new Color(88, 93, 103,230));
+		table.setSelectionForeground(new Color(255, 255, 255,200));
 		table.setEnabled(false);
 		tableModel = new DefaultTableModel(new Object[][] {
 				{ "", "", "", "", "" }, { null, null, null, null, null },
@@ -194,18 +243,29 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 		// 总计表
 		table_1 = new JTable();
 		table_1.setEnabled(false);
+		table_1.setBackground(new Color(255, 255, 255,0));
+		table_1.setForeground(new Color(255, 255, 255,200));
+		table_1.setGridColor(new Color(0, 0, 0,0));
 		table_1.setRowSelectionAllowed(false);
 		table_1.setModel(new DefaultTableModel(new Object[][] { {
 				"\u8BA2\u5355\u603B\u6570", null, "收款总金额", null }, },
 				new String[] { "New column", "New column", "New column",
 						"New column" }));
 		table_1.setRowHeight(25);
-		table_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table_1.setBounds(92, 481, 549, 25);
+		table_1.setBorder(null);
+		table_1.setBounds(139, 468, 536, 25);
 		add(table_1);
 
 		// “添加”按钮
-		JButton button = new JButton("\u6DFB\u52A0");
+		JButton button = new JButton("");
+		button.setBounds(299, 200, 43, 43);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
+						button.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		button.setIcon(image1);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				over = false;
@@ -231,10 +291,11 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 				t.start();
 			}
 		});
-		button.setBounds(239, 171, 93, 23);
 		add(button);
 
-		JButton button_1 = new JButton("\u63D0\u4EA4\u5BA1\u6279");
+		JButton button_1 = new JButton("");
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				payeebl.addReceiForm("", "", "", "", "", "", true);
@@ -244,19 +305,13 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 				t.start();
 			}
 		});
-		button_1.setBounds(393, 171, 93, 23);
+		button_1.setBounds(407, 200, 43, 43);
+		ImageIcon image = new ImageIcon("image/transparent_circle.png");
+		Image temp = image.getImage().getScaledInstance(button_1.getWidth(),
+						button_1.getHeight(),image.getImage().SCALE_DEFAULT);
+		image = new ImageIcon(temp);
+		button_1.setIcon(image);
 		add(button_1);
-
-		JLabel label_1 = new JLabel(
-				"\u5F55\u5165\u6536\u6B3E\u5355\u4FE1\u606F");
-		label_1.setFont(new Font("黑体", Font.BOLD, 15));
-		label_1.setBounds(311, 67, 121, 15);
-		add(label_1);
-
-		JLabel label_2 = new JLabel("\u6536\u6B3E\u5355\u5217\u8868");
-		label_2.setFont(new Font("黑体", Font.BOLD, 15));
-		label_2.setBounds(329, 227, 85, 15);
-		add(label_2);
 
 	}
 

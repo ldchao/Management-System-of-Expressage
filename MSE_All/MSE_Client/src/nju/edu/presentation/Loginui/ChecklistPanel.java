@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 
 import State.ApproveState;
 import State.ExpressType;
@@ -26,6 +27,8 @@ import nju.edu.presentation.Business_hall_salesmanui.VehicleLoadManageUI;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
 import java.awt.Color;
 
 public class ChecklistPanel extends JPanel implements Runnable{
@@ -107,19 +110,49 @@ public class ChecklistPanel extends JPanel implements Runnable{
 		button2.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 20));
 		add(button2);
 		
-		textField = new JTextField();
+		textField = new JTextField("«Î ‰»Î∂©µ•∫≈");
+		textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 20));
+		textField.setForeground(new Color(255, 255, 255,100));
+		textField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField.setText("");
+				textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 25));
+				textField.setForeground(new Color(255, 255, 255, 200));
+			}
+		});
 		textField.setOpaque(false);
 		textField.setBorder(null);
 		textField.setBounds(154, 267, 327, 55);
 		textField.setCaretColor(new Color(248, 179, 28,230));
-		textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 28));
-		textField.setForeground(new Color(255, 255, 255,220));
 		textField.addKeyListener(new KeyListener() {
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if (e.getKeyCode() == 13) {
-					button2.getActionListeners();
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					signal=true;
+					String id = textField.getText();
+					if (id.length() != 0) {
+						receiverinbl = new Receiverinbl();
+						isValid = receiverinbl.searchOrder(id);
+					}
+					if (isValid) {
+						checklistController = new ChecklistController();
+						vo = checklistController.getOrder(id);
+						ChecklistImfo imfo = new ChecklistImfo(main, nowPanel);
+						imfo.show(vo);
+						main.remove(nowPanel);
+						main.getContentPane().add(imfo);
+						main.invalidate();
+						main.repaint();
+					
+					}else{
+						textField.setText("∂©µ•≤ª¥Ê‘⁄");
+						textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 20));
+						textField.setForeground(new Color(248, 179, 28,200));
+						Thread t = new Thread(nowPanel);
+						t.start();
+					}
 				}
 			}
 			
