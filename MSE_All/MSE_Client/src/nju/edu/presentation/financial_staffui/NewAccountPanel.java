@@ -100,6 +100,8 @@ public class NewAccountPanel extends JPanel implements Runnable {
 		add(label_6);
 
 		JToolBar toolBar = new JToolBar();
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		toolBar.setBounds(0, 543, 744, 28);
 		toolBar.setEnabled(false);
 		add(toolBar);

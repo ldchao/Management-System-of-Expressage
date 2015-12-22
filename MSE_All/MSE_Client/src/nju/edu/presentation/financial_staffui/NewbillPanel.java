@@ -95,7 +95,7 @@ public class NewbillPanel extends JPanel implements Runnable {
 		textField.setCaretColor(new Color(88, 93, 103));
 		textField.setOpaque(false);
 		textField.setBorder(null);
-		textField.setBounds(211, 185, 140, 21);
+		textField.setBounds(213, 185, 140, 21);
 		add(textField);
 		textField.setColumns(10);
 		JScrollPane jsp = new JScrollPane();
@@ -118,7 +118,7 @@ public class NewbillPanel extends JPanel implements Runnable {
 		textField_1.setBorder(null);
 		textField_1.setForeground(new Color(88, 93, 103));
 		textField_1.setCaretColor(new Color(88, 93, 103));
-		textField_1.setBounds(494, 185, 132, 21);
+		textField_1.setBounds(495, 185, 132, 21);
 		add(textField_1);
 		JScrollPane jsp1 = new JScrollPane();
 		jsp1.setOpaque(false);
