@@ -16,7 +16,7 @@ public class ExcelWriter {
 		JFileChooser chooser = new JFileChooser();
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		chooser.setApproveButtonText("±£´æ");
-		chooser.showSaveDialog(null);
+		chooser.showOpenDialog(null);
 		String path = chooser.getSelectedFile().getPath();
 
 		// Ð´ÎÄ¼þ
