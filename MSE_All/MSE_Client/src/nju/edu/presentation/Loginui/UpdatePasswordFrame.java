@@ -96,7 +96,10 @@ public class UpdatePasswordFrame extends JFrame implements Runnable {
 				Thread t = new Thread(upframe);
 
 				if (oldKey.equals("") || newKey1.equals("")
-						|| newkey2.equals("")) {
+						|| newkey2.equals("")
+						|| oldKey.replaceAll(" ", "").equals("")
+						|| newKey1.replaceAll(" ", "").equals("")
+						|| newkey2.replaceAll(" ", "").equals("")) {
 					label_4.setText("信息输入不完整，无法完成修改");
 					t.start();
 				} else {

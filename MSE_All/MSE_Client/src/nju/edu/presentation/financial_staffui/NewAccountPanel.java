@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 
 import PO.LoginPO;
 import nju.edu.businesslogic.accountbl.AccountBL;
+
 import java.awt.Color;
 
 @SuppressWarnings("serial")
@@ -41,7 +42,7 @@ public class NewAccountPanel extends JPanel implements Runnable {
 
 		NewAccountPanel nap = this;
 
-		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
@@ -116,8 +117,9 @@ public class NewAccountPanel extends JPanel implements Runnable {
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		@SuppressWarnings("static-access")
 		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
-						button.getHeight(),image1.getImage().SCALE_DEFAULT);
+				button.getHeight(), image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
 		button.setIcon(image1);
 		button.addActionListener(new ActionListener() {
@@ -127,7 +129,10 @@ public class NewAccountPanel extends JPanel implements Runnable {
 				String date = textField_2.getText();
 				Thread t = new Thread(nap);
 
-				if (name.equals("") || creator.equals("") || date.equals("")) {
+				if (name.equals("") || creator.equals("") || date.equals("")
+						|| name.replaceAll(" ", "").equals("")
+						|| creator.replaceAll(" ", "").equals("")
+						|| date.replaceAll(" ", "").equals("")) {
 					lblNewLabel.setText("信息录入不完整，无法完成新建");
 					success = false;
 				} else {
@@ -153,17 +158,19 @@ public class NewAccountPanel extends JPanel implements Runnable {
 			}
 		});
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
+		@SuppressWarnings("static-access")
 		Image temp2 = image2.getImage().getScaledInstance(button_1.getWidth(),
-						button_1.getHeight(),image1.getImage().SCALE_DEFAULT);
+				button_1.getHeight(), image1.getImage().SCALE_DEFAULT);
 		image2 = new ImageIcon(temp2);
 		button_1.setIcon(image2);
 		add(button_1);
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		ImageIcon image = new ImageIcon("image/financial_stuff/newAccount.png");
-		g.drawImage(image.getImage(), 0, 0,getSize().width,getSize().height, this);
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
 	}
 
 	@Override

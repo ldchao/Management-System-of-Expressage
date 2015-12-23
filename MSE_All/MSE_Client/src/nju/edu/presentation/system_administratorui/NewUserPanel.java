@@ -198,7 +198,10 @@ public class NewUserPanel extends JPanel implements Runnable {
 					}
 				}
 
-				if (name.equals("") || key.equals("") || limit.equals("")) {
+				if (name.equals("") || key.equals("") || limit.equals("")
+						|| name.replaceAll(" ", "").equals("")
+						|| key.replaceAll(" ", "").equals("")
+						|| limit.replaceAll(" ", "").equals("")) {
 					lblNewLabel.setText("信息录入不完整，无法完成新建");
 					success = false;
 				} else {

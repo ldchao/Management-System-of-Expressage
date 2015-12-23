@@ -77,7 +77,10 @@ public class UpdateAccountframe extends JFrame implements Runnable {
 				String creator = textField_1.getText();
 				String date = textField_2.getText();
 
-				if (name.equals("") || creator.equals("") || date.equals("")) {
+				if (name.equals("") || creator.equals("") || date.equals("")
+						|| name.replaceAll(" ", "").equals("")
+						|| creator.replaceAll(" ", "").equals("")
+						|| date.replaceAll(" ", "").equals("")) {
 					label_5.setText("信息录入不完整，无法完成修改");
 					Thread t = new Thread(up);
 					t.start();

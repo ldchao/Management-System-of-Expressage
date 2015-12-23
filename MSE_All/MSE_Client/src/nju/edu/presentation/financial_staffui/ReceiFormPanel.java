@@ -11,13 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import nju.edu.businesslogic.financebl.PayeeorderBL;
 
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.text.SimpleDateFormat;
@@ -53,9 +51,11 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 	 */
 	protected void paintComponent(Graphics g) {
 		ImageIcon image = new ImageIcon("image/financial_stuff/payeeForm.png");
-		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
 	}
-	
+
+	@SuppressWarnings("static-access")
 	public ReceiFormPanel(JFrame main, JPanel panel) {
 		over = true;
 		ReceiFormPanel rfp = this;
@@ -80,10 +80,10 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 		button_4.setBounds(13, -9, 63, 63);
 		button_4.setIcon(new ImageIcon("image/transparent_circle.png"));
 		button_4.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
 				button_4.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+			}
 		});
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -179,9 +179,9 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 
 		// 新建付款单
 		table1 = new JTable();
-		table1.setBackground(new Color(128, 132, 139,0));
-		table1.setForeground(new Color(255, 255, 255,200));
-		table1.setGridColor(new Color(0, 0, 0,0));
+		table1.setBackground(new Color(128, 132, 139, 0));
+		table1.setForeground(new Color(255, 255, 255, 200));
+		table1.setGridColor(new Color(0, 0, 0, 0));
 		table1.setRowSelectionAllowed(false);
 		table1.setCellSelectionEnabled(true);
 		table1.setBorder(null);
@@ -214,8 +214,8 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 
 		scrollPane.setViewportView(table);
 		table.setBorder(null);
-		table.setSelectionBackground(new Color(88, 93, 103,230));
-		table.setSelectionForeground(new Color(255, 255, 255,200));
+		table.setSelectionBackground(new Color(88, 93, 103, 230));
+		table.setSelectionForeground(new Color(255, 255, 255, 200));
 		table.setEnabled(false);
 		tableModel = new DefaultTableModel(new Object[][] {
 				{ "", "", "", "", "" }, { null, null, null, null, null },
@@ -243,9 +243,9 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 		// 总计表
 		table_1 = new JTable();
 		table_1.setEnabled(false);
-		table_1.setBackground(new Color(255, 255, 255,0));
-		table_1.setForeground(new Color(255, 255, 255,200));
-		table_1.setGridColor(new Color(0, 0, 0,0));
+		table_1.setBackground(new Color(255, 255, 255, 0));
+		table_1.setForeground(new Color(255, 255, 255, 200));
+		table_1.setGridColor(new Color(0, 0, 0, 0));
 		table_1.setRowSelectionAllowed(false);
 		table_1.setModel(new DefaultTableModel(new Object[][] { {
 				"\u8BA2\u5355\u603B\u6570", null, "收款总金额", null }, },
@@ -263,7 +263,7 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 		button.setBorderPainted(false);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
-						button.getHeight(),image1.getImage().SCALE_DEFAULT);
+				button.getHeight(), image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
 		button.setIcon(image1);
 		button.addActionListener(new ActionListener() {
@@ -277,7 +277,13 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 				str[4] = textField_4.getText();
 				str[5] = textField_5.getText();
 				if (str[0].equals("") || str[1].equals("") || str[3].equals("")
-						|| str[4].equals("") || str[5].equals("")) {
+						|| str[4].equals("") || str[5].equals("")
+						|| str[0].replaceAll(" ", "").equals("")
+						|| str[1].replaceAll(" ", "").equals("")
+						|| str[2].replaceAll(" ", "").equals("")
+						|| str[3].replaceAll(" ", "").equals("")
+						|| str[4].replaceAll(" ", "").equals("")
+						|| str[5].replaceAll(" ", "").equals("")) {
 					label_3.setText("信息录入不完整，无法完成添加");
 				} else {
 					payeebl.addReceiForm(str[0], str[1], str[2], str[3],
@@ -308,7 +314,7 @@ public class ReceiFormPanel extends JPanel implements Runnable {
 		button_1.setBounds(407, 200, 43, 43);
 		ImageIcon image = new ImageIcon("image/transparent_circle.png");
 		Image temp = image.getImage().getScaledInstance(button_1.getWidth(),
-						button_1.getHeight(),image.getImage().SCALE_DEFAULT);
+				button_1.getHeight(), image.getImage().SCALE_DEFAULT);
 		image = new ImageIcon(temp);
 		button_1.setIcon(image);
 		add(button_1);

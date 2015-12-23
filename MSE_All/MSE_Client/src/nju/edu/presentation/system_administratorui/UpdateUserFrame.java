@@ -128,7 +128,8 @@ public class UpdateUserFrame extends JFrame implements Runnable {
 				String newname = textField.getText();
 				String newlimit = "";
 
-				if (newname.equals("")) {
+				if (newname.equals("")
+						|| newname.replaceAll(" ", "").equals("")) {
 					label_5.setText("信息录入不完整，无法完成修改");
 					t1.start();
 				} else {

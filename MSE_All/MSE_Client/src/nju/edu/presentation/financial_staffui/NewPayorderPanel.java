@@ -1,6 +1,5 @@
 package nju.edu.presentation.financial_staffui;
 
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -20,6 +19,7 @@ import javax.swing.JToolBar;
 
 import PO.LoginPO;
 import nju.edu.businesslogic.financebl.PayorderBL;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -42,6 +42,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 	/**
 	 * Create the panel.
 	 */
+	@SuppressWarnings("static-access")
 	public NewPayorderPanel(LoginPO loginPO, JFrame main) {
 		success = false;
 		setLayout(null);
@@ -49,7 +50,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 
 		NewPayorderPanel npp = this;
 
-		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
@@ -126,7 +127,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 		textField_3.setText(date.format(dt));
 
 		JToolBar toolBar = new JToolBar();
-		
+
 		toolBar.setBounds(8, 543, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
@@ -134,7 +135,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 		add(toolBar);
 
 		lblNewLabel = new JLabel("状态栏");
-		lblNewLabel.setForeground(new Color(255, 255, 255,200));
+		lblNewLabel.setForeground(new Color(255, 255, 255, 200));
 		toolBar.add(lblNewLabel);
 
 		JScrollPane jsp = new JScrollPane();
@@ -168,7 +169,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 		button.setBorderPainted(false);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
 		Image temp = image2.getImage().getScaledInstance(button.getWidth(),
-				button.getHeight(),image2.getImage().SCALE_DEFAULT);
+				button.getHeight(), image2.getImage().SCALE_DEFAULT);
 		image2 = new ImageIcon(temp);
 		button.setIcon(image2);
 		button.addActionListener(new ActionListener() {
@@ -184,7 +185,13 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 
 				if (payname.equals("") || payaccount.equals("")
 						|| date.equals("") || list.equals("")
-						|| comment.equals("")) {
+						|| comment.equals("")
+						|| payname.replaceAll(" ", "").equals("")
+						|| payaccount.replaceAll(" ", "").equals("")
+						|| date.replaceAll(" ", "").equals("")
+						|| list.replaceAll(" ", "").equals("")
+						|| comment.replaceAll(" ", "").equals("")) {
+					
 					lblNewLabel.setText("信息录入不完整，无法完成新建");
 					success = false;
 				} else {
@@ -206,7 +213,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 		button_1.setBorderPainted(false);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(button_1.getWidth(),
-				button_1.getHeight(),image1.getImage().SCALE_DEFAULT);
+				button_1.getHeight(), image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
 		button_1.setIcon(image1);
 		button_1.addActionListener(new ActionListener() {
@@ -240,9 +247,11 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 
 		lblNewLabel.setText("状态栏");
 	}
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		ImageIcon icon = new ImageIcon("image/financial_stuff/newPay.png");
-		g.drawImage(icon.getImage(), 0, 0, getSize().width, getSize().height, this);
+		g.drawImage(icon.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
 	}
 }

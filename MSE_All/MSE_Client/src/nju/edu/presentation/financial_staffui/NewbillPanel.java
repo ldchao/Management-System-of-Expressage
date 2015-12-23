@@ -15,12 +15,12 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.JTextArea;
 
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 
 import PO.LoginPO;
 import nju.edu.businesslogic.billbl.BillBL;
+
 import java.awt.Color;
 
 @SuppressWarnings("serial")
@@ -40,10 +40,13 @@ public class NewbillPanel extends JPanel implements Runnable {
 	 * 
 	 */
 	protected void paintComponent(Graphics g) {
-		ImageIcon image = new ImageIcon("image/financial_stuff/initialNewBill.png");
-		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+		ImageIcon image = new ImageIcon(
+				"image/financial_stuff/initialNewBill.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
 	}
-	
+
+	@SuppressWarnings("static-access")
 	public NewbillPanel(LoginPO loginPO, JFrame main) {
 		success = false;
 		setLayout(null);
@@ -51,7 +54,7 @@ public class NewbillPanel extends JPanel implements Runnable {
 
 		NewbillPanel nbp = this;
 
-		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
@@ -62,10 +65,10 @@ public class NewbillPanel extends JPanel implements Runnable {
 		button_4.setBorderPainted(false);
 		button_4.setIcon(new ImageIcon("image/transparent_circle.png"));
 		button_4.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
 				button_4.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+			}
 		});
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -175,7 +178,14 @@ public class NewbillPanel extends JPanel implements Runnable {
 
 				if (name.equals("") || account.equals("")
 						|| organization.equals("") || staff.equals("")
-						|| vehicle.equals("") || store.equals("")) {
+						|| vehicle.equals("") || store.equals("")
+						|| name.replaceAll(" ", "").equals("")
+						|| account.replaceAll(" ", "").equals("")
+						|| organization.replaceAll(" ", "").equals("")
+						|| staff.replaceAll(" ", "").equals("")
+						|| vehicle.replaceAll(" ", "").equals("")
+						|| store.replaceAll(" ", "").equals("")) {
+					
 					lblNewLabel.setText("信息录入不完整，无法完成新建");
 					success = false;
 				} else {
@@ -192,7 +202,7 @@ public class NewbillPanel extends JPanel implements Runnable {
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		button.setBounds(274, 459, 52, 52);
 		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
-						button.getHeight(),image1.getImage().SCALE_DEFAULT);
+				button.getHeight(), image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
 		button.setIcon(image1);
 		add(button);
@@ -214,7 +224,7 @@ public class NewbillPanel extends JPanel implements Runnable {
 		ImageIcon image = new ImageIcon("image/transparent_circle.png");
 		button_1.setBounds(425, 459, 52, 52);
 		Image temp = image1.getImage().getScaledInstance(button_1.getWidth(),
-						button_1.getHeight(),image.getImage().SCALE_DEFAULT);
+				button_1.getHeight(), image.getImage().SCALE_DEFAULT);
 		image = new ImageIcon(temp);
 		button_1.setIcon(image);
 		add(button_1);
