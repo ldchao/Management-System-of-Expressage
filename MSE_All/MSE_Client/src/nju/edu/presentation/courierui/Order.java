@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.TextArea;
+import java.awt.TextField;
 
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
@@ -27,6 +28,8 @@ import javax.swing.JScrollPane;
 import java.awt.Color;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Document;
+import javax.swing.text.PlainDocument;
 
 import PO.LoginPO;
 import State.ApproveState;
@@ -122,16 +125,6 @@ public class Order extends JPanel implements Runnable{
 		express=ExpressType.Economy;
 		pack=PackageType.Carton;
 		
-		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
-		lblHello.setForeground(Color.WHITE);
-		lblHello.setBounds(655, 12, 100, 15);
-		add(lblHello);
-		
-		JLabel label = new JLabel("\u5BC4\u4EF6\u4EBA\u4FE1\u606F");
-		label.setBounds(62, 111, 94, 15);
-		label.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-		add(label);
-		
 		textField=new JTextField[18];
 		for(int i=0;i<textField.length;i++){
 			textField[i] = new JTextField();
@@ -166,18 +159,23 @@ public class Order extends JPanel implements Runnable{
 
 		textField[11].setBounds(518, 341, 179, 21);
 		textField[11].addKeyListener(new InputNumber());
-		
+		textField[11].setDocument(new JTextFieldLimit(4));
+				
 		textField[12].setBounds(180, 363, 43, 21);
 		textField[12].addKeyListener(new InputNumber());
+		textField[12].setDocument(new JTextFieldLimit(4));
 		
 		textField[13].setBounds(329, 363, 43, 21);
 		textField[13].addKeyListener(new InputNumber());
+		textField[13].setDocument(new JTextFieldLimit(4));
 		
 		textField[14].setBounds(489, 363, 43, 21);
 		textField[14].addKeyListener(new InputNumber());
+		textField[14].setDocument(new JTextFieldLimit(4));
 		
 		textField[15].setBounds(655, 363, 43, 21);
 		textField[15].addKeyListener(new InputNumber());
+		textField[15].setDocument(new JTextFieldLimit(4));
 		
 		textField[16].setEnabled(false);
 		textField[16].setBounds(142, 416, 163, 21);
@@ -185,6 +183,15 @@ public class Order extends JPanel implements Runnable{
 		textField[17].setEnabled(false);
 		textField[17].setBounds(518, 413, 179, 21);
 		
+		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		add(lblHello);
+		
+		JLabel label = new JLabel("\u5BC4\u4EF6\u4EBA\u4FE1\u606F");
+		label.setBounds(62, 111, 94, 15);
+		label.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+		add(label);
 		
 		label_1 = new JLabel("\u6536\u4EF6\u4EBA\u4FE1\u606F");
 		label_1.setBounds(454, 111, 94, 15);
@@ -407,19 +414,17 @@ public class Order extends JPanel implements Runnable{
 		label_23 = new JLabel("\u4ED8\u6B3E");
 		label_23.setBounds(454, 416, 43, 15);
 		add(label_23);
-		
 
-		
 		JButton btnNewButton = new JButton("\u786E\u5B9A");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 //				OrderVO vo=listinbl.getOrder("141250089");
-				OrderVO vo=new OrderVO(textField[0].getText(), textField[1].getText(), ApproveState.NotApprove, 
-						textField[2].getText(), comboBox_1.getSelectedItem().toString()+" "+textArea.getText(), textField[3].getText(), textField[4].getText(), textField[5].getText(),
-						textField[6].getText(), comboBox_2.getSelectedItem().toString()+" "+textArea_1.getText(), textField[7].getText(),
-						textField[8].getText(), textField[9].getText(),
-						textField[10].getText(), textField[11].getText(), textField[12].getText(), textField[13].getText(), textField[14].getText(),textField[15].getText(), express, pack, 
-						textField[16].getText(), textField[17].getText(), " ");
+				OrderVO vo=new OrderVO(textField[0].getText().trim(), textField[1].getText().trim(), ApproveState.NotApprove, 
+						textField[2].getText().trim(), comboBox_1.getSelectedItem().toString()+" "+textArea.getText().trim(), textField[3].getText().trim(), textField[4].getText().trim(), textField[5].getText().trim(),
+						textField[6].getText().trim(), comboBox_2.getSelectedItem().toString()+" "+textArea_1.getText().trim(), textField[7].getText().trim(),
+						textField[8].getText().trim(), textField[9].getText().trim(),
+						textField[10].getText().trim(), textField[11].getText().trim(), textField[12].getText().trim(), textField[13].getText().trim(), textField[14].getText().trim(),textField[15].getText().trim(), express, pack, 
+						textField[16].getText().trim(), textField[17].getText().trim(), " ");
 				//是否有空的判断
 				Boolean valid=listinbl.JudgeNull(vo);
 				
@@ -428,7 +433,6 @@ public class Order extends JPanel implements Runnable{
 					listinbl.addOrder(vo);
 					lblNewLabel.setText("新建成功");
 					clean();
-					
 				}else{
 					lblNewLabel.setText("信息不完整，请补全信息");
 				}
@@ -454,9 +458,9 @@ public class Order extends JPanel implements Runnable{
 				main.repaint();
 				main.invalidate();
 				main.setVisible(true);
-				
 			}
 		});
+		
 		button.setBounds(425, 459, 52, 52);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
 		Image temp2 = image2.getImage().getScaledInstance(button.getWidth(),
@@ -519,13 +523,13 @@ public class Order extends JPanel implements Runnable{
 	public void run() {
 		while(true){
 			try {
-				Thread.sleep(100);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
-			if(!((textField[12].getText().equals("")||textField[13].getText().equals("")||
-					textField[14].getText().equals("")||textField[15].getText().equals("")))){
+			if(!((textField[12].getText().trim().equals("")||textField[13].getText().trim().equals("")||
+					textField[14].getText().trim().equals("")||textField[15].getText().trim().equals("")))){
 					textField[16].setText(""+listinbl.getTotalTime(comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(), express));
 					textField[17].setText(""+listinbl.getTotalMoney(
 							comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(),textField[12].getText(), textField[13].getText(), textField[14].getText(), textField[15].getText(), express, pack));

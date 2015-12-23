@@ -1,6 +1,7 @@
 package nju.edu.businesslogic.listinbl;
 
 import java.rmi.RemoteException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import PO.OrderPO;
@@ -53,6 +54,8 @@ public class Listinbl implements ListinBLService, ListinInfo, OrderInfo, UpdateI
 		// 部分价格部分2：质量；3：包裹种类；4：快递种类
 		result = (distance + 30 * 2) / 1000 * ExpressPrice(express) * WeightPrice(weight, length, width, height)
 				+ PackPrice(pack);
+		DecimalFormat dFormat=new DecimalFormat("#0.0");  
+		result=Double.parseDouble(dFormat.format(result));
 		return result;
 	}
 
