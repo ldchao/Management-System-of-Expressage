@@ -8,6 +8,7 @@ import PO.StaffPO;
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.StaffVO;
 import nju.edu.businesslogic.loginbl.checkStaffInfo;
+import nju.edu.businesslogicservice.staffblservice.DeleteUserInterface;
 import nju.edu.businesslogicservice.staffblservice.StaffBLService;
 import nju.edu.businesslogicservice.staffblservice.editStaffInfo;
 import nju.edu.dataservice.staffdataservice.StaffDataService;
@@ -125,7 +126,12 @@ public class Staffbl implements StaffBLService,checkStaffInfo,editStaffInfo{
 	@Override
 	public void editTheID(String oldID, String newID,String position) {
 		// TODO Auto-generated method stub
-		
+		try {
+			staffDataService.editTheID(oldID, newID, position);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

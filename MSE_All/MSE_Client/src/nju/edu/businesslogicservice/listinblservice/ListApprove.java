@@ -1,4 +1,4 @@
-package nju.edu.businesslogic.listinbl;
+package nju.edu.businesslogicservice.listinblservice;
 
 import java.util.ArrayList;
 

@@ -91,7 +91,15 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService {
 	@Override
 	public void editTheID(String oldID,String newID,String position) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		StaffPO po=null;
+		try {
+			po=get(oldID);
+			po.setId(newID);
+			po.setPosition(position);
+			update(po);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 }

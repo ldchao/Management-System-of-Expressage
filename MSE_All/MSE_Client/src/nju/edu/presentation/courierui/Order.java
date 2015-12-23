@@ -115,6 +115,18 @@ public class Order extends JPanel implements Runnable{
 	JFrame main;
 	Order orderframe;
 	LoginPO po;
+	ButtonGroup bg1;
+	ButtonGroup bg2;
+	int index=0;//快递类型的按钮编号
+	String[] city={"南京鼓楼区","南京玄武区","南京建邺区","南京秦淮区","南京栖霞区","南京六合区","南京浦口区","南京江宁区","南京高淳区","南京溧水区",
+			"北京宣武区","北京东城区","北京西城区","北京崇文区","北京朝阳区","北京石景山区","北京海淀区","北京丰台区","北京房山区","北京大兴区","北京通州区","北京门头沟区","北京昌平区","北京顺义区","北京怀柔区","北京密云县","北京平谷区","北京延庆县","北京大学城","北京中关村",
+			"上海黄浦区","上海徐汇区","上海长宁区","上海静安区","上海普陀区","上海虹口区","上海杨浦区","上海闵行区","上海宝山区","上海嘉定区","上海浦东新区","上海金山区","上海松江区","上海青浦区","上海奉贤区","上海崇明县","上海工业区","上海开发区","上海外贸区","上海高新区",
+			"广州越秀区","广州天河区","广州白云区","广州荔湾区","广州萝岗区","广州黄埔区","广州海珠区","广州番禺区","广州花都区","广州南沙区","广州从化市","广州增城市","广州东山区","广州开发区","广州高新区"};
+	String[] num={"025001","025002","025003","025004","025005","025006","025007","025008","025009","025010",
+			"010001","010002","010003","010004","010005","010006","010007","010008","010009","010010","010011","010012","010013","010014","010015","010016","010017","010018","010019","010020",
+			"021001","021002","021003","021004","021005","021006","021007","021008","021009","021010","021011","021012","021013","021014","021015","021016","021017","021018","021019","021020",
+			"020001","020002","020003","020004","020005","020006","020007","020008","020009","020010","020011","020012","020013","020014","020015"};
+	
 	public Order(JFrame main,LoginPO loginPO) {
 		po=loginPO;
 		this.main=main;
@@ -150,7 +162,7 @@ public class Order extends JPanel implements Runnable{
 		textField_1.setColumns(10);
 		textField_1.setForeground(new Color(88, 93, 103));
 		textField_1.setCaretColor(new Color(88, 93, 103));
-
+		textField_1.setEnabled(false);
 		add(textField_1);
 		
 		label_1 = new JLabel("\u6536\u4EF6\u4EBA\u4FE1\u606F");
@@ -369,6 +381,7 @@ public class Order extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				express=ExpressType.Economy;
+				index=0;
 			}
 		});
 		radioButton.setBounds(126, 387, 78, 23);
@@ -381,6 +394,7 @@ public class Order extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				express=ExpressType.Standard;
+				index=1;
 			}
 		});
 		radioButton_1.setBounds(206, 387, 78, 23);
@@ -392,12 +406,13 @@ public class Order extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				express=ExpressType.Professional;
+				index=2;
 			}
 		});
 		radioButton_2.setBounds(282, 387, 90, 23);
 		add(radioButton_2);
 		
-		ButtonGroup bg1=new ButtonGroup();
+		bg1=new ButtonGroup();
 		bg1.add(radioButton);
 		bg1.add(radioButton_1);
 		bg1.add(radioButton_2);
@@ -439,7 +454,7 @@ public class Order extends JPanel implements Runnable{
 		});
 		radioButton_5.setBounds(628, 390, 73, 23);
 		add(radioButton_5);
-		ButtonGroup bg2=new ButtonGroup();
+		bg2=new ButtonGroup();
 		
 		bg2.add(radioButton_3);
 		bg2.add(radioButton_4);
@@ -546,10 +561,6 @@ public class Order extends JPanel implements Runnable{
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 		add(button);
-				String[] city={"南京鼓楼区","南京玄武区","南京建邺区","南京秦淮区","南京栖霞区","南京六合区","南京浦口区","南京江宁区","南京高淳区","南京溧水区",
-				"北京宣武区","北京东城区","北京西城区","北京崇文区","北京朝阳区","北京石景山区","北京海淀区","北京丰台区","北京房山区","北京大兴区","北京通州区","北京门头沟区","北京昌平区","北京顺义区","北京怀柔区","北京密云县","北京平谷区","北京延庆县","北京大学城","北京中关村",
-				"上海黄浦区","上海徐汇区","上海长宁区","上海静安区","上海普陀区","上海虹口区","上海杨浦区","上海闵行区","上海宝山区","上海嘉定区","上海浦东新区","上海金山区","上海松江区","上海青浦区","上海奉贤区","上海崇明县","上海工业区","上海开发区","上海外贸区","上海高新区",
-				"广州越秀区","广州天河区","广州白云区","广州荔湾区","广州萝岗区","广州黄埔区","广州海珠区","广州番禺区","广州花都区","广州南沙区","广州从化市","广州增城市","广州东山区","广州开发区","广州高新区"};
 		
 		comboBox_1 = new JComboBox(city);
 		comboBox_1.setBounds(126, 232, 179, 21);
@@ -607,12 +618,23 @@ public class Order extends JPanel implements Runnable{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			
 			if(!((textField_12.getText().equals("")||textField_13.getText().equals("")||
 					textField_14.getText().equals("")||textField_15.getText().equals("")))){
 					textField_16.setText(""+listinbl.getTotalTime(comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(), express));
 					textField_17.setText(""+listinbl.getTotalMoney(
 							comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(),textField_12.getText(), textField_13.getText(), textField_14.getText(), textField_15.getText(), express, pack));
 			}
+			
+			String temp=comboBox_2.getSelectedItem().toString();
+			int sign=0;
+			for(int i=0;i<city.length;i++){
+				if(temp.equals(city[i])){
+					sign=i;
+				}
+			}
+			String partOfID=num[sign].substring(1,3)+num[sign].substring(4,6)+index;
+			textField_1.setText(listinbl.getID(partOfID));
 		}
 	}
 }
