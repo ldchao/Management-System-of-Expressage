@@ -28,6 +28,7 @@ public class Transit_center_salesman_mainui extends JFrame {
 	 */
 	public Transit_center_salesman_mainui(LoginPO loginPO) {
 		main=this;
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(750, 600);
 		setLocationRelativeTo(null);

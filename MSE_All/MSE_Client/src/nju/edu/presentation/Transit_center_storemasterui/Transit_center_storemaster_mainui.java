@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,13 +34,21 @@ public class Transit_center_storemaster_mainui extends JFrame {
 	public Transit_center_storemaster_mainui(LoginPO loginPO) {
 
 		main = this;
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(750, 600);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		this.add(contentPane);
 		contentPane.setLayout(null);
+		sm = StoreMessageBL.getInstance();
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e){
+				sm.save();
+			 }
+		});
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
@@ -50,7 +60,6 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		label_3 = new JLabel("状态栏");
 		toolBar.add(label_3);
 
-		sm = StoreMessageBL.getInstance();
 		label_3.setText("仓库信息初始化成功");
 
 		JButton button = new JButton("注销");
