@@ -1,11 +1,12 @@
 package nju.edu.presentation.Transit_center_salesmanui;
 
-import java.awt.Rectangle;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,16 +33,18 @@ public class Transit_center_salesman_mainui extends JFrame {
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		getContentPane().add(contentPane);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		contentPane.setLayout(null);
 		
 		JLabel label = new JLabel("中转中心业务员");
 		label.setBounds(100, 14, 127, 15);
 		contentPane.add(label);
 		
-		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
-		label_1.setBounds(600, 14, 100, 15);
-		contentPane.add(label_1);
-		label_1.addMouseListener(new MouseAdapter() {
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		contentPane.add(lblHello);
+		lblHello.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				perinfo = new PersonalInfomation(loginPO, main);
@@ -61,12 +64,21 @@ public class Transit_center_salesman_mainui extends JFrame {
 		});
 		
 		JButton btnNewButton = new JButton("注销");
+		btnNewButton.setBounds(13, -9, 63, 63);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setIcon(image1);
+		btnNewButton.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						btnNewButton.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.dispose();
 			}
 		});
-		btnNewButton.setBounds(10, 10, 65, 23);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("中转接收");
@@ -128,7 +140,9 @@ public class Transit_center_salesman_mainui extends JFrame {
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		contentPane.add(toolBar);
 		
 		JLabel label_2 = new JLabel("状态栏");

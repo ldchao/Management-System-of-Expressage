@@ -1,34 +1,33 @@
 package nju.edu.presentation.general_managerui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import PO.LoginPO;
-import PO.StaffPO;
-import nju.edu.VO.StaffVO;
-import nju.edu.businesslogic.staffbl.Staffbl;
-
-import javax.swing.JLabel;
+import java.awt.Color;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.JComboBox;
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JToolBar;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Enumeration;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
+
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
+
+import PO.LoginPO;
+import nju.edu.VO.StaffVO;
+import nju.edu.businesslogic.staffbl.Staffbl;
 
 public class addStaff extends JPanel implements ItemListener,Runnable{
 
@@ -96,17 +95,23 @@ public class addStaff extends JPanel implements ItemListener,Runnable{
 		
 		textField = new JTextField();
 		textField.setBounds(106, 130, 205, 21);
+		textField.setForeground(new Color(88, 93, 103));
+		textField.setCaretColor(new Color(88, 93, 103));
 		add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(454, 130, 205, 21);
+		textField_1.setForeground(new Color(88, 93, 103));
+		textField_1.setCaretColor(new Color(88, 93, 103));
 		add(textField_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(106, 186, 205, 21);
+		textField_2.setForeground(new Color(88, 93, 103));
+		textField_2.setCaretColor(new Color(88, 93, 103));
 		add(textField_2);
 		
 		label_2 = new JLabel("\u59D3\u540D");
@@ -206,7 +211,14 @@ public class addStaff extends JPanel implements ItemListener,Runnable{
 				}
 			}
 		});
-		button.setBounds(226, 481, 93, 23);
+		button.setBounds(274, 459, 52, 52);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
+				button.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		button.setIcon(image1);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
 		add(button);
 		
 		button_1 = new JButton("\u53D6\u6D88");
@@ -220,11 +232,23 @@ public class addStaff extends JPanel implements ItemListener,Runnable{
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(390, 481, 93, 23);
+		button_1.setBounds(13, -9, 63, 63);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		button_1.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button_1.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button_1.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
+
 		add(button_1);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(10, 533, 714, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 		
 		label_8 = new JLabel("\u72B6\u6001");
@@ -241,6 +265,8 @@ public class addStaff extends JPanel implements ItemListener,Runnable{
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(454, 186, 205, 21);
+		textField_3.setForeground(new Color(88, 93, 103));
+		textField_3.setCaretColor(new Color(88, 93, 103));
 		add(textField_3);
 		
 		textArea = new JTextArea();

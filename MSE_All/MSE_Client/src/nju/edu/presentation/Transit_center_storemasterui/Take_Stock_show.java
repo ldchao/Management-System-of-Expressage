@@ -1,25 +1,25 @@
 package nju.edu.presentation.Transit_center_storemasterui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JToolBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JToolBar;
 import javax.swing.table.DefaultTableModel;
 
-import PO.LoginPO;
 import nju.edu.businesslogic.storebl.Inventory_managementBL;
 import nju.edu.businesslogicservice.storeblservice.Inventory_managementBLService;
-import nju.edu.presentation.Transit_center_salesmanui.Transferui;
-import nju.edu.presentation.financial_staffui.DateChooser;
+import PO.LoginPO;
 
 public class Take_Stock_show extends JPanel {
 	private JTable table;
@@ -31,11 +31,22 @@ public class Take_Stock_show extends JPanel {
 		JFrame main = m;
 		JPanel lastui = jp;
 		Take_Stock_show nowPanel = this;
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		setLayout(null);
 		Inventory_managementBLService ib=new Inventory_managementBL();
 		String[][] inventoryMessage=ib.checkInventoryOrder(qu);
 
 		JButton button = new JButton("返回");
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(image1);
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -45,20 +56,22 @@ public class Take_Stock_show extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
 		add(button);
 
 		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理>>盘点库存>>当前各库位订单信息");
 		lblNewLabel.setBounds(100, 14, 350, 15);
 		add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel(loginPO.getName() + "，你好！");
-		lblNewLabel_1.setBounds(600, 14, 100, 15);
-		add(lblNewLabel_1);
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		add(lblHello);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel lblNewLabel_6 = new JLabel("状态栏");

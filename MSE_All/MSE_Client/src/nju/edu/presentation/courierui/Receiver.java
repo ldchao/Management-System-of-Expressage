@@ -12,11 +12,13 @@ import PO.LoginPO;
 import sun.misc.Cleaner;
 
 import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
@@ -26,6 +28,8 @@ import nju.edu.businesslogic.listinbl.Receiverinbl;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 public class Receiver extends JPanel {
@@ -57,7 +61,7 @@ public class Receiver extends JPanel {
 		
 		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
-		lblHello.setBounds(677, 6, 67, 25);
+		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 		
 		JLabel label = new JLabel("\u6536\u4EF6\u4EBA\u4FE1\u606F\u5355");
@@ -138,12 +142,12 @@ public class Receiver extends JPanel {
 		add(label_9);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(77, 345, 618, 111);
+		scrollPane.setBounds(77, 345, 618, 63);
 		add(scrollPane);
 		
 		textArea = new JTextArea();
-		textArea.setLineWrap(true);
 		scrollPane.setViewportView(textArea);
+		textArea.setLineWrap(true);
 		
 		JLabel label_10 = new JLabel("\u6536\u4EF6\u65F6\u95F4");
 		label_10.setBounds(441, 165, 54, 15);
@@ -157,7 +161,9 @@ public class Receiver extends JPanel {
 		add(label_11);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(10, 534, 598, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 		
 		JLabel label_12 = new JLabel("\u72B6\u6001");
@@ -184,7 +190,14 @@ public class Receiver extends JPanel {
 				}
 			}
 		});
-		button.setBounds(234, 489, 93, 23);
+		button.setBounds(274, 459, 52, 52);
+		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
+		Image temp2 = image2.getImage().getScaledInstance(button.getWidth(),
+						button.getHeight(),image2.getImage().SCALE_DEFAULT);
+		image2 = new ImageIcon(temp2);
+		button.setIcon(image2);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
 		add(button);
 		
 		JButton button_1 = new JButton("\u8FD4\u56DE");
@@ -198,7 +211,18 @@ public class Receiver extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(10, 10, 93, 23);
+		
+		button_1.setBounds(13, -9, 63, 63);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		button_1.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button_1.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button_1.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
+
 		add(button_1);
 		
 		JLabel label_13 = new JLabel("\u6D3E\u4EF6\u5458\u4FE1\u606F");
@@ -212,14 +236,21 @@ public class Receiver extends JPanel {
 				clean();
 			}
 		});
-		button_2.setBounds(384, 489, 93, 23);
+		button_2.setBounds(425, 459, 52, 52);
+		ImageIcon image3 = new ImageIcon("image/transparent_circle.png");
+		Image temp3 = image3.getImage().getScaledInstance(button_2.getWidth(),
+						button_2.getHeight(),image3.getImage().SCALE_DEFAULT);
+		image3 = new ImageIcon(temp3);
+		button_2.setIcon(image3);
+		button_2.setContentAreaFilled(false);
+		button_2.setBorderPainted(false);
 		add(button_2);
 		
 	}
 	
 	public void clean(){
 		main.remove(receiverframe);
-		main.add(new Receiver(main, loginPO));
+		main.getContentPane().add(new Receiver(main, loginPO));
 		main.repaint();
 		main.invalidate();
 		main.setVisible(true);

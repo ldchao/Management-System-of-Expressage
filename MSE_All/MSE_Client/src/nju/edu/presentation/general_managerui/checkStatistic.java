@@ -1,23 +1,21 @@
 package nju.edu.presentation.general_managerui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JToolBar;
 
 import PO.LoginPO;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-
 import nju.edu.presentation.financial_staffui.DateChooser;
-
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JToolBar;
 
 public class checkStatistic extends JPanel {
 
@@ -42,7 +40,16 @@ public class checkStatistic extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 75, 23);
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		add(button);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u7EDF\u8BA1\u62A5\u8868\u67E5\u8BE2");
@@ -98,7 +105,14 @@ public class checkStatistic extends JPanel {
 
 			}
 		});
-		button_1.setBounds(251, 375, 75, 23);
+		button_1.setBounds(274, 459, 52, 52);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(button_1.getWidth(),
+						button_1.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		button_1.setIcon(image1);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
 		add(button_1);
 		
 		JButton button_2 = new JButton("\u6E05\u7A7A");
@@ -108,7 +122,14 @@ public class checkStatistic extends JPanel {
 				label_4.setText("½áÊøÈÕÆÚ");
 			}
 		});
-		button_2.setBounds(415, 375, 75, 23);
+		button_2.setBounds(425, 459, 52, 52);
+		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
+		Image temp2 = image2.getImage().getScaledInstance(button_2.getWidth(),
+						button_2.getHeight(),image2.getImage().SCALE_DEFAULT);
+		image2 = new ImageIcon(temp2);
+		button_2.setIcon(image2);
+		button_2.setContentAreaFilled(false);
+		button_2.setBorderPainted(false);
 		add(button_2);
 		
 		JToolBar toolBar = new JToolBar();

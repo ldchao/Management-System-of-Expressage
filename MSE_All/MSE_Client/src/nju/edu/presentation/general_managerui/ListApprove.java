@@ -1,34 +1,29 @@
 package nju.edu.presentation.general_managerui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.Point;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextPane;
-import javax.swing.JTextField;
-import javax.swing.JScrollBar;
-import javax.swing.JMenuItem;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.awt.event.ActionEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JToolBar;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import PO.LoginPO;
-import nju.edu.VO.StaffVO;
 import nju.edu.businesslogic.approvebl.Approvebl;
-
-import javax.swing.JToolBar;
 
 public class ListApprove extends JPanel implements ItemListener{
 
@@ -55,7 +50,16 @@ public class ListApprove extends JPanel implements ItemListener{
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 76, 23);
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		add(button);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u5355\u636E\u5BA1\u6279");
@@ -115,16 +119,15 @@ public class ListApprove extends JPanel implements ItemListener{
 				}
 			}
 		});
-		button_1.setBounds(230, 474, 93, 23);
+		button_1.setBounds(274, 459, 52, 52);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(button_1.getWidth(),
+						button_1.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		button_1.setIcon(image1);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
 		add(button_1);
-		
-		JButton button_2 = new JButton("\u53D6\u6D88");
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		button_2.setBounds(392, 474, 93, 23);
-		add(button_2);
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 534, 724, 28);

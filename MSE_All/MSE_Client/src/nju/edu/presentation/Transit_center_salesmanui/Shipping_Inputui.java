@@ -2,12 +2,16 @@ package nju.edu.presentation.Transit_center_salesmanui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.nio.channels.NetworkChannel;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -38,10 +42,20 @@ public class Shipping_Inputui extends JPanel {
 		main = m;
 		JPanel lastui = jp;
 		Shipping_Inputui nowPanel = this;
-
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		setLayout(null);
 
 		JButton button = new JButton("返回");
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(image1);
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}
+		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -51,20 +65,22 @@ public class Shipping_Inputui extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
 		add(button);
 
 		JLabel label = new JLabel("中转中心业务员>>装运管理");
 		label.setBounds(100, 14, 163, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel(loginPO.getName() + "，你好！");
-		label_1.setBounds(600, 14, 100, 15);
-		add(label_1);
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		add(lblHello);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
@@ -120,6 +136,7 @@ public class Shipping_Inputui extends JPanel {
 
 		// 创建装运单
 		JButton btnNewButton = new JButton("创建装运单");
+		btnNewButton.setBounds(193, 486, 52, 52);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (rowpos == -1) {
@@ -127,14 +144,17 @@ public class Shipping_Inputui extends JPanel {
 				} else {
 					Shippingorder shipping_panel;
 					if (tableModel.getValueAt(rowpos, 2).equals("航运")) {
-						shipping_panel = new Shippingorder(main, nowPanel,lastui,
-								loginPO, changeorderList.get(rowpos), "飞机");
+						shipping_panel = new Shippingorder(main, nowPanel,
+								lastui, loginPO, changeorderList.get(rowpos),
+								"飞机");
 					} else if (tableModel.getValueAt(rowpos, 2).equals("铁运")) {
-						shipping_panel = new Shippingorder(main, nowPanel,lastui,
-								loginPO, changeorderList.get(rowpos), "火车");
+						shipping_panel = new Shippingorder(main, nowPanel,
+								lastui, loginPO, changeorderList.get(rowpos),
+								"火车");
 					} else {
-						shipping_panel = new Shippingorder(main, nowPanel,lastui,
-								loginPO, changeorderList.get(rowpos), "汽车");
+						shipping_panel = new Shippingorder(main, nowPanel,
+								lastui, loginPO, changeorderList.get(rowpos),
+								"汽车");
 					}
 					main.remove(nowPanel);
 					main.getContentPane().add(shipping_panel);
@@ -144,10 +164,17 @@ public class Shipping_Inputui extends JPanel {
 				}
 			}
 		});
-		btnNewButton.setBounds(193, 486, 100, 23);
+		Image temp1 = image1.getImage().getScaledInstance(
+				btnNewButton.getWidth(), btnNewButton.getHeight(),
+				image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		btnNewButton.setIcon(image1);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
 		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("放弃创建");
+		btnNewButton_1.setBounds(436, 486, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -157,7 +184,9 @@ public class Shipping_Inputui extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(436, 486, 93, 23);
+		btnNewButton_1.setIcon(image1);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
 		add(btnNewButton_1);
 	}
 }

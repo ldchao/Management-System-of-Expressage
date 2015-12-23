@@ -1,18 +1,22 @@
 package nju.edu.presentation.Transit_center_storemasterui;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
-import PO.LoginPO;
 import nju.edu.presentation.financial_staffui.DateChooser;
-
-import java.awt.Font;
+import PO.LoginPO;
 
 public class CheckInventory extends JPanel {
 
@@ -23,9 +27,20 @@ public class CheckInventory extends JPanel {
 		JFrame main=m;
 		JPanel lastui=jp;
 		CheckInventory nowPanel=this;
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
         setLayout(null);
         
         JButton button = new JButton("返回");
+        button.setBounds(13, -9, 63, 63);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.setIcon(image1);
+        button.addMouseListener(new MouseAdapter() {
+        			@Override
+        	public void mousePressed(MouseEvent e) {
+        		button.setIcon(new ImageIcon("image/mask_circle.png"));
+        	}	
+        });
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);				
@@ -35,16 +50,16 @@ public class CheckInventory extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
 		add(button);
 		
 		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理>>查看库存");
 		lblNewLabel.setBounds(100, 14, 263, 15);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
-		lblNewLabel_1.setBounds(600, 14, 100, 15);
-		add(lblNewLabel_1);
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		add(lblHello);
 		
 		JLabel lblNewLabel_2 = new JLabel("开始日期");
 		lblNewLabel_2.setFont(new Font("宋体", Font.BOLD, 12));
@@ -70,7 +85,9 @@ public class CheckInventory extends JPanel {
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533,734,28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 		
 		JLabel lblNewLabel_6 = new JLabel("状态栏");
@@ -82,6 +99,7 @@ public class CheckInventory extends JPanel {
 		add(label);
 		
 		JButton btnNewButton_1 = new JButton("确定");
+		btnNewButton_1.setBounds(196, 405, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String startData=lblNewLabel_8.getText();
@@ -97,10 +115,17 @@ public class CheckInventory extends JPanel {
 				main.setVisible(true);
 			}}
 		});
-		btnNewButton_1.setBounds(196, 405, 130, 25);
+		Image temp1 = image1.getImage().getScaledInstance(
+				btnNewButton_1.getWidth(), btnNewButton_1.getHeight(),
+				image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		btnNewButton_1.setIcon(image1);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("取消");
+		btnNewButton_2.setBounds(413, 405, 52, 52);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CheckInventory ci=new CheckInventory(main,lastui,loginPO);
@@ -111,7 +136,9 @@ public class CheckInventory extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBounds(413, 405, 123, 25);
+		btnNewButton_2.setIcon(image1);
+		btnNewButton_2.setContentAreaFilled(false);
+		btnNewButton_2.setBorderPainted(false);
 		add(btnNewButton_2);
 		
 		

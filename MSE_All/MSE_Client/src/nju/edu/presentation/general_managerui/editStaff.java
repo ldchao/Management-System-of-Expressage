@@ -1,32 +1,33 @@
 package nju.edu.presentation.general_managerui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Enumeration;
 
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
 
 import PO.LoginPO;
 import nju.edu.VO.StaffVO;
 import nju.edu.businesslogic.staffbl.Staffbl;
-
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.JComboBox;
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JToolBar;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.Enumeration;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextArea;
 
 public class editStaff extends JPanel implements ItemListener,Runnable{
 
@@ -91,6 +92,8 @@ public class editStaff extends JPanel implements ItemListener,Runnable{
 		textField.setBounds(119, 130, 217, 21);
 		textField.setText(vo.getId());
 		textField.setEnabled(false);
+		textField.setForeground(new Color(88, 93, 103));
+		textField.setCaretColor(new Color(88, 93, 103));
 		add(textField);
 		textField.setColumns(10);
 		
@@ -98,18 +101,24 @@ public class editStaff extends JPanel implements ItemListener,Runnable{
 		textField_1.setColumns(10);
 		textField_1.setBounds(481, 130, 217, 21);
 		textField_1.setText(vo.getName());
+		textField_1.setForeground(new Color(88, 93, 103));
+		textField_1.setCaretColor(new Color(88, 93, 103));
 		add(textField_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(119, 186, 217, 21);
 		textField_2.setText(vo.getPhone());
+		textField_2.setForeground(new Color(88, 93, 103));
+		textField_2.setCaretColor(new Color(88, 93, 103));
 		add(textField_2);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(481, 186, 217, 21);
 		textField_3.setText(vo.getCellphone());
+		textField_3.setForeground(new Color(88, 93, 103));
+		textField_3.setCaretColor(new Color(88, 93, 103));
 		add(textField_3);
 		
 		label_2 = new JLabel("\u59D3\u540D");
@@ -236,7 +245,14 @@ public class editStaff extends JPanel implements ItemListener,Runnable{
 				}
 			}
 		});
-		button.setBounds(243, 481, 93, 23);
+		button.setBounds(274, 459, 52, 52);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
+				button.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		button.setIcon(image1);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
 		add(button);
 		
 		button_1 = new JButton("\u5220\u9664\u6B64\u4EBA\u5458");
@@ -254,11 +270,20 @@ public class editStaff extends JPanel implements ItemListener,Runnable{
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(423, 481, 93, 23);
+		button_1.setBounds(425, 459, 52, 52);
+		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
+		Image temp2 = image2.getImage().getScaledInstance(button_1.getWidth(),
+						button_1.getHeight(),image2.getImage().SCALE_DEFAULT);
+		image2 = new ImageIcon(temp2);
+		button_1.setIcon(image2);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
 		add(button_1);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(10, 533, 714, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 		
 		label_8 = new JLabel("\u72B6\u6001");
@@ -289,7 +314,16 @@ public class editStaff extends JPanel implements ItemListener,Runnable{
 				main.setVisible(true);
 			}
 		});
-		button_2.setBounds(10, 10, 93, 23);
+		button_2.setBounds(13, -9, 63, 63);
+		button_2.setContentAreaFilled(false);
+		button_2.setBorderPainted(false);
+		button_2.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button_2.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+						button_2.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		add(button_2);
 	}
 
