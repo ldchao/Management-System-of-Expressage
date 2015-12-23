@@ -1,11 +1,14 @@
 package nju.edu.presentation.system_administratorui;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,17 +24,20 @@ public class AdminPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/system_stuff/adminPanel.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public AdminPanel(LoginPO loginPO, JFrame main) {
 		setLayout(null);
 		setSize(750, 600);
 
 		AdminPanel adp = this;
 
-		JLabel label = new JLabel("\u7CFB\u7EDF\u7BA1\u7406\u5458");
-		label.setBounds(87, 10, 470, 15);
-		add(label);
-
-		JLabel lblHello = new JLabel("Hello!");
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
 		lblHello.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -50,52 +56,72 @@ public class AdminPanel extends JPanel {
 				perinfo.setMouseState(false);
 			}
 		});
-		lblHello.setBounds(630, 10, 54, 15);
 		add(lblHello);
 
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(adp);
 				NewUserPanel nup = new NewUserPanel(loginPO, main);
-				main.add(nup);
+				main.getContentPane().add(nup);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(140, 213, 160, 128);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+		ImageIcon image2 = new ImageIcon("image/transparent_big.png");
+		btnNewButton.setIcon(image2);
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnNewButton.setIcon(new ImageIcon("image/mask_big"));
+			}
+		});
+		btnNewButton.setBounds(166, 242, 160, 128);
 		add(btnNewButton);
 
-		JLabel label_1 = new JLabel("\u65B0\u5EFA\u7528\u6237");
-		label_1.setBounds(192, 177, 54, 15);
-		add(label_1);
-
-		JLabel label_4 = new JLabel("\u5DF2\u6709\u7528\u6237\u7BA1\u7406");
-		label_4.setBounds(477, 177, 81, 15);
-		add(label_4);
-
-		JButton button_4 = new JButton("×¢Ïú");
+		JButton button_4 = new JButton();
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.dispose();
 			}
 		});
-		button_4.setBounds(10, 6, 67, 23);
+		button_4.setBounds(13, -9, 63, 63);
+		button_4.setContentAreaFilled(false);
+		button_4.setBorderPainted(false);
+		button_4.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button_4.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+				button_4.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		add(button_4);
 
-		JButton button = new JButton("New button");
+		JButton button = new JButton("");
+		button.setBounds(424, 242, 160, 128);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		ImageIcon image3 = new ImageIcon("image/transparent_big.png");
+		button.setIcon(image3);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(adp);
 				CheckUserPanel cup = new CheckUserPanel(loginPO, main);
-				main.add(cup);
+				main.getContentPane().add(cup);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(434, 213, 160, 128);
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_big"));
+			}
+		});
 		add(button);
 	}
 

@@ -34,7 +34,9 @@ public class FmainPanel extends JPanel implements Runnable {
 
 		FmainPanel fmp = this;
 
-		JLabel lblHello = new JLabel("Hello!");
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
 		lblHello.setForeground(Color.WHITE);
 		lblHello.addMouseListener(new MouseAdapter() {
 			@Override
@@ -54,7 +56,6 @@ public class FmainPanel extends JPanel implements Runnable {
 				perinfo.setMouseState(false);
 			}
 		});
-		lblHello.setBounds(667, 9, 54, 18);
 		add(lblHello);
 
 		JButton btnNewButton = new JButton(){

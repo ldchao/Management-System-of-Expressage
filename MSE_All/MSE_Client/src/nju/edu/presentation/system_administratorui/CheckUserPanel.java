@@ -2,11 +2,16 @@ package nju.edu.presentation.system_administratorui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,52 +39,68 @@ public class CheckUserPanel extends JPanel implements Runnable {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/system_stuff/checkUserPanel.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public CheckUserPanel(LoginPO loginPO, JFrame main) {
 		setLayout(null);
 
 		cup = this;
 
-		JLabel label = new JLabel("财务人员>>账户管理>>查改删已有账户");
-		label.setBounds(92, 8, 563, 15);
-		add(label);
-
-		JLabel lblHello = new JLabel("Hello!");
-		lblHello.setBounds(665, 8, 36, 15);
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JButton button_4 = new JButton("\u8FD4\u56DE");
+		JButton button_4 = new JButton("");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(cup);
 				AdminPanel adp = new AdminPanel(loginPO, main);
-				main.add(adp);
+				main.getContentPane().add(adp);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
 			}
 		});
-		button_4.setBounds(15, 6, 70, 23);
+		button_4.setBounds(13, -9, 63, 63);
+		button_4.setContentAreaFilled(false);
+		button_4.setBorderPainted(false);
+		button_4.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button_4.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+				button_4.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		add(button_4);
 
-		JLabel label_1 = new JLabel("用户属性");
-		label_1.setFont(new Font("黑体", Font.BOLD, 15));
-		label_1.setBounds(332, 127, 70, 15);
-		add(label_1);
-
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 543, 744, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		toolBar.setEnabled(false);
 		add(toolBar);
 
 		lblNewLabel = new JLabel("状态栏");
+		lblNewLabel.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel);
 
-		JButton button_1 = new JButton("\u5220\u9664");
-		button_1.setBounds(413, 434, 70, 23);
+		JButton button_1 = new JButton();
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		button_1.setBounds(425, 459, 52, 52);
+		ImageIcon image = new ImageIcon("image/transparent_circle.png");
+		Image temp = image.getImage().getScaledInstance(button_1.getWidth(),
+						button_1.getHeight(),image.getImage().SCALE_DEFAULT);
+		image = new ImageIcon(temp);
+		button_1.setIcon(image);
 		add(button_1);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(149, 183, 436, 217);
+		scrollPane.setBounds(168, 155, 415, 270);
 		add(scrollPane);
 
 		table = new JTable();
@@ -135,7 +156,7 @@ public class CheckUserPanel extends JPanel implements Runnable {
 			}
 		});
 
-		JButton button = new JButton("\u4FEE\u6539");
+		JButton button = new JButton("");
 		// 修改用户信息
 		button.addActionListener(new ActionListener() {
 			@SuppressWarnings("unused")
@@ -148,7 +169,14 @@ public class CheckUserPanel extends JPanel implements Runnable {
 				}
 			}
 		});
-		button.setBounds(262, 434, 70, 23);
+		button.setBounds(274, 459, 52, 52);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
+		Image temp2 = image2.getImage().getScaledInstance(button_1.getWidth(),
+						button_1.getHeight(),image2.getImage().SCALE_DEFAULT);
+		image2 = new ImageIcon(temp2);
+		button.setIcon(image2);
 		add(button);
 	}
 
