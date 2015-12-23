@@ -7,7 +7,7 @@ import nju.edu.VO.UserVO;
 public interface UserBLService {
 
 	// 新建用户
-	public void addUser(String name, String key, String limit);
+	public boolean addUser(String name, String key, String limit);
 
 	// 修改用户
 	public ArrayList<UserVO> updateUser(int pos, String oldname, String name,

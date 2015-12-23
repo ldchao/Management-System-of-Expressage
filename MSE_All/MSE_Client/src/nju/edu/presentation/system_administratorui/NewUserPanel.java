@@ -19,7 +19,6 @@ import javax.swing.JRadioButton;
 import PO.LoginPO;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.Enumeration;
@@ -40,16 +39,18 @@ public class NewUserPanel extends JPanel implements Runnable {
 	 */
 	protected void paintComponent(Graphics g) {
 		ImageIcon image = new ImageIcon("image/system_stuff/newUserPanel.png");
-		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
 	}
-	
+
+	@SuppressWarnings("static-access")
 	public NewUserPanel(LoginPO loginPO, JFrame main) {
 		success = false;
 		setLayout(null);
 
 		NewUserPanel nup = this;
 
-		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
@@ -60,10 +61,10 @@ public class NewUserPanel extends JPanel implements Runnable {
 		button_4.setBorderPainted(false);
 		button_4.setIcon(new ImageIcon("image/transparent_circle.png"));
 		button_4.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
 				button_4.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+			}
 		});
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -108,49 +109,65 @@ public class NewUserPanel extends JPanel implements Runnable {
 
 		JRadioButton rdbtnNewRadioButton = new JRadioButton(
 				"\u5FEB\u9012\u5458");
-		rdbtnNewRadioButton.setForeground(new Color(255, 255, 255,200));
+		rdbtnNewRadioButton.setContentAreaFilled(false);
+		rdbtnNewRadioButton.setBorderPainted(false);
+		rdbtnNewRadioButton.setForeground(new Color(255, 255, 255, 200));
 		rdbtnNewRadioButton.setBounds(230, 263, 84, 23);
 		add(rdbtnNewRadioButton);
 
 		JRadioButton radioButton_1 = new JRadioButton(
 				"\u8425\u4E1A\u5385\u4E1A\u52A1\u5458");
+		radioButton_1.setContentAreaFilled(false);
+		radioButton_1.setBorderPainted(false);
 		radioButton_1.setBounds(230, 380, 111, 23);
-		radioButton_1.setForeground(new Color(255, 255, 255,200));
+		radioButton_1.setForeground(new Color(255, 255, 255, 200));
 		add(radioButton_1);
 
 		JRadioButton radioButton_2 = new JRadioButton("\u603B\u7ECF\u7406");
+		radioButton_2.setContentAreaFilled(false);
+		radioButton_2.setBorderPainted(false);
 		radioButton_2.setBounds(230, 303, 84, 23);
-		radioButton_2.setForeground(new Color(255, 255, 255,200));
+		radioButton_2.setForeground(new Color(255, 255, 255, 200));
 		add(radioButton_2);
 
 		JRadioButton radioButton_3 = new JRadioButton(
 				"\u8D22\u52A1\u4EBA\u5458");
+		radioButton_3.setContentAreaFilled(false);
+		radioButton_3.setBorderPainted(false);
 		radioButton_3.setBounds(398, 340, 84, 23);
-		radioButton_3.setForeground(new Color(255, 255, 255,200));
+		radioButton_3.setForeground(new Color(255, 255, 255, 200));
 		add(radioButton_3);
 
 		JRadioButton radioButton_4 = new JRadioButton(
 				"\u4E2D\u8F6C\u4E2D\u5FC3\u4E1A\u52A1\u5458");
+		radioButton_4.setContentAreaFilled(false);
+		radioButton_4.setBorderPainted(false);
 		radioButton_4.setBounds(398, 263, 128, 23);
-		radioButton_4.setForeground(new Color(255, 255, 255,200));
+		radioButton_4.setForeground(new Color(255, 255, 255, 200));
 		add(radioButton_4);
 
 		JRadioButton radioButton_5 = new JRadioButton(
 				"\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u5458");
+		radioButton_5.setContentAreaFilled(false);
+		radioButton_5.setBorderPainted(false);
 		radioButton_5.setBounds(398, 380, 178, 23);
-		radioButton_5.setForeground(new Color(255, 255, 255,200));
+		radioButton_5.setForeground(new Color(255, 255, 255, 200));
 		add(radioButton_5);
 
 		JRadioButton radioButton_6 = new JRadioButton(
 				"\u7CFB\u7EDF\u7BA1\u7406\u5458");
+		radioButton_6.setContentAreaFilled(false);
+		radioButton_6.setBorderPainted(false);
 		radioButton_6.setBounds(230, 340, 103, 23);
-		radioButton_6.setForeground(new Color(255, 255, 255,200));
+		radioButton_6.setForeground(new Color(255, 255, 255, 200));
 		add(radioButton_6);
 
 		JRadioButton radioButton_7 = new JRadioButton(
 				"\u9AD8\u7EA7\u8D22\u52A1\u4EBA\u5458");
+		radioButton_7.setContentAreaFilled(false);
+		radioButton_7.setBorderPainted(false);
 		radioButton_7.setBounds(398, 303, 111, 23);
-		radioButton_7.setForeground(new Color(255, 255, 255,200));
+		radioButton_7.setForeground(new Color(255, 255, 255, 200));
 		add(radioButton_7);
 
 		ButtonGroup bg = new ButtonGroup();
@@ -189,9 +206,14 @@ public class NewUserPanel extends JPanel implements Runnable {
 						lblNewLabel.setText("含有非法字符“;”，请重新设置密码");
 						success = false;
 					} else {
-						userBL.addUser(name, key, limit);
-						lblNewLabel.setText("创建成功!");
-						success = true;
+						boolean isin = userBL.addUser(name, key, limit);
+						if (isin) {
+							lblNewLabel.setText("创建成功!");
+							success = true;
+						} else {
+							lblNewLabel.setText("该用户名已存在，无法完成新建");
+							success = false;
+						}
 					}
 				}
 
@@ -204,7 +226,7 @@ public class NewUserPanel extends JPanel implements Runnable {
 		button.setBorderPainted(false);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
 		Image temp2 = image2.getImage().getScaledInstance(button.getWidth(),
-						button.getHeight(),image2.getImage().SCALE_DEFAULT);
+				button.getHeight(), image2.getImage().SCALE_DEFAULT);
 		image2 = new ImageIcon(temp2);
 		button.setIcon(image2);
 		add(button);
@@ -215,7 +237,7 @@ public class NewUserPanel extends JPanel implements Runnable {
 		button_1.setBorderPainted(false);
 		ImageIcon image = new ImageIcon("image/transparent_circle.png");
 		Image temp = image.getImage().getScaledInstance(button_1.getWidth(),
-						button_1.getHeight(),image.getImage().SCALE_DEFAULT);
+				button_1.getHeight(), image.getImage().SCALE_DEFAULT);
 		image = new ImageIcon(temp);
 		button_1.setIcon(image);
 		button_1.addActionListener(new ActionListener() {

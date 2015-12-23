@@ -18,13 +18,28 @@ public class UserBL implements UserBLService, checkUserInfo,
 	UserDataService userData = RMIHelper.getUserData();
 
 	@Override
-	public void addUser(String name, String key, String limit) {
+	public boolean addUser(String name, String key, String limit) {
 
 		UserPO userPO = new UserPO(name, key, limit);
-		try {
-			userData.insert(userPO);
-		} catch (RemoteException e) {
-			e.printStackTrace();
+
+		boolean isin = false;
+		ArrayList<UserVO> userlist = checkUsers();
+		for (UserVO vo : userlist) {
+			if (vo.getName().equals(name)) {
+				isin = true;
+				break;
+			}
+		}
+
+		if (!isin) {
+			try {
+				userData.insert(userPO);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -46,7 +61,7 @@ public class UserBL implements UserBLService, checkUserInfo,
 		}
 
 		editStaffInfo editstaff = new Staffbl();
-		editstaff.editTheID(oldname, name,limit);
+		editstaff.editTheID(oldname, name, limit);
 
 		return list;
 	}
