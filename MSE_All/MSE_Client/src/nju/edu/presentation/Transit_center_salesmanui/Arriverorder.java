@@ -1,6 +1,7 @@
 package nju.edu.presentation.Transit_center_salesmanui;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,9 +21,13 @@ import nju.edu.businesslogic.transferbl.ReceiveBL;
 import nju.edu.businesslogicservice.transferblservice.ReceiveBLService;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -47,8 +52,19 @@ public class Arriverorder extends JPanel implements Runnable{
 		nowPanel = this;
 		OrganizationNumPO op=new OrganizationNumPO();
 		setLayout(null);
-
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		
 		JButton button = new JButton("返回");
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -58,20 +74,22 @@ public class Arriverorder extends JPanel implements Runnable{
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
 		add(button);
 
 		JLabel label = new JLabel("中转中心业务员>>中转接收>>新建到达单");
 		label.setBounds(100, 14, 360, 15);
 		add(label);
 
-		JLabel label_1 = new JLabel(loginPO.getName()+"，你好！");
-		label_1.setBounds(600, 14, 100, 15);
-		add(label_1);
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		add(lblHello);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
@@ -96,8 +114,10 @@ public class Arriverorder extends JPanel implements Runnable{
 		textField.setText(op.getNum(loginPO.getShop()));
 		textField.setEditable(false);
 		textField.setBounds(333, 208, 192, 21);
-		add(textField);
+		textField.setForeground(new Color(88, 93, 103));
+		textField.setCaretColor(new Color(88, 93, 103));
 		textField.setColumns(10);
+		add(textField);
 
 		JLabel lblNewLabel = new JLabel("出发地");
 		lblNewLabel.setBounds(180, 263, 54, 15);
@@ -107,8 +127,10 @@ public class Arriverorder extends JPanel implements Runnable{
 		textField_1.setText(lv.getOffName());
 		textField_1.setEditable(false);
 		textField_1.setBounds(333, 260, 192, 21);
-		add(textField_1);
+		textField_1.setForeground(new Color(88, 93, 103));
+		textField_1.setCaretColor(new Color(88, 93, 103));
 		textField_1.setColumns(10);
+		add(textField_1);
 
 		JLabel lblNewLabel_1 = new JLabel("货物到达状态");
 		lblNewLabel_1.setBounds(180, 317, 96, 15);
@@ -142,6 +164,7 @@ public class Arriverorder extends JPanel implements Runnable{
 		bg.add(rdbtnNewRadioButton_2);
 
 		JButton btnNewButton = new JButton("确定");
+		btnNewButton.setBounds(220, 457, 52, 52);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!isSelected()) {
@@ -160,10 +183,16 @@ public class Arriverorder extends JPanel implements Runnable{
 				}
 			}
 		});
-		btnNewButton.setBounds(220, 457, 80, 23);
+		Image temp1 = image1.getImage().getScaledInstance(btnNewButton.getWidth(),
+				btnNewButton.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		btnNewButton.setIcon(image1);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
 		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("取消");
+		btnNewButton_1.setBounds(390, 457, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Arriverorder a = new Arriverorder(main, lastui, lv,loginPO);
@@ -174,7 +203,9 @@ public class Arriverorder extends JPanel implements Runnable{
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(390, 457, 80, 23);
+		btnNewButton_1.setIcon(image1);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
 		add(btnNewButton_1);
 
 		JLabel label_5 = new JLabel(

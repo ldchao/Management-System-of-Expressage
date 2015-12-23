@@ -1,13 +1,18 @@
 package nju.edu.presentation.Transit_center_storemasterui;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -19,15 +24,10 @@ import javax.swing.JToolBar;
 import nju.edu.VO.StoreinVO;
 import nju.edu.businesslogic.storebl.Warehouse_inBL;
 import nju.edu.businesslogicservice.storeblservice.Warehouse_inBLService;
-import nju.edu.presentation.financial_staffui.DateChooser;
 import PO.LoginPO;
 
 public class Storeinorder extends JPanel implements Runnable {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField textField[];
 	JFrame main;
 	JPanel lastui;
 	LoginPO loginpo;
@@ -41,9 +41,21 @@ public class Storeinorder extends JPanel implements Runnable {
 		lastui = jp;
 		loginpo = loginPO;
 		nowPanel = this;
+		textField=new JTextField[5];
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		setLayout(null);
 
 		JButton button = new JButton("返回");
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(image1);
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -53,20 +65,22 @@ public class Storeinorder extends JPanel implements Runnable {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
 		add(button);
 
 		JLabel lblNewLabel = new JLabel("仓库管理员>>入库管理>>新建入库单");
 		lblNewLabel.setBounds(100, 14, 347, 15);
 		add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel(loginPO.getName() + "，你好！");
-		lblNewLabel_1.setBounds(600, 14, 100, 15);
-		add(lblNewLabel_1);
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		add(lblHello);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel lblNewLabel_4 = new JLabel("状态栏");
@@ -76,17 +90,14 @@ public class Storeinorder extends JPanel implements Runnable {
 		lblNewLabel_2.setBounds(168, 170, 54, 15);
 		add(lblNewLabel_2);
 
-		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
+		textField[0].addKeyListener(new KeyAdapter() {
 			public void  keyTyped(KeyEvent e) {
 				if (!Character.isDigit(e.getKeyChar())) {
 					e.consume();
 				}
 			}
 		});
-		textField.setBounds(299, 167, 234, 21);
-		add(textField);
-		textField.setColumns(10);
+		textField[0].setBounds(299, 167, 234, 21);
 
 		JLabel lblNewLabel_3 = new JLabel("入库日期");
 		lblNewLabel_3.setBounds(168, 207, 54, 15);
@@ -104,10 +115,7 @@ public class Storeinorder extends JPanel implements Runnable {
 		lblNewLabel_5.setBounds(168, 246, 54, 15);
 		add(lblNewLabel_5);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(299, 243, 234, 21);
-		add(textField_1);
-		textField_1.setColumns(10);
+		textField[1].setBounds(299, 243, 234, 21);
 
 		JLabel lblNewLabel_6 = new JLabel("区号");
 		lblNewLabel_6.setBounds(168, 294, 54, 15);
@@ -122,50 +130,48 @@ public class Storeinorder extends JPanel implements Runnable {
 		lblNewLabel_7.setBounds(376, 294, 39, 15);
 		add(lblNewLabel_7);
 
-		textField_2 = new JTextField();
-		textField_2.addKeyListener(new KeyAdapter() {
+		textField[2].addKeyListener(new KeyAdapter() {
 			public void  keyTyped(KeyEvent e) {
 				if (!Character.isDigit(e.getKeyChar())) {
 					e.consume();
 				}
 			}
 		});
-		textField_2.setBounds(440, 291, 93, 21);
-		add(textField_2);
-		textField_2.setColumns(10);
+		textField[2].setBounds(440, 291, 93, 21);
 
 		JLabel lblNewLabel_8 = new JLabel("架号");
 		lblNewLabel_8.setBounds(168, 344, 39, 15);
 		add(lblNewLabel_8);
 
-		textField_3 = new JTextField();
-		textField_3.addKeyListener(new KeyAdapter() {
+		textField[3].addKeyListener(new KeyAdapter() {
 			public void  keyTyped(KeyEvent e) {
 				if (!Character.isDigit(e.getKeyChar())) {
 					e.consume();
 				}
 			}
 		});
-		textField_3.setBounds(236, 341, 94, 21);
-		add(textField_3);
-		textField_3.setColumns(10);
+		textField[3].setBounds(236, 341, 94, 21);
 
 		JLabel lblNewLabel_9 = new JLabel("位号");
 		lblNewLabel_9.setBounds(382, 344, 39, 15);
 		add(lblNewLabel_9);
 
-		textField_4 = new JTextField();
-		textField_4.addKeyListener(new KeyAdapter() {
+		textField[4].addKeyListener(new KeyAdapter() {
 			public void  keyTyped(KeyEvent e) {
 				if (!Character.isDigit(e.getKeyChar())) {
 					e.consume();
 				}
 			}
 		});
-		textField_4.setBounds(440, 341, 93, 21);
-		add(textField_4);
-		textField_4.setColumns(10);
+		textField[4].setBounds(440, 341, 93, 21);
 
+		for(int i=0;i<5;i++){
+			add(textField[i]);
+			textField[i].setColumns(10);
+			textField[i].setForeground(new Color(88, 93, 103));
+			textField[i].setCaretColor(new Color(88, 93, 103));
+		}
+		
 		JLabel lblNewLabel_10 = new JLabel("审批状态");
 		lblNewLabel_10.setBounds(168, 398, 54, 15);
 		add(lblNewLabel_10);
@@ -177,14 +183,15 @@ public class Storeinorder extends JPanel implements Runnable {
 		add(comboBox_1);
 
 		JButton btnNewButton_1 = new JButton("确定");
+		btnNewButton_1.setBounds(180, 460, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String order_number = textField.getText();
-				String offnum = textField_1.getText();
+				String order_number = textField[0].getText();
+				String offnum = textField[1].getText();
 				String qu = (String) comboBox.getSelectedItem();
-				String pai = textField_2.getText();
-				String jia = textField_3.getText();
-				String wei = textField_4.getText();
+				String pai = textField[2].getText();
+				String jia = textField[3].getText();
+				String wei = textField[4].getText();
 				if (order_number.length() != 0 
 						|| offnum.length() == 0 || qu.length() == 0
 						|| pai.length() == 0 || wei.length() == 0
@@ -201,10 +208,17 @@ public class Storeinorder extends JPanel implements Runnable {
 				}
 			}
 		});
-		btnNewButton_1.setBounds(180, 460, 93, 23);
+		Image temp1 = image1.getImage().getScaledInstance(
+				btnNewButton_1.getWidth(), btnNewButton_1.getHeight(),
+				image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		btnNewButton_1.setIcon(image1);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
 		add(btnNewButton_1);
 
 		JButton btnNewButton_2 = new JButton("取消");
+		btnNewButton_2.setBounds(440, 460, 52, 52);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Storeinorder s = new Storeinorder(main, lastui, loginPO);
@@ -215,7 +229,9 @@ public class Storeinorder extends JPanel implements Runnable {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBounds(440, 460, 93, 23);
+		btnNewButton_2.setIcon(image1);
+		btnNewButton_2.setContentAreaFilled(false);
+		btnNewButton_2.setBorderPainted(false);
 		add(btnNewButton_2);
 
 		JLabel label = new JLabel("入  库  单");

@@ -1,16 +1,19 @@
 package nju.edu.presentation.Transit_center_storemasterui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import PO.LoginPO;
-import nju.edu.presentation.Transit_center_salesmanui.Transferui;
 
 public class Warehouse_inui extends JPanel {
 
@@ -21,9 +24,20 @@ public class Warehouse_inui extends JPanel {
 		JFrame main=m;
 		JPanel lastui=jp;
 		Warehouse_inui nowPanel=this;
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		setLayout(null);
 		
 		JButton button = new JButton("返回");
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(image1);
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);				
@@ -33,16 +47,16 @@ public class Warehouse_inui extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
 		add(button);
 		
 		JLabel lblNewLabel = new JLabel("仓库管理员>>入库管理");
 		lblNewLabel.setBounds(100, 14, 173, 15);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
-		lblNewLabel_1.setBounds(600, 14, 100, 15);
-		add(lblNewLabel_1);
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		add(lblHello);
 		
 		JLabel lblNewLabel_2 = new JLabel("消息提醒");
 		lblNewLabel_2.setBounds(186, 168, 54, 15);
@@ -82,7 +96,9 @@ public class Warehouse_inui extends JPanel {
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 		
 		JLabel lblNewLabel_4 = new JLabel("状态栏");

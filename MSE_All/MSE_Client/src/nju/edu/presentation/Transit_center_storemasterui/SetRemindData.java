@@ -1,31 +1,32 @@
 package nju.edu.presentation.Transit_center_storemasterui;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JToolBar;
-import javax.swing.JComboBox;
-
-import PO.LoginPO;
-import nju.edu.businesslogic.storebl.Inventory_managementBL;
-import nju.edu.businesslogicservice.storeblservice.Inventory_managementBLService;
-import nju.edu.presentation.Transit_center_salesmanui.Transferui;
-
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ItemEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
+
+import nju.edu.businesslogic.storebl.Inventory_managementBL;
+import nju.edu.businesslogicservice.storeblservice.Inventory_managementBLService;
+import PO.LoginPO;
 
 public class SetRemindData extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField[] textField;
 	private int areaNum=-1;
 	String remindData;
 	JComboBox comboBox;
@@ -37,10 +38,22 @@ public class SetRemindData extends JPanel {
 		JFrame main=m;
 		JPanel lastui=jp;
 		SetRemindData nowPanel=this;
+		textField=new JTextField[2];
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
         setLayout(null);
         Inventory_managementBLService ib = new Inventory_managementBL();
 				
         JButton button = new JButton("返回");
+        button.setBounds(13, -9, 63, 63);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.setIcon(image1);
+        button.addMouseListener(new MouseAdapter() {
+        			@Override
+        	public void mousePressed(MouseEvent e) {
+        		button.setIcon(new ImageIcon("image/mask_circle.png"));
+        	}	
+        });
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);				
@@ -50,46 +63,50 @@ public class SetRemindData extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 65, 23);
 		add(button);
 		
 		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理>>设置提醒值");
 		lblNewLabel.setBounds(100, 14, 263, 15);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel(loginPO.getName()+"，你好！");
-		lblNewLabel_1.setBounds(600, 14, 100, 15);
-		add(lblNewLabel_1);
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		add(lblHello);
 		
 		JLabel lblNewLabel_3 = new JLabel("当前提醒值比例");
 		lblNewLabel_3.setBounds(178, 258, 93, 15);
 		add(lblNewLabel_3);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBounds(336, 255, 200, 21);
-		add(textField);
-		textField.setColumns(10);
+		textField[0].setEditable(false);
+		textField[0].setBounds(336, 255, 200, 21);
 		
 		JLabel lblNewLabel_2 = new JLabel("输入提醒值比例");
 		lblNewLabel_2.setBounds(182, 327, 105, 15);
 		add(lblNewLabel_2);
 		
-		textField_1 = new JTextField();
-		textField_1.addKeyListener(new KeyAdapter() {
+		textField[1].addKeyListener(new KeyAdapter() {
 			public void  keyTyped(KeyEvent e) {
 				if (!(Character.isDigit(e.getKeyChar())||e.getKeyChar()=='.')) {
 					e.consume();
 				}
 			}
 		});
-		textField_1.setBounds(336, 324, 200, 21);
-		add(textField_1);
-		textField_1.setColumns(10);		
+		textField[1].setBounds(336, 324, 200, 21);
+			
+		
+		for(int i=0;i<2;i++){
+			add(textField[i]);
+			textField[i].setColumns(10);
+			textField[i].setForeground(new Color(88, 93, 103));
+			textField[i].setCaretColor(new Color(88, 93, 103));
+		}
 		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533,734,28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 		
 		JLabel lblNewLabel_6 = new JLabel("状态栏");
@@ -120,7 +137,7 @@ public class SetRemindData extends JPanel {
 							}												
 						}
 						remindData = ib.getRemindData(areaNum);
-						textField.setText(remindData);
+						textField[0].setText(remindData);
 					}				
 				}					
 			}
@@ -135,9 +152,10 @@ public class SetRemindData extends JPanel {
 		
 
 		JButton btnNewButton_1 = new JButton("确定");
+		btnNewButton_1.setBounds(206, 409, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String new_remindData = textField_1.getText();
+				String new_remindData = textField[1].getText();
 				if (new_remindData.length() == 0) {
 					lblNewLabel_6.setText("未输入数值！");
 				} else {
@@ -151,10 +169,17 @@ public class SetRemindData extends JPanel {
 				}
 			}
 		});
-		btnNewButton_1.setBounds(206, 409, 93, 25);
+		Image temp1 = image1.getImage().getScaledInstance(
+				btnNewButton_1.getWidth(), btnNewButton_1.getHeight(),
+				image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		btnNewButton_1.setIcon(image1);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("取消");
+		btnNewButton_2.setBounds(398, 409, 52, 52);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SetRemindData sr=new SetRemindData(main,lastui,loginPO);
@@ -165,7 +190,9 @@ public class SetRemindData extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBounds(398, 409, 93, 25);
+		btnNewButton_2.setIcon(image1);
+		btnNewButton_2.setContentAreaFilled(false);
+		btnNewButton_2.setBorderPainted(false);
 		add(btnNewButton_2);
 	}
 }

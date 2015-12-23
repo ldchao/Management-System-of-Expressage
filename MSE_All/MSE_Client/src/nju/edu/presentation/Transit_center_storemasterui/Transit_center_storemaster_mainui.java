@@ -1,20 +1,21 @@
 package nju.edu.presentation.Transit_center_storemasterui;
 
-import java.awt.Rectangle;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
-import PO.LoginPO;
 import nju.edu.businesslogic.storebl.StoreMessageBL;
 import nju.edu.presentation.Loginui.PersonalInfomation;
+import PO.LoginPO;
 
 @SuppressWarnings("serial")
 public class Transit_center_storemaster_mainui extends JFrame {
@@ -37,10 +38,13 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		contentPane = new JPanel();
 		this.add(contentPane);
 		contentPane.setLayout(null);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		contentPane.add(toolBar);
 
 		label_3 = new JLabel("状态栏");
@@ -50,7 +54,16 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		label_3.setText("仓库信息初始化成功");
 
 		JButton button = new JButton("注销");
-		button.setBounds(10, 10, 65, 23);
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(image1);
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sm.save();
@@ -64,10 +77,11 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		label.setBounds(100, 14, 73, 15);
 		contentPane.add(label);
 
-		JLabel label_1 = new JLabel(loginPO.getName() + "，你好！");
-		label_1.setBounds(600, 14, 100, 15);
-		contentPane.add(label_1);
-		label_1.addMouseListener(new MouseAdapter() {
+		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		lblHello.setForeground(Color.WHITE);
+		lblHello.setBounds(655, 12, 100, 15);
+		contentPane.add(lblHello);
+		lblHello.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				perinfo = new PersonalInfomation(loginPO, main);
