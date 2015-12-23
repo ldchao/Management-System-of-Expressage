@@ -8,6 +8,7 @@ import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.UserVO;
 import nju.edu.businesslogic.loginbl.checkUserInfo;
 import nju.edu.businesslogicservice.loginblservice.UpdatePasswordService;
+import nju.edu.businesslogicservice.staffblservice.DeleteUserInterface;
 import nju.edu.businesslogicservice.staffblservice.UserBLService;
 import nju.edu.businesslogicservice.staffblservice.editStaffInfo;
 import nju.edu.dataservice.staffdataservice.UserDataService;
