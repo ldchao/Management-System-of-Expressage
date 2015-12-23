@@ -53,24 +53,15 @@ import java.awt.event.ActionEvent;
 
 public class Order extends JPanel implements Runnable{
 
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField[] textField;
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
 	private JLabel label_4;
 	private JLabel label_5;
-	private JTextField textField_2;
 	private JLabel label_6;
-	private JTextField textField_3;
 	private JLabel label_7;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
 	private JLabel label_8;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
 	private JLabel label_9;
 	private JLabel label_10;
 	private JLabel label_11;
@@ -78,16 +69,10 @@ public class Order extends JPanel implements Runnable{
 	private JLabel label_13;
 	private JLabel label_14;
 	private JScrollPane scrollPane;
-	private JTextField textField_10;
-	private JTextField textField_11;
 	private JLabel lblkg;
-	private JTextField textField_12;
 	private JLabel lblcm;
-	private JTextField textField_13;
 	private JLabel lblcm_1;
-	private JTextField textField_14;
 	private JLabel lblcm_2;
-	private JTextField textField_15;
 	private JLabel label_18;
 	private JLabel label_19;
 	private JRadioButton radioButton;
@@ -101,9 +86,7 @@ public class Order extends JPanel implements Runnable{
 	private JLabel label_21;
 	private JComboBox comboBox;
 	private JLabel label_22;
-	private JTextField textField_16;
 	private JLabel label_23;
-	private JTextField textField_17;
 	private Listinbl listinbl;
 	private ExpressType express;
 	private PackageType pack;
@@ -114,7 +97,7 @@ public class Order extends JPanel implements Runnable{
 	private JButton button_1;
 	JFrame main;
 	Order orderframe;
-	LoginPO po;
+	LoginPO loginPO;
 	ButtonGroup bg1;
 	ButtonGroup bg2;
 	int index=0;//快递类型的按钮编号
@@ -128,7 +111,7 @@ public class Order extends JPanel implements Runnable{
 			"020001","020002","020003","020004","020005","020006","020007","020008","020009","020010","020011","020012","020013","020014","020015"};
 	
 	public Order(JFrame main,LoginPO loginPO) {
-		po=loginPO;
+		this.loginPO=loginPO;
 		this.main=main;
 		orderframe=this;
 		
@@ -149,21 +132,59 @@ public class Order extends JPanel implements Runnable{
 		label.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		add(label);
 		
-		textField = new JTextField();
-		textField.setBounds(126, 80, 78, 21);
-		textField.setColumns(10);
-		textField.setForeground(new Color(88, 93, 103));
-		textField.setCaretColor(new Color(88, 93, 103));
-		add(textField);
-
+		textField=new JTextField[18];
+		for(int i=0;i<textField.length;i++){
+			textField[i] = new JTextField();
+			textField[i].setColumns(10);
+			textField[i].setForeground(new Color(88, 93, 103));
+			textField[i].setCaretColor(new Color(88, 93, 103));
+			this.add(textField[i]);
+		}
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(316, 80, 179, 21);
-		textField_1.setColumns(10);
-		textField_1.setForeground(new Color(88, 93, 103));
-		textField_1.setCaretColor(new Color(88, 93, 103));
-		textField_1.setEnabled(false);
-		add(textField_1);
+		textField[0].setBounds(126, 80, 78, 21);
+	
+		textField[1].setBounds(316, 80, 179, 21);
+		textField[1].setEnabled(false);
+		
+		textField[2].setBounds(126, 133, 179, 21);
+		
+		textField[3].setBounds(126, 158, 179, 21);
+		
+		textField[4].setBounds(126, 183, 179, 21);
+		
+		textField[5].setBounds(126, 207, 179, 21);
+		
+		textField[6].setBounds(518, 133, 179, 21);
+		
+		textField[7].setBounds(518, 158, 179, 21);
+		
+		textField[8].setBounds(518, 183, 179, 21);
+		
+		textField[9].setBounds(518, 207, 179, 21);
+		
+		textField[10].setBounds(126, 341, 179, 21);
+
+		textField[11].setBounds(518, 341, 179, 21);
+		textField[11].addKeyListener(new InputNumber());
+		
+		textField[12].setBounds(180, 363, 43, 21);
+		textField[12].addKeyListener(new InputNumber());
+		
+		textField[13].setBounds(329, 363, 43, 21);
+		textField[13].addKeyListener(new InputNumber());
+		
+		textField[14].setBounds(489, 363, 43, 21);
+		textField[14].addKeyListener(new InputNumber());
+		
+		textField[15].setBounds(655, 363, 43, 21);
+		textField[15].addKeyListener(new InputNumber());
+		
+		textField[16].setEnabled(false);
+		textField[16].setBounds(142, 416, 163, 21);
+
+		textField[17].setEnabled(false);
+		textField[17].setBounds(518, 413, 179, 21);
+		
 		
 		label_1 = new JLabel("\u6536\u4EF6\u4EBA\u4FE1\u606F");
 		label_1.setBounds(454, 111, 94, 15);
@@ -187,73 +208,20 @@ public class Order extends JPanel implements Runnable{
 		label_5.setBounds(62, 83, 54, 15);
 		add(label_5);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(126, 133, 179, 21);
-		textField_2.setColumns(10);
-		add(textField_2);
-		
 		label_6 = new JLabel("\u8BA2\u5355\u53F7");
 		label_6.setBounds(267, 83, 54, 15);
 		add(label_6);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(126, 158, 179, 21);
-		textField_3.setColumns(10);
-		textField_3.setForeground(new Color(88, 93, 103));
-		textField_3.setCaretColor(new Color(88, 93, 103));
 
-		add(textField_3);
+		add(textField[3]);
 		
 		label_7 = new JLabel("\u7535\u8BDD");
 		label_7.setBounds(62, 161, 54, 15);
 		add(label_7);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(126, 183, 179, 21);
-		textField_4.setColumns(10);
-		textField_4.setForeground(new Color(88, 93, 103));
-		textField_4.setCaretColor(new Color(88, 93, 103));
-
-		add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setBounds(126, 207, 179, 21);
-		textField_5.setColumns(10);
-		textField_5.setForeground(new Color(88, 93, 103));
-		textField_5.setCaretColor(new Color(88, 93, 103));
-		add(textField_5);
-		
-		textField_6 = new JTextField();
-		textField_6.setBounds(518, 133, 179, 21);
-		textField_6.setColumns(10);
-		textField_6.setForeground(new Color(88, 93, 103));
-		textField_6.setCaretColor(new Color(88, 93, 103));
-		add(textField_6);
 		
 		label_8 = new JLabel("\u7535\u8BDD");
 		label_8.setBounds(454, 161, 54, 15);
 		add(label_8);
-		
-		textField_7 = new JTextField();
-		textField_7.setBounds(518, 158, 179, 21);
-		textField_7.setColumns(10);
-		textField_7.setForeground(new Color(88, 93, 103));
-		textField_7.setCaretColor(new Color(88, 93, 103));
-		add(textField_7);
-		
-		textField_8 = new JTextField();
-		textField_8.setBounds(518, 183, 179, 21);
-		textField_8.setColumns(10);
-		textField_8.setForeground(new Color(88, 93, 103));
-		textField_8.setCaretColor(new Color(88, 93, 103));
-		add(textField_8);
-		
-		textField_9 = new JTextField();
-		textField_9.setBounds(518, 207, 179, 21);
-		textField_9.setColumns(10);
-		textField_9.setForeground(new Color(88, 93, 103));
-		textField_9.setCaretColor(new Color(88, 93, 103));
-		add(textField_9);
 		
 		label_9 = new JLabel("\u624B\u673A");
 		label_9.setBounds(62, 186, 54, 15);
@@ -304,22 +272,6 @@ public class Order extends JPanel implements Runnable{
 		label_16.setBounds(62, 341, 54, 15);
 		add(label_16);
 		
-		textField_10 = new JTextField();
-		textField_10.setHorizontalAlignment(SwingConstants.LEFT);
-		textField_10.setColumns(10);
-		textField_10.setBounds(126, 341, 179, 21);
-		textField_10.setForeground(new Color(88, 93, 103));
-		textField_10.setCaretColor(new Color(88, 93, 103));
-		add(textField_10);
-		
-		textField_11 = new JTextField();
-		textField_11.setColumns(10);
-		textField_11.setBounds(518, 341, 179, 21);
-		textField_11.addKeyListener(new InputNumber());
-		textField_11.setForeground(new Color(88, 93, 103));
-		textField_11.setCaretColor(new Color(88, 93, 103));
-		add(textField_11);
-		
 		JLabel label_17 = new JLabel("\u7269\u54C1\u6570");
 		label_17.setBounds(454, 344, 54, 15);
 		add(label_17);
@@ -328,49 +280,17 @@ public class Order extends JPanel implements Runnable{
 		lblkg.setBounds(62, 366, 123, 15);
 		add(lblkg);
 		
-		textField_12 = new JTextField();
-		textField_12.setColumns(10);
-		textField_12.setBounds(180, 363, 43, 21);
-		textField_12.addKeyListener(new InputNumber());
-		textField_12.setForeground(new Color(88, 93, 103));
-		textField_12.setCaretColor(new Color(88, 93, 103));
-		add(textField_12);
-		
 		lblcm = new JLabel("\u7269\u54C1\u957F\u5EA6\uFF08cm\uFF09");
 		lblcm.setBounds(233, 366, 99, 15);
 		add(lblcm);
-		
-		textField_13 = new JTextField();
-		textField_13.setColumns(10);
-		textField_13.setBounds(329, 363, 43, 21);
-		textField_13.addKeyListener(new InputNumber());
-		textField_13.setForeground(new Color(88, 93, 103));
-		textField_13.setCaretColor(new Color(88, 93, 103));
-		add(textField_13);
 		
 		lblcm_1 = new JLabel("\u7269\u54C1\u5BBD\u5EA6\uFF08cm\uFF09");
 		lblcm_1.setBounds(398, 366, 97, 15);
 		add(lblcm_1);
 		
-		textField_14 = new JTextField();
-		textField_14.setColumns(10);
-		textField_14.setBounds(489, 363, 43, 21);
-		textField_14.addKeyListener(new InputNumber());
-		textField_14.setForeground(new Color(88, 93, 103));
-		textField_14.setCaretColor(new Color(88, 93, 103));
-		add(textField_14);
-		
 		lblcm_2 = new JLabel("\u7269\u54C1\u9AD8\u5EA6\uFF08cm\uFF09");
 		lblcm_2.setBounds(548, 366, 106, 15);
 		add(lblcm_2);
-		
-		textField_15 = new JTextField();
-		textField_15.setColumns(10);
-		textField_15.setBounds(655, 363, 43, 21);
-		textField_15.addKeyListener(new InputNumber());
-		textField_15.setForeground(new Color(88, 93, 103));
-		textField_15.setCaretColor(new Color(88, 93, 103));
-		add(textField_15);
 		
 		label_18 = new JLabel("\u5FEB\u9012\u79CD\u7C7B");
 		label_18.setBounds(62, 391, 54, 15);
@@ -484,37 +404,22 @@ public class Order extends JPanel implements Runnable{
 		label_22.setBounds(62, 416, 84, 15);
 		add(label_22);
 		
-		textField_16 = new JTextField();
-		textField_16.setEnabled(false);
-		textField_16.setHorizontalAlignment(SwingConstants.LEFT);
-		textField_16.setColumns(10);
-		textField_16.setBounds(142, 416, 163, 21);
-		textField_16.setForeground(new Color(88, 93, 103));
-		textField_16.setCaretColor(new Color(88, 93, 103));
-		add(textField_16);
-		
 		label_23 = new JLabel("\u4ED8\u6B3E");
 		label_23.setBounds(454, 416, 43, 15);
 		add(label_23);
 		
-		textField_17 = new JTextField();
-		textField_17.setEnabled(false);
-		textField_17.setColumns(10);
-		textField_17.setBounds(518, 413, 179, 21);
-		textField_17.setForeground(new Color(88, 93, 103));
-		textField_17.setCaretColor(new Color(88, 93, 103));
-		add(textField_17);
+
 		
 		JButton btnNewButton = new JButton("\u786E\u5B9A");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 //				OrderVO vo=listinbl.getOrder("141250089");
-				OrderVO vo=new OrderVO(textField.getText(), textField_1.getText(), ApproveState.NotApprove, 
-						textField_2.getText(), comboBox_1.getSelectedItem().toString()+" "+textArea.getText(), textField_3.getText(), textField_4.getText(), textField_5.getText(),
-						textField_6.getText(), comboBox_2.getSelectedItem().toString()+" "+textArea_1.getText(), textField_7.getText(),
-						textField_8.getText(), textField_9.getText(),
-						textField_10.getText(), textField_11.getText(), textField_12.getText(), textField_13.getText(), textField_14.getText(),textField_15.getText(), express, pack, 
-						textField_16.getText(), textField_17.getText(), " ");
+				OrderVO vo=new OrderVO(textField[0].getText(), textField[1].getText(), ApproveState.NotApprove, 
+						textField[2].getText(), comboBox_1.getSelectedItem().toString()+" "+textArea.getText(), textField[3].getText(), textField[4].getText(), textField[5].getText(),
+						textField[6].getText(), comboBox_2.getSelectedItem().toString()+" "+textArea_1.getText(), textField[7].getText(),
+						textField[8].getText(), textField[9].getText(),
+						textField[10].getText(), textField[11].getText(), textField[12].getText(), textField[13].getText(), textField[14].getText(),textField[15].getText(), express, pack, 
+						textField[16].getText(), textField[17].getText(), " ");
 				//是否有空的判断
 				Boolean valid=listinbl.JudgeNull(vo);
 				
@@ -601,7 +506,7 @@ public class Order extends JPanel implements Runnable{
 	
 	public void clean(){
 		main.remove(orderframe);
-		main.getContentPane().add(new Order(main,po));
+		main.getContentPane().add(new Order(main,loginPO));
 		main.repaint();
 		main.invalidate();
 		main.setVisible(true);
@@ -619,11 +524,11 @@ public class Order extends JPanel implements Runnable{
 				e.printStackTrace();
 			}
 			
-			if(!((textField_12.getText().equals("")||textField_13.getText().equals("")||
-					textField_14.getText().equals("")||textField_15.getText().equals("")))){
-					textField_16.setText(""+listinbl.getTotalTime(comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(), express));
-					textField_17.setText(""+listinbl.getTotalMoney(
-							comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(),textField_12.getText(), textField_13.getText(), textField_14.getText(), textField_15.getText(), express, pack));
+			if(!((textField[12].getText().equals("")||textField[13].getText().equals("")||
+					textField[14].getText().equals("")||textField[15].getText().equals("")))){
+					textField[16].setText(""+listinbl.getTotalTime(comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(), express));
+					textField[17].setText(""+listinbl.getTotalMoney(
+							comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(),textField[12].getText(), textField[13].getText(), textField[14].getText(), textField[15].getText(), express, pack));
 			}
 			
 			String temp=comboBox_2.getSelectedItem().toString();
@@ -634,7 +539,7 @@ public class Order extends JPanel implements Runnable{
 				}
 			}
 			String partOfID=num[sign].substring(1,3)+num[sign].substring(4,6)+index;
-			textField_1.setText(listinbl.getID(partOfID));
+			textField[1].setText(listinbl.getID(partOfID));
 		}
 	}
 }
