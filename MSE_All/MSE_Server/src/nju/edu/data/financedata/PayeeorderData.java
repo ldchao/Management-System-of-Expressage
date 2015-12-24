@@ -77,4 +77,18 @@ public class PayeeorderData extends UnicastRemoteObject implements
 		fileWriter.Writer("DataBase/uncheckedPayeeorder.txt", list, false);
 	}
 
+	@Override
+	public ArrayList<PayeeorderPO> findUnchecked() throws RemoteException {
+
+		ArrayList<PayeeorderPO> list = new ArrayList<>();
+		ArrayList<String> filelist = fileReader
+				.Reader("DataBase/uncheckedPayeeorder.txt");
+		for (String fl : filelist) {
+			String str[] = fl.split(";");
+			list.add(new PayeeorderPO(str[0], Double.parseDouble(str[1]),
+					str[2], str[3], str[4], str[5]));
+		}
+		return list;
+	}
+
 }

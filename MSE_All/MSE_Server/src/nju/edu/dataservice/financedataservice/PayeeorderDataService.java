@@ -17,5 +17,7 @@ public interface PayeeorderDataService extends Remote {
 	
 	public ArrayList<PayeeorderPO> checkPayeeorders()throws RemoteException;
 	
+	public ArrayList<PayeeorderPO> findUnchecked()throws RemoteException;
+	
 	public void delete(PayeeorderPO po) throws RemoteException;
 }

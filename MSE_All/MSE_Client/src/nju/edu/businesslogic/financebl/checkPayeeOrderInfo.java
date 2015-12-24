@@ -10,6 +10,8 @@ public interface checkPayeeOrderInfo {
 	public ArrayList<PayeeorderVO> checkPayeeorder(String date, String shop);
 
 	public ArrayList<PayeeorderVO> checkPayeeorder();
+	
+	public ArrayList<PayeeorderVO> checkUncheckedPayeeorder();
 
 	public void save(PayeeorderPO po);
 

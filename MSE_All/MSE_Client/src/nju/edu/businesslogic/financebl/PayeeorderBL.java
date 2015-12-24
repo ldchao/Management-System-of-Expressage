@@ -59,7 +59,7 @@ public class PayeeorderBL implements PayeeorderBlService, checkPayeeOrderInfo {
 			for (PayeeorderPO po : Plist) {
 				PayeeorderVO vo = new PayeeorderVO(po.getOrder(),
 						po.getMoney(), po.getDate(), po.getCarrierName(),
-						po.getShopperName(),po.getShop());
+						po.getShopperName(), po.getShop());
 				Vlist.add(vo);
 			}
 		} catch (RemoteException e) {
@@ -82,14 +82,33 @@ public class PayeeorderBL implements PayeeorderBlService, checkPayeeOrderInfo {
 
 	@Override
 	public ArrayList<PayeeorderVO> checkPayeeorder() {
-		
+
 		ArrayList<PayeeorderVO> Vlist = new ArrayList<>();
 		try {
 			ArrayList<PayeeorderPO> Plist = payeeorderData.checkPayeeorders();
 			for (PayeeorderPO po : Plist) {
 				PayeeorderVO vo = new PayeeorderVO(po.getOrder(),
 						po.getMoney(), po.getDate(), po.getCarrierName(),
-						po.getShopperName(),po.getShop());
+						po.getShopperName(), po.getShop());
+				Vlist.add(vo);
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
+		return Vlist;
+	}
+
+	@Override
+	public ArrayList<PayeeorderVO> checkUncheckedPayeeorder() {
+
+		ArrayList<PayeeorderVO> Vlist = new ArrayList<>();
+		try {
+			ArrayList<PayeeorderPO> Plist = payeeorderData.findUnchecked();
+			for (PayeeorderPO po : Plist) {
+				PayeeorderVO vo = new PayeeorderVO(po.getOrder(),
+						po.getMoney(), po.getDate(), po.getCarrierName(),
+						po.getShopperName(), po.getShop());
 				Vlist.add(vo);
 			}
 		} catch (RemoteException e) {
