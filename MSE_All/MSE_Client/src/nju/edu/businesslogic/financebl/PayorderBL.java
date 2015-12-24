@@ -92,11 +92,30 @@ public class PayorderBL implements PayorderBLService, checkPayorderInfo,
 	public void save(PayorderPO po) {
 
 		try {
-			payorderData.insert(po);
 			payorderData.delete(po);
+			payorderData.insert(po);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public ArrayList<PayorderVO> checkUncheckedPayorder() {
+		ArrayList<PayorderVO> payorderlist = new ArrayList<>();
+
+		try {
+			ArrayList<PayorderPO> paypo = payorderData.findUnchecked();
+			for (PayorderPO po : paypo) {
+				PayorderVO vo = new PayorderVO(po.getDate(), po.getMoney(),
+						po.getAccount(), po.getList(), po.getComment(),
+						po.getPayor(),po.getState());
+				payorderlist.add(vo);
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
+		return payorderlist;
 	}
 
 }

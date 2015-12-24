@@ -10,4 +10,6 @@ public interface checkPayorderInfo {
 	public ArrayList<PayorderVO> checkPayorder();
 
 	public void save(PayorderPO po);
+	
+	public ArrayList<PayorderVO> checkUncheckedPayorder();
 }

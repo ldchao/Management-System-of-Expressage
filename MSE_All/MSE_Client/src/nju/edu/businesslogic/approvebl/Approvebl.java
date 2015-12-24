@@ -78,7 +78,7 @@ public class Approvebl implements ApproveBLService{
 
 	private ArrayList<String> payorder() {
 		// TODO Auto-generated method stub
-		ArrayList<PayorderVO> arrayList=checkPayorderInfo.checkPayorder();
+		ArrayList<PayorderVO> arrayList=checkPayorderInfo.checkUncheckedPayorder();
 		ArrayList<String> strings=new ArrayList<>();
 		for(int i=0;i<arrayList.size();i++){
 			PayorderVO vo=arrayList.get(i);
@@ -316,7 +316,7 @@ public class Approvebl implements ApproveBLService{
 			po.setCheck_state(ApproveState.Valid);
 			ApproveWarehouse_outInfo.save(po);
 		}else if(type.equals("¸¶¿îµ¥")){
-			ArrayList<PayorderVO> arrayList=checkPayorderInfo.checkPayorder();
+			ArrayList<PayorderVO> arrayList=checkPayorderInfo.checkUncheckedPayorder();
 			PayorderVO vo=arrayList.get(num);
 			PayorderPO po=new PayorderPO(vo.getDate(), vo.getMoney(), vo.getAccount(), vo.getList(), vo.getComment(), vo.getPayor());
 			po.setState(ApproveState.Valid);
