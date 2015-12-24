@@ -24,6 +24,8 @@ import javax.swing.table.DefaultTableModel;
 
 import PO.LoginPO;
 import nju.edu.businesslogic.approvebl.Approvebl;
+import nju.edu.presentation.Loginui.PersonalInfomation;
+import javax.swing.JTextArea;
 
 public class ListApprove extends JPanel implements ItemListener{
 
@@ -32,6 +34,8 @@ public class ListApprove extends JPanel implements ItemListener{
 	private int rowpos = -1;
 	private Approvebl approvebl=new Approvebl();
 	JComboBox comboBox ;
+	private ApproveListInformation information;
+	
 	
 	public ListApprove(JFrame main,LoginPO loginPO) {
 		ListApprove listApproveframe=this;
@@ -44,7 +48,7 @@ public class ListApprove extends JPanel implements ItemListener{
 			public void actionPerformed(ActionEvent e) {
 				Manager newmanager=new Manager(main,loginPO);
 				main.remove(listApproveframe);
-				main.add(newmanager);
+				main.getContentPane().add(newmanager);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -79,12 +83,21 @@ public class ListApprove extends JPanel implements ItemListener{
 		comboBox.addItemListener(this);
 		add(comboBox);
 		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(451, 102, 246, 344);
+		add(scrollPane_1);
+		
+		JTextArea textArea = new JTextArea();
+		scrollPane_1.setViewportView(textArea);
+		textArea.setLineWrap(true);
+		textArea.setEnabled(false);
+		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(85, 102, 566, 344);
+		scrollPane.setBounds(85, 102, 259, 344);
 		add(scrollPane);
 		
 		table = new JTable();
-		table.setRowHeight(40);
+		table.setRowHeight(25);
 		// 使表格居中
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
@@ -98,12 +111,21 @@ public class ListApprove extends JPanel implements ItemListener{
 				mousepoint = e.getPoint();
 				rowpos = table.rowAtPoint(mousepoint);
 				table.setRowSelectionInterval(rowpos, rowpos);
+				if(rowpos<approvebl.showList(comboBox.getSelectedItem().toString()).size()){
+					String info=approvebl.showList(comboBox.getSelectedItem().toString()).get(rowpos);
+					textArea.setText(info);
+				}else{
+					textArea.setText("");
+				}
+
 			}
+			
+
 		});
 		scrollPane.setViewportView(table);
 		table.setEnabled(false);
 		tableModel = new DefaultTableModel(
-				new Object[][] {{null},{null},{null},{null},{null},{null},{null},{null}},
+				new Object[][] {{null},{null},{null},{null},{null},{null},{null},{null},{null},{null},{null},{null},{null}},
 					new String[] {	"单据信息"
 				});
 		table.setModel(tableModel);
@@ -116,6 +138,7 @@ public class ListApprove extends JPanel implements ItemListener{
 				if (rowpos != -1) {
 					approvebl.editList(rowpos, comboBox.getSelectedItem().toString());
 					showTable(approvebl.showList(comboBox.getSelectedItem().toString()));
+					textArea.setText("");
 				}
 			}
 		});
@@ -135,6 +158,9 @@ public class ListApprove extends JPanel implements ItemListener{
 		
 		JLabel label_3 = new JLabel("\u72B6\u6001\u680F");
 		toolBar.add(label_3);
+		
+
+		
 	}
 
 	@Override
