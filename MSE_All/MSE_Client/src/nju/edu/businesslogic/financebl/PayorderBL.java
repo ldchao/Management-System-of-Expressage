@@ -41,7 +41,7 @@ public class PayorderBL implements PayorderBLService, checkPayorderInfo,
 			for (PayorderPO po : paypo) {
 				PayorderVO vo = new PayorderVO(po.getDate(), po.getMoney(),
 						po.getAccount(), po.getList(), po.getComment(),
-						po.getPayor());
+						po.getPayor(),po.getState());
 				payorderlist.add(vo);
 			}
 		} catch (RemoteException e) {

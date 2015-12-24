@@ -87,7 +87,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if (!Character.isDigit(e.getKeyChar())) {
+				if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '.') {
 					e.consume();
 				}
 			}
@@ -191,7 +191,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 						|| date.replaceAll(" ", "").equals("")
 						|| list.replaceAll(" ", "").equals("")
 						|| comment.replaceAll(" ", "").equals("")) {
-					
+
 					lblNewLabel.setText("信息录入不完整，无法完成新建");
 					success = false;
 				} else {
@@ -242,6 +242,7 @@ public class NewPayorderPanel extends JPanel implements Runnable {
 			textField.setText("");
 			textField_1.setText("");
 			textField_2.setText("");
+			textArea.setText("");
 			textArea_1.setText("");
 		}
 

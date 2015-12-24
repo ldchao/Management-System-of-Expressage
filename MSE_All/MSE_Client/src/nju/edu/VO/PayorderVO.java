@@ -2,6 +2,9 @@ package nju.edu.VO;
 
 import java.io.Serializable;
 
+import State.ApproveState;
+
+@SuppressWarnings("serial")
 public class PayorderVO implements Serializable {
 	private String date;
 	private double money;
@@ -9,7 +12,8 @@ public class PayorderVO implements Serializable {
 	private String list;
 	private String comment;
 	private String payor;
-	
+	private ApproveState state;
+
 	public PayorderVO(String date, double money, String account, String list,
 			String comment, String payor) {
 		super();
@@ -19,6 +23,27 @@ public class PayorderVO implements Serializable {
 		this.list = list;
 		this.comment = comment;
 		this.payor = payor;
+		this.state = ApproveState.Invalid;
+	}
+	
+	public PayorderVO(String date, double money, String account, String list,
+			String comment, String payor, ApproveState state) {
+		super();
+		this.date = date;
+		this.money = money;
+		this.account = account;
+		this.list = list;
+		this.comment = comment;
+		this.payor = payor;
+		this.state = state;
+	}
+
+	public ApproveState getState() {
+		return this.state;
+	}
+
+	public void setState(ApproveState state) {
+		this.state = state;
 	}
 
 	public String getDate() {
@@ -68,5 +93,5 @@ public class PayorderVO implements Serializable {
 	public void setPayor(String payor) {
 		this.payor = payor;
 	}
-	
+
 }

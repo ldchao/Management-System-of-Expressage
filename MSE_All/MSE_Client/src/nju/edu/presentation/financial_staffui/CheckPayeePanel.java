@@ -84,7 +84,7 @@ public class CheckPayeePanel extends JPanel {
 			label_1 = new JLabel("无此编号营业厅");
 		}
 		label_1.setFont(new Font("微软雅黑", Font.PLAIN, 24));
-		label_1.setBounds(276, 111, 310, 23);
+		label_1.setBounds(150, 111, 500, 23);
 		label_1.setForeground(new Color(248, 179, 28));
 		add(label_1);
 
@@ -131,8 +131,23 @@ public class CheckPayeePanel extends JPanel {
 		lblMoney.setForeground(new Color(255, 255, 255,200));
 		lblMoney.setBounds(610, 448, 63, 23);
 		add(lblMoney);
+		
+		JLabel label = new JLabel("\u5408\u8BA1");
+		label.setBounds(406, 473, 54, 15);
+		add(label);
 		// 合计
 		JButton button = new JButton("");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				label.setVisible(true);
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label.setVisible(false);
+			}
+		});
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 		button.addActionListener(new ActionListener() {
@@ -144,6 +159,7 @@ public class CheckPayeePanel extends JPanel {
 		});
 		button.setBounds(350, 478, 50, 50);
 		add(button);
+		
 	}
 
 	public void showTable(ArrayList<PayeeorderVO> payeevo) {
