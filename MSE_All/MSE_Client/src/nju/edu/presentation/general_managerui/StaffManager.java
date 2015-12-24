@@ -62,7 +62,7 @@ public class StaffManager extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Manager newmanager=new Manager(main,loginPO);
 				main.remove(staffManagerframe);
-				main.add(newmanager);
+				main.getContentPane().add(newmanager);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -107,7 +107,7 @@ public class StaffManager extends JPanel {
 					}else{
 						Staff staff=new Staff(vo,main,loginPO);
 						main.remove(thiStaffManager);
-						main.add(staff);
+						main.getContentPane().add(staff);
 						main.invalidate();
 						main.repaint();
 						main.setVisible(true);
@@ -158,7 +158,7 @@ public class StaffManager extends JPanel {
 		// œ‘ æ±Ì∏Ò
 		showTable(staffbl.showStaff());
 		
-		JButton button_2 = new JButton("\u4FEE\u6539");
+		JButton button_2 = new JButton("\u7F16\u8F91");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (rowpos != -1) {
@@ -166,7 +166,7 @@ public class StaffManager extends JPanel {
 					StaffVO selectVo=staffbl.checkStaff(id);	
 					Staff staff=new Staff(selectVo,main,loginPO);
 					main.remove(staffManagerframe);
-					main.add(staff);
+					main.getContentPane().add(staff);
 					main.invalidate();
 					main.repaint();
 					main.setVisible(true);
@@ -181,7 +181,7 @@ public class StaffManager extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				addStaff addStaff=new addStaff(main,loginPO);
 				main.remove(staffManagerframe);
-				main.add(addStaff);
+				main.getContentPane().add(addStaff);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);

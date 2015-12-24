@@ -17,7 +17,6 @@ public interface StaffBLService {
 	public void editStaff(StaffVO vo);
 	
 	public void deleteStaff(String id);
-	
-	public void endStaff();
+
 	
 }

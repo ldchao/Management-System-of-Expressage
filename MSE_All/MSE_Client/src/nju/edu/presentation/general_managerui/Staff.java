@@ -79,29 +79,25 @@ public class Staff extends JPanel{
 		label_1.setBounds(55, 133, 54, 15);
 		add(label_1);
 		
-		textField = new JTextField();
+		textField = new JTextField(10);
 		textField.setBounds(119, 130, 217, 21);
 		textField.setText(vo.getId());
 		textField.setEnabled(false);
 		add(textField);
-		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		textField_1 = new JTextField(10);
 		textField_1.setBounds(481, 130, 217, 21);
 		textField_1.setText(vo.getName());
 		textField_1.setEnabled(false);
 		add(textField_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		textField_2 = new JTextField(10);
 		textField_2.setBounds(119, 186, 217, 21);
 		textField_2.setText(vo.getPhone());
 		textField_2.setEnabled(false);
 		add(textField_2);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		textField_3 = new JTextField(10);
 		textField_3.setBounds(481, 186, 217, 21);
 		textField_3.setText(vo.getCellphone());
 		textField_3.setEnabled(false);
@@ -122,6 +118,7 @@ public class Staff extends JPanel{
 		label_5 = new JLabel("\u5355\u4F4D");
 		label_5.setBounds(55, 243, 54, 15);
 		add(label_5);
+		
 		//≥ı ºªØ
 		int a=-1,b=-1;
 		String[] temp=vo.getShop().split(",");

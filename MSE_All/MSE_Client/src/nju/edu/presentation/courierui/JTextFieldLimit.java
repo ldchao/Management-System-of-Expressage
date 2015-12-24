@@ -3,13 +3,12 @@ package nju.edu.presentation.courierui;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
-
+//limit the number of word that can be input into the textfield
 public class JTextFieldLimit extends PlainDocument {
 	private int limit;
-	// optional uppercase conversion
 	private boolean toUppercase = false;
 
-	JTextFieldLimit(int limit) {
+	public JTextFieldLimit(int limit) {
 		super();
 		this.limit = limit;
 	}

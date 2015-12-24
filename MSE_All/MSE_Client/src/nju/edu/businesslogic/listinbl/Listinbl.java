@@ -105,7 +105,6 @@ public class Listinbl implements ListinBLService, ListinInfo, OrderInfo, UpdateI
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		double speed = 80;
 		return (int) (distance / 80 / 24) + "Ìì" + ((int) (distance / 80) - (int) (distance / 80 / 24) * 24) + "Ð¡Ê±";
 	}
 

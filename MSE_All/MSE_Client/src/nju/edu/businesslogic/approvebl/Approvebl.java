@@ -258,12 +258,6 @@ public class Approvebl implements ApproveBLService{
 	}
 
 	@Override
-	public <T> T checkList(String type) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void editList(int num,String type) {
 		// TODO Auto-generated method stub
 		if(type.equals("¼Ä¼þµ¥")){
@@ -314,12 +308,6 @@ public class Approvebl implements ApproveBLService{
 			PayorderPO po=new PayorderPO(vo.getDate(), vo.getMoney(), vo.getAccount(), vo.getList(), vo.getComment(), vo.getPayor());
 			checkPayorderInfo.save(po);
 		}
-	}
-
-	@Override
-	public void endApprove() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

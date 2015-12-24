@@ -4,55 +4,34 @@
  */
 package nju.edu.presentation.courierui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.TextArea;
-import java.awt.TextField;
-
-import javax.swing.JTextArea;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-
-import java.awt.Color;
-
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.Document;
-import javax.swing.text.PlainDocument;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
 
 import PO.LoginPO;
 import State.ApproveState;
 import State.ExpressType;
 import State.PackageType;
-import sun.misc.Cleaner;
-
-import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
-import javax.swing.JToolBar;
-import javax.swing.JComboBox;
-import javax.swing.JScrollBar;
-
 import nju.edu.VO.OrderVO;
 import nju.edu.businesslogic.listinbl.Listinbl;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionEvent;
 
 public class Order extends JPanel implements Runnable{
 
@@ -104,6 +83,7 @@ public class Order extends JPanel implements Runnable{
 	ButtonGroup bg1;
 	ButtonGroup bg2;
 	int index=0;//快递类型的按钮编号
+	boolean cleanSignal=false;//确认新建订单要清空
 	String[] city={"南京鼓楼区","南京玄武区","南京建邺区","南京秦淮区","南京栖霞区","南京六合区","南京浦口区","南京江宁区","南京高淳区","南京溧水区",
 			"北京宣武区","北京东城区","北京西城区","北京崇文区","北京朝阳区","北京石景山区","北京海淀区","北京丰台区","北京房山区","北京大兴区","北京通州区","北京门头沟区","北京昌平区","北京顺义区","北京怀柔区","北京密云县","北京平谷区","北京延庆县","北京大学城","北京中关村",
 			"上海黄浦区","上海徐汇区","上海长宁区","上海静安区","上海普陀区","上海虹口区","上海杨浦区","上海闵行区","上海宝山区","上海嘉定区","上海浦东新区","上海金山区","上海松江区","上海青浦区","上海奉贤区","上海崇明县","上海工业区","上海开发区","上海外贸区","上海高新区",
@@ -394,7 +374,7 @@ public class Order extends JPanel implements Runnable{
 		toolBar.setBorder(null);
 		add(toolBar);
 		
-		lblNewLabel = new JLabel("\u72B6\u6001");
+		lblNewLabel = new JLabel("\u72B6\u6001\u680F");
 		toolBar.add(lblNewLabel);
 		
 		label_21 = new JLabel("\u5BA1\u6279\u72B6\u6001");
@@ -418,27 +398,34 @@ public class Order extends JPanel implements Runnable{
 		JButton btnNewButton = new JButton("\u786E\u5B9A");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				OrderVO vo=listinbl.getOrder("141250089");
-				OrderVO vo=new OrderVO(textField[0].getText().trim(), textField[1].getText().trim(), ApproveState.NotApprove, 
+				//显示确认按钮
+				int n=JOptionPane.showConfirmDialog(null, "确认新建订单","no",JOptionPane.YES_NO_OPTION);
+				if(n==JOptionPane.YES_OPTION){
+					OrderVO vo=new OrderVO(textField[0].getText().trim(), textField[1].getText().trim(), ApproveState.NotApprove, 
 						textField[2].getText().trim(), comboBox_1.getSelectedItem().toString()+" "+textArea.getText().trim(), textField[3].getText().trim(), textField[4].getText().trim(), textField[5].getText().trim(),
 						textField[6].getText().trim(), comboBox_2.getSelectedItem().toString()+" "+textArea_1.getText().trim(), textField[7].getText().trim(),
 						textField[8].getText().trim(), textField[9].getText().trim(),
 						textField[10].getText().trim(), textField[11].getText().trim(), textField[12].getText().trim(), textField[13].getText().trim(), textField[14].getText().trim(),textField[15].getText().trim(), express, pack, 
 						textField[16].getText().trim(), textField[17].getText().trim(), " ");
-				//是否有空的判断
-				Boolean valid=listinbl.JudgeNull(vo);
+					//是否有空的判断
+					Boolean valid=listinbl.JudgeNull(vo);
 				
-				//执行相应操作
-				if(valid==true){
-					listinbl.addOrder(vo);
-					lblNewLabel.setText("新建成功");
-					clean();
-				}else{
-					lblNewLabel.setText("信息不完整，请补全信息");
+					//执行相应操作
+					if(valid==true){
+						listinbl.addOrder(vo);
+						lblNewLabel.setText("新建成功");
+						btnNewButton.setEnabled(false);
+						cleanSignal=true;
+					}else{
+						lblNewLabel.setText("信息不完整，请补全信息");
+					}
+					Thread thread=new Thread(orderframe);
+					thread.start();
 				}
 			}
 
 		});
+		
 		btnNewButton.setBounds(274, 459, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(btnNewButton.getWidth(),
@@ -452,12 +439,10 @@ public class Order extends JPanel implements Runnable{
 		JButton button = new JButton("清空");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clean();
-				main.remove(orderframe);
-				main.getContentPane().add(new Order(main,loginPO));
-				main.repaint();
-				main.invalidate();
-				main.setVisible(true);
+				int n=JOptionPane.showConfirmDialog(null, "确认清空？","no", JOptionPane.YES_NO_OPTION);
+				if(n==JOptionPane.YES_OPTION){
+					clean();
+				}
 			}
 		});
 		
@@ -504,7 +489,7 @@ public class Order extends JPanel implements Runnable{
 		add(button_1);
 		
 		//计算价格和时间的线程
-		Thread thread=new Thread(this);
+		Thread thread=new Thread(new count());
 		thread.start();
 	}
 	
@@ -516,34 +501,52 @@ public class Order extends JPanel implements Runnable{
 		main.setVisible(true);
 	}
 	
-	/*function:
-	 *update the expected time and bill
-	*/
 	@Override
 	public void run() {
-		while(true){
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			if(!((textField[12].getText().trim().equals("")||textField[13].getText().trim().equals("")||
-					textField[14].getText().trim().equals("")||textField[15].getText().trim().equals("")))){
-					textField[16].setText(""+listinbl.getTotalTime(comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(), express));
-					textField[17].setText(""+listinbl.getTotalMoney(
-							comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(),textField[12].getText(), textField[13].getText(), textField[14].getText(), textField[15].getText(), express, pack));
-			}
-			
-			String temp=comboBox_2.getSelectedItem().toString();
-			int sign=0;
-			for(int i=0;i<city.length;i++){
-				if(temp.equals(city[i])){
-					sign=i;
-				}
-			}
-			String partOfID=num[sign].substring(1,3)+num[sign].substring(4,6)+index;
-			textField[1].setText(listinbl.getID(partOfID));
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
+		lblNewLabel.setText("状态栏");
+		if(cleanSignal==true){
+			clean();
+		}
+	}
+	
+	
+	//计算价格和时间的内部类
+	class count implements Runnable{
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			while(true){
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				if(!((textField[12].getText().trim().equals("")||textField[13].getText().trim().equals("")||
+						textField[14].getText().trim().equals("")||textField[15].getText().trim().equals("")))){
+						textField[16].setText(""+listinbl.getTotalTime(comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(), express));
+						textField[17].setText(""+listinbl.getTotalMoney(
+								comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString(),textField[12].getText(), textField[13].getText(), textField[14].getText(), textField[15].getText(), express, pack));
+				}
+				
+				String temp=comboBox_2.getSelectedItem().toString();
+				int sign=0;
+				for(int i=0;i<city.length;i++){
+					if(temp.equals(city[i])){
+						sign=i;
+					}
+				}
+				String partOfID=num[sign].substring(1,3)+num[sign].substring(4,6)+index;
+				textField[1].setText(listinbl.getID(partOfID));
+			}
+		}
+		
 	}
 }

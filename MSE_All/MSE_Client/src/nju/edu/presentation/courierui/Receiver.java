@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -13,6 +14,7 @@ import sun.misc.Cleaner;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.TextField;
 
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -32,21 +34,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
-public class Receiver extends JPanel {
-
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+public class Receiver extends JPanel implements Runnable{
+	
+	JTextField[] textFields;
 	JLabel label_11;
 	private JTextArea textArea;
 	private Receiverinbl receiverinbl;
-	LoginPO loginPO;
-	JFrame main;
-	Receiver receiverframe;
+	private LoginPO loginPO;
+	private JFrame main;
+	private Receiver receiverframe;
+	private JLabel label_12;
+	private boolean cleanSignal=false;
 	/**
 	 * Create the frame.
 	 */
@@ -58,6 +56,27 @@ public class Receiver extends JPanel {
 		setBounds(300, 100, 750, 600);
 		setVisible(true);
 		setLayout(null);
+		
+		textFields=new JTextField[7];
+		for(int i=0;i<7;i++){
+			textFields[i]=new JTextField(10);
+			this.add(textFields[i]);
+			textFields[i].setForeground(new Color(88, 93, 103));
+			textFields[i].setCaretColor(new Color(88, 93, 103));
+		}
+		textFields[0].setBounds(77, 120, 179, 21);
+		
+		textFields[1].setBounds(514, 120, 179, 21);
+		
+		textFields[2].setBounds(77, 162, 179, 21);
+		
+		textFields[3].setBounds(77, 253, 179, 21);
+		
+		textFields[4].setBounds(514, 253, 179, 21);
+		
+		textFields[5].setBounds(77, 297, 179, 21);
+		
+		textFields[6].setBounds(514, 297, 179, 21);
 		
 		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
@@ -77,57 +96,22 @@ public class Receiver extends JPanel {
 		label_2.setBounds(34, 123, 54, 15);
 		add(label_2);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(77, 120, 179, 21);
-		add(textField);
-		
 		JLabel label_3 = new JLabel("\u5FEB\u9012\u5458\u7535\u8BDD");
 		label_3.setBounds(441, 123, 74, 15);
 		add(label_3);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(514, 120, 179, 21);
-		add(textField_1);
-		
 		JLabel label_4 = new JLabel("\u8BA2\u5355\u53F7");
 		label_4.setBounds(34, 165, 42, 15);
 		add(label_4);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(77, 162, 179, 21);
-		add(textField_2);
 		
 		JLabel label_5 = new JLabel("\u6536\u4EF6\u4EBA\u4FE1\u606F");
 		label_5.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		label_5.setBounds(311, 210, 102, 15);
 		add(label_5);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(77, 253, 179, 21);
-		add(textField_3);
-		
 		JLabel label_6 = new JLabel("\u7535\u8BDD");
 		label_6.setBounds(461, 256, 54, 15);
 		add(label_6);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(514, 253, 179, 21);
-		add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(77, 297, 179, 21);
-		add(textField_5);
-		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(514, 297, 179, 21);
-		add(textField_6);
 		
 		JLabel label_7 = new JLabel("\u624B\u673A");
 		label_7.setBounds(34, 300, 54, 15);
@@ -166,27 +150,34 @@ public class Receiver extends JPanel {
 		toolBar.setBorder(null);
 		add(toolBar);
 		
-		JLabel label_12 = new JLabel("\u72B6\u6001");
+		label_12 = new JLabel("\u72B6\u6001\u680F");
 		toolBar.add(label_12);
 		
 		JButton button = new JButton("\u786E\u5B9A");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ReceiverVO receiverVO=new ReceiverVO(textField.getText(), textField_1.getText(), textField_2.getText(), label_11.getText(), 
-						textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText(), textArea.getText());
-				//function:judge whether the information is not complete
-				boolean complete=receiverinbl.JudgeNull(receiverVO);
-				if(complete==true){
-					boolean valid=receiverinbl.searchOrder(textField_2.getText());
-					if(valid==false){
-						label_12.setText("此订单不存在");
+				//显示确认按钮
+				int n=JOptionPane.showConfirmDialog(null, "确认新建收件人信息单？","no",JOptionPane.YES_NO_OPTION);
+				if(n==JOptionPane.YES_OPTION){
+					ReceiverVO receiverVO=new ReceiverVO(textFields[0].getText(), textFields[1].getText(), textFields[2].getText(), label_11.getText(), 
+							textFields[3].getText(), textFields[4].getText(), textFields[5].getText(), textFields[6].getText(), textArea.getText());
+					//function:judge whether the information is not complete
+					boolean complete=receiverinbl.JudgeNull(receiverVO);
+					if(complete==true){
+						boolean valid=receiverinbl.searchOrder(textFields[2].getText());
+						if(valid==false){
+							label_12.setText("此订单不存在");
+						}else{
+							receiverinbl.addReceiver(receiverVO);
+							label_12.setText("新建成功");
+							button.setEnabled(false);
+							cleanSignal=true;
+						}
 					}else{
-						receiverinbl.addReceiver(receiverVO);
-						label_12.setText("新建成功");
-						clean();
+						label_12.setText("信息填写不完整，请补全信息");
 					}
-				}else{
-					label_12.setText("信息填写不完整，请补全信息");
+					Thread thread=new Thread(receiverframe);
+					thread.start();
 				}
 			}
 		});
@@ -233,7 +224,10 @@ public class Receiver extends JPanel {
 		JButton button_2 = new JButton("\u6E05\u7A7A");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clean();
+				int n=JOptionPane.showConfirmDialog(null, "确认清空？","no",JOptionPane.YES_NO_OPTION);
+				if(n==JOptionPane.YES_OPTION){
+					clean();
+				}
 			}
 		});
 		button_2.setBounds(425, 459, 52, 52);
@@ -254,5 +248,19 @@ public class Receiver extends JPanel {
 		main.repaint();
 		main.invalidate();
 		main.setVisible(true);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		label_12.setText("状态栏");
+		if(cleanSignal==true){
+			clean();
+		}
 	}
 }

@@ -21,8 +21,13 @@ public class ConstantPolicybl implements ConstantPolicyBLService,ConstantInfo{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ConstantVO vo=new ConstantVO(po.getAddress1(), po.getAddress2(), po.getDistance(), po.getPrice());
-		return vo;
+		if(po==null){
+			return null;
+		}else{
+			ConstantVO vo=new ConstantVO(po.getAddress1(), po.getAddress2(), po.getDistance(), po.getPrice());
+			return vo;
+		}
+
 	}
 
 	@Override
@@ -37,24 +42,23 @@ public class ConstantPolicybl implements ConstantPolicyBLService,ConstantInfo{
 		}
 	}
 
-	@Override
-	public void endConstant() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public double GetDistance(String address1, String address2) {
 		// TODO Auto-generated method stub
-		
-		return 0;
+		ConstantVO vo=checkConstant(address1, address2);
+		if(vo==null){
+			return 0;
+		}else{
+			return vo.getDistance();	
+		}
 	}
 
-	@Override
-	public double GetMoney(String address1, String address2) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+//	@Override
+//	public double GetMoney(String address1, String address2) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 
 
 }

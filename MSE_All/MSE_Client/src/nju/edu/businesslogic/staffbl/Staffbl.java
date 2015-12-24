@@ -91,11 +91,6 @@ public class Staffbl implements StaffBLService,checkStaffInfo,editStaffInfo{
 		}
 	}
 
-	@Override
-	public void endStaff() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public StaffPO getStaffPO(String name) {

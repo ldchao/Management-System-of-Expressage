@@ -6,7 +6,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import nju.edu.dataservice.accountdataservice.AccountDataService;
-import nju.edu.dataservice.approvedataservice.ApproveDataService;
 import nju.edu.dataservice.billdataservice.BillDataService;
 import nju.edu.dataservice.checklistdataservice.ChecklistDataService;
 import nju.edu.dataservice.financedataservice.PayeeorderDataService;
@@ -37,7 +36,7 @@ public class RMIHelper {
 	private static boolean inited = false;
 
 	private static AccountDataService AccountData;
-	private static ApproveDataService ApproveData;
+//	private static ApproveDataService ApproveData;
 	private static BillDataService BillData;
 	private static ChecklistDataService ChecklistData;
 	private static PayorderDataService PayorderData;
@@ -78,8 +77,8 @@ public class RMIHelper {
 		String urlPrefix = "rmi://" + IP + "/";
 		AccountData = (AccountDataService) Naming.lookup(urlPrefix
 				+ "AccountData");
-		ApproveData = (ApproveDataService) Naming.lookup(urlPrefix
-				+ "ApproveData");
+//		ApproveData = (ApproveDataService) Naming.lookup(urlPrefix
+//				+ "ApproveData");
 		BillData = (BillDataService) Naming.lookup(urlPrefix + "BillData");
 		ChecklistData = (ChecklistDataService) Naming.lookup(urlPrefix
 				+ "ChecklistData");
@@ -124,9 +123,9 @@ public class RMIHelper {
 		return AccountData;
 	}
 
-	public static ApproveDataService getApproveData() {
-		return ApproveData;
-	}
+//	public static ApproveDataService getApproveData() {
+//		return ApproveData;
+//	}
 
 	public static BillDataService getBillData() {
 		return BillData;

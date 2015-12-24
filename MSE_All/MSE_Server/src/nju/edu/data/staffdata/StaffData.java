@@ -27,7 +27,7 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService {
 		}
 		return staffPOs;
 	}
-
+//根据用户名查找po
 	@Override
 	public StaffPO get(String name) throws RemoteException {
 		// TODO Auto-generated method stub

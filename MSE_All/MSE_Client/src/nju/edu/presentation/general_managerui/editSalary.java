@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -23,8 +24,9 @@ import State.SalaryModel;
 import nju.edu.VO.SalaryVO;
 import nju.edu.businesslogic.policybl.SalaryPolicybl;
 import nju.edu.presentation.courierui.InputNumber;
+import nju.edu.presentation.courierui.JTextFieldLimit;
 
-public class editSalary extends JPanel{
+public class editSalary extends JPanel implements Runnable{
 
 	private JTextField textField;
 	private JTextField textField_1;
@@ -112,18 +114,23 @@ public class editSalary extends JPanel{
 		JButton btnNewButton = new JButton("\u786E\u5B9A");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField_1.getText().equals("")){
-					label_4.setText("请输入价格");
-				}else{
-					SalaryVO salaryVO=new SalaryVO(textField.getText(), Double.parseDouble(textField_1.getText()), salaryModel);
-					SalaryPolicybl salaryPolicybl=new SalaryPolicybl();
-					salaryPolicybl.editSalary(salaryVO);
-					Salary salary=new Salary(salaryVO,main,loginPO);
-					main.remove(editSalary);
-					main.add(salary);
-					main.invalidate();
-					main.repaint();
-					main.setVisible(true);
+				int n=JOptionPane.showConfirmDialog(null, "确认修改？","no", JOptionPane.YES_NO_OPTION);
+				if(n==JOptionPane.YES_OPTION){
+					if(textField_1.getText().equals("")){
+						label_4.setText("请输入价格");
+						Thread thread=new Thread(editSalary);
+						thread.start();
+					}else{
+						SalaryVO salaryVO=new SalaryVO(textField.getText(), Double.parseDouble(textField_1.getText()), salaryModel);
+						SalaryPolicybl salaryPolicybl=new SalaryPolicybl();
+						salaryPolicybl.editSalary(salaryVO);
+						Salary salary=new Salary(salaryVO,main,loginPO);
+						main.remove(editSalary);
+						main.getContentPane().add(salary);
+						main.invalidate();
+						main.repaint();
+						main.setVisible(true);
+					}
 				}
 			}
 		});
@@ -142,7 +149,7 @@ public class editSalary extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				Salary salary=new Salary(vo,main,loginPO);
 				main.remove(editSalary);
-				main.add(salary);
+				main.getContentPane().add(salary);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -177,6 +184,7 @@ public class editSalary extends JPanel{
 		textField_1.setText(vo.getSalary()+"");
 		textField_1.setForeground(new Color(88, 93, 103));
 		textField_1.setCaretColor(new Color(88, 93, 103));
+		textField.setDocument(new JTextFieldLimit(7));
 		add(textField_1);
 		
 		JToolBar toolBar = new JToolBar();
@@ -187,6 +195,39 @@ public class editSalary extends JPanel{
 		
 		label_4 = new JLabel("\u72B6\u6001");
 		toolBar.add(label_4);
+		
+		JButton button2 = new JButton("取消");
+		button2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				editSalary neweditSalary=new editSalary(vo,main,loginPO);
+				main.remove(editSalary);
+				main.getContentPane().add(neweditSalary);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
+		
+		button2.setBounds(425, 459, 52, 52);
+		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
+		Image temp2 = image2.getImage().getScaledInstance(button2.getWidth(),
+				button2.getHeight(),image2.getImage().SCALE_DEFAULT);
+		image2 = new ImageIcon(temp2);
+		button2.setIcon(image2);
+		button2.setContentAreaFilled(false);
+		button2.setBorderPainted(false);
+		add(button2);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		label_4.setText("状态");
 	}
 
 }

@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import nju.edu.data.accountdata.AccountData;
-import nju.edu.data.approvedata.ApproveData;
 import nju.edu.data.billdata.BillData;
 import nju.edu.data.checklistdata.ChecklistData;
 import nju.edu.data.financedata.PayeeorderData;
@@ -39,7 +38,7 @@ public class RMIHelper {
 
 	static {
 		NAMING_MAP.put("AccountData", AccountData.class);
-		NAMING_MAP.put("ApproveData", ApproveData.class);
+//		NAMING_MAP.put("ApproveData", ApproveData.class);
 		NAMING_MAP.put("BillData", BillData.class);
 		NAMING_MAP.put("ChecklistData", ChecklistData.class);
 		NAMING_MAP.put("PayorderData", PayorderData.class);
