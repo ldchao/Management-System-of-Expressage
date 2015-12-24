@@ -32,13 +32,26 @@ public class PayorderData extends UnicastRemoteObject implements
 
 	@Override
 	public ArrayList<PayorderPO> find() {
+
+		// checked already
 		ArrayList<PayorderPO> paylist = new ArrayList<>();
 		ArrayList<String> fileList = fileReader.Reader("DataBase/Payorder.txt");
-
 		for (String fl : fileList) {
 			String str[] = fl.split(";");
 			PayorderPO payorderPO = new PayorderPO(str[0],
-					Double.parseDouble(str[1]), str[2], str[3], str[4], str[5]);
+					Double.parseDouble(str[1]), str[2], str[3], str[4], str[5],
+					ApproveState.Valid);
+			paylist.add(payorderPO);
+		}
+
+		// unchecked
+		ArrayList<String> unfileList = fileReader
+				.Reader("DataBase/uncheckedPayorder.txt");
+		for (String fl : unfileList) {
+			String str[] = fl.split(";");
+			PayorderPO payorderPO = new PayorderPO(str[0],
+					Double.parseDouble(str[1]), str[2], str[3], str[4], str[5],
+					ApproveState.Invalid);
 			paylist.add(payorderPO);
 		}
 
@@ -58,7 +71,7 @@ public class PayorderData extends UnicastRemoteObject implements
 					&& part[3].equals(po.getList())
 					&& part[4].equals(po.getComment())
 					&& part[5].equals(po.getPayor())) {
-				
+
 				list.remove(str);
 				break;
 			}

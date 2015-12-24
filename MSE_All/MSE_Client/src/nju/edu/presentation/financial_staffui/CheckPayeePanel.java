@@ -35,10 +35,12 @@ public class CheckPayeePanel extends JPanel {
 	 * Create the panel.
 	 */
 	protected void paintComponent(Graphics g) {
-		ImageIcon image = new ImageIcon("image/financial_stuff/checkPayeePanel.png");
-		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+		ImageIcon image = new ImageIcon(
+				"image/financial_stuff/checkPayeePanel.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
 	}
-	
+
 	public CheckPayeePanel(JFrame main, LoginPO loginPO, String date,
 			String shop) {
 
@@ -47,7 +49,7 @@ public class CheckPayeePanel extends JPanel {
 
 		CheckPayeePanel cpep = this;
 
-		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
@@ -68,10 +70,10 @@ public class CheckPayeePanel extends JPanel {
 		button_4.setBounds(13, -9, 63, 63);
 		button_4.setIcon(new ImageIcon("image/transparent_circle.png"));
 		button_4.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
 				button_4.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+			}
 		});
 		add(button_4);
 
@@ -84,7 +86,7 @@ public class CheckPayeePanel extends JPanel {
 			label_1 = new JLabel("无此编号营业厅");
 		}
 		label_1.setFont(new Font("微软雅黑", Font.PLAIN, 24));
-		label_1.setBounds(276, 111, 310, 23);
+		label_1.setBounds(150, 111, 500, 23);
 		label_1.setForeground(new Color(248, 179, 28));
 		add(label_1);
 
@@ -94,8 +96,8 @@ public class CheckPayeePanel extends JPanel {
 
 		table = new JTable();
 		table.setRowHeight(25);
-		table.setSelectionBackground(new Color(88, 93, 103,230));
-		table.setSelectionForeground(new Color(255, 255, 255,200));
+		table.setSelectionBackground(new Color(88, 93, 103, 230));
+		table.setSelectionForeground(new Color(255, 255, 255, 200));
 		// 使表格居中
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
@@ -104,7 +106,7 @@ public class CheckPayeePanel extends JPanel {
 		scrollPane.setViewportView(table);
 		table.setRowSelectionAllowed(true);
 		table.setEnabled(false);
-		
+
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		tableModel = new DefaultTableModel(new Object[][] {
 				{ null, null, null, null }, { null, null, null, null },
@@ -128,11 +130,27 @@ public class CheckPayeePanel extends JPanel {
 
 		JLabel lblMoney = new JLabel("");
 		lblMoney.setFont(new Font("微软雅黑", Font.BOLD, 15));
-		lblMoney.setForeground(new Color(255, 255, 255,200));
+		lblMoney.setForeground(new Color(255, 255, 255, 200));
 		lblMoney.setBounds(610, 448, 63, 23);
 		add(lblMoney);
+
+		JLabel label = new JLabel("\u5408\u8BA1");
+		label.setBounds(406, 473, 54, 15);
+		add(label);
+		label.setVisible(false);
 		// 合计
 		JButton button = new JButton("");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				label.setVisible(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label.setVisible(false);
+			}
+		});
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 		button.addActionListener(new ActionListener() {
@@ -144,6 +162,7 @@ public class CheckPayeePanel extends JPanel {
 		});
 		button.setBounds(350, 478, 50, 50);
 		add(button);
+
 	}
 
 	public void showTable(ArrayList<PayeeorderVO> payeevo) {

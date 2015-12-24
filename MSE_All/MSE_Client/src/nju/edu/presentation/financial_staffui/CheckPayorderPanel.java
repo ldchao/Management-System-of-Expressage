@@ -27,6 +27,7 @@ import java.awt.Color;
 import javax.swing.JScrollPane;
 
 import PO.LoginPO;
+import State.ApproveState;
 import nju.edu.VO.PayorderVO;
 import nju.edu.businesslogic.financebl.PayorderBL;
 
@@ -43,16 +44,17 @@ public class CheckPayorderPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		ImageIcon icon = new ImageIcon("image/financial_stuff/lookPay.png");
-		g.drawImage(icon.getImage(), 0, 0, getSize().width, getSize().height, this);
+		g.drawImage(icon.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
 	}
-	
+
 	public CheckPayorderPanel(LoginPO loginPO, JFrame main) {
 		setLayout(null);
 		setSize(750, 600);
 
 		CheckPayorderPanel cpp = this;
 
-		JLabel lblHello = new JLabel("Hello! "+ loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
@@ -93,7 +95,7 @@ public class CheckPayorderPanel extends JPanel {
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
 		table.setDefaultRenderer(Object.class, r);
-		table.setSelectionBackground(new Color(88, 93, 103,200));
+		table.setSelectionBackground(new Color(88, 93, 103, 200));
 		table.setSelectionForeground(new Color(255, 255, 255, 230));
 		table.setOpaque(false);
 		// 选取行
@@ -107,32 +109,32 @@ public class CheckPayorderPanel extends JPanel {
 		});
 		scrollPane.setViewportView(table);
 		table.setBorder(null);
-//		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
+		// table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
 		tableModel = new DefaultTableModel(new Object[][] {
-				{ "", "", "", "", "", "" },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null },
-				{ null, null, null, null, null, null }, }, new String[] {
+				{ "", "", "", "", "", "", "" },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null },
+				{ null, null, null, null, null, null, null }, }, new String[] {
 				"\u4ED8\u6B3E\u65E5\u671F", "\u4ED8\u6B3E\u91D1\u989D",
 				"\u4ED8\u6B3E\u8D26\u53F7", "\u4ED8\u6B3E\u6761\u76EE",
-				"\u5907\u6CE8", "\u4ED8\u6B3E\u4EBA" });
+				"\u5907\u6CE8", "\u4ED8\u6B3E\u4EBA", "审批状态" });
 		table.setModel(tableModel);
 		table.getColumnModel().getColumn(0).setPreferredWidth(85);
 		table.getColumnModel().getColumn(1).setPreferredWidth(85);
@@ -145,8 +147,6 @@ public class CheckPayorderPanel extends JPanel {
 
 		showTable(payorderBL.checkPayorder());
 	}
-	
-	
 
 	// 显示
 	public static void showTable(ArrayList<PayorderVO> pavo) {
@@ -158,6 +158,14 @@ public class CheckPayorderPanel extends JPanel {
 			tableModel.setValueAt(pa.getList(), i, 3);
 			tableModel.setValueAt(pa.getComment(), i, 4);
 			tableModel.setValueAt(pa.getPayor(), i, 5);
+
+			if (pa.getState() == ApproveState.Valid)
+				tableModel.setValueAt("已审批", i, 6);
+			else if (pa.getState() == ApproveState.Invalid)
+				tableModel.setValueAt("未审批", i, 6);
+			else
+				tableModel.setValueAt("审批失败", i, 6);
+
 			i++;
 
 			if (i >= table.getRowCount()) {
