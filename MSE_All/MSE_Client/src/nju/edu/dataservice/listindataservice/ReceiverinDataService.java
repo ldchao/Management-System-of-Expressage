@@ -3,7 +3,7 @@ package nju.edu.dataservice.listindataservice;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import Client.PO.ReceiverPO;
+import PO.ReceiverPO;
 import State.ResultMessage;
 
 public interface ReceiverinDataService extends Remote{

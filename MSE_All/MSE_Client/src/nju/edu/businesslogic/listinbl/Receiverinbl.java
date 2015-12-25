@@ -7,7 +7,7 @@ import nju.edu.dataservice.listindataservice.ReceiverinDataService;
 
 import java.rmi.RemoteException;
 
-import Client.PO.ReceiverPO;
+import PO.ReceiverPO;
 import State.ResultMessage;
 
 public class Receiverinbl implements ReceiverinBLService{

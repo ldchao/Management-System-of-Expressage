@@ -57,6 +57,14 @@ public class Shippingorder extends JPanel implements Runnable{
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		ShippingBLService sb = new ShippingBL();
 		OrganizationNumPO op = new OrganizationNumPO();
+		
+		for(int i=0;i<6;i++){
+			textField[i]=new JTextField();
+			add(textField[i]);
+			textField[i].setColumns(10);
+			textField[i].setForeground(new Color(88, 93, 103));
+			textField[i].setCaretColor(new Color(88, 93, 103));
+		}
 
 		JButton button = new JButton("·µ»Ø");
 		button.setBounds(13, -9, 63, 63);
@@ -166,12 +174,7 @@ public class Shippingorder extends JPanel implements Runnable{
 		textField[5].setBounds(169, 378, 181, 21);
 		
 
-		for(int i=0;i<6;i++){
-			add(textField[i]);
-			textField[i].setColumns(10);
-			textField[i].setForeground(new Color(88, 93, 103));
-			textField[i].setCaretColor(new Color(88, 93, 103));
-		}
+		
 		
 		JLabel lblNewLabel_6 = new JLabel("ÔË·Ñ");
 		lblNewLabel_6.setBounds(77, 421, 54, 15);

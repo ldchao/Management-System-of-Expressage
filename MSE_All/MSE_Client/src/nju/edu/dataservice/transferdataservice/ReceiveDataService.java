@@ -17,4 +17,7 @@ public interface ReceiveDataService extends Remote{
 	
 	//在数据中查找对应的未接收的装运单
 	public LoadorderPO checkUnreceive_loadorderPO(String s)throws RemoteException;
+	
+	//在数据中删除已经接收的装运单
+	public void deleteUnreceive_loadorderPO(String s)throws RemoteException;
 }

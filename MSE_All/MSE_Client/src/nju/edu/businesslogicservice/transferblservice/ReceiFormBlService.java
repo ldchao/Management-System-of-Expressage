@@ -9,5 +9,5 @@ public interface ReceiFormBlService {
     
 	
 	//新建接收单
-	public void addReceiveOrder(ReceiFormVO rv);
+	public void addReceiveOrder(ReceiFormVO rv,String s);
 }

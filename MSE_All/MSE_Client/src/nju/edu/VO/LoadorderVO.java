@@ -8,16 +8,18 @@ import PO.OrganizationNumPO;
 public class LoadorderVO implements Serializable {
 	   String offName;  //出发地名字
 	   String offNum;
+	   String loadNum;  //装运单编号
 	   String carNum;  //通过装运单编号前四位得到交通工具代号
 	   String monitorName;  //监装员姓名
 	   String transferName;  //押运员姓名 
 	   ArrayList<String> order;  //所有订单编号
 	   
-	public LoadorderVO(String transferNum, String carNum, String monitorName,
+	public LoadorderVO(String transferNum,  String loadNum, String carNum, String monitorName,
 			String transferName, ArrayList<String> order) {
 		super();
 		OrganizationNumPO op=new OrganizationNumPO();
 		this.offName = op.getName(transferNum);
+		this.loadNum=loadNum;
 		this.offNum=transferNum;
 		this.carNum = carNum;
 		this.monitorName = monitorName;
@@ -33,6 +35,10 @@ public class LoadorderVO implements Serializable {
 		return offNum;
 	}
 
+	public String getLoadNum() {
+		return loadNum;
+	}
+	
 	public String getCarNum() {
 		return carNum;
 	}

@@ -46,8 +46,6 @@ public class ReceiveData extends UnicastRemoteObject implements
 		for (String loadorder : loadorderlist) {
 			if (loadorder.startsWith(s)) {
 				need_loadorder = loadorder;
-				loadorderlist.remove(loadorder);
-				fileWriter.Writer("DataBase/unReceive_Loadorder.txt", loadorderlist, false);
 				isHave = true;
 				break;
 			}
@@ -79,6 +77,19 @@ public class ReceiveData extends UnicastRemoteObject implements
 
 		list.remove(s);
 		fileWriter.Writer("DataBase/UncheckedArriverorder.txt", list, false);		 
+	}
+	//在数据中删除已经接收的装运单
+	@Override
+	public void deleteUnreceive_loadorderPO(String s) throws RemoteException {
+		ArrayList<String> loadorderlist = fileReader
+				.Reader("DataBase/unReceive_Loadorder.txt");
+		for (String loadorder : loadorderlist) {
+			if (loadorder.startsWith(s)) {
+				loadorderlist.remove(loadorder);
+				fileWriter.Writer("DataBase/unReceive_Loadorder.txt", loadorderlist, false);
+				break;
+			}
+		}
 	}
 
 }

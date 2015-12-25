@@ -20,7 +20,7 @@ import State.TransportState;
 public class ReceiFormBL implements ReceiFormBlService,ApproveReceiFormInfo{
 	//新建接收单
 	@Override
-	public void addReceiveOrder(ReceiFormVO rv) {
+	public void addReceiveOrder(ReceiFormVO rv,String s) {
 		ReceiveorderPO PO = new ReceiveorderPO(rv.getData(),
 				rv.getDepartPlace(), rv.getArrivePlace(), getState(rv.getArrive_state()),rv.getOrderNum(),
 				ApproveState.NotApprove);
@@ -30,6 +30,8 @@ public class ReceiFormBL implements ReceiFormBlService,ApproveReceiFormInfo{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		DeleteLoadorderInfo delete=new ReceiveBL();
+		delete.deleteUnreceive_loadorderPO(s);
 		update(rv.getOrderNum(), rv.getArrivePlace(), rv.getCarNum());
 		System.out.println("接收单已提交总经理审批");
 	}

@@ -20,6 +20,7 @@ import StaticValue.StoreNum;
 import nju.edu.VO.ChangeorderVO;
 import nju.edu.businesslogic.transferbl.TransferBL;
 import nju.edu.businesslogicservice.transferblservice.TransferBLService;
+import nju.edu.presentation.courierui.JTextFieldLimit;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
 import java.awt.Color;
@@ -42,6 +43,8 @@ public class Changeorder extends JPanel implements Runnable {
 	Changeorder nowPanel;
 	JPanel returnui;
 	LoginPO loginpo;
+	String offNumber;
+	String arriveNumber;
 
 	/**
 	 * Create the panel.
@@ -50,13 +53,29 @@ public class Changeorder extends JPanel implements Runnable {
 			String transferWay, int arriveNum, ArrayList<String> orderlist) {
 
 		main = m;
-		textField=new JTextField[5];
+		textField=new JTextField[6];
 		JPanel lastui = jp;
 		nowPanel = this;
 		returnui = jp2;
 		loginpo = loginPO;
 		setLayout(null);
+
+		for(int i=0;i<6;i++){
+			textField[i]=new JTextField();
+			add(textField[i]);
+			textField[i].setColumns(10);
+			textField[i].setForeground(new Color(88, 93, 103));
+			textField[i].setCaretColor(new Color(88, 93, 103));
+		}
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		String off=loginPO.getShop();
+		String arrive=StoreNum.storeName[arriveNum - 1];
+		OrganizationNumPO op=new OrganizationNumPO();
+		offNumber=op.getNum(off);
+		arriveNumber=op.getNum(arrive);
+		if(arriveNumber.length()==6){
+			arriveNumber=arriveNumber.substring(3);
+		}
 
 		JButton button = new JButton("返回");
 		button.setBounds(13, -9, 63, 63);
@@ -113,52 +132,51 @@ public class Changeorder extends JPanel implements Runnable {
 		label_3.setBounds(70, 174, 96, 15);
 		add(label_3);
 
-		textField[0].addKeyListener(new KeyAdapter() {
+		
+		textField[0].setText(offNumber+"-"+arriveNumber);
+		textField[0].setEditable(false);
+		textField[0].setBounds(180, 168, 60, 21);
+		
+		textField[1].addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				if (!(Character.isDigit(e.getKeyChar()))) {
 					e.consume();
 				}
 			}
 		});
-		textField[0].setBounds(180, 168, 134, 21);
+		textField[1].setDocument(new JTextFieldLimit(4));
+		textField[1].setBounds(254, 168, 60, 21);
 
 
 		JLabel lblNewLabel = new JLabel("出发地");
 		lblNewLabel.setBounds(70, 216, 54, 15);
 		add(lblNewLabel);
 
-		textField[1].setText(loginPO.getShop());
-		textField[1].setEditable(false);
-		textField[1].setBounds(180, 213, 134, 21);
+		textField[2].setText(off);
+		textField[2].setEditable(false);
+		textField[2].setBounds(180, 213, 134, 21);
 
 		JLabel lblNewLabel_3 = new JLabel("到达地");
 		lblNewLabel_3.setBounds(70, 262, 54, 15);
 		add(lblNewLabel_3);
 
-		textField[2].setText(StoreNum.storeName[arriveNum - 1]);
-		textField[2].setEditable(false);
-		textField[2].setBounds(180, 259, 134, 21);
+		textField[3].setText(arrive);
+		textField[3].setEditable(false);
+		textField[3].setBounds(180, 259, 134, 21);
 
 		JLabel label_6 = new JLabel("运输方式");
 		label_6.setBounds(70, 307, 54, 15);
 		add(label_6);
 
-		textField[3].setText(transferWay);
-		textField[3].setEditable(false);
-		textField[3].setBounds(180, 304, 134, 21);
+		textField[4].setText(transferWay);
+		textField[4].setEditable(false);
+		textField[4].setBounds(180, 304, 134, 21);
 
 		JLabel lblNewLabel_1 = new JLabel("监装员");
 		lblNewLabel_1.setBounds(70, 355, 54, 15);
 		add(lblNewLabel_1);
 
-		textField[4].setBounds(180, 352, 134, 21);
-
-		for(int i=0;i<5;i++){
-			add(textField[i]);
-			textField[i].setColumns(10);
-			textField[i].setForeground(new Color(88, 93, 103));
-			textField[i].setCaretColor(new Color(88, 93, 103));
-		}
+		textField[5].setBounds(180, 352, 134, 21);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(374, 131, 295, 289);
@@ -198,12 +216,11 @@ public class Changeorder extends JPanel implements Runnable {
 		btnNewButton.setBounds(226, 457, 52, 52);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OrganizationNumPO op = new OrganizationNumPO();
 				String date = lblNewLabel_8.getText();
-				String transferNum = textField[0].getText();
-				String offNum = op.getNum(textField[1].getText());
-				String arriveNum = op.getNum(textField[2].getText());
-				String moniterName = textField[4].getText();
+				String transferNum = offNumber+arriveNumber+textField[1].getText();
+				String offNum =offNumber ;
+				String arriveNum = offNumber+arriveNumber;
+				String moniterName = textField[5].getText();
 				if (date.equals("单击选择日期") || transferNum.length() != 10
 						|| moniterName.length() == 0) {
 					label_4.setText("输入信息有误！");

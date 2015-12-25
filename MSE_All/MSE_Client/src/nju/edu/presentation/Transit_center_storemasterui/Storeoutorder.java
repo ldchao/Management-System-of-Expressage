@@ -44,6 +44,15 @@ public class Storeoutorder extends JPanel implements Runnable {
 		nowPanel = this;
 		loginpo = loginPO;
 		textField=new JTextField[4];
+		for(int i=0;i<4;i++){
+			textField[i]=new JTextField();
+			textField[i].setEditable(false);
+			add(textField[i]);
+			textField[i].setColumns(10);
+			textField[i].setForeground(new Color(88, 93, 103));
+			textField[i].setCaretColor(new Color(88, 93, 103));
+		}
+
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		setLayout(null);
 		OrganizationNumPO op = new OrganizationNumPO();
@@ -128,15 +137,6 @@ public class Storeoutorder extends JPanel implements Runnable {
 
 		textField[3].setText(cv.getNumberOfTransfer());
 		textField[3].setBounds(298, 358, 237, 21);
-
-
-		for(int i=0;i<4;i++){
-			textField[i].setEditable(false);
-			add(textField[i]);
-			textField[i].setColumns(10);
-			textField[i].setForeground(new Color(88, 93, 103));
-			textField[i].setCaretColor(new Color(88, 93, 103));
-		}
 		
 		JLabel lblNewLabel_10 = new JLabel("ÉóÅú×´Ì¬");
 		lblNewLabel_10.setBounds(168, 412, 54, 15);

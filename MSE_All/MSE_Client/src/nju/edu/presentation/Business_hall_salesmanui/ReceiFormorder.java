@@ -181,7 +181,7 @@ public class ReceiFormorder extends JPanel implements Runnable {
 									.getCarNum(), lv.getMonitorName(), lv
 									.getTransferName(), lv.getOrder());
 					ReceiFormBlService rb = new ReceiFormBL();
-					rb.addReceiveOrder(rv);
+					rb.addReceiveOrder(rv,lv.getLoadNum());
 					label_4.setText("接收单已提交总经理审批");
 					Thread t = new Thread(nowPanel);
 					t.start();

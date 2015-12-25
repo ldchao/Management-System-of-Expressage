@@ -42,6 +42,15 @@ public class Storeinorder extends JPanel implements Runnable {
 		loginpo = loginPO;
 		nowPanel = this;
 		textField=new JTextField[5];
+
+		for(int i=0;i<5;i++){
+			textField[i]=new JTextField();
+			add(textField[i]);
+			textField[i].setColumns(10);
+			textField[i].setForeground(new Color(88, 93, 103));
+			textField[i].setCaretColor(new Color(88, 93, 103));
+		}
+
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		setLayout(null);
 
@@ -164,13 +173,6 @@ public class Storeinorder extends JPanel implements Runnable {
 			}
 		});
 		textField[4].setBounds(440, 341, 93, 21);
-
-		for(int i=0;i<5;i++){
-			add(textField[i]);
-			textField[i].setColumns(10);
-			textField[i].setForeground(new Color(88, 93, 103));
-			textField[i].setCaretColor(new Color(88, 93, 103));
-		}
 		
 		JLabel lblNewLabel_10 = new JLabel("ÉóÅú×´Ì¬");
 		lblNewLabel_10.setBounds(168, 398, 54, 15);

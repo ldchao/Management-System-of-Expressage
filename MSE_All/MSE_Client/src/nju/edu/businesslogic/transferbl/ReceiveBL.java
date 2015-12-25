@@ -21,13 +21,13 @@ import State.ApproveState;
 import State.ArriveState;
 import State.TransportState;
 
-public class ReceiveBL implements ReceiveBLService ,ApproveReceiveInfo{
+public class ReceiveBL implements ReceiveBLService ,ApproveReceiveInfo,DeleteLoadorderInfo{
 
 	LoadorderVO needinputarrive = null;
 
 	// 创建中转中心到达单
 	@Override
-	public void build(ArriverorderVO av) {
+	public void build(ArriverorderVO av,String id) {
 		ArriverorderPO PO = new ArriverorderPO(av.getNumberOfTransferStation(),
 				av.getDate(), av.getOffnum(), getState(av.getArrive_state()),
 				ApproveState.NotApprove);
@@ -37,6 +37,7 @@ public class ReceiveBL implements ReceiveBLService ,ApproveReceiveInfo{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		deleteUnreceive_loadorderPO(id);
 		update(av.getOrder(), av.getNumberOfTransferStation(),av.getCarNum());
 		System.out.println("到达单已提交总经理审批");
 	}
@@ -80,6 +81,7 @@ public class ReceiveBL implements ReceiveBLService ,ApproveReceiveInfo{
 			lp = receivedata.checkUnreceive_loadorderPO(s);
 			if (lp != null)
 				needinputarrive = new LoadorderVO(lp.getTransferNum(), lp
+						.getLoadorderNum(), lp
 						.getLoadorderNum().substring(0, 4),
 						lp.getMonitorName(), lp.getTransferName(),
 						lp.getOrder());
@@ -89,6 +91,16 @@ public class ReceiveBL implements ReceiveBLService ,ApproveReceiveInfo{
 		return needinputarrive;
 	}
 
+	//删除已经接收的装运单
+	public void deleteUnreceive_loadorderPO(String s) {
+		ReceiveDataService receivedata = RMIHelper.getReceiveData();
+		try {
+			receivedata.deleteUnreceive_loadorderPO(s);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private ArriveState getState(String s) {
 		if (s.equals("损坏")) {
 			return ArriveState.Damaged;

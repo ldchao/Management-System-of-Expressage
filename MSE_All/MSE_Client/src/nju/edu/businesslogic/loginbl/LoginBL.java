@@ -101,7 +101,7 @@ public class LoginBL implements LoginBLService {
 
 	public void setUser(String user, String key) {
 		try {
-			FileWriter writer = new FileWriter(new File("src/Remember.txt"));
+			FileWriter writer = new FileWriter(new File("clientFile/Remember.txt"));
 			writer.write(user + ";" + key);
 			writer.close();
 		} catch (IOException e) {
@@ -111,7 +111,7 @@ public class LoginBL implements LoginBLService {
 
 	public String[] getUser() {
 		String re[] = new String[2];
-		File file = new File("src/Remember.txt");
+		File file = new File("clientFile/Remember.txt");
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String line = reader.readLine();

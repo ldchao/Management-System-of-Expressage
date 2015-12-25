@@ -32,7 +32,14 @@ public class SetWarnData extends JPanel {
 		JFrame main = m;
 		JPanel lastui = jp;
 		SetWarnData nowPanel = this;
-		textField=new JTextField[2];
+		textField = new JTextField[2];
+		for (int i = 0; i < 2; i++) {
+			textField[i] = new JTextField();
+			add(textField[i]);
+			textField[i].setColumns(10);
+			textField[i].setForeground(new Color(88, 93, 103));
+			textField[i].setCaretColor(new Color(88, 93, 103));
+		}
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		setLayout(null);
 		Inventory_managementBLService ib = new Inventory_managementBL();
@@ -44,10 +51,10 @@ public class SetWarnData extends JPanel {
 		button.setBorderPainted(false);
 		button.setIcon(image1);
 		button.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
 				button.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+			}
 		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -64,7 +71,7 @@ public class SetWarnData extends JPanel {
 		lblNewLabel.setBounds(100, 14, 263, 15);
 		add(lblNewLabel);
 
-		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
@@ -82,22 +89,14 @@ public class SetWarnData extends JPanel {
 		add(lblNewLabel_2);
 
 		textField[1].addKeyListener(new KeyAdapter() {
-			public void  keyTyped(KeyEvent e) {
-				if (!(Character.isDigit(e.getKeyChar())||e.getKeyChar()=='.')) {
+			public void keyTyped(KeyEvent e) {
+				if (!(Character.isDigit(e.getKeyChar()) || e.getKeyChar() == '.')) {
 					e.consume();
 				}
 			}
 		});
 		textField[1].setBounds(376, 308, 150, 21);
 
-
-		for(int i=0;i<2;i++){
-			add(textField[i]);
-			textField[i].setColumns(10);
-			textField[i].setForeground(new Color(88, 93, 103));
-			textField[i].setCaretColor(new Color(88, 93, 103));
-		}
-		
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
 		toolBar.setBounds(8, 543, 750, 35);

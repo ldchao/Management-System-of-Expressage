@@ -175,7 +175,7 @@ public class Arriverorder extends JPanel implements Runnable{
 							getSelection(),lv.getCarNum(),lv.getMonitorName(),
 							lv.getTransferName(),lv.getOrder());
 					ReceiveBLService rb=new ReceiveBL();
-					rb.build(av);
+					rb.build(av,lv.getLoadNum());
 					label_4.setText("到达单已提交总经理审批");
 					Thread t=new Thread(nowPanel);
 					t.start();
