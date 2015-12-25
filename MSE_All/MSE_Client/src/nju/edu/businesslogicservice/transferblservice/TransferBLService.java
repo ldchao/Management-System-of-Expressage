@@ -9,8 +9,8 @@ public interface TransferBLService {
 	public void build(ChangeorderVO cv);
 	 
 	 //查看消息提醒
-	 public String checkRemind();
+	 public String checkRemind(String transferNum);
 	 
 	 //查看当前各个库区库存比例
-	 public String[][] checkStore();
+	 public String[][] checkStore(String transferNum);
 }

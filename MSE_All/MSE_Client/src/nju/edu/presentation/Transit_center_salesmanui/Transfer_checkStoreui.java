@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import nju.edu.businesslogic.transferbl.TransferBL;
 import nju.edu.businesslogicservice.transferblservice.TransferBLService;
 import PO.LoginPO;
+import PO.OrganizationNumPO;
 
 public class Transfer_checkStoreui extends JPanel {
 	private JTable table;
@@ -36,6 +37,8 @@ public class Transfer_checkStoreui extends JPanel {
 		JPanel lastui = jp;
 		Transfer_checkStoreui nowPanel = this;
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		OrganizationNumPO op=new OrganizationNumPO();
+		String transferNum=op.getNum(loginPO.getShop());
 		setLayout(null);
 
 		JButton button = new JButton("·µ»Ø");
@@ -79,7 +82,7 @@ public class Transfer_checkStoreui extends JPanel {
 		add(scrollPane);
 
 		TransferBLService tb = new TransferBL();
-		String[][] storeRadio = tb.checkStore();
+		String[][] storeRadio = tb.checkStore(transferNum);
 
 		table = new JTable();
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));

@@ -21,6 +21,8 @@ import javax.swing.JToolBar;
 import nju.edu.businesslogic.storebl.StoreMessageBL;
 import nju.edu.businesslogicservice.transferblservice.StoreinInfo;
 import PO.LoginPO;
+import PO.OrganizationNumPO;
+import StaticValue.StoreNum;
 
 public class Changeorder_choose_BH extends JPanel {
 	JFrame main;
@@ -35,6 +37,8 @@ public class Changeorder_choose_BH extends JPanel {
 		Changeorder_choose_BH nowPanel = this;
 		setLayout(null);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		OrganizationNumPO op=new OrganizationNumPO();
+		String transferNum=op.getNum(loginPO.getShop());
 		
 		JButton button = new JButton("·µ»Ø");
 		button.setBounds(13, -9, 63, 63);
@@ -72,11 +76,11 @@ public class Changeorder_choose_BH extends JPanel {
 		lblNewLabel_1.setBounds(149, 101, 80, 15);
 		add(lblNewLabel_1);
 
-		String[] jiahao = { "", "        1¼Ü", "        2¼Ü", "        3¼Ü",
-				"        4¼Ü", "        5¼Ü", "        6¼Ü", "        7¼Ü",
-				"        8¼Ü", "        9¼Ü", "      10¼Ü", "      11¼Ü",
-				"      12¼Ü", "      13¼Ü", "      14¼Ü", "      15¼Ü",
-				"      16¼Ü", "      17¼Ü", "      18¼Ü", "      19¼Ü", "      20¼Ü" };
+		String[] jiahao = new String[StoreNum.getBHnum(transferNum)+1];
+		jiahao[0]="";
+		for (int i = 1; i < jiahao.length; i++) {
+			jiahao[i]="      "+(i>9?"":" ")+i+"¼Ü";
+		}
 		JComboBox comboBox_1 = new JComboBox(jiahao);
 		comboBox_1.setBounds(249, 99, 90, 20);
 		add(comboBox_1);
@@ -130,7 +134,7 @@ public class Changeorder_choose_BH extends JPanel {
 		btnNewButton.setBounds(217, 500, 52, 52);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StoreinInfo storein = StoreMessageBL.getInstance();
+				StoreinInfo storein = StoreMessageBL.getInstance(transferNum);
 				boolean isValue = false;
 				int jia = -1;
 				for (int i = 0; i < jiahao.length; i++) {

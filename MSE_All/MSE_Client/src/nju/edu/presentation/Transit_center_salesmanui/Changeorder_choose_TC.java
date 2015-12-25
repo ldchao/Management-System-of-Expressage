@@ -20,6 +20,7 @@ import javax.swing.JToolBar;
 import nju.edu.businesslogic.storebl.StoreMessageBL;
 import nju.edu.businesslogicservice.transferblservice.StoreinInfo;
 import PO.LoginPO;
+import PO.OrganizationNumPO;
 
 public class Changeorder_choose_TC extends JPanel {
 	JFrame main;
@@ -34,6 +35,8 @@ public class Changeorder_choose_TC extends JPanel {
 		Changeorder_choose_TC nowPanel = this;
 		setLayout(null);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		OrganizationNumPO op=new OrganizationNumPO();
+		String transferNum=op.getNum(loginPO.getShop());
 		
 		JButton button = new JButton("·µ»Ø");
 		button.setBounds(13, -9, 63, 63);
@@ -91,7 +94,7 @@ public class Changeorder_choose_TC extends JPanel {
 		btnNewButton.setBounds(190, 474, 52, 52);	
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StoreinInfo storein=StoreMessageBL.getInstance();
+				StoreinInfo storein=StoreMessageBL.getInstance(transferNum);
 				boolean isValue=false;
 				int[] jia={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 				for (int i = 0; i < jia.length; i++) {

@@ -33,8 +33,8 @@ public class TransferBL implements TransferBLService,ApproveTransferInfo{
 	}
 
 	@Override
-	public String checkRemind() {
-		String[][] storeRatio=checkStore();
+	public String checkRemind(String transferNum) {
+		String[][] storeRatio=checkStore(transferNum);
 		String[] number;
 		String remind="";
 		double ratio;
@@ -45,15 +45,15 @@ public class TransferBL implements TransferBLService,ApproveTransferInfo{
 			ratio=(Integer.parseInt(number[0]))/(Integer.parseInt(number[1]));
 			if(ratio>=Double.parseDouble(storeRatio[i][2])){
 				remind+=(i/3)>2?("汽运区4排"+(i-8)+"架"):(qu[i/3]+(i%3+1)+"排")+
-						"达到提醒值，需要录入发往"+StoreNum.storeName[i]+"的中转单"+"\n";
+						"达到提醒值，需要录入发往"+StoreNum.getStoreName(transferNum, i)+"的中转单"+"\n";
 			}
 		}
 		return remind;
 	}
 
 	@Override
-	public String[][] checkStore() {
-		StoreinInfo sm=StoreMessageBL.getInstance();		
+	public String[][] checkStore(String transferNum) {
+		StoreinInfo sm=StoreMessageBL.getInstance(transferNum);		
 		return sm.getStoreRatio();
 	}
 	

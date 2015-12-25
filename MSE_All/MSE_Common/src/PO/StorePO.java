@@ -14,8 +14,9 @@ public class StorePO implements Serializable {
 	String[][][] trainToTC; // 发往外市中转中心铁运区库存信息 3*20*60
 	String[][][] carToTC; // 发往外市中转中心汽运区库存信息 3*20*60
 	String[][] carToBH; // 发往本市营业厅库存信息 20*60
-
-	public StorePO(String warn_value, String[] remind_value,
+    int length;
+	
+	public StorePO(String transferNum,String warn_value, String[] remind_value,
 			String[][][] airToTC, String[][][] trainToTC, String[][][] carToTC,
 			String[][] carToBH) {
 		super();
@@ -25,6 +26,7 @@ public class StorePO implements Serializable {
 		this.trainToTC = trainToTC;
 		this.carToTC = carToTC;
 		this.carToBH = carToBH;
+		this.length=StoreNum.getBHnum(transferNum);
 	}
 
 	public String getWarn_value() {
@@ -150,7 +152,7 @@ public class StorePO implements Serializable {
 					}
 				}
 			}
-			for (int i = 0; i < 20; i++) {
+			for (int i = 0; i < length; i++) {
 				for (int j = 0; j < 60; j++) {
 					if (!carToBH[i][j].equals("0"))
 						idList.add(carToBH[i][j]);
@@ -162,7 +164,7 @@ public class StorePO implements Serializable {
 
 	// 得到各个库存位置的库存比例
 	public String[][] getStoreRatio() {
-		String[][] storeRatio = new String[9 + StoreNum.businessHall][3];
+		String[][] storeRatio = new String[9 + length][3];
 		for (int i = 0; i < remind_value.length; i++) {
 			storeRatio[i][2] = remind_value[i];
 		}
@@ -202,7 +204,7 @@ public class StorePO implements Serializable {
 			}
 			storeRatio[i + 6][1] = number + "/" + 1200;
 		}
-		for (int i = 0; i < StoreNum.businessHall; i++) {
+		for (int i = 0; i <length; i++) {
 			storeRatio[i + 9][0] = "汽运区4排" + (i + 1) + "架";
 			int number = 0;
 			for (int j = 0; j < 60; j++) {
