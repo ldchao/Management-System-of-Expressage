@@ -68,10 +68,10 @@ public class Changeorder extends JPanel implements Runnable {
 			textField[i].setCaretColor(new Color(88, 93, 103));
 		}
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
-		String off=loginPO.getShop();
-		String arrive=StoreNum.storeName[arriveNum - 1];
 		OrganizationNumPO op=new OrganizationNumPO();
+		String off=loginPO.getShop();
 		offNumber=op.getNum(off);
+		String arrive=StoreNum.getStoreName(offNumber, arriveNum - 1);
 		arriveNumber=op.getNum(arrive);
 		if(arriveNumber.length()==6){
 			arriveNumber=arriveNumber.substring(3);

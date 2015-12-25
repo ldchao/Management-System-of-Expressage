@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import PO.StorePO;
+import StaticValue.StoreNum;
 import nju.edu.data.FileIO.fileReader;
 import nju.edu.data.FileIO.fileWriter;
 import nju.edu.dataservice.storedataservice.StoreMessageDataService;
@@ -18,8 +19,8 @@ public class StoreMessageData extends UnicastRemoteObject implements
 
 	// 从文件中读取当前最新的库存信息（警戒值，管理值，各个位置所存单据）
 	@Override
-	public StorePO getStoreMessage() throws RemoteException {
-		ArrayList<String> messagelist = fileReader.Reader("DataBase/Store.txt");
+	public StorePO getStoreMessage(String transferNum) throws RemoteException {
+		ArrayList<String> messagelist = fileReader.Reader("DataBase/"+transferNum+"Store.txt");
 		int index = 0;
 		String warnNum = messagelist.get(index);
 		index++;
@@ -31,39 +32,39 @@ public class StoreMessageData extends UnicastRemoteObject implements
 		String[][][] airToTC = new String[3][20][60]; // 发往外市中转中心航空区库存信息 3*20*60
 		String[][][] trainToTC = new String[3][20][60];// 发往外市中转中心铁运区库存信息 3*20*60
 		String[][][] carToTC = new String[3][20][60];// 发往外市中转中心汽运区库存信息 3*20*60
-		String[][] carToBH = new String[20][60];// 发往本市营业厅库存信息 20*60
-
+		String[][] carToBH = new String[StoreNum.getBHnum(transferNum)][60];// 发往本市营业厅库存信息 20*60
+				
 		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < carToBH.length; j++) {
+			for (int j = 0; j < 20; j++) {
 				airToTC[i][j] = messagelist.get(index).split(";");
 				index++;
 			}
 		}
 		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < carToBH.length; j++) {
+			for (int j = 0; j < 20; j++) {
 				trainToTC[i][j] = messagelist.get(index).split(";");
 				index++;
 			}
 		}
 		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < carToBH.length; j++) {
+			for (int j = 0; j < 20; j++) {
 				carToTC[i][j] = messagelist.get(index).split(";");
 				index++;
 			}
 		}
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < carToBH.length; i++) {
 			carToBH[i] = messagelist.get(index).split(";");
 			index++;
 		}
 
-		StorePO sp = new StorePO(warnNum, remindNum, airToTC, trainToTC,
+		StorePO sp = new StorePO(transferNum,warnNum, remindNum, airToTC, trainToTC,
 				carToTC, carToBH);
 		return sp;
 	}
 
 	// 在仓库管理人员退出时将当前信息存储到文件中
 	@Override
-	public void saveStoreMessage(StorePO sp) throws RemoteException {
+	public void saveStoreMessage(StorePO sp,String transferNum) throws RemoteException {
 		ArrayList<String> storeMessage = new ArrayList<>();
 		String warn_value = sp.getWarn_value();
 		String[] remind_value = sp.getRemind_value(); // 29
@@ -105,7 +106,7 @@ public class StoreMessageData extends UnicastRemoteObject implements
 				storeMessage.add(s);
 			}
 		}
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < carToBH.length; i++) {
 
 			s = "";
 			for (int j = 0; j < 60; j++) {
@@ -113,7 +114,7 @@ public class StoreMessageData extends UnicastRemoteObject implements
 			}
 			storeMessage.add(s);
 		}
-		fileWriter.Writer("DataBase/Store.txt", storeMessage, false);
+		fileWriter.Writer("DataBase/"+transferNum+"Store.txt", storeMessage, false);
 
 	}
 

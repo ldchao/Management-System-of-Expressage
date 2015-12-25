@@ -18,6 +18,8 @@ import javax.swing.JToolBar;
 import nju.edu.businesslogic.storebl.StoreMessageBL;
 import nju.edu.presentation.Loginui.PersonalInfomation;
 import PO.LoginPO;
+import PO.OrganizationNumPO;
+import StaticValue.StoreNum;
 
 @SuppressWarnings("serial")
 public class Transit_center_storemaster_mainui extends JFrame {
@@ -41,8 +43,11 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		contentPane = new JPanel();
 		this.add(contentPane);
 		contentPane.setLayout(null);
-		sm = StoreMessageBL.getInstance();
+		OrganizationNumPO op=new OrganizationNumPO();
+		String transferNum=op.getNum(loginPO.getShop());
+		sm = StoreMessageBL.getInstance(transferNum);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+
 		
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){

@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 import nju.edu.businesslogic.transferbl.TransferBL;
 import nju.edu.businesslogicservice.transferblservice.TransferBLService;
 import PO.LoginPO;
+import PO.OrganizationNumPO;
 
 public class Transfer_checkRemindui extends JPanel {
 	JFrame main;
@@ -33,6 +34,8 @@ public class Transfer_checkRemindui extends JPanel {
 		Transfer_checkRemindui nowPanel=this;
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		setLayout(null);
+		OrganizationNumPO op=new OrganizationNumPO();
+		String transferNum=op.getNum(loginPO.getShop());
 
 		JButton button = new JButton("返回");
 		button.setBounds(13, -9, 63, 63);
@@ -76,7 +79,7 @@ public class Transfer_checkRemindui extends JPanel {
 
 		JTextArea textArea = new JTextArea();
 		TransferBLService tb=new TransferBL();
-		String remind=tb.checkRemind();
+		String remind=tb.checkRemind(transferNum);
 		if(remind.length()==0)
 		    textArea.setText("暂时没有库区的库存量达到提醒值");
 		else 
