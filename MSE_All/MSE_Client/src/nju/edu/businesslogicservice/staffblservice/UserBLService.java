@@ -2,6 +2,7 @@ package nju.edu.businesslogicservice.staffblservice;
 
 import java.util.ArrayList;
 
+import PO.StaffPO;
 import nju.edu.VO.UserVO;
 
 public interface UserBLService {
@@ -21,5 +22,11 @@ public interface UserBLService {
 
 	// 查看所有用户
 	public ArrayList<UserVO> checkUsers();
+
+	// 查看没有账号的人员
+	public ArrayList<StaffPO> IDfromeManager();
+
+	// 存储新建账号的人员
+	public void IDtoManager(String newID, String newlimit, StaffPO po);
 
 }

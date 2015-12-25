@@ -3,6 +3,7 @@ package nju.edu.businesslogic.staffbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import PO.StaffPO;
 import PO.UserPO;
 import nju.edu.RMI_init.RMIHelper;
 import nju.edu.VO.UserVO;
@@ -12,11 +13,13 @@ import nju.edu.businesslogicservice.staffblservice.DeleteUserInterface;
 import nju.edu.businesslogicservice.staffblservice.UserBLService;
 import nju.edu.businesslogicservice.staffblservice.editStaffInfo;
 import nju.edu.dataservice.staffdataservice.UserDataService;
+import nju.edu.presentation.general_managerui.editStaff;
 
 public class UserBL implements UserBLService, checkUserInfo,
 		DeleteUserInterface, UpdatePasswordService {
 
 	UserDataService userData = RMIHelper.getUserData();
+	editStaffInfo editstaff = new Staffbl();
 
 	@Override
 	public boolean addUser(String name, String key, String limit) {
@@ -61,7 +64,6 @@ public class UserBL implements UserBLService, checkUserInfo,
 			e.printStackTrace();
 		}
 
-		editStaffInfo editstaff = new Staffbl();
 		editstaff.editTheID(oldname, name, limit);
 
 		return list;
@@ -72,6 +74,7 @@ public class UserBL implements UserBLService, checkUserInfo,
 
 		try {
 			userData.delete(name);
+			editstaff.deleteStaff(name);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -109,7 +112,17 @@ public class UserBL implements UserBLService, checkUserInfo,
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	public ArrayList<StaffPO> IDfromeManager() {
+
+		ArrayList<StaffPO> stafflist = editstaff.getAllStaff();
+
+		return stafflist;
+	}
+
+	public void IDtoManager(String newID, String newlimit, StaffPO po) {
+
+		editstaff.staffGetID(newID, newlimit, po);
+	}
 }

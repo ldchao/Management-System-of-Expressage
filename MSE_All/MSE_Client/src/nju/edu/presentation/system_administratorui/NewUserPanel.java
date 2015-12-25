@@ -32,6 +32,8 @@ public class NewUserPanel extends JPanel implements Runnable {
 	private boolean success;
 	private JLabel lblNewLabel;
 	private AbstractButton btn;
+	private ButtonGroup bg;
+	private boolean fromManager;
 	UserBL userBL = new UserBL();
 
 	/**
@@ -170,7 +172,7 @@ public class NewUserPanel extends JPanel implements Runnable {
 		radioButton_7.setForeground(new Color(255, 255, 255, 200));
 		add(radioButton_7);
 
-		ButtonGroup bg = new ButtonGroup();
+		bg = new ButtonGroup();
 		bg.add(rdbtnNewRadioButton);
 		bg.add(radioButton_1);
 		bg.add(radioButton_2);
@@ -213,6 +215,9 @@ public class NewUserPanel extends JPanel implements Runnable {
 						if (isin) {
 							lblNewLabel.setText("创建成功!");
 							success = true;
+							if (fromManager) {
+								// 删除，及 IDtoManager 
+							}
 						} else {
 							lblNewLabel.setText("该用户名已存在，无法完成新建");
 							success = false;
@@ -251,7 +256,36 @@ public class NewUserPanel extends JPanel implements Runnable {
 			}
 		});
 		add(button_1);
+
+		JButton btnManager = new JButton("Manager");
+		btnManager.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				main.remove(nup);
+				IDforManager ifm = new IDforManager(loginPO, main);
+				main.getContentPane().add(ifm);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
+		btnManager.setBounds(545, 420, 52, 52);
+		add(btnManager);
 	}
+
+	public void setInfo(String name, String limit) {
+		textField.setText(name);
+		// 设置原有权限
+		Enumeration<AbstractButton> radioBtns = bg.getElements();
+		while (radioBtns.hasMoreElements()) {
+			AbstractButton btn = radioBtns.nextElement();
+			if (btn.getText().equals(limit)) {
+				btn.setSelected(true);
+				break;
+			}
+		}
+
+		fromManager = true;
+	};
 
 	@Override
 	public void run() {
