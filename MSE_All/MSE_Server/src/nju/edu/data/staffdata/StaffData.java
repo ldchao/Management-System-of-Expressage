@@ -52,7 +52,7 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService {
 		String temp=po.getId()+";"+po.getName()+";"+po.getAddress()+";"+po.getPosition()
 					+";"+po.getPhone()+";"+po.getCellphone()+";"+po.getShop();
 		fileWriter fileWriter=new fileWriter();
-		fileWriter.Writer("Database/Staff.txt", temp, true);
+		fileWriter.Writer("Database/StaffWithoutID.txt", temp, true);
 	}
 
 	@Override
@@ -100,6 +100,54 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+
+	@Override
+	public int getnum() throws RemoteException {
+		fileReader fileReader=new fileReader();
+		ArrayList<String> arrayList=fileReader.Reader("Database/temporaryNum.txt");
+		int a=Integer.parseInt(arrayList.get(0));
+		fileWriter.Writer("Database/temporaryNum.txt", a+1+"", false);
+		return a;
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<StaffPO> getAllStaff() throws RemoteException {
+		// TODO Auto-generated method stub
+		fileReader fileReader=new fileReader();
+		ArrayList<String> strings=fileReader.Reader("Database/StaffWithoutID.txt");
+		ArrayList<StaffPO> staffPOs=new ArrayList<>();
+		for(String temp:strings){
+			String[] t=temp.split(";");
+			StaffPO po=new StaffPO(t[0], t[1], t[2], t[3], t[4], t[5], t[6]);
+		}
+		return staffPOs;
+	}
+
+	@Override
+	public void exchange(String id, StaffPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		fileReader fileReader=new fileReader();
+		ArrayList<String> arrayList=fileReader.Reader("Database/StaffWithouID.txt");
+		String []temp=null;
+		int signal=-1;
+		for(int i=0;i<arrayList.size();i++){
+			temp=arrayList.get(i).split(";");
+			if(po.getId().equals(temp[0])){
+				signal=i;
+			}
+		}
+		if(signal>-1){
+			arrayList.remove(signal);
+		}
+		fileWriter fileWriter=new fileWriter();
+		fileWriter.Writer("Database/StaffWithoutID.txt", arrayList, false);
+		po.setId(id);
+		String info=po.getId()+";"+po.getName()+";"+po.getAddress()+";"+po.getPosition()
+		+";"+po.getPhone()+";"+po.getCellphone()+";"+po.getShop();
+		fileWriter.Writer("Database/Staff.txt", info, true);
 	}
 
 }

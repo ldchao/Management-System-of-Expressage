@@ -129,4 +129,41 @@ public class Staffbl implements StaffBLService,checkStaffInfo,editStaffInfo{
 		}
 	}
 
+	public String getnum() {
+		// TODO Auto-generated method stub
+		String result="";
+		try {
+			result = ""+staffDataService.getnum();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public ArrayList<StaffPO> getAllStaff() {
+		// TODO Auto-generated method stub
+		ArrayList<StaffPO> arrayList=null;
+		try {
+			arrayList=staffDataService.getAllStaff();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return arrayList;
+	}
+
+	@Override
+	public void staffGetID(String id, String rank, StaffPO po) {
+		// TODO Auto-generated method stub
+		po.setPosition(rank);
+		try {
+			staffDataService.exchange(id,po);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

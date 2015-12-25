@@ -168,33 +168,41 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 
 		rdbtnNewRadioButton = new JRadioButton("\u5FEB\u9012\u5458");
 		rdbtnNewRadioButton.setBounds(119, 332, 96, 23);
+		rdbtnNewRadioButton.setEnabled(false);
 		add(rdbtnNewRadioButton);
 
 		radioButton = new JRadioButton("\u7CFB\u7EDF\u7BA1\u7406\u5458");
+		radioButton.setEnabled(false);
 		radioButton.setBounds(253, 332, 126, 23);
 		add(radioButton);
 
 		radioButton_1 = new JRadioButton("\u603B\u7ECF\u7406");
+		radioButton_1.setEnabled(false);
 		radioButton_1.setBounds(393, 332, 123, 23);
 		add(radioButton_1);
 
 		radioButton_2 = new JRadioButton("\u8D22\u52A1\u4EBA\u5458");
+		radioButton_2.setEnabled(false);
 		radioButton_2.setBounds(543, 332, 119, 23);
 		add(radioButton_2);
 
 		radioButton_3 = new JRadioButton("\u9AD8\u7EA7\u8D22\u52A1\u4EBA\u5458");
+		radioButton_3.setEnabled(false);
 		radioButton_3.setBounds(119, 374, 126, 23);
 		add(radioButton_3);
 
 		radioButton_4 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4E1A\u52A1\u5458");
+		radioButton_4.setEnabled(false);
 		radioButton_4.setBounds(393, 374, 145, 23);
 		add(radioButton_4);
 
 		radioButton_5 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u5458");
+		radioButton_5.setEnabled(false);
 		radioButton_5.setBounds(543, 374, 145, 23);
 		add(radioButton_5);
 
 		radioButton_6 = new JRadioButton("\u8425\u4E1A\u5385\u4E1A\u52A1\u5458");
+		radioButton_6.setEnabled(false);
 		radioButton_6.setBounds(253, 374, 138, 23);
 		add(radioButton_6);
 
