@@ -39,7 +39,7 @@ public class VehicleImfo extends JPanel {
 		nowPanel.setBounds(0, 0, 750, 600);
 		setLayout(null);
 
-		JButton button = new JButton("·µ»Ø");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);

@@ -51,7 +51,7 @@ public class ReceiFormorder extends JPanel implements Runnable {
 		nowPanel = this;
 		setLayout(null);
 
-		JButton button = new JButton("返回");
+		JButton button = new JButton("");
 
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
@@ -91,6 +91,7 @@ public class ReceiFormorder extends JPanel implements Runnable {
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
 		JLabel label_2 = new JLabel("到达日期");
@@ -160,6 +161,7 @@ public class ReceiFormorder extends JPanel implements Runnable {
 		JButton btnNewButton = new JButton("确定");
 
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		btnNewButton.setBounds(274, 459, 52, 52);
 		Image temp1 = image1.getImage().getScaledInstance(
 				btnNewButton.getWidth(), btnNewButton.getHeight(),
 				image1.getImage().SCALE_DEFAULT);
@@ -167,7 +169,6 @@ public class ReceiFormorder extends JPanel implements Runnable {
 		btnNewButton.setIcon(image1);
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setBorderPainted(false);
-		button.setBounds(274, 459, 52, 52);
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

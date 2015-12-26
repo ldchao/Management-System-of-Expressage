@@ -132,11 +132,6 @@ public class SendUI extends JPanel implements Runnable {
 		scrollPane.setBounds(402, 105, 219, 267);
 		add(scrollPane);
 
-		JLabel lblNewLabel_2 = new JLabel("需要派送的单号");
-		lblNewLabel_2.setFont(new Font("微软雅黑", Font.BOLD, 14));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		scrollPane.setColumnHeaderView(lblNewLabel_2);
-
 		JTextArea textArea = new JTextArea();
 		textArea.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {

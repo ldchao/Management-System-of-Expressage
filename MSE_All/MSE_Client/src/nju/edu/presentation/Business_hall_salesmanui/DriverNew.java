@@ -43,7 +43,7 @@ public class DriverNew extends JPanel {
 		DriverNew nowPanel = this;
 		setLayout(null);
 
-		JButton button = new JButton("·µ»Ø");
+		JButton button = new JButton("");
 
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
@@ -178,7 +178,7 @@ public class DriverNew extends JPanel {
 		add(panel);
 
 		JButton btnNewButton = new JButton("È·¶¨");
-
+		btnNewButton.setBounds(274, 459, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(
 				btnNewButton.getWidth(), btnNewButton.getHeight(),
@@ -187,7 +187,6 @@ public class DriverNew extends JPanel {
 		btnNewButton.setIcon(image1);
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setBorderPainted(false);
-		button.setBounds(274, 459, 52, 52);
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

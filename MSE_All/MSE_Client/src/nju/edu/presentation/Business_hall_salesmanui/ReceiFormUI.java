@@ -82,11 +82,6 @@ public class ReceiFormUI extends JPanel {
 		JLabel label_4 = new JLabel("状态栏");
 		toolBar.add(label_4);
 
-		JLabel label_3 = new JLabel("选择到达的装运单");
-		label_3.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		label_3.setBounds(289, 134, 255, 23);
-		add(label_3);
-
 		textField = new JTextField();
 		textField.setForeground(new Color(88, 93, 103));
 		textField.setCaretColor(new Color(88, 93, 103));

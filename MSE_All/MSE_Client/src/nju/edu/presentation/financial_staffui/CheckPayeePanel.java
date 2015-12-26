@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -35,14 +36,11 @@ public class CheckPayeePanel extends JPanel {
 	 * Create the panel.
 	 */
 	protected void paintComponent(Graphics g) {
-		ImageIcon image = new ImageIcon(
-				"image/financial_stuff/checkPayeePanel.png");
-		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
-				this);
+		ImageIcon image = new ImageIcon("image/financial_stuff/checkPayeePanel.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height, this);
 	}
 
-	public CheckPayeePanel(JFrame main, LoginPO loginPO, String date,
-			String shop) {
+	public CheckPayeePanel(JFrame main, LoginPO loginPO, String date, String shop) {
 
 		setLayout(null);
 		setSize(750, 600);
@@ -108,15 +106,12 @@ public class CheckPayeePanel extends JPanel {
 		table.setEnabled(false);
 
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
-		tableModel = new DefaultTableModel(new Object[][] {
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, { null, null, null, null },
-				{ null, null, null, null }, }, new String[] { "订单号", "收款金额",
-				"快递员姓名", "业务员姓名" });
+		tableModel = new DefaultTableModel(new Object[][] { { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
+				{ null, null, null, null }, { null, null, null, null }, },
+				new String[] { "订单号", "收款金额", "快递员姓名", "业务员姓名" });
 		table.setModel(tableModel);
 
 		ArrayList<PayeeorderVO> payeevo = cbl.check(date, shop);

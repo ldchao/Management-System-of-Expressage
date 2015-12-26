@@ -40,7 +40,7 @@ public class DriverChange extends JPanel {
 		DriverChange nowPanel = this;
 		setLayout(null);
 
-		JButton button = new JButton("返回");
+		JButton button = new JButton("");
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 
@@ -76,10 +76,13 @@ public class DriverChange extends JPanel {
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(0, 533, 734, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 		toolBar.setEnabled(false);
 
@@ -174,11 +177,12 @@ public class DriverChange extends JPanel {
 		panel.setBounds(300, 90, 160, 160);
 		add(panel);
 
-		JButton btnNewButton = new JButton("确定");
+		JButton btnNewButton = new JButton("");
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setBorderPainted(false);
 
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		btnNewButton.setBounds(274, 459, 52, 52);
 		@SuppressWarnings("static-access")
 		Image temp1 = image1.getImage().getScaledInstance(
 				btnNewButton.getWidth(), btnNewButton.getHeight(),
@@ -197,13 +201,12 @@ public class DriverChange extends JPanel {
 				bl.updateDriver(vo);
 			}
 		});
-		btnNewButton.setBounds(274, 459, 52, 52);
 		add(btnNewButton);
 
-		JButton button_1 = new JButton("取消");
+		JButton button_1 = new JButton("");
 		button_1.setContentAreaFilled(false);
 		button_1.setBorderPainted(false);
-
+		button_1.setBounds(425, 459, 52, 52);
 		button_1.setIcon(image1);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -214,7 +217,6 @@ public class DriverChange extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(425, 459, 52, 52);
 		add(button_1);
 
 	}
