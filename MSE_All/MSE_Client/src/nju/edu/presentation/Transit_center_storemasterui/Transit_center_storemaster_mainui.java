@@ -41,7 +41,7 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		setSize(750, 600);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
-		this.add(contentPane);
+		getContentPane().add(contentPane);
 		contentPane.setLayout(null);
 		OrganizationNumPO op=new OrganizationNumPO();
 		String transferNum=op.getNum(loginPO.getShop());
@@ -115,7 +115,7 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		});
 
 		JLabel label_2 = new JLabel("入库管理");
-		label_2.setBounds(109, 172, 54, 15);
+		label_2.setBounds(210, 113, 54, 15);
 		contentPane.add(label_2);
 
 		JButton btnNewButton = new JButton("New button");
@@ -130,11 +130,11 @@ public class Transit_center_storemaster_mainui extends JFrame {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(62, 217, 160, 128);
+		btnNewButton.setBounds(172, 158, 125, 100);
 		contentPane.add(btnNewButton);
 
 		JLabel lblNewLabel = new JLabel("库存管理");
-		lblNewLabel.setBounds(339, 172, 54, 15);
+		lblNewLabel.setBounds(473, 113, 54, 15);
 		contentPane.add(lblNewLabel);
 
 		JButton btnNewButton_1 = new JButton("New button");
@@ -149,11 +149,11 @@ public class Transit_center_storemaster_mainui extends JFrame {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(290, 217, 160, 128);
+		btnNewButton_1.setBounds(434, 158, 125, 100);
 		contentPane.add(btnNewButton_1);
 
 		JLabel lblNewLabel_1 = new JLabel("出库管理");
-		lblNewLabel_1.setBounds(557, 172, 54, 15);
+		lblNewLabel_1.setBounds(210, 299, 54, 15);
 		contentPane.add(lblNewLabel_1);
 
 		JButton btnNewButton_2 = new JButton("New button");
@@ -168,9 +168,16 @@ public class Transit_center_storemaster_mainui extends JFrame {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBounds(507, 217, 160, 128);
+		btnNewButton_2.setBounds(172, 339, 125, 100);
 		contentPane.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("New button");
+		btnNewButton_3.setBounds(434, 339, 125, 100);
+		contentPane.add(btnNewButton_3);
+		
+		JLabel lblNewLabel_2 = new JLabel("选项");
+		lblNewLabel_2.setBounds(473, 299, 54, 15);
+		contentPane.add(lblNewLabel_2);
 
 	}
-
 }
