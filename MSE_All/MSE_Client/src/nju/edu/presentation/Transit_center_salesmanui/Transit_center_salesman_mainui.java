@@ -77,6 +77,7 @@ public class Transit_center_salesman_mainui extends JFrame {
 		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
 				main.dispose();
 			}
 		});

@@ -82,6 +82,7 @@ public class Transit_center_storemaster_mainui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				sm.save();
 				label_3.setText("ø‚¥Ê–≈œ¢¥¢¥ÊÕÍ±œ");
+				System.exit(0);
 				main.dispose();
 			}
 		});
