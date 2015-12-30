@@ -1,6 +1,7 @@
 package nju.edu.presentation.Business_hall_salesmanui;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +34,12 @@ public class DriverChange extends JPanel {
 	private JLabel birthDate;
 	private JLabel licenseDue;
 	DriverBlService bl = new DriverBl();
+	
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/businessHall_stuff/DriverChange.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+
 
 	public DriverChange(JFrame m, JPanel bf, LoginPO loginPO) {
 		JFrame main = m;
@@ -64,10 +71,6 @@ public class DriverChange extends JPanel {
 		button.setBounds(13, -9, 63, 63);
 		add(button);
 
-		JLabel label = new JLabel("营业厅业务员>>修改司机信息");
-		label.setBounds(100, 14, 200, 15);
-		add(label);
-
 		JLabel label_1 = new JLabel("Hello！" + loginPO.getName());
 		label_1.setForeground(Color.WHITE);
 		label_1.setBounds(655, 12, 100, 15);
@@ -87,94 +90,72 @@ public class DriverChange extends JPanel {
 		toolBar.setEnabled(false);
 
 		driverNum = new JTextField();
+		driverNum.setOpaque(false);
+		driverNum.setBorder(null);
 		driverNum.setForeground(new Color(88, 93, 103));
 		driverNum.setCaretColor(new Color(88, 93, 103));
 		driverNum.setColumns(10);
-		driverNum.setBounds(239, 305, 106, 26);
+		driverNum.setBounds(215, 276, 130, 26);
 		add(driverNum);
 
-		JLabel label_2 = new JLabel("司机编号");
-		label_2.setBounds(160, 304, 57, 28);
-		add(label_2);
-
 		name = new JTextField();
+		name.setOpaque(false);
+		name.setBorder(null);
 		name.setForeground(new Color(88, 93, 103));
 		name.setCaretColor(new Color(88, 93, 103));
 		name.setColumns(10);
-		name.setBounds(239, 343, 106, 26);
+		name.setBounds(215, 319, 126, 26);
 		add(name);
 
-		JLabel label_3 = new JLabel("司机姓名");
-		label_3.setBounds(160, 343, 57, 28);
-		add(label_3);
-
-		JLabel label_5 = new JLabel("营业厅编号");
-		label_5.setBounds(160, 424, 67, 28);
-		add(label_5);
-
 		shopNum = new JTextField();
+		shopNum.setOpaque(false);
+		shopNum.setBorder(null);
 		shopNum.setForeground(new Color(88, 93, 103));
 		shopNum.setCaretColor(new Color(88, 93, 103));
 		shopNum.setColumns(10);
-		shopNum.setBounds(239, 424, 106, 26);
+		shopNum.setBounds(215, 404, 119, 26);
 		add(shopNum);
 
-		JLabel label_6 = new JLabel("手机号码");
-		label_6.setBounds(409, 305, 57, 28);
-		add(label_6);
-
 		phoneNum = new JTextField();
+		phoneNum.setOpaque(false);
+		phoneNum.setBorder(null);
 		phoneNum.setForeground(new Color(88, 93, 103));
 		phoneNum.setCaretColor(new Color(88, 93, 103));
 		phoneNum.setColumns(10);
-		phoneNum.setBounds(488, 306, 106, 26);
+		phoneNum.setBounds(499, 276, 120, 26);
 		add(phoneNum);
 
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 		birthDate = new JLabel("请单击选择日期");
-		birthDate.setBounds(495, 389, 93, 23);
+		birthDate.setBounds(499, 363, 93, 23);
 		dateChooser2.register(birthDate);
 		add(birthDate);
 
-		JLabel label_7 = new JLabel("出生日期");
-		label_7.setBounds(409, 386, 57, 28);
-		add(label_7);
-
-		JLabel label_8 = new JLabel("行驶证期限");
-		label_8.setBounds(409, 424, 74, 28);
-		add(label_8);
-
 		DateChooser dateChooser = DateChooser.getInstance("yyyy-MM-dd");
 		licenseDue = new JLabel("请单击选择日期");
-		licenseDue.setBounds(495, 427, 93, 23);
+		licenseDue.setBounds(499, 407, 93, 23);
 		dateChooser.register(licenseDue);
 		add(licenseDue);
-
-		JLabel label_10 = new JLabel("性别");
-		label_10.setBounds(160, 383, 57, 28);
-		add(label_10);
 
 		sex = new JComboBox<>();
 		sex.addItem("请选择");
 		sex.addItem("男");
 		sex.addItem("女");
-		sex.setBounds(240, 384, 105, 28);
+		sex.setBounds(213, 363, 121, 28);
 		add(sex);
 
-		JLabel label_11 = new JLabel("身份证号");
-		label_11.setBounds(409, 343, 57, 28);
-		add(label_11);
-
 		idNum = new JTextField();
+		idNum.setOpaque(false);
+		idNum.setBorder(null);
 		idNum.setForeground(new Color(88, 93, 103));
 		idNum.setCaretColor(new Color(88, 93, 103));
 		idNum.setColumns(10);
-		idNum.setBounds(488, 343, 106, 26);
+		idNum.setBounds(499, 317, 120, 26);
 		add(idNum);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(300, 90, 160, 160);
+		panel.setBounds(257, 86, 231, 146);
 		add(panel);
 
 		JButton btnNewButton = new JButton("");
