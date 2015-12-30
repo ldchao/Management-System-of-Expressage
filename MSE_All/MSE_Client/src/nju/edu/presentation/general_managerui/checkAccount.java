@@ -42,7 +42,7 @@ public class checkAccount extends JPanel {
 		
 		setLayout(null);
 		
-		JButton button = new JButton("\u8FD4\u56DE");
+		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				checkStatics_Analysis newcheckStatics_Analysis=new checkStatics_Analysis(main,loginPO);
@@ -66,7 +66,7 @@ public class checkAccount extends JPanel {
 		add(button);
 		
 		JLabel lblNewLabel = new JLabel("\u603B\u7ECF\u7406>>\u8D26\u6237\u67E5\u8BE2");
-		lblNewLabel.setBounds(95, 14, 110, 15);
+		lblNewLabel.setBounds(95, 14, 220, 15);
 		add(lblNewLabel);
 		
 		JLabel label = new JLabel("\u94F6\u884C\u8D26\u6237");

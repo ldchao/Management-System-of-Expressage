@@ -211,7 +211,7 @@ public class Staff extends JPanel{
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(274, 459, 52, 52);
+		button.setBounds(356, 469, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
 				button.getHeight(),image1.getImage().SCALE_DEFAULT);
@@ -221,7 +221,7 @@ public class Staff extends JPanel{
 		button.setBorderPainted(false);
 		add(button);
 		
-		button_1 = new JButton("\u8FD4\u56DE");
+		button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StaffManager staffManager=new StaffManager(main,loginPO);

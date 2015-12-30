@@ -57,7 +57,7 @@ public class StaffManager extends JPanel {
 		lblHello.setBounds(677, 6, 67, 25);
 		add(lblHello);
 		
-		JButton button = new JButton("\u8FD4\u56DE");
+		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Manager newmanager=new Manager(main,loginPO);
@@ -81,7 +81,7 @@ public class StaffManager extends JPanel {
 		add(button);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u4EBA\u5458\u673A\u6784\u7BA1\u7406");
-		label.setBounds(95, 14, 132, 15);
+		label.setBounds(95, 14, 259, 15);
 		add(label);
 		
 		JLabel label_1 = new JLabel("\u7528\u6237\u540D\u68C0\u7D22");
@@ -191,10 +191,13 @@ public class StaffManager extends JPanel {
 		add(button_3);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(10, 534, 714, 17);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 		
 		label_3 = new JLabel("\u72B6\u6001\u680F");
+		label_3.setForeground(Color.WHITE);
 		toolBar.add(label_3);
 	}
 	

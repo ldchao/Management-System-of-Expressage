@@ -61,7 +61,7 @@ public class editSalary extends JPanel implements Runnable{
 		add(label_3);
 		//first
 		rdbtnNewRadioButton = new JRadioButton("\u6309\u6708");
-		rdbtnNewRadioButton.setBounds(307, 329, 54, 23);
+		rdbtnNewRadioButton.setBounds(332, 328, 83, 23);
 		rdbtnNewRadioButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -73,7 +73,7 @@ public class editSalary extends JPanel implements Runnable{
 		
 		//second
 		radioButton = new JRadioButton("\u6309\u6B21");
-		radioButton.setBounds(363, 329, 54, 23);
+		radioButton.setBounds(332, 364, 83, 23);
 		radioButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -85,7 +85,7 @@ public class editSalary extends JPanel implements Runnable{
 		
 		//third
 		radioButton_1 = new JRadioButton("\u6309\u63D0\u6210");
-		radioButton_1.setBounds(419, 329, 100, 23);
+		radioButton_1.setBounds(332, 399, 100, 23);
 		radioButton_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -144,7 +144,7 @@ public class editSalary extends JPanel implements Runnable{
 		btnNewButton.setBorderPainted(false);
 		add(btnNewButton);
 		
-		JButton button = new JButton("\u8FD4\u56DE");
+		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Salary salary=new Salary(vo,main,loginPO);
@@ -170,7 +170,7 @@ public class editSalary extends JPanel implements Runnable{
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(332, 231, 154, 21);
+		textField.setBounds(332, 231, 113, 21);
 		textField.setText(vo.getTypeOfStaff());
 		textField.setEditable(false);
 		textField.setForeground(new Color(88, 93, 103));
@@ -179,7 +179,7 @@ public class editSalary extends JPanel implements Runnable{
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(332, 280, 154, 21);
+		textField_1.setBounds(332, 280, 113, 21);
 		textField_1.addKeyListener(new InputNumber());
 		textField_1.setText(vo.getSalary()+"");
 		textField_1.setForeground(new Color(88, 93, 103));
@@ -194,6 +194,7 @@ public class editSalary extends JPanel implements Runnable{
 		add(toolBar);
 		
 		label_4 = new JLabel("\u72B6\u6001");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 		
 		JButton button2 = new JButton("È¡Ïû");

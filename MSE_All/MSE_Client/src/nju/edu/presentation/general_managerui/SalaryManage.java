@@ -32,12 +32,12 @@ public class SalaryManage extends JPanel {
 		lblHello.setBounds(677, 6, 67, 25);
 		add(lblHello);
 		
-		JButton button = new JButton("\u8FD4\u56DE");
+		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PolicyManage newpolicyManage=new PolicyManage(main,loginPO);
 				main.remove(salaryManageframe);
-				main.add(newpolicyManage);
+				main.getContentPane().add(newpolicyManage);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -60,12 +60,12 @@ public class SalaryManage extends JPanel {
 		add(label);
 		
 		JLabel label_1 = new JLabel("\u8BF7\u9009\u62E9\u4EBA\u5458\u7C7B\u578B");
-		label_1.setBounds(327, 182, 94, 15);
+		label_1.setBounds(250, 304, 94, 15);
 		add(label_1);
 		
 		String[] type={"快递员","营业厅业务员","中转中心业务员","中转中心仓库管理员","高级财务人员","低级财务人员","总经理","管理员"};
 		JComboBox comboBox = new JComboBox(type);
-		comboBox.setBounds(280, 235, 180, 29);
+		comboBox.setBounds(356, 298, 122, 29);
 		add(comboBox);
 
 		
@@ -76,13 +76,13 @@ public class SalaryManage extends JPanel {
 				SalaryVO salaryVO=salaryPolicybl.checkSalary(comboBox.getSelectedItem().toString());
 				Salary salary=new Salary(salaryVO,main,loginPO);
 				main.remove(salaryManageframe);
-				main.add(salary);
+				main.getContentPane().add(salary);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(274, 459, 52, 52);
+		button_1.setBounds(338, 455, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(button_1.getWidth(),
 						button_1.getHeight(),image1.getImage().SCALE_DEFAULT);

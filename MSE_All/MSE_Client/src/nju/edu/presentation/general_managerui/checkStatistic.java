@@ -16,6 +16,7 @@ import javax.swing.JToolBar;
 
 import PO.LoginPO;
 import nju.edu.presentation.financial_staffui.DateChooser;
+import java.awt.Color;
 
 public class checkStatistic extends JPanel {
 
@@ -29,12 +30,12 @@ public class checkStatistic extends JPanel {
 		setVisible(true);
 		setLayout(null);
 		
-		JButton button = new JButton("\u8FD4\u56DE");
+		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				checkStatics_Analysis newcheckStatics_Analysis=new checkStatics_Analysis(main,loginPO);
 				main.remove(checkStatisticframe);
-				main.add(newcheckStatics_Analysis);
+				main.getContentPane().add(newcheckStatics_Analysis);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -95,7 +96,7 @@ public class checkStatistic extends JPanel {
 					}else{
 						checkStatisticInformation checkStatisticInformation=new checkStatisticInformation(label_2.getText(),label_4.getText(),main,loginPO);
 						main.remove(checkStatisticframe);
-						main.add(checkStatisticInformation);
+						main.getContentPane().add(checkStatisticInformation);
 						main.invalidate();
 						main.repaint();
 						main.setVisible(true);
@@ -133,10 +134,13 @@ public class checkStatistic extends JPanel {
 		add(button_2);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(10, 534, 714, 17);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 		
 		label_5 = new JLabel("\u72B6\u6001\u680F");
+		label_5.setForeground(Color.WHITE);
 		toolBar.add(label_5);
 	}
 }

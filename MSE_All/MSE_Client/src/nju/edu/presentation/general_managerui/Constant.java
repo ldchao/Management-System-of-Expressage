@@ -50,13 +50,13 @@ public class Constant extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				editConstant editConstant=new editConstant(vo,main,loginPO);
 				main.remove(constant);
-				main.add(editConstant);
+				main.getContentPane().add(editConstant);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(274, 459, 52, 52);
+		button.setBounds(353, 425, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
 				button.getHeight(),image1.getImage().SCALE_DEFAULT);
@@ -66,12 +66,12 @@ public class Constant extends JPanel {
 		button.setBorderPainted(false);
 		add(button);
 		
-		JButton button_1 = new JButton("\u8FD4\u56DE");
+		JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ConstantManage constantManage=new ConstantManage(main,loginPO);
 				main.remove(constant);
-				main.add(constantManage);
+				main.getContentPane().add(constantManage);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
