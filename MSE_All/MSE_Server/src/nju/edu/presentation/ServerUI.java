@@ -1,14 +1,18 @@
 package nju.edu.presentation;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.AbstractDocument.Content;
 import javax.swing.JLabel;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
@@ -16,7 +20,7 @@ import java.util.Date;
 
 public class ServerUI extends JFrame implements Runnable {
 
-	private JPanel contentPane;
+	private Content contentPane;
 	SimpleDateFormat bartDateFormat;
 	Date date;
 	String sendDate;
@@ -26,6 +30,8 @@ public class ServerUI extends JFrame implements Runnable {
 	/**
 	 * Create the frame.
 	 */
+	
+	
 	public ServerUI() {
 		serverui = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,47 +39,46 @@ public class ServerUI extends JFrame implements Runnable {
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setResizable(false);
-		contentPane = new JPanel();
+		contentPane = new Content();
+		contentPane.repaint();
 		getContentPane().add(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("快递管理系统服务器");
-		lblNewLabel.setFont(new Font("微软雅黑", Font.BOLD, 30));
-		lblNewLabel.setBounds(229, 113, 310, 68);
-		contentPane.add(lblNewLabel);
-
-		JLabel lblNewLabel_1 = new JLabel("IP地址：");
-		lblNewLabel_1.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		lblNewLabel_1.setBounds(172, 246, 116, 34);
-		contentPane.add(lblNewLabel_1);
-
-		String ip = "网络连接出错！";
-		try {
-			ip = InetAddress.getLocalHost().getHostAddress();
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-		JLabel ipAddress = new JLabel(ip);
-		ipAddress.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		ipAddress.setBounds(298, 246, 189, 34);
-		contentPane.add(ipAddress);
-
-		JLabel lblNewLabel_3 = new JLabel("当前时间：");
-		lblNewLabel_3.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		lblNewLabel_3.setBounds(172, 339, 101, 34);
-		contentPane.add(lblNewLabel_3);
-		
-		bartDateFormat = new SimpleDateFormat("yyyy年MM月dd日  EEE  HH:mm:ss");
-		date = new Date();
-		sendDate = bartDateFormat.format(date);
-		time= new JLabel(sendDate);
-		time.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		time.setBounds(298, 339, 352, 28);
-		contentPane.add(time);
-		repaint();
-
 		Thread t=new Thread(this);		
 		t.start();
+	}
+	
+	public class Content extends JPanel{
+		@Override
+		protected void paintComponent(Graphics g) {
+			ImageIcon image = new ImageIcon("image/server.png");
+			g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+		}
+		
+		public Content(){
+			String ip = "网络连接出错！";
+			try {
+				ip = InetAddress.getLocalHost().getHostAddress();
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			}
+			JLabel ipAddress = new JLabel(ip);
+			ipAddress.setForeground(new Color(88, 93, 103));
+			ipAddress.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+			ipAddress.setBounds(298, 246, 189, 34);
+			add(ipAddress);
+			
+			bartDateFormat = new SimpleDateFormat("yyyy年MM月dd日  EEE  HH:mm:ss");
+			date = new Date();
+			sendDate = bartDateFormat.format(date);
+			time= new JLabel(sendDate);
+			time.setForeground(new Color(88, 93, 103));
+			time.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+			time.setBounds(298, 339, 352, 28);
+			add(time);
+//			repaint();
+		}
+		
 	}
 
 	@Override
