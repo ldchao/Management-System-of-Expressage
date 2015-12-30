@@ -6,4 +6,5 @@ public interface IntervalTimeInfo {
 
 	// 更新存储的间隔时间
 	public void setIntervalTime(double new_time);
+	
 }

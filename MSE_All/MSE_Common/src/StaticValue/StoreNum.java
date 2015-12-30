@@ -65,4 +65,14 @@ public class StoreNum {
 		else 
 		   return Nanjing_storeName[indexNum];
 	}
+	static public String[] getStoreName(String transferNum){
+		if(transferNum.equals("010"))
+			   return Beijing_storeName;
+			else if(transferNum.equals("020"))
+			   return Guangzhou_storeName;
+			else if(transferNum.equals("021"))
+			   return Shanghai_storeName;
+			else 
+			   return Nanjing_storeName;
+		}
 }

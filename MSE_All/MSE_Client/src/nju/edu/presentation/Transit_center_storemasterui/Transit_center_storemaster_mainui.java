@@ -172,13 +172,26 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		btnNewButton_2.setBounds(172, 339, 125, 100);
 		contentPane.add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("New button");
-		btnNewButton_3.setBounds(434, 339, 125, 100);
-		contentPane.add(btnNewButton_3);
+		
 		
 		JLabel lblNewLabel_2 = new JLabel("СЎПо");
 		lblNewLabel_2.setBounds(473, 299, 54, 15);
 		contentPane.add(lblNewLabel_2);
+		
+		JButton btnNewButton_3 = new JButton("New button");
+		btnNewButton_3.setBounds(434, 339, 125, 100);
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Optionui o = new Optionui(main, contentPane,
+						loginPO,sm);
+				main.remove(contentPane);
+				main.getContentPane().add(o);
+				main.invalidate();
+				main.repaint();
+				main.setVisible(true);
+			}
+		});
+		contentPane.add(btnNewButton_3);
 
 	}
 }

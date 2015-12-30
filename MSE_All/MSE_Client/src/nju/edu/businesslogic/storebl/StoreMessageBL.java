@@ -17,9 +17,10 @@ import nju.edu.businesslogicservice.transferblservice.StoreinInfo;
 import nju.edu.dataservice.storedataservice.StoreMessageDataService;
 import PO.StorePO;
 import PO.StoreinorderPO;
+import StaticValue.StoreNum;
 
 public class StoreMessageBL implements StoreinUpdateInfo, StoreinInfo,
-		IntervalTimeInfo, Inventory_managementInfo, Runnable {
+		 Inventory_managementInfo, Runnable {
 
 	private static StoreMessageBL store_message = null;
 	private StorePO sp;
@@ -94,7 +95,7 @@ public class StoreMessageBL implements StoreinUpdateInfo, StoreinInfo,
 		String s = "" + new_time;
 		try {
 			FileWriter writer = new FileWriter(new File(
-					"clientFile/Remember.txt"));
+					"clientFile/storageTime.txt"));
 			writer.write(s);
 			writer.close();
 		} catch (IOException e) {
@@ -103,7 +104,7 @@ public class StoreMessageBL implements StoreinUpdateInfo, StoreinInfo,
 
 	}
 
-	// 入库是更新库存信息
+	// 入库时更新库存信息
 
 	@Override
 	public void storein_update(String qu, int pai, int jia, int wei,
@@ -164,19 +165,32 @@ public class StoreMessageBL implements StoreinUpdateInfo, StoreinInfo,
 	}
 
 	// 得到存储的间隔时间
-	@Override
 	public double getIntervalTime() {
 		return Strorage_time;
 	}
 
 	// 更新存储的间隔时间
-	@Override
 	public void setIntervalTime(double new_time) {
 		this.Strorage_time = new_time;
 		setToFile(new_time);
 
 	}
 
+	//得到不同区域对应的到达地
+	public String[][] getArriveAddress(){
+		String[] name=StoreNum.getStoreName(num);
+		int length=name.length;
+		String[][] message=new String[length][2];
+        String[] qu={"航运区","铁运区","汽运区"};
+		
+		for (int i = 0; i < length; i++) {
+              message[i][0]=(i/3)>2?("汽运区4排"+(i-8)+"架"):(qu[i/3]+(i%3+1)+"排");
+              message[i][1]=name[i];
+
+		}		
+		return message;
+	}
+	
 	@Override
 	public void run() {
 		while (store_message != null) {

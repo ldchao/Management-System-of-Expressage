@@ -1,22 +1,6 @@
 package nju.edu.presentation;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.text.AbstractDocument.Content;
-import javax.swing.JLabel;
-
-import java.awt.Font;
-import java.awt.Graphics;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ServerUI extends JFrame  {
 
