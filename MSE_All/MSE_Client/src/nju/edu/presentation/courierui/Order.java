@@ -395,7 +395,7 @@ public class Order extends JPanel implements Runnable{
 		label_23.setBounds(454, 416, 43, 15);
 		add(label_23);
 
-		JButton btnNewButton = new JButton("\u786E\u5B9A");
+		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//显示确认按钮
@@ -426,7 +426,7 @@ public class Order extends JPanel implements Runnable{
 
 		});
 		
-		btnNewButton.setBounds(274, 459, 52, 52);
+		btnNewButton.setBounds(274, 520, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(btnNewButton.getWidth(),
 				btnNewButton.getHeight(),image1.getImage().SCALE_DEFAULT);
@@ -436,7 +436,7 @@ public class Order extends JPanel implements Runnable{
 		btnNewButton.setBorderPainted(false);
 		add(btnNewButton);
 		
-		JButton button = new JButton("清空");
+		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int n=JOptionPane.showConfirmDialog(null, "确认清空？","no", JOptionPane.YES_NO_OPTION);
@@ -446,7 +446,7 @@ public class Order extends JPanel implements Runnable{
 			}
 		});
 		
-		button.setBounds(425, 459, 52, 52);
+		button.setBounds(425, 520, 52, 52);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
 		Image temp2 = image2.getImage().getScaledInstance(button.getWidth(),
 				button.getHeight(),image2.getImage().SCALE_DEFAULT);
@@ -464,7 +464,7 @@ public class Order extends JPanel implements Runnable{
 		add(comboBox_2);
 	
 		//返回按钮 
-		button_1 = new JButton("\u8FD4\u56DE");
+		button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Courier courier=new Courier(main,loginPO);

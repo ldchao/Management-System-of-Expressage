@@ -28,7 +28,7 @@ public class Courier extends JPanel {
 		setBounds(300, 100, 750, 600);
 		setVisible(true);
 		
-		JButton btnNewButton = new JButton("·µ»Ø");
+		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -71,10 +71,6 @@ public class Courier extends JPanel {
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 		
-		JLabel label = new JLabel("\u5FEB\u9012\u5458");
-		label.setBounds(96, 14, 54, 15);
-		add(label);
-		
 		JLabel label_1 = new JLabel("\u8BA2\u5355\u8F93\u5165");
 		label_1.setBounds(200, 149, 54, 15);
 		add(label_1);
@@ -103,7 +99,7 @@ public class Courier extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Receiver newreceiver=new Receiver(main,loginPO);
 				main.remove(courierframe);
-				main.add(newreceiver);
+				main.getContentPane().add(newreceiver);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);

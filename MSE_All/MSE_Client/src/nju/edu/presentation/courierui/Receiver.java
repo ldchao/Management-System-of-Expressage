@@ -151,6 +151,7 @@ public class Receiver extends JPanel implements Runnable{
 		add(toolBar);
 		
 		label_12 = new JLabel("\u72B6\u6001\u680F");
+		label_12.setForeground(Color.WHITE);
 		toolBar.add(label_12);
 		
 		JButton button = new JButton("\u786E\u5B9A");
@@ -191,7 +192,7 @@ public class Receiver extends JPanel implements Runnable{
 		button.setBorderPainted(false);
 		add(button);
 		
-		JButton button_1 = new JButton("\u8FD4\u56DE");
+		JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Courier newcourier=new Courier(main,loginPO);
