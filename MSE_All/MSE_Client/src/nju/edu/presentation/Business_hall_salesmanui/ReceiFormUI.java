@@ -2,6 +2,7 @@ package nju.edu.presentation.Business_hall_salesmanui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -27,6 +28,13 @@ public class ReceiFormUI extends JPanel {
 	private JTextField textField;
 	JFrame main;
 
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/businessHall_stuff/ReceiFormUI.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+
 	/**
 	 * Create the panel.
 	 */
@@ -36,8 +44,8 @@ public class ReceiFormUI extends JPanel {
 		ReceiFormUI nowPanel = this;
 		setLayout(null);
 
-		JButton button = new JButton("返回");
-		button.setBounds(13, -9, 63, 63);
+		JButton button = new JButton("");
+		button.setBounds(15, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 		button.setIcon(new ImageIcon("image/transparent_circle.png"));
@@ -59,10 +67,6 @@ public class ReceiFormUI extends JPanel {
 		});
 		add(button);
 
-		JLabel label = new JLabel("营业厅业务员>>接收");
-		label.setBounds(100, 14, 187, 15);
-		add(label);
-
 		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
@@ -70,16 +74,17 @@ public class ReceiFormUI extends JPanel {
 		add(lblHello);
 
 		JLabel label_2 = new JLabel("输入装运单编号");
-		label_2.setBounds(179, 255, 110, 23);
+		label_2.setBounds(210, 256, 110, 23);
 		add(label_2);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(8, 541, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
 		textField = new JTextField();
@@ -93,11 +98,13 @@ public class ReceiFormUI extends JPanel {
 				}
 			}
 		});
-		textField.setBounds(342, 254, 196, 23);
+		textField.setBounds(342, 254, 196, 26);
 		add(textField);
 		textField.setColumns(10);
 
-		JButton button_1 = new JButton("创建接收单");
+		JButton button_1 = new JButton("");
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (textField.getText().length() != 10) {
@@ -120,7 +127,7 @@ public class ReceiFormUI extends JPanel {
 				}
 			}
 		});
-		button_1.setBounds(307, 368, 134, 23);
+		button_1.setBounds(343, 313, 52, 52);
 		add(button_1);
 
 	}

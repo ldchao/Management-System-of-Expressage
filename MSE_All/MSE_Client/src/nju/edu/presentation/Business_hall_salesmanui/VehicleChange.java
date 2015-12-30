@@ -24,6 +24,7 @@ import nju.edu.presentation.financial_staffui.DateChooser;
 import javax.swing.JTextField;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
 
 @SuppressWarnings("serial")
@@ -37,6 +38,13 @@ public class VehicleChange extends JPanel {
 	private JLabel useDate;
 	private JComboBox<String> carState;
 	private VehicleBlService vehicleBl = new VehicleBl();
+	
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/businessHall_stuff/VehicleChange.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
 
 	public VehicleChange(JFrame m, JPanel bf, LoginPO loginPO) {
 		JFrame main = m;

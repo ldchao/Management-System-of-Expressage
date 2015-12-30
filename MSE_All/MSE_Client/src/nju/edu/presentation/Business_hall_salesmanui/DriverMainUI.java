@@ -1,6 +1,7 @@
 package nju.edu.presentation.Business_hall_salesmanui;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -25,6 +26,13 @@ public class DriverMainUI extends JPanel {
 	private boolean isValid = false;
 	private DriverVO vo;
 	private DriverBlService driverBl = new DriverBl();
+
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/businessHall_stuff/VehicleMainUI.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
 
 	public DriverMainUI(JFrame m, JPanel bf, LoginPO loginPO) {
 		JFrame main = m;
@@ -55,10 +63,6 @@ public class DriverMainUI extends JPanel {
 		});
 		add(button);
 
-		JLabel label = new JLabel("营业厅业务员>>司机信息管理");
-		label.setBounds(100, 14, 200, 15);
-		add(label);
-
 		JLabel label_1 = new JLabel("Hello！" + loginPO.getName());
 		label_1.setForeground(Color.WHITE);
 		label_1.setBounds(655, 12, 100, 15);
@@ -85,10 +89,11 @@ public class DriverMainUI extends JPanel {
 		label_2.setBounds(234, 239, 57, 28);
 		add(label_2);
 
-		JButton button_1 = new JButton("查询");
+		JButton button_1 = new JButton("");
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				String name = textField.getText();
 				if (name.length() == 0) {
 					label_4.setText("未输入司机姓名");
@@ -109,10 +114,12 @@ public class DriverMainUI extends JPanel {
 				}
 			}
 		});
-		button_1.setBounds(221, 321, 105, 29);
+		button_1.setBounds(282, 309, 52, 52);
 		add(button_1);
 
-		JButton button_2 = new JButton("新建");
+		JButton button_2 = new JButton("");
+		button_2.setContentAreaFilled(false);
+		button_2.setBorderPainted(false);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DriverNew vn = new DriverNew(main, nowPanel, loginPO);
@@ -123,7 +130,7 @@ public class DriverMainUI extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button_2.setBounds(345, 321, 105, 29);
+		button_2.setBounds(410, 309, 52, 52);
 		add(button_2);
 
 	}

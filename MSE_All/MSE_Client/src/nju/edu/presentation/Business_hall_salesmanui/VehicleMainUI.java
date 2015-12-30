@@ -1,6 +1,7 @@
 package nju.edu.presentation.Business_hall_salesmanui;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -25,6 +26,13 @@ public class VehicleMainUI extends JPanel {
 	private boolean isValid = false;
 	private VehicleVO vo;
 	private VehicleBlService vehicleBl = new VehicleBl();
+
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/businessHall_stuff/VehicleMainUI.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
 
 	public VehicleMainUI(JFrame m, JPanel bf, LoginPO loginPO) {
 		JFrame main = m;
@@ -55,10 +63,6 @@ public class VehicleMainUI extends JPanel {
 		});
 		add(button);
 
-		JLabel label = new JLabel("营业厅业务员>>车辆信息管理");
-		label.setBounds(100, 14, 200, 15);
-		add(label);
-
 		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
@@ -66,7 +70,7 @@ public class VehicleMainUI extends JPanel {
 		add(lblHello);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(8, 542, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		add(toolBar);
@@ -79,14 +83,16 @@ public class VehicleMainUI extends JPanel {
 		textField.setForeground(new Color(88, 93, 103));
 		textField.setCaretColor(new Color(88, 93, 103));
 		textField.setColumns(10);
-		textField.setBounds(313, 240, 133, 26);
+		textField.setBounds(329, 249, 133, 26);
 		add(textField);
 
 		JLabel label_2 = new JLabel("车辆代号");
-		label_2.setBounds(234, 239, 57, 28);
+		label_2.setBounds(251, 249, 57, 28);
 		add(label_2);
 
-		JButton button_1 = new JButton("查询");
+		JButton button_1 = new JButton("");
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -109,10 +115,12 @@ public class VehicleMainUI extends JPanel {
 				}
 			}
 		});
-		button_1.setBounds(221, 321, 105, 29);
+		button_1.setBounds(280, 310, 52, 52);
 		add(button_1);
 
-		JButton button_2 = new JButton("新建");
+		JButton button_2 = new JButton("");
+		button_2.setContentAreaFilled(false);
+		button_2.setBorderPainted(false);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VehicleNew vn = new VehicleNew(main, nowPanel, loginPO);
@@ -122,7 +130,7 @@ public class VehicleMainUI extends JPanel {
 				main.repaint();
 			}
 		});
-		button_2.setBounds(345, 321, 105, 29);
+		button_2.setBounds(411, 309, 52, 52);
 		add(button_2);
 
 	}

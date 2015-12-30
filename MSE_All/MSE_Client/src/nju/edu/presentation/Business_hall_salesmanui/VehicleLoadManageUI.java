@@ -2,6 +2,7 @@ package nju.edu.presentation.Business_hall_salesmanui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,6 +44,13 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 	JPanel lastui;
 	VehicleLoadManageUI nowPanel;
 
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/businessHall_stuff/VehicleLoadManageUI.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+
 	// create the panel
 	@SuppressWarnings({ "unchecked", "rawtypes", "static-access" })
 	public VehicleLoadManageUI(JFrame m, JPanel bf, LoginPO loginPO) {
@@ -53,8 +61,8 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		OrganizationNumPO op = new OrganizationNumPO();
 		String offnum = op.getNum(loginPO.getShop());
 
-		JButton button = new JButton("返回");
-		button.setBounds(13, -9, 63, 63);
+		JButton button = new JButton("");
+		button.setBounds(15, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 		button.setIcon(new ImageIcon("image/transparent_circle.png"));
@@ -76,10 +84,6 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		});
 		add(button);
 
-		JLabel label = new JLabel("营业厅业务员>>装车管理");
-		label.setBounds(100, 14, 200, 15);
-		add(label);
-
 		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
@@ -87,43 +91,38 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		add(lblHello);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(8, 539, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
-
-		JLabel label_2 = new JLabel("装车日期");
-		label_2.setBounds(69, 134, 54, 15);
-		add(label_2);
 
 		SimpleDateFormat bartDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		String sendDate = bartDateFormat.format(date);
 		JLabel lblNewLabel_8 = new JLabel(sendDate);
-		lblNewLabel_8.setBounds(169, 134, 85, 15);
+		lblNewLabel_8.setBounds(260, 159, 85, 15);
 		add(lblNewLabel_8);
 
-		JLabel lblNewLabel = new JLabel("营业厅编号");
-		lblNewLabel.setBounds(69, 172, 88, 15);
-		add(lblNewLabel);
-
 		textField = new JTextField();
+		textField.setForeground(new Color(88, 93, 103));
+		textField.setCaretColor(new Color(88, 93, 103));
+		textField.setOpaque(false);
+		textField.setBorder(null);
 		textField.setText(offnum);
 		textField.setEditable(false);
-		textField.setBounds(169, 169, 181, 21);
+		textField.setBounds(261, 189, 115, 25);
 		add(textField);
 		textField.setColumns(10);
-
-		JLabel lblNewLabel_1 = new JLabel("汽运编号");
-		lblNewLabel_1.setBounds(71, 217, 54, 15);
-		add(lblNewLabel_1);
 
 		textField_1 = new JTextField();
 		textField_1.setForeground(new Color(88, 93, 103));
 		textField_1.setCaretColor(new Color(88, 93, 103));
+		textField_1.setOpaque(false);
+		textField_1.setBorder(null);
 		textField_1.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				if (!Character.isDigit(e.getKeyChar())) {
@@ -131,17 +130,15 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 				}
 			}
 		});
-		textField_1.setBounds(169, 214, 181, 21);
+		textField_1.setBounds(257, 224, 115, 25);
 		add(textField_1);
 		textField_1.setColumns(10);
-
-		JLabel lblNewLabel_3 = new JLabel("汽车代号");
-		lblNewLabel_3.setBounds(71, 260, 54, 15);
-		add(lblNewLabel_3);
 
 		textField_2 = new JTextField();
 		textField_2.setForeground(new Color(88, 93, 103));
 		textField_2.setCaretColor(new Color(88, 93, 103));
+		textField_2.setOpaque(false);
+		textField_2.setBorder(null);
 		textField_2.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				if (!Character.isDigit(e.getKeyChar())) {
@@ -150,68 +147,60 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 			}
 		});
 		textField_2.setColumns(10);
-		textField_2.setBounds(169, 257, 181, 21);
+		textField_2.setBounds(257, 260, 115, 25);
 		add(textField_2);
-
-		JLabel lblNewLabel_2 = new JLabel("到达地");
-		lblNewLabel_2.setBounds(71, 302, 54, 15);
-		add(lblNewLabel_2);
 
 		String[] arriveAddress = { "", "北京中转中心", "上海中转中心", "南京中转中心", "广州中转中心" };
 		JComboBox comboBox_1 = new JComboBox(arriveAddress);
-		comboBox_1.setBounds(169, 299, 181, 21);
+		comboBox_1.setBounds(254, 295, 115, 25);
 		add(comboBox_1);
-
-		JLabel lblNewLabel_4 = new JLabel("监装员");
-		lblNewLabel_4.setBounds(71, 343, 54, 15);
-		add(lblNewLabel_4);
 
 		textField_4 = new JTextField();
 		textField_4.setForeground(new Color(88, 93, 103));
 		textField_4.setCaretColor(new Color(88, 93, 103));
+		textField_4.setOpaque(false);
+		textField_4.setBorder(null);
 		textField_4.setColumns(10);
-		textField_4.setBounds(169, 340, 181, 21);
+		textField_4.setBounds(256, 333, 115, 25);
 		add(textField_4);
-
-		JLabel lblNewLabel_5 = new JLabel("押运员");
-		lblNewLabel_5.setBounds(71, 381, 54, 15);
-		add(lblNewLabel_5);
 
 		textField_5 = new JTextField();
 		textField_5.setForeground(new Color(88, 93, 103));
 		textField_5.setCaretColor(new Color(88, 93, 103));
+		textField_5.setOpaque(false);
+		textField_5.setBorder(null);
 		textField_5.setColumns(10);
-		textField_5.setBounds(169, 378, 181, 21);
+		textField_5.setBounds(257, 370, 115, 25);
 		add(textField_5);
 
-		JLabel lblNewLabel_6 = new JLabel("运费");
-		lblNewLabel_6.setBounds(77, 421, 54, 15);
-		add(lblNewLabel_6);
-
 		JLabel label_3 = new JLabel("_ _ _ _ _");
-		label_3.setBounds(182, 421, 72, 15);
+		label_3.setBounds(257, 406, 72, 14);
 		add(label_3);
-
-		JLabel lblNewLabel_7 = new JLabel("审批状态");
-		lblNewLabel_7.setBounds(392, 421, 54, 15);
-		add(lblNewLabel_7);
 
 		String[] checkState = { "未审批", "审批通过", "审批未通过" };
 		JComboBox comboBox = new JComboBox(checkState);
 		comboBox.setEnabled(false);
-		comboBox.setBounds(492, 418, 152, 21);
+		comboBox.setBounds(255, 436, 115, 25);
 		add(comboBox);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(403, 134, 241, 262);
+		scrollPane.setBounds(437, 149, 189, 318);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+
 		add(scrollPane);
 
-		JLabel lblNewLabel_9 = new JLabel("所有托运单号：");
+		JLabel lblNewLabel_9 = new JLabel("");
 		lblNewLabel_9.setFont(new Font("微软雅黑", Font.BOLD, 14));
 		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
 		scrollPane.setColumnHeaderView(lblNewLabel_9);
 
 		JTextArea textArea = new JTextArea();
+		textArea.setForeground(new Color(88, 93, 103));
+		textArea.setCaretColor(new Color(88, 93, 103));
+		textArea.setOpaque(false);
+		textArea.setBorder(null);
 		textArea.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				if (!(Character.isDigit(e.getKeyChar()) || e.getKeyChar() == '\n')) {
@@ -219,9 +208,10 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 				}
 			}
 		});
-		scrollPane.setViewportView(textArea);
+		scrollPane.setRowHeaderView(textArea);
 
-		JButton btnNewButton = new JButton("确定");
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBounds(271, 479, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(
 				btnNewButton.getWidth(), btnNewButton.getHeight(),
@@ -230,7 +220,6 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		btnNewButton.setIcon(image1);
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setBorderPainted(false);
-		btnNewButton.setBounds(274, 459, 52, 52);
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -261,9 +250,9 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		});
 		add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("取消");
+		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setIcon(image1);
-		btnNewButton_1.setBounds(425, 459, 52, 52);
+		btnNewButton_1.setBounds(425, 479, 52, 52);
 		btnNewButton_1.setContentAreaFilled(false);
 		btnNewButton_1.setBorderPainted(false);
 
@@ -279,11 +268,6 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 			}
 		});
 		add(btnNewButton_1);
-
-		JLabel label_5 = new JLabel("营业厅装车单");
-		label_5.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		label_5.setBounds(286, 74, 223, 28);
-		add(label_5);
 
 	}
 

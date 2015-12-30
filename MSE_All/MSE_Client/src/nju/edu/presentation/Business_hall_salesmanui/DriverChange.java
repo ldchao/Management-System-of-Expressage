@@ -79,7 +79,7 @@ public class DriverChange extends JPanel {
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(8, 541, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		add(toolBar);
@@ -155,7 +155,7 @@ public class DriverChange extends JPanel {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(257, 86, 231, 146);
+		panel.setBounds(264, 91, 215, 146);
 		add(panel);
 
 		JButton btnNewButton = new JButton("");

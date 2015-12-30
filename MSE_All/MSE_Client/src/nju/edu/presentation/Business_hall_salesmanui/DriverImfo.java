@@ -19,6 +19,7 @@ import nju.edu.VO.DriverVO;
 import nju.edu.presentation.financial_staffui.DateChooser;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 @SuppressWarnings("serial")
 public class DriverImfo extends JPanel {
@@ -31,6 +32,13 @@ public class DriverImfo extends JPanel {
 	private JLabel birthDate;
 	private JLabel licenseDue;
 	private JLabel status;
+
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/businessHall_stuff/DriverImfo.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
 
 	public DriverImfo(JFrame m, JPanel bf, LoginPO loginPO) {
 		JFrame main = m;
@@ -62,10 +70,6 @@ public class DriverImfo extends JPanel {
 		button.setBounds(13, -9, 63, 63);
 		add(button);
 
-		JLabel label = new JLabel("营业厅业务员>>新建司机信息");
-		label.setBounds(100, 14, 200, 15);
-		add(label);
-
 		JLabel label_1 = new JLabel("Hello！" + loginPO.getName());
 		label_1.setForeground(Color.WHITE);
 		label_1.setBounds(655, 12, 100, 15);
@@ -73,7 +77,7 @@ public class DriverImfo extends JPanel {
 		add(label_1);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(8, 541, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		add(toolBar);
@@ -82,87 +86,53 @@ public class DriverImfo extends JPanel {
 		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
-		JLabel label_2 = new JLabel("司机编号");
-		label_2.setBounds(160, 289, 57, 28);
-		add(label_2);
-
-		JLabel label_3 = new JLabel("司机姓名");
-		label_3.setBounds(160, 328, 57, 28);
-		add(label_3);
-
-		JLabel label_5 = new JLabel("营业厅编号");
-		label_5.setBounds(160, 409, 67, 28);
-		add(label_5);
-
-		JLabel label_6 = new JLabel("手机号码");
-		label_6.setBounds(409, 290, 57, 28);
-		add(label_6);
-
 		@SuppressWarnings("unused")
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 
-		JLabel label_7 = new JLabel("出生日期");
-		label_7.setBounds(409, 371, 57, 28);
-		add(label_7);
-
-		JLabel label_8 = new JLabel("行驶证期限");
-		label_8.setBounds(409, 409, 74, 28);
-		add(label_8);
-
-		JLabel label_10 = new JLabel("性别");
-		label_10.setBounds(160, 368, 57, 28);
-		add(label_10);
-
-		JLabel label_11 = new JLabel("身份证号");
-		label_11.setBounds(409, 328, 57, 28);
-		add(label_11);
-
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(300, 90, 160, 160);
+		panel.setBounds(267, 96, 214, 144);
 		add(panel);
 
 		driverNum = new JLabel("New label");
-		driverNum.setBounds(255, 295, 107, 16);
+		driverNum.setBounds(255, 276, 107, 16);
 		add(driverNum);
 
 		name = new JLabel("New label");
-		name.setBounds(255, 334, 107, 16);
+		name.setBounds(255, 314, 107, 16);
 		add(name);
 
 		sex = new JLabel("New label");
-		sex.setBounds(255, 377, 107, 16);
+		sex.setBounds(255, 357, 107, 16);
 		add(sex);
 
 		shopNum = new JLabel("New label");
-		shopNum.setBounds(255, 415, 107, 16);
+		shopNum.setBounds(255, 396, 107, 16);
 		add(shopNum);
 
 		phoneNum = new JLabel("New label");
-		phoneNum.setBounds(506, 295, 107, 16);
+		phoneNum.setBounds(506, 276, 107, 16);
 		add(phoneNum);
 
 		idNum = new JLabel("New label");
-		idNum.setBounds(506, 334, 107, 16);
+		idNum.setBounds(506, 314, 107, 16);
 		add(idNum);
 
 		birthDate = new JLabel("New label");
-		birthDate.setBounds(506, 377, 107, 16);
+		birthDate.setBounds(506, 357, 107, 16);
 		add(birthDate);
 
 		licenseDue = new JLabel("New label");
-		licenseDue.setBounds(506, 415, 107, 16);
+		licenseDue.setBounds(506, 396, 107, 16);
 		add(licenseDue);
 
-		JLabel label_9 = new JLabel("状态");
-		label_9.setBounds(160, 449, 67, 28);
-		add(label_9);
-
 		status = new JLabel("New label");
-		status.setBounds(255, 455, 107, 16);
+		status.setBounds(255, 435, 107, 16);
 		add(status);
 
-		JButton button_1 = new JButton("修改");
+		JButton button_1 = new JButton("");
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DriverChange driverChange = new DriverChange(main, nowPanel,
@@ -189,7 +159,7 @@ public class DriverImfo extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(337, 478, 117, 29);
+		button_1.setBounds(345, 480, 52, 52);
 		add(button_1);
 
 	}

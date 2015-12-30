@@ -22,6 +22,7 @@ import nju.edu.presentation.financial_staffui.DateChooser;
 import javax.swing.JTextField;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
 
 @SuppressWarnings("serial")
@@ -35,6 +36,13 @@ public class VehicleNew extends JPanel {
 	private JLabel buyDate;
 	private JLabel useDate;
 	private VehicleBlService vehicleBl = new VehicleBl();
+
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/businessHall_stuff/VehicleNew.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
 
 	@SuppressWarnings("static-access")
 	public VehicleNew(JFrame m, JPanel bf, LoginPO loginPO) {
@@ -67,10 +75,6 @@ public class VehicleNew extends JPanel {
 		});
 		add(button);
 
-		JLabel label = new JLabel("营业厅业务员>>新建车辆信息");
-		label.setBounds(100, 14, 200, 15);
-		add(label);
-
 		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
@@ -90,84 +94,67 @@ public class VehicleNew extends JPanel {
 		carNum = new JTextField();
 		carNum.setForeground(new Color(88, 93, 103));
 		carNum.setCaretColor(new Color(88, 93, 103));
+		carNum.setOpaque(false);
+		carNum.setBorder(null);
 		carNum.setColumns(10);
-		carNum.setBounds(212, 319, 106, 26);
+		carNum.setBounds(215, 287, 125, 26);
 		add(carNum);
-
-		JLabel carNumLabel = new JLabel("车辆代号");
-		carNumLabel.setBounds(133, 318, 57, 28);
-		add(carNumLabel);
 
 		engineNum = new JTextField();
 		engineNum.setForeground(new Color(88, 93, 103));
 		engineNum.setCaretColor(new Color(88, 93, 103));
+		engineNum.setOpaque(false);
+		engineNum.setBorder(null);
 		engineNum.setColumns(10);
-		engineNum.setBounds(212, 357, 106, 26);
+		engineNum.setBounds(215, 332, 125, 26);
 		add(engineNum);
-
-		JLabel engineNumLabel = new JLabel("发动机型号");
-		engineNumLabel.setBounds(133, 357, 65, 28);
-		add(engineNumLabel);
-
-		JLabel carLabel = new JLabel("车辆号");
-		carLabel.setBounds(133, 438, 67, 28);
-		add(carLabel);
 
 		car = new JTextField();
 		car.setForeground(new Color(88, 93, 103));
 		car.setCaretColor(new Color(88, 93, 103));
+		car.setOpaque(false);
+		car.setBorder(null);
 		car.setColumns(10);
-		car.setBounds(212, 438, 106, 26);
+		car.setBounds(215, 418, 125, 26);
 		add(car);
-
-		JLabel baseLabel = new JLabel("底盘号");
-		baseLabel.setBounds(133, 398, 57, 28);
-		add(baseLabel);
 
 		baseNum = new JTextField();
 		baseNum.setForeground(new Color(88, 93, 103));
 		baseNum.setCaretColor(new Color(88, 93, 103));
+		
 		baseNum.setColumns(10);
-		baseNum.setBounds(212, 399, 106, 26);
+		baseNum.setBounds(215, 376, 125, 26);
+		baseNum.setOpaque(false);
+		baseNum.setBorder(null);
 		add(baseNum);
-
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 		buyDate = new JLabel("请单击选择日期");
-		buyDate.setBounds(465, 365, 93, 23);
+		buyDate.setBounds(496, 333, 93, 23);
 		dateChooser2.register(buyDate);
 		add(buyDate);
 
-		JLabel label_7 = new JLabel("购买日期");
-		label_7.setBounds(379, 362, 57, 28);
-		add(label_7);
-
-		JLabel label_8 = new JLabel("服役时间");
-		label_8.setBounds(379, 400, 74, 28);
-		add(label_8);
-
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
 		useDate = new JLabel("请单击选择日期");
-		useDate.setBounds(465, 403, 93, 23);
+		useDate.setBounds(497, 377, 93, 23);
 		dateChooser1.register(useDate);
 		add(useDate);
-
-		JLabel label_11 = new JLabel("驾驶员");
-		label_11.setBounds(379, 319, 57, 28);
-		add(label_11);
 
 		driver = new JTextField();
 		driver.setForeground(new Color(88, 93, 103));
 		driver.setCaretColor(new Color(88, 93, 103));
+		driver.setOpaque(false);
+		driver.setBorder(null);
 		driver.setColumns(10);
-		driver.setBounds(458, 319, 106, 26);
+		driver.setBounds(494, 287, 125, 26);
 		add(driver);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(268, 104, 160, 160);
+		panel.setBounds(268, 101, 215, 146);
 		add(panel);
 
-		JButton btnNewButton = new JButton("确认");
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBounds(274, 474, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(
 				btnNewButton.getWidth(), btnNewButton.getHeight(),
@@ -176,7 +163,6 @@ public class VehicleNew extends JPanel {
 		btnNewButton.setIcon(image1);
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setBorderPainted(false);
-		btnNewButton.setBounds(274, 459, 52, 52);
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -202,9 +188,9 @@ public class VehicleNew extends JPanel {
 		});
 		add(btnNewButton);
 
-		JButton button_1 = new JButton("取消");
+		JButton button_1 = new JButton("");
+		button_1.setBounds(426, 475, 52, 52);
 		button_1.setIcon(image1);
-		button_1.setBounds(425, 459, 52, 52);
 		button_1.setContentAreaFilled(false);
 		button_1.setBorderPainted(false);
 

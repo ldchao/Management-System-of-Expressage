@@ -23,6 +23,7 @@ import nju.edu.presentation.financial_staffui.DateChooser;
 import javax.swing.JTextField;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
 
 @SuppressWarnings("serial")
@@ -35,6 +36,13 @@ public class DriverNew extends JPanel {
 	private JLabel licenseDue;
 	private JLabel birthDate;
 	private DriverBlService driverBl = new DriverBl();
+
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/businessHall_stuff/DriverNew.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
 
 	@SuppressWarnings("static-access")
 	public DriverNew(JFrame m, JPanel bf, LoginPO loginPO) {
@@ -67,10 +75,6 @@ public class DriverNew extends JPanel {
 		});
 		add(button);
 
-		JLabel label = new JLabel("营业厅业务员>>司机信息管理");
-		label.setBounds(100, 14, 200, 15);
-		add(label);
-
 		JLabel label_1 = new JLabel("Hello！" + loginPO.getName());
 		label_1.setForeground(Color.WHITE);
 		label_1.setBounds(655, 12, 100, 15);
@@ -78,107 +82,86 @@ public class DriverNew extends JPanel {
 		add(label_1);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(8, 541, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
 		driverNum = new JTextField();
 		driverNum.setForeground(new Color(88, 93, 103));
 		driverNum.setCaretColor(new Color(88, 93, 103));
+		driverNum.setOpaque(false);
+		driverNum.setBorder(null);
 		driverNum.setColumns(10);
-		driverNum.setBounds(212, 319, 106, 26);
+		driverNum.setBounds(211, 269, 125, 26);
 		add(driverNum);
-
-		JLabel label_2 = new JLabel("司机编号");
-		label_2.setBounds(133, 318, 57, 28);
-		add(label_2);
 
 		name = new JTextField();
 		name.setForeground(new Color(88, 93, 103));
 		name.setCaretColor(new Color(88, 93, 103));
+		name.setOpaque(false);
+		name.setBorder(null);
 		name.setColumns(10);
-		name.setBounds(212, 357, 106, 26);
+		name.setBounds(212, 311, 125, 26);
 		add(name);
-
-		JLabel label_3 = new JLabel("司机姓名");
-		label_3.setBounds(133, 357, 57, 28);
-		add(label_3);
-
-		JLabel label_5 = new JLabel("营业厅编号");
-		label_5.setBounds(133, 438, 67, 28);
-		add(label_5);
 
 		shopNum = new JTextField();
 		shopNum.setForeground(new Color(88, 93, 103));
 		shopNum.setCaretColor(new Color(88, 93, 103));
+		shopNum.setOpaque(false);
+		shopNum.setBorder(null);
 		shopNum.setColumns(10);
-		shopNum.setBounds(212, 438, 106, 26);
+		shopNum.setBounds(212, 394, 125, 26);
 		add(shopNum);
-
-		JLabel label_6 = new JLabel("手机号码");
-		label_6.setBounds(382, 319, 57, 28);
-		add(label_6);
 
 		phoneNum = new JTextField();
 		phoneNum.setForeground(new Color(88, 93, 103));
 		phoneNum.setCaretColor(new Color(88, 93, 103));
+		phoneNum.setOpaque(false);
+		phoneNum.setBorder(null);
 		phoneNum.setColumns(10);
-		phoneNum.setBounds(461, 320, 106, 26);
+		phoneNum.setBounds(492, 268, 125, 26);
 		add(phoneNum);
 
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 		birthDate = new JLabel("请单击选择日期");
-		birthDate.setBounds(468, 403, 93, 23);
+		birthDate.setBounds(502, 356, 93, 23);
 		dateChooser2.register(birthDate);
 		add(birthDate);
 
-		JLabel label_7 = new JLabel("出生日期");
-		label_7.setBounds(382, 400, 57, 28);
-		add(label_7);
-
-		JLabel label_8 = new JLabel("行驶证期限");
-		label_8.setBounds(382, 438, 74, 28);
-		add(label_8);
-
 		DateChooser dateChooser = DateChooser.getInstance("yyyy-MM-dd");
 		licenseDue = new JLabel("请单击选择日期");
-		licenseDue.setBounds(468, 441, 93, 23);
+		licenseDue.setBounds(503, 397, 93, 23);
 		dateChooser.register(licenseDue);
 		add(licenseDue);
-
-		JLabel label_10 = new JLabel("性别");
-		label_10.setBounds(133, 397, 57, 28);
-		add(label_10);
 
 		JComboBox<String> sex = new JComboBox<>();
 		sex.addItem("请选择");
 		sex.addItem("男");
 		sex.addItem("女");
-		sex.setBounds(213, 398, 105, 28);
+		sex.setBounds(212, 353, 125, 28);
 		add(sex);
-
-		JLabel label_11 = new JLabel("身份证号");
-		label_11.setBounds(382, 357, 57, 28);
-		add(label_11);
 
 		idNum = new JTextField();
 		idNum.setForeground(new Color(88, 93, 103));
 		idNum.setCaretColor(new Color(88, 93, 103));
+		idNum.setOpaque(false);
+		idNum.setBorder(null);
 		idNum.setColumns(10);
-		idNum.setBounds(461, 357, 106, 26);
+		idNum.setBounds(492, 311, 125, 26);
 		add(idNum);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(268, 104, 160, 160);
+		panel.setBounds(267, 95, 214, 141);
 		add(panel);
 
-		JButton btnNewButton = new JButton("确定");
-		btnNewButton.setBounds(274, 459, 52, 52);
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBounds(264, 476, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(
 				btnNewButton.getWidth(), btnNewButton.getHeight(),
@@ -213,7 +196,7 @@ public class DriverNew extends JPanel {
 		});
 		add(btnNewButton);
 
-		JButton button_1 = new JButton("取消");
+		JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -223,8 +206,8 @@ public class DriverNew extends JPanel {
 				main.setVisible(true);
 			}
 		});
+		button_1.setBounds(417, 477, 52, 52);
 		button_1.setIcon(image1);
-		button_1.setBounds(425, 459, 52, 52);
 		button_1.setContentAreaFilled(false);
 		button_1.setBorderPainted(false);
 
