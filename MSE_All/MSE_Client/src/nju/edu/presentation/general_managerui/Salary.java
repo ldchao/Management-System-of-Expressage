@@ -100,7 +100,7 @@ public class Salary extends JPanel{
 				main.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(274, 459, 52, 52);
+		btnNewButton.setBounds(332, 452, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(btnNewButton.getWidth(),
 				btnNewButton.getHeight(),image1.getImage().SCALE_DEFAULT);
@@ -110,7 +110,7 @@ public class Salary extends JPanel{
 		btnNewButton.setBorderPainted(false);
 		add(btnNewButton);
 		
-		JButton button = new JButton("\u8FD4\u56DE");
+		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SalaryManage salaryManage=new SalaryManage(main,loginPO);	
@@ -158,6 +158,7 @@ public class Salary extends JPanel{
 		add(toolBar);
 		
 		label_4 = new JLabel("\u72B6\u6001");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 	}
 

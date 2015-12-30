@@ -31,12 +31,12 @@ public class PolicyManage extends JPanel {
 		lblHello.setBounds(677, 6, 67, 25);
 		add(lblHello);
 		
-		JButton button = new JButton("\u8FD4\u56DE");
+		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Manager newmanager=new Manager(main,loginPO);
 				main.remove(policyManageframe);
-				main.add(newmanager);
+				main.getContentPane().add(newmanager);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -71,7 +71,7 @@ public class PolicyManage extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				SalaryManage newsalaryManage=new SalaryManage(main,loginPO);
 				main.remove(policyManageframe);
-				main.add(newsalaryManage);
+				main.getContentPane().add(newsalaryManage);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -85,7 +85,7 @@ public class PolicyManage extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				ConstantManage newconstantManage=new ConstantManage(main,loginPO);
 				main.remove(policyManageframe);
-				main.add(newconstantManage);
+				main.getContentPane().add(newconstantManage);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);

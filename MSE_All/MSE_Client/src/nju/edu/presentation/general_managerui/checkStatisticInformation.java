@@ -18,11 +18,14 @@ import nju.edu.VO.PayeeorderVO;
 import nju.edu.VO.PayorderVO;
 import nju.edu.businesslogic.financebl.StatisticsBL;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 public class checkStatisticInformation extends JPanel {
@@ -38,22 +41,32 @@ public class checkStatisticInformation extends JPanel {
 		this.setVisible(true);
 		setLayout(null);
 		
-		JButton button = new JButton("\u8FD4\u56DE");
+		JButton button = new JButton();
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				checkStatistic checkStatistic=new checkStatistic(main,loginPO);
 				main.remove(checkStatisticInformation);
-				main.add(checkStatistic);
+				main.getContentPane().add(checkStatistic);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
 			}
 		});
-		button.setBounds(10, 10, 93, 23);
+		button.setBounds(13, -9, 63, 63);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setIcon(new ImageIcon("image/transparent_circle.png"));
+		button.addMouseListener(new MouseAdapter() {
+					@Override
+			public void mousePressed(MouseEvent e) {
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}	
+		});
+
 		add(button);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u67E5\u770B\u7EDF\u8BA1\u5206\u6790");
-		label.setBounds(113, 14, 130, 15);
+		label.setBounds(113, 14, 428, 15);
 		add(label);
 		
 		JLabel label_1 = new JLabel(start + "至" + end + "期间的经营情况");

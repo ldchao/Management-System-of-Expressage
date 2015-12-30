@@ -24,7 +24,7 @@ public class Manager extends JPanel{
 		setVisible(true);
 		setLayout(null);
 		
-		JButton button = new JButton("·µ»Ø");
+		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -75,7 +75,7 @@ public class Manager extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				StaffManager staffManager=new StaffManager(main,loginPO);
 				main.remove(managerframe);
-				main.add(staffManager);
+				main.getContentPane().add(staffManager);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -89,7 +89,7 @@ public class Manager extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				checkStatics_Analysis checkStatics_Analysis=new checkStatics_Analysis(main,loginPO);
 				main.remove(managerframe);
-				main.add(checkStatics_Analysis);
+				main.getContentPane().add(checkStatics_Analysis);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -103,7 +103,7 @@ public class Manager extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				PolicyManage policyManage=new PolicyManage(main,loginPO);
 				main.remove(managerframe);
-				main.add(policyManage);
+				main.getContentPane().add(policyManage);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -117,7 +117,7 @@ public class Manager extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				ListApprove newlistApprove=new ListApprove(main,loginPO);
 				main.remove(managerframe);
-				main.add(newlistApprove);
+				main.getContentPane().add(newlistApprove);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);

@@ -64,7 +64,7 @@ public class editConstant extends JPanel {
 						ConstantVO newvo = constantPolicybl.checkConstant(textField.getText(), textField_1.getText());
 						Constant constant = new Constant(newvo, main, loginPO);
 						main.remove(editConstant);
-						main.add(constant);
+						main.getContentPane().add(constant);
 						main.invalidate();
 						main.repaint();
 						main.setVisible(true);
@@ -82,12 +82,12 @@ public class editConstant extends JPanel {
 		button.setBorderPainted(false);
 		add(button);
 
-		JButton button_1 = new JButton("\u53D6\u6D88");
+		JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Constant constant = new Constant(vo, main, loginPO);
 				main.remove(editConstant);
-				main.add(constant);
+				main.getContentPane().add(constant);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -134,6 +134,7 @@ public class editConstant extends JPanel {
 		add(toolBar);
 
 		label_4 = new JLabel("\u72B6\u6001");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
 		JLabel label_5 = new JLabel("\u81F3");

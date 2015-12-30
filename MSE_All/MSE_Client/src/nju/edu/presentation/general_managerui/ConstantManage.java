@@ -33,12 +33,12 @@ public class ConstantManage extends JPanel {
 		lblHello.setBounds(677, 6, 67, 25);
 		add(lblHello);
 		
-		JButton button = new JButton("\u8FD4\u56DE");
+		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PolicyManage newpolicyManage=new PolicyManage(main,loginPO);
 				main.remove(constantManageframe);
-				main.add(newpolicyManage);
+				main.getContentPane().add(newpolicyManage);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -84,13 +84,13 @@ public class ConstantManage extends JPanel {
 				ConstantVO vo=constantPolicybl.checkConstant(comboBox.getSelectedItem().toString(), comboBox_1.getSelectedItem().toString());
 				Constant constant=new Constant(vo,main,loginPO);
 				main.remove(constantManageframe);
-				main.add(constant);
+				main.getContentPane().add(constant);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(274, 459, 52, 52);
+		button_1.setBounds(343, 442, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(button_1.getWidth(),
 						button_1.getHeight(),image1.getImage().SCALE_DEFAULT);
@@ -101,10 +101,13 @@ public class ConstantManage extends JPanel {
 		add(button_1);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 534, 724, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 		
 		JLabel lblNewLabel = new JLabel("\u72B6\u6001\u680F");
+		lblNewLabel.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel);
 	}
 }

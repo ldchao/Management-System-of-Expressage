@@ -300,6 +300,7 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 		add(toolBar);
 
 		label_8 = new JLabel("\u72B6\u6001\u680F");
+		label_8.setForeground(Color.WHITE);
 		toolBar.add(label_8);
 
 		JLabel label_6 = new JLabel("\u624B\u673A");
@@ -315,7 +316,7 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 		textArea.setText(vo.getAddress());
 		add(textArea);
 
-		JButton button_2 = new JButton("\u8FD4\u56DE");
+		JButton button_2 = new JButton("");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Staff staff = new Staff(vo, main, loginPO);

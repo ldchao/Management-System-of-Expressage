@@ -26,6 +26,7 @@ import PO.LoginPO;
 import nju.edu.businesslogic.approvebl.Approvebl;
 import nju.edu.presentation.Loginui.PersonalInfomation;
 import javax.swing.JTextArea;
+import java.awt.Color;
 
 public class ListApprove extends JPanel implements ItemListener{
 
@@ -67,24 +68,24 @@ public class ListApprove extends JPanel implements ItemListener{
 		add(button);
 		
 		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u5355\u636E\u5BA1\u6279");
-		label.setBounds(96, 14, 108, 15);
+		label.setBounds(96, 14, 271, 15);
 		add(label);
 		
 //		String[] state={"未审批","审批已通过","审批未通过"};
 		
 
 		JLabel label_2 = new JLabel("\u5355\u636E\u79CD\u7C7B");
-		label_2.setBounds(257, 63, 54, 15);
+		label_2.setBounds(96, 62, 54, 15);
 		add(label_2);
 		
 		String[] type={"寄件单","装车单","营业厅到达单","收款单","派件单","中转中心到达单","入库单","中转单","出库单","付款单"};
 		comboBox = new JComboBox(type);
-		comboBox.setBounds(392, 59, 144, 23);
+		comboBox.setBounds(162, 59, 144, 23);
 		comboBox.addItemListener(this);
 		add(comboBox);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(451, 102, 246, 344);
+		scrollPane_1.setBounds(451, 102, 246, 308);
 		add(scrollPane_1);
 		
 		JTextArea textArea = new JTextArea();
@@ -93,7 +94,7 @@ public class ListApprove extends JPanel implements ItemListener{
 		textArea.setEnabled(false);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(85, 102, 259, 344);
+		scrollPane.setBounds(85, 102, 259, 308);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -142,7 +143,7 @@ public class ListApprove extends JPanel implements ItemListener{
 				}
 			}
 		});
-		button_1.setBounds(274, 459, 52, 52);
+		button_1.setBounds(304, 443, 63, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(button_1.getWidth(),
 						button_1.getHeight(),image1.getImage().SCALE_DEFAULT);
@@ -153,10 +154,13 @@ public class ListApprove extends JPanel implements ItemListener{
 		add(button_1);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 534, 724, 28);
+		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setOpaque(false);
+		toolBar.setBorder(null);
 		add(toolBar);
 		
 		JLabel label_3 = new JLabel("\u72B6\u6001\u680F");
+		label_3.setForeground(Color.WHITE);
 		toolBar.add(label_3);
 		
 

@@ -24,12 +24,12 @@ public class checkStatics_Analysis extends JPanel {
 		setVisible(true);
 		setLayout(null);
 		
-		JButton button = new JButton("返回");
+		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Manager newmanager=new Manager(main,loginPO);	
 				main.remove(checkStatics_Analysis);
-				main.add(newmanager);
+				main.getContentPane().add(newmanager);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -52,18 +52,13 @@ public class checkStatics_Analysis extends JPanel {
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		setForeground(Color.WHITE);
-
-		
-		Label label = new Label("总经理>>查看统计分析");
-		label.setBounds(105, 10, 136, 23);
-		add(label);
 		
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				checkAccount newcheckAccount=new checkAccount(main,loginPO);
 				main.remove(checkStatics_Analysis);
-				main.add(newcheckAccount);
+				main.getContentPane().add(newcheckAccount);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -77,7 +72,7 @@ public class checkStatics_Analysis extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				checkCost_Benefit newcheckCost_Benefit=new checkCost_Benefit(main,loginPO);
 				main.remove(checkStatics_Analysis);
-				main.add(newcheckCost_Benefit);
+				main.getContentPane().add(newcheckCost_Benefit);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -91,7 +86,7 @@ public class checkStatics_Analysis extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				checkStatistic newcheckStatistic=new checkStatistic(main,loginPO);
 				main.remove(checkStatics_Analysis);
-				main.add(newcheckStatistic);
+				main.getContentPane().add(newcheckStatistic);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);

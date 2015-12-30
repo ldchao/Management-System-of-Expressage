@@ -246,12 +246,12 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 		button.setBorderPainted(false);
 		add(button);
 
-		button_1 = new JButton("\u53D6\u6D88");
+		button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StaffManager staffManager = new StaffManager(main, loginPO);
 				main.remove(thiStaff);
-				main.add(staffManager);
+				main.getContentPane().add(staffManager);
 				main.invalidate();
 				main.repaint();
 				main.setVisible(true);
@@ -277,6 +277,7 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 		add(toolBar);
 
 		label_8 = new JLabel("\u72B6\u6001");
+		label_8.setForeground(Color.WHITE);
 		toolBar.add(label_8);
 
 		JLabel label_6 = new JLabel("\u5730\u5740");
@@ -298,7 +299,7 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 				if (n == JOptionPane.YES_OPTION) {
 					addStaff addStaff = new addStaff(main, loginPO);
 					main.remove(thiStaff);
-					main.add(addStaff);
+					main.getContentPane().add(addStaff);
 					main.invalidate();
 					main.repaint();
 					main.setVisible(true);
@@ -338,7 +339,7 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 		if (cleanSignal == true) {
 			StaffManager staffManager = new StaffManager(main, loginPO);
 			main.remove(thiStaff);
-			main.add(staffManager);
+			main.getContentPane().add(staffManager);
 			main.invalidate();
 			main.repaint();
 			main.setVisible(true);
