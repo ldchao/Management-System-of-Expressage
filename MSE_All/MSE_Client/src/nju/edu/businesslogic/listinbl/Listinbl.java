@@ -203,6 +203,8 @@ public class Listinbl implements ListinBLService, ListinInfo, OrderInfo, UpdateI
 		while (true) {
 			part2 = getpart2(a);
 			String id = partOfID + part2;
+//			System.out.println(partOfID);
+			System.out.println(part2);
 			OrderVO vo = getOrder(id);
 			if (a==100000) {
 				return "ÓªÒµÌüÒÑÂú";
@@ -218,7 +220,7 @@ public class Listinbl implements ListinBLService, ListinInfo, OrderInfo, UpdateI
 		// TODO Auto-generated method stub
 		String result = a + "";
 		String temp="";
-		for (int i = 0; i < 5 - result.length(); i++) {
+		for (int i = 0; i < 6 - result.length(); i++) {
 			temp = "0" + temp;
 		}
 		result=temp+result;
