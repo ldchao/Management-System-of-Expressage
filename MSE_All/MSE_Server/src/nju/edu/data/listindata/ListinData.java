@@ -60,11 +60,6 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 		return 0;
 	}
 
-	@Override
-	public ResultMessage find(String number) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	//根据订单号获得单据po
 	@Override
 	public OrderPO getOrder(String id) throws RemoteException {

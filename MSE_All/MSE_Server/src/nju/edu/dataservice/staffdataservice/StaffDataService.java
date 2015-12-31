@@ -7,14 +7,19 @@ import java.util.ArrayList;
 import PO.StaffPO;
 
 public interface StaffDataService extends Remote{
+	//获得所有人员信息
 	public ArrayList<StaffPO> gets()throws RemoteException;
 	
+	//根据用户名获得人员信息
 	public StaffPO get(String name)throws RemoteException;
 	
+	//新增一个人员
 	public void insert(StaffPO po)throws RemoteException;
 	
+	//删除一个人员
 	public void delete(String id)throws RemoteException;
 	
+	//更新人员信息
 	public void update(StaffPO po)throws RemoteException;
 	
 	//修改用户名,前一个为旧用户名，后一个为新用户名

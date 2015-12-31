@@ -15,6 +15,7 @@ import nju.edu.dataservice.staffdataservice.StaffDataService;
 
 public class Staffbl implements StaffBLService,checkStaffInfo,editStaffInfo{
 	StaffDataService staffDataService=RMIHelper.getStaffData();
+	DeleteUserInterface DeleteUserInterface=new UserBL();
 	@Override
 	public ArrayList<StaffVO> showStaff() {
 		// TODO Auto-generated method stub
@@ -85,6 +86,7 @@ public class Staffbl implements StaffBLService,checkStaffInfo,editStaffInfo{
 		// TODO Auto-generated method stub
 		try {
 			staffDataService.delete(id);
+			DeleteUserInterface.deleteUser(id);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
