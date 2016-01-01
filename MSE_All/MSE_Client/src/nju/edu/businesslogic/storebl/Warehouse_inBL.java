@@ -11,6 +11,7 @@ import nju.edu.VO.StoreinVO;
 import nju.edu.businesslogic.listinbl.Listinbl;
 import nju.edu.businesslogicservice.listinblservice.OrderInfo;
 import nju.edu.businesslogicservice.listinblservice.UpdateInfo;
+import nju.edu.businesslogicservice.storeblservice.GetFreeLocationInfo;
 import nju.edu.businesslogicservice.storeblservice.GetLocationInfo;
 import nju.edu.businesslogicservice.storeblservice.StoreinUpdateInfo;
 import nju.edu.businesslogicservice.storeblservice.Warehouse_inBLService;
@@ -131,6 +132,44 @@ public class Warehouse_inBL implements Warehouse_inBLService,GetLocationInfo,App
 		
 		UpdateInfo order_update=new Listinbl();
 		order_update.update(id, "订单已在该中转中心入库");
+	}
+
+	//入库时根据订单号自动生成库存位置
+	@Override
+	public StoreLocationVO getStoreLocation(String id,String storeNum) {
+		GetFreeLocationInfo gfl=StoreMessageBL.getInstance();
+		ArrayList<String> transferNum=new ArrayList<>();
+		transferNum.add("010");
+		transferNum.add("020");
+		transferNum.add("021");
+		transferNum.add("025");
+		transferNum.remove(storeNum);
+		
+		String addressNum1="0"+id.substring(0, 2);
+		String addressNum2="0"+id.substring(2, 4);
+		String[] all_qu={"铁运区","汽运区","航运区"};
+		String qu;
+		int pai=0,jia=0,wei=0;
+		StoreLocationVO sv;
+		if(addressNum1.equals(storeNum)){
+			qu="汽运区";
+			pai=4;
+			jia=Integer.parseInt(addressNum2);
+			wei=gfl.getWei(jia-1);
+			sv=new StoreLocationVO(qu, pai, jia, wei);			
+		}else{
+			int a=Integer.parseInt(id.substring(4, 5));
+			qu=all_qu[a];
+			for (String s:transferNum) {
+				pai++;
+				if(s.equals(addressNum1)){
+					break;
+				}				
+			}
+			int[] jia_wei=gfl.getJia_Wei(qu, pai-1);
+			sv=new StoreLocationVO(qu, pai, jia_wei[0], jia_wei[1]);
+		}
+		return sv;
 	}
 
 	

@@ -14,11 +14,11 @@ public class StorePO implements Serializable {
 	String[][][] trainToTC; // 发往外市中转中心铁运区库存信息 3*20*60
 	String[][][] carToTC; // 发往外市中转中心汽运区库存信息 3*20*60
 	String[][] carToBH; // 发往本市营业厅库存信息 20*60
-    int length;
-	
-	public StorePO(String transferNum,String warn_value, String[] remind_value,
-			String[][][] airToTC, String[][][] trainToTC, String[][][] carToTC,
-			String[][] carToBH) {
+	int length;
+
+	public StorePO(String transferNum, String warn_value,
+			String[] remind_value, String[][][] airToTC,
+			String[][][] trainToTC, String[][][] carToTC, String[][] carToBH) {
 		super();
 		this.warn_value = warn_value;
 		this.remind_value = remind_value;
@@ -26,7 +26,7 @@ public class StorePO implements Serializable {
 		this.trainToTC = trainToTC;
 		this.carToTC = carToTC;
 		this.carToBH = carToBH;
-		this.length=StoreNum.getBHnum(transferNum);
+		this.length = StoreNum.getBHnum(transferNum);
 	}
 
 	public String getWarn_value() {
@@ -204,7 +204,7 @@ public class StorePO implements Serializable {
 			}
 			storeRatio[i + 6][1] = number + "/" + 1200;
 		}
-		for (int i = 0; i <length; i++) {
+		for (int i = 0; i < length; i++) {
 			storeRatio[i + 9][0] = "汽运区4排" + (i + 1) + "架";
 			int number = 0;
 			for (int j = 0; j < 60; j++) {
@@ -215,5 +215,52 @@ public class StorePO implements Serializable {
 			storeRatio[i + 9][1] = number + "/" + 60;
 		}
 		return storeRatio;
+	}
+
+	// 得到发往外市中转中心的仓库空闲位置
+	public int getWei(int jia) {
+		for (int i = 0; i < 60; i++) {
+			if (carToBH[jia][i].equals("0")) {
+				return i + 1;
+			}
+		}
+		return -1;
+	}
+
+	// 得到发往本市营业厅的仓库空闲位置
+	public int[] getJia_Wei(String qu, int pai) {
+		int[] result = { -1, -1 };
+		if (qu.equals("航运区")) {
+			for (int i = 0; i < 20; i++) {
+				for (int j = 0; j < 60; j++) {
+					if (airToTC[pai][i][j].equals("0")) {
+						result[0] = i + 1;
+						result[1] = j + 1;
+						return result;
+					}
+				}
+			}
+		} else if (qu.equals("铁运区")) {
+			for (int i = 0; i < 20; i++) {
+				for (int j = 0; j < 60; j++) {
+					if (trainToTC[pai][i][j].equals("0")) {
+						result[0] = i + 1;
+						result[1] = j + 1;
+						return result;
+					}
+				}
+			}
+		} else {
+			for (int i = 0; i < 20; i++) {
+				for (int j = 0; j < 60; j++) {
+					if (carToTC[pai][i][j].equals("0")) {
+						result[0] = i + 1;
+						result[1] = j + 1;
+						return result;
+					}
+				}
+			}
+		}
+		return result;
 	}
 }

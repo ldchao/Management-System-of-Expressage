@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.event.TreeWillExpandListener;
 
 import nju.edu.RMI_init.RMIHelper;
+import nju.edu.businesslogicservice.storeblservice.GetFreeLocationInfo;
 import nju.edu.businesslogicservice.storeblservice.Inventory_managementInfo;
 import nju.edu.businesslogicservice.storeblservice.StoreinUpdateInfo;
 import nju.edu.businesslogicservice.transferblservice.StoreinInfo;
@@ -20,7 +21,7 @@ import PO.StoreinorderPO;
 import StaticValue.StoreNum;
 
 public class StoreMessageBL implements StoreinUpdateInfo, StoreinInfo,
-		 Inventory_managementInfo, Runnable {
+		 Inventory_managementInfo, Runnable,GetFreeLocationInfo {
 
 	private static StoreMessageBL store_message = null;
 	private StorePO sp;
@@ -203,6 +204,17 @@ public class StoreMessageBL implements StoreinUpdateInfo, StoreinInfo,
 			System.out.println("库存信息自动更新完毕！");
 		}
 
+	}
+	
+	//得到发往外市中转中心的仓库空闲位置	
+	@Override
+	public int getWei(int jia) {
+		return sp.getWei(jia);
+	}
+	//得到发往本市营业厅的仓库空闲位置
+	@Override
+	public int[] getJia_Wei(String qu, int pai) {
+		return sp.getJia_Wei(qu, pai);
 	}
 
 }

@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -21,10 +23,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
+import nju.edu.VO.LoadorderVO;
+import nju.edu.VO.StoreLocationVO;
 import nju.edu.VO.StoreinVO;
 import nju.edu.businesslogic.storebl.Warehouse_inBL;
 import nju.edu.businesslogicservice.storeblservice.Warehouse_inBLService;
 import PO.LoginPO;
+import PO.OrganizationNumPO;
 
 public class Storeinorder extends JPanel implements Runnable {
 	private JTextField textField[];
@@ -32,6 +37,13 @@ public class Storeinorder extends JPanel implements Runnable {
 	JPanel lastui;
 	LoginPO loginpo;
 	Storeinorder nowPanel;
+	String order_number;
+	String offnum;
+	String qu;
+	String pai;
+	String jia;
+	String wei;
+	JButton btnNewButton_1;
 
 	/**
 	 * Create the panel.
@@ -41,12 +53,14 @@ public class Storeinorder extends JPanel implements Runnable {
 		lastui = jp;
 		loginpo = loginPO;
 		nowPanel = this;
-		textField=new JTextField[5];
+		textField = new JTextField[6];
+		Warehouse_inBLService wb = new Warehouse_inBL();
 
-		for(int i=0;i<5;i++){
-			textField[i]=new JTextField();
+		for (int i = 0; i < 6; i++) {
+			textField[i] = new JTextField();
 			add(textField[i]);
 			textField[i].setColumns(10);
+			textField[i].setEditable(false);
 			textField[i].setForeground(new Color(88, 93, 103));
 			textField[i].setCaretColor(new Color(88, 93, 103));
 		}
@@ -60,10 +74,10 @@ public class Storeinorder extends JPanel implements Runnable {
 		button.setBorderPainted(false);
 		button.setIcon(image1);
 		button.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
 				button.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+			}
 		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -80,7 +94,7 @@ public class Storeinorder extends JPanel implements Runnable {
 		lblNewLabel.setBounds(100, 14, 347, 15);
 		add(lblNewLabel);
 
-		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
@@ -100,12 +114,51 @@ public class Storeinorder extends JPanel implements Runnable {
 		add(lblNewLabel_2);
 
 		textField[0].addKeyListener(new KeyAdapter() {
-			public void  keyTyped(KeyEvent e) {
+			public void keyTyped(KeyEvent e) {
 				if (!Character.isDigit(e.getKeyChar())) {
 					e.consume();
 				}
 			}
 		});
+		textField[0].addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				order_number = textField[0].getText();
+				if (order_number.length() != 10) {
+					lblNewLabel_4.setText("请输入正确单号");
+				} else {
+					OrganizationNumPO op = new OrganizationNumPO();
+					String storeNum = op.getNum(loginPO.getShop());
+					String number = "0" + order_number.substring(0, 2) + "0"
+							+ order_number.substring(2, 4);
+					offnum = op.getName(number);
+					textField[1].setText(offnum);
+					StoreLocationVO lv = wb.getStoreLocation(order_number,
+							storeNum);
+					if (lv.getWei() == -1) {
+						lblNewLabel_4.setText("原定库区已满，请暂时放入机动区！");
+					} else {
+						qu = lv.getQu();
+						pai = "" + lv.getPai();
+						jia = "" + lv.getJia();
+						wei = "" + lv.getWei();
+
+						textField[2].setText(qu);
+						textField[3].setText(pai);
+						textField[4].setText(jia);
+						textField[5].setText(wei);
+						btnNewButton_1.setEnabled(true);
+					}
+				}
+
+			}
+		});
+		textField[0].setEditable(true);
 		textField[0].setBounds(299, 167, 234, 21);
 
 		JLabel lblNewLabel_3 = new JLabel("入库日期");
@@ -130,50 +183,27 @@ public class Storeinorder extends JPanel implements Runnable {
 		lblNewLabel_6.setBounds(168, 294, 54, 15);
 		add(lblNewLabel_6);
 
-		String[] quhao = { "", "航运区", "铁运区", "汽运区" };
-		JComboBox comboBox = new JComboBox(quhao);
-		comboBox.setBounds(236, 291, 94, 21);
-		add(comboBox);
+		String[] quhao = { "航运区", "铁运区", "汽运区" };
+		textField[2].setBounds(236, 291, 93, 21);
 
 		JLabel lblNewLabel_7 = new JLabel("排号");
 		lblNewLabel_7.setBounds(376, 294, 39, 15);
 		add(lblNewLabel_7);
 
-		textField[2].addKeyListener(new KeyAdapter() {
-			public void  keyTyped(KeyEvent e) {
-				if (!Character.isDigit(e.getKeyChar())) {
-					e.consume();
-				}
-			}
-		});
-		textField[2].setBounds(440, 291, 93, 21);
+		textField[3].setBounds(440, 291, 93, 21);
 
 		JLabel lblNewLabel_8 = new JLabel("架号");
 		lblNewLabel_8.setBounds(168, 344, 39, 15);
 		add(lblNewLabel_8);
 
-		textField[3].addKeyListener(new KeyAdapter() {
-			public void  keyTyped(KeyEvent e) {
-				if (!Character.isDigit(e.getKeyChar())) {
-					e.consume();
-				}
-			}
-		});
-		textField[3].setBounds(236, 341, 94, 21);
+		textField[4].setBounds(236, 341, 94, 21);
 
 		JLabel lblNewLabel_9 = new JLabel("位号");
 		lblNewLabel_9.setBounds(382, 344, 39, 15);
 		add(lblNewLabel_9);
 
-		textField[4].addKeyListener(new KeyAdapter() {
-			public void  keyTyped(KeyEvent e) {
-				if (!Character.isDigit(e.getKeyChar())) {
-					e.consume();
-				}
-			}
-		});
-		textField[4].setBounds(440, 341, 93, 21);
-		
+		textField[5].setBounds(440, 341, 93, 21);
+
 		JLabel lblNewLabel_10 = new JLabel("审批状态");
 		lblNewLabel_10.setBounds(168, 398, 54, 15);
 		add(lblNewLabel_10);
@@ -184,30 +214,18 @@ public class Storeinorder extends JPanel implements Runnable {
 		comboBox_1.setEnabled(false);
 		add(comboBox_1);
 
-		JButton btnNewButton_1 = new JButton("确定");
+		btnNewButton_1 = new JButton("确定");
+		btnNewButton_1.setEnabled(false);
 		btnNewButton_1.setBounds(180, 460, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String order_number = textField[0].getText();
-				String offnum = textField[1].getText();
-				String qu = (String) comboBox.getSelectedItem();
-				String pai = textField[2].getText();
-				String jia = textField[3].getText();
-				String wei = textField[4].getText();
-				if (order_number.length() != 0 
-						|| offnum.length() == 0 || qu.length() == 0
-						|| pai.length() == 0 || wei.length() == 0
-						|| jia.length() == 0) {
-					lblNewLabel_4.setText("有信息未输入");
-				} else {
-					Warehouse_inBLService wb = new Warehouse_inBL();
-					StoreinVO sv = new StoreinVO(order_number, sendDate, offnum,
-							qu, pai, wei, jia);
-					wb.build(sv);
-					lblNewLabel_4.setText("创建成功");
-					Thread t = new Thread(nowPanel);
-					t.start();
-				}
+
+				StoreinVO sv = new StoreinVO(order_number, sendDate, offnum,
+						qu, pai, wei, jia);
+				wb.build(sv);
+				lblNewLabel_4.setText("创建成功");
+				Thread t = new Thread(nowPanel);
+				t.start();
 			}
 		});
 		Image temp1 = image1.getImage().getScaledInstance(
