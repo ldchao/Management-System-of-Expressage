@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import PO.LoginPO;
 
+@SuppressWarnings("serial")
 public class ManagerFrame extends JFrame{
 	public ManagerFrame(LoginPO loginPO) {
 		// TODO Auto-generated constructor stub

@@ -2,6 +2,7 @@ package nju.edu.presentation.general_managerui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +33,7 @@ import nju.edu.businesslogic.staffbl.Staffbl;
 import nju.edu.businesslogic.staffbl.UserBL;
 import nju.edu.businesslogicservice.staffblservice.DeleteUserInterface;
 
+@SuppressWarnings("serial")
 public class editStaff extends JPanel implements ItemListener, Runnable {
 
 	private JTextField textField;
@@ -44,7 +46,9 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 	private JRadioButton radioButton;
 	private JRadioButton radioButton_1;
 	private JLabel label_5;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox_1;
 	private JRadioButton radioButton_2;
 	private JRadioButton radioButton_3;
@@ -55,25 +59,36 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 	private JButton button_1;
 	String[] city = { "南京", "北京", "广州", "上海" };
 	String[][] position = {
-			{ "中转中心", "鼓楼区营业厅", "玄武区营业厅", "建邺区营业厅", "秦淮区营业厅", "栖霞区营业厅", "六合区营业厅", "浦口区营业厅", "江宁区营业厅", "高淳区营业厅",
-					"溧水区营业厅" },
-			{ "中转中心", "宣武区营业厅", "东城区营业厅", "西城区营业厅", "崇文区营业厅", "朝阳区营业厅", "石景山区营业厅", "海淀区营业厅", "丰台区营业厅", "房山区营业厅",
-					"大兴区营业厅", "通州区营业厅", "门头沟区营业厅", "昌平区营业厅", "顺义区营业厅", "怀柔区营业厅", "密云县营业厅", "平谷区营业厅", "延庆县营业厅", "大学城营业厅",
-					"中关村营业厅" },
-			{ "中转中心", "越秀区营业厅", "天河区营业厅", "白云区营业厅", "荔湾区营业厅", "萝岗区营业厅", "黄埔区营业厅", "海珠区营业厅", "番禺区营业厅", "花都区营业厅",
-					"南沙区营业厅", "从化市营业厅", "增城市营业厅", "东山区营业厅", "开发区营业厅", "高新区营业厅" },
-			{ "中转中心", "黄浦区营业厅", "徐汇区营业厅", "长宁区营业厅", "静安区营业厅", "普陀区营业厅", "虹口区营业厅", "杨浦区营业厅", "闵行区营业厅", "宝山区营业厅",
-					"嘉定区营业厅", "浦东新区营业厅", "金山区营业厅", "松江区营业厅", "青浦区营业厅", "奉贤区营业厅", "崇明县营业厅", "工业区营业厅", "开发区营业厅", "外贸区营业厅",
-					"高新区营业厅" } };
+			{ "中转中心", "鼓楼区营业厅", "玄武区营业厅", "建邺区营业厅", "秦淮区营业厅", "栖霞区营业厅",
+					"六合区营业厅", "浦口区营业厅", "江宁区营业厅", "高淳区营业厅", "溧水区营业厅" },
+			{ "中转中心", "宣武区营业厅", "东城区营业厅", "西城区营业厅", "崇文区营业厅", "朝阳区营业厅",
+					"石景山区营业厅", "海淀区营业厅", "丰台区营业厅", "房山区营业厅", "大兴区营业厅",
+					"通州区营业厅", "门头沟区营业厅", "昌平区营业厅", "顺义区营业厅", "怀柔区营业厅",
+					"密云县营业厅", "平谷区营业厅", "延庆县营业厅", "大学城营业厅", "中关村营业厅" },
+			{ "中转中心", "越秀区营业厅", "天河区营业厅", "白云区营业厅", "荔湾区营业厅", "萝岗区营业厅",
+					"黄埔区营业厅", "海珠区营业厅", "番禺区营业厅", "花都区营业厅", "南沙区营业厅", "从化市营业厅",
+					"增城市营业厅", "东山区营业厅", "开发区营业厅", "高新区营业厅" },
+			{ "中转中心", "黄浦区营业厅", "徐汇区营业厅", "长宁区营业厅", "静安区营业厅", "普陀区营业厅",
+					"虹口区营业厅", "杨浦区营业厅", "闵行区营业厅", "宝山区营业厅", "嘉定区营业厅",
+					"浦东新区营业厅", "金山区营业厅", "松江区营业厅", "青浦区营业厅", "奉贤区营业厅",
+					"崇明县营业厅", "工业区营业厅", "开发区营业厅", "外贸区营业厅", "高新区营业厅" } };
 	JLabel label_8;
 	private JTextField textField_3;
 	private JTextArea textArea;
 	private Staffbl staffbl = new Staffbl();
 	private editStaff thiStaff = this;
+	@SuppressWarnings("rawtypes")
 	DefaultComboBoxModel citymodel;
+	@SuppressWarnings("rawtypes")
 	DefaultComboBoxModel comboBoxModel;
-	
 
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/generalManager/editStuff.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes", "static-access" })
 	public editStaff(StaffVO vo, JFrame main, LoginPO loginPO) {
 		setBounds(100, 100, 750, 600);
 		setLayout(null);
@@ -191,12 +206,14 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 		radioButton_3.setBounds(119, 374, 126, 23);
 		add(radioButton_3);
 
-		radioButton_4 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4E1A\u52A1\u5458");
+		radioButton_4 = new JRadioButton(
+				"\u4E2D\u8F6C\u4E2D\u5FC3\u4E1A\u52A1\u5458");
 		radioButton_4.setEnabled(false);
 		radioButton_4.setBounds(393, 374, 145, 23);
 		add(radioButton_4);
 
-		radioButton_5 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u5458");
+		radioButton_5 = new JRadioButton(
+				"\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u5458");
 		radioButton_5.setEnabled(false);
 		radioButton_5.setBounds(543, 374, 145, 23);
 		add(radioButton_5);
@@ -224,28 +241,35 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 		button = new JButton("\u786E\u5B9A");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int n = JOptionPane.showConfirmDialog(null, "确认修改？", "no", JOptionPane.YES_NO_OPTION);
+				int n = JOptionPane.showConfirmDialog(null, "确认修改？", "no",
+						JOptionPane.YES_NO_OPTION);
 				if (n == JOptionPane.YES_OPTION) {
 					String position = "";
-					Enumeration<AbstractButton> raditEnumeration = bg.getElements();
-					
+					Enumeration<AbstractButton> raditEnumeration = bg
+							.getElements();
+
 					do {
-						AbstractButton abstractButton = raditEnumeration.nextElement();
+						AbstractButton abstractButton = raditEnumeration
+								.nextElement();
 						if (abstractButton.isSelected()) {
 							position = abstractButton.getText();
 						}
 					} while (raditEnumeration.hasMoreElements());
 
-					StaffVO vo = new StaffVO(textField.getText().trim(), textField_1.getText().trim(), textArea.getText().trim(), position,
-							textField_2.getText().trim(), textField_3.getText().trim(),
-							comboBox.getSelectedItem().toString() + "," + comboBox_1.getSelectedItem().toString());
+					StaffVO vo = new StaffVO(textField.getText().trim(),
+							textField_1.getText().trim(), textArea.getText()
+									.trim(), position, textField_2.getText()
+									.trim(), textField_3.getText().trim(),
+							comboBox.getSelectedItem().toString() + ","
+									+ comboBox_1.getSelectedItem().toString());
 					if (staffbl.JudgeNull(vo)) {
 						label_8.setText("信息不完整，请补全信息");
-						Thread thread=new Thread(thiStaff);
+						Thread thread = new Thread(thiStaff);
 						thread.start();
 					} else {
 						staffbl.editStaff(vo);
-						StaffVO staffVO = staffbl.checkStaff(textField.getText());
+						StaffVO staffVO = staffbl.checkStaff(textField
+								.getText());
 						Staff staff = new Staff(staffVO, main, loginPO);
 						main.remove(thiStaff);
 						main.getContentPane().add(staff);
@@ -258,8 +282,8 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 		});
 		button.setBounds(274, 459, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
-		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(), button.getHeight(),
-				image1.getImage().SCALE_DEFAULT);
+		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
+				button.getHeight(), image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
 		button.setIcon(image1);
 		button.setContentAreaFilled(false);
@@ -269,10 +293,11 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 		button_1 = new JButton("\u5220\u9664\u6B64\u4EBA\u5458");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int n = JOptionPane.showConfirmDialog(null, "确认删除？", "no", JOptionPane.YES_NO_OPTION);
+				int n = JOptionPane.showConfirmDialog(null, "确认删除？", "no",
+						JOptionPane.YES_NO_OPTION);
 				if (n == JOptionPane.YES_OPTION) {
 					staffbl.deleteStaff(textField.getText());
-					DeleteUserInterface deleteUserInterface=new UserBL();
+					DeleteUserInterface deleteUserInterface = new UserBL();
 					deleteUserInterface.deleteUser(textField.getText());
 					StaffManager staffManager = new StaffManager(main, loginPO);
 					main.remove(thiStaff);
@@ -285,8 +310,8 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 		});
 		button_1.setBounds(425, 459, 52, 52);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
-		Image temp2 = image2.getImage().getScaledInstance(button_1.getWidth(), button_1.getHeight(),
-				image2.getImage().SCALE_DEFAULT);
+		Image temp2 = image2.getImage().getScaledInstance(button_1.getWidth(),
+				button_1.getHeight(), image2.getImage().SCALE_DEFAULT);
 		image2 = new ImageIcon(temp2);
 		button_1.setIcon(image2);
 		button_1.setContentAreaFilled(false);
@@ -340,12 +365,14 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 		add(button_2);
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < city.length; i++) {
 			if (e.getSource() == comboBox) {
-				comboBox_1.setModel(new DefaultComboBoxModel(position[comboBox.getSelectedIndex()]));
+				comboBox_1.setModel(new DefaultComboBoxModel(position[comboBox
+						.getSelectedIndex()]));
 			}
 		}
 	}

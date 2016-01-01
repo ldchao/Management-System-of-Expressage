@@ -1,14 +1,12 @@
 package nju.edu.presentation.general_managerui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -21,6 +19,7 @@ import nju.edu.businesslogic.financebl.StatisticsBL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
@@ -28,6 +27,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class checkStatisticInformation extends JPanel {
 
 	private JTable table;
@@ -35,6 +35,14 @@ public class checkStatisticInformation extends JPanel {
 	private DefaultTableModel tableModel1;
 	private DefaultTableModel tableModel2;
 	StatisticsBL stbl = new StatisticsBL();
+	
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/generalManager/checkStatisticInformation.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+
 	public checkStatisticInformation(String start, String end,JFrame main,LoginPO loginPO) {
 		checkStatisticInformation checkStatisticInformation=this;
 		setBounds(100, 100, 750, 600);
@@ -65,17 +73,13 @@ public class checkStatisticInformation extends JPanel {
 
 		add(button);
 		
-		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u67E5\u770B\u7EDF\u8BA1\u5206\u6790");
-		label.setBounds(113, 14, 428, 15);
-		add(label);
-		
 		JLabel label_1 = new JLabel(start + "至" + end + "期间的经营情况");
 		label_1.setFont(new Font("黑体", Font.BOLD, 17));
-		label_1.setBounds(209, 71, 368, 23);
+		label_1.setBounds(209, 93, 368, 23);
 		add(label_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(43, 114, 654, 147);
+		scrollPane.setBounds(51, 136, 643, 147);
 		add(scrollPane);
 		
 		int startnum = Integer.valueOf(start.replaceAll("-", ""));
@@ -84,6 +88,9 @@ public class checkStatisticInformation extends JPanel {
 		// 收款单
 		table = new JTable();
 		table.setRowHeight(25);
+		table.setSelectionBackground(new Color(88, 93, 103,230));
+		table.setSelectionForeground(new Color(255, 255, 255,200));
+
 		// 使表格居中
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
@@ -118,12 +125,15 @@ public class checkStatisticInformation extends JPanel {
 		showPayeeTable(payeevo);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(43, 324, 654, 147);
+		scrollPane_1.setBounds(51, 330, 643, 147);
 		add(scrollPane_1);
 
 		// 付款单
 		table2 = new JTable();
 		table2.setRowHeight(25);
+		table2.setSelectionBackground(new Color(88, 93, 103,230));
+		table2.setSelectionForeground(new Color(255, 255, 255,200));
+
 		// 使表格居中
 		table2.setDefaultRenderer(Object.class, r);
 		

@@ -1,18 +1,17 @@
 package nju.edu.presentation.general_managerui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.awt.Font;
+
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 
 import javax.swing.JScrollPane;
@@ -21,20 +20,18 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import PO.LoginPO;
-import PO.StaffPO;
-import nju.edu.VO.AccountVO;
 import nju.edu.VO.StaffVO;
-import nju.edu.businesslogic.loginbl.checkStaffInfo;
 import nju.edu.businesslogic.staffbl.Staffbl;
-import nju.edu.presentation.financial_staffui.UpdateAccountframe;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JToolBar;
 
+@SuppressWarnings("serial")
 public class StaffManager extends JPanel {
 
 	private JTextField textField;
@@ -43,24 +40,31 @@ public class StaffManager extends JPanel {
 	private int rowpos = -1;
 	private static DefaultTableModel tableModel;
 	Staffbl staffbl;
-	StaffManager thiStaffManager=this;
+	StaffManager thiStaffManager = this;
 
-	public StaffManager(JFrame main,LoginPO loginPO) {
-		staffbl=new Staffbl();
-		StaffManager staffManagerframe=this;
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/generalManager/StuffManager.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+
+	@SuppressWarnings("static-access")
+	public StaffManager(JFrame main, LoginPO loginPO) {
+		staffbl = new Staffbl();
+		StaffManager staffManagerframe = this;
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
 		setLayout(null);
-		
-		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
+
+		JLabel lblHello = new JLabel("Hello!" + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(677, 6, 67, 25);
 		add(lblHello);
-		
+
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Manager newmanager=new Manager(main,loginPO);
+				Manager newmanager = new Manager(main, loginPO);
 				main.remove(staffManagerframe);
 				main.getContentPane().add(newmanager);
 				main.invalidate();
@@ -73,39 +77,41 @@ public class StaffManager extends JPanel {
 		button.setBorderPainted(false);
 		button.setIcon(new ImageIcon("image/transparent_circle.png"));
 		button.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
-						button.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}
 		});
 		add(button);
-		
-		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u4EBA\u5458\u673A\u6784\u7BA1\u7406");
-		label.setBounds(95, 14, 259, 15);
-		add(label);
-		
-		JLabel label_1 = new JLabel("\u7528\u6237\u540D\u68C0\u7D22");
-		label_1.setBounds(191, 93, 82, 15);
-		add(label_1);
-		
+
 		textField = new JTextField();
-		textField.setBounds(283, 90, 161, 21);
+		textField.setBounds(331, 154, 125, 26);
 		textField.setForeground(new Color(88, 93, 103));
 		textField.setCaretColor(new Color(88, 93, 103));
+		textField.setOpaque(false);
+		textField.setBorder(null);
 		add(textField);
 		textField.setColumns(10);
-		
-		JButton button_1 = new JButton("\u786E\u5B9A");
+
+		JButton button_1 = new JButton("");
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		button_1.setBounds(501, 139, 52, 52);
+		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(button_1.getWidth(),
+				button_1.getHeight(), image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		button_1.setIcon(image1);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(textField.getText().equals("")){
+				if (textField.getText().equals("")) {
 					label_3.setText("请输入人员姓名");
-				}else{
-					StaffVO vo=staffbl.checkStaff(textField.getText());
-					if(vo==null){
+				} else {
+					StaffVO vo = staffbl.checkStaff(textField.getText());
+					if (vo == null) {
 						label_3.setText("查无此人");
-					}else{
-						Staff staff=new Staff(vo,main,loginPO);
+					} else {
+						Staff staff = new Staff(vo, main, loginPO);
 						main.remove(thiStaffManager);
 						main.getContentPane().add(staff);
 						main.invalidate();
@@ -115,25 +121,21 @@ public class StaffManager extends JPanel {
 				}
 			}
 		});
-		button_1.setBounds(454, 89, 69, 23);
 		add(button_1);
-		
-		JLabel label_2 = new JLabel("\u5168\u5458\u5217\u8868");
-		label_2.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-		label_2.setBounds(331, 153, 94, 15);
-		add(label_2);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(150, 178, 434, 188);
+		scrollPane.setBounds(174, 203, 428, 188);
 		add(scrollPane);
-		
+
 		table = new JTable();
 		table.setRowHeight(25);
+		table.setSelectionBackground(new Color(88, 93, 103,230));
+		table.setSelectionForeground(new Color(255, 255, 255,200));
 		// 使表格居中
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
 		table.setDefaultRenderer(Object.class, r);
-		
+
 		// 选取行
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -143,28 +145,33 @@ public class StaffManager extends JPanel {
 				table.setRowSelectionInterval(rowpos, rowpos);
 			}
 		});
-		
+
 		scrollPane.setViewportView(table);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
-		tableModel = new DefaultTableModel(
-			new Object[][] {
-				{null, null,null},{null, null,null},{null, null,null},{null, null,null},{null, null,null},
-				{null, null,null},{null, null,null},{null, null,null},{null, null,null},{null, null,null},},
-				new String[] {	"用户名","姓名", "职位"
-			});
+		tableModel = new DefaultTableModel(new Object[][] {
+				{ null, null, null }, { null, null, null },
+				{ null, null, null }, { null, null, null },
+				{ null, null, null }, { null, null, null },
+				{ null, null, null }, { null, null, null },
+				{ null, null, null }, { null, null, null }, }, new String[] {
+				"用户名", "姓名", "职位" });
 		table.setModel(tableModel);
-		
+
 		// 显示表格
 		showTable(staffbl.showStaff());
-		
-		JButton button_2 = new JButton("\u7F16\u8F91");
+
+		JButton button_2 = new JButton("");
+		button_2.setContentAreaFilled(false);
+		button_2.setBorderPainted(false);
+		button_2.setBounds(316, 436, 52, 52);
+		button_2.setIcon(image1);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (rowpos != -1) {
 					String id = tableModel.getValueAt(rowpos, 0).toString();
-					StaffVO selectVo=staffbl.checkStaff(id);	
-					Staff staff=new Staff(selectVo,main,loginPO);
+					StaffVO selectVo = staffbl.checkStaff(id);
+					Staff staff = new Staff(selectVo, main, loginPO);
 					main.remove(staffManagerframe);
 					main.getContentPane().add(staff);
 					main.invalidate();
@@ -173,13 +180,16 @@ public class StaffManager extends JPanel {
 				}
 			}
 		});
-		button_2.setBounds(214, 400, 93, 23);
 		add(button_2);
-		
-		JButton button_3 = new JButton("\u65B0\u5EFA\u4EBA\u5458");
+
+		JButton button_3 = new JButton("");
+		button_3.setContentAreaFilled(false);
+		button_3.setBorderPainted(false);
+		button_3.setBounds(432, 436, 52, 52);
+		button_3.setIcon(image1);
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addStaff addStaff=new addStaff(main,loginPO);
+				addStaff addStaff = new addStaff(main, loginPO);
 				main.remove(staffManagerframe);
 				main.getContentPane().add(addStaff);
 				main.invalidate();
@@ -187,20 +197,19 @@ public class StaffManager extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button_3.setBounds(430, 400, 93, 23);
 		add(button_3);
-		
+
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(8, 540, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		add(toolBar);
-		
+
 		label_3 = new JLabel("\u72B6\u6001\u680F");
 		label_3.setForeground(Color.WHITE);
 		toolBar.add(label_3);
 	}
-	
+
 	public static void showTable(ArrayList<StaffVO> acvo) {
 		int i = 0;
 		for (StaffVO ac : acvo) {
@@ -209,7 +218,7 @@ public class StaffManager extends JPanel {
 			tableModel.setValueAt(ac.getPosition(), i, 2);
 			i++;
 			if (i >= table.getRowCount()) {
-				String[] rowstr = { "", "" ,""};
+				String[] rowstr = { "", "", "" };
 				tableModel.addRow(rowstr);
 			}
 

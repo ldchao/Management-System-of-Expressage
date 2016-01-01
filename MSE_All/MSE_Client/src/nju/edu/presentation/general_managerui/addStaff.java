@@ -2,6 +2,7 @@ package nju.edu.presentation.general_managerui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,19 +31,18 @@ import PO.LoginPO;
 import nju.edu.VO.StaffVO;
 import nju.edu.businesslogic.staffbl.Staffbl;
 
+@SuppressWarnings("serial")
 public class addStaff extends JPanel implements ItemListener, Runnable {
 
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JLabel label_2;
-	private JLabel label_3;
-	private JLabel label_4;
 	private JRadioButton rdbtnNewRadioButton;
 	private JRadioButton radioButton;
 	private JRadioButton radioButton_1;
-	private JLabel label_5;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox_1;
 	private JRadioButton radioButton_2;
 	private JRadioButton radioButton_3;
@@ -52,7 +52,9 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 	private JButton button;
 	private JButton button_1;
 	JTextArea textArea;
+	@SuppressWarnings("rawtypes")
 	DefaultComboBoxModel citymodel;
+	@SuppressWarnings("rawtypes")
 	DefaultComboBoxModel comboBoxModel;
 	String[] city = { "南京", "北京", "广州", "上海" };
 	String[][] position = {
@@ -66,7 +68,6 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 			{ "中转中心", "黄浦区营业厅", "徐汇区营业厅", "长宁区营业厅", "静安区营业厅", "普陀区营业厅", "虹口区营业厅", "杨浦区营业厅", "闵行区营业厅", "宝山区营业厅",
 					"嘉定区营业厅", "浦东新区营业厅", "金山区营业厅", "松江区营业厅", "青浦区营业厅", "奉贤区营业厅", "崇明县营业厅", "工业区营业厅", "开发区营业厅", "外贸区营业厅",
 					"高新区营业厅" } };
-	private JLabel label_7;
 	private JLabel label_8;
 	private JTextField textField_3;
 	Staffbl staffbl = new Staffbl();
@@ -75,6 +76,14 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 	private LoginPO loginPO;
 	private boolean cleanSignal = false;
 
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/generalManager/addStuff.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public addStaff(JFrame main, LoginPO loginPO) {
 		this.loginPO = loginPO;
 		this.main = (ManagerFrame) main;
@@ -83,111 +92,122 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 		this.setVisible(true);
 
 		textField = new JTextField();
-		textField.setBounds(106, 130, 205, 21);
+		textField.setBounds(212, 186, 125, 26);
 		textField.setText(staffbl.getnum());
 		textField.setEnabled(false);
 		textField.setForeground(new Color(88, 93, 103));
 		textField.setCaretColor(new Color(88, 93, 103));
+		textField.setOpaque(false);
+		textField.setBorder(null);
 		add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(454, 130, 205, 21);
+		textField_1.setBounds(492, 187, 125, 26);
 		textField_1.setForeground(new Color(88, 93, 103));
 		textField_1.setCaretColor(new Color(88, 93, 103));
+		textField_1.setOpaque(false);
+		textField_1.setBorder(null);
 		add(textField_1);
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(106, 186, 205, 21);
+		textField_2.setBounds(212, 228, 125, 26);
 		textField_2.setForeground(new Color(88, 93, 103));
 		textField_2.setCaretColor(new Color(88, 93, 103));
+		textField_2.setOpaque(false);
+		textField_2.setBorder(null);
 		add(textField_2);
 
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(454, 186, 205, 21);
+		textField_3.setBounds(492, 228, 125, 26);
 		textField_3.setForeground(new Color(88, 93, 103));
 		textField_3.setCaretColor(new Color(88, 93, 103));
+		textField_3.setOpaque(false);
+		textField_3.setBorder(null);
 		add(textField_3);
 
-		JLabel label = new JLabel("\u4EBA\u5458\u5177\u4F53\u4FE1\u606F");
-		label.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-		label.setBounds(312, 68, 96, 15);
-		add(label);
-
-		JLabel label_1 = new JLabel("\u7528\u6237\u540D");
-		label_1.setBounds(58, 133, 54, 15);
-		add(label_1);
-
-		label_2 = new JLabel("\u59D3\u540D");
-		label_2.setBounds(401, 133, 54, 15);
-		add(label_2);
-
-		label_3 = new JLabel("\u7535\u8BDD");
-		label_3.setBounds(58, 189, 54, 15);
-		add(label_3);
-
-		label_4 = new JLabel("\u804C\u4F4D");
-		label_4.setBounds(58, 336, 54, 15);
-		add(label_4);
-
 		rdbtnNewRadioButton = new JRadioButton("\u5FEB\u9012\u5458");
+		rdbtnNewRadioButton.setForeground(Color.WHITE);
+		rdbtnNewRadioButton.setOpaque(false);
+		rdbtnNewRadioButton.setBorder(null);
 		rdbtnNewRadioButton.setSelected(true);
 		rdbtnNewRadioButton.setEnabled(false);
-		rdbtnNewRadioButton.setBounds(118, 332, 86, 23);
+		rdbtnNewRadioButton.setBounds(207, 349, 86, 23);
 		add(rdbtnNewRadioButton);
 
 		radioButton = new JRadioButton("\u7CFB\u7EDF\u7BA1\u7406\u5458");
+		radioButton.setForeground(Color.WHITE);
+		radioButton.setOpaque(false);
+		radioButton.setBorder(null);
 		radioButton.setEnabled(false);
-		radioButton.setBounds(235, 332, 126, 23);
+		radioButton.setBounds(306, 349, 119, 23);
 		add(radioButton);
 
 		radioButton_1 = new JRadioButton("\u603B\u7ECF\u7406");
+		radioButton_1.setForeground(Color.WHITE);
+		radioButton_1.setOpaque(false);
+		radioButton_1.setBorder(null);
 		radioButton_1.setEnabled(false);
-		radioButton_1.setBounds(374, 332, 123, 23);
+		radioButton_1.setBounds(430, 349, 69, 23);
 		add(radioButton_1);
-
-		label_5 = new JLabel("\u5355\u4F4D");
-		label_5.setBounds(58, 242, 54, 15);
-		add(label_5);
 		// 初始化
 		citymodel = new DefaultComboBoxModel(city);
 		comboBox = new JComboBox(citymodel);
+		comboBox.setOpaque(false);
+		comboBox.setBorder(null);
 		comboBox.addItemListener(this);
-		comboBox.setBounds(106, 239, 69, 21);
+		comboBox.setBounds(215, 307, 69, 21);
 		add(comboBox);
 
 		comboBoxModel = new DefaultComboBoxModel(position[0]);
 		comboBox_1 = new JComboBox();
+		comboBox_1.setOpaque(false);
+		comboBox_1.setBorder(null);
 		comboBox_1.setModel(comboBoxModel);
-		comboBox_1.setBounds(185, 239, 126, 21);
+		comboBox_1.setBounds(214, 274, 126, 21);
 		add(comboBox_1);
 
 		radioButton_2 = new JRadioButton("\u8D22\u52A1\u4EBA\u5458");
+		radioButton_2.setForeground(Color.WHITE);
+		radioButton_2.setOpaque(false);
+		radioButton_2.setBorder(null);
 		radioButton_2.setEnabled(false);
-		radioButton_2.setBounds(515, 332, 119, 23);
+		radioButton_2.setBounds(207, 395, 91, 23);
 		add(radioButton_2);
 
 		radioButton_3 = new JRadioButton("\u9AD8\u7EA7\u8D22\u52A1\u4EBA\u5458");
+		radioButton_3.setForeground(Color.WHITE);
+		radioButton_3.setOpaque(false);
+		radioButton_3.setBorder(null);
 		radioButton_3.setEnabled(false);
-		radioButton_3.setBounds(118, 374, 119, 23);
+		radioButton_3.setBounds(306, 395, 119, 23);
 		add(radioButton_3);
 
 		radioButton_4 = new JRadioButton("\u8425\u4E1A\u5385\u4E1A\u52A1\u5458");
+		radioButton_4.setForeground(Color.WHITE);
+		radioButton_4.setOpaque(false);
+		radioButton_4.setBorder(null);
 		radioButton_4.setEnabled(false);
-		radioButton_4.setBounds(235, 374, 97, 23);
+		radioButton_4.setBounds(430, 395, 97, 23);
 		add(radioButton_4);
 
 		radioButton_5 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4E1A\u52A1\u5458");
+		radioButton_5.setForeground(Color.WHITE);
+		radioButton_5.setOpaque(false);
+		radioButton_5.setBorder(null);
 		radioButton_5.setEnabled(false);
-		radioButton_5.setBounds(374, 374, 139, 23);
+		radioButton_5.setBounds(533, 395, 119, 23);
 		add(radioButton_5);
 
 		radioButton_6 = new JRadioButton("\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u5458");
+		radioButton_6.setForeground(Color.WHITE);
+		radioButton_6.setOpaque(false);
+		radioButton_6.setBorder(null);
 		radioButton_6.setEnabled(false);
-		radioButton_6.setBounds(515, 374, 154, 23);
+		radioButton_6.setBounds(532, 349, 146, 23);
 		add(radioButton_6);
 
 		ButtonGroup bg = new ButtonGroup();
@@ -200,7 +220,7 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 		bg.add(radioButton_6);
 		bg.add(rdbtnNewRadioButton);
 
-		button = new JButton("\u786E\u5B9A");
+		button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int n = JOptionPane.showConfirmDialog(null, "确认新建？", "no", JOptionPane.YES_NO_OPTION);
@@ -238,6 +258,7 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 		});
 		button.setBounds(274, 459, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
+		@SuppressWarnings("static-access")
 		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(), button.getHeight(),
 				image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
@@ -271,28 +292,22 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 		add(button_1);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(13, 542, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		add(toolBar);
 
-		label_8 = new JLabel("\u72B6\u6001");
+		label_8 = new JLabel("\u72B6\u6001\u680F");
 		label_8.setForeground(Color.WHITE);
 		toolBar.add(label_8);
 
-		JLabel label_6 = new JLabel("\u5730\u5740");
-		label_6.setBounds(401, 242, 54, 15);
-		add(label_6);
-
-		label_7 = new JLabel("\u624B\u673A");
-		label_7.setBounds(401, 189, 54, 15);
-		add(label_7);
-
 		textArea = new JTextArea();
-		textArea.setBounds(454, 242, 205, 61);
+		textArea.setBounds(489, 271, 125, 61);
+		textArea.setOpaque(false);
+		textArea.setBorder(null);
 		add(textArea);
 
-		JButton button2 = new JButton("清空");
+		JButton button2 = new JButton("");
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int n = JOptionPane.showConfirmDialog(null, "确认清空？", "no", JOptionPane.YES_NO_OPTION);
@@ -308,6 +323,7 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 		});
 		button2.setBounds(425, 459, 52, 52);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
+		@SuppressWarnings("static-access")
 		Image temp2 = image2.getImage().getScaledInstance(button2.getWidth(), button2.getHeight(),
 				image2.getImage().SCALE_DEFAULT);
 		image2 = new ImageIcon(temp2);
@@ -317,6 +333,7 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 		add(button2);
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub

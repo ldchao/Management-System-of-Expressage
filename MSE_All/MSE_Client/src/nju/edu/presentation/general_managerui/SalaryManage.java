@@ -1,6 +1,7 @@
 package nju.edu.presentation.general_managerui;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,24 +19,31 @@ import PO.LoginPO;
 import nju.edu.VO.SalaryVO;
 import nju.edu.businesslogic.policybl.SalaryPolicybl;
 
+@SuppressWarnings("serial")
 public class SalaryManage extends JPanel {
 
-	 
-	public SalaryManage(JFrame main,LoginPO loginPO) {
-		SalaryManage salaryManageframe=this;
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/generalManager/SalaryManage.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+
+	@SuppressWarnings({ "rawtypes", "static-access", "unchecked" })
+	public SalaryManage(JFrame main, LoginPO loginPO) {
+		SalaryManage salaryManageframe = this;
 		setBounds(100, 100, 750, 600);
 		setVisible(true);
 		setLayout(null);
-		
-		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
+
+		JLabel lblHello = new JLabel("Hello!" + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(677, 6, 67, 25);
 		add(lblHello);
-		
+
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PolicyManage newpolicyManage=new PolicyManage(main,loginPO);
+				PolicyManage newpolicyManage = new PolicyManage(main, loginPO);
 				main.remove(salaryManageframe);
 				main.getContentPane().add(newpolicyManage);
 				main.invalidate();
@@ -48,33 +56,26 @@ public class SalaryManage extends JPanel {
 		button.setBorderPainted(false);
 		button.setIcon(new ImageIcon("image/transparent_circle.png"));
 		button.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
-						button.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+				button.setIcon(new ImageIcon("image/mask_circle.png"));
+			}
 		});
 		add(button);
-		
-		JLabel label = new JLabel("\u603B\u7ECF\u7406>>\u7B56\u7565\u7BA1\u7406>>\u85AA\u6C34\u7BA1\u7406");
-		label.setBounds(97, 14, 211, 15);
-		add(label);
-		
-		JLabel label_1 = new JLabel("\u8BF7\u9009\u62E9\u4EBA\u5458\u7C7B\u578B");
-		label_1.setBounds(250, 304, 94, 15);
-		add(label_1);
-		
-		String[] type={"快递员","营业厅业务员","中转中心业务员","中转中心仓库管理员","高级财务人员","低级财务人员","总经理","管理员"};
+
+		String[] type = { "快递员", "营业厅业务员", "中转中心业务员", "中转中心仓库管理员", "高级财务人员",
+				"低级财务人员", "总经理", "管理员" };
 		JComboBox comboBox = new JComboBox(type);
-		comboBox.setBounds(356, 298, 122, 29);
+		comboBox.setBounds(361, 282, 122, 29);
 		add(comboBox);
 
-		
-		JButton button_1 = new JButton("\u786E\u5B9A");
+		JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SalaryPolicybl salaryPolicybl=new SalaryPolicybl();
-				SalaryVO salaryVO=salaryPolicybl.checkSalary(comboBox.getSelectedItem().toString());
-				Salary salary=new Salary(salaryVO,main,loginPO);
+				SalaryPolicybl salaryPolicybl = new SalaryPolicybl();
+				SalaryVO salaryVO = salaryPolicybl.checkSalary(comboBox
+						.getSelectedItem().toString());
+				Salary salary = new Salary(salaryVO, main, loginPO);
 				main.remove(salaryManageframe);
 				main.getContentPane().add(salary);
 				main.invalidate();
@@ -82,10 +83,10 @@ public class SalaryManage extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		button_1.setBounds(338, 455, 52, 52);
+		button_1.setBounds(348, 430, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(button_1.getWidth(),
-						button_1.getHeight(),image1.getImage().SCALE_DEFAULT);
+				button_1.getHeight(), image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
 		button_1.setIcon(image1);
 		button_1.setContentAreaFilled(false);

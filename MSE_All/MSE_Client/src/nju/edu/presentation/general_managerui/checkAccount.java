@@ -1,21 +1,19 @@
 package nju.edu.presentation.general_managerui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import java.awt.Font;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 
 import javax.swing.JTable;
@@ -27,12 +25,20 @@ import PO.LoginPO;
 import nju.edu.VO.AccountVO;
 import nju.edu.businesslogic.accountbl.AccountBL;
 
+@SuppressWarnings("serial")
 public class checkAccount extends JPanel {
 
 	private static JTable table;
 	private int rowpos = -1;
 	private static DefaultTableModel tableModel;
 	private AccountBL accountBL;
+	
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/generalManager/checkAccount.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
 	
 	public checkAccount(JFrame main,LoginPO loginPO) {
 		accountBL=new AccountBL();
@@ -65,21 +71,14 @@ public class checkAccount extends JPanel {
 		});
 		add(button);
 		
-		JLabel lblNewLabel = new JLabel("\u603B\u7ECF\u7406>>\u8D26\u6237\u67E5\u8BE2");
-		lblNewLabel.setBounds(95, 14, 220, 15);
-		add(lblNewLabel);
-		
-		JLabel label = new JLabel("\u94F6\u884C\u8D26\u6237");
-		label.setFont(new Font("黑体", Font.BOLD, 15));
-		label.setBounds(343, 96, 70, 15);
-		add(label);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(156, 141, 432, 271);
+		scrollPane.setBounds(158, 141, 427, 271);
 		add(scrollPane);
 		
 		table = new JTable();
 		table.setRowHeight(25);
+		table.setSelectionBackground(new Color(88, 93, 103,230));
+		table.setSelectionForeground(new Color(255, 255, 255,200));
 		
 		// 使表格居中
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
