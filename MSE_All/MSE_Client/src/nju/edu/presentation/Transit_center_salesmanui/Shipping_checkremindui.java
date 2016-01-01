@@ -37,7 +37,7 @@ public class Shipping_checkremindui extends JPanel {
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");		
 		setLayout(null);
 		
-		JButton button = new JButton("返回");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -60,7 +60,7 @@ public class Shipping_checkremindui extends JPanel {
 		add(button);
 		
 		JLabel label = new JLabel("中转中心业务员>>装运管理>>查看消息提醒");
-		label.setBounds(100, 14, 260, 15);
+		label.setBounds(100, 14, 439, 15);
 		add(label);
 		
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
@@ -76,6 +76,7 @@ public class Shipping_checkremindui extends JPanel {
 		add(toolBar);
 		
 		JLabel label_4 = new JLabel("状态栏");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 		
 		JLabel label_2 = new JLabel("装运消息提醒");

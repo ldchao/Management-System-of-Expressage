@@ -33,7 +33,7 @@ public class Changeorder_Input extends JPanel {
 		setLayout(null);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 
-		JButton button = new JButton("·µ»Ø");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);

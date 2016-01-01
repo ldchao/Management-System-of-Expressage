@@ -38,7 +38,7 @@ public class Changeorder_choose_TC extends JPanel {
 		OrganizationNumPO op=new OrganizationNumPO();
 		String transferNum=op.getNum(loginPO.getShop());
 		
-		JButton button = new JButton("返回");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -61,7 +61,7 @@ public class Changeorder_choose_TC extends JPanel {
 		add(button);
 
 		JLabel label = new JLabel("中转中心业务员>>录入中转单>>新建中转单>>选择货物");
-		label.setBounds(100, 14, 270, 15);
+		label.setBounds(100, 14, 397, 15);
 		add(label);
 
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
@@ -77,6 +77,7 @@ public class Changeorder_choose_TC extends JPanel {
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
 		JLabel lblNewLabel_1 = new JLabel("选择要中转到外市中转中心的货物");

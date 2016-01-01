@@ -37,7 +37,7 @@ public class Transfer_checkRemindui extends JPanel {
 		OrganizationNumPO op=new OrganizationNumPO();
 		String transferNum=op.getNum(loginPO.getShop());
 
-		JButton button = new JButton("·µ»Ø");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -99,6 +99,7 @@ public class Transfer_checkRemindui extends JPanel {
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("×´Ì¬À¸");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 	}
 

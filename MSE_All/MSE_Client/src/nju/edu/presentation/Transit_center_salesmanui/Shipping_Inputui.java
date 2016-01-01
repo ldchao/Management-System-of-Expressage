@@ -45,7 +45,7 @@ public class Shipping_Inputui extends JPanel {
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		setLayout(null);
 
-		JButton button = new JButton("返回");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -84,6 +84,7 @@ public class Shipping_Inputui extends JPanel {
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
 		JLabel label_2 = new JLabel("选择要装运的中转单");

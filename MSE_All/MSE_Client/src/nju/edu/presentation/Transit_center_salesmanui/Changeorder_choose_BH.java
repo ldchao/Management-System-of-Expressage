@@ -63,7 +63,7 @@ public class Changeorder_choose_BH extends JPanel {
 		add(button);
 
 		JLabel label = new JLabel("中转中心业务员>>录入中转单>>新建中转单>>选择货物");
-		label.setBounds(100, 14, 270, 15);
+		label.setBounds(100, 14, 365, 15);
 		add(label);
 
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());

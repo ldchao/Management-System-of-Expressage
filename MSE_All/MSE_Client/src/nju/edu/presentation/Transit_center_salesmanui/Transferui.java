@@ -27,7 +27,7 @@ public class Transferui extends JPanel {
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		setLayout(null);
 		
-		JButton button = new JButton("·µ»Ø");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -120,6 +120,7 @@ public class Transferui extends JPanel {
 		add(toolBar);
 		
 		JLabel label_4 = new JLabel("×´Ì¬À¸");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
 	}

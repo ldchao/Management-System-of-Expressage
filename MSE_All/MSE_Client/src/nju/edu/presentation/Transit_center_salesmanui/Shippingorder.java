@@ -66,7 +66,7 @@ public class Shippingorder extends JPanel implements Runnable{
 			textField[i].setCaretColor(new Color(88, 93, 103));
 		}
 
-		JButton button = new JButton("·µ»Ø");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -88,8 +88,10 @@ public class Shippingorder extends JPanel implements Runnable{
 		});
 		add(button);
 
-		JLabel label = new JLabel("ÖĞ×ªÖĞĞÄÒµÎñÔ±>>×°ÔË¹ÜÀí>>ĞÂ½¨×°ÔËµ¥>>" + transport + "×°ÔËµ¥");
-		label.setBounds(100, 14, 376, 15);
+		JLabel label = new JLabel("ä¸­è½¬ä¸­å¿ƒä¸šåŠ¡å‘˜ â€º è£…è¿ç®¡ç† â€º æ–°å»ºè£…è¿å• â€º " + transport + "è£…è¿å•");
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 16));
+		label.setBounds(100, 14, 442, 15);
 		add(label);
 
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
@@ -104,10 +106,11 @@ public class Shippingorder extends JPanel implements Runnable{
 		toolBar.setBorder(null);
 		add(toolBar);
 
-		JLabel label_4 = new JLabel("×´Ì¬À¸");
+		JLabel label_4 = new JLabel("çŠ¶æ€æ ");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
-		JLabel label_2 = new JLabel("×°ÔËÈÕÆÚ");
+		JLabel label_2 = new JLabel("è£…è¿æ—¥æœŸ");
 		label_2.setBounds(69, 134, 54, 15);
 		add(label_2);
 
@@ -115,10 +118,10 @@ public class Shippingorder extends JPanel implements Runnable{
 		Date date = new Date();
 		String sendDate = bartDateFormat.format(date);
 		JLabel lblNewLabel_8 = new JLabel(sendDate);
-		lblNewLabel_8.setBounds(169, 134, 85, 15);
+		lblNewLabel_8.setBounds(196, 134, 85, 15);
 		add(lblNewLabel_8);
 
-		JLabel lblNewLabel = new JLabel("ÖĞ×ªÖĞĞÄ±àºÅ");
+		JLabel lblNewLabel = new JLabel("ä¸­è½¬ä¸­å¿ƒç¼–å·");
 		lblNewLabel.setBounds(69, 172, 88, 15);
 		add(lblNewLabel);
 
@@ -126,8 +129,8 @@ public class Shippingorder extends JPanel implements Runnable{
 		textField[0].setEditable(false);
 		textField[0].setBounds(169, 169, 181, 21);
 
-		JLabel lblNewLabel_1 = new JLabel(cv.getWayOfTransport() + "±àºÅ");
-		lblNewLabel_1.setBounds(71, 217, 54, 15);
+		JLabel lblNewLabel_1 = new JLabel(cv.getWayOfTransport() + "ç¼–å·");
+		lblNewLabel_1.setBounds(71, 217, 110, 15);
 		add(lblNewLabel_1);
 
 		textField[1].addKeyListener(new KeyAdapter() {
@@ -139,8 +142,8 @@ public class Shippingorder extends JPanel implements Runnable{
 		});
 		textField[1].setBounds(169, 214, 181, 21);
 
-		JLabel lblNewLabel_3 = new JLabel(transport + "´úºÅ");
-		lblNewLabel_3.setBounds(71, 260, 54, 15);
+		JLabel lblNewLabel_3 = new JLabel(transport + "ä»£å·");
+		lblNewLabel_3.setBounds(71, 260, 110, 15);
 		add(lblNewLabel_3);
 
 		textField[2].addKeyListener(new KeyAdapter() {
@@ -152,7 +155,7 @@ public class Shippingorder extends JPanel implements Runnable{
 		});
 		textField[2].setBounds(169, 257, 181, 21);
 
-		JLabel lblNewLabel_2 = new JLabel("µ½´ïµØ");
+		JLabel lblNewLabel_2 = new JLabel("åˆ°è¾¾åœ°");
 		lblNewLabel_2.setBounds(71, 302, 54, 15);
 		add(lblNewLabel_2);
 
@@ -161,13 +164,13 @@ public class Shippingorder extends JPanel implements Runnable{
 		textField[3].setBounds(169, 299, 181, 21);
 
 
-		JLabel lblNewLabel_4 = new JLabel("¼à×°Ô±");
+		JLabel lblNewLabel_4 = new JLabel("ç›‘è£…å‘˜");
 		lblNewLabel_4.setBounds(71, 343, 54, 15);
 		add(lblNewLabel_4);
 
 		textField[4].setBounds(169, 340, 181, 21);
 
-		JLabel lblNewLabel_5 = new JLabel("ÑºÔËÔ±");
+		JLabel lblNewLabel_5 = new JLabel("æŠ¼è¿å‘˜");
 		lblNewLabel_5.setBounds(71, 381, 54, 15);
 		add(lblNewLabel_5);
 
@@ -176,22 +179,22 @@ public class Shippingorder extends JPanel implements Runnable{
 
 		
 		
-		JLabel lblNewLabel_6 = new JLabel("ÔË·Ñ");
+		JLabel lblNewLabel_6 = new JLabel("è¿è´¹");
 		lblNewLabel_6.setBounds(77, 421, 54, 15);
 		add(lblNewLabel_6);
 
 		JLabel label_3 = new JLabel("_ _ _ _ _");
 		double total = sb.getTotal(cv.getOrder_number(), cv.getOffnum(),
 		 cv.getArrivenum(), cv.getWayOfTransport());
-		label_3.setText(total + "Ôª");
-		label_3.setBounds(182, 421, 72, 15);
+		label_3.setText(total + "å…ƒ");
+		label_3.setBounds(199, 421, 72, 15);
 		add(label_3);
 
-		JLabel lblNewLabel_7 = new JLabel("ÉóÅú×´Ì¬");
+		JLabel lblNewLabel_7 = new JLabel("å®¡æ‰¹çŠ¶æ€");
 		lblNewLabel_7.setBounds(392, 421, 54, 15);
 		add(lblNewLabel_7);
 
-		String[] approveState = { "Î´ÉóÅú", "ÉóÅúÍ¨¹ı", "ÉóÅúÎ´Í¨¹ı" };
+		String[] approveState = { "æœªå®¡æ‰¹", "å®¡æ‰¹é€šè¿‡", "å®¡æ‰¹æœªé€šè¿‡" };
 		JComboBox comboBox = new JComboBox(approveState);
 		comboBox.setBounds(480, 421, 181, 21);
 		comboBox.setEnabled(false);
@@ -210,36 +213,36 @@ public class Shippingorder extends JPanel implements Runnable{
 		textArea.setText(order);
 		scrollPane.setViewportView(textArea);
 
-		JLabel lblNewLabel_9 = new JLabel("ËùÓĞÍĞÔËµ¥ºÅ£º");
-		lblNewLabel_9.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 14));
+		JLabel lblNewLabel_9 = new JLabel("æ‰€æœ‰æ‰˜è¿å•å·ï¼š");
+		lblNewLabel_9.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 14));
 		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
 		scrollPane.setColumnHeaderView(lblNewLabel_9);
 
-		JButton btnNewButton = new JButton("È·¶¨");
+		JButton btnNewButton = new JButton("ç¡®å®š");
 		btnNewButton.setBounds(219, 485, 52, 52);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String date = lblNewLabel_8.getText(); // ×°ÔËÈÕÆÚ 2
+				String date = lblNewLabel_8.getText(); // è£…è¿æ—¥æœŸ 2
 				String loadorderNum = textField[2].getText()
-						+ textField[1].getText(); // ×°ÔËµ¥±àºÅ 1
-				String transferNum = cv.getOffnum(); // ÖĞ×ªÖĞĞÄ±àºÅ3
-				String arriveNum = cv.getArrivenum(); // µ½´ïµØ±àºÅ 4
-				String monitorName = textField[4].getText(); // ¼à×°Ô±ĞÕÃû 5
-				String transferName = textField[5].getText(); // ÑºÔËÔ±ĞÕÃû 6
-				String transportNum = textField[1].getText(); // ÔËÊä±àºÅ£¨ÆûÔË±àºÅ£¬ÌúÔË±àºÅ£¬º½ÔË±àºÅ£©
+						+ textField[1].getText(); // è£…è¿å•ç¼–å· 1
+				String transferNum = cv.getOffnum(); // ä¸­è½¬ä¸­å¿ƒç¼–å·3
+				String arriveNum = cv.getArrivenum(); // åˆ°è¾¾åœ°ç¼–å· 4
+				String monitorName = textField[4].getText(); // ç›‘è£…å‘˜å§“å 5
+				String transferName = textField[5].getText(); // æŠ¼è¿å‘˜å§“å 6
+				String transportNum = textField[1].getText(); // è¿è¾“ç¼–å·ï¼ˆæ±½è¿ç¼–å·ï¼Œé“è¿ç¼–å·ï¼Œèˆªè¿ç¼–å·ï¼‰
 																// 7
-				ArrayList<String> orderlist = cv.getOrder_number(); // ËùÓĞ¶©µ¥±àºÅ 8
-				String fee = total + ""; // ÔË·Ñ 9
+				ArrayList<String> orderlist = cv.getOrder_number(); // æ‰€æœ‰è®¢å•ç¼–å· 8
+				String fee = total + ""; // è¿è´¹ 9
 				if (transportNum.length()!=4 || loadorderNum.length() != 10
 						|| monitorName.length() == 0
 						|| transferName.length() == 0) {
-					label_4.setText("ÇëÕıÈ·ÊäÈë×°ÔËµ¥ĞÅÏ¢");
+					label_4.setText("è¯·æ­£ç¡®è¾“å…¥è£…è¿å•ä¿¡æ¯");
 				} else {
 					VehicleLoadorderVO vlv = new VehicleLoadorderVO(date,
 							loadorderNum, transferNum, arriveNum, monitorName,
 							transferName, transportNum, orderlist, fee,cv.getNumberOfTransfer());
 					sb.build(vlv);
-					label_4.setText("×°ÔËµ¥´´½¨³É¹¦£¡");
+					label_4.setText("è£…è¿å•åˆ›å»ºæˆåŠŸï¼");
 					Thread t=new Thread(nowPanel);
 					t.start();
 				}
@@ -254,7 +257,7 @@ public class Shippingorder extends JPanel implements Runnable{
 		btnNewButton.setBorderPainted(false);
 		add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("È¡Ïû");
+		JButton btnNewButton_1 = new JButton("å–æ¶ˆ");
 		btnNewButton_1.setBounds(426, 485, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -272,9 +275,10 @@ public class Shippingorder extends JPanel implements Runnable{
 		btnNewButton_1.setBorderPainted(false);
 		add(btnNewButton_1);
 
-		JLabel label_5 = new JLabel("ÖĞ×ªÖĞĞÄ" + transport + "×°ÔËµ¥");
-		label_5.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
-		label_5.setBounds(286, 74, 223, 28);
+		JLabel label_5 = new JLabel("ä¸­è½¬ä¸­å¿ƒ" + transport + "è£…è¿å•");
+		label_5.setForeground(new Color(248, 179, 28));
+		label_5.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 25));
+		label_5.setBounds(182, 73, 324, 28);
 		add(label_5);
 
 	}

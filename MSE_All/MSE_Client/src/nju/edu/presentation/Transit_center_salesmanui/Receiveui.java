@@ -37,7 +37,7 @@ public class Receiveui extends JPanel {
 		setLayout(null);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		
-		JButton button = new JButton("返回");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -80,6 +80,7 @@ public class Receiveui extends JPanel {
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
 		JLabel label_3 = new JLabel("选择到达的装运单");
