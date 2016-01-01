@@ -12,9 +12,9 @@ public interface ListinDataService extends Remote{
 	//插入一个订单
 	public void insert(OrderPO po) throws RemoteException;
 	
-	public void getPrice(String address1,String address2)throws RemoteException;
+	//获取两地价格常量
+	public double getPrice(String address1,String address2)throws RemoteException;
 	
-	public ResultMessage find(String number)throws RemoteException;
 	//根据id获得订单po
 	public OrderPO getOrder(String id)throws RemoteException;
 	//输入id更改物流信息
