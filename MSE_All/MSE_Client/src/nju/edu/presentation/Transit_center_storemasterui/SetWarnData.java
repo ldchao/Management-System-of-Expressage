@@ -45,7 +45,7 @@ public class SetWarnData extends JPanel {
 		Inventory_managementBLService ib = new Inventory_managementBL();
 		String warnData = ib.getWarnData();
 
-		JButton button = new JButton("·µ»Ø");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -105,6 +105,7 @@ public class SetWarnData extends JPanel {
 		add(toolBar);
 
 		JLabel lblNewLabel_6 = new JLabel("×´Ì¬À¸");
+		lblNewLabel_6.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel_6);
 
 		JButton btnNewButton_1 = new JButton("È·¶¨");

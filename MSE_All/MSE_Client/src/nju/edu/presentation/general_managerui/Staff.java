@@ -69,7 +69,7 @@ public class Staff extends JPanel {
 	Staff thiStaff = this;
 
 	protected void paintComponent(Graphics g) {
-		ImageIcon image = new ImageIcon("image/generalManager/Staff.png");
+		ImageIcon image = new ImageIcon("image/generalManager/Stuff.png");
 		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
 				this);
 	}

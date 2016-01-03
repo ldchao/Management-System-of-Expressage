@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import nju.edu.businesslogic.storebl.StoreMessageBL;
 
 import java.awt.Font;
+import java.awt.Image;
 
 public class Optionui extends JPanel {
 	private JTable table;
@@ -46,7 +47,7 @@ public class Optionui extends JPanel {
 		setLayout(null);
 		isEditable = false;
 
-		JButton button = new JButton("返回");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -68,10 +69,6 @@ public class Optionui extends JPanel {
 		});
 		add(button);
 
-		JLabel lblNewLabel = new JLabel("中转中心仓库管理员>>选项");
-		lblNewLabel.setBounds(136, 25, 190, 15);
-		add(lblNewLabel);
-
 		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
@@ -85,11 +82,13 @@ public class Optionui extends JPanel {
 		add(toolBar);
 
 		JLabel lblNewLabel_6 = new JLabel("状态栏");
+		lblNewLabel_6.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel_6);
 
 		JLabel lblNewLabel_1 = new JLabel(loginPO.getShop() + "仓库");
-		lblNewLabel_1.setFont(new Font("微软雅黑", Font.BOLD, 24));
-		lblNewLabel_1.setBounds(243, 59, 230, 33);
+		lblNewLabel_1.setForeground(new Color(248, 179, 28));
+		lblNewLabel_1.setFont(new Font("微软雅黑", Font.PLAIN, 24));
+		lblNewLabel_1.setBounds(257, 58, 183, 33);
 		add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("仓库信息自动保存时间：");
@@ -133,11 +132,16 @@ public class Optionui extends JPanel {
 				textField.setEditable(isEditable);
 			}
 		});
-		btnNewButton_1.setBounds(499, 113, 93, 23);
+		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(btnNewButton_1.getWidth(),
+				btnNewButton_1.getHeight(),image2.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		btnNewButton_1.setIcon(image2);
+		btnNewButton_1.setBounds(509, 99, 52, 52);
 		add(btnNewButton_1);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(96, 185, 540, 327);
+		scrollPane.setBounds(96, 185, 537, 327);
 		add(scrollPane);
 
         String[][] message=sm.getArriveAddress();

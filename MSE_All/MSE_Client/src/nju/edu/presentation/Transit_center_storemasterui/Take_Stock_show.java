@@ -36,7 +36,7 @@ public class Take_Stock_show extends JPanel {
 		Inventory_managementBLService ib=new Inventory_managementBL();
 		String[][] inventoryMessage=ib.checkInventoryOrder(qu);
 
-		JButton button = new JButton("返回");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -75,6 +75,7 @@ public class Take_Stock_show extends JPanel {
 		add(toolBar);
 
 		JLabel lblNewLabel_6 = new JLabel("状态栏");
+		lblNewLabel_6.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel_6);
 
 		JLabel label = new JLabel("出入库快递信息");

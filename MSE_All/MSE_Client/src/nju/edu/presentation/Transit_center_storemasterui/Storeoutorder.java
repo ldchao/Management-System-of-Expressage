@@ -57,7 +57,7 @@ public class Storeoutorder extends JPanel implements Runnable {
 		setLayout(null);
 		OrganizationNumPO op = new OrganizationNumPO();
 
-		JButton button = new JButton("·µ»Ø");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -96,6 +96,7 @@ public class Storeoutorder extends JPanel implements Runnable {
 		add(toolBar);
 
 		JLabel lblNewLabel_4 = new JLabel("×´Ì¬À¸");
+		lblNewLabel_4.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel_4);
 
 		JLabel lblNewLabel_2 = new JLabel("¿ìµÝ±àºÅ");

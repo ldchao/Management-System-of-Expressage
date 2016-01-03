@@ -63,11 +63,12 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		contentPane.add(toolBar);
 
 		label_3 = new JLabel("状态栏");
+		label_3.setForeground(Color.WHITE);
 		toolBar.add(label_3);
 
 		label_3.setText("仓库信息初始化成功");
 
-		JButton button = new JButton("注销");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);

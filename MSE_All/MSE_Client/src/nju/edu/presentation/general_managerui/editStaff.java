@@ -76,23 +76,29 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 	private JTextField textField_3;
 	private JTextArea textArea;
 	private Staffbl staffbl = new Staffbl();
-	private editStaff thiStaff = this;
+	private editStaff thiStaff;
 	@SuppressWarnings("rawtypes")
 	DefaultComboBoxModel citymodel;
 	@SuppressWarnings("rawtypes")
 	DefaultComboBoxModel comboBoxModel;
 
+//	protected void paintComponent(Graphics g) {
+//		ImageIcon image = new ImageIcon("image/generalManager/editStuff.png");
+//		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+//				this);
+//	}
+	
 	protected void paintComponent(Graphics g) {
 		ImageIcon image = new ImageIcon("image/generalManager/editStuff.png");
-		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
-				this);
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes", "static-access" })
 	public editStaff(StaffVO vo, JFrame main, LoginPO loginPO) {
-		setBounds(100, 100, 750, 600);
+//		setBounds(100, 100, 750, 600);
 		setLayout(null);
-		this.setVisible(true);
+//		this.setVisible(true);
+		thiStaff = this;
 
 		JLabel label = new JLabel("\u4EBA\u5458\u5177\u4F53\u4FE1\u606F");
 		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));

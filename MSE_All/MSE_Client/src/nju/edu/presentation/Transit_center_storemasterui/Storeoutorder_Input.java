@@ -42,7 +42,7 @@ public class Storeoutorder_Input extends JPanel {
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		setLayout(null);
 
-		JButton button = new JButton("返回");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -129,6 +129,7 @@ public class Storeoutorder_Input extends JPanel {
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
 		JButton button_1 = new JButton("创建出库单");
