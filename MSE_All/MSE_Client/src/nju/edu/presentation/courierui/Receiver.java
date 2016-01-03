@@ -73,15 +73,19 @@ public class Receiver extends JPanel implements Runnable {
 		textFields[0].setBounds(212, 162, 115, 26);
 
 		textFields[1].setBounds(492, 162, 115, 26);
-
+		textFields[1].addKeyListener(new InputNumber());
+		
 		textFields[2].setBounds(212, 204, 115, 26);
-
+		textFields[2].addKeyListener(new InputNumber());
+		
 		textFields[3].setBounds(212, 286, 115, 26);
 
 		textFields[4].setBounds(492, 286, 115, 26);
-
+		textFields[4].addKeyListener(new InputNumber());
+		
 		textFields[5].setBounds(212, 328, 115, 26);
-
+		textFields[5].addKeyListener(new InputNumber());
+		
 		textFields[6].setBounds(492, 328, 115, 26);
 
 		JLabel lblHello = new JLabel("Hello!" + loginPO.getName());
