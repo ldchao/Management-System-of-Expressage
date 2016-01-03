@@ -38,27 +38,7 @@ import nju.edu.businesslogic.listinbl.Listinbl;
 public class Order extends JPanel implements Runnable{
 
 	private JTextField[] textField;
-	private JLabel label_1;
-	private JLabel label_2;
-	private JLabel label_3;
-	private JLabel label_4;
-	private JLabel label_5;
-	private JLabel label_6;
-	private JLabel label_7;
-	private JLabel label_8;
-	private JLabel label_9;
-	private JLabel label_10;
-	private JLabel label_11;
-	private JLabel label_12;
-	private JLabel label_13;
-	private JLabel label_14;
 	private JScrollPane scrollPane;
-	private JLabel lblkg;
-	private JLabel lblcm;
-	private JLabel lblcm_1;
-	private JLabel lblcm_2;
-	private JLabel label_18;
-	private JLabel label_19;
 	private JRadioButton radioButton;
 	private JRadioButton radioButton_1;
 	private JRadioButton radioButton_2;
@@ -67,11 +47,8 @@ public class Order extends JPanel implements Runnable{
 	private JRadioButton radioButton_5;
 	private JToolBar toolBar;
 	private JLabel lblNewLabel;
-	private JLabel label_21;
 	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
-	private JLabel label_22;
-	private JLabel label_23;
 	private Listinbl listinbl;
 	private ExpressType express;
 	private PackageType pack;
@@ -127,128 +104,64 @@ public class Order extends JPanel implements Runnable{
 			this.add(textField[i]);
 		}
 		
-		textField[0].setBounds(126, 80, 78, 21);
+		textField[0].setBounds(182, 85, 150, 21);
 	
-		textField[1].setBounds(316, 80, 179, 21);
+		textField[1].setBounds(474, 85, 145, 21);
 		textField[1].setEnabled(false);
 		
-		textField[2].setBounds(126, 133, 179, 21);
+		textField[2].setBounds(182, 143, 150, 21);
 		
-		textField[3].setBounds(126, 158, 179, 21);
+		textField[3].setBounds(182, 170, 150, 21);
 		
-		textField[4].setBounds(126, 183, 179, 21);
+		textField[4].setBounds(182, 196, 150, 21);
 		
-		textField[5].setBounds(126, 207, 179, 21);
+		textField[5].setBounds(182, 222, 150, 21);
 		
-		textField[6].setBounds(518, 133, 179, 21);
+		textField[6].setBounds(474, 143, 145, 21);
 		
-		textField[7].setBounds(518, 158, 179, 21);
+		textField[7].setBounds(474, 170, 145, 21);
 		
-		textField[8].setBounds(518, 183, 179, 21);
+		textField[8].setBounds(474, 196, 145, 21);
 		
-		textField[9].setBounds(518, 207, 179, 21);
+		textField[9].setBounds(474, 222, 145, 21);
 		
-		textField[10].setBounds(126, 341, 179, 21);
+		textField[10].setBounds(182, 372, 150, 21);
 
-		textField[11].setBounds(518, 341, 179, 21);
+		textField[11].setBounds(182, 448, 37, 21);
 		textField[11].addKeyListener(new InputNumber());
 		textField[11].setDocument(new JTextFieldLimit(4));
 				
-		textField[12].setBounds(180, 363, 43, 21);
+		textField[12].setBounds(182, 397, 37, 21);
 		textField[12].addKeyListener(new InputNumber());
 		textField[12].setDocument(new JTextFieldLimit(4));
 		
-		textField[13].setBounds(329, 363, 43, 21);
+		textField[13].setBounds(294, 397, 37, 21);
 		textField[13].addKeyListener(new InputNumber());
 		textField[13].setDocument(new JTextFieldLimit(4));
 		
-		textField[14].setBounds(489, 363, 43, 21);
+		textField[14].setBounds(182, 422, 37, 21);
 		textField[14].addKeyListener(new InputNumber());
 		textField[14].setDocument(new JTextFieldLimit(4));
 		
-		textField[15].setBounds(655, 363, 43, 21);
+		textField[15].setBounds(294, 422, 37, 21);
 		textField[15].addKeyListener(new InputNumber());
 		textField[15].setDocument(new JTextFieldLimit(4));
 		
 		textField[16].setEnabled(false);
-		textField[16].setBounds(142, 416, 163, 21);
+		textField[16].setBounds(182, 477, 150, 21);
 
 		textField[17].setEnabled(false);
-		textField[17].setBounds(518, 413, 179, 21);
+		textField[17].setBounds(294, 448, 37, 21);
 		
 		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
-		
-		JLabel label = new JLabel("\u5BC4\u4EF6\u4EBA\u4FE1\u606F");
-		label.setBounds(62, 111, 94, 15);
-		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
-		add(label);
-		
-		label_1 = new JLabel("\u6536\u4EF6\u4EBA\u4FE1\u606F");
-		label_1.setBounds(454, 111, 94, 15);
-		label_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
-		add(label_1);
-		
-		label_2 = new JLabel("\u59D3\u540D");
-		label_2.setBounds(62, 136, 54, 15);
-		add(label_2);
-		
-		label_3 = new JLabel("\u59D3\u540D");
-		label_3.setBounds(454, 136, 54, 15);
-		add(label_3);
-		
-		label_4 = new JLabel("\u8BA2\u5355");
-		label_4.setBounds(362, 10, 54, 33);
-		label_4.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 24));
-		add(label_4);
-		
-		label_5 = new JLabel("\u5FEB\u9012\u5458");
-		label_5.setBounds(62, 83, 54, 15);
-		add(label_5);
-		
-		label_6 = new JLabel("\u8BA2\u5355\u53F7");
-		label_6.setBounds(267, 83, 54, 15);
-		add(label_6);
 
 		add(textField[3]);
 		
-		label_7 = new JLabel("\u7535\u8BDD");
-		label_7.setBounds(62, 161, 54, 15);
-		add(label_7);
-		
-		
-		label_8 = new JLabel("\u7535\u8BDD");
-		label_8.setBounds(454, 161, 54, 15);
-		add(label_8);
-		
-		label_9 = new JLabel("\u624B\u673A");
-		label_9.setBounds(62, 186, 54, 15);
-		add(label_9);
-		
-		label_10 = new JLabel("\u624B\u673A");
-		label_10.setBounds(454, 186, 54, 15);
-		add(label_10);
-		
-		label_11 = new JLabel("\u5355\u4F4D");
-		label_11.setBounds(62, 210, 54, 15);
-		add(label_11);
-		
-		label_12 = new JLabel("\u5355\u4F4D");
-		label_12.setBounds(454, 210, 54, 15);
-		add(label_12);
-		
-		label_13 = new JLabel("\u5730\u5740");
-		label_13.setBounds(62, 235, 54, 15);
-		add(label_13);
-		
-		label_14 = new JLabel("\u5730\u5740");
-		label_14.setBounds(454, 235, 54, 15);
-		add(label_14);
-		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(126, 257, 179, 49);
+		scrollPane.setBounds(185, 275, 144, 49);
 		add(scrollPane);
 		
 		textArea = new JTextArea();
@@ -256,45 +169,12 @@ public class Order extends JPanel implements Runnable{
 		textArea.setLineWrap(true);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(518, 257, 179, 49);
+		scrollPane_1.setBounds(477, 275, 140, 49);
 		add(scrollPane_1);
 		
 		textArea_1 = new JTextArea();
 		scrollPane_1.setViewportView(textArea_1);
 		textArea_1.setLineWrap(true);
-		
-		JLabel label_15 = new JLabel("\u6258\u8FD0\u7269\u4FE1\u606F");
-		label_15.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
-		label_15.setBounds(56, 316, 112, 15);
-		add(label_15);
-		
-		JLabel label_16 = new JLabel("\u7269\u54C1\u540D");
-		label_16.setBounds(62, 341, 54, 15);
-		add(label_16);
-		
-		JLabel label_17 = new JLabel("\u7269\u54C1\u6570");
-		label_17.setBounds(454, 344, 54, 15);
-		add(label_17);
-		
-		lblkg = new JLabel("\u7269\u54C1\u5B9E\u9645\u91CD\u91CF\uFF08kg\uFF09");
-		lblkg.setBounds(62, 366, 123, 15);
-		add(lblkg);
-		
-		lblcm = new JLabel("\u7269\u54C1\u957F\u5EA6\uFF08cm\uFF09");
-		lblcm.setBounds(233, 366, 99, 15);
-		add(lblcm);
-		
-		lblcm_1 = new JLabel("\u7269\u54C1\u5BBD\u5EA6\uFF08cm\uFF09");
-		lblcm_1.setBounds(398, 366, 97, 15);
-		add(lblcm_1);
-		
-		lblcm_2 = new JLabel("\u7269\u54C1\u9AD8\u5EA6\uFF08cm\uFF09");
-		lblcm_2.setBounds(548, 366, 106, 15);
-		add(lblcm_2);
-		
-		label_18 = new JLabel("\u5FEB\u9012\u79CD\u7C7B");
-		label_18.setBounds(62, 391, 54, 15);
-		add(label_18);
 		
 		radioButton = new JRadioButton("\u7ECF\u6D4E\u5FEB\u9012");
 		radioButton.addActionListener(new ActionListener() {
@@ -304,7 +184,7 @@ public class Order extends JPanel implements Runnable{
 				index=0;
 			}
 		});
-		radioButton.setBounds(126, 387, 78, 23);
+		radioButton.setBounds(393, 410, 100, 23);
 		radioButton.setSelected(true);
 		add(radioButton);
 		
@@ -317,7 +197,7 @@ public class Order extends JPanel implements Runnable{
 				index=1;
 			}
 		});
-		radioButton_1.setBounds(206, 387, 78, 23);
+		radioButton_1.setBounds(393, 450, 100, 23);
 		add(radioButton_1);
 		
 		radioButton_2 = new JRadioButton("\u7279\u5FEB\u4E13\u9012");
@@ -329,17 +209,13 @@ public class Order extends JPanel implements Runnable{
 				index=2;
 			}
 		});
-		radioButton_2.setBounds(282, 387, 90, 23);
+		radioButton_2.setBounds(393, 485, 90, 23);
 		add(radioButton_2);
 		
 		bg1=new ButtonGroup();
 		bg1.add(radioButton);
 		bg1.add(radioButton_1);
 		bg1.add(radioButton_2);
-		
-		label_19 = new JLabel("\u5305\u88C5\u79CD\u7C7B");
-		label_19.setBounds(454, 391, 54, 15);
-		add(label_19);
 		
 		radioButton_3 = new JRadioButton("\u7EB8\u7BB1");
 		radioButton_3.addActionListener(new ActionListener() {
@@ -349,7 +225,7 @@ public class Order extends JPanel implements Runnable{
 				pack=PackageType.Carton;
 			}
 		});
-		radioButton_3.setBounds(517, 390, 54, 23);
+		radioButton_3.setBounds(519, 410, 90, 23);
 		radioButton_3.setSelected(true);
 		add(radioButton_3);
 		
@@ -361,7 +237,7 @@ public class Order extends JPanel implements Runnable{
 				pack =PackageType.Wooden;
 			}
 		});
-		radioButton_4.setBounds(572, 390, 54, 23);
+		radioButton_4.setBounds(519, 449, 73, 23);
 		add(radioButton_4);
 		
 		radioButton_5 = new JRadioButton("\u5FEB\u9012\u888B");
@@ -372,7 +248,7 @@ public class Order extends JPanel implements Runnable{
 				pack=PackageType.bag;
 			}
 		});
-		radioButton_5.setBounds(628, 390, 73, 23);
+		radioButton_5.setBounds(519, 484, 73, 23);
 		add(radioButton_5);
 		bg2=new ButtonGroup();
 		
@@ -390,23 +266,11 @@ public class Order extends JPanel implements Runnable{
 		lblNewLabel = new JLabel("\u72B6\u6001\u680F");
 		toolBar.add(lblNewLabel);
 		
-		label_21 = new JLabel("\u5BA1\u6279\u72B6\u6001");
-		label_21.setBounds(549, 83, 63, 15);
-		add(label_21);
-		
 		String [] state={"Î´ÉóÅú","ÒÑÉóÅú","ÉóÅúÎ´Í¨¹ý"};	
 		comboBox = new JComboBox(state);
 		comboBox.setEnabled(false);
-		comboBox.setBounds(612, 80, 84, 21);
+		comboBox.setBounds(168, 499, 84, 21);
 		add(comboBox);
-		
-		label_22 = new JLabel("\u9884\u8BA1\u9001\u8FBE\u65F6\u95F4");
-		label_22.setBounds(62, 416, 84, 15);
-		add(label_22);
-		
-		label_23 = new JLabel("\u4ED8\u6B3E");
-		label_23.setBounds(454, 416, 43, 15);
-		add(label_23);
 
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -470,10 +334,10 @@ public class Order extends JPanel implements Runnable{
 		add(button);
 		
 		comboBox_1 = new JComboBox(city);
-		comboBox_1.setBounds(126, 232, 179, 21);
+		comboBox_1.setBounds(182, 247, 150, 21);
 		add(comboBox_1);
 		comboBox_2= new JComboBox(city);
-		comboBox_2.setBounds(518, 232, 179, 21);
+		comboBox_2.setBounds(474, 247, 150, 21);
 		add(comboBox_2);
 	
 		//·µ»Ø°´Å¥ 

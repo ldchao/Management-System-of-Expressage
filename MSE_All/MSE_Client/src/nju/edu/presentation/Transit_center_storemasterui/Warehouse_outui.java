@@ -28,7 +28,7 @@ public class Warehouse_outui extends JPanel {
 		setLayout(null);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		
-		JButton button = new JButton("·µ»Ø");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -103,6 +103,7 @@ public class Warehouse_outui extends JPanel {
 		add(toolBar);
 
 		JLabel lblNewLabel_4 = new JLabel("×´Ì¬À¸");
+		lblNewLabel_4.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel_4);
 
 	}
