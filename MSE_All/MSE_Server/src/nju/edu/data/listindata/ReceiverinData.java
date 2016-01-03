@@ -21,18 +21,11 @@ public class ReceiverinData extends UnicastRemoteObject implements ReceiverinDat
 	@Override
 	public void insertReceiver(ReceiverPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		ArrayList<String> arrayList=new ArrayList<>();
-		arrayList.add(po.getCourier());
-		arrayList.add(po.getPhoneOfcourier());
-		arrayList.add(po.getId());
-		arrayList.add(po.getTime());
-		arrayList.add(po.getReceiver());
-		arrayList.add(po.getPhone());
-		arrayList.add(po.getCellphone());
-		arrayList.add(po.getPosition());
-		arrayList.add(po.getAddress());
+		String temp=po.getCourier()+";"+po.getPhoneOfcourier()+";"+po.getId()
+		+";"+po.getTime()+";"+po.getReceiver()+";"+po.getPhone()+";"+po.getCellphone()
+		+";"+po.getPosition()+";"+po.getAddress();
 		fileWriter fileWriter=new fileWriter();
-		fileWriter.Writer("Database/Receiver.txt", arrayList, true);
+		fileWriter.Writer("Database/Receiver.txt", temp, true);
 	}
 
 	@Override
@@ -40,7 +33,7 @@ public class ReceiverinData extends UnicastRemoteObject implements ReceiverinDat
 		// TODO Auto-generated method stub
 		boolean result=false;
 		fileReader fileReader=new fileReader();
-		ArrayList<String> arrayList=fileReader.Reader("Database/Order.txt");
+		ArrayList<String> arrayList=fileReader.Reader("Database/UnReceiveOrder.txt");
 		for(int i=0;i<arrayList.size();i++){
 			String [] temp=arrayList.get(i).split(";");
 			if(temp[1].equals(number)){
