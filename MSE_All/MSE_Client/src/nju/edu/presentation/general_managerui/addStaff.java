@@ -247,7 +247,7 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 						}else{
 							staffbl.addStaff(vo);
 							label_8.setText("新建成功");
-							button.setEnabled(true);
+							button.setEnabled(false);
 							cleanSignal = true;
 						}
 					}
@@ -303,8 +303,6 @@ public class addStaff extends JPanel implements ItemListener, Runnable {
 
 		textArea = new JTextArea();
 		textArea.setBounds(489, 271, 125, 61);
-		textArea.setOpaque(false);
-		textArea.setBorder(null);
 		add(textArea);
 
 		JButton button2 = new JButton("");

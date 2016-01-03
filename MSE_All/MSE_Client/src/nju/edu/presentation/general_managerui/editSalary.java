@@ -173,7 +173,7 @@ public class editSalary extends JPanel implements Runnable {
 		textField.setColumns(10);
 		textField.setBounds(373, 189, 108, 21);
 		textField.setText(vo.getTypeOfStaff());
-		textField.setEditable(false);
+		textField.setEnabled(false);
 		textField.setForeground(new Color(88, 93, 103));
 		textField.setCaretColor(new Color(88, 93, 103));
 		textField.setOpaque(false);
@@ -182,6 +182,7 @@ public class editSalary extends JPanel implements Runnable {
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
+		textField_1.setDocument(new JTextFieldLimit(7));
 		textField_1.setBounds(373, 239, 108, 21);
 		textField_1.addKeyListener(new InputNumber());
 		textField_1.setText(vo.getSalary() + "");
@@ -189,7 +190,6 @@ public class editSalary extends JPanel implements Runnable {
 		textField_1.setCaretColor(new Color(88, 93, 103));
 		textField_1.setOpaque(false);
 		textField_1.setBorder(null);
-		textField.setDocument(new JTextFieldLimit(7));
 		add(textField_1);
 
 		JToolBar toolBar = new JToolBar();
