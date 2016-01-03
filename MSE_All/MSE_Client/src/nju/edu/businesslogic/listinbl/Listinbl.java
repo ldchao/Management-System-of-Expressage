@@ -203,27 +203,35 @@ public class Listinbl implements ListinBLService, ListinInfo, OrderInfo, UpdateI
 		while (true) {
 			part2 = getpart2(a);
 			String id = partOfID + part2;
-//			System.out.println(partOfID);
-			System.out.println(part2);
-			OrderVO vo = getOrder(id);
 			if (a==100000) {
 				return "ÓªÒµÌüÒÑÂú";
 			}
-			if (vo == null) {
+			if (checkOrder(id)==false) {
 				return id;
 			}
 			a++;
 		}
 	}
 
+	private boolean checkOrder(String id) {
+		// TODO Auto-generated method stub
+		boolean result=false;
+		try {
+			result=listinDataService.checkOrder(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 	private String getpart2(int a) {
 		// TODO Auto-generated method stub
 		String result = a + "";
-		String temp="";
-		for (int i = 0; i < 6 - result.length(); i++) {
-			temp = "0" + temp;
+		int length=result.length();
+		for (int i = 0; i < 5 - length; i++) {
+			result="0"+result;
 		}
-		result=temp+result;
-		return temp;
+		return result;
 	}
 }

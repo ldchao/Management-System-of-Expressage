@@ -24,4 +24,7 @@ public interface ListinDataService extends Remote{
 	public ArrayList<OrderPO> getAllOrders() throws RemoteException;
 	//更新po审批状态
 	public void changestate(OrderPO po)throws RemoteException;
+	
+	//查询未审批的订单，用于查重
+	public boolean checkOrder(String id)throws RemoteException;
 }
