@@ -3,8 +3,8 @@ package nju.edu.presentation.courierui;
 import javax.swing.JFrame;
 
 import PO.LoginPO;
-import nju.edu.presentation.financial_staffui.FmainPanel;
 
+@SuppressWarnings("serial")
 public class CourierFrame extends JFrame{
 	public CourierFrame(LoginPO loginPO) {
 		Courier courier=new Courier(this,loginPO);

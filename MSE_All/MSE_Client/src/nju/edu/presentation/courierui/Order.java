@@ -6,6 +6,7 @@ package nju.edu.presentation.courierui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +34,7 @@ import State.PackageType;
 import nju.edu.VO.OrderVO;
 import nju.edu.businesslogic.listinbl.Listinbl;
 
+@SuppressWarnings("serial")
 public class Order extends JPanel implements Runnable{
 
 	private JTextField[] textField;
@@ -66,6 +68,7 @@ public class Order extends JPanel implements Runnable{
 	private JToolBar toolBar;
 	private JLabel lblNewLabel;
 	private JLabel label_21;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
 	private JLabel label_22;
 	private JLabel label_23;
@@ -74,7 +77,9 @@ public class Order extends JPanel implements Runnable{
 	private PackageType pack;
 	JTextArea textArea;
 	JTextArea textArea_1; 
+	@SuppressWarnings("rawtypes")
 	JComboBox comboBox_1;
+	@SuppressWarnings("rawtypes")
 	JComboBox comboBox_2;
 	private JButton button_1;
 	JFrame main;
@@ -93,6 +98,14 @@ public class Order extends JPanel implements Runnable{
 			"021001","021002","021003","021004","021005","021006","021007","021008","021009","021010","021011","021012","021013","021014","021015","021016","021017","021018","021019","021020",
 			"020001","020002","020003","020004","020005","020006","020007","020008","020009","020010","020011","020012","020013","020014","020015"};
 	
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/courier/Order.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+
+	@SuppressWarnings({ "static-access", "rawtypes", "unchecked" })
 	public Order(JFrame main,LoginPO loginPO) {
 		this.loginPO=loginPO;
 		this.main=main;

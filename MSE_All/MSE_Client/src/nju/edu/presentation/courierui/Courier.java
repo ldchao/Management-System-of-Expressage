@@ -1,37 +1,43 @@
 package nju.edu.presentation.courierui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import PO.LoginPO;
 import nju.edu.presentation.Loginui.PersonalInfomation;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.JToolBar;
 
+import javax.swing.JLabel;
+
+@SuppressWarnings("serial")
 public class Courier extends JPanel {
 	private PersonalInfomation perinfo;
 
-	public Courier(JFrame main,LoginPO loginPO) {
-		Courier courierframe=this;
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/courier/courier.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+
+	public Courier(JFrame main, LoginPO loginPO) {
+		Courier courierframe = this;
 		setBounds(300, 100, 750, 600);
 		setVisible(true);
-		
+
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 		btnNewButton.setBounds(13, -9, 63, 63);
@@ -39,16 +45,15 @@ public class Courier extends JPanel {
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setIcon(new ImageIcon("image/transparent_circle.png"));
 		btnNewButton.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
-						btnNewButton.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+				btnNewButton.setIcon(new ImageIcon("image/mask_circle.png"));
+			}
 		});
 		setLayout(null);
 		add(btnNewButton);
-		
-		
-		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
+
+		JLabel lblHello = new JLabel("Hello!" + loginPO.getName());
 		lblHello.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -70,16 +75,14 @@ public class Courier extends JPanel {
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
-		
-		JLabel label_1 = new JLabel("\u8BA2\u5355\u8F93\u5165");
-		label_1.setBounds(200, 149, 54, 15);
-		add(label_1);
-		
-		//返回按钮
-		JButton btnNewButton_1 = new JButton("New button");
+
+		// 返回按钮
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Order neworder=new Order(main,loginPO);
+				Order neworder = new Order(main, loginPO);
 				main.remove(courierframe);
 				main.getContentPane().add(neworder);
 				main.invalidate();
@@ -87,17 +90,15 @@ public class Courier extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(150, 190, 160, 128);
+		btnNewButton_1.setBounds(164, 236, 160, 128);
 		add(btnNewButton_1);
-		
-		JLabel lblNewLabel = new JLabel("收件人信息输入");
-		lblNewLabel.setBounds(483, 149, 94, 15);
-		add(lblNewLabel);
-		
-		JButton btnNewButton_2 = new JButton("New button");
+
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setContentAreaFilled(false);
+		btnNewButton_2.setBorderPainted(false);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Receiver newreceiver=new Receiver(main,loginPO);
+				Receiver newreceiver = new Receiver(main, loginPO);
 				main.remove(courierframe);
 				main.getContentPane().add(newreceiver);
 				main.invalidate();
@@ -105,7 +106,7 @@ public class Courier extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBounds(450, 190, 160, 128);
+		btnNewButton_2.setBounds(420, 236, 160, 128);
 		add(btnNewButton_2);
 	}
 }
