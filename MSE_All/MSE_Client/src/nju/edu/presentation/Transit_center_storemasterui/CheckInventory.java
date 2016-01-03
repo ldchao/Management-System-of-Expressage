@@ -30,7 +30,7 @@ public class CheckInventory extends JPanel {
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
         setLayout(null);
         
-        JButton button = new JButton("返回");
+        JButton button = new JButton("");
         button.setBounds(13, -9, 63, 63);
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
@@ -91,6 +91,7 @@ public class CheckInventory extends JPanel {
 		add(toolBar);
 		
 		JLabel lblNewLabel_6 = new JLabel("状态栏");
+		lblNewLabel_6.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel_6);
 		
 		JLabel label = new JLabel("选择要查看的起止日期");
@@ -99,7 +100,7 @@ public class CheckInventory extends JPanel {
 		add(label);
 		
 		JButton btnNewButton_1 = new JButton("确定");
-		btnNewButton_1.setBounds(196, 405, 52, 52);
+		btnNewButton_1.setBounds(290, 430, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String startData=lblNewLabel_8.getText();
@@ -125,7 +126,7 @@ public class CheckInventory extends JPanel {
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("取消");
-		btnNewButton_2.setBounds(413, 405, 52, 52);
+		btnNewButton_2.setBounds(384, 430, 52, 52);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CheckInventory ci=new CheckInventory(main,lastui,loginPO);

@@ -39,7 +39,7 @@ public class CheckInventory_show extends JPanel {
 		Inventory_managementBLService imb=new Inventory_managementBL();
 		String[][] storeMessage=imb.checkInventory(startDate, overDate);
 
-		JButton button = new JButton("返回");
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -78,6 +78,7 @@ public class CheckInventory_show extends JPanel {
 		add(toolBar);
 
 		JLabel lblNewLabel_6 = new JLabel("状态栏");
+		lblNewLabel_6.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel_6);
 
 		JLabel label = new JLabel("库存信息显示");
@@ -87,7 +88,7 @@ public class CheckInventory_show extends JPanel {
 
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(125, 246, 515, 125);
+		scrollPane.setBounds(151, 237, 454, 125);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -110,6 +111,7 @@ public class CheckInventory_show extends JPanel {
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel(startDate);
+		lblNewLabel_3.setForeground(Color.WHITE);
 		lblNewLabel_3.setBounds(268, 191, 86, 15);
 		add(lblNewLabel_3);
 		
@@ -119,12 +121,13 @@ public class CheckInventory_show extends JPanel {
 		add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel(overDate);
+		lblNewLabel_5.setForeground(Color.WHITE);
 		lblNewLabel_5.setBounds(513, 191, 86, 15);
 		add(lblNewLabel_5);
 		
-		JLabel lblZ = new JLabel("注：机动区不作统计。");
-		lblZ.setForeground(Color.RED);
-		lblZ.setBounds(151, 392, 171, 15);
+		JLabel lblZ = new JLabel("\u6CE8\uFF1A\u673A\u52A8\u533A\u4E0D\u4F5C\u7EDF\u8BA1");
+		lblZ.setForeground(new Color(248,179,28));
+		lblZ.setBounds(151, 387, 171, 15);
 		add(lblZ);
 
 	}
