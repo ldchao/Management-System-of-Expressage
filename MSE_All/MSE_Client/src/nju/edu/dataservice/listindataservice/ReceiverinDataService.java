@@ -12,4 +12,7 @@ public interface ReceiverinDataService extends Remote{
 	
 	//查找是否存在输入的订单号
 	public boolean find(String number)throws RemoteException;
+
+	//接受寄件后删除原有订单
+	public void delete(ReceiverPO po)throws RemoteException;
 }

@@ -44,4 +44,19 @@ public class ReceiverinData extends UnicastRemoteObject implements ReceiverinDat
 		return result;
 	}
 
+	@Override
+	public void delete(ReceiverPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		ArrayList<String> arrayList=fileReader.Reader("UnReceiveOrder.txt");
+		String[] temp=null;
+		for(int i=0;i<arrayList.size();i++){
+			temp=arrayList.get(i).split(";");
+			if(temp[1].equals(po.getId())){
+				fileWriter.Writer("Order.txt", arrayList.get(i), true);
+				arrayList.remove(i);
+				break;
+			}
+		}
+	}
+
 }

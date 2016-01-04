@@ -18,6 +18,7 @@ public class Receiverinbl implements ReceiverinBLService{
 		ReceiverPO po=new ReceiverPO(vo.getCourier(), vo.getPhoneOfcourier(), vo.getId(), vo.getTime(), vo.getReceiver(), vo.getAddress(), vo.getPhone(), vo.getCellphone(), vo.getPosition());
 		try {
 			receiverinDataService.insertReceiver(po);
+			receiverinDataService.delete(po);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
