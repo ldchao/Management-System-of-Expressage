@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import nju.edu.businesslogic.storebl.StoreMessageBL;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 
 public class Optionui extends JPanel {
@@ -39,6 +40,11 @@ public class Optionui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/TransitCenterStoreMaster/Optionui.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public Optionui(JFrame m, JPanel jp, LoginPO loginPO, StoreMessageBL sm) {
 		JFrame main = m;
 		JPanel lastui = jp;
@@ -88,15 +94,13 @@ public class Optionui extends JPanel {
 		JLabel lblNewLabel_1 = new JLabel(loginPO.getShop() + "仓库");
 		lblNewLabel_1.setForeground(new Color(248, 179, 28));
 		lblNewLabel_1.setFont(new Font("微软雅黑", Font.PLAIN, 24));
-		lblNewLabel_1.setBounds(257, 58, 183, 33);
+		lblNewLabel_1.setBounds(307, 74, 183, 33);
 		add(lblNewLabel_1);
 
-		JLabel lblNewLabel_2 = new JLabel("仓库信息自动保存时间：");
-		lblNewLabel_2.setBounds(136, 117, 153, 15);
-		add(lblNewLabel_2);
-
 		textField = new JTextField(sm.getIntervalTime() + "");
-		textField.setBounds(329, 114, 66, 21);
+		textField.setOpaque(false);
+		textField.setBorder(null);
+		textField.setBounds(358, 129, 66, 27);
 		textField.setEditable(isEditable);
 		textField.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
@@ -111,12 +115,20 @@ public class Optionui extends JPanel {
 		textField.setForeground(new Color(88, 93, 103));
 		textField.setCaretColor(new Color(88, 93, 103));
 
-		JButton btnNewButton_1 = new JButton("更改");
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBounds(532, 117, 52, 52);
+		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(btnNewButton_1.getWidth(),
+				btnNewButton_1.getHeight(),image2.getImage().SCALE_DEFAULT);
+		image2 = new ImageIcon(temp1);
+		btnNewButton_1.setIcon(image2);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!isEditable) {
 					isEditable = true;		
-					btnNewButton_1.setText("确定");
+					btnNewButton_1.setIcon(new ImageIcon("image/TransitCenterStoreMaster/OK.png"));
 				}else{
 					
 					double intervalTime=Double.parseDouble(textField.getText());
@@ -124,7 +136,8 @@ public class Optionui extends JPanel {
 						lblNewLabel_6.setText("请输入合理的间隔时间!");
 					}else{
 						isEditable = false;
-						btnNewButton_1.setText("更改");
+						btnNewButton_1.setIcon(null);
+//						btnNewButton_1.setText("更改");
 						sm.setIntervalTime(intervalTime);
 						lblNewLabel_6.setText("存储间隔时间设置完毕!");
 					}
@@ -132,16 +145,11 @@ public class Optionui extends JPanel {
 				textField.setEditable(isEditable);
 			}
 		});
-		btnNewButton_1.setBounds(509, 99, 52, 52);
-		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
-		Image temp1 = image1.getImage().getScaledInstance(btnNewButton_1.getWidth(),
-				btnNewButton_1.getHeight(),image2.getImage().SCALE_DEFAULT);
-		image1 = new ImageIcon(temp1);
-		btnNewButton_1.setIcon(image2);
+		
 		add(btnNewButton_1);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(96, 185, 537, 327);
+		scrollPane.setBounds(106, 210, 537, 254);
 		add(scrollPane);
 
         String[][] message=sm.getArriveAddress();
@@ -158,10 +166,6 @@ public class Optionui extends JPanel {
 				"到达地" });
 		table.setModel(tableModel);
 		scrollPane.setViewportView(table);
-
-		JLabel lblNewLabel_4 = new JLabel("规定的库区对应的到达地");
-		lblNewLabel_4.setBounds(294, 152, 197, 23);
-		add(lblNewLabel_4);
 
 	}
 }

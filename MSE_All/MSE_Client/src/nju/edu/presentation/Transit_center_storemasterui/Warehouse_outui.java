@@ -1,6 +1,7 @@
 package nju.edu.presentation.Transit_center_storemasterui;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -21,6 +22,11 @@ public class Warehouse_outui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/TransitCenterStoreMaster/Warehouse_outui.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public Warehouse_outui(JFrame m, JPanel jp,LoginPO loginPO) {
 		JFrame main = m;
 		JPanel lastui = jp;
@@ -55,7 +61,7 @@ public class Warehouse_outui extends JPanel {
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JButton btnNewButton_1 = new JButton("New button");
+		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Warehouse_out_checkRemindui woc=new Warehouse_out_checkRemindui(main,nowPanel,loginPO);
@@ -66,10 +72,19 @@ public class Warehouse_outui extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(134, 214, 160, 128);
+		btnNewButton_1.setBounds(166, 243, 160, 128);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.setIcon(new ImageIcon("image/transparent_big.png"));
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnNewButton_1.setIcon(new ImageIcon("image/mask_big.png"));
+			}
+		});
 		add(btnNewButton_1);
 
-		JButton btnNewButton_2 = new JButton("New button");
+		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Storeoutorder_Input si=new Storeoutorder_Input(main,nowPanel,loginPO);
@@ -80,7 +95,16 @@ public class Warehouse_outui extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBounds(441, 214, 160, 128);
+		btnNewButton_2.setBounds(425, 243, 160, 128);
+		btnNewButton_2.setContentAreaFilled(false);
+		btnNewButton_2.setBorderPainted(false);
+		btnNewButton_2.setIcon(new ImageIcon("image/transparent_big.png"));
+		btnNewButton_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnNewButton_2.setIcon(new ImageIcon("image/mask_big.png"));
+			}
+		});
 		add(btnNewButton_2);
 
 		JToolBar toolBar = new JToolBar();

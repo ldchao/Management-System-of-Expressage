@@ -2,6 +2,7 @@ package nju.edu.presentation.Transit_center_storemasterui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,6 +36,11 @@ public class Storeoutorder_Input extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/TransitCenterStoreMaster/Storeoutorder_Input.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public Storeoutorder_Input(JFrame m, JPanel jp, LoginPO loginPO) {
 		JFrame main = m;
 		JPanel lastui = jp;
@@ -63,23 +69,14 @@ public class Storeoutorder_Input extends JPanel {
 			}
 		});
 		add(button);
-		
-		JLabel label = new JLabel("中转中心仓库管理员>>出库管理>>新建出库单");
-		label.setBounds(100, 14, 288, 15);
-		add(label);
 
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JLabel label_2 = new JLabel("选择要进行出库管理的中转单");
-		label_2.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		label_2.setBounds(251, 80, 288, 35);
-		add(label_2);
-
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(120, 150, 514, 299);
+		scrollPane.setBounds(118, 150, 514, 299);
 		add(scrollPane);
 
 		Warehouse_outBLService wb = new Warehouse_outBL();
@@ -98,6 +95,8 @@ public class Storeoutorder_Input extends JPanel {
 		}
 
 		table = new JTable();
+		table.setSelectionBackground(new Color(88, 93, 103,230));
+		table.setSelectionForeground(new Color(255, 255, 255,200));
 		// 选取行
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -132,7 +131,9 @@ public class Storeoutorder_Input extends JPanel {
 		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
-		JButton button_1 = new JButton("创建出库单");
+		JButton button_1 = new JButton("");
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (rowpos == -1) {
@@ -148,7 +149,7 @@ public class Storeoutorder_Input extends JPanel {
 				}
 			}
 		});
-		button_1.setBounds(300, 479, 150, 23);
+		button_1.setBounds(304, 469, 147, 50);
 		add(button_1);
 	}
 

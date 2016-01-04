@@ -2,6 +2,7 @@ package nju.edu.presentation.Transit_center_storemasterui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -28,6 +29,11 @@ public class Warehouse_out_checkRemindui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/TransitCenterStoreMaster/Warehouse_out_checkRemindui.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public Warehouse_out_checkRemindui(JFrame m, JPanel jp,LoginPO loginPO) {
 		JFrame main = m;
 		JPanel lastui = jp;
@@ -57,25 +63,22 @@ public class Warehouse_out_checkRemindui extends JPanel {
 		});
 		add(button);
 
-		JLabel label = new JLabel("中转中心仓库管理员>>出库管理>>查看消息提醒");
-		label.setBounds(100, 14, 288, 15);
-		add(label);
-
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JLabel label_2 = new JLabel("出库管理消息提醒");
-		label_2.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		label_2.setBounds(289, 80, 192, 35);
-		add(label_2);
-
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(120, 150, 514, 299);
+		scrollPane.setBounds(95, 150, 565, 299);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
 		add(scrollPane);
 
 		JTextArea textArea = new JTextArea();
+		textArea.setOpaque(false);
+		textArea.setBorder(null);
+		textArea.setForeground(new Color(255, 255, 255,200));
 		Warehouse_outBLService wb=new Warehouse_outBL();
 		ArrayList<ChangeorderVO> changeorderList = wb.checkRemind();
 		String  remind_message = "";
@@ -84,15 +87,16 @@ public class Warehouse_out_checkRemindui extends JPanel {
 			    remind_message+="编号为"+cv.getNumberOfTransfer()+"的中转单上的订单需要在"
 			    		+ cv.getDate()+"之前办理出库。\n";
 			}
-			 textArea.setText(remind_message);
+			 textArea.setText("\n"+remind_message);
 		}		
 		else
 		   textArea.setText("暂时没有货物需要装运");
 		scrollPane.setViewportView(textArea);
 
 		JLabel label_3 = new JLabel("待处理的消息");
+		label_3.setForeground(new Color(88, 93, 103));
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setFont(new Font("微软雅黑", Font.BOLD, 14));
+		label_3.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		scrollPane.setColumnHeaderView(label_3);
 
 		JToolBar toolBar = new JToolBar();
