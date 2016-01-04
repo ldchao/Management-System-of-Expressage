@@ -43,11 +43,13 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(750, 600);
 		setLocationRelativeTo(null);
-		contentPane = new Transit_center_storemaster_mainui_Panel(main,loginPO);
-		getContentPane().add(contentPane);
+
+
 		OrganizationNumPO op=new OrganizationNumPO();
 		String transferNum=op.getNum(loginPO.getShop());
 		sm = StoreMessageBL.getInstance(transferNum);
+		contentPane = new Transit_center_storemaster_mainui_Panel(main,loginPO,sm);
+		getContentPane().add(contentPane);
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
 				sm.save();

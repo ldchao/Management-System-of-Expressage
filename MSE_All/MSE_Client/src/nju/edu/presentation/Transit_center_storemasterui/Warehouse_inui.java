@@ -1,6 +1,7 @@
 package nju.edu.presentation.Transit_center_storemasterui;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -20,6 +21,11 @@ public class Warehouse_inui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/TransitCenterStoreMaster/Warehouse_inui.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public Warehouse_inui(JFrame m,JPanel jp,LoginPO loginPO) {
 		JFrame main=m;
 		JPanel lastui=jp;
@@ -49,20 +55,12 @@ public class Warehouse_inui extends JPanel {
 		});
 		add(button);
 		
-		JLabel lblNewLabel = new JLabel("仓库管理员>>入库管理");
-		lblNewLabel.setBounds(100, 14, 173, 15);
-		add(lblNewLabel);
-		
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
-		lblHello.setBounds(655, 12, 100, 15);
+		lblHello.setBounds(655, 12, 124, 15);
 		add(lblHello);
 		
-		JLabel lblNewLabel_2 = new JLabel("消息提醒");
-		lblNewLabel_2.setBounds(186, 168, 54, 15);
-		add(lblNewLabel_2);
-		
-		JButton btnNewButton_1 = new JButton("New button");
+		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Warehouse_in_checkRemindui wic=new Warehouse_in_checkRemindui(main,nowPanel,loginPO);
@@ -73,14 +71,10 @@ public class Warehouse_inui extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(139, 206, 160, 128);
+		btnNewButton_1.setBounds(166, 243, 160, 128);
 		add(btnNewButton_1);
 		
-		JLabel lblNewLabel_3 = new JLabel("新建入库单");
-		lblNewLabel_3.setBounds(450, 168, 94, 15);
-		add(lblNewLabel_3);
-		
-		JButton btnNewButton_2 = new JButton("New button");
+		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Storeinorder s=new Storeinorder(main,nowPanel,loginPO);
@@ -91,7 +85,7 @@ public class Warehouse_inui extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBounds(420, 206, 160, 128);
+		btnNewButton_2.setBounds(425, 243, 160, 128);
 		add(btnNewButton_2);
 		
 		JToolBar toolBar = new JToolBar();
