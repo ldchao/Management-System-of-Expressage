@@ -2,7 +2,8 @@ package nju.edu.presentation.Business_hall_salesmanui;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class ChecklistImfo extends JPanel {
@@ -73,7 +75,7 @@ public class ChecklistImfo extends JPanel {
 	private JLabel pack;
 	private JLabel payment;
 	private JLabel arriveTime;
-	private JLabel trace;
+	private JTextArea trace;
 
 	protected void paintComponent(Graphics g) {
 		ImageIcon image = new ImageIcon("image/courier/OrderShow.png");
@@ -100,111 +102,111 @@ public class ChecklistImfo extends JPanel {
 		contentPane.setLayout(null);
 
 		JLabel label = new JLabel("\u5BC4\u4EF6\u4EBA\u4FE1\u606F");
-		label.setBounds(153, 145, 94, 15);
+		label.setBounds(153, 120, 94, 15);
 		label.setForeground(new Color(248, 179, 28));
 		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
 		contentPane.add(label);
 
 		label_1 = new JLabel("\u6536\u4EF6\u4EBA\u4FE1\u606F");
 		label_1.setForeground(new Color(248, 179, 28));
-		label_1.setBounds(411, 145, 94, 15);
+		label_1.setBounds(411, 120, 94, 15);
 		label_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
 		contentPane.add(label_1);
 
 		label_2 = new JLabel("\u59D3\u540D");
 		label_2.setForeground(Color.WHITE);
-		label_2.setBounds(153, 170, 54, 15);
+		label_2.setBounds(153, 145, 54, 15);
 		contentPane.add(label_2);
 
 		label_3 = new JLabel("\u59D3\u540D");
 		label_3.setForeground(Color.WHITE);
-		label_3.setBounds(411, 172, 54, 15);
+		label_3.setBounds(411, 147, 54, 15);
 		contentPane.add(label_3);
 
 		label_6 = new JLabel("\u8BA2\u5355\u53F7");
 		label_6.setForeground(Color.WHITE);
-		label_6.setBounds(411, 80, 54, 15);
+		label_6.setBounds(411, 61, 54, 15);
 		contentPane.add(label_6);
 
 		label_7 = new JLabel("\u7535\u8BDD");
 		label_7.setForeground(Color.WHITE);
-		label_7.setBounds(153, 197, 54, 15);
+		label_7.setBounds(153, 172, 54, 15);
 		contentPane.add(label_7);
 
 		label_8 = new JLabel("\u7535\u8BDD");
 		label_8.setForeground(Color.WHITE);
-		label_8.setBounds(411, 197, 54, 15);
+		label_8.setBounds(411, 172, 54, 15);
 		contentPane.add(label_8);
 
 		label_9 = new JLabel("\u624B\u673A");
 		label_9.setForeground(Color.WHITE);
-		label_9.setBounds(153, 224, 54, 15);
+		label_9.setBounds(153, 199, 54, 15);
 		contentPane.add(label_9);
 
 		label_10 = new JLabel("\u624B\u673A");
 		label_10.setForeground(Color.WHITE);
-		label_10.setBounds(411, 224, 54, 15);
+		label_10.setBounds(411, 199, 54, 15);
 		contentPane.add(label_10);
 
 		label_11 = new JLabel("\u5355\u4F4D");
 		label_11.setForeground(Color.WHITE);
-		label_11.setBounds(153, 251, 54, 15);
+		label_11.setBounds(153, 226, 54, 15);
 		contentPane.add(label_11);
 
 		label_12 = new JLabel("\u5355\u4F4D");
 		label_12.setForeground(Color.WHITE);
-		label_12.setBounds(411, 251, 54, 15);
+		label_12.setBounds(411, 226, 54, 15);
 		contentPane.add(label_12);
 
 		label_13 = new JLabel("\u5730\u5740");
 		label_13.setForeground(Color.WHITE);
-		label_13.setBounds(153, 278, 54, 15);
+		label_13.setBounds(153, 253, 54, 15);
 		contentPane.add(label_13);
 
 		label_14 = new JLabel("\u5730\u5740");
 		label_14.setForeground(Color.WHITE);
-		label_14.setBounds(411, 278, 54, 15);
+		label_14.setBounds(411, 253, 54, 15);
 		contentPane.add(label_14);
 
 		JLabel label_15 = new JLabel("\u6258\u8FD0\u7269\u4FE1\u606F");
 		label_15.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
 		label_15.setForeground(new Color(248, 179, 28));
-		label_15.setBounds(153, 305, 112, 15);
+		label_15.setBounds(153, 280, 112, 15);
 		contentPane.add(label_15);
 
 		JLabel label_16 = new JLabel("\u7269\u54C1\u540D");
 		label_16.setForeground(Color.WHITE);
-		label_16.setBounds(153, 332, 54, 15);
+		label_16.setBounds(153, 307, 54, 15);
 		contentPane.add(label_16);
 
 		JLabel label_17 = new JLabel("\u7269\u54C1\u6570");
 		label_17.setForeground(Color.WHITE);
-		label_17.setBounds(411, 332, 54, 15);
+		label_17.setBounds(411, 307, 54, 15);
 		contentPane.add(label_17);
 
 		lblkg = new JLabel("\u7269\u54C1\u5B9E\u9645\u91CD\u91CF\uFF08kg\uFF09");
 		lblkg.setForeground(Color.WHITE);
-		lblkg.setBounds(153, 359, 123, 15);
+		lblkg.setBounds(153, 334, 123, 15);
 		contentPane.add(lblkg);
 
 		lblcm = new JLabel("\u7269\u54C1\u957F\u5EA6\uFF08cm\uFF09");
 		lblcm.setForeground(Color.WHITE);
-		lblcm.setBounds(153, 386, 99, 15);
+		lblcm.setBounds(153, 361, 99, 15);
 		contentPane.add(lblcm);
 
 		lblcm_1 = new JLabel("\u7269\u54C1\u5BBD\u5EA6\uFF08cm\uFF09");
 		lblcm_1.setForeground(Color.WHITE);
-		lblcm_1.setBounds(153, 413, 97, 15);
+		lblcm_1.setBounds(153, 388, 97, 15);
 		contentPane.add(lblcm_1);
 
 		lblcm_2 = new JLabel("\u7269\u54C1\u9AD8\u5EA6\uFF08cm\uFF09");
 		lblcm_2.setForeground(Color.WHITE);
-		lblcm_2.setBounds(153, 440, 106, 15);
+		lblcm_2.setBounds(153, 415, 106, 15);
 		contentPane.add(lblcm_2);
 
 		label_18 = new JLabel("\u5FEB\u9012\u79CD\u7C7B");
 		label_18.setForeground(Color.WHITE);
-		label_18.setBounds(411, 359, 54, 15);
+		label_18.setBounds(411, 334, 54, 15);
 		contentPane.add(label_18);
 
 		@SuppressWarnings("unused")
@@ -212,7 +214,7 @@ public class ChecklistImfo extends JPanel {
 
 		label_19 = new JLabel("\u5305\u88C5\u79CD\u7C7B");
 		label_19.setForeground(Color.WHITE);
-		label_19.setBounds(411, 386, 54, 15);
+		label_19.setBounds(411, 361, 54, 15);
 		contentPane.add(label_19);
 
 		@SuppressWarnings("unused")
@@ -221,22 +223,22 @@ public class ChecklistImfo extends JPanel {
 		label_20 = new JLabel("\u7269\u6D41\u4FE1\u606F");
 		label_20.setForeground(new Color(248, 179, 28));
 		label_20.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label_20.setBounds(153, 484, 63, 15);
+		label_20.setBounds(153, 442, 63, 15);
 		contentPane.add(label_20);
 
 		label_21 = new JLabel("\u5BA1\u6279\u72B6\u6001");
 		label_21.setForeground(Color.WHITE);
-		label_21.setBounds(153, 105, 54, 15);
+		label_21.setBounds(153, 86, 54, 15);
 		contentPane.add(label_21);
 
 		label_22 = new JLabel("\u9884\u8BA1\u9001\u8FBE\u65F6\u95F4");
 		label_22.setForeground(Color.WHITE);
-		label_22.setBounds(411, 440, 84, 15);
+		label_22.setBounds(411, 415, 84, 15);
 		contentPane.add(label_22);
 
 		label_23 = new JLabel("\u4ED8\u6B3E");
 		label_23.setForeground(Color.WHITE);
-		label_23.setBounds(411, 413, 43, 15);
+		label_23.setBounds(411, 388, 43, 15);
 		contentPane.add(label_23);
 
 		button_1 = new JButton("");
@@ -265,128 +267,139 @@ public class ChecklistImfo extends JPanel {
 
 		label_5 = new JLabel("\u63FD\u4EF6\u4EBA");
 		label_5.setForeground(Color.WHITE);
-		label_5.setBounds(153, 80, 54, 15);
+		label_5.setBounds(153, 61, 54, 15);
 		contentPane.add(label_5);
 
 		carrier = new JLabel("New label");
 		carrier.setForeground(Color.WHITE);
-		carrier.setBounds(234, 79, 94, 16);
+		carrier.setBounds(234, 60, 94, 16);
 		contentPane.add(carrier);
 
 		orderID = new JLabel("New label");
 		orderID.setForeground(Color.WHITE);
-		orderID.setBounds(477, 79, 106, 16);
+		orderID.setBounds(477, 60, 106, 16);
 		add(orderID);
 
 		status = new JLabel("New label");
 		status.setForeground(Color.WHITE);
-		status.setBounds(234, 104, 94, 16);
+		status.setBounds(234, 85, 94, 16);
 		add(status);
 
 		sender = new JLabel("New label");
 		sender.setForeground(Color.WHITE);
-		sender.setBounds(234, 169, 106, 16);
+		sender.setBounds(234, 144, 106, 16);
 		add(sender);
 
 		sendPhone = new JLabel("New label");
 		sendPhone.setForeground(Color.WHITE);
-		sendPhone.setBounds(234, 196, 94, 16);
+		sendPhone.setBounds(234, 171, 94, 16);
 		add(sendPhone);
 
 		sendCell = new JLabel("New label");
 		sendCell.setForeground(Color.WHITE);
-		sendCell.setBounds(234, 223, 94, 16);
+		sendCell.setBounds(234, 198, 94, 16);
 		add(sendCell);
 
 		sendCompany = new JLabel("New label");
 		sendCompany.setForeground(Color.WHITE);
-		sendCompany.setBounds(234, 250, 94, 16);
+		sendCompany.setBounds(234, 225, 94, 16);
 		add(sendCompany);
 
 		sendAddress = new JLabel("New label");
 		sendAddress.setForeground(Color.WHITE);
-		sendAddress.setBounds(234, 277, 165, 16);
+		sendAddress.setBounds(234, 252, 165, 16);
 		add(sendAddress);
 
 		thing = new JLabel("New label");
 		thing.setForeground(Color.WHITE);
-		thing.setBounds(234, 331, 61, 16);
+		thing.setBounds(234, 306, 61, 16);
 		add(thing);
 
 		weight = new JLabel("New label");
 		weight.setForeground(Color.WHITE);
-		weight.setBounds(288, 358, 61, 16);
+		weight.setBounds(288, 333, 61, 16);
 		add(weight);
 
 		length = new JLabel("New label");
 		length.setForeground(Color.WHITE);
-		length.setBounds(288, 385, 61, 16);
+		length.setBounds(288, 360, 61, 16);
 		add(length);
 
 		width = new JLabel("New label");
 		width.setForeground(Color.WHITE);
-		width.setBounds(288, 412, 61, 16);
+		width.setBounds(288, 387, 61, 16);
 		add(width);
 
 		height = new JLabel("New label");
 		height.setForeground(Color.WHITE);
-		height.setBounds(288, 439, 61, 16);
+		height.setBounds(288, 414, 61, 16);
 		add(height);
 
 		receiver = new JLabel("New label");
 		receiver.setForeground(Color.WHITE);
-		receiver.setBounds(477, 172, 84, 16);
+		receiver.setBounds(477, 147, 84, 16);
 		add(receiver);
 
 		receiPhone = new JLabel("New label");
 		receiPhone.setForeground(Color.WHITE);
-		receiPhone.setBounds(477, 196, 84, 16);
+		receiPhone.setBounds(477, 171, 84, 16);
 		add(receiPhone);
 
 		receiCell = new JLabel("New label");
 		receiCell.setForeground(Color.WHITE);
-		receiCell.setBounds(477, 223, 84, 16);
+		receiCell.setBounds(477, 198, 84, 16);
 		add(receiCell);
 
 		receiCompany = new JLabel("New label");
 		receiCompany.setForeground(Color.WHITE);
-		receiCompany.setBounds(477, 250, 84, 16);
+		receiCompany.setBounds(477, 225, 84, 16);
 		add(receiCompany);
 
 		receiAddress = new JLabel("New label");
 		receiAddress.setForeground(Color.WHITE);
-		receiAddress.setBounds(477, 277, 140, 16);
+		receiAddress.setBounds(477, 252, 140, 16);
 		add(receiAddress);
 
 		num = new JLabel("New label");
 		num.setForeground(Color.WHITE);
-		num.setBounds(477, 331, 84, 16);
+		num.setBounds(477, 306, 84, 16);
 		add(num);
 
 		category = new JLabel("New label");
 		category.setForeground(Color.WHITE);
-		category.setBounds(477, 358, 84, 16);
+		category.setBounds(477, 333, 84, 16);
 		add(category);
 
 		pack = new JLabel("New label");
 		pack.setForeground(Color.WHITE);
-		pack.setBounds(477, 385, 84, 16);
+		pack.setBounds(477, 360, 84, 16);
 		add(pack);
 
 		payment = new JLabel("New label");
 		payment.setForeground(Color.WHITE);
-		payment.setBounds(477, 412, 84, 16);
+		payment.setBounds(477, 387, 84, 16);
 		add(payment);
 
 		arriveTime = new JLabel("New label");
 		arriveTime.setForeground(Color.WHITE);
-		arriveTime.setBounds(507, 439, 94, 16);
+		arriveTime.setBounds(507, 414, 94, 16);
 		add(arriveTime);
 
-		trace = new JLabel("New label");
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(153, 466, 408, 70);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		add(scrollPane);
+		
+		trace = new JTextArea();
+		trace.setEditable(false);
+		trace.setOpaque(false);
+		trace.setBorder(null);
 		trace.setForeground(Color.WHITE);
-		trace.setBounds(153, 514, 408, 28);
-		add(trace);
+		trace.setBounds(153, 514, 408, 40);
+		scrollPane.setViewportView(trace);
 	}
 
 	public void show(OrderVO vo) {
@@ -413,7 +426,16 @@ public class ChecklistImfo extends JPanel {
 		this.pack.setText(vo.getPack().toString());
 		this.payment.setText(vo.getBill() + "");
 		this.arriveTime.setText(vo.getTime());
-		this.trace.setText(vo.getTransformState());
+		ArrayList<String> result = new ArrayList<>();
+		String temp = vo.getTransformState();
+		for (int i = 0; i < temp.split(",").length; i++) {
+			result.add(temp.split(",")[i]);
+		}
+		String end = "";
+		for (int i = 1; i < result.size(); i++) {
+			end = end + result.get(i)+"\n";
+		}
+		this.trace.setText(end);
 
 	}
 }

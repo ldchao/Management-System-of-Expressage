@@ -5,6 +5,7 @@
 package nju.edu.presentation.courierui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -145,18 +146,46 @@ public class Order extends JPanel implements Runnable {
 		textField[11].setDocument(new JTextFieldLimit(4));
 
 		textField[12].setBounds(184, 397, 37, 21);
+		textField[12].setText("kg");
+		textField[12].addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField[12].setText("");
+			}
+		});
 		textField[12].addKeyListener(new InputNumber());
 		textField[12].setDocument(new JTextFieldLimit(4));
 
 		textField[13].setBounds(294, 397, 37, 21);
+		textField[13].setText("cm");
+		textField[13].addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField[13].setText("");
+			}
+		});
 		textField[13].addKeyListener(new InputNumber());
 		textField[13].setDocument(new JTextFieldLimit(4));
 
 		textField[14].setBounds(184, 422, 37, 21);
+		textField[14].setText("cm");
+		textField[14].addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField[14].setText("");
+			}
+		});
 		textField[14].addKeyListener(new InputNumber());
 		textField[14].setDocument(new JTextFieldLimit(4));
 
 		textField[15].setBounds(294, 422, 37, 21);
+		textField[15].setText("cm");
+		textField[15].addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField[15].setText("");
+			}
+		});
 		textField[15].addKeyListener(new InputNumber());
 		textField[15].setDocument(new JTextFieldLimit(4));
 
@@ -369,7 +398,7 @@ public class Order extends JPanel implements Runnable {
 
 		});
 
-		btnNewButton.setBounds(269, 506, 52, 52);
+		btnNewButton.setBounds(272, 510, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(
 				btnNewButton.getWidth(), btnNewButton.getHeight(),
@@ -391,7 +420,7 @@ public class Order extends JPanel implements Runnable {
 			}
 		});
 
-		button.setBounds(425, 505, 52, 52);
+		button.setBounds(427, 510, 52, 52);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
 		Image temp2 = image2.getImage().getScaledInstance(button.getWidth(),
 				button.getHeight(), image2.getImage().SCALE_DEFAULT);

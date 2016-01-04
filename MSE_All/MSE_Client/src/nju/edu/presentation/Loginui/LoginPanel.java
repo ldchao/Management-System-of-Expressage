@@ -50,14 +50,14 @@ public class LoginPanel extends JPanel {
 
 		// 密码
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setForeground(Color.RED);
-		lblNewLabel.setBounds(492, 255, 93, 20);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(505, 265, 93, 20);
 		add(lblNewLabel);
 
 		// 用户名
 		label_4 = new JLabel("");
-		label_4.setForeground(Color.RED);
-		label_4.setBounds(493, 310, 93, 20);
+		label_4.setForeground(Color.WHITE);
+		label_4.setBounds(505, 315, 93, 20);
 		add(label_4);
 
 		// 记住用户名

@@ -94,7 +94,7 @@ public class Optionui extends JPanel {
 		JLabel lblNewLabel_1 = new JLabel(loginPO.getShop() + "²Ö¿â");
 		lblNewLabel_1.setForeground(new Color(248, 179, 28));
 		lblNewLabel_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 24));
-		lblNewLabel_1.setBounds(307, 74, 183, 33);
+		lblNewLabel_1.setBounds(256, 73, 264, 33);
 		add(lblNewLabel_1);
 
 		textField = new JTextField(sm.getIntervalTime() + "");
