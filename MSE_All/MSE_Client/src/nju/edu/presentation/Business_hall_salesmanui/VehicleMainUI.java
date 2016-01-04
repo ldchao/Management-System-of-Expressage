@@ -1,6 +1,7 @@
 package nju.edu.presentation.Business_hall_salesmanui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -79,16 +80,23 @@ public class VehicleMainUI extends JPanel {
 		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
-		textField = new JTextField();
-		textField.setForeground(new Color(88, 93, 103));
-		textField.setCaretColor(new Color(88, 93, 103));
+		textField = new JTextField("ÇëÊäÈë³µÁ¾´úºÅ");
+		textField.setOpaque(false);
+		textField.setBorder(null);
+		textField.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+		textField.setForeground(new Color(255, 255, 255,100));
+		textField.setCaretColor(new Color(248, 179, 28,230));
+		textField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField.setText("");
+				textField.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 25));
+				textField.setForeground(new Color(255, 255, 255, 200));
+			}
+		});
 		textField.setColumns(10);
-		textField.setBounds(329, 249, 133, 26);
+		textField.setBounds(204, 245, 345, 45);
 		add(textField);
-
-		JLabel label_2 = new JLabel("³µÁ¾´úºÅ");
-		label_2.setBounds(251, 249, 57, 28);
-		add(label_2);
 
 		JButton button_1 = new JButton("");
 		button_1.setContentAreaFilled(false);

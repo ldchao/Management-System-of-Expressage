@@ -1,6 +1,7 @@
 package nju.edu.presentation.Business_hall_salesmanui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -80,14 +81,24 @@ public class DriverMainUI extends JPanel {
 		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
-		textField = new JTextField();
+		textField = new JTextField("请输入司机姓名");
 		textField.setColumns(10);
-		textField.setBounds(313, 240, 133, 26);
+		textField.setOpaque(false);
+		textField.setBorder(null);
+		textField.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		textField.setForeground(new Color(255, 255, 255,100));
+		textField.setCaretColor(new Color(248, 179, 28,230));
+		textField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField.setText("");
+				textField.setFont(new Font("微软雅黑", Font.PLAIN, 25));
+				textField.setForeground(new Color(255, 255, 255, 200));
+			}
+		});
+		textField.setColumns(10);
+		textField.setBounds(204, 245, 345, 45);
 		add(textField);
-
-		JLabel label_2 = new JLabel("司机姓名");
-		label_2.setBounds(234, 239, 57, 28);
-		add(label_2);
 
 		JButton button_1 = new JButton("");
 		button_1.setContentAreaFilled(false);

@@ -73,10 +73,6 @@ public class ReceiFormUI extends JPanel {
 		setForeground(Color.WHITE);
 		add(lblHello);
 
-		JLabel label_2 = new JLabel(" ‰»Î◊∞‘Àµ•±‡∫≈");
-		label_2.setBounds(210, 256, 110, 23);
-		add(label_2);
-
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(8, 541, 750, 35);
 		toolBar.setOpaque(false);
@@ -87,9 +83,22 @@ public class ReceiFormUI extends JPanel {
 		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
-		textField = new JTextField();
-		textField.setForeground(new Color(88, 93, 103));
-		textField.setCaretColor(new Color(88, 93, 103));
+		textField = new JTextField("«Î ‰»Î◊∞‘Àµ•±‡∫≈");
+		textField.setOpaque(false);
+		textField.setBorder(null);
+		textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 20));
+		textField.setForeground(new Color(255, 255, 255,100));
+		textField.setCaretColor(new Color(248, 179, 28,230));
+		textField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField.setText("");
+				textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 25));
+				textField.setForeground(new Color(255, 255, 255, 200));
+			}
+		});
+		textField.setColumns(10);
+		textField.setBounds(204, 245, 345, 45);
 		textField.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				label_4.setText("◊¥Ã¨¿∏");
@@ -98,7 +107,6 @@ public class ReceiFormUI extends JPanel {
 				}
 			}
 		});
-		textField.setBounds(342, 254, 196, 26);
 		add(textField);
 		textField.setColumns(10);
 

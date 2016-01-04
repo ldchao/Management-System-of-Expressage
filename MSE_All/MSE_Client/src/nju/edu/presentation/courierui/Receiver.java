@@ -70,23 +70,23 @@ public class Receiver extends JPanel implements Runnable {
 			textFields[i].setBorder(null);
 
 		}
-		textFields[0].setBounds(212, 162, 115, 26);
+		textFields[0].setBounds(217, 165, 115, 26);
 
-		textFields[1].setBounds(492, 162, 115, 26);
+		textFields[1].setBounds(497, 165, 115, 26);
 		textFields[1].addKeyListener(new InputNumber());
 		
-		textFields[2].setBounds(212, 204, 115, 26);
+		textFields[2].setBounds(217, 207, 115, 26);
 		textFields[2].addKeyListener(new InputNumber());
 		
-		textFields[3].setBounds(212, 286, 115, 26);
+		textFields[3].setBounds(217, 289, 115, 26);
 
-		textFields[4].setBounds(492, 286, 115, 26);
+		textFields[4].setBounds(497, 289, 115, 26);
 		textFields[4].addKeyListener(new InputNumber());
 		
-		textFields[5].setBounds(212, 328, 115, 26);
+		textFields[5].setBounds(217, 331, 115, 26);
 		textFields[5].addKeyListener(new InputNumber());
 		
-		textFields[6].setBounds(492, 328, 115, 26);
+		textFields[6].setBounds(497, 331, 115, 26);
 
 		JLabel lblHello = new JLabel("Hello!" + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
@@ -94,7 +94,7 @@ public class Receiver extends JPanel implements Runnable {
 		add(lblHello);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(212, 372, 395, 63);
+		scrollPane.setBounds(217, 382, 395, 63);
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(null);
 		scrollPane.getViewport().setOpaque(false);
@@ -103,11 +103,13 @@ public class Receiver extends JPanel implements Runnable {
 		textArea = new JTextArea();
 		textArea.setOpaque(false);
 		textArea.setBorder(null);
+		textArea.setForeground(new Color(88, 93, 103));
+		textArea.setCaretColor(new Color(88, 93, 103));
 		scrollPane.setViewportView(textArea);
 		textArea.setLineWrap(true);
 
 		label_11 = new JLabel("点击选择日期");
-		label_11.setBounds(492, 211, 115, 15);
+		label_11.setBounds(497, 211, 115, 15);
 
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
 		dateChooser1.register(label_11);
@@ -157,7 +159,7 @@ public class Receiver extends JPanel implements Runnable {
 				}
 			}
 		});
-		button.setBounds(274, 456, 52, 52);
+		button.setBounds(274, 458, 52, 52);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
 		Image temp2 = image2.getImage().getScaledInstance(button.getWidth(),
 				button.getHeight(), image2.getImage().SCALE_DEFAULT);
@@ -202,7 +204,7 @@ public class Receiver extends JPanel implements Runnable {
 				}
 			}
 		});
-		button_2.setBounds(423, 455, 52, 52);
+		button_2.setBounds(424, 459, 52, 52);
 		ImageIcon image3 = new ImageIcon("image/transparent_circle.png");
 		Image temp3 = image3.getImage().getScaledInstance(button_2.getWidth(),
 				button_2.getHeight(), image3.getImage().SCALE_DEFAULT);

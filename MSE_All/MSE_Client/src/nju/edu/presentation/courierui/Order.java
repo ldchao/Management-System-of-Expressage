@@ -104,54 +104,126 @@ public class Order extends JPanel implements Runnable{
 			this.add(textField[i]);
 		}
 		
-		textField[0].setBounds(182, 85, 150, 21);
+		textField[0].setBounds(184, 85, 150, 21);
+		textField[0].setForeground(new Color(88, 93, 103));
+		textField[0].setCaretColor(new Color(88, 93, 103));
+		textField[0].setOpaque(false);
+		textField[0].setBorder(null);
 	
-		textField[1].setBounds(474, 85, 145, 21);
+		textField[1].setBounds(474, 85, 141, 21);
 		textField[1].setEnabled(false);
+		textField[1].setForeground(new Color(88, 93, 103));
+		textField[1].setCaretColor(new Color(88, 93, 103));
+		textField[1].setOpaque(false);
+		textField[1].setBorder(null);
 		
-		textField[2].setBounds(182, 143, 150, 21);
+		textField[2].setBounds(184, 143, 150, 21);
+		textField[2].setForeground(new Color(88, 93, 103));
+		textField[2].setCaretColor(new Color(88, 93, 103));
+		textField[2].setOpaque(false);
+		textField[2].setBorder(null);
 		
-		textField[3].setBounds(182, 170, 150, 21);
+		textField[3].setBounds(184, 170, 150, 21);
+		textField[3].setForeground(new Color(88, 93, 103));
+		textField[3].setCaretColor(new Color(88, 93, 103));
+		textField[3].setOpaque(false);
+		textField[3].setBorder(null);
 		
-		textField[4].setBounds(182, 196, 150, 21);
+		textField[4].setBounds(184, 196, 150, 21);
+		textField[4].setForeground(new Color(88, 93, 103));
+		textField[4].setCaretColor(new Color(88, 93, 103));
+		textField[4].setOpaque(false);
+		textField[4].setBorder(null);
 		
-		textField[5].setBounds(182, 222, 150, 21);
+		textField[5].setBounds(184, 222, 150, 21);
+		textField[5].setForeground(new Color(88, 93, 103));
+		textField[5].setCaretColor(new Color(88, 93, 103));
+		textField[5].setOpaque(false);
+		textField[5].setBorder(null);
 		
-		textField[6].setBounds(474, 143, 145, 21);
+		textField[6].setBounds(474, 143, 141, 21);
+		textField[6].setForeground(new Color(88, 93, 103));
+		textField[6].setCaretColor(new Color(88, 93, 103));
+		textField[6].setOpaque(false);
+		textField[6].setBorder(null);
 		
-		textField[7].setBounds(474, 170, 145, 21);
+		textField[7].setBounds(474, 170, 141, 21);
+		textField[7].setForeground(new Color(88, 93, 103));
+		textField[7].setCaretColor(new Color(88, 93, 103));
+		textField[7].setOpaque(false);
+		textField[7].setBorder(null);
 		
-		textField[8].setBounds(474, 196, 145, 21);
+		textField[8].setBounds(474, 196, 141, 21);
+		textField[8].setForeground(new Color(88, 93, 103));
+		textField[8].setCaretColor(new Color(88, 93, 103));
+		textField[8].setOpaque(false);
+		textField[8].setBorder(null);
 		
-		textField[9].setBounds(474, 222, 145, 21);
+		textField[9].setBounds(474, 222, 141, 21);
+		textField[9].setForeground(new Color(88, 93, 103));
+		textField[9].setCaretColor(new Color(88, 93, 103));
+		textField[9].setOpaque(false);
+		textField[9].setBorder(null);
 		
-		textField[10].setBounds(182, 372, 150, 21);
+		textField[10].setBounds(184, 372, 150, 21);
+		textField[10].setForeground(new Color(88, 93, 103));
+		textField[10].setCaretColor(new Color(88, 93, 103));
+		textField[10].setOpaque(false);
+		textField[10].setBorder(null);
 
-		textField[11].setBounds(182, 448, 37, 21);
+		textField[11].setBounds(184, 448, 37, 21);
 		textField[11].addKeyListener(new InputNumber());
 		textField[11].setDocument(new JTextFieldLimit(4));
+		textField[11].setForeground(new Color(88, 93, 103));
+		textField[11].setCaretColor(new Color(88, 93, 103));
+		textField[11].setOpaque(false);
+		textField[11].setBorder(null);
 				
-		textField[12].setBounds(182, 397, 37, 21);
+		textField[12].setBounds(184, 397, 37, 21);
 		textField[12].addKeyListener(new InputNumber());
 		textField[12].setDocument(new JTextFieldLimit(4));
+		textField[12].setForeground(new Color(88, 93, 103));
+		textField[12].setCaretColor(new Color(88, 93, 103));
+		textField[12].setOpaque(false);
+		textField[12].setBorder(null);
 		
 		textField[13].setBounds(294, 397, 37, 21);
 		textField[13].addKeyListener(new InputNumber());
 		textField[13].setDocument(new JTextFieldLimit(4));
+		textField[13].setForeground(new Color(88, 93, 103));
+		textField[13].setCaretColor(new Color(88, 93, 103));
+		textField[13].setOpaque(false);
+		textField[13].setBorder(null);
 		
-		textField[14].setBounds(182, 422, 37, 21);
+		textField[14].setBounds(184, 422, 37, 21);
 		textField[14].addKeyListener(new InputNumber());
 		textField[14].setDocument(new JTextFieldLimit(4));
+		textField[14].setForeground(new Color(88, 93, 103));
+		textField[14].setCaretColor(new Color(88, 93, 103));
+		textField[14].setOpaque(false);
+		textField[14].setBorder(null);
 		
 		textField[15].setBounds(294, 422, 37, 21);
 		textField[15].addKeyListener(new InputNumber());
 		textField[15].setDocument(new JTextFieldLimit(4));
+		textField[15].setForeground(new Color(88, 93, 103));
+		textField[15].setCaretColor(new Color(88, 93, 103));
+		textField[15].setOpaque(false);
+		textField[15].setBorder(null);
 		
 		textField[16].setEnabled(false);
-		textField[16].setBounds(182, 477, 150, 21);
+		textField[16].setBounds(184, 473, 150, 21);
+		textField[16].setForeground(new Color(88, 93, 103));
+		textField[16].setCaretColor(new Color(88, 93, 103));
+		textField[16].setOpaque(false);
+		textField[16].setBorder(null);
 
 		textField[17].setEnabled(false);
 		textField[17].setBounds(294, 448, 37, 21);
+		textField[17].setForeground(new Color(88, 93, 103));
+		textField[17].setCaretColor(new Color(88, 93, 103));
+		textField[17].setOpaque(false);
+		textField[17].setBorder(null);
 		
 		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
@@ -161,22 +233,37 @@ public class Order extends JPanel implements Runnable{
 		add(textField[3]);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(185, 275, 144, 49);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBounds(185, 275, 141, 53);
 		add(scrollPane);
 		
 		textArea = new JTextArea();
+		textArea.setOpaque(false);
+		textArea.setBorder(null);
+		textArea.setForeground(new Color(88, 93, 103));
+		textArea.setCaretColor(new Color(88, 93, 103));
 		scrollPane.setViewportView(textArea);
 		textArea.setLineWrap(true);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(477, 275, 140, 49);
+		scrollPane_1.setOpaque(false);
+		scrollPane_1.setBorder(null);
+		scrollPane_1.getViewport().setOpaque(false);
+		scrollPane_1.setBounds(477, 275, 136, 53);
 		add(scrollPane_1);
 		
 		textArea_1 = new JTextArea();
+		textArea_1.setOpaque(false);
+		textArea_1.setBorder(null);
+		textArea_1.setForeground(new Color(88, 93, 103));
+		textArea_1.setCaretColor(new Color(88, 93, 103));
 		scrollPane_1.setViewportView(textArea_1);
 		textArea_1.setLineWrap(true);
 		
 		radioButton = new JRadioButton("\u7ECF\u6D4E\u5FEB\u9012");
+		radioButton.setForeground(Color.WHITE);
 		radioButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -184,11 +271,12 @@ public class Order extends JPanel implements Runnable{
 				index=0;
 			}
 		});
-		radioButton.setBounds(393, 410, 100, 23);
+		radioButton.setBounds(393, 398, 100, 23);
 		radioButton.setSelected(true);
 		add(radioButton);
 		
 		radioButton_1 = new JRadioButton("\u6807\u51C6\u5FEB\u9012");
+		radioButton_1.setForeground(Color.WHITE);
 		radioButton_1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -197,10 +285,11 @@ public class Order extends JPanel implements Runnable{
 				index=1;
 			}
 		});
-		radioButton_1.setBounds(393, 450, 100, 23);
+		radioButton_1.setBounds(393, 438, 100, 23);
 		add(radioButton_1);
 		
 		radioButton_2 = new JRadioButton("\u7279\u5FEB\u4E13\u9012");
+		radioButton_2.setForeground(Color.WHITE);
 		radioButton_2.addActionListener(new ActionListener() {
 			
 			@Override
@@ -209,7 +298,7 @@ public class Order extends JPanel implements Runnable{
 				index=2;
 			}
 		});
-		radioButton_2.setBounds(393, 485, 90, 23);
+		radioButton_2.setBounds(393, 473, 90, 23);
 		add(radioButton_2);
 		
 		bg1=new ButtonGroup();
@@ -218,6 +307,7 @@ public class Order extends JPanel implements Runnable{
 		bg1.add(radioButton_2);
 		
 		radioButton_3 = new JRadioButton("\u7EB8\u7BB1");
+		radioButton_3.setForeground(Color.WHITE);
 		radioButton_3.addActionListener(new ActionListener() {
 			
 			@Override
@@ -225,11 +315,12 @@ public class Order extends JPanel implements Runnable{
 				pack=PackageType.Carton;
 			}
 		});
-		radioButton_3.setBounds(519, 410, 90, 23);
+		radioButton_3.setBounds(526, 398, 90, 23);
 		radioButton_3.setSelected(true);
 		add(radioButton_3);
 		
 		radioButton_4 = new JRadioButton("\u6728\u7BB1");
+		radioButton_4.setForeground(Color.WHITE);
 		radioButton_4.addActionListener(new ActionListener() {
 			
 			@Override
@@ -237,10 +328,11 @@ public class Order extends JPanel implements Runnable{
 				pack =PackageType.Wooden;
 			}
 		});
-		radioButton_4.setBounds(519, 449, 73, 23);
+		radioButton_4.setBounds(526, 437, 73, 23);
 		add(radioButton_4);
 		
 		radioButton_5 = new JRadioButton("\u5FEB\u9012\u888B");
+		radioButton_5.setForeground(Color.WHITE);
 		radioButton_5.addActionListener(new ActionListener() {
 			
 			@Override
@@ -248,7 +340,7 @@ public class Order extends JPanel implements Runnable{
 				pack=PackageType.bag;
 			}
 		});
-		radioButton_5.setBounds(519, 484, 73, 23);
+		radioButton_5.setBounds(526, 472, 73, 23);
 		add(radioButton_5);
 		bg2=new ButtonGroup();
 		
@@ -257,6 +349,7 @@ public class Order extends JPanel implements Runnable{
 		bg2.add(radioButton_5);
 		
 		toolBar = new JToolBar();
+		toolBar.setEnabled(false);
 		toolBar.setName("");
 		toolBar.setBounds(8, 543, 750, 35);
 		toolBar.setOpaque(false);
@@ -264,12 +357,13 @@ public class Order extends JPanel implements Runnable{
 		add(toolBar);
 		
 		lblNewLabel = new JLabel("\u72B6\u6001\u680F");
+		lblNewLabel.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel);
 		
 		String [] state={"未审批","已审批","审批未通过"};	
 		comboBox = new JComboBox(state);
 		comboBox.setEnabled(false);
-		comboBox.setBounds(168, 499, 84, 21);
+		comboBox.setBounds(174, 502, 84, 21);
 		add(comboBox);
 
 		JButton btnNewButton = new JButton("");
@@ -303,7 +397,7 @@ public class Order extends JPanel implements Runnable{
 
 		});
 		
-		btnNewButton.setBounds(274, 520, 52, 52);
+		btnNewButton.setBounds(271, 511, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(btnNewButton.getWidth(),
 				btnNewButton.getHeight(),image1.getImage().SCALE_DEFAULT);
@@ -323,7 +417,7 @@ public class Order extends JPanel implements Runnable{
 			}
 		});
 		
-		button.setBounds(425, 520, 52, 52);
+		button.setBounds(428, 511, 52, 52);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
 		Image temp2 = image2.getImage().getScaledInstance(button.getWidth(),
 				button.getHeight(),image2.getImage().SCALE_DEFAULT);
@@ -334,10 +428,10 @@ public class Order extends JPanel implements Runnable{
 		add(button);
 		
 		comboBox_1 = new JComboBox(city);
-		comboBox_1.setBounds(182, 247, 150, 21);
+		comboBox_1.setBounds(177, 247, 158, 21);
 		add(comboBox_1);
 		comboBox_2= new JComboBox(city);
-		comboBox_2.setBounds(474, 247, 150, 21);
+		comboBox_2.setBounds(469, 247, 150, 21);
 		add(comboBox_2);
 	
 		//返回按钮 

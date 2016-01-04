@@ -114,7 +114,7 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		textField.setBorder(null);
 		textField.setText(offnum);
 		textField.setEditable(false);
-		textField.setBounds(261, 189, 115, 25);
+		textField.setBounds(263, 193, 115, 25);
 		add(textField);
 		textField.setColumns(10);
 
@@ -130,7 +130,7 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 				}
 			}
 		});
-		textField_1.setBounds(257, 224, 115, 25);
+		textField_1.setBounds(263, 227, 115, 25);
 		add(textField_1);
 		textField_1.setColumns(10);
 
@@ -147,12 +147,12 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 			}
 		});
 		textField_2.setColumns(10);
-		textField_2.setBounds(257, 260, 115, 25);
+		textField_2.setBounds(263, 263, 115, 25);
 		add(textField_2);
 
 		String[] arriveAddress = { "", "北京中转中心", "上海中转中心", "南京中转中心", "广州中转中心" };
 		JComboBox comboBox_1 = new JComboBox(arriveAddress);
-		comboBox_1.setBounds(254, 295, 115, 25);
+		comboBox_1.setBounds(253, 301, 125, 25);
 		add(comboBox_1);
 
 		textField_4 = new JTextField();
@@ -161,7 +161,7 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		textField_4.setOpaque(false);
 		textField_4.setBorder(null);
 		textField_4.setColumns(10);
-		textField_4.setBounds(256, 333, 115, 25);
+		textField_4.setBounds(263, 336, 115, 25);
 		add(textField_4);
 
 		textField_5 = new JTextField();
@@ -170,21 +170,22 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		textField_5.setOpaque(false);
 		textField_5.setBorder(null);
 		textField_5.setColumns(10);
-		textField_5.setBounds(257, 370, 115, 25);
+		textField_5.setBounds(263, 373, 115, 25);
 		add(textField_5);
 
-		JLabel label_3 = new JLabel("_ _ _ _ _");
+		JLabel label_3 = new JLabel("");
 		label_3.setBounds(257, 406, 72, 14);
+		label_3.setForeground(new Color(255, 255, 255,200));
 		add(label_3);
 
 		String[] checkState = { "未审批", "审批通过", "审批未通过" };
 		JComboBox comboBox = new JComboBox(checkState);
 		comboBox.setEnabled(false);
-		comboBox.setBounds(255, 436, 115, 25);
+		comboBox.setBounds(253, 448, 115, 25);
 		add(comboBox);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(437, 149, 189, 318);
+		scrollPane.setBounds(452, 197, 174, 270);
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(null);
 		scrollPane.getViewport().setOpaque(false);
@@ -211,7 +212,7 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		scrollPane.setRowHeaderView(textArea);
 
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setBounds(271, 479, 52, 52);
+		btnNewButton.setBounds(274, 483, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(
 				btnNewButton.getWidth(), btnNewButton.getHeight(),
@@ -252,7 +253,7 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setIcon(image1);
-		btnNewButton_1.setBounds(425, 479, 52, 52);
+		btnNewButton_1.setBounds(427, 484, 52, 52);
 		btnNewButton_1.setContentAreaFilled(false);
 		btnNewButton_1.setBorderPainted(false);
 

@@ -95,11 +95,11 @@ public class SendUI extends JPanel implements Runnable {
 		String sendDate = bartDateFormat.format(date);
 
 		JLabel lblNewLabel = new JLabel(sendDate);
-		lblNewLabel.setBounds(271, 252, 93, 15);
+		lblNewLabel.setBounds(273, 255, 93, 15);
 		add(lblNewLabel);
 
 		textField = new JTextField();
-		textField.setBounds(262, 289, 115, 25);
+		textField.setBounds(266, 293, 115, 25);
 		textField.setForeground(new Color(88, 93, 103));
 		textField.setCaretColor(new Color(88, 93, 103));
 		textField.setOpaque(false);
@@ -110,7 +110,7 @@ public class SendUI extends JPanel implements Runnable {
 		String[] checkState = { "未审批", "审批通过", "审批未通过" };
 		@SuppressWarnings("rawtypes")
 		JComboBox comboBox = new JComboBox(checkState);
-		comboBox.setBounds(263, 334, 93, 21);
+		comboBox.setBounds(257, 339, 93, 21);
 		comboBox.setEnabled(false);
 		add(comboBox);
 
@@ -118,7 +118,7 @@ public class SendUI extends JPanel implements Runnable {
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(null);
 		scrollPane.getViewport().setOpaque(false);
-		scrollPane.setBounds(419, 180, 153, 211);
+		scrollPane.setBounds(432, 215, 140, 195);
 		add(scrollPane);
 
 		JTextArea textArea = new JTextArea();
@@ -136,7 +136,7 @@ public class SendUI extends JPanel implements Runnable {
 		scrollPane.setViewportView(textArea);
 
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setBounds(270, 436, 52, 52);
+		btnNewButton.setBounds(274, 443, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		@SuppressWarnings("static-access")
 		Image temp1 = image1.getImage().getScaledInstance(
@@ -183,7 +183,7 @@ public class SendUI extends JPanel implements Runnable {
 		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setBounds(421, 436, 52, 52);
+		btnNewButton_1.setBounds(426, 443, 52, 52);
 		btnNewButton_1.setIcon(image1);
 		btnNewButton_1.setContentAreaFilled(false);
 		btnNewButton_1.setBorderPainted(false);
