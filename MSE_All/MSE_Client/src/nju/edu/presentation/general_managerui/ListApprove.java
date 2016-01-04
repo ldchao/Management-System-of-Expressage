@@ -149,11 +149,14 @@ public class ListApprove extends JPanel implements ItemListener {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (rowpos != -1) {
-					approvebl.editList(rowpos, comboBox.getSelectedItem()
-							.toString());
-					showTable(approvebl.showList(comboBox.getSelectedItem()
-							.toString()));
-					textArea.setText("");
+					if (rowpos < approvebl.showList(
+							comboBox.getSelectedItem().toString()).size()) {
+						approvebl.editList(rowpos, comboBox.getSelectedItem()
+								.toString());
+						showTable(approvebl.showList(comboBox.getSelectedItem()
+								.toString()));
+						textArea.setText("");
+					}
 				}
 			}
 		});
