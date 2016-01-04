@@ -57,7 +57,7 @@ public class ReceiveData extends UnicastRemoteObject implements
 			for (int i = 0; i < orderlist.length; i++) {
 				orderArraylist.add(orderlist[i]);
 			}
-			lp = new LoadorderPO(spit_loadorder[0], spit_loadorder[1],
+			lp = new LoadorderPO(spit_loadorder[1], spit_loadorder[0],
 					spit_loadorder[2], spit_loadorder[3], spit_loadorder[4],
 					spit_loadorder[5], spit_loadorder[6], orderArraylist,
 					Double.parseDouble(spit_loadorder[8]), ApproveState.Valid);
@@ -74,7 +74,7 @@ public class ReceiveData extends UnicastRemoteObject implements
 	
 	private void deleteUncheckedArriverorder(String s){
 		ArrayList<String> list=fileReader.Reader("DataBase/UncheckedArriveorder.txt");
-
+        System.out.println("É¾³ý£º"+s);
 		list.remove(s);
 		fileWriter.Writer("DataBase/UncheckedArriveorder.txt", list, false);		 
 	}

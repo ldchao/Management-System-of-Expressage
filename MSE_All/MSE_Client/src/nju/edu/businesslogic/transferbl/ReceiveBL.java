@@ -51,7 +51,7 @@ public class ReceiveBL implements ReceiveBLService ,ApproveReceiveInfo,DeleteLoa
 			for (String s : list) {
 				String[] order=s.split(";");
 				ArriverorderPO rp=new ArriverorderPO(
-						order[0], order[1], order[2], ArriveState.Whole,
+						order[1], order[0], order[2], ArriveState.Whole,
 						 ApproveState.NotApprove);
 				arriverorderList.add(rp);
 			}

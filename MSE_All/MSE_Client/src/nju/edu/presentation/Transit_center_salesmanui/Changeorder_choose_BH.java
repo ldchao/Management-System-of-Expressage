@@ -145,7 +145,7 @@ public class Changeorder_choose_BH extends JPanel {
 						wei[i] = 0;
 					}
 				}
-				if (jia > -1 && isValue) {
+				if (jia > 0 && isValue) {
 					ArrayList<String> orderlist = storein.getId(jia, wei);
 					Changeorder c = new Changeorder(main, nowPanel, jp2,
 							loginPO, "ÆûÔË", 9 + jia, orderlist);
