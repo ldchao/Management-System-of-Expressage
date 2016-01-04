@@ -24,16 +24,14 @@ public class ReceiverinData extends UnicastRemoteObject implements ReceiverinDat
 		String temp=po.getCourier()+";"+po.getPhoneOfcourier()+";"+po.getId()
 		+";"+po.getTime()+";"+po.getReceiver()+";"+po.getPhone()+";"+po.getCellphone()
 		+";"+po.getPosition()+";"+po.getAddress();
-		fileWriter fileWriter=new fileWriter();
-		fileWriter.Writer("Database/Receiver.txt", temp, true);
+		fileWriter.Writer("DataBase/Receiver.txt", temp, true);
 	}
 
 	@Override
 	public boolean find(String number) throws RemoteException {
 		// TODO Auto-generated method stub
 		boolean result=false;
-		fileReader fileReader=new fileReader();
-		ArrayList<String> arrayList=fileReader.Reader("Database/UnReceiveOrder.txt");
+		ArrayList<String> arrayList=fileReader.Reader("DataBase/UnReceiveOrder.txt");
 		for(int i=0;i<arrayList.size();i++){
 			String [] temp=arrayList.get(i).split(";");
 			if(temp[1].equals(number)){
@@ -47,12 +45,12 @@ public class ReceiverinData extends UnicastRemoteObject implements ReceiverinDat
 	@Override
 	public void delete(ReceiverPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		ArrayList<String> arrayList=fileReader.Reader("Database/UnReceiveOrder.txt");
+		ArrayList<String> arrayList=fileReader.Reader("DataBase/UnReceiveOrder.txt");
 		String[] temp=null;
 		for(int i=0;i<arrayList.size();i++){
 			temp=arrayList.get(i).split(";");
 			if(temp[1].equals(po.getId())){
-				fileWriter.Writer("Database/Order.txt", arrayList.get(i), true);
+				fileWriter.Writer("DataBase/Order.txt", arrayList.get(i), true);
 				arrayList.remove(i);
 				break;
 			}

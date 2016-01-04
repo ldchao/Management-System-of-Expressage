@@ -25,7 +25,6 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 	@Override
 	public void insert(OrderPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		fileWriter fileWriter=new fileWriter();
 		String temp="";
 		temp+=po.getCourier()+";";
 		temp+=po.getId()+";";
@@ -51,7 +50,7 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 		temp+=po.getBill()+";";
 		temp+=po.getTime()+";";
 		temp+=po.getTransformState()+";";
-		fileWriter.Writer("Database/UncheckOrder.txt", temp, true);
+		fileWriter.Writer("DataBase/UncheckOrder.txt", temp, true);
 	}
 
 	@Override
@@ -63,10 +62,9 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 	//根据订单号获得单据po
 	@Override
 	public OrderPO getOrder(String id) throws RemoteException {
-		fileReader fileReader=new fileReader();
 		String [] temp=null;
 		boolean valid=false;
-		ArrayList<String> arrayList=fileReader.Reader("Database/UnReceiveOrder.txt");
+		ArrayList<String> arrayList=fileReader.Reader("DataBase/UnReceiveOrder.txt");
 		for(int i=0;i<arrayList.size();i++){
 			temp=arrayList.get(i).split(";");
 			if(temp[1].equals(id)){
@@ -122,9 +120,8 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 	@Override
 	public void update(String id, String message) throws RemoteException {
 		// TODO Auto-generated method stub
-		fileReader fileReader=new fileReader();
 		String [] temp=null;
-		ArrayList<String> arrayList=fileReader.Reader("Database/UnReceiveOrder.txt");
+		ArrayList<String> arrayList=fileReader.Reader("DataBase/UnReceiveOrder.txt");
 		int a=-1;
 		for(int i=0;i<arrayList.size();i++){
 			temp=arrayList.get(i).split(";");
@@ -144,8 +141,7 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 		t+=temp[temp.length-1]+","+now+" : "+message+";";
 		if(a!=-1)
 		arrayList.set(a, t);
-		fileWriter fileWriter=new fileWriter();
-		fileWriter.Writer("Database/UnReceiveOrder.txt", arrayList, false);
+		fileWriter.Writer("DataBase/UnReceiveOrder.txt", arrayList, false);
 	}
 	@Override
 	public double getWeigtht(String id) throws RemoteException {
@@ -162,8 +158,7 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 	@Override
 	public ArrayList<OrderPO> getAllOrders() throws RemoteException {
 		// TODO Auto-generated method stub
-		fileReader fileReader=new fileReader();
-		ArrayList<String> arrayList=fileReader.Reader("Database/UncheckOrder.txt");
+		ArrayList<String> arrayList=fileReader.Reader("DataBase/UncheckOrder.txt");
 		ArrayList<OrderPO> orderPOs=new ArrayList<>();
 		String []temp=null;
 		for(int i=0;i<arrayList.size();i++){
@@ -210,9 +205,8 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 	@Override
 	public void changestate(OrderPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		fileReader fileReader=new fileReader();
 		String [] t=null;
-		ArrayList<String> arrayList=fileReader.Reader("Database/UncheckOrder.txt");
+		ArrayList<String> arrayList=fileReader.Reader("DataBase/UncheckOrder.txt");
 		int a=-1;
 		for(int i=0;i<arrayList.size();i++){
 			t=arrayList.get(i).split(";");
@@ -222,8 +216,7 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 			}
 		}
 		arrayList.remove(a);
-		fileWriter fileWriter=new fileWriter();
-		fileWriter.Writer("Database/UncheckOrder.txt", arrayList, false);
+		fileWriter.Writer("DataBase/UncheckOrder.txt", arrayList, false);
 		//存到UnReceiveOrder里
 		String temp="";
 		temp+=po.getCourier()+";";
@@ -250,15 +243,14 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 		temp+=po.getBill()+";";
 		temp+=po.getTime()+";";
 		temp+=po.getTransformState()+";";
-		fileWriter.Writer("Database/UnReceiveOrder.txt", temp, true);
+		fileWriter.Writer("DataBase/UnReceiveOrder.txt", temp, true);
 	}
 	@Override
 	public boolean checkOrder(String id) throws RemoteException {
 		// TODO Auto-generated method stub
-		fileReader fileReader=new fileReader();
 		String [] temp=null;
 		boolean result=false;
-		ArrayList<String> arrayList=fileReader.Reader("Database/UncheckOrder.txt");
+		ArrayList<String> arrayList=fileReader.Reader("DataBase/UncheckOrder.txt");
 		for(int i=0;i<arrayList.size();i++){
 			temp=arrayList.get(i).split(";");
 			if(temp[1].equals(id)){
@@ -266,7 +258,7 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 				break;
 			}
 		}
-		arrayList=fileReader.Reader("Database/UnReceiveOrder.txt");
+		arrayList=fileReader.Reader("DataBase/UnReceiveOrder.txt");
 		for(int i=0;i<arrayList.size();i++){
 			temp=arrayList.get(i).split(";");
 			if(temp[1].equals(id)){

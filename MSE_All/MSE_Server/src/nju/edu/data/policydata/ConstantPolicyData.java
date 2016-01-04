@@ -23,8 +23,7 @@ public class ConstantPolicyData extends UnicastRemoteObject implements ConstantP
 	public ConstantPO find(String address1, String address2) throws RemoteException {
 		// TODO Auto-generated method stub
 		ConstantPO po = null;
-		fileReader fileReader = new fileReader();
-		ArrayList<String> arrayList = fileReader.Reader("Database/Constant.txt");
+		ArrayList<String> arrayList = fileReader.Reader("DataBase/Constant.txt");
 		// 用映射的方式指定下标对应城市
 		String[] strings = { "南京", "北京", "广州", "上海" };
 		String a = address1.substring(0, 2);
@@ -51,9 +50,7 @@ public class ConstantPolicyData extends UnicastRemoteObject implements ConstantP
 	@Override
 	public void updateConstant(ConstantPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		fileReader fileReader = new fileReader();
-		fileWriter fileWriter = new fileWriter();
-		ArrayList<String> arrayList = fileReader.Reader("Database/Constant.txt");
+		ArrayList<String> arrayList = fileReader.Reader("DataBase/Constant.txt");
 		String[] city = { "南京", "北京", "广州", "上海" };
 		int a = -1, b = -1;
 		for (int i = 0; i < city.length; i++) {
@@ -72,7 +69,7 @@ public class ConstantPolicyData extends UnicastRemoteObject implements ConstantP
 			t = t + temp[i] + ";";
 		}
 		arrayList.set(a, t);
-		fileWriter.Writer("Database/Constant.txt", arrayList, false);
+		fileWriter.Writer("DataBase/Constant.txt", arrayList, false);
 	}
 
 	@Override

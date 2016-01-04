@@ -19,7 +19,6 @@ public class SalaryPolicyData extends UnicastRemoteObject implements SalaryPolic
 	@Override
 	public SalaryPO get(String typeOfStaff) throws RemoteException {
 		// TODO Auto-generated method stub
-		fileReader fileReader=new fileReader();
 		String [] strings={"快递员","营业厅业务员","中转中心业务员","中转中心仓库管理员","高级财务人员","低级财务人员","总经理","管理员"};
 		int temp=-1;
 		for(int i=0;i<strings.length;i++){
@@ -27,7 +26,7 @@ public class SalaryPolicyData extends UnicastRemoteObject implements SalaryPolic
 				temp=i;
 			}
 		}
-		ArrayList<String> arrayList=fileReader.Reader("Database/Salary.txt");
+		ArrayList<String> arrayList=fileReader.Reader("DataBase/Salary.txt");
 		String[] strings2=arrayList.get(temp).split(";");
 		SalaryModel typeOfStrategy=SelectModel(strings2[2]);
 		SalaryPO po=new SalaryPO(strings2[0], Double.parseDouble(strings2[1]), typeOfStrategy);
@@ -49,17 +48,15 @@ public class SalaryPolicyData extends UnicastRemoteObject implements SalaryPolic
 	@Override
 	public void updateSalary(SalaryPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		fileReader fileReader=new fileReader();
 		String string=""+po.getTypeOfStaff()+";"+po.getSalary()+";"+po.getTypeOfStrategy();
-		ArrayList<String> strings=fileReader.Reader("Database/Salary.txt");
+		ArrayList<String> strings=fileReader.Reader("DataBase/Salary.txt");
 		for(int i=0;i<strings.size();i++){
 			String[] temp=strings.get(i).split(";");
 			if(temp[0].equals(po.getTypeOfStaff())){
 				strings.set(i, string);
 			}
 		}
-		fileWriter fileWriter=new fileWriter();
-		fileWriter.Writer("Database/Salary.txt", strings, false);
+		fileWriter.Writer("DataBase/Salary.txt", strings, false);
 	}
 
 }
