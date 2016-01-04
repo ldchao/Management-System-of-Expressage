@@ -2,6 +2,7 @@ package nju.edu.presentation.Transit_center_salesmanui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -22,20 +23,28 @@ import nju.edu.businesslogicservice.transferblservice.TransferBLService;
 import PO.LoginPO;
 import PO.OrganizationNumPO;
 
+@SuppressWarnings("serial")
 public class Transfer_checkRemindui extends JPanel {
 	JFrame main;
+
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/TransitCenterSalesman/Transfer_checkRemindui.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
 
 	/**
 	 * Create the panel.
 	 */
-	public Transfer_checkRemindui(JFrame m,JPanel jp,LoginPO loginPO) {
+	public Transfer_checkRemindui(JFrame m, JPanel jp, LoginPO loginPO) {
 		main = m;
-		JPanel lastui=jp;
-		Transfer_checkRemindui nowPanel=this;
+		JPanel lastui = jp;
+		Transfer_checkRemindui nowPanel = this;
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		setLayout(null);
-		OrganizationNumPO op=new OrganizationNumPO();
-		String transferNum=op.getNum(loginPO.getShop());
+		OrganizationNumPO op = new OrganizationNumPO();
+		String transferNum = op.getNum(loginPO.getShop());
 
 		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
@@ -43,14 +52,14 @@ public class Transfer_checkRemindui extends JPanel {
 		button.setBorderPainted(false);
 		button.setIcon(image1);
 		button.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
 				button.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+			}
 		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				main.remove(nowPanel);				
+				main.remove(nowPanel);
 				main.getContentPane().add(lastui);
 				main.invalidate();
 				main.repaint();
@@ -59,31 +68,27 @@ public class Transfer_checkRemindui extends JPanel {
 		});
 		add(button);
 
-		JLabel label = new JLabel("中转中心业务员>>录入中转单>>查看消息提醒");
-		label.setBounds(100, 14, 288, 15);
-		add(label);
-
-		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JLabel label_2 = new JLabel("录入中转单消息提醒");
-		label_2.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		label_2.setBounds(289, 80, 192, 35);
-		add(label_2);
-
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(120, 150, 514, 299);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBounds(117, 150, 509, 299);
 		add(scrollPane);
 
 		JTextArea textArea = new JTextArea();
-		TransferBLService tb=new TransferBL();
-		String remind=tb.checkRemind(transferNum);
-		if(remind.length()==0)
-		    textArea.setText("暂时没有库区的库存量达到提醒值");
-		else 
-			 textArea.setText(remind);
+		textArea.setOpaque(false);
+		textArea.setBorder(null);
+		TransferBLService tb = new TransferBL();
+		String remind = tb.checkRemind(transferNum);
+		if (remind.length() == 0)
+			textArea.setText("暂时没有库区的库存量达到提醒值");
+		else
+			textArea.setText(remind);
 		scrollPane.setViewportView(textArea);
 
 		JLabel label_3 = new JLabel("待处理的消息");
@@ -92,7 +97,7 @@ public class Transfer_checkRemindui extends JPanel {
 		scrollPane.setColumnHeaderView(label_3);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(8, 541, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		toolBar.setEnabled(false);

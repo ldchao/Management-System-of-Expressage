@@ -1,7 +1,7 @@
 package nju.edu.presentation.Transit_center_salesmanui;
 
 import java.awt.Color;
-import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,32 +24,42 @@ import PO.LoginPO;
 import PO.OrganizationNumPO;
 import StaticValue.StoreNum;
 
+@SuppressWarnings("serial")
 public class Changeorder_choose_BH extends JPanel {
 	JFrame main;
 	JCheckBox[] weiNum = new JCheckBox[60];
+
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/TransitCenterSalesman/Changeorder_choose_BH.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+
 	/**
 	 * Create the panel.
 	 */
-	public Changeorder_choose_BH(JFrame m, JPanel jp, JPanel jp2,String qu, int pai,
-			LoginPO loginPO) {
+	@SuppressWarnings({ "static-access", "unchecked", "rawtypes" })
+	public Changeorder_choose_BH(JFrame m, JPanel jp, JPanel jp2, String qu,
+			int pai, LoginPO loginPO) {
 		main = m;
 		JPanel lastui = jp;
 		Changeorder_choose_BH nowPanel = this;
 		setLayout(null);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
-		OrganizationNumPO op=new OrganizationNumPO();
-		String transferNum=op.getNum(loginPO.getShop());
-		
-		JButton button = new JButton("返回");
+		OrganizationNumPO op = new OrganizationNumPO();
+		String transferNum = op.getNum(loginPO.getShop());
+
+		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 		button.setIcon(new ImageIcon("image/transparent_circle.png"));
 		button.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
 				button.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+			}
 		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -62,33 +72,19 @@ public class Changeorder_choose_BH extends JPanel {
 		});
 		add(button);
 
-		JLabel label = new JLabel("中转中心业务员>>录入中转单>>新建中转单>>选择货物");
-		label.setBounds(100, 14, 365, 15);
-		add(label);
-
-		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JLabel lblNewLabel_1 = new JLabel("选择架号 ：");
-		lblNewLabel_1.setFont(new Font("微软雅黑", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(149, 101, 80, 15);
-		add(lblNewLabel_1);
-
-		String[] jiahao = new String[StoreNum.getBHnum(transferNum)+1];
-		jiahao[0]="";
+		String[] jiahao = new String[StoreNum.getBHnum(transferNum) + 1];
+		jiahao[0] = "";
 		for (int i = 1; i < jiahao.length; i++) {
-			jiahao[i]="      "+(i>9?"":" ")+i+"架";
+			jiahao[i] = "      " + (i > 9 ? "" : " ") + i + "架";
 		}
 		JComboBox comboBox_1 = new JComboBox(jiahao);
-		comboBox_1.setBounds(249, 99, 90, 20);
+		comboBox_1.setBounds(249, 117, 90, 20);
 		add(comboBox_1);
-
-		JLabel lblNewLabel_2 = new JLabel("选择位号 ：");
-		lblNewLabel_2.setFont(new Font("微软雅黑", Font.BOLD, 14));
-		lblNewLabel_2.setBounds(417, 101, 80, 15);
-		add(lblNewLabel_2);
 
 		JButton btnNewButton_2 = new JButton("全选");
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -106,32 +102,30 @@ public class Changeorder_choose_BH extends JPanel {
 				}
 			}
 		});
-		btnNewButton_2.setBounds(520, 99, 90, 20);
+		btnNewButton_2.setBounds(520, 117, 90, 20);
 		add(btnNewButton_2);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(8, 540, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
-
-		JLabel lblNewLabel_3 = new JLabel("选择要中转到本市营业厅的货物");
-		lblNewLabel_3.setFont(new Font("隶书", Font.BOLD, 20));
-		lblNewLabel_3.setBounds(217, 49, 327, 31);
-		add(lblNewLabel_3);
 
 		for (int i = 0; i < weiNum.length; i++) {
 			weiNum[i] = new JCheckBox((i + 1) + " 位");
-			weiNum[i].setBounds(85 + (i % 6) * 100, 130 + (i / 6) * 35, 80, 25);
+			weiNum[i].setBounds(85 + (i % 6) * 100, 150 + (i / 6) * 33, 80, 25);
+			weiNum[i].setOpaque(false);
+			weiNum[i].setBorder(null);
 			add(weiNum[i]);
 		}
 
 		JButton btnNewButton = new JButton("确定");
-		btnNewButton.setBounds(217, 500, 52, 52);
+		btnNewButton.setBounds(268, 481, 52, 52);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StoreinInfo storein = StoreMessageBL.getInstance(transferNum);
@@ -139,7 +133,7 @@ public class Changeorder_choose_BH extends JPanel {
 				int jia = -1;
 				for (int i = 0; i < jiahao.length; i++) {
 					if (jiahao[i].equals((String) comboBox_1.getSelectedItem())) {
-						jia = i ;
+						jia = i;
 					}
 				}
 				int[] wei = new int[60];
@@ -153,8 +147,8 @@ public class Changeorder_choose_BH extends JPanel {
 				}
 				if (jia > -1 && isValue) {
 					ArrayList<String> orderlist = storein.getId(jia, wei);
-					Changeorder c = new Changeorder(main, nowPanel, jp2,loginPO,"汽运",9+jia,
-							orderlist);
+					Changeorder c = new Changeorder(main, nowPanel, jp2,
+							loginPO, "汽运", 9 + jia, orderlist);
 					main.remove(nowPanel);
 					main.getContentPane().add(c);
 					main.invalidate();
@@ -164,8 +158,9 @@ public class Changeorder_choose_BH extends JPanel {
 					label_4.setText("请选择架号和位号");
 			}
 		});
-		Image temp1 = image1.getImage().getScaledInstance(btnNewButton.getWidth(),
-						btnNewButton.getHeight(),image1.getImage().SCALE_DEFAULT);
+		Image temp1 = image1.getImage().getScaledInstance(
+				btnNewButton.getWidth(), btnNewButton.getHeight(),
+				image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
 		btnNewButton.setIcon(image1);
 		btnNewButton.setContentAreaFilled(false);
@@ -173,11 +168,11 @@ public class Changeorder_choose_BH extends JPanel {
 		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("取消");
-		btnNewButton_1.setBounds(394, 500, 52, 52);
+		btnNewButton_1.setBounds(430, 481, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Changeorder_choose_BH ctb = new Changeorder_choose_BH(main,
-						lastui,jp2, qu, pai, loginPO);
+						lastui, jp2, qu, pai, loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(ctb);
 				main.invalidate();

@@ -1,14 +1,13 @@
 package nju.edu.presentation.Transit_center_salesmanui;
 
 import java.awt.Color;
-import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.nio.channels.NetworkChannel;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -29,15 +28,24 @@ import nju.edu.businesslogicservice.loadblservice.ShippingBLService;
 import PO.LoginPO;
 import PO.OrganizationNumPO;
 
+@SuppressWarnings("serial")
 public class Shipping_Inputui extends JPanel {
 	private JTable table;
 	JFrame main;
 	private int rowpos = -1;
 	private DefaultTableModel tableModel;
 
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/TransitCenterSalesman/Shipping_Inputui.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+
 	/**
 	 * Create the panel.
 	 */
+	@SuppressWarnings("static-access")
 	public Shipping_Inputui(JFrame m, JPanel jp, LoginPO loginPO) {
 		main = m;
 		JPanel lastui = jp;
@@ -67,10 +75,6 @@ public class Shipping_Inputui extends JPanel {
 		});
 		add(button);
 
-		JLabel label = new JLabel("中转中心业务员>>装运管理");
-		label.setBounds(100, 14, 163, 15);
-		add(label);
-
 		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
@@ -78,7 +82,7 @@ public class Shipping_Inputui extends JPanel {
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(8, 540, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		add(toolBar);
@@ -87,13 +91,8 @@ public class Shipping_Inputui extends JPanel {
 		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
-		JLabel label_2 = new JLabel("选择要装运的中转单");
-		label_2.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		label_2.setBounds(280, 78, 234, 28);
-		add(label_2);
-
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(96, 125, 557, 328);
+		scrollPane.setBounds(96, 125, 553, 328);
 		add(scrollPane);
 
 		ShippingBLService sb = new ShippingBL();
@@ -129,6 +128,8 @@ public class Shipping_Inputui extends JPanel {
 
 		scrollPane.setViewportView(table);
 		table.setEnabled(false);
+		table.setSelectionBackground(new Color(88, 93, 103, 230));
+		table.setSelectionForeground(new Color(255, 255, 255, 200));
 		table.setRowSelectionAllowed(true);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		tableModel = new DefaultTableModel(tablemessage, new String[] {
@@ -137,7 +138,7 @@ public class Shipping_Inputui extends JPanel {
 
 		// 创建装运单
 		JButton btnNewButton = new JButton("创建装运单");
-		btnNewButton.setBounds(193, 486, 52, 52);
+		btnNewButton.setBounds(280, 464, 52, 52);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (rowpos == -1) {
@@ -175,7 +176,7 @@ public class Shipping_Inputui extends JPanel {
 		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("放弃创建");
-		btnNewButton_1.setBounds(436, 486, 52, 52);
+		btnNewButton_1.setBounds(420, 463, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);

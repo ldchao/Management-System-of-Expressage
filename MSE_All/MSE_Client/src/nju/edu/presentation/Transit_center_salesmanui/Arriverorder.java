@@ -10,19 +10,16 @@ import javax.swing.JToolBar;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
-import javax.swing.JLayeredPane;
 
-import PO.ArriverorderPO;
 import PO.LoginPO;
 import PO.OrganizationNumPO;
 import nju.edu.VO.ArriverorderVO;
 import nju.edu.VO.LoadorderVO;
 import nju.edu.businesslogic.transferbl.ReceiveBL;
 import nju.edu.businesslogicservice.transferblservice.ReceiveBLService;
-import nju.edu.presentation.financial_staffui.DateChooser;
 
 import java.awt.Color;
-import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,7 +28,8 @@ import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Arriverorder extends JPanel implements Runnable{
+@SuppressWarnings("serial")
+public class Arriverorder extends JPanel implements Runnable {
 	private JTextField textField;
 	private JTextField textField_1;
 	JRadioButton rdbtnNewRadioButton;
@@ -42,28 +40,36 @@ public class Arriverorder extends JPanel implements Runnable{
 	LoadorderVO lv;
 	Arriverorder nowPanel;
 
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/TransitCenterSalesman/Arriverorder.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+
 	/**
 	 * Create the panel.
 	 */
-	public Arriverorder(JFrame m, JPanel jp, LoadorderVO lv,LoginPO loginPO) {
+	@SuppressWarnings({ "unchecked", "static-access" })
+	public Arriverorder(JFrame m, JPanel jp, LoadorderVO lv, LoginPO loginPO) {
 		main = m;
 		this.lv = lv;
 		lastui = jp;
 		nowPanel = this;
-		OrganizationNumPO op=new OrganizationNumPO();
+		OrganizationNumPO op = new OrganizationNumPO();
 		setLayout(null);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
-		
+
 		JButton button = new JButton("返回");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 		button.setIcon(new ImageIcon("image/transparent_circle.png"));
 		button.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
 				button.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+			}
 		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -76,86 +82,76 @@ public class Arriverorder extends JPanel implements Runnable{
 		});
 		add(button);
 
-		JLabel label = new JLabel("中转中心业务员>>中转接收>>新建到达单");
-		label.setBounds(100, 14, 360, 15);
-		add(label);
-
-		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(8, 539, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		add(toolBar);
 
 		JLabel label_4 = new JLabel("状态栏");
+		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
-
-		JLabel label_2 = new JLabel("到达日期");
-		label_2.setBounds(180, 159, 54, 15);
-		add(label_2);
 
 		SimpleDateFormat bartDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		String sendDate = bartDateFormat.format(date);
 		JLabel lblNewLabel_8 = new JLabel(sendDate);
-		lblNewLabel_8.setBounds(390, 159, 96, 15);
+		lblNewLabel_8.setBounds(377, 174, 96, 15);
 		add(lblNewLabel_8);
-
-		JLabel label_3 = new JLabel("中转中心编号");
-		label_3.setBounds(180, 211, 96, 15);
-		add(label_3);
 
 		textField = new JTextField();
 		textField.setText(op.getNum(loginPO.getShop()));
 		textField.setEditable(false);
-		textField.setBounds(333, 208, 192, 21);
+		textField.setBounds(373, 210, 125, 26);
 		textField.setForeground(new Color(88, 93, 103));
 		textField.setCaretColor(new Color(88, 93, 103));
+		textField.setOpaque(false);
+		textField.setBorder(null);
 		textField.setColumns(10);
 		add(textField);
-
-		JLabel lblNewLabel = new JLabel("出发地");
-		lblNewLabel.setBounds(180, 263, 54, 15);
-		add(lblNewLabel);
 
 		textField_1 = new JTextField();
 		textField_1.setText(lv.getOffName());
 		textField_1.setEditable(false);
-		textField_1.setBounds(333, 260, 192, 21);
+		textField_1.setBounds(373, 257, 125, 26);
 		textField_1.setForeground(new Color(88, 93, 103));
 		textField_1.setCaretColor(new Color(88, 93, 103));
+		textField_1.setOpaque(false);
+		textField_1.setBorder(null);
 		textField_1.setColumns(10);
 		add(textField_1);
 
-		JLabel lblNewLabel_1 = new JLabel("货物到达状态");
-		lblNewLabel_1.setBounds(180, 317, 96, 15);
-		add(lblNewLabel_1);
-
-		JLabel lblNewLabel_2 = new JLabel("审批状态");
-		lblNewLabel_2.setBounds(180, 372, 69, 15);
-		add(lblNewLabel_2);
-
 		String[] approveState = { "未审批", "审批通过", "审批未通过" };
+		@SuppressWarnings("rawtypes")
 		JComboBox comboBox = new JComboBox(approveState);
-		comboBox.setBounds(344, 369, 181, 21);
+		comboBox.setOpaque(false);
+		comboBox.setBorder(null);
+		comboBox.setBounds(373, 347, 147, 26);
 		comboBox.setEnabled(false);
 		add(comboBox);
 
 		rdbtnNewRadioButton = new JRadioButton("损坏");
-		rdbtnNewRadioButton.setBounds(333, 313, 64, 23);
+		rdbtnNewRadioButton.setOpaque(false);
+		rdbtnNewRadioButton.setBorder(null);
+		rdbtnNewRadioButton.setBounds(372, 304, 51, 23);
 		add(rdbtnNewRadioButton);
 
 		rdbtnNewRadioButton_1 = new JRadioButton("完整");
-		rdbtnNewRadioButton_1.setBounds(408, 313, 69, 23);
+		rdbtnNewRadioButton_1.setOpaque(false);
+		rdbtnNewRadioButton_1.setBorder(null);
+		rdbtnNewRadioButton_1.setBounds(433, 304, 50, 23);
 		add(rdbtnNewRadioButton_1);
 
 		rdbtnNewRadioButton_2 = new JRadioButton("丢失");
-		rdbtnNewRadioButton_2.setBounds(479, 313, 57, 23);
+		rdbtnNewRadioButton_2.setOpaque(false);
+		rdbtnNewRadioButton_2.setBorder(null);
+		rdbtnNewRadioButton_2.setBounds(493, 304, 50, 23);
 		add(rdbtnNewRadioButton_2);
 
 		ButtonGroup bg = new ButtonGroup();
@@ -163,39 +159,40 @@ public class Arriverorder extends JPanel implements Runnable{
 		bg.add(rdbtnNewRadioButton_1);
 		bg.add(rdbtnNewRadioButton_2);
 
-		JButton btnNewButton = new JButton("确定");
-		btnNewButton.setBounds(220, 457, 52, 52);
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBounds(282, 417, 52, 52);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!isSelected()) {
 					label_4.setText("请选择货物到达状态");
 				} else {
 					ArriverorderVO av = new ArriverorderVO(textField.getText(),
-							sendDate, lv.getOffNum(),
-							getSelection(),lv.getCarNum(),lv.getMonitorName(),
-							lv.getTransferName(),lv.getOrder());
-					ReceiveBLService rb=new ReceiveBL();
-					rb.build(av,lv.getLoadNum());
+							sendDate, lv.getOffNum(), getSelection(), lv
+									.getCarNum(), lv.getMonitorName(), lv
+									.getTransferName(), lv.getOrder());
+					ReceiveBLService rb = new ReceiveBL();
+					rb.build(av, lv.getLoadNum());
 					label_4.setText("到达单已提交总经理审批");
-					Thread t=new Thread(nowPanel);
+					Thread t = new Thread(nowPanel);
 					t.start();
-					
+
 				}
 			}
 		});
-		Image temp1 = image1.getImage().getScaledInstance(btnNewButton.getWidth(),
-				btnNewButton.getHeight(),image1.getImage().SCALE_DEFAULT);
+		Image temp1 = image1.getImage().getScaledInstance(
+				btnNewButton.getWidth(), btnNewButton.getHeight(),
+				image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
 		btnNewButton.setIcon(image1);
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setBorderPainted(false);
 		add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("取消");
-		btnNewButton_1.setBounds(390, 457, 52, 52);
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBounds(413, 418, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Arriverorder a = new Arriverorder(main, lastui, lv,loginPO);
+				Arriverorder a = new Arriverorder(main, lastui, lv, loginPO);
 				main.remove(nowPanel);
 				main.getContentPane().add(a);
 				main.invalidate();
@@ -207,12 +204,6 @@ public class Arriverorder extends JPanel implements Runnable{
 		btnNewButton_1.setContentAreaFilled(false);
 		btnNewButton_1.setBorderPainted(false);
 		add(btnNewButton_1);
-
-		JLabel label_5 = new JLabel(
-				"\u4E2D\u8F6C\u4E2D\u5FC3\u5230\u8FBE\u5355");
-		label_5.setFont(new Font("微软雅黑", Font.BOLD, 24));
-		label_5.setBounds(260, 71, 226, 44);
-		add(label_5);
 	}
 
 	protected String getSelection() {
@@ -243,6 +234,6 @@ public class Arriverorder extends JPanel implements Runnable{
 		main.invalidate();
 		main.repaint();
 		main.setVisible(true);
-		
+
 	}
 }

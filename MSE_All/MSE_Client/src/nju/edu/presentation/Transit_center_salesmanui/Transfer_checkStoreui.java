@@ -2,6 +2,7 @@ package nju.edu.presentation.Transit_center_salesmanui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -15,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,21 +24,29 @@ import nju.edu.businesslogicservice.transferblservice.TransferBLService;
 import PO.LoginPO;
 import PO.OrganizationNumPO;
 
+@SuppressWarnings("serial")
 public class Transfer_checkStoreui extends JPanel {
 	private JTable table;
 	JFrame main;
 	private DefaultTableModel tableModel;
 
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/TransitCenterSalesman/Transfer_checkStoreui.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+
 	/**
 	 * Create the panel.
 	 */
-	public Transfer_checkStoreui(JFrame m, JPanel jp,LoginPO loginPO) {
+	public Transfer_checkStoreui(JFrame m, JPanel jp, LoginPO loginPO) {
 		main = m;
 		JPanel lastui = jp;
 		Transfer_checkStoreui nowPanel = this;
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
-		OrganizationNumPO op=new OrganizationNumPO();
-		String transferNum=op.getNum(loginPO.getShop());
+		OrganizationNumPO op = new OrganizationNumPO();
+		String transferNum = op.getNum(loginPO.getShop());
 		setLayout(null);
 
 		JButton button = new JButton("");
@@ -47,10 +55,10 @@ public class Transfer_checkStoreui extends JPanel {
 		button.setBorderPainted(false);
 		button.setIcon(image1);
 		button.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
 				button.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+			}
 		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -63,36 +71,30 @@ public class Transfer_checkStoreui extends JPanel {
 		});
 		add(button);
 
-		JLabel label = new JLabel("中转中心业务员>>录入中转单>>查看库存");
-		label.setBounds(100, 14, 288, 15);
-		add(label);
-
-		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JLabel label_2 = new JLabel("各个规定区域库存比例");
-		label_2.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		label_2.setBounds(263, 76, 225, 35);
-		add(label_2);
-
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(120, 150, 514, 299);
+		scrollPane.setBounds(118, 150, 510, 299);
 		add(scrollPane);
 
 		TransferBLService tb = new TransferBL();
 		String[][] storeRadio = tb.checkStore(transferNum);
 
 		table = new JTable();
-		table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
+		table.setSelectionBackground(new Color(88, 93, 103,230));
+		table.setSelectionForeground(new Color(255, 255, 255,200));
+		table.setOpaque(false);
+		table.setBorder(null);
 		table.setEnabled(false);
 		table.setFont(new Font("宋体", Font.PLAIN, 12));
 		// 使表格居中
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
 		table.setDefaultRenderer(Object.class, r);
-		
+
 		tableModel = new DefaultTableModel(storeRadio, new String[] { "库存区域",
 				"库存比例", "提醒比例" });
 
@@ -104,7 +106,7 @@ public class Transfer_checkStoreui extends JPanel {
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(8, 540, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		add(toolBar);

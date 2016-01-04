@@ -5,13 +5,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.SwingConstants;
 
 import PO.LoginPO;
 import PO.OrganizationNumPO;
@@ -19,10 +17,10 @@ import nju.edu.VO.ChangeorderVO;
 import nju.edu.VO.VehicleLoadorderVO;
 import nju.edu.businesslogic.loadbl.ShippingBL;
 import nju.edu.businesslogicservice.loadblservice.ShippingBLService;
-import nju.edu.presentation.financial_staffui.DateChooser;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,7 +32,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Shippingorder extends JPanel implements Runnable{
+@SuppressWarnings("serial")
+public class Shippingorder extends JPanel implements Runnable {
+
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/TransitCenterSalesman/Shippingorder.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
 
 	/**
 	 * Create the panel.
@@ -45,25 +51,28 @@ public class Shippingorder extends JPanel implements Runnable{
 	JPanel returnui;
 	LoginPO loginpo;
 
-	public Shippingorder(JFrame m, JPanel jp,JPanel jp2, LoginPO loginPO,
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Shippingorder(JFrame m, JPanel jp, JPanel jp2, LoginPO loginPO,
 			ChangeorderVO cv, String transport) {
 		main = m;
 		JPanel lastui = jp;
 		nowPanel = this;
-		returnui=jp2;
-		loginpo=loginPO;
-		textField=new JTextField[6];
+		returnui = jp2;
+		loginpo = loginPO;
+		textField = new JTextField[6];
 		setLayout(null);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		ShippingBLService sb = new ShippingBL();
 		OrganizationNumPO op = new OrganizationNumPO();
-		
-		for(int i=0;i<6;i++){
-			textField[i]=new JTextField();
+
+		for (int i = 0; i < 6; i++) {
+			textField[i] = new JTextField();
 			add(textField[i]);
 			textField[i].setColumns(10);
 			textField[i].setForeground(new Color(88, 93, 103));
 			textField[i].setCaretColor(new Color(88, 93, 103));
+			textField[i].setOpaque(false);
+			textField[i].setBorder(null);
 		}
 
 		JButton button = new JButton("");
@@ -72,10 +81,10 @@ public class Shippingorder extends JPanel implements Runnable{
 		button.setBorderPainted(false);
 		button.setIcon(image1);
 		button.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
 				button.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+			}
 		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -88,20 +97,21 @@ public class Shippingorder extends JPanel implements Runnable{
 		});
 		add(button);
 
-		JLabel label = new JLabel("中转中心业务员 › 装运管理 › 新建装运单 › " + transport + "装运单");
+		JLabel label = new JLabel("中转中心业务员 › 装运管理 › 新建装运单 › " + transport
+				+ "装运单");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		label.setBounds(100, 14, 442, 15);
 		add(label);
 
-		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
-		toolBar.setBounds(8, 543, 750, 35);
+		toolBar.setBounds(8, 540, 750, 35);
 		toolBar.setOpaque(false);
 		toolBar.setBorder(null);
 		add(toolBar);
@@ -111,26 +121,26 @@ public class Shippingorder extends JPanel implements Runnable{
 		toolBar.add(label_4);
 
 		JLabel label_2 = new JLabel("装运日期");
-		label_2.setBounds(69, 134, 54, 15);
+		label_2.setBounds(159, 169, 54, 15);
 		add(label_2);
 
 		SimpleDateFormat bartDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		String sendDate = bartDateFormat.format(date);
 		JLabel lblNewLabel_8 = new JLabel(sendDate);
-		lblNewLabel_8.setBounds(196, 134, 85, 15);
+		lblNewLabel_8.setBounds(256, 169, 85, 15);
 		add(lblNewLabel_8);
 
 		JLabel lblNewLabel = new JLabel("中转中心编号");
-		lblNewLabel.setBounds(69, 172, 88, 15);
+		lblNewLabel.setBounds(159, 209, 88, 15);
 		add(lblNewLabel);
 
 		textField[0].setText(cv.getOffnum());
 		textField[0].setEditable(false);
-		textField[0].setBounds(169, 169, 181, 21);
+		textField[0].setBounds(256, 201, 115, 26);
 
 		JLabel lblNewLabel_1 = new JLabel(cv.getWayOfTransport() + "编号");
-		lblNewLabel_1.setBounds(71, 217, 110, 15);
+		lblNewLabel_1.setBounds(159, 246, 110, 15);
 		add(lblNewLabel_1);
 
 		textField[1].addKeyListener(new KeyAdapter() {
@@ -140,10 +150,10 @@ public class Shippingorder extends JPanel implements Runnable{
 				}
 			}
 		});
-		textField[1].setBounds(169, 214, 181, 21);
+		textField[1].setBounds(256, 242, 115, 26);
 
 		JLabel lblNewLabel_3 = new JLabel(transport + "代号");
-		lblNewLabel_3.setBounds(71, 260, 110, 15);
+		lblNewLabel_3.setBounds(159, 283, 110, 15);
 		add(lblNewLabel_3);
 
 		textField[2].addKeyListener(new KeyAdapter() {
@@ -153,55 +163,55 @@ public class Shippingorder extends JPanel implements Runnable{
 				}
 			}
 		});
-		textField[2].setBounds(169, 257, 181, 21);
+		textField[2].setBounds(256, 278, 115, 26);
 
 		JLabel lblNewLabel_2 = new JLabel("到达地");
-		lblNewLabel_2.setBounds(71, 302, 54, 15);
+		lblNewLabel_2.setBounds(159, 320, 54, 15);
 		add(lblNewLabel_2);
 
 		textField[3].setText(op.getName(cv.getArrivenum()));
 		textField[3].setEditable(false);
-		textField[3].setBounds(169, 299, 181, 21);
-
+		textField[3].setBounds(256, 316, 115, 26);
 
 		JLabel lblNewLabel_4 = new JLabel("监装员");
-		lblNewLabel_4.setBounds(71, 343, 54, 15);
+		lblNewLabel_4.setBounds(159, 358, 54, 15);
 		add(lblNewLabel_4);
 
-		textField[4].setBounds(169, 340, 181, 21);
+		textField[4].setBounds(256, 353, 115, 26);
 
 		JLabel lblNewLabel_5 = new JLabel("押运员");
-		lblNewLabel_5.setBounds(71, 381, 54, 15);
+		lblNewLabel_5.setBounds(159, 394, 54, 15);
 		add(lblNewLabel_5);
 
-		textField[5].setBounds(169, 378, 181, 21);
-		
+		textField[5].setBounds(256, 391, 115, 26);
 
-		
-		
 		JLabel lblNewLabel_6 = new JLabel("运费");
-		lblNewLabel_6.setBounds(77, 421, 54, 15);
+		lblNewLabel_6.setBounds(435, 438, 54, 15);
 		add(lblNewLabel_6);
 
 		JLabel label_3 = new JLabel("_ _ _ _ _");
 		double total = sb.getTotal(cv.getOrder_number(), cv.getOffnum(),
-		 cv.getArrivenum(), cv.getWayOfTransport());
+				cv.getArrivenum(), cv.getWayOfTransport());
 		label_3.setText(total + "元");
-		label_3.setBounds(199, 421, 72, 15);
+		label_3.setBounds(500, 438, 72, 15);
 		add(label_3);
 
 		JLabel lblNewLabel_7 = new JLabel("审批状态");
-		lblNewLabel_7.setBounds(392, 421, 54, 15);
+		lblNewLabel_7.setBounds(159, 435, 54, 15);
 		add(lblNewLabel_7);
 
 		String[] approveState = { "未审批", "审批通过", "审批未通过" };
 		JComboBox comboBox = new JComboBox(approveState);
-		comboBox.setBounds(480, 421, 181, 21);
+		comboBox.setBounds(256, 430, 115, 26);
 		comboBox.setEnabled(false);
 		add(comboBox);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(403, 133, 241, 263);
+		scrollPane.setEnabled(false);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBounds(433, 190, 198, 245);
 		add(scrollPane);
 
 		String order = "";
@@ -210,16 +220,14 @@ public class Shippingorder extends JPanel implements Runnable{
 		}
 
 		JTextArea textArea = new JTextArea();
+		textArea.setOpaque(false);
+		textArea.setBorder(null);
+		textArea.setEditable(false);
 		textArea.setText(order);
 		scrollPane.setViewportView(textArea);
 
-		JLabel lblNewLabel_9 = new JLabel("所有托运单号：");
-		lblNewLabel_9.setFont(new Font("微软雅黑", Font.BOLD, 14));
-		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
-		scrollPane.setColumnHeaderView(lblNewLabel_9);
-
-		JButton btnNewButton = new JButton("确定");
-		btnNewButton.setBounds(219, 485, 52, 52);
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBounds(272, 478, 52, 52);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String date = lblNewLabel_8.getText(); // 装运日期 2
@@ -233,21 +241,23 @@ public class Shippingorder extends JPanel implements Runnable{
 																// 7
 				ArrayList<String> orderlist = cv.getOrder_number(); // 所有订单编号 8
 				String fee = total + ""; // 运费 9
-				if (transportNum.length()!=4 || loadorderNum.length() != 10
+				if (transportNum.length() != 4 || loadorderNum.length() != 10
 						|| monitorName.length() == 0
 						|| transferName.length() == 0) {
 					label_4.setText("请正确输入装运单信息");
 				} else {
 					VehicleLoadorderVO vlv = new VehicleLoadorderVO(date,
 							loadorderNum, transferNum, arriveNum, monitorName,
-							transferName, transportNum, orderlist, fee,cv.getNumberOfTransfer());
+							transferName, transportNum, orderlist, fee, cv
+									.getNumberOfTransfer());
 					sb.build(vlv);
 					label_4.setText("装运单创建成功！");
-					Thread t=new Thread(nowPanel);
+					Thread t = new Thread(nowPanel);
 					t.start();
 				}
 			}
 		});
+		@SuppressWarnings("static-access")
 		Image temp1 = image1.getImage().getScaledInstance(
 				btnNewButton.getWidth(), btnNewButton.getHeight(),
 				image1.getImage().SCALE_DEFAULT);
@@ -257,12 +267,12 @@ public class Shippingorder extends JPanel implements Runnable{
 		btnNewButton.setBorderPainted(false);
 		add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("取消");
-		btnNewButton_1.setBounds(426, 485, 52, 52);
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBounds(424, 478, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Shippingorder sc = new Shippingorder(main, lastui,jp2, loginPO, cv,
-						transport);
+				Shippingorder sc = new Shippingorder(main, lastui, jp2,
+						loginPO, cv, transport);
 				main.remove(nowPanel);
 				main.getContentPane().add(sc);
 				main.invalidate();
@@ -278,7 +288,7 @@ public class Shippingorder extends JPanel implements Runnable{
 		JLabel label_5 = new JLabel("中转中心" + transport + "装运单");
 		label_5.setForeground(new Color(248, 179, 28));
 		label_5.setFont(new Font("微软雅黑", Font.PLAIN, 25));
-		label_5.setBounds(182, 73, 324, 28);
+		label_5.setBounds(254, 72, 324, 28);
 		add(label_5);
 
 	}
@@ -290,7 +300,7 @@ public class Shippingorder extends JPanel implements Runnable{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		Shipping_Inputui si=new Shipping_Inputui(main, returnui, loginpo);
+		Shipping_Inputui si = new Shipping_Inputui(main, returnui, loginpo);
 		main.remove(nowPanel);
 		main.getContentPane().add(si);
 		main.invalidate();
