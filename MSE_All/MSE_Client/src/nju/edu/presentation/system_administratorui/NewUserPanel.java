@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 
 import PO.LoginPO;
+import PO.StaffPO;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -34,6 +35,8 @@ public class NewUserPanel extends JPanel implements Runnable {
 	private AbstractButton btn;
 	private ButtonGroup bg;
 	private boolean fromManager;
+	private String oldName;
+	private StaffPO potosave;
 	UserBL userBL = new UserBL();
 
 	/**
@@ -216,7 +219,10 @@ public class NewUserPanel extends JPanel implements Runnable {
 							lblNewLabel.setText("创建成功!");
 							success = true;
 							if (fromManager) {
-								// 删除，及 IDtoManager 
+								potosave.setId(name);
+								potosave.setPhone(limit);
+								userBL.IDtoManager(oldName, name, limit,
+										potosave);
 							}
 						} else {
 							lblNewLabel.setText("该用户名已存在，无法完成新建");
@@ -272,8 +278,10 @@ public class NewUserPanel extends JPanel implements Runnable {
 		add(btnManager);
 	}
 
-	public void setInfo(String name, String limit) {
+	public void setInfo(String name, String limit, StaffPO po) {
 		textField.setText(name);
+		oldName = name;
+		potosave = po;
 		// 设置原有权限
 		Enumeration<AbstractButton> radioBtns = bg.getElements();
 		while (radioBtns.hasMoreElements()) {

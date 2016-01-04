@@ -141,7 +141,8 @@ public class IDforManager extends JPanel {
 		table.getColumnModel().getColumn(0).setPreferredWidth(80);
 		table.getColumnModel().getColumn(1).setPreferredWidth(80);
 
-		showTable(usb.IDfromeManager());
+		ArrayList<StaffPO> stafflist = usb.IDfromeManager();
+		showTable(stafflist);
 
 		// ÐÂ½¨
 		button_1.addActionListener(new ActionListener() {
@@ -150,7 +151,7 @@ public class IDforManager extends JPanel {
 					main.remove(ifm);
 					NewUserPanel nup = new NewUserPanel(loginPO, main);
 					nup.setInfo(tableModel.getValueAt(rowpos, 0).toString(),
-							tableModel.getValueAt(rowpos, 2).toString());
+							tableModel.getValueAt(rowpos, 2).toString(),stafflist.get(rowpos));
 					main.getContentPane().add(nup);
 					main.invalidate();
 					main.repaint();
