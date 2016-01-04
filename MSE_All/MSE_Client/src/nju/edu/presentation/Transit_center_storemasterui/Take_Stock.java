@@ -80,16 +80,16 @@ public class Take_Stock extends JPanel {
 
 		radioButton[0] = new JRadioButton("航运区");
 		radioButton[0].setForeground(Color.WHITE);
-		radioButton[0].setBounds(380, 170, 79, 23);
+		radioButton[0].setBounds(355, 221, 79, 23);
 		add(radioButton[0]);
 		
 		radioButton[1] = new JRadioButton("铁运区");
-		radioButton[1].setBounds(456, 170, 79, 23);
+		radioButton[1].setBounds(456, 221, 79, 23);
 		radioButton[1].setForeground(Color.WHITE);
 		add(radioButton[1]);
 		
 		radioButton[2] = new JRadioButton("汽运区");
-		radioButton[2].setBounds(380, 222, 121, 23);
+		radioButton[2].setBounds(355, 268, 121, 23);
 		radioButton[2].setForeground(Color.WHITE);
 		add(radioButton[2]);
 		
@@ -101,12 +101,12 @@ public class Take_Stock extends JPanel {
 		
 		JRadioButton radioButton_3 = new JRadioButton("页面显示");
 		radioButton_3.setForeground(Color.WHITE);
-		radioButton_3.setBounds(366, 328, 88, 23);
+		radioButton_3.setBounds(355, 339, 88, 23);
 		add(radioButton_3);
 		
 		JRadioButton radioButton_4 = new JRadioButton("输出Excel表");
 		radioButton_4.setForeground(Color.WHITE);
-		radioButton_4.setBounds(477, 328, 121, 23);
+		radioButton_4.setBounds(456, 339, 121, 23);
 		add(radioButton_4);
 		
 		ButtonGroup bg2=new ButtonGroup();
@@ -114,7 +114,7 @@ public class Take_Stock extends JPanel {
 		bg2.add(radioButton_4);
 		
 		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setBounds(265, 452, 52, 52);
+		btnNewButton_1.setBounds(275, 456, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(radioButton_3.isSelected()&& isSelected_qu()){
@@ -143,7 +143,7 @@ public class Take_Stock extends JPanel {
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.setBounds(379, 452, 52, 52);
+		btnNewButton_2.setBounds(425, 454, 52, 52);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Take_Stock ts=new Take_Stock(main,lastui,loginPO);

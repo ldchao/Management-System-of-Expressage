@@ -2,6 +2,7 @@ package nju.edu.presentation.Transit_center_storemasterui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,6 +35,11 @@ public class SetRemindData extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/TransitCenterStoreMaster/SetRemindData.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public SetRemindData(JFrame m, JPanel jp, LoginPO loginPO) {
 		JFrame main = m;
 		JPanel lastui = jp;
@@ -43,6 +49,8 @@ public class SetRemindData extends JPanel {
 			textField[i] = new JTextField();
 			add(textField[i]);
 			textField[i].setColumns(10);
+			textField[i].setOpaque(false);
+			textField[i].setBorder(null);
 			textField[i].setForeground(new Color(88, 93, 103));
 			textField[i].setCaretColor(new Color(88, 93, 103));
 		}
@@ -72,25 +80,14 @@ public class SetRemindData extends JPanel {
 		});
 		add(button);
 
-		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理>>设置提醒值");
-		lblNewLabel.setBounds(100, 14, 263, 15);
-		add(lblNewLabel);
-
 		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JLabel lblNewLabel_3 = new JLabel("当前提醒值比例");
-		lblNewLabel_3.setBounds(178, 258, 93, 15);
-		add(lblNewLabel_3);
-
 		textField[0].setEditable(false);
-		textField[0].setBounds(336, 255, 200, 21);
-
-		JLabel lblNewLabel_2 = new JLabel("输入提醒值比例");
-		lblNewLabel_2.setBounds(182, 327, 105, 15);
-		add(lblNewLabel_2);
+		textField[0].setBounds(410, 302, 138, 27);
+		textField[0].setForeground(new Color(255, 255, 255,200));
 
 		textField[1].addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
@@ -99,7 +96,7 @@ public class SetRemindData extends JPanel {
 				}
 			}
 		});
-		textField[1].setBounds(336, 324, 200, 21);
+		textField[1].setBounds(404, 383, 138, 27);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
@@ -111,10 +108,6 @@ public class SetRemindData extends JPanel {
 		JLabel lblNewLabel_6 = new JLabel("状态栏");
 		lblNewLabel_6.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel_6);
-
-		JLabel lblNewLabel_4 = new JLabel("选择库区");
-		lblNewLabel_4.setBounds(178, 201, 79, 15);
-		add(lblNewLabel_4);
 
 		String[] area = { "", "航运区一排", "航运区二排", "航运区三排", "铁运区一排", "铁运区二排",
 				"铁运区三排", "汽运区一排", "汽运区二排", "汽运区三排", "汽运区四排01架", "汽运区四排02架",
@@ -140,16 +133,11 @@ public class SetRemindData extends JPanel {
 				}
 			}
 		});
-		comboBox.setBounds(336, 198, 200, 18);
+		comboBox.setBounds(398, 223, 140, 27);
 		add(comboBox);
 
-		JLabel label = new JLabel("\u8BBE\u7F6E\u5E93\u533A\u63D0\u9192\u503C");
-		label.setFont(new Font("微软雅黑", Font.BOLD, 24));
-		label.setBounds(273, 99, 236, 38);
-		add(label);
-
-		JButton btnNewButton_1 = new JButton("确定");
-		btnNewButton_1.setBounds(206, 409, 52, 52);
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBounds(273, 468, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String new_remindData = textField[1].getText();
@@ -175,8 +163,8 @@ public class SetRemindData extends JPanel {
 		btnNewButton_1.setBorderPainted(false);
 		add(btnNewButton_1);
 
-		JButton btnNewButton_2 = new JButton("取消");
-		btnNewButton_2.setBounds(398, 409, 52, 52);
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setBounds(424, 468, 52, 52);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SetRemindData sr = new SetRemindData(main, lastui, loginPO);

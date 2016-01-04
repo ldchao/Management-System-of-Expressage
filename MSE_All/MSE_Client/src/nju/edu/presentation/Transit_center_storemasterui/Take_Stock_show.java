@@ -2,6 +2,7 @@ package nju.edu.presentation.Transit_center_storemasterui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -27,6 +28,11 @@ public class Take_Stock_show extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/TransitCenterStoreMaster/Take_Stock_show.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public Take_Stock_show(JFrame m, JPanel jp, LoginPO loginPO,String qu) {
 		JFrame main = m;
 		JPanel lastui = jp;
@@ -58,10 +64,6 @@ public class Take_Stock_show extends JPanel {
 		});
 		add(button);
 
-		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理>>盘点库存>>当前各库位订单信息");
-		lblNewLabel.setBounds(100, 14, 350, 15);
-		add(lblNewLabel);
-
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
@@ -78,13 +80,8 @@ public class Take_Stock_show extends JPanel {
 		lblNewLabel_6.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel_6);
 
-		JLabel label = new JLabel("出入库快递信息");
-		label.setFont(new Font("微软雅黑", Font.BOLD, 24));
-		label.setBounds(268, 76, 196, 33);
-		add(label);
-
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(70, 116, 604, 339);
+		scrollPane.setBounds(73, 138, 604, 313);
 		add(scrollPane);
 
 		table = new JTable();

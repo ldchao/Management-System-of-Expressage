@@ -50,18 +50,10 @@ public class Warehouse_outui extends JPanel {
 		});
 		add(button);
 
-		JLabel lblNewLabel = new JLabel("仓库管理员>>出库管理");
-		lblNewLabel.setBounds(100, 14, 143, 15);
-		add(lblNewLabel);
-
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
-
-		JLabel lblNewLabel_2 = new JLabel("消息提醒");
-		lblNewLabel_2.setBounds(174, 177, 54, 15);
-		add(lblNewLabel_2);
 
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -76,10 +68,6 @@ public class Warehouse_outui extends JPanel {
 		});
 		btnNewButton_1.setBounds(134, 214, 160, 128);
 		add(btnNewButton_1);
-		
-		JLabel lblNewLabel_3 = new JLabel("新建出库单");
-		lblNewLabel_3.setBounds(481, 177, 72, 15);
-		add(lblNewLabel_3);
 
 		JButton btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.addActionListener(new ActionListener() {

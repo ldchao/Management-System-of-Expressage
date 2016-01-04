@@ -2,6 +2,7 @@ package nju.edu.presentation.Transit_center_storemasterui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +29,11 @@ public class SetWarnData extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/TransitCenterStoreMaster/SetWarnData.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public SetWarnData(JFrame m, JPanel jp, LoginPO loginPO) {
 		JFrame main = m;
 		JPanel lastui = jp;
@@ -39,6 +45,8 @@ public class SetWarnData extends JPanel {
 			textField[i].setColumns(10);
 			textField[i].setForeground(new Color(88, 93, 103));
 			textField[i].setCaretColor(new Color(88, 93, 103));
+			textField[i].setOpaque(false);
+			textField[i].setBorder(null);
 		}
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		setLayout(null);
@@ -67,26 +75,15 @@ public class SetWarnData extends JPanel {
 		});
 		add(button);
 
-		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理>>设置警戒值");
-		lblNewLabel.setBounds(100, 14, 263, 15);
-		add(lblNewLabel);
-
 		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JLabel lblNewLabel_3 = new JLabel("当前警戒值比例");
-		lblNewLabel_3.setBounds(194, 226, 93, 15);
-		add(lblNewLabel_3);
-
 		textField[0].setText(warnData);
 		textField[0].setEditable(false);
-		textField[0].setBounds(376, 223, 150, 21);
-
-		JLabel lblNewLabel_2 = new JLabel("输入警戒值比例");
-		lblNewLabel_2.setBounds(194, 311, 105, 15);
-		add(lblNewLabel_2);
+		textField[0].setForeground(new Color(255, 255, 255,200));
+		textField[0].setBounds(406, 258, 150, 21);
 
 		textField[1].addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
@@ -95,7 +92,7 @@ public class SetWarnData extends JPanel {
 				}
 			}
 		});
-		textField[1].setBounds(376, 308, 150, 21);
+		textField[1].setBounds(406, 335, 138, 27);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
@@ -108,8 +105,8 @@ public class SetWarnData extends JPanel {
 		lblNewLabel_6.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel_6);
 
-		JButton btnNewButton_1 = new JButton("确定");
-		btnNewButton_1.setBounds(216, 394, 52, 52);
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBounds(273, 439, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String new_warnData = textField[1].getText();
@@ -135,8 +132,8 @@ public class SetWarnData extends JPanel {
 		btnNewButton_1.setBorderPainted(false);
 		add(btnNewButton_1);
 
-		JButton btnNewButton_2 = new JButton("取消");
-		btnNewButton_2.setBounds(399, 394, 52, 52);
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setBounds(425, 439, 52, 52);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SetWarnData sw = new SetWarnData(main, lastui, loginPO);
@@ -151,11 +148,6 @@ public class SetWarnData extends JPanel {
 		btnNewButton_2.setContentAreaFilled(false);
 		btnNewButton_2.setBorderPainted(false);
 		add(btnNewButton_2);
-
-		JLabel label = new JLabel("设置警戒值");
-		label.setFont(new Font("微软雅黑", Font.BOLD, 24));
-		label.setBounds(320, 130, 171, 28);
-		add(label);
 
 	}
 }
