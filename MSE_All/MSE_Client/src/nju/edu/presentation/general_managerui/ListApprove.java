@@ -29,6 +29,7 @@ import nju.edu.businesslogic.approvebl.Approvebl;
 import javax.swing.JTextArea;
 
 import java.awt.Color;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class ListApprove extends JPanel implements ItemListener {
@@ -81,7 +82,7 @@ public class ListApprove extends JPanel implements ItemListener {
 		String[] type = { "寄件单", "装车单", "营业厅到达单", "收款单", "派件单", "中转中心到达单",
 				"入库单", "中转单", "出库单", "付款单" };
 		comboBox = new JComboBox(type);
-		comboBox.setBounds(162, 83, 144, 23);
+		comboBox.setBounds(165, 87, 144, 23);
 		comboBox.addItemListener(this);
 		add(comboBox);
 
@@ -89,18 +90,20 @@ public class ListApprove extends JPanel implements ItemListener {
 		scrollPane_1.setOpaque(false);
 		scrollPane_1.setBorder(null);
 		scrollPane_1.getViewport().setOpaque(false);
-		scrollPane_1.setBounds(438, 115, 246, 347);
+		scrollPane_1.setBounds(457, 131, 215, 320);
 		add(scrollPane_1);
 
 		JTextArea textArea = new JTextArea();
+		textArea.setForeground(new Color(255,255,255,200));
 		textArea.setOpaque(false);
+		textArea.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		textArea.setBorder(null);
 		scrollPane_1.setViewportView(textArea);
 		textArea.setLineWrap(true);
-		textArea.setEnabled(false);
+		textArea.setEditable(false);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(78, 114, 259, 348);
+		scrollPane.setBounds(80, 142, 259, 309);
 		add(scrollPane);
 
 		table = new JTable();
@@ -142,7 +145,7 @@ public class ListApprove extends JPanel implements ItemListener {
 		// 初始化
 		showTable(approvebl.showList(comboBox.getSelectedItem().toString()));
 
-		JButton button_1 = new JButton("\u5BA1\u6279\u901A\u8FC7");
+		JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (rowpos != -1) {
@@ -154,7 +157,7 @@ public class ListApprove extends JPanel implements ItemListener {
 				}
 			}
 		});
-		button_1.setBounds(309, 454, 63, 52);
+		button_1.setBounds(183, 461, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(button_1.getWidth(),
 				button_1.getHeight(), image1.getImage().SCALE_DEFAULT);

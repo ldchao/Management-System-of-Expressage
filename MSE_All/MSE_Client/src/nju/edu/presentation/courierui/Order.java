@@ -101,129 +101,62 @@ public class Order extends JPanel implements Runnable{
 			textField[i].setColumns(10);
 			textField[i].setForeground(new Color(88, 93, 103));
 			textField[i].setCaretColor(new Color(88, 93, 103));
+			textField[i].setOpaque(false);
+			textField[i].setBorder(null);
 			this.add(textField[i]);
 		}
 		
 		textField[0].setBounds(184, 85, 150, 21);
-		textField[0].setForeground(new Color(88, 93, 103));
-		textField[0].setCaretColor(new Color(88, 93, 103));
-		textField[0].setOpaque(false);
-		textField[0].setBorder(null);
+		
 	
 		textField[1].setBounds(474, 85, 141, 21);
 		textField[1].setEnabled(false);
-		textField[1].setForeground(new Color(88, 93, 103));
-		textField[1].setCaretColor(new Color(88, 93, 103));
-		textField[1].setOpaque(false);
-		textField[1].setBorder(null);
 		
 		textField[2].setBounds(184, 143, 150, 21);
-		textField[2].setForeground(new Color(88, 93, 103));
-		textField[2].setCaretColor(new Color(88, 93, 103));
-		textField[2].setOpaque(false);
-		textField[2].setBorder(null);
 		
 		textField[3].setBounds(184, 170, 150, 21);
-		textField[3].setForeground(new Color(88, 93, 103));
-		textField[3].setCaretColor(new Color(88, 93, 103));
-		textField[3].setOpaque(false);
-		textField[3].setBorder(null);
 		
 		textField[4].setBounds(184, 196, 150, 21);
-		textField[4].setForeground(new Color(88, 93, 103));
-		textField[4].setCaretColor(new Color(88, 93, 103));
-		textField[4].setOpaque(false);
-		textField[4].setBorder(null);
 		
 		textField[5].setBounds(184, 222, 150, 21);
-		textField[5].setForeground(new Color(88, 93, 103));
-		textField[5].setCaretColor(new Color(88, 93, 103));
-		textField[5].setOpaque(false);
-		textField[5].setBorder(null);
 		
 		textField[6].setBounds(474, 143, 141, 21);
-		textField[6].setForeground(new Color(88, 93, 103));
-		textField[6].setCaretColor(new Color(88, 93, 103));
-		textField[6].setOpaque(false);
-		textField[6].setBorder(null);
 		
 		textField[7].setBounds(474, 170, 141, 21);
-		textField[7].setForeground(new Color(88, 93, 103));
-		textField[7].setCaretColor(new Color(88, 93, 103));
-		textField[7].setOpaque(false);
-		textField[7].setBorder(null);
 		
 		textField[8].setBounds(474, 196, 141, 21);
-		textField[8].setForeground(new Color(88, 93, 103));
-		textField[8].setCaretColor(new Color(88, 93, 103));
-		textField[8].setOpaque(false);
-		textField[8].setBorder(null);
 		
 		textField[9].setBounds(474, 222, 141, 21);
-		textField[9].setForeground(new Color(88, 93, 103));
-		textField[9].setCaretColor(new Color(88, 93, 103));
-		textField[9].setOpaque(false);
-		textField[9].setBorder(null);
 		
 		textField[10].setBounds(184, 372, 150, 21);
-		textField[10].setForeground(new Color(88, 93, 103));
-		textField[10].setCaretColor(new Color(88, 93, 103));
-		textField[10].setOpaque(false);
-		textField[10].setBorder(null);
 
 		textField[11].setBounds(184, 448, 37, 21);
 		textField[11].addKeyListener(new InputNumber());
 		textField[11].setDocument(new JTextFieldLimit(4));
-		textField[11].setForeground(new Color(88, 93, 103));
-		textField[11].setCaretColor(new Color(88, 93, 103));
-		textField[11].setOpaque(false);
-		textField[11].setBorder(null);
 				
 		textField[12].setBounds(184, 397, 37, 21);
 		textField[12].addKeyListener(new InputNumber());
 		textField[12].setDocument(new JTextFieldLimit(4));
-		textField[12].setForeground(new Color(88, 93, 103));
-		textField[12].setCaretColor(new Color(88, 93, 103));
-		textField[12].setOpaque(false);
-		textField[12].setBorder(null);
 		
 		textField[13].setBounds(294, 397, 37, 21);
 		textField[13].addKeyListener(new InputNumber());
 		textField[13].setDocument(new JTextFieldLimit(4));
-		textField[13].setForeground(new Color(88, 93, 103));
-		textField[13].setCaretColor(new Color(88, 93, 103));
-		textField[13].setOpaque(false);
-		textField[13].setBorder(null);
 		
 		textField[14].setBounds(184, 422, 37, 21);
 		textField[14].addKeyListener(new InputNumber());
 		textField[14].setDocument(new JTextFieldLimit(4));
-		textField[14].setForeground(new Color(88, 93, 103));
-		textField[14].setCaretColor(new Color(88, 93, 103));
-		textField[14].setOpaque(false);
-		textField[14].setBorder(null);
 		
 		textField[15].setBounds(294, 422, 37, 21);
 		textField[15].addKeyListener(new InputNumber());
 		textField[15].setDocument(new JTextFieldLimit(4));
-		textField[15].setForeground(new Color(88, 93, 103));
-		textField[15].setCaretColor(new Color(88, 93, 103));
-		textField[15].setOpaque(false);
-		textField[15].setBorder(null);
 		
-		textField[16].setEnabled(false);
+		textField[16].setEditable(false);
+		textField[16].setForeground(new Color(255, 255, 255));
 		textField[16].setBounds(184, 473, 150, 21);
-		textField[16].setForeground(new Color(88, 93, 103));
-		textField[16].setCaretColor(new Color(88, 93, 103));
-		textField[16].setOpaque(false);
-		textField[16].setBorder(null);
 
-		textField[17].setEnabled(false);
+		textField[17].setEditable(false);
+		textField[17].setForeground(new Color(255, 255, 255));
 		textField[17].setBounds(294, 448, 37, 21);
-		textField[17].setForeground(new Color(88, 93, 103));
-		textField[17].setCaretColor(new Color(88, 93, 103));
-		textField[17].setOpaque(false);
-		textField[17].setBorder(null);
 		
 		JLabel lblHello = new JLabel("Hello!"+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);

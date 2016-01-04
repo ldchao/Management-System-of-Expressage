@@ -1,6 +1,7 @@
 package nju.edu.presentation.Transit_center_storemasterui;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -33,6 +34,11 @@ public class Transit_center_storemaster_mainui extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/TransitCenterStoreMaster/Transit_center_storemaster_mainui.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public Transit_center_storemaster_mainui(LoginPO loginPO) {
 
 		main = this;
@@ -89,10 +95,6 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		});
 		contentPane.add(button);
 
-		JLabel label = new JLabel("仓库管理员");
-		label.setBounds(100, 14, 73, 15);
-		contentPane.add(label);
-
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
@@ -116,10 +118,6 @@ public class Transit_center_storemaster_mainui extends JFrame {
 			}
 		});
 
-		JLabel label_2 = new JLabel("入库管理");
-		label_2.setBounds(210, 113, 54, 15);
-		contentPane.add(label_2);
-
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -134,10 +132,6 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		});
 		btnNewButton.setBounds(172, 158, 125, 100);
 		contentPane.add(btnNewButton);
-
-		JLabel lblNewLabel = new JLabel("库存管理");
-		lblNewLabel.setBounds(473, 113, 54, 15);
-		contentPane.add(lblNewLabel);
 
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -154,10 +148,6 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		btnNewButton_1.setBounds(434, 158, 125, 100);
 		contentPane.add(btnNewButton_1);
 
-		JLabel lblNewLabel_1 = new JLabel("出库管理");
-		lblNewLabel_1.setBounds(210, 299, 54, 15);
-		contentPane.add(lblNewLabel_1);
-
 		JButton btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -172,12 +162,6 @@ public class Transit_center_storemaster_mainui extends JFrame {
 		});
 		btnNewButton_2.setBounds(172, 339, 125, 100);
 		contentPane.add(btnNewButton_2);
-		
-		
-		
-		JLabel lblNewLabel_2 = new JLabel("选项");
-		lblNewLabel_2.setBounds(473, 299, 54, 15);
-		contentPane.add(lblNewLabel_2);
 		
 		JButton btnNewButton_3 = new JButton("New button");
 		btnNewButton_3.setBounds(434, 339, 125, 100);
