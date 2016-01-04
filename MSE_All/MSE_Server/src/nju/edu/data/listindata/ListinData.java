@@ -266,6 +266,14 @@ public class ListinData extends UnicastRemoteObject implements ListinDataService
 				break;
 			}
 		}
+		arrayList=fileReader.Reader("Database/UnReceiveOrder.txt");
+		for(int i=0;i<arrayList.size();i++){
+			temp=arrayList.get(i).split(";");
+			if(temp[1].equals(id)){
+				result=true;
+				break;
+			}
+		}
 		return result;
 	}
 
