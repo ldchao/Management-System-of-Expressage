@@ -30,7 +30,7 @@ import nju.edu.dataservice.vehicledataservice.VehicleDataService;
 
 public class RMIHelper {
 
-	private static final String IP = "172.26.212.9"; // Can be read from config
+	private static final String IP = "172.26.205.2"; // Can be read from config
 													// file
 
 	private static boolean inited = false;
