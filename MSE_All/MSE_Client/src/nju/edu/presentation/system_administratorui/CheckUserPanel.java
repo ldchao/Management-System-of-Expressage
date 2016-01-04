@@ -40,7 +40,7 @@ public class CheckUserPanel extends JPanel implements Runnable {
 	 * Create the panel.
 	 */
 	protected void paintComponent(Graphics g) {
-		ImageIcon image = new ImageIcon("image/system_stuff/checkUserPanel.png");
+		ImageIcon image = new ImageIcon("image/system_stuff/CheckUserPanel.png");
 		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
 				this);
 	}

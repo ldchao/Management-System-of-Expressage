@@ -39,7 +39,7 @@ public class IDforManager extends JPanel {
 	 */
 
 	protected void paintComponent(Graphics g) {
-		ImageIcon image = new ImageIcon("image/system_stuff/checkUserPanel.png");
+		ImageIcon image = new ImageIcon("image/system_stuff/IdForManager.png");
 		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
 				this);
 	}
@@ -90,9 +90,9 @@ public class IDforManager extends JPanel {
 		toolBar.add(lblNewLabel);
 
 		JButton button_1 = new JButton();
-		// button_1.setContentAreaFilled(false);
-		// button_1.setBorderPainted(false);
-		button_1.setBounds(350, 459, 52, 52);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		button_1.setBounds(347, 459, 52, 52);
 		ImageIcon image = new ImageIcon("image/transparent_circle.png");
 		Image temp = image.getImage().getScaledInstance(button_1.getWidth(),
 				button_1.getHeight(), image.getImage().SCALE_DEFAULT);

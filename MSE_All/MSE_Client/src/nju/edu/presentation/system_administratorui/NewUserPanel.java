@@ -260,7 +260,9 @@ public class NewUserPanel extends JPanel implements Runnable {
 		});
 		add(button_1);
 
-		JButton btnManager = new JButton("Manager");
+		JButton btnManager = new JButton("");
+		btnManager.setContentAreaFilled(false);
+		btnManager.setBorderPainted(false);
 		btnManager.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.remove(nup);
@@ -271,7 +273,7 @@ public class NewUserPanel extends JPanel implements Runnable {
 				main.setVisible(true);
 			}
 		});
-		btnManager.setBounds(545, 420, 52, 52);
+		btnManager.setBounds(416, 116, 52, 52);
 		add(btnManager);
 	}
 
