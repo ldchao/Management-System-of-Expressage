@@ -132,12 +132,12 @@ public class Optionui extends JPanel {
 				textField.setEditable(isEditable);
 			}
 		});
+		btnNewButton_1.setBounds(509, 99, 52, 52);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(btnNewButton_1.getWidth(),
 				btnNewButton_1.getHeight(),image2.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
 		btnNewButton_1.setIcon(image2);
-		btnNewButton_1.setBounds(509, 99, 52, 52);
 		add(btnNewButton_1);
 
 		JScrollPane scrollPane = new JScrollPane();
