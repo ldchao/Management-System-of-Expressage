@@ -1,6 +1,7 @@
 package nju.edu.presentation.Transit_center_storemasterui;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -20,6 +21,12 @@ public class Inventory_managementui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/TransitCenterStoreMaster/Inventory_managementui.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public Inventory_managementui(JFrame m,JPanel jp,LoginPO loginPO) {
 		JFrame main=m;
 		JPanel lastui=jp;
@@ -49,20 +56,12 @@ public class Inventory_managementui extends JPanel {
 		});
 		add(button);
 		
-		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理");
-		lblNewLabel.setBounds(100, 14, 150, 15);
-		add(lblNewLabel);
-		
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 		
-		JLabel lblNewLabel_2 = new JLabel("查看库存");
-		lblNewLabel_2.setBounds(194, 99, 54, 15);
-		add(lblNewLabel_2);
-		
-		JButton btnNewButton_1 = new JButton("New button");
+		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CheckInventory ci=new CheckInventory(main,nowPanel,loginPO);
@@ -73,14 +72,19 @@ public class Inventory_managementui extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(160, 143, 125, 100);
+		btnNewButton_1.setBounds(211, 171, 125, 100);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.setIcon(new ImageIcon("image/transparent_small.png"));
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnNewButton_1.setIcon(new ImageIcon("image/mask_small.png"));
+			}
+		});
 		add(btnNewButton_1);
-		
-		JLabel lblNewLabel_3 = new JLabel("盘点库存");
-		lblNewLabel_3.setBounds(489, 99, 54, 15);
-		add(lblNewLabel_3);
 
-		JButton btnNewButton_2 = new JButton("New button");
+		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Take_Stock ts=new Take_Stock(main,nowPanel,loginPO);
@@ -91,15 +95,21 @@ public class Inventory_managementui extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBounds(446, 143, 125, 100);
-		add(btnNewButton_2);
+		btnNewButton_2.setBounds(414, 171, 125, 100);
+		btnNewButton_2.setContentAreaFilled(false);
+		btnNewButton_2.setBorderPainted(false);
+		btnNewButton_2.setIcon(new ImageIcon("image/transparent_small.png"));
+		btnNewButton_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnNewButton_2.setIcon(new ImageIcon("image/mask_small.png"));
+			}
+		});
 		
-		JLabel lblNewLabel_4 = new JLabel("警戒值管理");
-		lblNewLabel_4.setBounds(190, 297, 69, 15);
-		add(lblNewLabel_4);
+		add(btnNewButton_2);
 
 		
-		JButton btnNewButton_3 = new JButton("New button");
+		JButton btnNewButton_3 = new JButton("");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SetWarnData sw=new SetWarnData(main,nowPanel,loginPO);
@@ -110,14 +120,19 @@ public class Inventory_managementui extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_3.setBounds(160, 339, 125, 100);
+		btnNewButton_3.setBounds(211, 343, 125, 100);
+		btnNewButton_3.setContentAreaFilled(false);
+		btnNewButton_3.setBorderPainted(false);
+		btnNewButton_3.setIcon(new ImageIcon("image/transparent_small.png"));
+		btnNewButton_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnNewButton_3.setIcon(new ImageIcon("image/mask_small.png"));
+			}
+		});
 		add(btnNewButton_3);
-		
-		JLabel lblNewLabel_5 = new JLabel("提醒值管理");
-		lblNewLabel_5.setBounds(474, 297, 69, 15);
-		add(lblNewLabel_5);
 	
-		JButton btnNewButton_4 = new JButton("New button");
+		JButton btnNewButton_4 = new JButton("");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SetRemindData sr=new SetRemindData(main,nowPanel,loginPO);
@@ -128,7 +143,17 @@ public class Inventory_managementui extends JPanel {
 				main.setVisible(true);
 			}
 		});
-		btnNewButton_4.setBounds(446, 339, 125, 100);
+		btnNewButton_4.setBounds(414, 343, 125, 100);
+		btnNewButton_4.setContentAreaFilled(false);
+		btnNewButton_4.setBorderPainted(false);
+		btnNewButton_4.setIcon(new ImageIcon("image/transparent_small.png"));
+		btnNewButton_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnNewButton_4.setIcon(new ImageIcon("image/mask_small.png"));
+			}
+		});
+		
 		add(btnNewButton_4);
 		
 		JToolBar toolBar = new JToolBar();

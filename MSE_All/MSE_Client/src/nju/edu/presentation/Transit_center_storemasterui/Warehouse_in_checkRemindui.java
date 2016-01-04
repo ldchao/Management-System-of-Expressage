@@ -2,6 +2,8 @@ package nju.edu.presentation.Transit_center_storemasterui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -26,6 +28,11 @@ public class Warehouse_in_checkRemindui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/TransitCenterStoreMaster/Warehouse_in_checkRemindui.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public Warehouse_in_checkRemindui(JFrame m, JPanel jp,LoginPO loginPO) {
 		JFrame main = m;
 		JPanel lastui = jp;
@@ -56,41 +63,47 @@ public class Warehouse_in_checkRemindui extends JPanel {
 		});
 		add(button);
 
-		JLabel label = new JLabel("仓库管理员>>入库管理>>查看消息提醒");
-		label.setBounds(100, 14, 240, 15);
-		add(label);
-
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JLabel label_2 = new JLabel("入库管理消息提醒");
-		label_2.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		label_2.setBounds(289, 80, 192, 35);
-		add(label_2);
-
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(120, 150, 514, 299);
+		scrollPane.setBounds(92, 150, 563, 299);
+		scrollPane.setOpaque(false);
+		scrollPane.setBorder(null);
+		scrollPane.getViewport().setOpaque(false);
 		add(scrollPane);
 
 		JTextArea textArea = new JTextArea();
-		textArea.setText(wb.checkRemind());
+		textArea.setOpaque(false);
+		textArea.setBorder(null);
+		textArea.setForeground(new Color(255,255,255,200));
+		textArea.setText("\n"+wb.checkRemind());
 		scrollPane.setViewportView(textArea);
 
 		JLabel label_3 = new JLabel("\u5F85\u5904\u7406\u7684\u6D88\u606F");
+		label_3.setOpaque(false);
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setFont(new Font("微软雅黑", Font.BOLD, 14));
+		label_3.setForeground(new Color(88, 93, 103,230));
+		label_3.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		scrollPane.setColumnHeaderView(label_3);
 
-		JButton button_1 = new JButton("确认已查看上述消息，点击后消息将被清空");
+		JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			   wb.deleteRemind();
 			   textArea.setText("暂时没有新消息需要处理！");
 			}
 		});
-		button_1.setBounds(223, 477, 340, 23);
+		button_1.setBounds(349, 479, 52, 52);
+		button_1.setContentAreaFilled(false);
+		button_1.setBorderPainted(false);
+		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
+		Image temp1 = image1.getImage().getScaledInstance(button_1.getWidth(),
+						button_1.getHeight(),image2.getImage().SCALE_DEFAULT);
+		image2 = new ImageIcon(temp1);
+		button_1.setIcon(image2);
 		add(button_1);
 
 		JToolBar toolBar = new JToolBar();

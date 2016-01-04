@@ -72,6 +72,15 @@ public class Warehouse_inui extends JPanel {
 			}
 		});
 		btnNewButton_1.setBounds(166, 243, 160, 128);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.setIcon(new ImageIcon("image/transparent_big.png"));
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnNewButton_1.setIcon(new ImageIcon("image/mask_big.png"));
+			}
+		});
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("");
@@ -86,6 +95,15 @@ public class Warehouse_inui extends JPanel {
 			}
 		});
 		btnNewButton_2.setBounds(425, 243, 160, 128);
+		btnNewButton_2.setContentAreaFilled(false);
+		btnNewButton_2.setBorderPainted(false);
+		btnNewButton_2.setIcon(new ImageIcon("image/transparent_big.png"));
+		btnNewButton_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnNewButton_2.setIcon(new ImageIcon("image/mask_big.png"));
+			}
+		});
 		add(btnNewButton_2);
 		
 		JToolBar toolBar = new JToolBar();

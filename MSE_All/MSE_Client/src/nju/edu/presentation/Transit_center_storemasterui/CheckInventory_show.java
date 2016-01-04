@@ -2,6 +2,7 @@ package nju.edu.presentation.Transit_center_storemasterui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -30,6 +31,11 @@ public class CheckInventory_show extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/TransitCenterStoreMaster/CheckInventory_show.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public CheckInventory_show(JFrame m, JPanel jp, LoginPO loginPO,String startDate,String overDate) {
 		JFrame main = m;
 		JPanel lastui = jp;
@@ -61,10 +67,6 @@ public class CheckInventory_show extends JPanel {
 		});
 		add(button);
 
-		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理>>查看库存>>出入库数量");
-		lblNewLabel.setBounds(100, 14, 300, 15);
-		add(lblNewLabel);
-
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
@@ -81,14 +83,9 @@ public class CheckInventory_show extends JPanel {
 		lblNewLabel_6.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel_6);
 
-		JLabel label = new JLabel("库存信息显示");
-		label.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		label.setBounds(305, 120, 144, 28);
-		add(label);
-
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(151, 237, 454, 125);
+		scrollPane.setBounds(148, 200, 454, 222);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -105,29 +102,19 @@ public class CheckInventory_show extends JPanel {
 				"库存区域", "入库数量", "出库数量" });
 		table.setModel(tableModel);
 		
-		JLabel lblNewLabel_2 = new JLabel("开始日期:");
-		lblNewLabel_2.setFont(new Font("微软雅黑", Font.BOLD, 12));
-		lblNewLabel_2.setBounds(179, 191, 79, 15);
-		add(lblNewLabel_2);
-		
 		JLabel lblNewLabel_3 = new JLabel(startDate);
 		lblNewLabel_3.setForeground(Color.WHITE);
-		lblNewLabel_3.setBounds(268, 191, 86, 15);
+		lblNewLabel_3.setBounds(285, 158, 86, 15);
 		add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("结束日期:");
-		lblNewLabel_4.setFont(new Font("微软雅黑", Font.BOLD, 12));
-		lblNewLabel_4.setBounds(421, 191, 71, 15);
-		add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel(overDate);
 		lblNewLabel_5.setForeground(Color.WHITE);
-		lblNewLabel_5.setBounds(513, 191, 86, 15);
+		lblNewLabel_5.setBounds(505, 158, 86, 15);
 		add(lblNewLabel_5);
 		
 		JLabel lblZ = new JLabel("\u6CE8\uFF1A\u673A\u52A8\u533A\u4E0D\u4F5C\u7EDF\u8BA1");
 		lblZ.setForeground(new Color(248,179,28));
-		lblZ.setBounds(151, 387, 171, 15);
+		lblZ.setBounds(158, 441, 171, 15);
 		add(lblZ);
 
 	}

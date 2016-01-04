@@ -2,6 +2,7 @@ package nju.edu.presentation.Transit_center_storemasterui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +24,11 @@ public class CheckInventory extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/TransitCenterStoreMaster/CheckInventory.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+	}
+	
 	public CheckInventory(JFrame m,JPanel jp,LoginPO loginPO) {
 		JFrame main=m;
 		JPanel lastui=jp;
@@ -52,35 +58,21 @@ public class CheckInventory extends JPanel {
 		});
 		add(button);
 		
-		JLabel lblNewLabel = new JLabel("仓库管理员>>库存管理>>查看库存");
-		lblNewLabel.setBounds(100, 14, 263, 15);
-		add(lblNewLabel);
-		
 		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 		
-		JLabel lblNewLabel_2 = new JLabel("开始日期");
-		lblNewLabel_2.setFont(new Font("宋体", Font.BOLD, 12));
-		lblNewLabel_2.setBounds(237, 224, 54, 15);
-		add(lblNewLabel_2);
-		
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
 		JLabel lblNewLabel_8 = new JLabel("单击选择日期");
 		dateChooser1.register(lblNewLabel_8);
-		lblNewLabel_8.setBounds(402, 224, 96, 15);
+		lblNewLabel_8.setBounds(362, 229, 96, 15);
 		add(lblNewLabel_8);
-		
-		JLabel lblNewLabel_3 = new JLabel("结束日期");
-		lblNewLabel_3.setFont(new Font("宋体", Font.BOLD, 12));
-		lblNewLabel_3.setBounds(237, 313, 54, 15);
-		add(lblNewLabel_3);
 		
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 		JLabel lblNewLabel_9 = new JLabel("单击选择日期");
 		dateChooser2.register(lblNewLabel_9);
-		lblNewLabel_9.setBounds(402, 313, 96, 15);
+		lblNewLabel_9.setBounds(362, 343, 96, 15);
 		add(lblNewLabel_9);
 		
 		JToolBar toolBar = new JToolBar();
@@ -94,13 +86,8 @@ public class CheckInventory extends JPanel {
 		lblNewLabel_6.setForeground(Color.WHITE);
 		toolBar.add(lblNewLabel_6);
 		
-		JLabel label = new JLabel("选择要查看的起止日期");
-		label.setFont(new Font("微软雅黑", Font.BOLD, 20));
-		label.setBounds(260, 135, 257, 28);
-		add(label);
-		
-		JButton btnNewButton_1 = new JButton("确定");
-		btnNewButton_1.setBounds(290, 430, 52, 52);
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBounds(272, 469, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String startData=lblNewLabel_8.getText();
@@ -125,8 +112,8 @@ public class CheckInventory extends JPanel {
 		btnNewButton_1.setBorderPainted(false);
 		add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("取消");
-		btnNewButton_2.setBounds(384, 430, 52, 52);
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setBounds(424, 468, 52, 52);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CheckInventory ci=new CheckInventory(main,lastui,loginPO);
