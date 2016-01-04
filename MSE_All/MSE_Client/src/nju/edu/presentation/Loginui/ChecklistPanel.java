@@ -11,49 +11,41 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
 
-import State.ApproveState;
-import State.ExpressType;
-import State.PackageType;
 import nju.edu.VO.OrderVO;
 import nju.edu.businesslogic.checklistbl.ChecklistController;
 import nju.edu.businesslogic.listinbl.Receiverinbl;
 import nju.edu.presentation.Business_hall_salesmanui.ChecklistImfo;
-import nju.edu.presentation.Business_hall_salesmanui.VehicleLoadManageUI;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 
 import java.awt.Color;
 
-public class ChecklistPanel extends JPanel implements Runnable{
+@SuppressWarnings("serial")
+public class ChecklistPanel extends JPanel implements Runnable {
 	private JTextField textField;
 	private ChecklistController checklistController;
 	private Receiverinbl receiverinbl;
 	private boolean isValid = false;
 	private OrderVO vo = null;
-	private boolean signal;
-	
-	
-	public ChecklistPanel(JFrame m, JPanel bf){
+
+	@SuppressWarnings("static-access")
+	public ChecklistPanel(JFrame m, JPanel bf) {
 		JFrame main = m;
 		JPanel lastui = bf;
 		ChecklistPanel nowPanel = this;
 		setSize(750, 600);
 		setLayout(null);
-		
-		
+
 		JButton button = new JButton("");
 		button.setBounds(13, -9, 63, 63);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
-		button.setIcon(image1);		
+		button.setIcon(image1);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);
@@ -69,7 +61,6 @@ public class ChecklistPanel extends JPanel implements Runnable{
 			}
 		});
 		add(button);
-		
 
 		JButton button2 = new JButton("");
 		button2.setBounds(528, 254, 84, 84);
@@ -77,12 +68,11 @@ public class ChecklistPanel extends JPanel implements Runnable{
 		button2.setBorderPainted(false);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
 		Image temp = image2.getImage().getScaledInstance(button2.getWidth(),
-				button2.getHeight(),image2.getImage().SCALE_DEFAULT);
+				button2.getHeight(), image2.getImage().SCALE_DEFAULT);
 		image2 = new ImageIcon(temp);
 		button2.setIcon(image2);
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				signal=true;
 				String id = textField.getText();
 				if (id.length() != 0) {
 					receiverinbl = new Receiverinbl();
@@ -97,11 +87,11 @@ public class ChecklistPanel extends JPanel implements Runnable{
 					main.getContentPane().add(imfo);
 					main.invalidate();
 					main.repaint();
-				
-				}else{
+
+				} else {
 					textField.setText("∂©µ•≤ª¥Ê‘⁄");
 					textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 20));
-					textField.setForeground(new Color(248, 179, 28,200));
+					textField.setForeground(new Color(248, 179, 28, 200));
 					Thread t = new Thread(nowPanel);
 					t.start();
 				}
@@ -109,10 +99,10 @@ public class ChecklistPanel extends JPanel implements Runnable{
 		});
 		button2.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 20));
 		add(button2);
-		
+
 		textField = new JTextField("«Î ‰»Î∂©µ•∫≈");
 		textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 20));
-		textField.setForeground(new Color(255, 255, 255,100));
+		textField.setForeground(new Color(255, 255, 255, 100));
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -124,13 +114,12 @@ public class ChecklistPanel extends JPanel implements Runnable{
 		textField.setOpaque(false);
 		textField.setBorder(null);
 		textField.setBounds(154, 267, 327, 55);
-		textField.setCaretColor(new Color(248, 179, 28,230));
+		textField.setCaretColor(new Color(248, 179, 28, 230));
 		textField.addKeyListener(new KeyListener() {
-			
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					signal=true;
 					String id = textField.getText();
 					if (id.length() != 0) {
 						receiverinbl = new Receiverinbl();
@@ -145,36 +134,34 @@ public class ChecklistPanel extends JPanel implements Runnable{
 						main.getContentPane().add(imfo);
 						main.invalidate();
 						main.repaint();
-					
-					}else{
+
+					} else {
 						textField.setText("∂©µ•≤ª¥Ê‘⁄");
 						textField.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 20));
-						textField.setForeground(new Color(248, 179, 28,200));
+						textField.setForeground(new Color(248, 179, 28, 200));
 						Thread t = new Thread(nowPanel);
 						t.start();
 					}
 				}
 			}
-			
+
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 		textField.setColumns(10);
 		this.add(textField);
-		
+
 	}
 
-	
-	
 	@Override
 	public void run() {
 		try {
@@ -186,10 +173,11 @@ public class ChecklistPanel extends JPanel implements Runnable{
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		ImageIcon icon = new ImageIcon("image/searchOrderMain.png");
-		g.drawImage(icon.getImage(), 0,0,getSize().width,getSize().height, this);
+		g.drawImage(icon.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
 	}
 }
