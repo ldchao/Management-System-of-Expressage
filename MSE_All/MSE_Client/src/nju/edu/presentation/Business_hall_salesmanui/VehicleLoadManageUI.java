@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.TexturePaint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -202,6 +203,7 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 		textArea.setCaretColor(new Color(88, 93, 103));
 		textArea.setOpaque(false);
 		textArea.setBorder(null);
+		textArea.setEditable(true);
 		textArea.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				if (!(Character.isDigit(e.getKeyChar()) || e.getKeyChar() == '\n')) {
@@ -209,7 +211,7 @@ public class VehicleLoadManageUI extends JPanel implements Runnable {
 				}
 			}
 		});
-		scrollPane.setRowHeaderView(textArea);
+		scrollPane.setViewportView(textArea);
 
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setBounds(274, 483, 52, 52);
