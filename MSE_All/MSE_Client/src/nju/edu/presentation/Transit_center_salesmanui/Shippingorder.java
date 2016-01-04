@@ -237,7 +237,7 @@ public class Shippingorder extends JPanel implements Runnable {
 				String arriveNum = cv.getArrivenum(); // 到达地编号 4
 				String monitorName = textField[4].getText(); // 监装员姓名 5
 				String transferName = textField[5].getText(); // 押运员姓名 6
-				String transportNum = textField[1].getText(); // 运输编号（汽运编号，铁运编号，航运编号）
+				String transportNum = textField[2].getText(); // 运输编号（汽运编号，铁运编号，航运编号）
 																// 7
 				ArrayList<String> orderlist = cv.getOrder_number(); // 所有订单编号 8
 				String fee = total + ""; // 运费 9
