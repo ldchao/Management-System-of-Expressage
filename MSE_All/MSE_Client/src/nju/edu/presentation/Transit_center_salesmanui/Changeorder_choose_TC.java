@@ -96,7 +96,7 @@ public class Changeorder_choose_TC extends JPanel {
 		}
 
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setBounds(269, 483, 52, 52);
+		btnNewButton.setBounds(269, 488, 52, 52);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StoreinInfo storein = StoreMessageBL.getInstance(transferNum);
@@ -133,7 +133,7 @@ public class Changeorder_choose_TC extends JPanel {
 		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setBounds(431, 483, 52, 52);
+		btnNewButton_1.setBounds(431, 487, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Changeorder_choose_TC ctc = new Changeorder_choose_TC(main,

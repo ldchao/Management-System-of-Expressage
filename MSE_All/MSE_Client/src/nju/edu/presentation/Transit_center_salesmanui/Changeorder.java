@@ -156,7 +156,7 @@ public class Changeorder extends JPanel implements Runnable {
 		textField[5].setBounds(256, 353, 115, 26);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(439, 191, 192, 226);
+		scrollPane.setBounds(446, 197, 185, 220);
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(null);
 		scrollPane.getViewport().setOpaque(false);

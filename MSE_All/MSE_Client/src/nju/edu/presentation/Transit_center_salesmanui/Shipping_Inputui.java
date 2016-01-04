@@ -137,8 +137,8 @@ public class Shipping_Inputui extends JPanel {
 		table.setModel(tableModel);
 
 		// 创建装运单
-		JButton btnNewButton = new JButton("创建装运单");
-		btnNewButton.setBounds(280, 464, 52, 52);
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBounds(280, 466, 52, 52);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (rowpos == -1) {
@@ -175,8 +175,8 @@ public class Shipping_Inputui extends JPanel {
 		btnNewButton.setBorderPainted(false);
 		add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("放弃创建");
-		btnNewButton_1.setBounds(420, 463, 52, 52);
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBounds(420, 466, 52, 52);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				main.remove(nowPanel);

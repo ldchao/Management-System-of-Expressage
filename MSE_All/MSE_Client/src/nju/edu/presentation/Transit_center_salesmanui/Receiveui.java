@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JToolBar;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -73,10 +74,6 @@ public class Receiveui extends JPanel {
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
 
-		JLabel label_2 = new JLabel("输入装运单编号");
-		label_2.setBounds(220, 255, 110, 23);
-		add(label_2);
-
 		JToolBar toolBar = new JToolBar();
 		toolBar.setEnabled(false);
 		toolBar.setBounds(8, 540, 750, 35);
@@ -88,7 +85,10 @@ public class Receiveui extends JPanel {
 		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
-		textField = new JTextField();
+		textField = new JTextField("输入装运单编号");
+		textField.setOpaque(false);
+		textField.setBorder(null);
+		textField.setFont(new Font("微软雅黑", Font.PLAIN, 18));
 		textField.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				label_4.setText("状态栏");
@@ -97,16 +97,22 @@ public class Receiveui extends JPanel {
 				}
 			}
 		});
-		textField.setBounds(340, 254, 196, 26);
-		textField.setForeground(new Color(88, 93, 103));
-		textField.setCaretColor(new Color(88, 93, 103));
+		textField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField.setText("");
+			}
+		});
+		textField.setBounds(205, 244, 347, 44);
+		textField.setForeground(new Color(255,255,255,200));
+		textField.setCaretColor(new Color(248,179,28));
 		add(textField);
 		textField.setColumns(10);
 
 		JButton button_1 = new JButton("");
 		button_1.setContentAreaFilled(false);
 		button_1.setBorderPainted(false);
-		button_1.setBounds(346, 313, 52, 52);
+		button_1.setBounds(349, 316, 52, 52);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
 		@SuppressWarnings("static-access")
 		Image temp1 = image2.getImage().getScaledInstance(button_1.getWidth(),
