@@ -39,13 +39,9 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JLabel label_2;
-	private JLabel label_3;
-	private JLabel label_4;
 	private JRadioButton rdbtnNewRadioButton;
 	private JRadioButton radioButton;
 	private JRadioButton radioButton_1;
-	private JLabel label_5;
 	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
 	@SuppressWarnings("rawtypes")
@@ -82,12 +78,6 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 	@SuppressWarnings("rawtypes")
 	DefaultComboBoxModel comboBoxModel;
 
-//	protected void paintComponent(Graphics g) {
-//		ImageIcon image = new ImageIcon("image/generalManager/editStuff.png");
-//		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
-//				this);
-//	}
-	
 	protected void paintComponent(Graphics g) {
 		ImageIcon image = new ImageIcon("image/generalManager/editStuff.png");
 		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
@@ -95,68 +85,49 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 
 	@SuppressWarnings({ "unchecked", "rawtypes", "static-access" })
 	public editStaff(StaffVO vo, JFrame main, LoginPO loginPO) {
-//		setBounds(100, 100, 750, 600);
 		setLayout(null);
-//		this.setVisible(true);
 		thiStaff = this;
 
-		JLabel label = new JLabel("\u4EBA\u5458\u5177\u4F53\u4FE1\u606F");
-		label.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-		label.setBounds(312, 68, 96, 15);
-		add(label);
-
-		JLabel label_1 = new JLabel("\u7528\u6237\u540D");
-		label_1.setBounds(55, 133, 54, 15);
-		add(label_1);
-
 		textField = new JTextField();
-		textField.setBounds(119, 130, 217, 21);
+		textField.setBounds(214, 184, 125, 26);
 		textField.setText(vo.getId());
 		textField.setEnabled(false);
 		textField.setForeground(new Color(88, 93, 103));
 		textField.setCaretColor(new Color(88, 93, 103));
+		textField.setOpaque(false);
+		textField.setBorder(null);
 		add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(481, 130, 217, 21);
+		textField_1.setBounds(495, 188, 125, 26);
 		textField_1.setText(vo.getName());
 		textField_1.setForeground(new Color(88, 93, 103));
 		textField_1.setCaretColor(new Color(88, 93, 103));
+		textField_1.setOpaque(false);
+		textField_1.setBorder(null);
 		add(textField_1);
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(119, 186, 217, 21);
+		textField_2.setBounds(214, 226, 125, 26);
 		textField_2.setText(vo.getPhone());
 		textField_2.setForeground(new Color(88, 93, 103));
 		textField_2.setCaretColor(new Color(88, 93, 103));
+		textField_2.setOpaque(false);
+		textField_2.setBorder(null);
 		add(textField_2);
 
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(481, 186, 217, 21);
+		textField_3.setBounds(495, 229, 125, 26);
 		textField_3.setText(vo.getCellphone());
 		textField_3.setForeground(new Color(88, 93, 103));
 		textField_3.setCaretColor(new Color(88, 93, 103));
+		textField_3.setOpaque(false);
+		textField_3.setBorder(null);
 		add(textField_3);
-
-		label_2 = new JLabel("\u59D3\u540D");
-		label_2.setBounds(421, 133, 54, 15);
-		add(label_2);
-
-		label_3 = new JLabel("\u7535\u8BDD");
-		label_3.setBounds(55, 189, 54, 15);
-		add(label_3);
-
-		label_4 = new JLabel("\u804C\u4F4D");
-		label_4.setBounds(55, 336, 54, 15);
-		add(label_4);
-
-		label_5 = new JLabel("\u5355\u4F4D");
-		label_5.setBounds(55, 243, 54, 15);
-		add(label_5);
 		// 初始化
 		int a = -1, b = -1;
 		String[] temp = vo.getShop().split(",");
@@ -177,56 +148,72 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 		comboBox = new JComboBox(citymodel);
 		comboBox.setSelectedIndex(a);
 		comboBox.addItemListener(this);
-		comboBox.setBounds(119, 240, 69, 21);
+		comboBox.setBounds(495, 275, 69, 21);
 		add(comboBox);
 
 		comboBoxModel = new DefaultComboBoxModel(position[a]);
 		comboBox_1 = new JComboBox();
 		comboBox_1.setModel(comboBoxModel);
 		comboBox_1.setSelectedIndex(b);
-		comboBox_1.setBounds(198, 240, 138, 21);
+		comboBox_1.setBounds(495, 306, 138, 21);
 		add(comboBox_1);
 
 		rdbtnNewRadioButton = new JRadioButton("\u5FEB\u9012\u5458");
-		rdbtnNewRadioButton.setBounds(119, 332, 96, 23);
+		rdbtnNewRadioButton.setBounds(188, 352, 69, 23);
 		rdbtnNewRadioButton.setEnabled(false);
+		rdbtnNewRadioButton.setOpaque(false);
+		rdbtnNewRadioButton.setBorder(null);
 		add(rdbtnNewRadioButton);
 
 		radioButton = new JRadioButton("\u7CFB\u7EDF\u7BA1\u7406\u5458");
 		radioButton.setEnabled(false);
-		radioButton.setBounds(253, 332, 126, 23);
+		radioButton.setBounds(281, 352, 99, 23);
+		radioButton.setOpaque(false);
+		radioButton.setBorder(null);
 		add(radioButton);
 
 		radioButton_1 = new JRadioButton("\u603B\u7ECF\u7406");
 		radioButton_1.setEnabled(false);
-		radioButton_1.setBounds(393, 332, 123, 23);
+		radioButton_1.setBounds(401, 352, 86, 23);
+		radioButton_1.setOpaque(false);
+		radioButton_1.setBorder(null);
 		add(radioButton_1);
 
 		radioButton_2 = new JRadioButton("\u8D22\u52A1\u4EBA\u5458");
 		radioButton_2.setEnabled(false);
-		radioButton_2.setBounds(543, 332, 119, 23);
+		radioButton_2.setBounds(188, 390, 80, 23);
+		radioButton_2.setOpaque(false);
+		radioButton_2.setBorder(null);
 		add(radioButton_2);
 
 		radioButton_3 = new JRadioButton("\u9AD8\u7EA7\u8D22\u52A1\u4EBA\u5458");
 		radioButton_3.setEnabled(false);
-		radioButton_3.setBounds(119, 374, 126, 23);
+		radioButton_3.setBounds(517, 352, 99, 23);
+		radioButton_3.setOpaque(false);
+		radioButton_3.setBorder(null);
 		add(radioButton_3);
 
 		radioButton_4 = new JRadioButton(
 				"\u4E2D\u8F6C\u4E2D\u5FC3\u4E1A\u52A1\u5458");
 		radioButton_4.setEnabled(false);
-		radioButton_4.setBounds(393, 374, 145, 23);
+		radioButton_4.setBounds(401, 390, 118, 23);
+		radioButton_4.setOpaque(false);
+		radioButton_4.setBorder(null);
 		add(radioButton_4);
 
 		radioButton_5 = new JRadioButton(
 				"\u4E2D\u8F6C\u4E2D\u5FC3\u4ED3\u5E93\u7BA1\u7406\u5458");
 		radioButton_5.setEnabled(false);
-		radioButton_5.setBounds(543, 374, 145, 23);
+		radioButton_5.setBounds(517, 390, 145, 23);
+		radioButton_5.setOpaque(false);
+		radioButton_5.setBorder(null);
 		add(radioButton_5);
 
 		radioButton_6 = new JRadioButton("\u8425\u4E1A\u5385\u4E1A\u52A1\u5458");
 		radioButton_6.setEnabled(false);
-		radioButton_6.setBounds(253, 374, 138, 23);
+		radioButton_6.setBounds(281, 390, 110, 23);
+		radioButton_6.setOpaque(false);
+		radioButton_6.setBorder(null);
 		add(radioButton_6);
 
 		ButtonGroup bg = new ButtonGroup();
@@ -244,7 +231,7 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 			if (abstractButton.getText().equals(vo.getPosition()))
 				abstractButton.setSelected(true);
 		} while (enumeration.hasMoreElements());
-		button = new JButton("\u786E\u5B9A");
+		button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int n = JOptionPane.showConfirmDialog(null, "确认修改？", "no",
@@ -286,7 +273,7 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 				}
 			}
 		});
-		button.setBounds(274, 459, 52, 52);
+		button.setBounds(274, 457, 52, 52);
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
 		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
 				button.getHeight(), image1.getImage().SCALE_DEFAULT);
@@ -296,7 +283,7 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 		button.setBorderPainted(false);
 		add(button);
 
-		button_1 = new JButton("\u5220\u9664\u6B64\u4EBA\u5458");
+		button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int n = JOptionPane.showConfirmDialog(null, "确认删除？", "no",
@@ -314,7 +301,7 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 				}
 			}
 		});
-		button_1.setBounds(425, 459, 52, 52);
+		button_1.setBounds(425, 456, 52, 52);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
 		Image temp2 = image2.getImage().getScaledInstance(button_1.getWidth(),
 				button_1.getHeight(), image2.getImage().SCALE_DEFAULT);
@@ -334,16 +321,10 @@ public class editStaff extends JPanel implements ItemListener, Runnable {
 		label_8.setForeground(Color.WHITE);
 		toolBar.add(label_8);
 
-		JLabel label_6 = new JLabel("\u624B\u673A");
-		label_6.setBounds(421, 189, 54, 15);
-		add(label_6);
-
-		JLabel label_7 = new JLabel("\u5730\u5740");
-		label_7.setBounds(421, 243, 54, 15);
-		add(label_7);
-
 		textArea = new JTextArea();
-		textArea.setBounds(481, 239, 217, 52);
+		textArea.setBounds(214, 276, 125, 52);
+		textArea.setOpaque(false);
+		textArea.setBorder(null);
 		textArea.setText(vo.getAddress());
 		add(textArea);
 

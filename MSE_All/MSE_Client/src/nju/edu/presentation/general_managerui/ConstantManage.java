@@ -74,7 +74,7 @@ public class ConstantManage extends JPanel {
 		comboBox_1.setBounds(380, 305, 174, 29);
 		add(comboBox_1);
 
-		JButton button_1 = new JButton("\u786E\u5B9A");
+		JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ConstantPolicybl constantPolicybl = new ConstantPolicybl();

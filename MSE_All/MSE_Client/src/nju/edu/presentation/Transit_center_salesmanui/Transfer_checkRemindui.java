@@ -77,12 +77,13 @@ public class Transfer_checkRemindui extends JPanel {
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(null);
 		scrollPane.getViewport().setOpaque(false);
-		scrollPane.setBounds(117, 150, 509, 299);
+		scrollPane.setBounds(122, 156, 504, 293);
 		add(scrollPane);
 
 		JTextArea textArea = new JTextArea();
 		textArea.setOpaque(false);
 		textArea.setBorder(null);
+		textArea.setForeground(new Color(255, 255, 255, 200));
 		TransferBLService tb = new TransferBL();
 		String remind = tb.checkRemind(transferNum);
 		if (remind.length() == 0)

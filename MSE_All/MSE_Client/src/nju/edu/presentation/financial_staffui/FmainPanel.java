@@ -182,7 +182,7 @@ public class FmainPanel extends JPanel implements Runnable {
 
 		label_6 = new JLabel("");
 		label_6.setForeground(Color.RED);
-		label_6.setBounds(381, 447, 211, 15);
+		label_6.setBounds(381, 458, 211, 15);
 		add(label_6);
 
 		JButton button_3 = new JButton();

@@ -84,7 +84,7 @@ public class Changeorder_Input extends JPanel {
 
 		for (int i = 0; i < pai.length; i++) {
 			pai[i] = new JRadioButton(((i == 9 ? 3 : (i % 3)) + 1) + " ее");
-			pai[i].setBounds(260 + (i % 3) * 120, 175 + (i / 3) * 80, 70, 25);
+			pai[i].setBounds(260 + (i % 3) * 120, 165 + (i / 3) * 75, 70, 25);
 			add(pai[i]);
 			pai[i].setOpaque(false);
 			pai[i].setBorder(null);

@@ -89,12 +89,13 @@ public class Shipping_checkremindui extends JPanel {
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(null);
 		scrollPane.getViewport().setOpaque(false);
-		scrollPane.setBounds(118, 128, 510, 299);
+		scrollPane.setBounds(124, 136, 504, 291);
 		add(scrollPane);
 
 		JTextArea textArea = new JTextArea();
 		textArea.setOpaque(false);
 		textArea.setBorder(null);
+		textArea.setForeground(new Color(255,255,255,200));
 		ShippingBLService sb = new ShippingBL();
 		ArrayList<ChangeorderVO> changeorderList = sb.checkRemind();
 		String remind_message = "";

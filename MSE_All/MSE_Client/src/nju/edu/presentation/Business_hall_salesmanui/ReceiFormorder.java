@@ -1,7 +1,7 @@
 package nju.edu.presentation.Business_hall_salesmanui;
 
 import java.awt.Color;
-import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,6 +40,13 @@ public class ReceiFormorder extends JPanel implements Runnable {
 	ReceiFormorder nowPanel;
 	JPanel lastui;
 
+	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon(
+				"image/businessHall_stuff/ReceiFormorder.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
+	}
+
 	/**
 	 * Create the panel.
 	 */
@@ -74,10 +81,6 @@ public class ReceiFormorder extends JPanel implements Runnable {
 		});
 		add(button);
 
-		JLabel label = new JLabel("营业厅业务员>>接收>>新建接收单");
-		label.setBounds(100, 14, 360, 15);
-		add(label);
-
 		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
@@ -94,63 +97,58 @@ public class ReceiFormorder extends JPanel implements Runnable {
 		label_4.setForeground(Color.WHITE);
 		toolBar.add(label_4);
 
-		JLabel label_2 = new JLabel("到达日期");
-		label_2.setBounds(180, 159, 54, 15);
-		add(label_2);
-
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
 		JLabel lblNewLabel_8 = new JLabel("单击选择日期");
 		dateChooser1.register(lblNewLabel_8);
-		lblNewLabel_8.setBounds(390, 159, 96, 15);
+		lblNewLabel_8.setBounds(372, 207, 96, 15);
 		add(lblNewLabel_8);
-
-		JLabel label_3 = new JLabel("到达地");
-		label_3.setBounds(180, 211, 96, 15);
-		add(label_3);
 
 		textField = new JTextField();
 		textField.setText(loginPO.getShop());
 		textField.setEditable(false);
-		textField.setBounds(333, 208, 192, 21);
+		textField.setForeground(new Color(88, 93, 103));
+		textField.setCaretColor(new Color(88, 93, 103));
+		textField.setOpaque(false);
+		textField.setBorder(null);
+		textField.setBounds(370, 240, 125, 26);
+		
 		add(textField);
 		textField.setColumns(10);
-
-		JLabel lblNewLabel = new JLabel("出发地");
-		lblNewLabel.setBounds(180, 263, 54, 15);
-		add(lblNewLabel);
 
 		textField_1 = new JTextField();
 		textField_1.setText(lv.getOffName());
 		textField_1.setEditable(false);
-		textField_1.setBounds(333, 260, 192, 21);
+		textField_1.setForeground(new Color(88, 93, 103));
+		textField_1.setCaretColor(new Color(88, 93, 103));
+		textField_1.setOpaque(false);
+		textField_1.setBorder(null);
+		textField_1.setBounds(370, 287, 125, 26);
 		add(textField_1);
 		textField_1.setColumns(10);
-
-		JLabel lblNewLabel_1 = new JLabel("货物到达状态");
-		lblNewLabel_1.setBounds(180, 317, 96, 15);
-		add(lblNewLabel_1);
-
-		JLabel lblNewLabel_2 = new JLabel("审批状态");
-		lblNewLabel_2.setBounds(180, 372, 69, 15);
-		add(lblNewLabel_2);
 
 		String[] approveState = { "未审批", "审批通过", "审批未通过" };
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		JComboBox comboBox = new JComboBox(approveState);
-		comboBox.setBounds(333, 370, 181, 21);
+		comboBox.setBounds(371, 370, 125, 26);
 		comboBox.setEnabled(false);
 		add(comboBox);
 
 		rdbtnNewRadioButton = new JRadioButton("损坏");
-		rdbtnNewRadioButton.setBounds(333, 313, 64, 23);
+		rdbtnNewRadioButton.setOpaque(false);
+		rdbtnNewRadioButton.setBorder(null);
+		rdbtnNewRadioButton.setBounds(368, 332, 64, 23);
 		add(rdbtnNewRadioButton);
 
 		rdbtnNewRadioButton_1 = new JRadioButton("完整");
-		rdbtnNewRadioButton_1.setBounds(408, 313, 69, 23);
+		rdbtnNewRadioButton_1.setOpaque(false);
+		rdbtnNewRadioButton_1.setBorder(null);
+		rdbtnNewRadioButton_1.setBounds(433, 332, 62, 23);
 		add(rdbtnNewRadioButton_1);
 
 		rdbtnNewRadioButton_2 = new JRadioButton("丢失");
-		rdbtnNewRadioButton_2.setBounds(479, 313, 80, 23);
+		rdbtnNewRadioButton_2.setOpaque(false);
+		rdbtnNewRadioButton_2.setBorder(null);
+		rdbtnNewRadioButton_2.setBounds(491, 332, 80, 23);
 		add(rdbtnNewRadioButton_2);
 
 		ButtonGroup bg = new ButtonGroup();
@@ -158,10 +156,10 @@ public class ReceiFormorder extends JPanel implements Runnable {
 		bg.add(rdbtnNewRadioButton_1);
 		bg.add(rdbtnNewRadioButton_2);
 
-		JButton btnNewButton = new JButton("确定");
+		JButton btnNewButton = new JButton("");
 
 		ImageIcon image1 = new ImageIcon("image/transparent_circle.png");
-		btnNewButton.setBounds(274, 459, 52, 52);
+		btnNewButton.setBounds(272, 457, 52, 52);
 		Image temp1 = image1.getImage().getScaledInstance(
 				btnNewButton.getWidth(), btnNewButton.getHeight(),
 				image1.getImage().SCALE_DEFAULT);
@@ -182,7 +180,7 @@ public class ReceiFormorder extends JPanel implements Runnable {
 									.getCarNum(), lv.getMonitorName(), lv
 									.getTransferName(), lv.getOrder());
 					ReceiFormBlService rb = new ReceiFormBL();
-					rb.addReceiveOrder(rv,lv.getLoadNum());
+					rb.addReceiveOrder(rv, lv.getLoadNum());
 					label_4.setText("接收单已提交总经理审批");
 					Thread t = new Thread(nowPanel);
 					t.start();
@@ -191,12 +189,11 @@ public class ReceiFormorder extends JPanel implements Runnable {
 		});
 		add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("取消");
+		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setIcon(image1);
-		btnNewButton_1.setBounds(425, 459, 52, 52);
+		btnNewButton_1.setBounds(424, 456, 52, 52);
 		btnNewButton_1.setContentAreaFilled(false);
-		btnNewButton.setBorderPainted(false);
-
+		btnNewButton_1.setBorderPainted(false);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ReceiFormorder f = new ReceiFormorder(main, lastui, lv, loginPO);
@@ -204,15 +201,10 @@ public class ReceiFormorder extends JPanel implements Runnable {
 				main.getContentPane().add(f);
 				main.invalidate();
 				main.repaint();
+				main.setVisible(true);
 			}
 		});
 		add(btnNewButton_1);
-
-		JLabel label_5 = new JLabel(
-				"\u4E2D\u8F6C\u4E2D\u5FC3\u5230\u8FBE\u5355");
-		label_5.setFont(new Font("微软雅黑", Font.BOLD, 24));
-		label_5.setBounds(260, 71, 226, 44);
-		add(label_5);
 	}
 
 	protected String getSelection() {

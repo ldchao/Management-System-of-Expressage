@@ -39,7 +39,7 @@ public class Constant extends JPanel {
 		setLayout(null);
 		this.setVisible(true);
 
-		JButton button = new JButton("\u7F16\u8F91");
+		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				editConstant editConstant = new editConstant(vo, main, loginPO);
