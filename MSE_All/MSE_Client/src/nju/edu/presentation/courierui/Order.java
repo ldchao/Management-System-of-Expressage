@@ -357,8 +357,8 @@ public class Order extends JPanel implements Runnable {
 					if (valid == true) {
 						listinbl.addOrder(vo);
 						lblNewLabel.setText("新建成功");
-						btnNewButton.setEnabled(false);
-						cleanSignal = true;
+//						btnNewButton.setEnabled(false);
+//						cleanSignal = true;
 					} else {
 						lblNewLabel.setText("信息不完整，请补全信息");
 					}
