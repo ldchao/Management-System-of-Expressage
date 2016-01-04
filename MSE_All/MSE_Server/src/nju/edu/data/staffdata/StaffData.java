@@ -134,9 +134,8 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService {
 	@Override
 	public void exchange(String id, StaffPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		fileReader fileReader = new fileReader();
 		ArrayList<String> arrayList = fileReader
-				.Reader("Database/StaffWithouID.txt");
+				.Reader("DataBase/StaffWithoutID.txt");
 		String[] temp = null;
 		int signal = -1;
 		for (int i = 0; i < arrayList.size(); i++) {
@@ -145,12 +144,12 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService {
 				signal = i;
 			}
 		}
+		System.out.print(arrayList.size()+" "+signal);
 		if (signal > -1) {
 			arrayList.remove(signal);
 		}
-		fileWriter fileWriter = new fileWriter();
-		fileWriter.Writer("Database/StaffWithoutID.txt", arrayList, false);
 		po.setId(id);
+		fileWriter.Writer("DataBase/StaffWithoutID.txt", arrayList, false);
 		String info = po.getId() + ";" + po.getName() + ";" + po.getAddress()
 				+ ";" + po.getPosition() + ";" + po.getPhone() + ";"
 				+ po.getCellphone() + ";" + po.getShop();

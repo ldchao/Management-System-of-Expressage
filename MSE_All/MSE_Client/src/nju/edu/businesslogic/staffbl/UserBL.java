@@ -121,10 +121,8 @@ public class UserBL implements UserBLService, checkUserInfo,
 		return stafflist;
 	}
 
-	public void IDtoManager(String oldID, String newID, String newlimit,
-			StaffPO po) {
+	public void IDtoManager(String newID, String newlimit, StaffPO po) {
 
 		editstaff.staffGetID(newID, newlimit, po);
-		editstaff.deleteStaff(oldID);
 	}
 }

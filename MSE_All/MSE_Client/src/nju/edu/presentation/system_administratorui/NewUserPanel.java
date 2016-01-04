@@ -35,7 +35,6 @@ public class NewUserPanel extends JPanel implements Runnable {
 	private AbstractButton btn;
 	private ButtonGroup bg;
 	private boolean fromManager;
-	private String oldName;
 	private StaffPO potosave;
 	UserBL userBL = new UserBL();
 
@@ -219,9 +218,7 @@ public class NewUserPanel extends JPanel implements Runnable {
 							lblNewLabel.setText("创建成功!");
 							success = true;
 							if (fromManager) {
-								potosave.setId(name);
-								potosave.setPhone(limit);
-								userBL.IDtoManager(oldName, name, limit,
+								userBL.IDtoManager(name, limit,
 										potosave);
 							}
 						} else {
@@ -280,7 +277,6 @@ public class NewUserPanel extends JPanel implements Runnable {
 
 	public void setInfo(String name, String limit, StaffPO po) {
 		textField.setText(name);
-		oldName = name;
 		potosave = po;
 		// 设置原有权限
 		Enumeration<AbstractButton> radioBtns = bg.getElements();

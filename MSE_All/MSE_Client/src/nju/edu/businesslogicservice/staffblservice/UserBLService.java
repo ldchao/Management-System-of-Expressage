@@ -27,7 +27,6 @@ public interface UserBLService {
 	public ArrayList<StaffPO> IDfromeManager();
 
 	// 存储新建账号的人员
-	public void IDtoManager(String oldID, String newID, String newlimit,
-			StaffPO po);
+	public void IDtoManager(String newID, String newlimit, StaffPO po);
 
 }

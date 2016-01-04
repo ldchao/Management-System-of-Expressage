@@ -41,15 +41,16 @@ public class CheckUserPanel extends JPanel implements Runnable {
 	 */
 	protected void paintComponent(Graphics g) {
 		ImageIcon image = new ImageIcon("image/system_stuff/checkUserPanel.png");
-		g.drawImage(image.getImage(), 0, 0, getSize().width,getSize().height,this);
+		g.drawImage(image.getImage(), 0, 0, getSize().width, getSize().height,
+				this);
 	}
-	
+
 	public CheckUserPanel(LoginPO loginPO, JFrame main) {
 		setLayout(null);
 
 		cup = this;
 
-		JLabel lblHello = new JLabel("Hello! "+loginPO.getName());
+		JLabel lblHello = new JLabel("Hello! " + loginPO.getName());
 		lblHello.setForeground(Color.WHITE);
 		lblHello.setBounds(655, 12, 100, 15);
 		add(lblHello);
@@ -70,10 +71,10 @@ public class CheckUserPanel extends JPanel implements Runnable {
 		button_4.setBorderPainted(false);
 		button_4.setIcon(new ImageIcon("image/transparent_circle.png"));
 		button_4.addMouseListener(new MouseAdapter() {
-					@Override
+			@Override
 			public void mousePressed(MouseEvent e) {
 				button_4.setIcon(new ImageIcon("image/mask_circle.png"));
-			}	
+			}
 		});
 		add(button_4);
 
@@ -94,7 +95,7 @@ public class CheckUserPanel extends JPanel implements Runnable {
 		button_1.setBounds(425, 459, 52, 52);
 		ImageIcon image = new ImageIcon("image/transparent_circle.png");
 		Image temp = image.getImage().getScaledInstance(button_1.getWidth(),
-						button_1.getHeight(),image.getImage().SCALE_DEFAULT);
+				button_1.getHeight(), image.getImage().SCALE_DEFAULT);
 		image = new ImageIcon(temp);
 		button_1.setIcon(image);
 		add(button_1);
@@ -161,9 +162,9 @@ public class CheckUserPanel extends JPanel implements Runnable {
 		button.addActionListener(new ActionListener() {
 			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent arg0) {
-				String name = tableModel.getValueAt(rowpos, 0).toString();
-				String limit = tableModel.getValueAt(rowpos, 2).toString();
 				if (rowpos != -1) {
+					String name = tableModel.getValueAt(rowpos, 0).toString();
+					String limit = tableModel.getValueAt(rowpos, 2).toString();
 					UpdateUserFrame up = new UpdateUserFrame(cup, name, limit,
 							rowpos);
 				}
@@ -174,7 +175,7 @@ public class CheckUserPanel extends JPanel implements Runnable {
 		button.setBorderPainted(false);
 		ImageIcon image2 = new ImageIcon("image/transparent_circle.png");
 		Image temp2 = image2.getImage().getScaledInstance(button_1.getWidth(),
-						button_1.getHeight(),image2.getImage().SCALE_DEFAULT);
+				button_1.getHeight(), image2.getImage().SCALE_DEFAULT);
 		image2 = new ImageIcon(temp2);
 		button.setIcon(image2);
 		add(button);
